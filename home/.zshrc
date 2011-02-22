@@ -69,4 +69,7 @@ stty stop undef
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
-source ~/.zsh/modules/autojump/autojump.zsh
+
+# Autojump (j, jumpstat)
+cd ~/.zsh/modules/autojump
+source autojump.zsh
