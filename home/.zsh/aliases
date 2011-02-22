@@ -1,0 +1,6 @@
+alias apache2ctl='sudo /opt/local/apache2/bin/apachectl'
+alias ll='ls -la'
+alias ..='cd ..'
+alias mysql='mysql5'
+alias dl='cd ~/Downloads'
+

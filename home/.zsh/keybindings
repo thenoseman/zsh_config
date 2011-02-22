@@ -1,0 +1,14 @@
+# Vi command editing mode
+bindkey -e
+
+# Make delete work properly in all cases
+bindkey "^[[3~" delete-char
+
+# Mac specific keyboard mappings
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[5~' up-history
+bindkey '^[[6~' down-history
+
+bindkey '^R' history-incremental-search-backward
+bindkey -s '^D' "logout\n"

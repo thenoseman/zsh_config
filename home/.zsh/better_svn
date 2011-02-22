@@ -1,0 +1,72 @@
+svnbackone() {
+  local FILE=$1
+  echo "Reverting $FILE to previous version ..."
+  local PREVIOUS_REV=`svn log -l 2 ${FILE} | grep -E "r[0-9]+ " | tail -n 1 | cut -d " " -f 1 | sed s/r//g`
+  svn merge -c -$PREVIOUS_REV $FILE
+}
+
+svnmerge() {
+  BRANCHED_REV=`svn log --stop-on-copy | grep -Eho 'r[0-9]+' | tail -1`
+  IN_BRANCH_DIR=`pwd | grep -E "branches/.+" | wc -l`
+
+  if [ $IN_BRANCH_DIR -eq 1 ]; then
+    # OK
+    BRANCH_PATH=`svn info . | grep URL | cut -d " " -f 2`
+    echo "Merging branch $BRANCH_PATH to trunk"
+    cd ../../trunk
+    if [ `pwd | grep -E "/trunk" | wc -l` -eq 1 ]; then
+      svn merge -$BRANCHED_REV:HEAD $BRANCH_PATH
+    else
+      echo "There is no 'trunk' directory"
+    fi
+  else
+    echo "Please go to a branch directory first, before executing this merge."
+  fi
+}
+
+svnignore() {
+  local SVN="`which svn`"
+  ${SVN} propedit svn:ignore .
+}
+
+svnup() {
+	local SVN="`which svn`"
+	# This snippet is taken from a blog post found on the net. My
+	# thanks go out to the author of it.
+	# http://woss.name/2007/02/01/display-svn-changelog-on-svn-up/
+	# I have slightly modified it to better suit my needs.
+	
+	local old_revision=`${SVN} info "$@" | awk '/^Revision:/ {print $2}'`
+	local first_update=$((${old_revision} + 1))
+	
+	${SVN} up "$@"
+	
+	local new_revision=`${SVN} info "$@" | awk '/^Revision:/ {print $2}'`
+
+	if [ ${new_revision} -gt ${old_revision} ]; then
+		svnlog -v -rHEAD:${first_update} "$@"
+	else
+		echo "No changes."
+	fi
+}
+
+svndiff() {
+	local SVN="`which svn`"
+	# The colordiff utility (http://colordiff.sourceforge.net) is
+	# needed for this enhancement to work
+	# Thanks to Lukas Kahwe Smith for the addition to
+	# leave out whitespace changes
+	# Thanks to Robin Speekenbrink for the hint to the -R
+	# switch of less, which should fix problems some of
+	# you might have with colorization.
+	${SVN} diff "$@" --diff-cmd `which diff` -x "-u -w"|colordiff|less -R
+}
+
+svnlog() {
+	local SVN="`which svn`"
+	${SVN} log -v "$@"|sed -e 's/^-\+$/[1;32m\0[m/' -e 's/^r[0-9]\+.\+$/[1;31m\0[m/'|less
+}
+
+svnst!() {
+  svn st | grep -e '^!'
+}
