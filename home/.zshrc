@@ -67,6 +67,6 @@ zstyle ':completion:*' verbose yes
 stty stop undef
 
 # Includes
-source ~/.zsh/*
-source ~/.zsh/private/*
+for f in ~/.zsh/config/*; do source $f; done
+for f in ~/.zsh/private/*; do source $f; done
 source ~/.zsh/modules/autojump/autojump.zsh
