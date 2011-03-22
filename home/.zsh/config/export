@@ -2,7 +2,7 @@ export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
 export AUTOFEATURE=true #Test Cucumber
 export LESS="-mNR" #Line-numbers and ASCII-Colors in less
-export EDITOR="mvim"
+export EDITOR='mvim -f -c "au VimLeave * !open -a iTerm"'
 export LC_ALL="en_US.UTF-8"
 
 # Show `time` output for any command that takes longer than 1 second of CPU time
