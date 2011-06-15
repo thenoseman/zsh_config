@@ -1,0 +1,10 @@
+--all-types
+--ignore-dir=log
+--ignore-dir=doc
+--ignore-dir=docs
+--ignore-dir=vendor/rails
+--ignore-dir=db
+--ignore-dir=tmp
+--ignore-dir=tests/_coverage
+--type-add=ruby=.haml,.rake,.rsel,.sass
+--type-set=ini=.ini,.cfg
