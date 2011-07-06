@@ -1,4 +1,5 @@
 r() { ssh root@"$1" -i ~/.ssh/id_rsa }
 c() { script/console $1 }
 s() { script/server -p 3000 }
+rc() { bundle exec rails }
 psg() { ps auxww | grep $1 }
