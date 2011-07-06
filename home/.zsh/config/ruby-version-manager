@@ -1,2 +1,5 @@
 # Boot RVM (Ruby Version manager)
 if [[ -s /Users/`whoami`/.rvm/scripts/rvm ]] ; then source /Users/`whoami`/.rvm/scripts/rvm ; fi
+
+# Auto-Complete
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
