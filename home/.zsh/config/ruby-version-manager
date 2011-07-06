@@ -2,4 +2,4 @@
 if [[ -s /Users/`whoami`/.rvm/scripts/rvm ]] ; then source /Users/`whoami`/.rvm/scripts/rvm ; fi
 
 # Auto-Complete
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+fpath=($rvm_path/scripts/zsh/Completion $fpath)
