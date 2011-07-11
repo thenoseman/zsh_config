@@ -1,4 +1,0 @@
-#
-# Load Bundler EXEC (https://github.com/gma/bundler-exec)
-#
-[ -f ~/.zsh/modules/bundler-exec/bundler-exec.sh ] && source ~/.zsh/modules/bundler-exec/bundler-exec.sh
