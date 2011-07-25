@@ -21,3 +21,11 @@ parse_svn_branch() {
 }
 
 PS1='%{[00;36m%}%n%{[33m%}@%m%{[32m%}:%(4~|...|)%2~%{[37m%}$CURRENT_BRANCH%(!.#.)%{$reset_color%}> '
+
+# Show RVM Gemset and ruby
+rvm_prompt_info() {
+  ruby_version=$(~/.rvm/bin/rvm-prompt 2> /dev/null) || return
+  echo "$ruby_version"
+}
+
+RPROMPT='$(rvm_prompt_info)'
