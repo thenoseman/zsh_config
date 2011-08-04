@@ -30,8 +30,10 @@ function +vi-git-st() {
 
         # for git prior to 1.7
         # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
-        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed 's/ //g')
         (( $behind )) && gitstatus+=( "$fg[red]-${behind}%{$reset_color%}" )
+
+        (( !$ahead && !$behind )) && gitstatus+=( "$fg[green]✓%{$reset_color%}" )
 
         hook_com[branch]=",${(j:/:)gitstatus}"
     fi
