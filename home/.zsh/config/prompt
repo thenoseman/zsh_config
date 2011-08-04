@@ -1,26 +1,77 @@
 # prompt
+autoload -Uz vcs_info
+autoload -U colors && colors
 autoload -U promptinit
 promptinit
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*:*' get-revision true
+zstyle ':vcs_info:git*:*' check-for-changes true
+
+zstyle ':vcs_info:git*' formats "%b%m"
+zstyle ':vcs_info:git*' actionformats "%b%m"
+zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
+
+# Show remote ref name and number of commits ahead-of or behind
+# See http://eseth.org/2010/git-in-zsh
+function +vi-git-st() {
+    local ahead behind remote
+    local -a gitstatus
+
+    # Are we on a remote-tracking branch?
+    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+        --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+
+    if [[ -n ${remote} ]] ; then
+        # for git prior to 1.7
+        # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
+        ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed 's/ //g')
+        (( $ahead )) && gitstatus+=( "$fg[green]+${ahead}%{$reset_color%}" )
+
+        # for git prior to 1.7
+        # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
+        behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+        (( $behind )) && gitstatus+=( "$fg[red]-${behind}%{$reset_color%}" )
+
+        hook_com[branch]=",${(j:/:)gitstatus}"
+    fi
+}
+
+# Show count of stashed changes
+# See http://eseth.org/2010/git-in-zsh
+function +vi-git-stash() {
+    local -a stashes
+
+    if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
+        stashes=$(git stash list 2>/dev/null | wc -l | sed 's/ //g')
+        hook_com[misc]+=",${stashes} ✄ "
+    fi
+}
+
 # Show branch and dirty in prompt
 precmd () {
+  vcs_info
   CURRENT_BRANCH=''
 	if [[ -d .git ]]; then
 		ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	  CURRENT_BRANCH="[${ref#refs/heads/}$(parse_git_dirty)]"
+	  CURRENT_BRANCH="${ref#refs/heads/}$(parse_git_dirty)"
 	fi
 	
 	if [[ -d .svn ]]; then
 	  CURRENT_BRANCH="$(parse_svn_branch)"
 	fi
 }
+
 parse_git_dirty () {
   [[ $(git status | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
+
 parse_svn_branch() {
 	pwd | grep -oEi 'branches/(.*)' | cut -d '/' -f 2 | awk '{print "[SVN:"$1"]" }'
 }
 
-PS1='%{[00;36m%}%n%{[33m%}@%m%{[32m%}:%(4~|...|)%2~%{[37m%}$CURRENT_BRANCH%(!.#.)%{$reset_color%}> '
+#PS1='%{[00;36m%}%n%{[33m%}@%m%{[32m%}:%(4~|...|)%2~%{[37m%}[$CURRENT_BRANCH%(!.#.)${vcs_info_msg_0_}%{$reset_color%}]> '
+PS1='$fg[cyan]%n$fg[yellow]$fg[green]:%(4~|...|)%2~%{$reset_color%}[$CURRENT_BRANCH%(!.#.)${vcs_info_msg_0_}%{$reset_color%}]> '
 
 # Show RVM Gemset and ruby
 rvm_prompt_info() {
