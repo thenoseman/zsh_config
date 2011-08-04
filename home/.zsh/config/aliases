@@ -3,4 +3,4 @@ alias ..='cd ..'
 alias mysql='mysql5'
 alias dl='cd ~/Downloads'
 alias at='bundle exec autotest'
-
+alias gpr='git pull --rebase'
