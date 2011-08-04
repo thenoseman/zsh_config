@@ -54,11 +54,11 @@ precmd () {
   CURRENT_BRANCH=''
 	if [[ -d .git ]]; then
 		ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	  CURRENT_BRANCH="${ref#refs/heads/}$(parse_git_dirty)"
+	  CURRENT_BRANCH="[${ref#refs/heads/}$(parse_git_dirty)${vcs_info_msg_0_}]"
 	fi
 	
 	if [[ -d .svn ]]; then
-	  CURRENT_BRANCH="$(parse_svn_branch)"
+	  CURRENT_BRANCH="[$(parse_svn_branch)]"
 	fi
 }
 
@@ -71,7 +71,7 @@ parse_svn_branch() {
 }
 
 #PS1='%{[00;36m%}%n%{[33m%}@%m%{[32m%}:%(4~|...|)%2~%{[37m%}[$CURRENT_BRANCH%(!.#.)${vcs_info_msg_0_}%{$reset_color%}]> '
-PS1='$fg[cyan]%n$fg[yellow]$fg[green]:%(4~|...|)%2~%{$reset_color%}[$CURRENT_BRANCH%(!.#.)${vcs_info_msg_0_}%{$reset_color%}]> '
+PS1='$fg[cyan]%n$fg[yellow]$fg[green]:%(4~|...|)%2~%{$reset_color%}$CURRENT_BRANCH%(!.#.)%{$reset_color%}> '
 
 # Show RVM Gemset and ruby
 rvm_prompt_info() {
