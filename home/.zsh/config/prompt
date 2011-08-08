@@ -26,14 +26,14 @@ function +vi-git-st() {
         # for git prior to 1.7
         # ahead=$(git rev-list origin/${hook_com[branch]}..HEAD | wc -l)
         ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed 's/ //g')
-        (( $ahead )) && gitstatus+=( "$fg[green]+${ahead}%{$reset_color%}" )
+        (( $ahead )) && gitstatus+=( "%{$fg[green]%}+${ahead}%{$reset_color%}" )
 
         # for git prior to 1.7
         # behind=$(git rev-list HEAD..origin/${hook_com[branch]} | wc -l)
         behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l | sed 's/ //g')
-        (( $behind )) && gitstatus+=( "$fg[red]-${behind}%{$reset_color%}" )
+        (( $behind )) && gitstatus+=( "%{$fg[red]%}-${behind}%{$reset_color%}" )
 
-        (( !$ahead && !$behind )) && gitstatus+=( "$fg[green]✓%{$reset_color%}" )
+        (( !$ahead && !$behind )) && gitstatus+=( "%{$fg[green]%}✓%{$reset_color%}" )
 
         hook_com[branch]=",${(j:/:)gitstatus}"
     fi
@@ -72,8 +72,7 @@ parse_svn_branch() {
 	pwd | grep -oEi 'branches/(.*)' | cut -d '/' -f 2 | awk '{print "[SVN:"$1"]" }'
 }
 
-#PS1='%{[00;36m%}%n%{[33m%}@%m%{[32m%}:%(4~|...|)%2~%{[37m%}[$CURRENT_BRANCH%(!.#.)${vcs_info_msg_0_}%{$reset_color%}]> '
-PS1='$fg[cyan]%n$fg[yellow]$fg[green]:%(4~|...|)%2~%{$reset_color%}$CURRENT_BRANCH%(!.#.)%{$reset_color%}> '
+PS1='%{$fg[cyan]%}%n%{$fg[green]%}:%(4~|...|)%2~%{$reset_color%}$CURRENT_BRANCH%(!.#.)%{$reset_color%}> '
 
 # Show RVM Gemset and ruby
 rvm_prompt_info() {
