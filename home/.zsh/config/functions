@@ -18,4 +18,9 @@ rvm_here() {
   else
     echo ".rvmrc already exists"
   fi
+
+  # gitignore
+  if [ -d .git ]; then
+    echo ".rvmrc" >> .gitignore
+  fi
 }
