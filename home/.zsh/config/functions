@@ -1,5 +1,21 @@
-r() { ssh root@"$1" -i ~/.ssh/id_rsa }
-c() { script/console $1 }
-s() { script/server -p 3000 }
+# Rails console
 rc() { bundle exec rails c }
+
+# Rails server
+rs() { bundle exec rails s }
+
+# ps + grep
 psg() { ps auxww | grep $1 }
+
+# Create gemset (in .rvmrc) with directory name here
+rvm_here() {
+  if [ ! -f .rvmrc ]; then
+    ruby=`rvm current | cut -d "@" -f 1`
+    here=`pwd`
+    gemset=`basename $(pwd)`
+    echo "rvm --create $ruby@$gemset" >> .rvmrc
+    cd .
+  else
+    echo ".rvmrc already exists"
+  fi
+}
