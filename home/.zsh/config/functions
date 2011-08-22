@@ -24,3 +24,5 @@ rvm_here() {
     echo ".rvmrc" >> .gitignore
   fi
 }
+
+bo() { bundle open $1 & }
