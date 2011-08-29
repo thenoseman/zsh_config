@@ -24,7 +24,6 @@ zstyle ':vcs_info:svn*' actionformats "%b%u%m"
 function +vi-git-st() {
     local ahead behind remote
     local -a gitstatus
-    echo "GIT ST"
 
     # Are we on a remote-tracking branch?
     remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
@@ -52,7 +51,6 @@ function +vi-git-st() {
 # See http://eseth.org/2010/git-in-zsh
 function +vi-git-stash() {
     local -a stashes
-    echo "GIT STASH"
 
     if [[ -s ${hook_com[base]}/.git/refs/stash ]] ; then
         stashes=$(git stash list 2>/dev/null | wc -l | sed 's/ //g')
