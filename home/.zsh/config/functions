@@ -30,7 +30,7 @@ bo() { bundle open $1 & }
 # Start pry (and load rails if available)
 p() {
   if [ -f ./config/environment.rb ]; then
-    pry -r ./config/environment -r ~/.zsh/config/pry.rb $1 $2 $3
+    pry -r ./config/environment -r ~/.zsh/modules/pry/rails.rb $1 $2 $3
   else
     pry
   fi
