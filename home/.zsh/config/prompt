@@ -3,7 +3,6 @@ autoload -Uz vcs_info
 autoload -U colors && colors
 autoload -U promptinit
 promptinit
-vcs_info
 
 zstyle ':vcs_info:*' enable git svn
 
@@ -58,6 +57,10 @@ function +vi-git-stash() {
     fi
 }
 
+function precmd() {
+  vcs_info
+}
+
 PS1='%{$fg[cyan]%}%n%{$fg[green]%}:%(4~|...|)%2~%{$reset_color%}[${vcs_info_msg_0_}]%(!.#.)%{$reset_color%}> '
 
 # Show RVM Gemset and ruby
@@ -67,3 +70,4 @@ rvm_prompt_info() {
 }
 
 RPROMPT='$(rvm_prompt_info)'
+
