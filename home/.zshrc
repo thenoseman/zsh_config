@@ -62,6 +62,8 @@ zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
+# Complete cd.. (http://stackoverflow.com/questions/564648/zsh-tab-completion-for-cd)
+zstyle ':completion:*' special-dirs true
 
 # Disable ^S, useless and annoying
 stty stop undef
