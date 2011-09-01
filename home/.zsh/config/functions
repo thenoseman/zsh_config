@@ -31,6 +31,10 @@ bo() { bundle open $1 & }
 p() {
   if [ -f ./config/environment.rb ]; then
     pry -r ./config/environment -r ~/.zsh/modules/pry/rails.rb $1 $2 $3
+  elif [ -f ./*.gemspec ]; then
+    gem=`ls *.gemspec | cut -d "." -f 1`
+    echo "Starting PRY with gem '$gem'"
+    pry -r ./lib/$gem.rb $1 $2 $3
   else
     pry
   fi
