@@ -1,6 +1,10 @@
-# Include plugins
+# Include plugins that are made available in projects.
+# Put this in your Gemfile to load a additional local Gemfile
+# instance_eval(File.read(File.expand_path('~/.Gemfile.local'))) rescue nil
+
+require 'autotest/fsevent' if Gem.available? "autotest-fsevent"
+
 # Skip some paths
 Autotest.add_hook :initialize do |autotest|
   %w{.git .DS_Store ._* vendor}.each { |exception| autotest.add_exception(exception) }
-  false
 end
