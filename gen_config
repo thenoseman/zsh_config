@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+# generates a useful gitconfig stub
+
+set -e
+
+SCRIPTNAME=`basename $0`
+USERNAME=""
+EMAIL=""
+
+usage () {
+  echo "Outputs a default .gitconfig"
+  echo
+  echo "Usage:"
+  echo "------"
+  echo "./$SCRIPTNAME -u username-to-use -e email-to-use > ~/.gitconfig"
+  echo
+  exit
+}
+
+generate () {
+  echo " [user]
+	name = $USERNAME
+	email = $EMAIL 
+[alias]
+	ci = commit
+	st = status
+	ch = checkout
+	cp = cherry-pick
+[color]
+	ui = true
+	branch = auto
+	status = auto
+[color "diff"]
+	whitespace = red reverse
+[core]
+	autocrlf = input
+"
+}
+
+if [ $# -lt "2" ]; then
+  usage
+  exit
+fi
+
+while getopts "u:e:" option
+do
+  case $option in
+  u)  USERNAME=$OPTARG 
+      ;;
+  e)  EMAIL=$OPTARG 
+      ;;
+  *)  usage
+      exit
+      ;;
+  \?) usage
+      exit
+      ;;
+  esac
+done
+
+if [[ -n "$USERNAME" && -n "$EMAIL" ]]; then
+  generate
+else
+  usage
+fi
+
