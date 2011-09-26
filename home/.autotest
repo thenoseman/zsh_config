@@ -6,5 +6,5 @@ require 'autotest/fsevent' if Gem.available? "autotest-fsevent"
 
 # Skip some paths
 Autotest.add_hook :initialize do |autotest|
-  %w{.git .DS_Store ._* vendor}.each { |exception| autotest.add_exception(exception) }
+  %w{^\.Gemfile.lock .git .DS_Store ._* vendor}.each { |exception| autotest.add_exception(exception) }
 end
