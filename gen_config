@@ -35,6 +35,7 @@ generate () {
 	whitespace = red reverse
 [core]
 	autocrlf = input
+  excludesfile = ~/.gitignore
 "
 }
 
