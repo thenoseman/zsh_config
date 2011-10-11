@@ -6,5 +6,6 @@
 --ignore-dir=db
 --ignore-dir=tmp
 --ignore-dir=tests/_coverage
+--ignore-dir=.sass-cache
 --type-add=ruby=.haml,.rake,.rsel,.sass
 --type-set=ini=.ini,.cfg
