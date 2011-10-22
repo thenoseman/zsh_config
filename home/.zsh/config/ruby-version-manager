@@ -1,5 +1,2 @@
-# Boot RVM (Ruby Version manager)
-if [[ -s /Users/`whoami`/.rvm/scripts/rvm ]] ; then source /Users/`whoami`/.rvm/scripts/rvm ; fi
-
 # Auto-Complete
 fpath=($rvm_path/scripts/zsh/Completion $fpath)
