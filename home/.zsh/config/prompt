@@ -63,7 +63,14 @@ function precmd() {
   vcs_info
 }
 
-PS1='%{$fg[cyan]%}%n%{$fg[green]%}:%(4~|...|)%2~%{$reset_color%}[${vcs_info_msg_0_}]%(!.#.)%{$reset_color%}> '
+vcs_bracket() {
+  # Only if in versioned dir
+  if [[ ${vcs_info_msg_0_} != "" ]] ; then
+    echo "[${vcs_info_msg_0_}]"
+  fi
+}
+
+PS1='%{$fg[cyan]%}%n%{$fg[green]%}:%(4~|...|)%2~%{$reset_color%}$(vcs_bracket)%(!.#.)%{$reset_color%}> '
 
 # Show RVM Gemset and ruby
 rvm_prompt_info() {
