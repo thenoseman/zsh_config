@@ -13,7 +13,7 @@ usage () {
   echo
   echo "Usage:"
   echo "------"
-  echo "./$SCRIPTNAME -u username-to-use -e email-to-use > ~/.gitconfig"
+  echo "./$SCRIPTNAME -u real-name-to-use -e email-to-use > ~/.gitconfig"
   echo
   exit
 }
