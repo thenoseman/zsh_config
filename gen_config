@@ -38,7 +38,7 @@ generate () {
   diff = auto
   interactive = auto
   ui = auto
-[color "diff"]
+[color \"diff\"]
   whitespace = red reverse
 [core]
   autocrlf = input
