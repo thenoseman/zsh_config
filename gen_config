@@ -19,23 +19,34 @@ usage () {
 }
 
 generate () {
-  echo " [user]
-	name = $USERNAME
-	email = $EMAIL 
+  echo "[user]
+  name = $USERNAME
+  email = $EMAIL 
 [alias]
-	ci = commit
-	st = status
-	ch = checkout
-	cp = cherry-pick
+  ci = commit
+  st = status
+  ch = checkout
+  cp = cherry-pick -x
+  b = branch -v
+  r = remote -v
+  t = tag -l
+  unstage = reset HEAD
+  uncommit = reset --soft HEAD^
 [color]
-	ui = true
-	branch = auto
-	status = auto
+  branch = auto
+  status = auto
+  diff = auto
+  interactive = auto
+  ui = auto
 [color "diff"]
-	whitespace = red reverse
+  whitespace = red reverse
 [core]
-	autocrlf = input
+  autocrlf = input
   excludesfile = ~/.gitignore
+[merge]
+  summary=true
+[gc]
+  auto=1
 "
 }
 
