@@ -15,6 +15,9 @@ usage () {
   echo "------"
   echo "./$SCRIPTNAME -u real-name-to-use -e email-to-use > ~/.gitconfig"
   echo
+  echo "After running this generator follow the instructions about"
+  echo "setting up your github credentials: http://help.github.com/set-your-user-name-email-and-github-token/"
+  echo
   exit
 }
 
