@@ -50,6 +50,8 @@ generate () {
   summary=true
 [gc]
   auto=1
+[branch]
+  autosetupmerge = true
 "
 }
 
