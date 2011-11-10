@@ -35,6 +35,7 @@ generate () {
   t = tag -l
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
+  unpushed = !GIT_CURRENT_BRANCH=\$(git name-rev --name-only HEAD) && git log origin/\$GIT_CURRENT_BRANCH..\$GIT_CURRENT_BRANCH --oneline
 [color]
   branch = auto
   status = auto
