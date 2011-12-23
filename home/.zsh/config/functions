@@ -25,8 +25,6 @@ rvm_here() {
   fi
 }
 
-bo() { bundle open $1 & }
-
 # Start pry (and load rails if available)
 p() {
   if [ -f ./config/environment.rb ]; then
@@ -38,4 +36,8 @@ p() {
   else
     pry
   fi
+}
+
+b() {
+  bundle $1
 }
