@@ -39,5 +39,13 @@ p() {
 }
 
 b() {
-  bundle $1
+  bundle "$@"
+}
+
+# rename *.txt txt t2t
+# a.txt => a.t2t
+rename() {
+  for f in $1; do 
+    mv "$f" "${f%$2}$3"
+  done
 }
