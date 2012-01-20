@@ -9,3 +9,11 @@
 --ignore-dir=.sass-cache
 --type-add=ruby=.haml,.rake,.rsel,.sass
 --type-set=ini=.ini,.cfg
+--type-add=vim=vimrc
+--type-add=js=json
+
+--type-set=css=sass
+--type-set=MARKDOWN=md,mkd,markdown
+--type-set=RDOC=rdoc
+
+--sort-files

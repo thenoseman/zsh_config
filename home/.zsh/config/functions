@@ -49,3 +49,7 @@ rename() {
     mv "$f" "${f%$2}$3"
   done
 }
+
+f() {
+  find . -name "$1*" | grep -v ".svn"
+}
