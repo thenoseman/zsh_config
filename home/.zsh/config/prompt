@@ -12,7 +12,7 @@ zstyle ':vcs_info:git*:*' check-for-changes true
 zstyle ':vcs_info:git*:*' unstagedstr "%{$fg[red]%}✘%{$reset_color%}"
 zstyle ':vcs_info:git*' formats "%b%u%m"
 zstyle ':vcs_info:git*' actionformats "%b%u%m"
-zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash
+zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash git-status
 
 
 # SVN
@@ -57,6 +57,21 @@ function +vi-git-stash() {
         stashes=$(git stash list 2>/dev/null | wc -l | sed 's/ //g')
         hook_com[misc]+=",${stashes} ✄ "
     fi
+}
+
+function +vi-git-status() {
+  if [ -f ".git/BISECT_LOG" ] ; then
+    hook_com[misc]+=",BISECT"
+  elif [ -f ".git/MERGE_HEAD" ] ; then
+    hook_com[misc]+=",MERGE"
+  else
+    for dir in rebase rebase-apply rebase-merge ; do
+      if [ -d ".git/$dir" ] ; then
+        hook_com[misc]+=",REBASE"
+        break
+      fi
+    done
+  fi
 }
 
 function precmd() {
