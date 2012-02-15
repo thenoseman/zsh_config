@@ -1,10 +1,16 @@
-# Include plugins that are made available in projects.
-# Put this in your Gemfile to load a additional local Gemfile
-# instance_eval(File.read(File.expand_path('~/.Gemfile.local'))) rescue nil
+# # -*- encoding : utf-8 -*-
+fsevent = nil
+begin
+  fsevent = Gem::Specification.find_by_name("autotest-fsevent") rescue nil
+rescue Exception => e
+end
 
-require 'autotest/fsevent' if Gem.available? "autotest-fsevent"
+require 'autotest/fsevent' if fsevent
 
 # Skip some paths
 Autotest.add_hook :initialize do |autotest|
-  %w{^\.Gemfile.lock .git .DS_Store ._* vendor}.each { |exception| autotest.add_exception(exception) }
+  autotest.add_exception(/\.\/(?!spec).+/)
+  autotest.add_exception(/\.\/spec\/?(integration|javascript)/)
+  autotest.add_exception(/\.\/spec\/reports\/.*/)
+  autotest.add_exception(/.DS_Store/)
 end
