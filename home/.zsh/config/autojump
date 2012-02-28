@@ -1,4 +1,4 @@
 # Autojump via homebrew?
 if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
+  . `/usr/local/bin/brew --prefix`/etc/autojump
 fi
