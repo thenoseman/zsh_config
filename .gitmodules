@@ -4,3 +4,6 @@
 [submodule "home/.rbenv"]
 	path = home/.rbenv
 	url = git://github.com/sstephenson/rbenv.git
+[submodule "home/.zsh/modules/ruby-build"]
+	path = home/.zsh/modules/ruby-build
+	url = git://github.com/sstephenson/ruby-build.git
