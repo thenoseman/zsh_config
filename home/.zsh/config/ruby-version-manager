@@ -1,2 +1,0 @@
-# Auto-Complete
-fpath=($rvm_path/scripts/zsh/Completion $fpath)
