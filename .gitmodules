@@ -1,3 +1,6 @@
 [submodule "home/.zsh/modules/autojump"]
 	path = home/.zsh/modules/autojump
 	url = https://github.com/joelthelion/autojump.git
+[submodule "home/.rbenv"]
+	path = home/.rbenv
+	url = git://github.com/sstephenson/rbenv.git
