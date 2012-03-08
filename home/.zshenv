@@ -10,4 +10,5 @@ eval "$(rbenv init -)"
 if [[ ! -h ~/.rbenv/plugins/ruby-build ]]; then 
   mkdir ~/.rbenv/plugins
   ln -s ~/.zsh/modules/ruby-build ~/.rbenv/plugins/
+  ln -s ~/.zsh/modules/rbenv-bundler ~/.rbenv/plugins/bundler
 fi 
