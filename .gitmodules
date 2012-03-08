@@ -4,6 +4,3 @@
 [submodule "home/.zsh/modules/ruby-build"]
 	path = home/.zsh/modules/ruby-build
 	url = git://github.com/sstephenson/ruby-build.git
-[submodule "home/.zsh/modules/rbenv-bundler"]
-	path = home/.zsh/modules/rbenv-bundler
-	url = git://github.com/carsomyr/rbenv-bundler.git
