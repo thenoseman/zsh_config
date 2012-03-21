@@ -1,3 +1,4 @@
+# # -*- encoding : utf-8 -*-
 # https://github.com/carlhuda/bundler/issues/183#issuecomment-1149953
 # Also add all gems from the global gemset to the loadpath
 if defined?(::Bundler)
@@ -40,5 +41,5 @@ begin
   Pry.start
   exit
 rescue
-  warn "You really should \"rvm gemset use global && gem install pry pry-doc --no-ri --no-rdoc\""
+  warn "You really should \"gem install pry pry-doc --no-ri --no-rdoc\" into your global system gemdir"
 end
