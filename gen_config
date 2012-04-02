@@ -36,6 +36,7 @@ generate () {
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
   unpushed = !GIT_CURRENT_BRANCH=\$(git name-rev --name-only HEAD) && git log origin/\$GIT_CURRENT_BRANCH..\$GIT_CURRENT_BRANCH --oneline
+  quicklog = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   rc = rebase --continue
   ra = rebase --abort
 [color]
