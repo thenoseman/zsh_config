@@ -4,3 +4,6 @@
 [submodule "home/.zsh/modules/ruby-build"]
 	path = home/.zsh/modules/ruby-build
 	url = git://github.com/sstephenson/ruby-build.git
+[submodule "home/.scm_breeze"]
+	path = home/.scm_breeze
+	url = git://github.com/ndbroadbent/scm_breeze.git
