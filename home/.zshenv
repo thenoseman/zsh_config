@@ -3,4 +3,4 @@
 #
 
 # rbenv
-eval "$(rbenv init -)"
+eval "$(/usr/local/bin/rbenv init -)"
