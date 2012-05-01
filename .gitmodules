@@ -1,6 +1,3 @@
 [submodule "home/.rbenv"]
 	path = home/.rbenv
 	url = git://github.com/sstephenson/rbenv.git
-[submodule "home/.scm_breeze"]
-	path = home/.scm_breeze
-	url = git://github.com/ndbroadbent/scm_breeze.git
