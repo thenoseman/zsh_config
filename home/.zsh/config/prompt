@@ -89,7 +89,7 @@ PS1='%{$fg[cyan]%}%n%{$fg[green]%}:%(4~|...|)%2~%{$reset_color%}$(vcs_bracket)%(
 function rbenv_prompt_info() {
   local ruby_version
   ruby_version=$(rbenv version 2> /dev/null) || return
-  echo "‹$ruby_version" | sed 's/[ \t].*$/›/'
+  echo "$ruby_version" | sed 's/[ \t].*$//'
 }
 
 RPROMPT='$(rbenv_prompt_info)'
