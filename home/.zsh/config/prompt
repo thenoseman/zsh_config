@@ -14,7 +14,6 @@ zstyle ':vcs_info:git*' formats "%b%u%m"
 zstyle ':vcs_info:git*' actionformats "%b%u%m"
 zstyle ':vcs_info:git*+set-message:*' hooks git-st git-stash git-status
 
-
 # SVN
 zstyle ':vcs_info:svn*' branchformat "%b"
 zstyle ':vcs_info:svn*' formats "%b%m"
@@ -87,11 +86,10 @@ vcs_bracket() {
 
 PS1='%{$fg[cyan]%}%n%{$fg[green]%}:%(4~|...|)%2~%{$reset_color%}$(vcs_bracket)%(!.#.)%{$reset_color%}> '
 
-# Show RVM Gemset and ruby
-rvm_prompt_info() {
-  ruby_version=$(~/.rvm/bin/rvm-prompt 2> /dev/null) || return
-  echo "$ruby_version"
+function rbenv_prompt_info() {
+  local ruby_version
+  ruby_version=$(rbenv version 2> /dev/null) || return
+  echo "‹$ruby_version" | sed 's/[ \t].*$/›/'
 }
 
-RPROMPT='$(rvm_prompt_info)'
-
+RPROMPT='$(rbenv_prompt_info)'
