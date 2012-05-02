@@ -1,0 +1,1 @@
+export PATH=$PATH:~/.zsh/modules/git-submodule-tools
