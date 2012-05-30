@@ -8,3 +8,5 @@ alias gme='rvm $rvm_env_string do guard'
 alias v='mvim'
 alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 9090, :DocumentRoot => Dir.pwd); trap(\"INT\") { s.shutdown }; s.start"'
 alias gitu='git stash && git pull --rebase && git stash pop'
+alias 193="rbenv shell 1.9.3-p125-perf"
+alias jruby="rbenv shell jruby-1.6.5"
