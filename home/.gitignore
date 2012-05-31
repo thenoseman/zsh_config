@@ -43,6 +43,7 @@ Thumbs.db
 # VIM #
 #######
 *.swp
+tags
 
 # Ruby #
 ########
