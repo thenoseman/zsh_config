@@ -24,13 +24,13 @@ setopt HIST_VERIFY
 unsetopt SHARE_HISTORY # share history between sessions ???
 setopt EXTENDED_HISTORY # add timestamps to history
 setopt PROMPT_SUBST
-setopt CORRECT
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
+unsetopt correct_all
 
 HISTSIZE=5000
 SAVEHIST=5000
