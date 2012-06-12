@@ -1,4 +1,6 @@
 # -*- encoding : utf-8 -*-
+#  gem install pry pry-doc debugger bond wirb awesome_print git-up
+
 # Break out of the Bundler jail
 # from https://github.com/ConradIrwin/pry-debundle/blob/master/lib/pry-debundle.rb
 if defined? Bundler
