@@ -1,20 +1,28 @@
-# # -*- encoding : utf-8 -*-
-# https://github.com/carlhuda/bundler/issues/183#issuecomment-1149953
-# Also add all gems from the global gemset to the loadpath
-if defined?(::Bundler)
-  global_gemset = ENV['GEM_PATH'].split(':').grep(/@global$/).first
-  if global_gemset
-    all_global_gem_paths = Dir.glob("#{global_gemset}/gems/*")
-    all_global_gem_paths.each do |p|
-      gem_path = "#{p}/lib"
-      $LOAD_PATH << gem_path
-    end
-  end
+# -*- encoding : utf-8 -*-
+# Break out of the Bundler jail
+# from https://github.com/ConradIrwin/pry-debundle/blob/master/lib/pry-debundle.rb
+if defined? Bundler
+  Gem.post_reset_hooks.reject! { |hook| hook.source_location.first =~ %r{/bundler/} }
+  Gem::Specification.reset
+  load 'rubygems/custom_require.rb'
 end
 
-require 'rubygems'
-
+require 'rubygems' unless defined? Gem # rubygems is only needed in 1.8
 require 'ap' rescue nil
+require 'irb/completion'
+require 'irb/ext/save-history'
+require 'wirb'
+require 'bond'
+
+# https://github.com/cldwalker/bond
+Bond.start
+
+# https://github.com/janlelis/wirb/
+Wirb.start
+
+# keep history
+IRB.conf[:SAVE_HISTORY] = 1000
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 
 # Log SQL to STDOUT if in Rails
 if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
@@ -30,7 +38,7 @@ def sqllogoff
   ActiveRecord::Base.logger = nil
 end
 
-# show compplete IRB history
+# show complete IRB history
 def history
   puts Readline::HISTORY.entries.split("exit").last[0..-2].join("\n")
 end
