@@ -44,6 +44,7 @@ Thumbs.db
 #######
 *.swp
 tags
+.tags
 
 # Ruby #
 ########

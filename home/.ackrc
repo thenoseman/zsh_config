@@ -1,4 +1,3 @@
---all-types
 --ignore-dir=log
 --ignore-dir=doc
 --ignore-dir=docs
@@ -8,13 +7,17 @@
 --ignore-dir=tests/_coverage
 --ignore-dir=.sass-cache
 --ignore-dir=spec/reports
+--ignore-dir=public/assets
+
 --type-add=ruby=.haml,.rake,.rsel,.sass
---type-set=ini=.ini,.cfg
 --type-add=vim=vimrc
 --type-add=js=json
 
---type-set=css=sass
---type-set=MARKDOWN=md,mkd,markdown
---type-set=RDOC=rdoc
+--type-set=tags=.tags
+--type-set=css=.sass
+--type-set=MARKDOWN=.md,.mkd,.markdown
+--type-set=RDOC=.rdoc
+--type-set=ini=.ini,.cfg
 
 --sort-files
+--notags
