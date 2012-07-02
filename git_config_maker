@@ -50,6 +50,7 @@ generate () {
 [core]
   autocrlf = input
   excludesfile = ~/.gitignore
+  editor = \"vim -u NONE -N\"
 [merge]
   summary=true
 [gc]
