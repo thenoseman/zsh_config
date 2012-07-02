@@ -73,10 +73,6 @@ function +vi-git-status() {
   fi
 }
 
-function precmd() {
-  vcs_info
-}
-
 vcs_bracket() {
   # Only if in versioned dir
   if [[ ${vcs_info_msg_0_} != "" ]] ; then
