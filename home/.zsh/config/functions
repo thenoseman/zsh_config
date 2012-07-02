@@ -14,12 +14,13 @@ p() {
   elif [ -f ./*.gemspec ]; then
     gem=`ls *.gemspec | cut -d "." -f 1`
     echo "Starting PRY with gem '$gem'"
-    pry -r ./lib/$gem.rb $1 $2 $3
+    pry -Ilib -r ./lib/$gem.rb $1 $2 $3
   else
     pry
   fi
 }
 
+# bundle me happy
 b() {
   bundle "$@"
 }
@@ -39,7 +40,8 @@ f() {
 
 # Start tig in status view if unstanged changes present
 t() {
-  if [[ -z $(git status -s)]]; then
+  DIRTY=$(git status -s)
+  if [[ "$DIRTY" != "" ]]; then
     tig status
   else
     tig
