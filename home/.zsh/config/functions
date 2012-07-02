@@ -7,24 +7,6 @@ rs() { bundle exec rails s }
 # ps + grep
 psg() { ps auxww | grep $1 }
 
-# Create gemset (in .rvmrc) with directory name here
-rvm_here() {
-  if [ ! -f .rvmrc ]; then
-    ruby=`rvm current | cut -d "@" -f 1`
-    here=`pwd`
-    gemset=`basename $(pwd)`
-    echo "rvm --create $ruby@$gemset" >> .rvmrc
-    cd .
-  else
-    echo ".rvmrc already exists"
-  fi
-
-  # gitignore
-  if [ -d .git ]; then
-    echo ".rvmrc" >> .gitignore
-  fi
-}
-
 # Start pry (and load rails if available)
 p() {
   if [ -f ./config/environment.rb ]; then
