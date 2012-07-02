@@ -5,7 +5,7 @@ alias v='mvim'
 
 alias gitu='git stash && git pull --rebase && git stash pop'
 alias gpr='git pull --rebase'
-aluas gti="git"
+alias gti="git"
 
 alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 9090, :DocumentRoot => Dir.pwd); trap(\"INT\") { s.shutdown }; s.start"'
 alias 193="rbenv shell 1.9.3-p125-perf"
