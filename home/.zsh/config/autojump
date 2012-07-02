@@ -1,4 +1,12 @@
-# Autojump via homebrew?
-if [ -f /usr/local/etc/autojump ]; then
-  . /usr/local/etc/autojump
+# "Z" via submodule
+if [ -f ~/.zsh/modules/z-autojump/z.sh ]; then
+  . ~/.zsh/modules/z-autojump/z.sh
+  function precmd () {
+    _z --add "$(pwd -P)"
+  }
+else
+  # Autojump via homebrew?
+  if [ -f /usr/local/etc/autojump ]; then
+    . /usr/local/etc/autojump
+  fi
 fi
