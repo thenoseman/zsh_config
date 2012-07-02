@@ -32,6 +32,16 @@ rename() {
   done
 }
 
+# Find a file / excldue .svn
 f() {
   find . -name "$1" | grep -v ".svn"
+}
+
+# Start tig in status view if unstanged changes present
+t() {
+  if [[ -z $(git status -s)]]; then
+    tig status
+  else
+    tig
+  fi
 }
