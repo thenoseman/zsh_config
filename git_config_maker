@@ -18,6 +18,7 @@ usage () {
   echo "After running this generator follow the instructions about"
   echo "setting up your github credentials: http://help.github.com/set-your-user-name-email-and-github-token/"
   echo
+  echo "sets optional config for https://github.com/aanand/git-up"
   exit
 }
 
@@ -39,6 +40,7 @@ generate () {
   quicklog = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
   rc = rebase --continue
   ra = rebase --abort
+  rs = rebase --skip
 [color]
   branch = auto
   status = auto
@@ -50,13 +52,17 @@ generate () {
 [core]
   autocrlf = input
   excludesfile = ~/.gitignore
-  editor = \"vim -u NONE -N\"
+  editor = \"vim -u NONE -N -c 'startinsert'\"
 [merge]
   summary=true
 [gc]
   auto=1
 [branch]
   autosetupmerge = true
+[git-up \"fetch\"]
+	prune = false
+[git-up \"bundler\"]
+	check = true
 "
 }
 
