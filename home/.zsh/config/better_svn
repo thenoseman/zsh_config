@@ -70,3 +70,4 @@ svnlog() {
 svnst!() {
   svn st | grep -e '^!'
 }
+# vim:ft=sh

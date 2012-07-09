@@ -1,2 +1,3 @@
 # "Z" via submodule
 . ~/.zsh/modules/z-autojump/z.sh
+# vim:ft=sh

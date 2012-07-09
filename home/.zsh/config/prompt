@@ -89,3 +89,4 @@ function rbenv_prompt_info() {
 }
 
 RPROMPT='$(rbenv_prompt_info)'
+# vim:ft=sh

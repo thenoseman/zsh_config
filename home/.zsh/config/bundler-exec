@@ -30,3 +30,4 @@ _run-with-bundler() {
 for cmd in $bundled_commands; do
   alias $cmd="_run-with-bundler $cmd"
 done
+# vim:ft=sh

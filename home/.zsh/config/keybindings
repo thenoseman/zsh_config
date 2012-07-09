@@ -11,4 +11,4 @@ bindkey '^[[5~' up-history
 bindkey '^[[6~' down-history
 
 bindkey '^R' history-incremental-search-backward
-bindkey -s '^D' "logout\n"
+bindkey -s '^D' "logout\n"# vim:ft=sh
