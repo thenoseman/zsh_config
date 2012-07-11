@@ -3,7 +3,7 @@
 # Taken from https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/bundler/bundler.plugin.zsh
 #
 
-bundled_commands=(cap capify cucumber guard heroku rackup rails rake rspec ruby shotgun spec spork thin unicorn unicorn_rails)
+bundled_commands=(cap capify cucumber guard heroku rackup rails rake rspec ruby shotgun spec spork thin unicorn unicorn_rails puma)
 
 _bundler-installed() {
   which bundle > /dev/null 2>&1
