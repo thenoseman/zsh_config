@@ -52,7 +52,7 @@ t() {
 # requires http://compression.ca/pbzip2/
 # pack target-filename file-spec
 pack() {
-  command -v git-up >/dev/null 2>&1
+  command -v pbzip2 >/dev/null 2>&1
   if [[ "$?" == "0" ]]; then
     # pbzip is installed
     tar cf $1.tar.bz2 --use-compress-prog=pbzip2 $2 
