@@ -5,5 +5,5 @@ set show-line-numbers = yes
 set line-number-interval = 5
 
 bind generic P !git push
-bind diff ! !git checkout %(file)
-bind status U !git add .
+bind diff ! !@git checkout %(file)
+bind status U !@git add .
