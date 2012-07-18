@@ -7,12 +7,12 @@
 osascript 2>/dev/null <<EOF
 tell application "iTerm"
   set myterm to (make new terminal)
-	tell myterm
-		launch session "tig"
+  tell myterm
+    launch session "tig"
     set number of columns to 200 
     set number of rows to 200
     set name to "tig"
-	end tell
+  end tell
 end tell
 EOF
 exit 0
