@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Loads a session/profile named "tig" in iTerm
+#
+# create a profile named "tig" and set "send text on start" to "tig" for a nice big tig window
+#
+osascript 2>/dev/null <<EOF
+tell application "iTerm"
+  set myterm to (make new terminal)
+	tell myterm
+		launch session "tig"
+    set number of columns to 200 
+    set number of rows to 200
+    set name to "tig"
+	end tell
+end tell
+EOF
+exit 0
+
+# vim:ft=sh

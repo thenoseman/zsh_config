@@ -29,4 +29,8 @@ alias j="z"
 if [[ -f ~/dev/privat/zsh_config/home/extras/generate_tags_for_gems ]]; then
   alias tags="~/dev/privat/zsh_config/home/extras/generate_tags_for_gems"
 fi
+
+# tig
+alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
+
 # vim:ft=sh
