@@ -3,7 +3,7 @@
 # Generate tags for all installed gems
 #
 GEM_DIR=`gem env | grep "INSTALLATION DIRECTORY" | cut -d ":" -f 2 | sed "s/ //g"`/gems
-TAGS_FILE=".tags"
+TAGS_FILE="tags"
 
 echo "Generating missing tags for all gems in $GEM_DIR"
 cd $GEM_DIR
