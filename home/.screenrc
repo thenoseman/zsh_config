@@ -1,0 +1,2 @@
+term "screen-256color" # activate 256 colors
+attrcolor b ".I" # use bright colors for bold
