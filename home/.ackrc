@@ -8,16 +8,17 @@
 --ignore-dir=.sass-cache
 --ignore-dir=spec/reports
 --ignore-dir=public/assets
-
 --type-add=ruby=.haml,.rake,.rsel,.sass
 --type-add=vim=vimrc
 --type-add=js=json
 
---type-set=tags=.tags
 --type-set=css=.sass
 --type-set=MARKDOWN=.md,.mkd,.markdown
 --type-set=RDOC=.rdoc
 --type-set=ini=.ini,.cfg
 
 --sort-files
---notags
+
+# only available in ack 2.0 (http://search.cpan.org/~petdance/ack-2.00a01/)
+--ignore-file=firstlinematch:/.{200}/
+--ignore-file=match:/^tags/
