@@ -3,6 +3,7 @@
 # Loads a session/profile named "tig" in iTerm
 #
 # create a profile named "tig" and set "send text on start" to "tig" for a nice big tig window
+# you'll need the development version of iTerm2 for that!
 #
 osascript 2>/dev/null <<EOF
 tell application "iTerm"
