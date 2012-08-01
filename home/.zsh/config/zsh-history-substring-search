@@ -1,9 +1,0 @@
-# Fuzzy search the commandline history for ZSH
-# See https://github.com/zsh-users/zsh-history-substring-search
-#
-# Enter partial commandline part and
-# UP -> search command that's older than entered
-# DOWN -> search command that's newer than entered
-# CTRL+U -> cancel search
-
-source ~/.zsh/modules/zsh-history-substring-search/zsh-history-substring-search.zsh
