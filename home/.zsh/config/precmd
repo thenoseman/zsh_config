@@ -1,6 +1,2 @@
 # ZSH hooks setup
-function precmd() {
-  vcs_info
-  _z --add "$(pwd -P)"
-}
 # vim:ft=sh
