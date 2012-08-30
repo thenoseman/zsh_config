@@ -44,7 +44,7 @@ ti() {
   if [[ "$DIRTY" != "" ]]; then
     tig status
   else
-    tig
+    tig "$@"
   fi
 }
 
