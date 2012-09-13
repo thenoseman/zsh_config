@@ -62,4 +62,8 @@ pack() {
   fi
 }
 
+tunnel() {
+  ssh -f guest@$1 -L 8080:$1:80 -N
+}
+
 # vim:ft=sh
