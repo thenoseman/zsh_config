@@ -12,12 +12,12 @@ for gem in *; do
   cd $gem
   if [ ! -f "$TAGS_FILE" ]; then
     echo "$gem : generated"
-    `ctags -R --languages=ruby -u -f $TAGS_FILE`
+    `ctags -R --language-force=ruby -u -f $TAGS_FILE`
   else
     `head -n 2 $TAGS_FILE | grep -q "TAG_FILE_SORTED[[:space:]]\.*0"`
     if [ "$?" -ne "0" ]; then
       echo "$gem : fixed (was sorted)"
-      `ctags -R --languages=ruby -u -f $TAGS_FILE`
+      `ctags -R --language-force=ruby -u -f $TAGS_FILE`
     fi
   fi
   cd ..
