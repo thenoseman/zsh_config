@@ -1,3 +1,0 @@
-[submodule "home/.zsh/modules/z-autojump"]
-	path = home/.zsh/modules/z-autojump
-	url = git://github.com/rupa/z.git
