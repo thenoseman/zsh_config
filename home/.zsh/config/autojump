@@ -1,3 +1,5 @@
-# "Z" via submodule
-. ~/.zsh/modules/z-autojump/z.sh
+# autojump via brew install autojump
+if [ -f `brew --prefix`/etc/autojump ]; then
+  . `brew --prefix`/etc/autojump
+fi
 # vim:ft=sh
