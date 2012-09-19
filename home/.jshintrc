@@ -59,9 +59,9 @@
     "funcscope"     : false,    // Tolerate declarations of variables inside of control structures while accessing them later from the outside.
     "globalstrict"  : false,    // Allow global "use strict" (also enables 'strict').
     "iterator"      : false,    // Allow usage of __iterator__ property.
-    "lastsemic"     : false,    // Tolerat missing semicolons when the it is omitted for the last statement in a one-line block.
+    "lastsemic"     : false,    // Tolerate missing semicolons when the it is omitted for the last statement in a one-line block.
     "laxbreak"      : false,    // Tolerate unsafe line breaks e.g. `return [\n] x` without semicolons.
-    "laxcomma"      : true,    // Suppress warnings about comma-first coding style.
+    "laxcomma"      : true,     // Suppress warnings about comma-first coding style.
     "loopfunc"      : false,    // Allow functions to be defined within loops.
     "multistr"      : false,    // Tolerate multi-line strings.
     "onecase"       : false,    // Tolerate switches with just one case.
@@ -100,7 +100,7 @@
     "nomen"         : false,    // Prohibit use of initial or trailing underbars in names.
     "onevar"        : false,    // Allow only one `var` statement per function.
     "passfail"      : false,    // Stop on first error.
-    "white"         : false,    // Check against strict whitespace and indentation rules.
+    "white"         : true,    // Check against strict whitespace and indentation rules.
     
     // == Undocumented Options ============================================
     //
@@ -113,5 +113,9 @@
     "predef"        : [         // Extra globals.
       "blubb"
     ],
-    "indent"        : 4         // Specify indentation spacing
+    "globals"       : {
+      express : { static : true }  // express framework uses "static" identifier
+    },       // custom predefined globals
+    "indent"        : 2,        // Specify indentation spacing
+    "quotmark"      : "single"  // Force single quotes
 }
