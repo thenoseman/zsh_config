@@ -41,6 +41,10 @@
     "undef"         : true,     // Require all non-global variables be declared before they are used.
     "strict"        : true,     // Require `use strict` pragma in every file.
     "trailing"      : true,     // Prohibit trailing whitespaces.
+    "maxparams"     : 4,        // Allow singnatures to have a max number of variables
+    "maxdepth"      : 3,        // Allowed nesting level
+    "maxstatements" : 50,       // Number of lines per function
+    "maxcomplexity" : 5,        // Max cyclimatic complexity
     
     // == Relaxing Options ================================================
     //
@@ -114,8 +118,10 @@
       "blubb"
     ],
     "globals"       : {
-      express : { static : true }  // express framework uses "static" identifier
-    },       // custom predefined globals
+      "express" : { 
+        "static" : true 
+      }  // express framework uses "static" identifier
+    },       
     "indent"        : 2,        // Specify indentation spacing
     "quotmark"      : "single"  // Force single quotes
 }
