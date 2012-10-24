@@ -123,5 +123,5 @@
       }  // express framework uses "static" identifier
     },       
     "indent"        : 2,        // Specify indentation spacing
-    "quotmark"      : "single"  // Force single quotes
+    "quotmark"      : true  // Don't Force single quotes
 }
