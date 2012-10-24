@@ -65,6 +65,8 @@ generate () {
 [git-up \"bundler\"]
 	check = true
   autoinstall = true
+[push]
+  default = matching
 "
 }
 
