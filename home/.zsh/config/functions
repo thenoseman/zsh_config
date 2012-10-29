@@ -1,8 +1,19 @@
 # Rails console
+ccred=$(echo -e "\033[0;31m")
+ccyellow=$(echo -e "\033[0;33m")
+ccend=$(echo -e "\033[0m")
+
 rc() { bundle exec rails c }
 
 # Rails server
-rs() { bundle exec rails s }
+rs() { 
+  if [[ -d public/assets ]]; then
+    echo "${ccred}====================="
+    echo "PUBLIC ASSETS EXISTS!"
+    echo "=====================${ccend}"
+  fi
+  bundle exec rails s 
+}
 
 # ps + grep
 psg() { ps auxww | grep $1 }
