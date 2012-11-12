@@ -77,4 +77,15 @@ tunnel() {
   ssh -f guest@$1 -L 8080:$1:80 -N
 }
 
+node() {
+  command -v rlwrap >/dev/null 2>&1
+  if [[ "$?" == "0" ]]; then
+    env NODE_NO_READLINE=1 rlwrap -p Green -S "node > " node
+  else
+    brew install rlwrap
+    echo "************************************"
+    echo "Installed rlwrap, now try node again"
+    echo "************************************"
+  fi
+}
 # vim:ft=sh
