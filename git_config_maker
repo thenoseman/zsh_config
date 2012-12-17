@@ -41,6 +41,7 @@ generate () {
   rc = rebase --continue
   ra = rebase --abort
   rs = rebase --skip
+  rh = reset --hard
 [color]
   branch = auto
   status = auto
