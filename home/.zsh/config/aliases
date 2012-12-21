@@ -2,6 +2,7 @@ alias ll='ls -la'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
 alias v='mvim'
+alias vim='mvim'
 
 # Alias gpr to do a rebase (or - if installed - use https://github.com/aanand/git-up)
 command -v git-up >/dev/null 2>&1
