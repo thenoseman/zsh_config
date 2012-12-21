@@ -54,7 +54,7 @@ generate () {
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = \"vim -u NONE -N -c 'startinsert'\"
-  #CUSTOM SEE VIM_CONFIG: editor = "vim -u NONE -N -u ~/.vimrc-commit"
+  #CUSTOM SEE VIM_CONFIG: editor = \"vim -u NONE -N -u ~/.vimrc-commit\"
 [merge]
   summary=true
 [gc]
@@ -62,9 +62,9 @@ generate () {
 [branch]
   autosetupmerge = true
 [git-up \"fetch\"]
-	prune = false
+  prune = false
 [git-up \"bundler\"]
-	check = true
+  check = true
   autoinstall = true
 [push]
   default = matching
