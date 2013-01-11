@@ -3,4 +3,4 @@
 #
 
 # rbenv
-eval "$(/usr/local/bin/rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
