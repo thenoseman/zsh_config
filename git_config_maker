@@ -42,6 +42,7 @@ generate () {
   ra = rebase --abort
   rs = rebase --skip
   rh = reset --hard
+  clone = clone --recursive
 [color]
   branch = auto
   status = auto
