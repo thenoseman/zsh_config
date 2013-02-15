@@ -31,6 +31,6 @@ fi
 # tig
 alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 
-alias rpipe="while true; do sh -c "$(cat tmp/rspec-test-pipe)"; done"
+alias rpipe='echo "Now listening to tmp/rspec-test-pipe" && while true; do sh -c "$(cat tmp/rspec-test-pipe)"; done'
 
 # vim:ft=sh
