@@ -9,7 +9,7 @@ echo "Generating missing tags for all gems in $GEM_DIR"
 cd $GEM_DIR
 
 for gem in *; do
-  cd $gem
+  cd "$GEM_DIR/$gem"
   if [ ! -f "$TAGS_FILE" ]; then
     echo "$gem : generated"
     `ctags -R --language-force=ruby -u -f $TAGS_FILE`
