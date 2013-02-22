@@ -69,6 +69,8 @@ generate () {
   autoinstall = true
 [push]
   default = matching
+[pull]
+  rebase = true
 "
 }
 
