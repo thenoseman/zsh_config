@@ -37,14 +37,6 @@ b() {
   bundle "$@"
 }
 
-# rename *.txt txt t2t
-# a.txt => a.t2t
-rename() {
-  for f in $1; do 
-    mv "$f" "${f%$2}$3"
-  done
-}
-
 # Find a file / exclude .svn
 f() {
   find . -name "$1" | grep -v ".svn"
@@ -60,24 +52,12 @@ ti() {
   fi
 }
 
-# define function to pack content in parallel
-# requires http://compression.ca/pbzip2/
-# pack target-filename file-spec
-pack() {
-  command -v pbzip2 >/dev/null 2>&1
-  if [[ "$?" == "0" ]]; then
-    # pbzip is installed
-    tar cf $1.tar.bz2 --use-compress-prog=pbzip2 $2 
-  else
-    # Fall back to serial bzip
-    tar cjf $1.tar.bz2 $2 
-  fi
-}
-
+# SSH Tunnel
 tunnel() {
   ssh -f guest@$1 -L 8080:$1:80 -N
 }
 
+# Node CLI
 n() {
   command -v rlwrap >/dev/null 2>&1
   if [[ "$?" == "0" ]]; then
