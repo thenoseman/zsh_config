@@ -4,9 +4,9 @@ gem: --no-ri --no-rdoc
 :bulk_threshold: 1000
 install: --env-shebang
 :sources: 
-- http://gems.github.com
-- http://rubygems.org/
+- https://rubygems.org/
 :backtrace: false
 update: --env-shebang
 :verbose: true
 :benchmark: false
+:ssl_verify_mode: 0
