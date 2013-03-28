@@ -1,5 +1,6 @@
 # Rails console
 ccred=$(echo -e "\033[0;31m")
+ccgreen=$(echo -e "\033[0;32m")
 ccyellow=$(echo -e "\033[0;33m")
 ccend=$(echo -e "\033[0m")
 
@@ -67,6 +68,16 @@ n() {
     echo "************************************"
     echo "Installed rlwrap, now try 'n' again"
     echo "************************************"
+  fi
+}
+
+# run rspec via spring
+rspec() {
+  if [ -f ./bin/rspec ]; then
+    bin/rspec "$@"
+  else
+    echo "You should really 'gem install spring && spring binstub' here"
+    bundle exec rspec "$@"
   fi
 }
 # vim:ft=sh
