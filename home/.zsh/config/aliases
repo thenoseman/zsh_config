@@ -2,7 +2,7 @@ alias ll='ls -la'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
 alias v='mvim'
-alias vim='mvim'
+alias vim='/usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim'
 
 # Alias gpr to do a rebase (or - if installed - use https://github.com/aanand/git-up)
 command -v git-up >/dev/null 2>&1
@@ -31,6 +31,7 @@ fi
 # tig
 alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 
+# pipe for us with vim
 alias rpipe='mkdir -p tmp && if [ ! -p tmp/rspec-test-pipe ]; then mkfifo tmp/rspec-test-pipe; fi && echo "Now listening to tmp/rspec-test-pipe" && while true; do sh -c "$(cat tmp/rspec-test-pipe)"; done'
 
 # vim:ft=sh
