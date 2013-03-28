@@ -76,7 +76,7 @@ rspec() {
   if [ -f ./bin/rspec ]; then
     bin/rspec "$@"
   else
-    echo "You should really 'gem install spring && spring binstub' here"
+    echo "You should really 'gem install spring && spring binstub rspec' here"
     bundle exec rspec "$@"
   fi
 }
