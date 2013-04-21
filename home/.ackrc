@@ -19,8 +19,6 @@
 
 --sort-files
 
-# only available in ack 2.0 (http://search.cpan.org/~petdance/ack-2.00a01/)
-# download, extract, perl Makefile.pl && make && sudo make install && sudo perl -MCPAN -e 'install File::Next'
-# then vim /usr/local/bin/ack and change "use 5.8.0" (round line 9) to "use 5.008_001" to suppress warnings.
+# only available in ack 2.0
 --ignore-file=firstlinematch:/.{200}/
 --ignore-file=match:/^tags/
