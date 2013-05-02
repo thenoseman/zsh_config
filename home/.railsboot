@@ -8,4 +8,4 @@
 require "pry"
 require "pry-debugger"
 
-# vim: set ft=ruby
+# vim: ft=ruby
