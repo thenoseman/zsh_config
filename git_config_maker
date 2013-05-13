@@ -27,6 +27,7 @@ generate () {
   name = $USERNAME
   email = $EMAIL 
 [alias]
+  l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
   ci = commit
   st = status
   ch = checkout
@@ -55,6 +56,7 @@ generate () {
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = \"vim -u NONE -N -c 'startinsert'\"
+  #editor = "/usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit"
   #CUSTOM SEE VIM_CONFIG: editor = \"vim -u NONE -N -u ~/.vimrc-commit\"
 [merge]
   summary=true
