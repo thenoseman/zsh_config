@@ -34,6 +34,6 @@ alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 # pipe for us with vim
 alias rpipe='mkdir -p tmp && if [ ! -p tmp/rspec-test-pipe ]; then mkfifo tmp/rspec-test-pipe; fi && echo "Now listening to tmp/rspec-test-pipe" && while true; do sh -c "$(cat tmp/rspec-test-pipe)"; done'
 
-alias p='git push'
+alias pu='git push'
 
 # vim:ft=sh
