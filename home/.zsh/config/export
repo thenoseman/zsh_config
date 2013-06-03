@@ -13,4 +13,7 @@ export ARCHFLAGS="-arch x86_64"
 
 # Manpager with ascii-sequences
 export MANPAGER=more
+
+export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:MaxPermSize=768m -XX:+CMSClassUnloadingEnabled"
+
 # vim:ft=sh
