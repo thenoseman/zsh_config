@@ -80,4 +80,24 @@ rspec() {
     bundle exec rspec "$@"
   fi
 }
+
+# bump the gem version and push
+bump() {
+  POS=`grep version *.gemspec | cut -d "=" -f 2 | grep -o "\." | wc -l| awk {'print $1+2'}`
+  CURRENTVERSION=`grep version *.gemspec| cut -d "." -f ${POS} | sed "s/[\"']//"`
+  NEXTVERSION=`calc -p $CURRENTVERSION + 1`
+  PROJECTNAME=`ls -1 *.gemspec | cut -d "." -f 1`
+
+  echo "Bumping gem version of $PROJECTNAME from $CURRENTVERSION to $NEXTVERSION"
+
+  sed -i "" "s/\(.*\.version.*\)\.\(.*\)\([\"']\)/\1.$NEXTVERSION\3/" *.gemspec 
+
+  CHANGED_FILES=`git status --porcelain | wc -l | awk {'print $1'}`
+
+  if [ "$CHANGED_FILES" == "1" ]; then
+    git add *.gemspec
+    git ci -m "updated $PROJECTNAME version to .$NEXTVERSION"
+    git push
+  fi
+}
 # vim:ft=sh
