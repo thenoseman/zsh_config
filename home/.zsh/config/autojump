@@ -1,4 +1,6 @@
 # autojump via brew install autojump
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
+export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim'
+
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 # vim:ft=sh
