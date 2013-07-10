@@ -96,7 +96,7 @@ bump() {
   NEXTVERSION=`calc -p $CURRENTVERSION + 1`
   PROJECTNAME=`ls -1 *.gemspec | cut -d "." -f 1`
 
-  echo "Bumping gem version of $PROJECTNAME from $CURRENTVERSION to $NEXTVERSION \($name_of_commit\)"
+  echo "Bumping gem version of $PROJECTNAME from $CURRENTVERSION to $NEXTVERSION"
 
   sed -i "" "s/\(.*\.version.*\)\.\(.*\)\([\"']\)/\1.$NEXTVERSION\3/" *.gemspec 
 
@@ -104,7 +104,7 @@ bump() {
 
   if [ "$CHANGED_FILES" == "1" ]; then
     git add *.gemspec
-    git ci -m "updated $PROJECTNAME version to .$NEXTVERSION"
+    git ci -m "updated $PROJECTNAME version to .$NEXTVERSION ($name_of_commit)"
     git push
   fi
 }
