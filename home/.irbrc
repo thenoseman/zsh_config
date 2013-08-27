@@ -64,6 +64,7 @@ end
 # Use Pry everywhere
 begin
   require 'pry'
+  I18n.locale = :de if defined? I18n
   Pry.start
   exit
 rescue
