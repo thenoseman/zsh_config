@@ -56,8 +56,7 @@ generate () {
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = \"vim -u NONE -N -c 'startinsert'\"
-  #editor = "/usr/local/Cellar/macvim/7.3-66/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit"
-  #CUSTOM SEE VIM_CONFIG: editor = \"vim -u NONE -N -u ~/.vimrc-commit\"
+  #editor = "/usr/local/Cellar/macvim/7.4-70/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit"
 [merge]
   summary=true
 [gc]
@@ -66,6 +65,7 @@ generate () {
   autosetupmerge = true
 [git-up \"fetch\"]
   prune = false
+  all = true
 [git-up \"bundler\"]
   check = true
   autoinstall = true
