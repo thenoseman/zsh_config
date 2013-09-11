@@ -83,7 +83,7 @@ rspec() {
 
 # runs bundle update for a gem starting with the passed parameter
 bu() {
-  if ["$@" == ""]; then
+  if [ -z "$@" ]; then
     echo "Pass the start of the gemname to be updated"
     return 
   fi
