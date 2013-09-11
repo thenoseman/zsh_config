@@ -1,9 +1,10 @@
-# Rails console
+# Color settings
 ccred=$(echo -e "\033[0;31m")
 ccgreen=$(echo -e "\033[0;32m")
 ccyellow=$(echo -e "\033[0;33m")
 ccend=$(echo -e "\033[0m")
 
+# Rails console
 rc() { bundle exec rails c }
 
 # Rails server
@@ -38,9 +39,9 @@ b() {
   bundle "$@"
 }
 
-# Find a file / exclude .svn
+# Find a file starting with $1 excluding .svn and color the match
 f() {
-  find . -name "$1" | grep -v ".svn"
+  find . -name "$@*" | grep -v ".svn" | grep --color $@
 }
 
 # Start tig in status view if unstanged changes present
@@ -80,31 +81,15 @@ rspec() {
   fi
 }
 
-# bump the gem version and push
-bump() {
-  prefixes=(Flux Stasis Gyro Gravity Moebius Super Dual Quad Vector Dark Light Vortex Shift Star Quartz Flow Echo Axis Grid Spin Folded Flipped Ether Nether Prime Lesser Greater Magnetic Luminous Radiant Helical Globular Spectrum Flash Strange Strong Weak Disc Grip Grunting Bulbous Fleeling Flange Co-axial Parping Beveled Clip-jawed Clenching Arc Thrust Laser Shield Plasma Bent Hybrid Fluid Swivel Universal Polarized Fusion Throbbing Pulsing Backup Secondary Redundant Extra Reserve Sparking Beeping Buzzing Loud Quiet Optical Aural Analog Digital Steam Volatile Pump-action Dual-action Safety Protective Ancillary Auxillary Relief Premium Optimal Hydraulic Vacuum Suction Bilge Rotary Fuel Pressurized Two-stroke Four-stroke Energy Propulsion Repulsion Polarity Frequency Amplitude Inverse Inverted Transverse Induction Automatic Lumbar Nerve Brachial Bronchial Lateral Embryonic Prototype Turbo Miniature Oversized Grooved Elastic Complex Subdermal Greased Sonic Hinged Meteor Asteroid Bursting Radio Photon Limbic Cortical Endorphin Slime Erratic Amorphous Nebulous Peculiar Chemical Flexible Proton Quantum Emergency Power Solar Lunar Astral Large Small Iambic Rolling Tonal Atonal Harmonic Wireless Quartz Coffee Geodesic Geometric Algebraic Metric Striped Dimensional Humming Chirping Tuning Polynomial Parabolic Hyperbolic Quadratic Cubic Paranormal Perplexing Abstract Finite Mock Altitude Momentum Friction Symmetric Asymmetric Synchronous Asynchronous Volumetric Euclidean Newtonian Einstein Hilbert Klein Cartesian Bose Kepler Turing Platonic Copernicus Gaussian Riemann Tesla Planck Faraday Schrodinger Feynman Leibniz Galileo Babbage Dijkstra Foucault Heisenberg Lorentz Geiger Penrose Hawking Contracting Temporal Kinetic Mechanical Planar Reflecting Normalized Affine Dilation Sculpted Ballistic Torque Velocity Seismic Orbital Negative Aggressive Continuous Discrete Cryptic Electronic Artificial Tachyon Boson Periodic Inertial Hyperbaric Anechoic Pneumatic Transmitter Interference Phantom Perspective Coronal Transparent Planetary Cantilever Tensile Tectonic Curvilinear Articulated Spring-loaded Mirrored Syntax Semantic Statistical Probability Granular Coarse Fine Lustrous Cooling Warming Carbonated Pyrotechnic Salination Ocular Pump Dangling Antifreeze Pineal Nucleic Resonance Interior Exterior Decorative Gestation Belgian Radiation Aerial Submersible Soaking Gas Security Salted Science Residential Cruise Cockpit Bridge Crew Haptic Neural Network Brain Bearded Revolving Crystalline Logistic Cosmetic Nautical Cosmic Stoking Unbreakable Garbage Overwing Wing Contaminant Flight Traffic Speed Alignment Coupled Doppler Pressure Infrared Geocentric Gliding Sloping Guidance Creeping High-pass Low-pass Avionic Lift High-frequency Low-frequency Mission Modified Avoidance Noise Obstacle Precision Remote Pattern Spherical Survival Tactical Strategic Navigation Transient Angle Impulse Confusion Cargo Reversed Vorpal Ferrous Biaxial Isometric Endomorphic Morphic Amorphous Polar Isomorphic Liquid Gaseous Solid Truncated Refracting Distortion Eccentric Dioptric Gelatinous Galvanized Capacitive Centrifugal Single-action Multipurpose Exponential Topological Non-Euclidean Non-Newtonian Relativistic Gravitational Idiosyncratic Improbability Decontaminant Hysteresis Astronomical Interpolated Hydroponic Atmospheric Port Starboard Forward Aft Dorsal Ventral Positronic Duotronic Multitronic Matter Genetic Synthetic Field Stasis Gyro Laser Shield Vortex Cannon Mirror Prism Zone Quartz Void Node Gate Core Hub Beam Coil Grid Axis Orb Fold Flange Disc Shaft Piston Sleeve Bulb Clutch Array Wave Tensor Sphere Beacon String Vector Scanner Turbine Pipe Couplet Trunion Plate Valve Spoke Rim Arm Lock Brace Pin Arc Thrust Thruster Putty Curtain Cloud Cell Box Lens Bubble Helix Wheel Spindle Buckle Probe Module Pod Coolant Exciter Pedal Throttle Tube Magnet Driver Ring Bolt Key Yoke Shackle Tickler Socket Cone Meter Lever Buzzer Alarm Alert Bobbin Horn Bell Joint Nozzle Jack Plug Hole Fuse Saucer Pocket Screw Outlet Vent Hydrant Spigot Circuit Cycle Blade Cogs Punch Stopper Hoop Vents Bit Handle Scissor Bypass Tumbler Thumb Lamp Bath Puffer Blaster Pump Washer Dryer Battery Charger Needle Intake Exhaust Pickup Switch Cube Sucker Chain Bucket Rod Ram Sensor Vacuum Chamber Engines Brake Vessel Wing Gauge Rockets Spout Bellows Harness Stick Board Machine Crank Balance Baffle Device Launcher Filter Fan Shutter Hopper Sprocket Gaffer Ball Bowl Block Nut Pusher Globe Plunger Cage Lantern Boom Gasket Barrel Crane Jib Foot Bib Muffler Pivot Fulcrum Frustum Paddle Peg Servo Motor Ratchet Pulley Phaser Dynamo Relay Canal Drum Popper Bridge Teaser Winder Clapper Feed Flow Robot Throstle Loom Tool Printer Feeder Lathe Press Scale Counter Slot Jig Seal Storage Clamp Coupling Rack Pinion Tackle Saddle Gear Pylon Shuttle Shoe Cushion Pad Cord System Plexus Nexus Support Neck Fluid Duct Stem Cistern Tank Reactor Structure Port Mill Jacket Shifter Hoist Spring Latch Loop Tendril Compass Siphon Chimney Flute Snorkel Cortex Fibre Gel Girdle Grill Iron Blender Fork Spoon Cup Scrubber Hinge Toxin Radio Sonar Radar Lube Hose Sprinkler Duster Nipple Plunger Grater Slicer Flush Wire Wiring Booster Restraint Frame Display Case Casing Housing Control Factory Welder Slime Shell Plating Cover Armour Flap Strap Choke Funnel Scope Scratcher Table Station Tape Trellis Splitter Mulcher Steamer Synth Guard Channel Mesh Web Webbing Unit Membrane Tissue Trunk Pouch Hook Belt Conduit Mister Quark Cooker Plucker Cutter Pruner Solvent Grabber Barrier Puncher Kick Plastic Droid Tuner Dome Transport Tent Hive Cap Spline Braid Knot Paradox Plane Tracker Particles Cartridge Cavity Screen Layer Film Capsule Sheath Visor Console Band Cable Bracket Pulsar Tripod Crown Drill Trap Claw Hitch Truss Faucet Whisk Grinder Rig Dish Boots Gauze Collar Swarm Process Brakes Tub Hash Network Dock Sock Winch Track Signal Rotor Rudder Plectrum Prop Leg Spur Splicer Dust Mist Resin Crystal Crystals Geode Spectrum Manifold Catalyst Scrambler Atomizer Vibrator Adapter Radiator Sanitizer Ejector Reservoir Cylinder Ignition Fastener Solenoid Conveyor Mechanism Armature Register Ventricle Satellite Lubricant Combiner Tunneler Resistor Dampener Catalyst Synthesizer Collapser Harmonizer Irritant Trapezoid Loosener Tightener Aperture Substance Substrate Sonic Cache)
-
-  nouns=(Capacitor Generator Manipulator Distributor Fibrillator Receptacle Neurotoxin Dismantler Transponder Analyzer Detector Connector Collider Inductor Inducer Conductor Reducer Transformer Controller Receptor Vaporizer Condenser Dispenser Diffuser Infuser Amplifier Impeller Inflator Diaphragm Displacer Combustor Extruder Container Attachment Detonator Silencer Compressor Harvester Contraption Equalizer Appliance Absorber Deflector Containment Revolver Projector Defiler Defacer Distiller Extension Telescope Bender Barometer Elevator Pendulum Computer Jumper Injector Entangler Airlock Stopcock Ballcock Flora Polisher Gearshift Whittler Smoker De-icer Converter Disperser Sniffer Fork Dish Bandage Freshener Mulcher Remover Airfoil Whistle Swatter Binder Twine X-ray Gamma-ray Lubricant Grease Axle Engorger Disgorger Locator Doors Bulkhead Drainage Preventer Brakes Tub Bubble Windshield Airbag Deployer Clacker Chime Bell Shunter Habitat Hash Network Press Steamer Flywheel Primer Wall Roof Pylon Window Grating Razor Grill Roaster Shower Cage Wing Module Modulator Surface Nacelle Override Sequencer Simulator Propellant Propeller Stand Wrist Splicer Varnish Oxide Sulfate Isomorph Gas Pyramid Knocker Knuckle Beak Disintegrator Defibrillator Evaporator Intensifier Applicator Accelerator Multiplier Replicator Differential Calculator Fabricator Conditioner Thermometer Defenestrator Percolator Participle Incubator Stabilizer Seismometer Optimizer Purifier Resonator Indicator Regulator)
-
-  verbs=(Trigger Open Close Check Charge Connect Cycle Cool Jump Exchange Lock Unlock Launch Prepare Engage Brush Reverse Tangle Eject Vent Ignite Spin Align Inflate Discharge Deliver Excite Excrete Poke Drain Extend Deflate Release Fill Grease Clean Heat Inject Insert Jam Kick Balance Rotate Transform Pump Bind Unbind Expel Freeze Emit Secrete Uncork Fire Scatter Soak Submerge Spray Stir Mix Suspend Wash Wipe Crank Mince Grind Reboot Squeeze Spark Wiggle Jiggle Unfold Peel Expunge Twist Roll Gestate Plunge Flush Shrink Agitate Coddle Warm Stretch Flood Rinse Lather Baste Tune Dilate Dilute Engorge Flap Exfoliate Manipulate Expurgate Coordinate Innoculate Evacuate Disentangle Activate Irritate Separate Elevate Levitate Stimulate Lubricate Reattach Polarize Energize)
-
-  name_of_commit="${verbs[$RANDOM % ${#verbs[@]}]} ${prefixes[$RANDOM % ${#prefixes[@]}]} ${nouns[$RANDOM % ${#nouns[@]}]}!"
-
-  POS=`grep version *.gemspec | cut -d "=" -f 2 | grep -o "\." | wc -l| awk {'print $1+2'}`
-  CURRENTVERSION=`grep version *.gemspec| cut -d "." -f ${POS} | sed "s/[\"']//"`
-  NEXTVERSION=`calc -p $CURRENTVERSION + 1`
-  PROJECTNAME=`ls -1 *.gemspec | cut -d "." -f 1`
-
-  echo "Bumping gem version of $PROJECTNAME from $CURRENTVERSION to $NEXTVERSION"
-
-  sed -i "" "s/\(.*\.version.*\)\.\(.*\)\([\"']\)/\1.$NEXTVERSION\3/" *.gemspec 
-
-  CHANGED_FILES=`git status --porcelain | wc -l | awk {'print $1'}`
-
-  if [ "$CHANGED_FILES" == "1" ]; then
-    git add *.gemspec
-    git ci -m "updated $PROJECTNAME version to .$NEXTVERSION ($name_of_commit)"
-    git push
+# runs bundle update for a gem starting with the passed parameter
+bu() {
+  if ["$@" == ""]; then
+    echo "Pass the start of the gemname to be updated"
+    return 
   fi
+  BU_GEM=`grep "specs:" -A 9999 Gemfile.lock | sed -n "2,9999p" | grep "$@" | head -n 1 | perl -ne '/\s+([a-z-_]+)/ && print $1'`
+  echo "bundle update $BU_GEM"
+  bundle update $BU_GEM
 }
+
 # vim:ft=sh
