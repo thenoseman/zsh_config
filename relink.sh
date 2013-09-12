@@ -6,6 +6,6 @@ FILES=`find home -name ".*" -d 1`
 for f in $FILES 
 do
   linkme=${f/home\//}
-  rm ~/$linkme
+  rm -rf ~/$linkme
   ln -s `pwd`/home/$linkme ~/$linkme
 done
