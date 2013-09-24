@@ -12,6 +12,8 @@ if defined?(Rails) && Rails.env && defined?(Rails::ConsoleMethods)
   extend Rails::ConsoleMethods
 end
 
+Pry.config.ls.instance_var_color = :bright_blue
+
 # For pry-debugger
 Pry.commands.alias_command 'c', 'continue'
 Pry.commands.alias_command 's', 'step'
