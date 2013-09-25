@@ -55,8 +55,7 @@ generate () {
 [core]
   autocrlf = input
   excludesfile = ~/.gitignore
-  editor = \"vim -u NONE -N -c 'startinsert'\"
-  #editor = "/usr/local/Cellar/macvim/7.4-70/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit"
+  editor = "vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
 [merge]
   summary=true
 [gc]
