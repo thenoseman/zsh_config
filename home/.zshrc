@@ -1,9 +1,9 @@
-# ----------------------------------------------------------------
-# general zsh configuration
-# ----------------------------------------------------------------
+# Add path to autocompletion function path
+fpath=(~/.zsh/completions $fpath)
 
 # crazy tab completion
 autoload -U compinit
+
 compinit
 
 # crazy mad shit
@@ -45,12 +45,14 @@ fi
 if [ -f "/etc/hosts" ]; then
     : ${(A)etchosts:=${(s: :)${(ps:\t:)${${(f)~~"$(</etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}}
 fi
-hosts=( $hosts $etchosts $sshhosts)
+hosts=($hosts $etchosts $sshhosts)
 
 # completion engine additions
 # keep cvs and *~ files out
 zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(|*/)*\~'
 zstyle ':completion:*:cd:*' ignored-patterns '(|*/)CVS'
+
+# kill command completion
 zstyle ':completion:*:kill:*:processes' command "ps x"
 zstyle ':completion:*:hosts' hosts $hosts
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
@@ -64,6 +66,14 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
 # Complete cd.. (http://stackoverflow.com/questions/564648/zsh-tab-completion-for-cd)
 zstyle ':completion:*' special-dirs true
+# Cache completion results
+zstyle ':completion:*:complete:bundle' use-cache on
+zstyle ':completion:*:complete:bundle' rehash false
+zstyle ':completion:*' cache-path ~/.zsh/cache
+zstyle ':completion:*' rehash yes
+
+# b update == bundle update
+compdef b=bundle
 
 # Disable ^S, useless and annoying
 stty stop undef
