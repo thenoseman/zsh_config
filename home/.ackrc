@@ -1,6 +1,7 @@
 --ignore-dir=log
 --ignore-dir=doc
 --ignore-dir=docs
+--ignore-dir=coverage
 --ignore-dir=vendor/rails
 --ignore-dir=db
 --ignore-dir=tmp
