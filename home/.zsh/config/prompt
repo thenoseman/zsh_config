@@ -122,7 +122,8 @@ vcs_bracket() {
   fi
 }
 
-PS1='%{$fg[cyan]%}%n%{$fg[green]%}:%(4~|...|)%2~%{$reset_color%}$(vcs_bracket)%(!.#.)%{$reset_color%}> '
+PS1='%{$fg[green]%}%(4~|…|)%2~%{$reset_color%}$(vcs_bracket)%(!.#.)%{$reset_color%}> '
+#with username: PS1='%{$fg[cyan]%}%n%{$fg[green]%}:%(4~|...|)%2~%{$reset_color%}$(vcs_bracket)%(!.#.)%{$reset_color%}> '
 
 function rbenv_prompt_info() {
   local ruby_version
