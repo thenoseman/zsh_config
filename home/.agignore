@@ -1,0 +1,12 @@
+log/
+doc/
+docs/
+coverage/
+vendor/rails/
+db/
+tmp/
+tests/_coverage/
+.sass-cache/
+spec/reports/
+public/assets/
+tags
