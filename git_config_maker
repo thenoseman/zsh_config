@@ -72,6 +72,8 @@ generate () {
   default = matching
 [pull]
   rebase = true
+[diff]
+  algorithm = patience
 "
 }
 
