@@ -37,7 +37,7 @@ alias rpipe='mkdir -p tmp && if [ ! -p tmp/rspec-test-pipe ]; then mkfifo tmp/rs
 alias pu='git push'
 
 # start a debugging session with the smartphone
-alias android='~/Dropbox/Software/adb forward tcp:9222 localabstract:chrome_devtools_remote && open http://localhost:9292'
+alias android='~/Dropbox/Software/adb forward tcp:9222 localabstract:chrome_devtools_remote && open http://localhost:9222'
 
 alias be='bundle exec'
 
