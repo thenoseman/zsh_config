@@ -3,9 +3,5 @@ config defaultToCurrentScreen true
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
 
-#alias
-alias left-two-third  move 0;0 screenSizeX*0.66;screenSizeY
-alias right-one-third move screenSizeX*0.66;0 screenSizeX;screenSizeY
-
-bind 1:cmd;alt       ${left-two-third}
-bind 2:cmd;alt       ${right-one-third}
+bind 1:cmd;alt       corner top-left  resize:screenSizeX/3*2;screenSizeY
+bind 2:cmd;alt       corner top-right resize:screenSizeX/3;screenSizeY
