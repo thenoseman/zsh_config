@@ -1,0 +1,11 @@
+# https://github.com/jigish/slate
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+#alias
+alias left-two-third  move 0;0 screenSizeX*0.66;screenSizeY
+alias right-one-third move screenSizeX*0.66;0 screenSizeX;screenSizeY
+
+bind 1:cmd;alt       ${left-two-third}
+bind 2:cmd;alt       ${right-one-third}
