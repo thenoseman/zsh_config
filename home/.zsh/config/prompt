@@ -74,6 +74,7 @@ function +vi-git-st() {
         --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
 
     if [[ -n ${remote} ]] ; then
+
         ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed 's/ //g')
         (( $ahead )) && gitstatus+=( "%{$fg[green]%}+${ahead}%{$reset_color%}" )
 
@@ -81,12 +82,17 @@ function +vi-git-st() {
         (( $behind )) && gitstatus+=( "%{$fg[red]%}-${behind}%{$reset_color%}" )
 
         (( !$ahead && !$behind )) && gitstatus+=( "%{$fg[green]%}◷%{$reset_color%}" )
-
-        # the ${} uses parameter expansion 
-        # (see http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion-1)
-        # (j:/:) means: Join the array gitstatus with / as the delimiter
-        hook_com[misc]+=",${(j:/:)gitstatus}"
+    else
+      ahead=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | sed "s/ //g")
+      if [[ "$ahead" != "0" ]]; then
+        gitstatus+=( "%{$fg[green]%}+${ahead}%{$reset_color%}" )
+      fi
     fi
+
+    # the ${} uses parameter expansion 
+    # (see http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion-1)
+    # (j:/:) means: Join the array gitstatus with / as the delimiter
+    hook_com[misc]+=",${(j:/:)gitstatus}"
 }
 
 # Show count of stashed changes
