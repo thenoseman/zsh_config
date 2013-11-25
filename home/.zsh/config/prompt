@@ -86,6 +86,8 @@ function +vi-git-st() {
       ahead=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | sed "s/ //g")
       if [[ "$ahead" != "0" ]]; then
         gitstatus+=( "%{$fg[green]%}+${ahead}%{$reset_color%}" )
+      else
+        gitstatus+=( "%{$fg[green]%}◷%{$reset_color%}" )
       fi
     fi
 
