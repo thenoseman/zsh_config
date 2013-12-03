@@ -1,3 +1,4 @@
+export SHELL=zsh
 export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
 export AUTOFEATURE=true #Test Cucumber
