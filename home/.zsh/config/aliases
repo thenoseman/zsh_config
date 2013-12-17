@@ -4,13 +4,8 @@ alias dl='cd ~/Downloads'
 alias v='mvim'
 alias vim='/usr/local/Cellar/macvim/7.4-72/MacVim.app/Contents/MacOS/Vim'
 
-# Alias gpr to do a rebase (or - if installed - use https://github.com/aanand/git-up)
-command -v git-up >/dev/null 2>&1
-if [[ "$?" == "0" ]]; then
-  alias gpr='git-up && git submodule init && git submodule update'
-else
-  alias gpr='git pull --rebase'
-fi
+# Alias gpr to do a rebase (use https://github.com/aanand/git-up)
+alias gpr='git-up && git submodule init && git submodule update'
 
 # Typos
 alias gti="git"
