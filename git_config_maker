@@ -74,6 +74,10 @@ generate () {
   rebase = true
 [diff]
   algorithm = patience
+[grep]
+  patternType = perl
+[rerere]
+  enabled = true
 "
 }
 
