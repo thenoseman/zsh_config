@@ -22,14 +22,12 @@
 *.dmg
 *.gz
 *.iso
-*.jar
 *.rar
 *.tar
 
 # Logs and databases #
 ######################
 *.log
-*.sql
 *.sqlite
 
 # OS generated files #
