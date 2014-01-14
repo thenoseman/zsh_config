@@ -1,0 +1,2 @@
+# For GPG command line and used in vim
+export GPG_TTY=`tty`
