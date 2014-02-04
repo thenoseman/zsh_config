@@ -5,3 +5,5 @@ config resizePercentOf screenSize
 
 bind 1:cmd;shift       corner top-left  resize:screenSizeX/3*2;screenSizeY
 bind 2:cmd;shift       corner top-right resize:screenSizeX/3;screenSizeY
+bind 3:cmd;shift       corner top-left  resize:screenSizeX/2;screenSizeY
+bind 4:cmd;shift       corner top-right resize:screenSizeX/2;screenSizeY
