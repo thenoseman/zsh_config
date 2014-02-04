@@ -41,7 +41,7 @@ b() {
 
 # Find a file starting with $1 excluding .svn and color the match
 f() {
-  find . -name "$@*" | grep -v ".svn" | grep --color $@
+  find . -name "*${@}*" | grep -v ".svn" | grep --color "${@}"
 }
 
 # Start tig in status view if unstanged changes present
