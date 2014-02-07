@@ -53,6 +53,8 @@ generate () {
 [color \"diff\"]
   whitespace = red reverse
 [core]
+  # see http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
+  trustctime = false
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = "vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
