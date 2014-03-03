@@ -16,7 +16,8 @@ alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | c
 # Rubies
 alias 193="rbenv shell 1.9.3-p125-perf"
 alias jruby="rbenv shell jruby-1.6.5"
-alias 200="rbenv shell 2.0.0-p247"
+alias 210="rbenv shell 2.1.0"
+alias 211="rbenv shell 2.1.1"
 
 # Generate tags for all installed gems
 if [[ -f ~/dev/privat/zsh_config/home/extras/generate_tags_for_gems ]]; then
@@ -30,9 +31,6 @@ alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 alias rpipe='mkdir -p tmp && if [ ! -p tmp/rspec-test-pipe ]; then mkfifo tmp/rspec-test-pipe; fi && echo "Now listening to tmp/rspec-test-pipe" && while true; do sh -c "$(cat tmp/rspec-test-pipe)"; done'
 
 alias pu='git push'
-
-# start a debugging session with the smartphone
-alias android='~/Dropbox/Software/adb forward tcp:9222 localabstract:chrome_devtools_remote && open http://localhost:9222'
 
 alias be='bundle exec'
 
