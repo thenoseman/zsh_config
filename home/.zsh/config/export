@@ -18,7 +18,7 @@ export ARCHFLAGS="-arch x86_64"
 export MANPAGER=more
 
 # Maven
-export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:MaxPermSize=768m -XX:+CMSClassUnloadingEnabled"
+export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:MaxPermSize=768m -XX:+CMSClassUnloadingEnabled -Dfile.encoding=UTF-8"
 
 # Our oracle overlord
 export DYLD_LIBRARY_PATH="/usr/local/oracle/instantclient_11_2"
