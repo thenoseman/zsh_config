@@ -81,15 +81,11 @@ rspec() {
   fi
 }
 
-# runs bundle update for a gem starting with the passed parameter
-bu() {
-  if [ -z "$@" ]; then
-    echo "Pass the start of the gemname to be updated"
-    return 
-  fi
-  BU_GEM=`grep "specs:" -A 9999 Gemfile.lock | sed -n "2,9999p" | grep "$@" | head -n 1 | perl -ne '/\s+([a-z-_]+)/ && print $1'`
-  echo "bundle update $BU_GEM"
-  bundle update $BU_GEM
+dirdo() {
+  echo "Executing '${@}' in every subdirectory"
+  for a in *; do 
+    [[ -d "$a" ]] && (cd $a && pwd && ($@) || cd ..);
+  done
 }
 
 # vim:ft=sh
