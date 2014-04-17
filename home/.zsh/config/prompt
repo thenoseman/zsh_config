@@ -70,8 +70,7 @@ function +vi-git-st() {
     local -a gitstatus
 
     # Are we on a remote-tracking branch?
-    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
-        --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+    remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
 
     if [[ -n "${remote}" ]] ; then
         ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l | sed 's/ //g')
@@ -82,7 +81,16 @@ function +vi-git-st() {
 
         (( !$ahead && !$behind )) && gitstatus+=( "%{$fg[green]%}◷%{$reset_color%}" )
     else
-      ahead=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | sed "s/ //g")
+      GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD)
+
+      # check if on a existing (commited) ref
+      git show-ref | grep origin/$GIT_CURRENT_BRANCH
+      if [[ "$?" == "0" ]]; then
+        ahead=$(git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | sed "s/ //g")
+      else
+        ahead="0"
+      fi
+
       if [[ "$ahead" != "0" ]]; then
         gitstatus+=( "%{$fg[green]%}+${ahead}%{$reset_color%}" )
       else
