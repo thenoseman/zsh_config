@@ -84,8 +84,8 @@ function +vi-git-st() {
       GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD)
 
       # check if on a existing (commited) ref
-      git show-ref | grep origin/$GIT_CURRENT_BRANCH
-      if [[ "$?" == "0" ]]; then
+      refs=$(git show-ref | grep origin/${GIT_CURRENT_BRANCH} 2>/dev/null)
+      if [[ "$refs" != "" ]]; then
         ahead=$(git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | sed "s/ //g")
       else
         ahead="0"

@@ -1,3 +1,3 @@
-unalias run-help
+unalias run-help &>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/helpfile
