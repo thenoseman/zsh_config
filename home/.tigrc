@@ -1,14 +1,22 @@
 set line-graphics = utf8
-set show-date = yes
 set tab-size = 2
-set show-line-numbers = yes
-set line-number-interval = 5
+
+#set show-date = yes
+#set show-line-numbers = yes
+#set line-number-interval = 5
+
+# Pager based views
+set pager-view	= line-number:yes,interval=5 text
+set diff-view	  = line-number:yes,interval=5 text:yes,commit-title-overflow=no
+set stage-view	= line-number:no,interval=5 text
+set log-view	  = line-number:no,interval=5 text
+set blob-view	  = line-number:no,interval=5 text
 
 bind generic P !git push
 bind diff ! !@git checkout %(file)
 bind status U !@git add .
 bind main R !git revert %(commit)
-bind diff Down move-down
-bind diff Up move-up
-bind main ^f move-page-down  
-bind main ^b move-page-up
+bind diff <Down> move-down
+bind diff <Up> move-up
+bind main <Ctrl-f> move-page-down  
+bind main <Ctrl-b> move-page-up
