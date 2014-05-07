@@ -7,6 +7,6 @@ db/
 tmp/
 tests/_coverage/
 .sass-cache/
-spec/reports/
+spec/reports/*
 public/assets/
 tags
