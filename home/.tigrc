@@ -8,15 +8,14 @@ set diff-view	  = line-number:yes,interval=5 text:yes,commit-title-overflow=no
 set stage-view	= line-number:no,interval=5 text
 set log-view	  = line-number:no,interval=5 text
 set blob-view	  = line-number:no,interval=5 text
-set stage-view  = line-number:yes
 
 bind generic P !git push
 
 bind stage 1 stage-update-line # stage a single line
 
-bind status U !@git add .
+bind status U !git add .
 
-bind diff ! !@git checkout %(file)
+bind diff ! !git checkout %(file)
 bind diff <Down> move-down
 bind diff <Up> move-up
 
