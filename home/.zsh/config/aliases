@@ -33,7 +33,6 @@ alias pu='git push'
 
 alias be='bundle exec'
 
-# Run bundle in all first level subdirs
-alias sbundle='for a in *; do [[ -f "$a/Gemfile" ]] && (cd $a && pwd && bundle || cd ..); done'
+alias convert.sh='~/Dropbox/Software/ffmpeg/convert.sh'
 
 # vim:ft=sh
