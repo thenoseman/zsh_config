@@ -60,14 +60,15 @@ generate () {
   editor = "vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
 [merge]
   summary=true
+  tool = p4merge
 [gc]
   auto=1
 [branch]
   autosetupmerge = true
-[git-up \"fetch\"]
+[git-up "fetch"]
   prune = false
   all = true
-[git-up \"bundler\"]
+[git-up "bundler"]
   check = true
   autoinstall = true
 [push]
@@ -76,6 +77,12 @@ generate () {
   rebase = true
 [diff]
   algorithm = patience
+  tool = p4merge
+[mergetool "p4merge"]
+  trustExitCode = true
+  keepBackup = false
+[difftool]
+  prompt = false
 [grep]
   patternType = perl
 [rerere]

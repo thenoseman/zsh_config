@@ -35,5 +35,5 @@ alias be='bundle exec'
 
 alias convert.sh='~/Dropbox/Software/ffmpeg/convert.sh'
 
-alias update_important_gems="gem install pry-debugger pry-byebug bundler git-up bond wirb && gem update --system"
+alias update_important_gems="gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec && gem update --system"
 # vim:ft=sh

@@ -10,5 +10,4 @@ tests/_coverage/
 spec/reports/*
 public/assets/
 tags
-gems/
 node_modules/
