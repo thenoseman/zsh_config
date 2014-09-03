@@ -6,6 +6,7 @@ alias vim='/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/MacOS/Vim'
 
 # Alias gpr to do a rebase (use https://github.com/aanand/git-up)
 alias gpr='git-up && git submodule init && git submodule update'
+alias master='git checkout master'
 
 # Typos
 alias gti="git"
@@ -33,7 +34,10 @@ alias pu='git push'
 
 alias be='bundle exec'
 
+# Convert videos to mp4 for mobile
 alias convert.sh='~/Dropbox/Software/ffmpeg/convert.sh'
 
+# update all important gems
 alias update_important_gems="gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec && gem update --system"
+
 # vim:ft=sh
