@@ -27,7 +27,7 @@ generate () {
   name = $USERNAME
   email = $EMAIL 
 [alias]
-  l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) (%an, %ar%Creset)'
+  l = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(white) (%an, %ar%Creset) %Cblue%d%Creset'
   ci = commit
   st = status
   ch = checkout
