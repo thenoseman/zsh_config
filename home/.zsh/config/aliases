@@ -16,8 +16,8 @@ alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | c
 
 # Rubies
 alias 193="rbenv shell 1.9.3-p125-perf"
-alias jruby="rbenv shell jruby-1.6.5"
 alias 211="rbenv shell 2.1.1-perf"
+alias 179="rbenv shell jruby-1.7.9"
 
 # Generate tags for all installed gems
 if [[ -f ~/dev/privat/zsh_config/home/extras/generate_tags_for_gems ]]; then
