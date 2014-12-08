@@ -58,6 +58,7 @@ generate () {
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = "vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
+  precomposeunicode = true
 [merge]
   summary=true
   tool = p4merge
