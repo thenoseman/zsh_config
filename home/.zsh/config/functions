@@ -82,9 +82,9 @@ rspec() {
 }
 
 dirdo() {
-  echo "Executing '${@}' in every subdirectory"
+  echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
   for a in *; do 
-    [[ -d "$a" ]] && (cd $a && pwd && ($@) || cd ..);
+    [[ -d "$a" ]] && (cd $a && echo "${ccyellow}$(pwd)${ccend}" && ($@) || cd ..);
   done
 }
 
