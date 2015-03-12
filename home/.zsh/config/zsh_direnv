@@ -1,0 +1,2 @@
+which direnv &>/dev/null
+[[ "$?" == "0" ]] && eval "$(direnv hook zsh)"
