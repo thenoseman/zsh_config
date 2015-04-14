@@ -15,7 +15,7 @@ alias gti="git"
 alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -run -e httpd . -p9090'
 
 # Rubies
-alias 193="rbenv shell 1.9.3-p125-perf"
+alias 193="rbenv shell 1.9.3-perf"
 alias 211="rbenv shell 2.1.1-perf"
 alias 179="rbenv shell jruby-1.7.9"
 
