@@ -61,7 +61,11 @@ generate () {
   precomposeunicode = true
 [merge]
   summary=true
-  tool = p4merge
+  tool = extMerge
+[mergetool \"extMerge\"]
+  cmd = ~/.zsh/modules/git-ext-wrapper/extMerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+  trustExitCode = false
+  keepBackup = false
 [gc]
   auto=1
 [branch]
@@ -78,10 +82,7 @@ generate () {
   rebase = true
 [diff]
   algorithm = patience
-  tool = p4merge
-[mergetool "p4merge"]
-  trustExitCode = true
-  keepBackup = false
+  external = ~/.zsh/modules/git-ext-wrapper/extDiff
 [difftool]
   prompt = false
 [grep]
