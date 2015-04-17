@@ -1,0 +1,8 @@
+#!/bin/sh
+# Calls p4merge for use with "git mergetool"
+
+# p4merge
+#/Applications/p4merge.app/Contents/MacOS/p4merge $*
+
+# meld
+meld $* 

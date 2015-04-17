@@ -1,0 +1,3 @@
+#!/bin/sh
+# script to call p4merge as a difftool
+[ $# -eq 7 ] && ~/.zsh/modules/git-ext-wrapper/extMerge "$2" "$5"
