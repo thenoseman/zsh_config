@@ -92,4 +92,8 @@ wholistens() {
   lsof -n -i4TCP:${1} | grep LISTEN
 }
 
+gopath() {
+  echo "export GOPATH=`pwd`" >> .envrc
+}
+
 # vim:ft=sh
