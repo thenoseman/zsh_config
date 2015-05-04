@@ -94,6 +94,7 @@ wholistens() {
 
 gopath() {
   echo "export GOPATH=`pwd`" >> .envrc
+  echo "export PATH=`pwd`/bin:$PATH" >> .envrc
 }
 
 # vim:ft=sh
