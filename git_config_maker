@@ -82,7 +82,8 @@ generate () {
   rebase = true
 [diff]
   algorithm = patience
-  external = ~/.zsh/modules/git-ext-wrapper/extDiff
+  tool = meld
+  #external = ~/.zsh/modules/git-ext-wrapper/extDiff
 [difftool]
   prompt = false
 [grep]
