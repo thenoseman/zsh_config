@@ -97,4 +97,13 @@ gopath() {
   echo "export PATH=`pwd`/bin:$PATH" >> .envrc
 }
 
+update_important_tools() {
+  echo "${ccyellow}Updating rubygems${ccend}"
+  gem update --system
+  echo "${ccyellow}Installing important gems${ccend}"
+  gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec passenger
+  echo "${ccyellow}Installing important JS tools${ccend}"
+  npm install -g eslint gulp
+}
+
 # vim:ft=sh

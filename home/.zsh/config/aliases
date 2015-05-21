@@ -37,9 +37,6 @@ alias be='bundle exec'
 # Convert videos to mp4 for mobile
 alias convert.sh='~/Dropbox/Software/ffmpeg/convert.sh'
 
-# update all important gems
-alias update_important_gems="gem update --system && gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec passenger"
-
 alias meld="/Applications/Meld.app/Contents/MacOS/Meld-bin"
 
 # vim:ft=sh
