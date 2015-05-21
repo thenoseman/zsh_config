@@ -10,6 +10,8 @@ set log-view	  = line-number:no,interval=5 text
 set blob-view	  = line-number:no,interval=5 text
 
 bind generic P !git push
+bind generic <Ctrl-f> move-page-down  
+bind generic <Ctrl-b> move-page-up
 
 bind stage 1 stage-update-line # stage a single line
 
@@ -20,5 +22,4 @@ bind diff <Down> move-down
 bind diff <Up> move-up
 
 bind main R !git revert %(commit)
-bind main <Ctrl-f> move-page-down  
-bind main <Ctrl-b> move-page-up
+bind main a !git commit --amend
