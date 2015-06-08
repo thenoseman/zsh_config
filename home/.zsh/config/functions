@@ -98,15 +98,28 @@ gopath() {
 }
 
 update_important_tools() {
+  PACKAGES=(autojump brew-cask colordiff ctags direnv exiftool ffmpeg flvstreamer git imagemagick jhead macvim mussh node openssl pstree python rbenv readline redis rlwrap ruby-build sqlite tig unrar watch wget youtube-dl zsh)
+  INSTALLED_PACKAGES=$(brew list ${PACKAGES})
+
   echo "${ccyellow}Updating rubygems${ccend}"
   gem update --system
+
   echo "${ccyellow}Installing important gems${ccend}"
-  gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec passenger
+  gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec
+
   echo "${ccyellow}Installing important JS tools${ccend}"
   npm install -g eslint gulp
+
   echo "${ccyellow}Checking homebrew update (updating if more than 2 packages updated)${ccend}"
-  UPDATES=$(brew update && brew outdated | wc -l)
-  [[ "${UPDATES}" -gt "2" ]] && brew upgrade --all
+  brew update
+  UPDATES=$(brew outdated | wc -l)
+  [[ "${UPDATES}" -ge "3" ]] && brew upgrade --all
+
+  echo "${ccyellow}Checking homebrew mandantory packages${ccend}"
+  if [[ ! "$?" == "0" ]]; then
+    echo "${ccyellow}Installing mandatory homebrew packages${ccend}"
+    brew install ${PACKAGES}
+  fi
 }
 
 # vim:ft=sh
