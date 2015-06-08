@@ -104,6 +104,9 @@ update_important_tools() {
   gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec passenger
   echo "${ccyellow}Installing important JS tools${ccend}"
   npm install -g eslint gulp
+  echo "${ccyellow}Checking homebrew update (updating if more than 2 packages updated)${ccend}"
+  UPDATES=$(brew update && brew outdated | wc -l)
+  [[ "${UPDATES}" -gt "2" ]] && brew upgrade --all
 }
 
 # vim:ft=sh
