@@ -5,4 +5,12 @@
 #/Applications/p4merge.app/Contents/MacOS/p4merge $*
 
 # meld
-meld $* 
+base=${1?1st argument is 'base' file}
+theirs=${2?2nd argument is 'theirs' file}
+mine=${3?3rd argument is 'mine' file}
+merged=${4?4th argument is 'merged' file}
+
+cat "$mine" > "$merged"
+meld --label="Base=${base##*/}"           "$base"   \
+     --label="Mine->Merged=${merged##*/}" "$merged" \
+     --label="Theirs=${theirs##*/}"       "$theirs"
