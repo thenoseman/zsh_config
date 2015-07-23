@@ -52,6 +52,8 @@ generate () {
   ui = auto
 [color \"diff\"]
   whitespace = red reverse
+[gc]
+  auto = 1000 # auto pack repo only after 1000 losose objects have been detected
 [core]
   # see http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/
   trustctime = false
