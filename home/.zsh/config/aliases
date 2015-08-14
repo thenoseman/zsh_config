@@ -39,7 +39,5 @@ alias convert.sh='~/Dropbox/Software/ffmpeg/convert.sh'
 
 alias next="rspec --next-failure"
 
-alias meld="/Applications/Meld.app/Contents/MacOS/Meld-bin"
-
 alias jekyll="bundle exec jekyll server --watch"
 # vim:ft=sh
