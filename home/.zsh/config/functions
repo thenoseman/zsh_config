@@ -113,8 +113,11 @@ update_important_tools() {
   echo "${ccyellow}Installing important gems${ccend}"
   gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec
 
+  echo "${ccyellow}Updateing npm${ccend}"
+  npm install -g npm
+
   echo "${ccyellow}Installing important JS tools${ccend}"
-  npm install -g eslint gulp node-inspector npm
+  npm install -g eslint gulp node-inspector
 
   echo "${ccyellow}Checking homebrew update (updating if more than 2 packages updated)${ccend}"
   brew update
