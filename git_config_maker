@@ -67,6 +67,7 @@ generate () {
 [mergetool \"extMerge\"]
   cmd = ~/.zsh/modules/git-ext-wrapper/extMerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
   trustExitCode = false
+[mergetool]
   keepBackup = false
 [gc]
   auto=1
