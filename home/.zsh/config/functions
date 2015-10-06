@@ -98,12 +98,13 @@ gopath() {
 }
 
 update_important_tools() {
-  PACKAGES=(autojump brew-cask colordiff ctags direnv exiftool ffmpeg flvstreamer git imagemagick jhead macvim mussh node openssl pstree python rbenv readline redis rlwrap ruby-build sqlite tig unrar watch wget youtube-dl zsh)
+  PACKAGES=(autojump brew-cask colordiff ctags direnv exiftool ffmpeg flvstreamer git imagemagick jhead macvim mussh node012 openssl pstree python rbenv readline redis rlwrap ruby-build sqlite tig unrar watch wget youtube-dl zsh)
   INSTALLED_PACKAGES=$(brew list ${PACKAGES})
 
   # If brew list fails there are missing packages
   if [[ "$?" != "0" ]]; then
     echo "${ccyellow}Installing missing packages${ccend}"
+    brew tap homebrew/versions
     brew install ${PACKAGES}
   fi
 
