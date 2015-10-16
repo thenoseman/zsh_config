@@ -9,9 +9,12 @@
 ---
   env:
     browser: true
+    es6: true
   globals:
     jQuery: true
     $: true
+  ecmaFeatures:
+    modules: true
   rules:
     # Rules comming from jshint:
     no-bitwise: 2 # Prohibit bitwise operators (&, |, ^, etc.).
