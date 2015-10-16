@@ -16,7 +16,7 @@
   ecmaFeatures:
     modules: true
   rules:
-    # Rules comming from jshint:
+    # Rules coming from jshint:
     no-bitwise: 2 # Prohibit bitwise operators (&, |, ^, etc.).
     curly: [2, "all"] # require {} for every new block or scope
     eqeqeq: "smart" # Require triple equals i.e. '===' and '!==' but allow typesafe '=='
@@ -129,7 +129,3 @@
     space-unary-word-ops: 2 #require a space around word operators such as typeof
     one-var: 0 # dont require just one var statement per function
     wrap-regex: 0 # dont require regex literals to be wrapped in parentheses
-
-# Whats missing?
-# no "single quote style" rule available
-# no indention rule available
