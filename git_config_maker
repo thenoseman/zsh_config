@@ -65,7 +65,7 @@ generate () {
   summary=true
   tool = extMerge
 [mergetool \"extMerge\"]
-  cmd = ~/.zsh/modules/git-ext-wrapper/extMerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+  cmd = ~/.zsh/modules/git-ext-wrapper/extMerge \"\$BASE\" \"\$LOCAL\" \"\$REMOTE\" \"\$MERGED\"
   trustExitCode = false
 [mergetool]
   keepBackup = false
@@ -73,10 +73,10 @@ generate () {
   auto=1
 [branch]
   autosetupmerge = true
-[git-up "fetch"]
+[git-up \"fetch\"]
   prune = false
   all = true
-[git-up "bundler"]
+[git-up \"bundler\"]
   check = true
   autoinstall = true
 [push]
