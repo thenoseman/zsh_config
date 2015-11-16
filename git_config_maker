@@ -27,18 +27,17 @@ generate () {
   name = $USERNAME
   email = $EMAIL 
 [alias]
-  l = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(white) (%an, %ar%Creset) %Cblue%d%Creset'
+  l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) (%an, %ar%Creset)'
   ci = commit
   st = status
   ch = checkout
   cp = cherry-pick -x
   b = branch -v
-  r = remote -v
-  t = tag -l
+  ami = am --ignore-date --committer-date-is-author-date
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
-  unpushed = !GIT_CURRENT_BRANCH=\$(git name-rev --name-only HEAD) && git log origin/\$GIT_CURRENT_BRANCH..\$GIT_CURRENT_BRANCH --oneline
-  quicklog = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
+  quicklog = log --pretty=format:"%h %cr %cn %Cgreen%s%Creset"
   rc = rebase --continue
   ra = rebase --abort
   rs = rebase --skip
