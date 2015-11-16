@@ -36,7 +36,7 @@ generate () {
   ami = am --ignore-date --committer-date-is-author-date
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
-  unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
+  unpushed = !GIT_CURRENT_BRANCH=\$(git name-rev --name-only HEAD) && git log origin/\$GIT_CURRENT_BRANCH..\$GIT_CURRENT_BRANCH --oneline
   quicklog = log --pretty=format:"%h %cr %cn %Cgreen%s%Creset"
   rc = rebase --continue
   ra = rebase --abort
@@ -58,7 +58,7 @@ generate () {
   trustctime = false
   autocrlf = input
   excludesfile = ~/.gitignore
-  editor = "vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
+  editor = "vim -u NONE -N -u ~/.vimrc-commit -c startinsert"
   precomposeunicode = true
 [merge]
   summary=true
