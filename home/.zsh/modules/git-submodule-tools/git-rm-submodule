@@ -54,8 +54,6 @@ cd "$dir"
 git check-clean || exit 1
 ## check for unpushed changes
 git check-unpushed || exit 1
-## check for local non-tracking-branches
-git check-non-tracking || exit 1
 ## find the real git-dir (might be git-file, for v.1.7.8 compatibility)
 ## git dir should be relative to current dir... but is it?
 gitdir=$(cd `git rev-parse --git-dir`; pwd)
@@ -67,7 +65,11 @@ url=`(git config --get submodule."$dir".url) || echo "unknown"`
 ## remove config entries
 (git config -f .gitmodules --remove-section submodule."$dir" 2>/dev/null) || echo -n ""
 (git config --remove-section submodule."$dir" 2>/dev/null) || echo -n ""
+
+git stash
 git rm --cached "$dir"
+git stash pop
+
 rm -rf "$dir"
 ## remove git dir as well (might git-file, for v.1.7.8 compatibility)
 rm -rf "$gitdir"
