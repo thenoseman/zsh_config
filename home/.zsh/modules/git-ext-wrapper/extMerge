@@ -18,7 +18,7 @@ merged=${4?4th argument is 'merged' file}
 
 # MELD:
 cat "$mine" > "$merged"
-meld --label="Base=${base##*/}"           "$base"   \
+meld --auto-merge --auto-compare --label="Base=${base##*/}"           "$base"   \
      --label="Mine->Merged=${merged##*/}" "$merged" \
      --label="Theirs=${theirs##*/}"       "$theirs"
 
