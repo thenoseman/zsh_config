@@ -62,7 +62,8 @@ generate () {
   precomposeunicode = true
 [merge]
   summary=true
-  tool = extMerge
+  tool = kdiff3
+  #tool = extMerge
 [mergetool \"extMerge\"]
   cmd = ~/.zsh/modules/git-ext-wrapper/extMerge \"\$BASE\" \"\$LOCAL\" \"\$REMOTE\" \"\$MERGED\"
   trustExitCode = false
@@ -84,7 +85,8 @@ generate () {
   rebase = true
 [diff]
   algorithm = patience
-  tool = meld
+  tool = kdiff3
+  #tool = meld
   #external = ~/.zsh/modules/git-ext-wrapper/extDiff
 [difftool]
   prompt = false
@@ -92,6 +94,12 @@ generate () {
   patternType = perl
 [rerere]
   enabled = true
+[difftool \"kdiff3\"]
+  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+  trustExitCode = false
+[mergetool \"kdiff3\"]
+  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+  trustExitCode = false
 "
 }
 
