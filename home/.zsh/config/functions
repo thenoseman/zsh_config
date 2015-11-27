@@ -98,7 +98,7 @@ gopath() {
 }
 
 update_important_tools() {
-  PACKAGES=(autojump brew-cask colordiff ctags direnv exiftool ffmpeg flvstreamer git imagemagick jhead macvim mussh node012 openssl pstree python rbenv readline redis rlwrap ruby-build sqlite tig unrar watch wget youtube-dl zsh)
+  PACKAGES=(autojump brew-cask colordiff ctags direnv exiftool ffmpeg flvstreamer git imagemagick jhead macvim mussh node012 openssl pstree python rbenv readline redis rlwrap ruby-build sqlite tig unrar watch wget youtube-dl zsh kdiff3)
   INSTALLED_PACKAGES=$(brew list ${PACKAGES})
 
   # If brew list fails there are missing packages
@@ -118,7 +118,7 @@ update_important_tools() {
   npm install -g npm
 
   echo "${ccyellow}Installing important JS tools${ccend}"
-  npm install -g eslint gulp node-inspector webpack
+  npm install -g eslint gulp node-inspector webpack babel-eslint
 
   echo "${ccyellow}Checking homebrew update (updating if more than 2 packages updated)${ccend}"
   brew update
