@@ -127,7 +127,7 @@ update_important_tools() {
 }
 
 puall() {
-  LATEST_BRANCH=$(git branch --list | grep '[0-9][0-9][0-9]' | sort -r | head -n 1)
+  LATEST_BRANCH=$(git branch --list | grep '[0-9][0-9][0-9]' | sort -r | head -n 1 | sed 's/* //g')
   git push origin master ${LATEST_BRANCH} 
 }
 
