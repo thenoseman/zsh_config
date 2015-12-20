@@ -118,7 +118,7 @@ update_important_tools() {
   npm install -g npm
 
   echo "${ccyellow}Installing important JS tools${ccend}"
-  npm install -g eslint gulp node-inspector webpack babel-eslint updtr
+  npm install -g eslint gulp node-inspector webpack babel-eslint updtr babel-eslint
 
   echo "${ccyellow}Checking homebrew update (updating if more than 2 packages updated)${ccend}"
   brew update
