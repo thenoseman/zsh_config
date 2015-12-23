@@ -33,7 +33,7 @@ generate () {
   ch = checkout
   cp = cherry-pick -x
   b = branch -v
-  ami = am --ignore-date --committer-date-is-author-date
+  ami = am --ignore-date --committer-date-is-author-date --reject
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
   unpushed = !GIT_CURRENT_BRANCH=\$(git name-rev --name-only HEAD) && git log origin/\$GIT_CURRENT_BRANCH..\$GIT_CURRENT_BRANCH --oneline
