@@ -1,0 +1,32 @@
+update_important_tools() {
+  PACKAGES=(autojump brew-cask colordiff ctags direnv exiftool ffmpeg flvstreamer git imagemagick jhead macvim mussh node012 openssl pstree python rbenv readline redis rlwrap ruby-build sqlite tig unrar watch youtube-dl zsh kdiff3)
+  INSTALLED_PACKAGES=$(brew list ${PACKAGES})
+
+  # If brew list fails there are missing packages
+  if [[ "$?" != "0" ]]; then
+    echo "${ccyellow}Installing missing packages${ccend}"
+    brew tap homebrew/versions
+    brew install ${PACKAGES}
+  fi
+
+  echo "${ccyellow}Updating rubygems${ccend}"
+  gem update --system
+
+  echo "${ccyellow}Installing important gems${ccend}"
+  gem install pry-debugger pry-byebug bundler git-up bond wirb spring spring-commands-rspec
+
+  echo "${ccyellow}Updating npm${ccend}"
+  npm install -g npm
+
+  echo "${ccyellow}Installing important JS tools${ccend}"
+  npm install -g eslint gulp node-inspector webpack babel-eslint updtr babel-eslint nesh nesh-history-search
+
+  # Enable nesh repl history plugin
+  [[ ! -d "~/.nesh_modules/node_modules/nesh-history-search" ]] && nesh --enable nesh-history-search
+
+  echo "${ccyellow}Checking homebrew update (updating if more than 2 packages updated)${ccend}"
+  brew update
+  UPDATES=$(brew outdated | wc -l)
+  [[ "${UPDATES}" -ge "3" ]] && brew upgrade --all
+}
+# vim:ft=sh
