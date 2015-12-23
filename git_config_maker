@@ -43,6 +43,7 @@ generate () {
   rs = rebase --skip
   rh = reset --hard
   clone = clone --recursive
+  create-patch = !NR=\$(GIT_CURRENT_BRANCH=\$(git name-rev --name-only HEAD) && git log origin/\$GIT_CURRENT_BRANCH..\$GIT_CURRENT_BRANCH --oneline | wc -l | tr -d ' ') && git format-patch HEAD~\$NR
 [color]
   branch = auto
   status = auto
@@ -95,10 +96,8 @@ generate () {
 [rerere]
   enabled = true
 [difftool \"kdiff3\"]
-  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
   trustExitCode = false
 [mergetool \"kdiff3\"]
-  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
   trustExitCode = false
 "
 }
