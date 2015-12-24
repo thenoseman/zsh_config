@@ -120,6 +120,8 @@ function +vi-git-status() {
     hook_com[misc]+=",BISECT"
   elif [ -f ".git/MERGE_HEAD" ] ; then
     hook_com[misc]+=",MERGE"
+  elif [ -f ".git/rebase-apply/info" ] ; then
+    hook_com[misc]+=",AM"
   else
     for dir in rebase rebase-apply rebase-merge ; do
       if [ -d ".git/$dir" ] ; then
