@@ -1,0 +1,73 @@
+[user]
+  configured = via direnv
+[alias]
+  l = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(green)(%an, %ad%Creset)' --date=short
+  lold = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(white) (%an, %ad%Creset) %Cblue%d%Creset' --date=short
+  ci = commit
+  st = status
+  ch = checkout
+  cp = cherry-pick -x
+  b = branch -v
+  r = remote -v
+  t = tag -l
+  unstage = reset HEAD
+  uncommit = reset --soft HEAD^
+  unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
+  quicklog = log --pretty=format:"%h %cr %cn %Cgreen%s%Creset"
+  rc = rebase --continue
+  ra = rebase --abort
+  rh = reset --hard
+  clone = clone --recursive
+  create-patch = !NR=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | tr -d ' ') && git format-patch HEAD~$NR
+[color]
+  branch = auto
+  status = auto
+  diff = auto
+  interactive = auto
+  ui = auto
+[color "diff"]
+  whitespace = red reverse
+[core]
+  trustctime = false
+  autocrlf = input
+  excludesfile = ~/.gitignore
+  editor = "/usr/local/Cellar/macvim/7.4-86/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
+	precomposeunicode = true
+[gc]
+	auto = 1000
+[branch]
+  autosetupmerge = true
+[git-up "fetch"]
+  prune = false
+  all = true
+[git-up "bundler"]
+  check = true
+  autoinstall = true
+[push]
+  default = current
+[pull]
+  rebase = true
+[merge]
+  summary=true
+  tool = extMerge
+[mergetool "extMerge"]
+  cmd = ~/.zsh/modules/git-ext-wrapper/extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  trustExitCode = false
+  keepBackup = false
+[mergetool]
+  keepBackup = false
+  tool = kdiff3
+[diff]
+  algorithm = patience
+  tool = kdiff3
+[difftool]
+  prompt = false
+  path = /Applications/Meld.app/Contents/MacOS/Meld-bin
+[grep]
+	patternType = perl
+[rerere]
+  enabled = true
+[difftool "kdiff3"]
+  trustExitCode = false
+[mergetool "kdiff3"]
+  trustExitCode = false
