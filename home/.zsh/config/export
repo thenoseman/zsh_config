@@ -5,10 +5,11 @@ export LESS="-mNR" #Line-numbers and ASCII-Colors in less
 export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
 export LC_ALL="en_US.UTF-8"
 
+# Use java 1.8
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
-# Show `time` output for any command that takes longer than 1 second of CPU time
-export REPORTTIME=1
+# Show `time` output for any command that takes longer than 2 second of CPU time
+export REPORTTIME=2
 
 # Need this to make rvm + homebrew happy
 export ARCHFLAGS="-arch x86_64"
@@ -18,6 +19,9 @@ export MANPAGER=more
 
 # Maven
 export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:MaxPermSize=768m -XX:+CMSClassUnloadingEnabled -Dfile.encoding=UTF-8"
+
+# Direnv logging -> silent
+export DIRENV_LOG_FORMAT=""
 
 # Our oracle overlord
 export DYLD_LIBRARY_PATH="/usr/local/oracle/instantclient_11_2"
