@@ -46,3 +46,7 @@ tags
 # Ruby #
 ########
 .rvmrc
+
+# direnv #
+# ########
+.envrc
