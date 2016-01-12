@@ -49,11 +49,7 @@
   rebase = true
 [merge]
   summary=true
-  tool = extMerge
-[mergetool "extMerge"]
-  cmd = ~/.zsh/modules/git-ext-wrapper/extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-  trustExitCode = false
-  keepBackup = false
+  tool = kdiff3
 [mergetool]
   keepBackup = false
   tool = kdiff3
@@ -62,7 +58,7 @@
   tool = kdiff3
 [difftool]
   prompt = false
-  path = /Applications/Meld.app/Contents/MacOS/Meld-bin
+  tool = kdiff3
 [grep]
 	patternType = perl
 [rerere]
@@ -71,3 +67,4 @@
   trustExitCode = false
 [mergetool "kdiff3"]
   trustExitCode = false
+  path = /usr/local/bin/kdiff3
