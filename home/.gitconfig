@@ -31,7 +31,7 @@
   trustctime = false
   autocrlf = input
   excludesfile = ~/.gitignore
-  editor = "/usr/local/Cellar/macvim/7.4-86/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
+  editor = "/usr/local/Cellar/macvim/7.4-94/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
 	precomposeunicode = true
 [gc]
 	auto = 1000
