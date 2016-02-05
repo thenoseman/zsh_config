@@ -42,4 +42,6 @@ alias next="rspec --next-failure"
 alias jekyll="bundle exec jekyll server --watch"
 
 alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrites -f best --restrict-filenames"
+
+alias dinit="eval \$(docker-machine env)"
 # vim:ft=sh
