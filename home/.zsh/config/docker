@@ -1,0 +1,26 @@
+# Docker commands
+
+dcleanup() {
+  # Check to see if docker is running
+  docker version 1>/dev/null
+  [[ "$?" != "0" ]] && echo "Docker not running. Execute 'dinit' and then try again" && return
+
+  # Clean up dangling images if any
+  if [[ "$(docker images -f "dangling=true" -q | wc -l | tr -d ' ')" != "0" ]]; then
+    docker rmi $(docker images -f "dangling=true" -q) 
+  else
+    echo "No dangling images to clean up"
+  fi
+
+  # Cleanup exited containers
+  if [[ "$(docker ps -a -q -f status=exited | wc -l | tr -d ' ')" != "0" ]]; then
+    docker rm -v $(docker ps -a -q -f status=exited)
+  else
+    echo "No exited containers to clean up"
+  fi
+}
+
+# Initialize docker env
+alias dinit="eval \$(docker-machine env)"
+
+# vim:ft=sh
