@@ -5,7 +5,7 @@ ccyellow=$(echo -e "\033[0;33m")
 ccend=$(echo -e "\033[0m")
 
 # Rails console
-rc() { bundle exec rails c }
+rc() { pry -r ./config/environment $@ }
 
 # Rails server
 rs() { 
