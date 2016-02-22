@@ -2,7 +2,7 @@ alias ll='ls -la'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
 alias v='mvim'
-alias vim='/usr/local/Cellar/macvim/7.4-81/MacVim.app/Contents/MacOS/Vim'
+alias vim='/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim'
 
 # Alias gpr to do a rebase (use https://github.com/aanand/git-up)
 alias gpr='git-up && git submodule init && git submodule update'
