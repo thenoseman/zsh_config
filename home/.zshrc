@@ -1,5 +1,5 @@
 # Add path to autocompletion function path
-fpath=(~/.zsh/completions $fpath)
+fpath=(~/.zsh/completions ~/.zsh/completions/docker $fpath)
 
 # crazy tab completion
 autoload -U compinit
