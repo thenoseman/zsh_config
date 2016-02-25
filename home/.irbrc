@@ -104,7 +104,7 @@ begin
   Pry.config.history.file = "~/.irb_history"
   IRB.conf[:IRB_NAME]="pry"
   Pry.start
-  exit
-rescue Exception
+  Kernel.exit
+rescue StandardError
   warn "You really should \"gem install pry pry-doc --no-ri --no-rdoc\" into your global system gemdir"
 end
