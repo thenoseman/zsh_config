@@ -96,11 +96,6 @@ def sqllogoff
   ActiveRecord::Base.logger = nil
 end
 
-# show complete IRB history
-def history
-  puts Readline::HISTORY.entries.split("exit").last[0..-2].join("\n")
-end
-
 # Use Pry everywhere
 begin
   require 'pry'
@@ -110,6 +105,6 @@ begin
   IRB.conf[:IRB_NAME]="pry"
   Pry.start
   exit
-rescue
+rescue Exception
   warn "You really should \"gem install pry pry-doc --no-ri --no-rdoc\" into your global system gemdir"
 end
