@@ -3,17 +3,16 @@
 # Loads a session/profile named "tig" in iTerm
 #
 # create a profile named "tig" and set "send text on start" to "ti" for a nice big tig window
-# you'll need the development version of iTerm2 for that!
 #
 osascript 2>/dev/null <<EOF
 tell application "iTerm"
-  set myterm to (make new terminal)
-  tell myterm
-    launch session "tig"
-    set number of columns to 200 
-    set number of rows to 200
-    set name to "tig"
-  end tell
+	set newWindow to (create window with profile "tig")
+	tell newWindow
+		tell current session
+			set columns to 200
+			set rows to 200
+		end tell
+	end tell
 end tell
 EOF
 exit 0
