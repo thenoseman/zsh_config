@@ -15,7 +15,7 @@ rs() {
     echo "=====================${ccend}"
   fi
   rm -rf tmp/cache
-  bundle exec rails s 
+  bundle exec rails s -b 127.0.0.1
 }
 
 # ps + grep
