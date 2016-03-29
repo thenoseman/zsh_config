@@ -1,5 +1,6 @@
 [user]
   configured = via direnv
+	useconfigonly = true
 [alias]
   l = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(green)(%an, %ad%Creset)' --date=short
   lold = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(white) (%an, %ad%Creset) %Cblue%d%Creset' --date=short
