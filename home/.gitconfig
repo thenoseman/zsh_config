@@ -34,6 +34,7 @@
   excludesfile = ~/.gitignore
   editor = "/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
 	precomposeunicode = true
+	untrackedCache = true
 [gc]
 	auto = 1000
 [branch]
