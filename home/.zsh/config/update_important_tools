@@ -13,7 +13,7 @@ update_important_tools() {
   gem update --system
 
   echo "${ccyellow}Installing important gems${ccend}"
-  gem install pry-byebug bundler git-up bond wirb spring spring-commands-rspec
+  gem install pry-byebug bundler git-up bond wirb
 
   echo "${ccyellow}Updating npm${ccend}"
   npm install -g npm
