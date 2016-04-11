@@ -54,6 +54,7 @@ f() {
 # Start tig in status view if unstanged changes present
 ti() {
   DIRTY=$(git status -s)
+  killall -m -9 tig > /dev/null 2>&1
   if [[ "$DIRTY" != "" ]]; then
     tig status
   else
