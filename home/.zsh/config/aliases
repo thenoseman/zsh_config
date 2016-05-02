@@ -34,8 +34,7 @@ alias pu='git push'
 
 alias be='bundle exec'
 
-# Convert videos to mp4 for mobile
-alias convert.sh='~/Dropbox/Software/ffmpeg/convert.sh'
+alias all2mp4='~/.zsh/modules/ffmpeg/all2mp4'
 
 alias next="rspec --next-failure"
 
