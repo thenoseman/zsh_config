@@ -14,12 +14,12 @@
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
   unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
-  quicklog = log --pretty=format:"%h %cr %cn %Cgreen%s%Creset"
   rc = rebase --continue
   ra = rebase --abort
   rh = reset --hard
   clone = clone --recursive
   create-patch = !NR=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | tr -d ' ') && git format-patch HEAD~$NR
+  ami = am --committer-date-is-author-date --ignore-date
 [color]
   branch = auto
   status = auto
