@@ -100,7 +100,7 @@ wholistens() {
   lsof -n -i4TCP:${1} | grep LISTEN
 }
 
-gopath() {
+setgopath() {
   echo "export GOPATH=`pwd`" >> .envrc
   echo "export PATH=`pwd`/bin:$PATH" >> .envrc
 }
@@ -108,6 +108,10 @@ gopath() {
 puall() {
   LATEST_BRANCH=$(git branch --list | grep '[0-9][0-9][0-9]' | sort -r | head -n 1 | sed 's/* //g' | tr -d " ")
   git push origin master ${LATEST_BRANCH} 
+}
+
+cp2phone() {
+  find . -name "${1}" -print -exec ~/Dropbox/Software/adb push -p {} /storage/sdcard1/Movies/ \;
 }
 
 # vim:ft=sh
