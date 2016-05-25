@@ -26,9 +26,7 @@ rs() {
 }
 
 # Rails server (SSL)
-# To install puma with SSL : gem install puma --verbose -- --with-opt-dir=/usr/local/opt/openssl
-# Via Gemfile : bundle config build.puma --with-opt-dir=/usr/local/opt/openssl
-rss() {
+rssl() {
   # Check for PUMA
   grep -q puma Gemfile.lock
   [[ "$?" == "1" ]] && echo "Please add the 'puma' gem to your Gemfile and try again."
@@ -66,12 +64,16 @@ rss() {
     mkdir /tmp/ssl_dev_keys
     openssl genrsa -des3 -out /tmp/ssl_dev_keys/ssl_dev.key -passout pass:password 2048
     openssl rsa -in /tmp/ssl_dev_keys/ssl_dev.key -passin pass:password -out /tmp/ssl_dev_keys/ssl_dev.key
-    openssl req -sha256 -new -key /tmp/ssl_dev_keys/ssl_dev.key -passin pass:password -out /tmp/ssl_dev_keys/ssl_dev.csr -subj '/C=DE/ST=Hamburg/L=Hamburg/O=nextversion/OU=IT Department/CN=localhost.ssl-development-certificate'
+    openssl req -sha256 -new -key /tmp/ssl_dev_keys/ssl_dev.key \
+      -passin pass:password \
+      -out /tmp/ssl_dev_keys/ssl_dev.csr \
+      -subj '/C=DE/ST=Hamburg/L=Hamburg/O=nextversion/OU=IT Department/CN=localhost'
     openssl x509 -req -days 365 -in /tmp/ssl_dev_keys/ssl_dev.csr -signkey /tmp/ssl_dev_keys/ssl_dev.key -out /tmp/ssl_dev_keys/ssl_dev.crt -passin pass:password
     cat /tmp/ssl_dev_keys/ssl_dev.crt /tmp/ssl_dev_keys/ssl_dev.key > /tmp/ssl_dev_keys/ssl_dev.pem
 
     echo "${ccgreen}"
     echo "Generated a certificate authority and server key as /tmp/ssl_dev_keys/ssl_dev.*"
+    echo "Please note that this certificate is only valid for localhost:9292!"
     echo ""
     echo "To keep the browser from displaying the 'untrusted certificate' warning"
     echo "please import ${ccyellow}/tmp/ssl_dev_keys/ssl_dev.pem${ccgreen} into your Macs keychain."
