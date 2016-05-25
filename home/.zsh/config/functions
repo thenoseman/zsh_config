@@ -25,6 +25,43 @@ rs() {
   bundle exec rails s ${APPENDIX} -b 0.0.0.0
 }
 
+# Rails server (SSL)
+# To install puma with SSL : gem install puma --verbose -- --with-opt-dir=/usr/local/opt/openssl
+# Via Gemfile : bundle config build.puma --with-opt-dir=/usr/local/opt/openssl
+rss() {
+  # Check for PUMA
+  grep -q puma Gemfile.lock
+  [[ "$?" == "1" ]] && echo "Please add the 'puma' gem to your Gemfile and try again. On Mac do a 'brew install openssl && bundle config build.puma --with-opt-dir=/usr/local/opt/openssl' before 'bundle'" && exit 1
+ 
+  # Check for cert/key
+  # Generate a certificate
+  if [ ! -e "/tmp/ssl_dev_keys/ssl_dev.key" ]; then
+    mkdir /tmp/ssl_dev_keys
+    openssl genrsa -des3 -out /tmp/ssl_dev_keys/ssl_dev.key -passout pass:password 2048
+    openssl rsa -in /tmp/ssl_dev_keys/ssl_dev.key -passin pass:password -out /tmp/ssl_dev_keys/ssl_dev.key
+    openssl req -sha256 -new -key /tmp/ssl_dev_keys/ssl_dev.key -passin pass:password -out /tmp/ssl_dev_keys/ssl_dev.csr -subj '/C=DE/ST=Hamburg/L=Hamburg/O=nextversion/OU=IT Department/CN=localhost'
+    openssl x509 -req -days 365 -in /tmp/ssl_dev_keys/ssl_dev.csr -signkey /tmp/ssl_dev_keys/ssl_dev.key -out /tmp/ssl_dev_keys/ssl_dev.crt -passin pass:password
+    cat /tmp/ssl_dev_keys/ssl_dev.crt /tmp/ssl_dev_keys/ssl_dev.key > /tmp/ssl_dev_keys/ssl_dev.pem
+    cp /tmp/ssl_dev_keys/ssl_dev.pem ~/Desktop/
+
+    echo "${ccgreen}"
+    echo "Generated a certificate authority and server key as /tmp/ssl_dev_keys/ssl_dev.*"
+    echo ""
+    echo "To keep the browser from displaying the 'untrusted certificate' warning"
+    echo "please import ${ccyellow}/tmp/ssl_dev_keys/ssl_dev.pem${ccgreen} into your Macs keychain."
+    echo ""
+    echo "The .pem file has also been copied to your 'Desktop' for easier importing!"
+    echo "Double click the file and choose 'System' from the dropdown."
+    echo "After importing please open the certificate (double click) and choose 'Always trust' from the first dropdown INSIDE the 'Trust' section."
+    echo "${ccend}"
+    echo "Press any key to continue ..."
+    read
+  fi
+
+  # Start!
+  bundle exec puma -b 'ssl://0.0.0.0:9292?key=/tmp/ssl_dev_keys/ssl_dev.key&cert=/tmp/ssl_dev_keys/ssl_dev.crt'
+}
+
 # ps + grep
 psg() { ps auxww | grep $1 }
 
