@@ -31,8 +31,25 @@ rs() {
 rss() {
   # Check for PUMA
   grep -q puma Gemfile.lock
-  [[ "$?" == "1" ]] && echo "Please add the 'puma' gem to your Gemfile and try again. On Mac do a 'brew install openssl && bundle config build.puma --with-opt-dir=/usr/local/opt/openssl' before 'bundle'" && exit 1
- 
+  [[ "$?" == "1" ]] && echo "Please add the 'puma' gem to your Gemfile and try again."
+  #  On Mac do a 'brew install openssl && bundle config build.puma --with-opt-dir=/usr/local/opt/openssl' before 'bundle'" && exit 1
+
+  puma_path=$(bundle show puma)
+  grep -q SSL ${puma_path}/ext/puma_http11/Makefile
+
+  # Check for SSL in puma
+  if [[ "$?" != "0" ]]; then
+    echo "${ccred}"
+    echo "Your puma installation is compiled without SSL support."
+    echo "To fix that:"
+    echo "1. uninstall the puma gem (at least the one in ${puma_path})"
+    echo "2. brew install openssl"
+    echo "3. execute 'bundle config build.puma --with-opt-dir=/usr/local/opt/openssl'"
+    echo "4. bundle"
+    echo "${ccend}"
+    return
+  fi
+
   # Check for cert/key
   # Generate a certificate
   if [ ! -e "/tmp/ssl_dev_keys/ssl_dev.key" ]; then
