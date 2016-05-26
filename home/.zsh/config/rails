@@ -1,0 +1,123 @@
+# Rails console
+rc() { bundle exec pry -r ./config/environment $@ }
+
+# Rails server
+rs() { 
+  if [[ -d public/assets ]]; then
+    echo "${ccred}====================="
+    echo "PUBLIC ASSETS EXISTS!"
+    echo "=====================${ccend}"
+  fi
+  rm -rf tmp/cache
+
+  # Use puma?
+  APPENDIX=""
+  grep -q puma Gemfile.lock
+  if [[ "$?" == "0" ]]; then
+    APPENDIX="puma"
+  fi
+  bundle exec rails s ${APPENDIX} -b 0.0.0.0
+}
+
+# Rails server (SSL)
+rssl() {
+  # Check for PUMA
+  grep -q puma Gemfile.lock
+  [[ "$?" == "1" ]] && echo "Please add the 'puma' gem to your Gemfile and try again."
+  # On Mac do a 'brew install openssl && bundle config build.puma --with-opt-dir=/usr/local/opt/openssl' before 'bundle'"
+
+  puma_path=$(bundle show puma)
+  grep -q SSL ${puma_path}/ext/puma_http11/Makefile
+
+  # Check for SSL in puma
+  if [[ "$?" != "0" ]]; then
+    echo "${ccred}"
+    echo "Your puma installation is compiled without SSL support."
+    echo "To fix that:"
+    echo "1. uninstall the puma gem (at least the one in ${puma_path})"
+    echo "2. brew install openssl"
+    echo "3. execute 'bundle config build.puma --with-opt-dir=/usr/local/opt/openssl'"
+    echo "4. bundle"
+    echo "${ccend}"
+    return
+  fi
+
+  # Check if puma launcher patch is needed
+  # The current puma launcher has no concept of SSL :(
+  grep -q "c.port port" ${puma_path}/lib/rack/handler/puma.rb
+  if [[ "$?" == "0" ]]; then
+    echo "${ccyellow}Patching puma rack handler to make 'rails server' work with SSL."
+    sed -i ".pre-ssl-patch" "s/c\.port port, host/c\.port\(port, host\) unless host == \"ssl\"/" ${puma_path}/lib/rack/handler/puma.rb
+    echo "A backup of the original file was saved to:"
+    echo "${puma_path}/lib/rack/handler/puma.rb.pre-ssl-patch${ccend}"
+  fi
+
+
+  # Check for cert/key
+  # Generate a certificate
+  if [ ! -e "/tmp/ssl_dev_keys/ssl_dev.key" ]; then
+    [ ! -e /tmp/ssl_dev_keys ] && mkdir -p /tmp/ssl_dev_keys
+
+    # Create a modified openssl conf which allows SANs (https://grevi.ch/blog/ssl-certificate-request-with-subject-alternative-names-san)
+    # With this https://dev will be possible (see https://www.openssl.org/docs/manmaster/apps/x509v3_config.html for more)
+    # Of cause dev must point to 127.0.0.1 via /etc/hosts
+    echo "distinguished_name = req\n[ req ]\nreq_extensions = san\n[ san ]\nbasicConstraints = CA:FALSE\nkeyUsage = nonRepudiation, digitalSignature, keyEncipherment\nsubjectAltName = @alt_names\n[alt_names]\nDNS.1=dev.local\nDNS.2=localhost\nDNS.3=*.dev.local\nIP.1=127.0.0.1\n" > /tmp/ssl_dev_keys/openssl.cnf
+
+    # Generate a private key
+    openssl genrsa -des3 -out /tmp/ssl_dev_keys/ssl_dev.key -passout pass:password 2048
+    # Remove password from key (for server)
+    openssl rsa -in /tmp/ssl_dev_keys/ssl_dev.key -passin pass:password -out /tmp/ssl_dev_keys/ssl_dev.key
+    # Chreate certificate
+    openssl req -sha256 -new -key /tmp/ssl_dev_keys/ssl_dev.key \
+      -config '/tmp/ssl_dev_keys/openssl.cnf' \
+      -passin pass:password \
+      -out /tmp/ssl_dev_keys/ssl_dev.csr \
+      -subj '/C=DE/ST=Hamburg/L=Hamburg/O=nextversion/OU=IT Department/CN=*.dev.local'
+    # Sign certificate
+    openssl x509 \
+      -req \
+      -days 365 \
+      -in "/tmp/ssl_dev_keys/ssl_dev.csr" \
+      -signkey "/tmp/ssl_dev_keys/ssl_dev.key" \
+      -out "/tmp/ssl_dev_keys/ssl_dev.crt" \
+      -passin pass:password \
+      -extensions san
+    # Create PEM for import
+    cat /tmp/ssl_dev_keys/ssl_dev.crt /tmp/ssl_dev_keys/ssl_dev.key > /tmp/ssl_dev_keys/ssl_dev.pem
+
+    echo "${ccgreen}"
+    echo "Generated a certificate authority and server key in /tmp/ssl_dev_keys/"
+    echo "Please note that this certificate is only valid for *.dev.local"
+    echo "Go ahead and add '127.0.0.1 your.dev.local another.dev.local' to /etc/hosts"
+    echo ""
+    echo "To keep the browser from displaying the 'untrusted certificate' warning"
+    echo "please import ${ccyellow}/tmp/ssl_dev_keys/ssl_dev.pem${ccgreen} into your Macs keychain."
+    echo ""
+    echo "The Mac keychain will open when you continue. Choose 'System' from the dropdown and import the certificate."
+    echo "After importing please open the certificate (double click) and choose 'Always trust' from the first dropdown INSIDE the 'Trust' section."
+    echo "${ccend}"
+    echo "Press any key to continue ..."
+    read
+    open /tmp/ssl_dev_keys/ssl_dev.pem 
+  fi
+
+  puma_line="bind 'ssl://0.0.0.0:9292?key=/tmp/ssl_dev_keys/ssl_dev.key&cert=/tmp/ssl_dev_keys/ssl_dev.crt'"
+  puma_file="config/puma/development.rb"
+
+  # Check for obstruction puma configuration file
+  if [ ! -e "${puma_file}" ]; then
+    echo "${ccyellow}Creating puma SSL configuration in ${puma_file}${ccend}"
+    mkdir -p config/puma
+    echo "${puma_line}" > ${puma_file}
+    grep -q "${puma_file}" .gitignore
+    [[ "$?" != "0" ]] && echo "${puma_file}" >> .gitignore
+  elif [[ "$(cat ${puma_file})" != ${puma_line}* ]]; then
+    echo "${ccred}There is an puma configuration file ${puma_file}. Please remove it before continuing.${ccend}"
+    return
+  fi
+
+  # Start. -b "ssl" trigger the puma handler patch.
+  bundle exec rails server puma -b "ssl"
+}
+
+# vim:ft=sh
