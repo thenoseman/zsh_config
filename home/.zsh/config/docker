@@ -20,7 +20,4 @@ dcleanup() {
   fi
 }
 
-# Initialize docker env
-alias dinit="eval \$(docker-machine env)"
-
 # vim:ft=sh
