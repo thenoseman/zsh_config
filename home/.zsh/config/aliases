@@ -42,4 +42,6 @@ alias jekyll="bundle exec jekyll server --watch"
 
 alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrites -f best --restrict-filenames"
 
+alias mru="mr update -c ~/.mrconfig"
+
 # vim:ft=sh
