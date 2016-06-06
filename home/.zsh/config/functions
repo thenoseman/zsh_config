@@ -90,7 +90,7 @@ puall() {
 }
 
 cp2phone() {
-  find . -name "${1}" -print -exec ~/Dropbox/Software/adb push -p {} /storage/sdcard1/Movies/ \;
+  find . -name "${1}" -exec ~/Dropbox/Software/adb push -p {} /storage/sdcard1/Movies/ \;
 }
 
 # vim:ft=sh
