@@ -19,7 +19,7 @@ update_important_tools() {
   npm install -g npm
 
   echo "${ccyellow}Installing important JS tools${ccend}"
-  npm install -g eslint gulp node-inspector webpack babel-eslint updtr babel-eslint nesh nesh-history-search
+  npm install -g eslint gulp node-inspector webpack babel-eslint updtr babel-eslint nesh nesh-history-search typescript
 
   # Enable nesh repl history plugin
   [[ ! -d "~/.nesh_modules/node_modules/nesh-history-search" ]] && nesh --enable nesh-history-search
