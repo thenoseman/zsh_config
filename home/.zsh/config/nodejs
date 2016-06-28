@@ -1,0 +1,16 @@
+# vim:ft=sh
+nodev() {
+  local node_version="${1}"
+
+  if [[ "${node_version}" == "" ]]; then
+    echo "No node version specified!"
+    echo "List of brewable node versions:"
+    brew search /\(\/node\|^node\$\)/
+    return 1
+  fi
+
+  echo "export PATH=\"/usr/local/Cellar/node/${node_version}/bin:\$PATH\"" >> .envrc
+  direnv allow
+
+  echo "Node ${node_version} activated via .envrc (output: $(node -v))"
+}
