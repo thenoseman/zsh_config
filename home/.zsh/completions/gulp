@@ -6,3 +6,5 @@ function $$gulp_completion() {
 }
 
 compdef $$gulp_completion gulp
+
+# vim:ft=sh

@@ -1,47 +1,76 @@
+#
+# SHELL HELPERS
+#
+
+# Display all possible shell colors
+alias shellcolors="echo 'Usage: %F{COLORNUMBER}text%f\n' ; for code ({000..255}) { print -nP -- \"\$code: %F{\$code}%K{\$code}Test%k%f \" ; (( code % 8 && code < 255 )) || printf '\n'}"
+
+# Start a webserver here
+alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -run -e httpd . -p9090'
+
 alias ll='ls -la'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
+
+#
+# VIM
+#
+
 alias v='mvim'
 alias vim='/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim'
 
+# Generate tags for all installed gems
+alias tags="~/dev/privat/zsh_config/home/extras/generate_tags_for_gems"
+
+# Rubies
+alias 193="rbenv shell 1.9.3-perf"
+alias 211="rbenv shell 2.1.1-perf"
+alias 220="rbenv shell 2.3.0-perf"
+
+
+#
+# GIT RELATED
+#
+
+# Start tig in big iterm window
+alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
+
+alias pu='git push'
+
+# mmutli repo management (http://myrepos.branchable.com/)
+alias mru="here=\$(pwd) && cd ~ && mr update && cd \${here}"
+
 # Alias gpr to do a rebase (use https://github.com/aanand/git-up)
 alias gpr='git-up && git submodule init && git submodule update'
+
+# Back to master
 alias master='git checkout master'
 
 # Typos
 alias gti="git"
 
-# Start a webserver here
-alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -run -e httpd . -p9090'
+#
+# RUBY
+#
 
-# Rubies
-alias 193="rbenv shell 1.9.3-perf"
-alias 211="rbenv shell 2.1.1-perf"
-alias 179="rbenv shell jruby-1.7.9"
-
-# Generate tags for all installed gems
-if [[ -f ~/dev/privat/zsh_config/home/extras/generate_tags_for_gems ]]; then
-  alias tags="~/dev/privat/zsh_config/home/extras/generate_tags_for_gems"
-fi
-
-# tig
-alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
-
-# pipe for us with vim
+# pipe for use with vim + rspec
 alias rpipe='mkdir -p tmp && if [ ! -p tmp/rspec-test-pipe ]; then mkfifo tmp/rspec-test-pipe; fi && echo "Now listening to tmp/rspec-test-pipe" && while true; do sh -c "$(cat tmp/rspec-test-pipe)"; done'
 
-alias pu='git push'
-
-alias be='bundle exec'
-
-alias all2mp4='~/.zsh/modules/ffmpeg/all2mp4'
-
+# Run next failing rspec test.
+# See https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
 alias next="rspec --next-failure"
 
+# Run jekyll in watch mode
 alias jekyll="bundle exec jekyll server --watch"
 
-alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrites -f best --restrict-filenames"
+#
+# VIDEO DOWNLOADING AND CONVERTING
+#
 
-alias mru="here=\$(pwd) && cd ~ && mr update && cd \${here}"
+# Convert any video to a mobile (and chromecast) friedly format
+alias all2mp4='~/.zsh/modules/ffmpeg/all2mp4'
+
+# Download a video in mo4 format from youtube/vimeo/etc via youtube-dl
+alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrites -f best --restrict-filenames"
 
 # vim:ft=sh

@@ -1,5 +1,5 @@
-# Add path to autocompletion function path
-fpath=(~/.zsh/completions ~/.zsh/completions/docker $fpath)
+# Add paths to zsh function path
+fpath=(~/.zsh/completions ~/.zsh/completions/docker ~/.zsh/zfunctions $fpath)
 
 # crazy tab completion
 autoload -U compinit
@@ -77,6 +77,11 @@ compdef b=bundle
 
 # Disable ^S, useless and annoying
 stty stop undef
+
+# Init ZSH help system
+unalias run-help &>/dev/null
+autoload run-help
+HELPDIR=/usr/local/share/zsh/helpfile
 
 # Includes
 for f in ~/.zsh/config/*; do source $f; done

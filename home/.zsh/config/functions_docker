@@ -1,5 +1,6 @@
 # Docker commands
 
+# Cleans up docker images and containers
 dcleanup() {
   # Clean up dangling images if any
   if [[ "$(docker images -f "dangling=true" -q | wc -l | tr -d ' ')" != "0" ]]; then
