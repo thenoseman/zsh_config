@@ -136,7 +136,7 @@ prompt_pure_preprompt_render() {
 	# construct preprompt, beginning with path
 	local preprompt="%F{002}%~%f"
 	# git info
-	preprompt+="[%F{$git_color}${vcs_info_msg_0_}${prompt_pure_git_dirty}%f]"
+	preprompt+="%F{$git_color}${vcs_info_msg_0_}${prompt_pure_git_dirty}%f"
 	# git pull/push arrows
 	preprompt+="%F{024}${prompt_pure_git_arrows}%f"
 	# username and machine if applicable
@@ -335,8 +335,8 @@ prompt_pure_setup() {
 	zstyle ':vcs_info:*' max-exports 2
 	# vcs_info_msg_0_ = ' %b' (for branch)
 	# vcs_info_msg_1_ = 'x%R' git top level (%R), x-prefix prevents creation of a named path (AUTO_NAME_DIRS)
-	zstyle ':vcs_info:git*' formats '%b' 'x%R'
-	zstyle ':vcs_info:git*' actionformats ' %b|%a' 'x%R'
+	zstyle ':vcs_info:git*' formats '[%b]' '[x%R]'
+	zstyle ':vcs_info:git*' actionformats '%b|%a' 'x%R'
 
 	# if the user has not registered a custom zle widget for clear-screen,
 	# override the builtin one so that the preprompt is displayed correctly when
