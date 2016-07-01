@@ -238,7 +238,7 @@ prompt_pure_async_git_dirty() {
 	fi
 
   # GIT directory dirty (red X or green checkmark)
-	(( $? )) && echo "%F{001}✘%f" || echo "%F{035}✓%f"
+	(( $? )) && echo "%F{001}✘ %f" || echo "%F{035}✓ %f"
 }
 
 prompt_pure_async_git_fetch() {
