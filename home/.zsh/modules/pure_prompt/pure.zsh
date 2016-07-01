@@ -81,10 +81,10 @@ prompt_pure_check_git_arrows() {
 	arrow_status=(${(ps:\t:)arrow_status})
 	local arrows left=${arrow_status[1]} right=${arrow_status[2]}
 
-	(( ${right:-0} > 0 )) && arrows+="${PURE_GIT_DOWN_ARROW:-⇣}"
-	(( ${left:-0} > 0 )) && arrows+="${PURE_GIT_UP_ARROW:-⇡}"
+	(( ${right:-0} > 0 )) && arrows+="%F{088}-${right}"
+	(( ${left:-0} > 0 )) && arrows+="%F{035}+${left}"
 
-	[[ -n $arrows ]] && prompt_pure_git_arrows=" ${arrows}"
+	[[ -n $arrows ]] && prompt_pure_git_arrows="${arrows}%f"
 }
 
 prompt_pure_set_title() {
@@ -138,7 +138,7 @@ prompt_pure_preprompt_render() {
 	# git info
 	preprompt+="%F{$git_color}${vcs_info_msg_0_}${prompt_pure_git_dirty}%f"
 	# git pull/push arrows
-	preprompt+="%F{024}${prompt_pure_git_arrows}%f"
+	preprompt+="${prompt_pure_git_arrows}"
 	# username and machine if applicable
 	preprompt+=$prompt_pure_username
 	# execution time
@@ -237,8 +237,8 @@ prompt_pure_async_git_dirty() {
 		test -z "$(command git status --porcelain --ignore-submodules -unormal)"
 	fi
 
-  # GIT directory dirty (red X)
-	(( $? )) && echo "%F{001}✘%f"
+  # GIT directory dirty (red X or green checkmark)
+	(( $? )) && echo "%F{001}✘%f" || echo "%F{035}✓%f"
 }
 
 prompt_pure_async_git_fetch() {
