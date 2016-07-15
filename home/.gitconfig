@@ -33,6 +33,7 @@
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = "/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
+	pager = diff-so-fancy | less --tabs=4 -RFX
 	precomposeunicode = true
 	untrackedCache = true
 [gc]

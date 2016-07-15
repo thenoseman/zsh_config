@@ -61,6 +61,8 @@ generate () {
   excludesfile = ~/.gitignore
   editor = "vim -u NONE -N -u ~/.vimrc-commit -c startinsert"
   precomposeunicode = true
+	pager = diff-so-fancy | less --tabs=4 -RFX
+	untrackedCache = true
 [merge]
   summary=true
   tool = kdiff3
