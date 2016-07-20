@@ -4,6 +4,8 @@ autoload -U colors && colors
 autoload -U promptinit
 promptinit
 
+PURE_GIT_DELAY_DIRTY_CHECK=5
+
 prompt pure
 
 function rbenv_prompt_info() {
