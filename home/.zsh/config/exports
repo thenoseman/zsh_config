@@ -1,7 +1,7 @@
 export SHELL=zsh
 export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
-export LESS="-mNR" #Line-numbers and ASCII-Colors in less
+export LESS="-mR"
 export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
 export LC_ALL="en_US.UTF-8"
 
