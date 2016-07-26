@@ -71,3 +71,5 @@
 [mergetool "kdiff3"]
   trustExitCode = false
   path = /usr/local/bin/kdiff3
+[diff-so-fancy]
+	useUnicodeRuler = false
