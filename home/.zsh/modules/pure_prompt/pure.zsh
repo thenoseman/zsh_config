@@ -229,8 +229,8 @@ prompt_pure_async_git_dirty() {
 	local untracked_dirty=$1; shift
 
 	# use cd -q to avoid side effects of changing directory, e.g. chpwd hooks
-	builtin cd -q "$*"
-
+  builtin cd -q "$*"
+  
 	if [[ "$untracked_dirty" == "0" ]]; then
 		command git diff --no-ext-diff --quiet --exit-code
 	else
@@ -335,7 +335,7 @@ prompt_pure_setup() {
 	zstyle ':vcs_info:*' max-exports 2
 	# vcs_info_msg_0_ = ' %b' (for branch)
 	# vcs_info_msg_1_ = 'x%R' git top level (%R), x-prefix prevents creation of a named path (AUTO_NAME_DIRS)
-	zstyle ':vcs_info:git*' formats '[%b]' '[x%R]'
+	zstyle ':vcs_info:git*' formats '[%b]' 'x%R'
 	zstyle ':vcs_info:git*' actionformats '%b|%a' 'x%R'
 
 	# if the user has not registered a custom zle widget for clear-screen,
