@@ -73,3 +73,5 @@
   path = /usr/local/bin/kdiff3
 [diff-so-fancy]
 	useUnicodeRuler = false
+[rebase]
+	autostash = true
