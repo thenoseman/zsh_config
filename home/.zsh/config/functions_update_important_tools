@@ -12,7 +12,6 @@ update_important_tools() {
   imagemagick
   jhead
   macvim
-  mussh
   node
   openssl
   pstree
@@ -29,6 +28,7 @@ update_important_tools() {
   youtube-dl
   zsh
   kdiff3
+  nvm
   diff-so-fancy)
 
   NODE_PACKAGES=(
@@ -57,9 +57,6 @@ update_important_tools() {
 
   echo "${ccyellow}Installing important gems${ccend}"
   gem install pry-byebug bundler git-up bond wirb
-
-  echo "${ccyellow}Updating npm${ccend}"
-  npm install -g npm
 
   echo "${ccyellow}Installing important JS tools${ccend}"
   npm install -g ${NODE_PACKAGES}
