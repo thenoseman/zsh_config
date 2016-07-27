@@ -68,6 +68,7 @@ rspec() {
   fi
 }
 
+# Do a command in every subdir (max depth = 1)
 dirdo() {
   echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
   for a in *; do 
@@ -75,20 +76,25 @@ dirdo() {
   done
 }
 
+# Shows who listens to a portnumber
+# eg. wholistens 3000
 wholistens() {
   lsof -n -i4TCP:${1} | grep LISTEN
 }
 
+# Export the current pat has GOPATH for direnv
 setgopath() {
   echo "export GOPATH=`pwd`" >> .envrc
   echo "export PATH=`pwd`/bin:$PATH" >> .envrc
 }
 
+# Push all branches to remote
 puall() {
   LATEST_BRANCH=$(git branch --list | grep '[0-9][0-9][0-9]' | sort -r | head -n 1 | sed 's/* //g' | tr -d " ")
   git push origin master ${LATEST_BRANCH} 
 }
 
+# Copy files to my phone
 cp2phone() {
   find . -name "${1}" -exec ~/Dropbox/Software/adb push -p {} /storage/sdcard1/Movies/ \;
 }

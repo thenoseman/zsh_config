@@ -37,11 +37,10 @@ alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 
 alias pu='git push'
 
-# mmutli repo management (http://myrepos.branchable.com/)
+# multi repo management (http://myrepos.branchable.com/)
 alias mru="here=\$(pwd) && cd ~ && mr update && cd \${here}"
 
-# Alias gpr to do a rebase (use https://github.com/aanand/git-up)
-alias gpr='git-up && git submodule init && git submodule update'
+alias gpr='git pull --rebase --autostash'
 
 # Back to master
 alias master='git checkout master'
