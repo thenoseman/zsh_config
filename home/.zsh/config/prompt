@@ -4,15 +4,21 @@ autoload -U colors && colors
 autoload -U promptinit
 promptinit
 
+# Init my version of pure-prompt
+# https://github.com/sindresorhus/pure
 PURE_GIT_DELAY_DIRTY_CHECK=5
-
 prompt pure
 
-function rbenv_prompt_info() {
-  local ruby_version
-  ruby_version=$(rbenv version 2> /dev/null) || return
-  echo "$ruby_version" | sed 's/[ \t].*$//'
+# Display the running version ofthe intepreter in use
+function lang_prompt_info() {
+  local lang_version
+
+  if [[ -d node_modules ]]; then
+    echo "N $(nvm version | sed 's/v//')"
+  elif [[ -e Gemfile || -e Rakefile ]]; then
+    echo "R $(rbenv version | sed 's/[ \t].*$//')"
+  fi
 }
 
-RPROMPT='%{$fg_no_bold[blue]%}$(rbenv_prompt_info)%{$reset_color%}'
+RPROMPT='%{$fg_no_bold[blue]%}$(lang_prompt_info)%{$reset_color%}'
 # vim:ft=sh
