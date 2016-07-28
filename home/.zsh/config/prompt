@@ -1,24 +1,28 @@
 # prompt
 # Load vcs_info, colors and init the prompt
-autoload -U colors && colors
-autoload -U promptinit
-promptinit
+autoload -Uz colors && colors
+autoload -Uz promptinit && promptinit
 
 # Init my version of pure-prompt
 # https://github.com/sindresorhus/pure
-PURE_GIT_DELAY_DIRTY_CHECK=5
 prompt pure
 
-# Display the running version ofthe intepreter in use
-function lang_prompt_info() {
+# Display the running version of the intepreter in use
+rprompt_current_interpreter() {
   local lang_version
 
   if [[ -d node_modules ]]; then
     echo "N $(nvm version | sed 's/v//')"
   elif [[ -e Gemfile || -e Rakefile ]]; then
     echo "R $(rbenv version | sed 's/[ \t].*$//')"
+  else
+    echo '?'
   fi
 }
 
-RPROMPT='%{$fg_no_bold[blue]%}$(lang_prompt_info)%{$reset_color%}'
+rprompt_set() {
+  RPROMPT='%{$fg_no_bold[blue]%}$(rprompt_current_interpreter)%{$reset_color%}'
+}
+rprompt_set
+
 # vim:ft=sh
