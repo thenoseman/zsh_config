@@ -56,7 +56,7 @@ update_important_tools() {
   gem update --system
 
   echo "${ccyellow}Installing important gems${ccend}"
-  gem install pry-byebug bundler git-up bond wirb
+  gem install pry-byebug bundler bond wirb
 
   echo "${ccyellow}Installing important JS tools${ccend}"
   npm install -g ${NODE_PACKAGES}
