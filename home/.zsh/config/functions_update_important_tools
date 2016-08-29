@@ -38,8 +38,6 @@ update_important_tools() {
   webpack
   babel-eslint
   npm-check-updates
-  nesh
-  nesh-history-search
   typescript@beta
   tslint
   )
