@@ -37,10 +37,11 @@ update_important_tools() {
   node-inspector
   webpack
   babel-eslint
-  updtr
+  npm-check-updates
   nesh
   nesh-history-search
   typescript@beta
+  tslint
   )
 
   INSTALLED_PACKAGES=$(brew list ${BREW_PACKAGES})
