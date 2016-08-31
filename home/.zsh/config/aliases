@@ -72,4 +72,10 @@ alias all2mp4='~/.zsh/modules/ffmpeg/all2mp4'
 # Download a video in mo4 format from youtube/vimeo/etc via youtube-dl
 alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrites -f best --restrict-filenames"
 
+#
+# ANDROID
+#
+
+alias adb='~/Dropbox/Software/adb'
+
 # vim:ft=sh
