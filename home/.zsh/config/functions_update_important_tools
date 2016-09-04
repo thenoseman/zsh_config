@@ -42,6 +42,7 @@ update_important_tools() {
   nesh-history-search
   typescript@beta
   tslint
+  jsome
   )
 
   INSTALLED_PACKAGES=$(brew list ${BREW_PACKAGES})

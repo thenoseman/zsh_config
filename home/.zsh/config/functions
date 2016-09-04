@@ -7,24 +7,6 @@ ccend=$(echo -e "\033[0m")
 # ps + grep
 psg() { ps auxww | grep $1 }
 
-# Start pry (and load rails if available)
-p() {
-  if [ -f ./config/environment.rb ]; then
-    pry -r ./config/environment -r ~/.zsh/modules/pry/rails.rb $1 $2 $3
-  elif [ -f ./*.gemspec ]; then
-    gem=`ls *.gemspec | cut -d "." -f 1`
-    echo "Starting PRY with gem '$gem'"
-    pry -Ilib -r ./lib/$gem.rb $1 $2 $3
-  else
-    pry
-  fi
-}
-
-# bundle me happy
-b() {
-  bundle "$@"
-}
-
 # Find a file starting with $1 excluding .svn and color the match
 f() {
   find . -name "*${@}*" | grep -v ".svn" | grep --color "${@}"
@@ -44,28 +26,6 @@ ti() {
 # SSH Tunnel
 tunnel() {
   ssh -f guest@$1 -L 8080:$1:80 -N
-}
-
-# Node CLI
-n() {
-  command -v rlwrap >/dev/null 2>&1
-  if [[ "$?" == "0" ]]; then
-    env NODE_NO_READLINE=1 rlwrap -p Green -S "node > " node
-  else
-    brew install rlwrap
-    echo "************************************"
-    echo "Installed rlwrap, now try 'n' again"
-    echo "************************************"
-  fi
-}
-
-# run rspec via spring
-rspec() {
-  if [ -f ./bin/rspec ]; then
-    bin/rspec "$@"
-  else
-    bundle exec rspec "$@"
-  fi
 }
 
 # Do a command in every subdir (max depth = 1)

@@ -1,0 +1,28 @@
+# Start pry (and load rails if available)
+p() {
+  if [ -f ./config/environment.rb ]; then
+    pry -r ./config/environment -r ~/.zsh/modules/pry/rails.rb $1 $2 $3
+  elif [ -f ./*.gemspec ]; then
+    gem=`ls *.gemspec | cut -d "." -f 1`
+    echo "Starting PRY with gem '$gem'"
+    pry -Ilib -r ./lib/$gem.rb $1 $2 $3
+  else
+    pry
+  fi
+}
+
+# bundle me happy
+b() {
+  bundle "$@"
+}
+
+# run rspec via spring
+rspec() {
+  if [ -f ./bin/rspec ]; then
+    bin/rspec "$@"
+  else
+    bundle exec rspec "$@"
+  fi
+}
+
+# vim:ft=sh
