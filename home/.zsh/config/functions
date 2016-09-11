@@ -54,9 +54,17 @@ puall() {
   git push origin master ${LATEST_BRANCH} 
 }
 
+cp2phoneprocess() {
+  local filepath=$1
+  echo "${filepath} -> /storage/sdcard1/Movies"
+  ~/Dropbox/Software/adb push -p ${filepath} /storage/sdcard1/Movies/
+}
+
 # Copy files to my phone
 cp2phone() {
-  find . -name "${1}" -exec ~/Dropbox/Software/adb push -p {} /storage/sdcard1/Movies/ \;
+  for i in **/${1}; do
+    cp2phoneprocess "$i"
+  done
 }
 
 # vim:ft=sh
