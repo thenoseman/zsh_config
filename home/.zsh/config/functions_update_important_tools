@@ -1,9 +1,11 @@
 update_important_tools() {
 
-  BREW_PACKAGES=(autojump
+  BREW_PACKAGES=(
+  autojump
   brew-cask
   colordiff
   ctags
+  diff-so-fancy
   direnv
   exiftool
   ffmpeg
@@ -11,15 +13,16 @@ update_important_tools() {
   git
   imagemagick
   jhead
+  kdiff3
   macvim
   node
+  nvm
   openssl
   pstree
   python
   rbenv
   readline
   redis
-  rlwrap
   ruby-build
   sqlite
   tig
@@ -27,22 +30,20 @@ update_important_tools() {
   watch
   youtube-dl
   zsh
-  kdiff3
-  nvm
-  diff-so-fancy)
+  )
 
   NODE_PACKAGES=(
+  babel-eslint
   eslint
   gulp
-  node-inspector
-  webpack
-  babel-eslint
-  npm-check-updates
+  jsome
   nesh
   nesh-history-search
-  typescript@beta
+  node-inspector
+  npm-check-updates
   tslint
-  jsome
+  typescript
+  webpack
   )
 
   INSTALLED_PACKAGES=$(brew list ${BREW_PACKAGES})
