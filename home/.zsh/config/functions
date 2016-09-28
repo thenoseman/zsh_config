@@ -56,7 +56,7 @@ puall() {
 
 # Copy files to my phone
 cp2phone() {
-  for i in $(find . -name "${1}*" -type f -exec echo '{}' \;); do
+  for i in "$(find . -name "${1}*" -type f -exec echo '{}' \;)"; do
     echo "${i} -> /storage/sdcard1/Movies"
     ~/Dropbox/Software/adb push -p ${i} /storage/sdcard1/Movies/
   done
