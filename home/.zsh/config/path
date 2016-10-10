@@ -1,2 +1,8 @@
-export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:~/.zsh/modules/tools:$PATH:~/.zsh/modules/git-imerge
+export PATH=$PATH:$HOME/.rbenv/bin
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/usr/local/share/npm/bin
+export PATH=$PATH:~/.zsh/modules/tools
+export PATH=$PATH:~/.zsh/modules/git-imerge
+export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 # vim:ft=sh
