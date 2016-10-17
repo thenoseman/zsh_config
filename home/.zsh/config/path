@@ -1,6 +1,6 @@
 export PATH=$PATH:$HOME/.rbenv/bin
-export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:/usr/local/sbin
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:/usr/local/share/npm/bin
 export PATH=$PATH:~/.zsh/modules/tools
 export PATH=$PATH:~/.zsh/modules/git-imerge
