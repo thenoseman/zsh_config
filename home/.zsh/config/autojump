@@ -1,5 +1,5 @@
 # autojump via "brew install autojump"
 export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim rake bundle'
 
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[[ -s $(/usr/local/bin/brew --prefix)/etc/profile.d/autojump.sh ]] && . $(/usr/local/bin/brew --prefix)/etc/profile.d/autojump.sh
 # vim:ft=sh
