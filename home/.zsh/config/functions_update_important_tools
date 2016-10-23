@@ -2,7 +2,6 @@ update_important_tools() {
 
   BREW_PACKAGES=(
   autojump
-  brew-cask
   colordiff
   ctags
   diff-so-fancy
@@ -13,7 +12,7 @@ update_important_tools() {
   git
   imagemagick
   jhead
-  kdiff3
+  Caskroom/cask/kdiff3
   macvim
   node
   nvm
@@ -52,6 +51,7 @@ update_important_tools() {
   if [[ "$?" != "0" ]]; then
     echo "${ccyellow}Installing missing packages${ccend}"
     brew tap homebrew/versions
+    brew tap caskroom/cask
     brew install ${BREW_PACKAGES}
   fi
 
