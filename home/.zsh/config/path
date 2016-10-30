@@ -5,4 +5,5 @@ export PATH=$PATH:/usr/local/share/npm/bin
 export PATH=$PATH:~/.zsh/modules/tools
 export PATH=$PATH:~/.zsh/modules/git-imerge
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+export PATH=$PATH:$HOME/.yarn/bin
 # vim:ft=sh
