@@ -1,9 +1,24 @@
-export PATH=$PATH:$HOME/.rbenv/bin
+# Homwbrew:
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+
+# rbenv
+export PATH=$PATH:$HOME/.rbenv/bin
+
+# npm
 export PATH=$PATH:/usr/local/share/npm/bin
+
+# Own zsh stuff
 export PATH=$PATH:~/.zsh/modules/tools
 export PATH=$PATH:~/.zsh/modules/git-imerge
+
+# vscode
 export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+
+# yarn
 export PATH=$PATH:$HOME/.yarn/bin
+
+# go
+export GOPATH=$HOME/dev/golang
+export PATH=$PATH:$HOME/dev/golang/bin
 # vim:ft=sh

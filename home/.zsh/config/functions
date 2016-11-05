@@ -42,12 +42,6 @@ wholistens() {
   lsof -n -i4TCP:${1} | grep LISTEN
 }
 
-# Export the current pat has GOPATH for direnv
-setgopath() {
-  echo "export GOPATH=`pwd`" >> .envrc
-  echo "export PATH=`pwd`/bin:$PATH" >> .envrc
-}
-
 # Push all branches to remote
 puall() {
   LATEST_BRANCH=$(git branch --list | grep '[0-9][0-9][0-9]' | sort -r | head -n 1 | sed 's/* //g' | tr -d " ")
