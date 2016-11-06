@@ -12,7 +12,7 @@ update_important_tools() {
   git
   imagemagick
   jhead
-  kdiff3
+  Caskroom/cask/kdiff3
   macvim
   node
   nvm
