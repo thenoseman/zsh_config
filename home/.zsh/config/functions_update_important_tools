@@ -1,6 +1,7 @@
 update_important_tools() {
 
   BREW_PACKAGES=(
+  Caskroom/cask/kdiff3
   autojump
   colordiff
   ctags
@@ -12,8 +13,8 @@ update_important_tools() {
   git
   imagemagick
   jhead
-  Caskroom/cask/kdiff3
   macvim
+  mr
   node
   nvm
   openssl
@@ -24,6 +25,7 @@ update_important_tools() {
   redis
   ruby-build
   sqlite
+  the-silver-searcher
   tig
   unrar
   watch
