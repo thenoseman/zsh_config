@@ -8,3 +8,15 @@ bind 1:cmd;shift       corner top-left  resize:screenSizeX/3*2;screenSizeY
 bind 2:cmd;shift       corner top-right resize:screenSizeX/3;screenSizeY
 bind 3:cmd;shift       corner top-left  resize:screenSizeX/2;screenSizeY
 bind 4:cmd;shift       corner top-right resize:screenSizeX/2;screenSizeY
+
+# Work @home layout
+layout athome 'Google Chrome' corner top-left resize:screenSizeX/3*2;screenSizeY
+layout athome 'MacVim' corner top-left resize:screenSizeX/3*2;screenSizeY
+layout athome 'iTerm2' corner top-right resize:screenSizeX/3;screenSizeY
+
+layout athome 'Slack' corner top-left resize:screenSizeX/3;screenSizeY 1
+layout athome 'Microsoft Outlook' corner top-right resize:screenSizeX/3*2;screenSizeY 1
+layout athome 'Firefox' move screenOriginX+290;0 1104;585 1
+
+default athome resolutions:2560x1440;2560x1440
+bind 9:cmd;shift      layout athome
