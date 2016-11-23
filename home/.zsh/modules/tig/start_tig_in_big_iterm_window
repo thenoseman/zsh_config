@@ -2,7 +2,7 @@
 #
 # Loads a session/profile named "tig" in iTerm
 #
-# create a profile named "tig" and set "send text on start" to "ti" for a nice big tig window
+# create a profile named "tig" and set "send text on start" to "ti && exit 0" for a nice big tig window
 #
 osascript 2>/dev/null <<EOF
 tell application "iTerm"
