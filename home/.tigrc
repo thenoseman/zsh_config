@@ -8,6 +8,8 @@ set diff-view	  = line-number:yes,interval=5 text:yes,commit-title-overflow=no
 set stage-view	= line-number:no,interval=5 text
 set log-view	  = line-number:no,interval=5 text
 set blob-view	  = line-number:no,interval=5 text
+# No <branch> and <tag> display in main view
+set main-view   = date:default author:full commit-title:refs=false
 
 bind generic P !git push
 bind generic <Ctrl-f> move-page-down  
