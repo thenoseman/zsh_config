@@ -1,7 +1,6 @@
 update_important_tools() {
 
   BREW_PACKAGES=(
-  Caskroom/cask/kdiff3
   autojump
   colordiff
   ctags
@@ -33,6 +32,10 @@ update_important_tools() {
   zsh
   )
 
+  BREW_CASKS=(
+  Caskroom/cask/kdiff3
+  )
+
   NODE_PACKAGES=(
   babel-eslint
   eslint
@@ -52,9 +55,10 @@ update_important_tools() {
   # If brew list fails there are missing packages
   if [[ "$?" != "0" ]]; then
     echo "${ccyellow}Installing missing packages${ccend}"
-    brew tap homebrew/versions
+    #brew tap homebrew/versions
     brew tap caskroom/cask
     brew install ${BREW_PACKAGES}
+    brew install ${BREW_CASKS}
   fi
 
   echo "${ccyellow}Updating rubygems${ccend}"
