@@ -1,0 +1,7 @@
+# set ft:sh
+# Generates some aliases to make use of local versions of those tools
+NODE_BINS=(karma webpack tsc tslint protractor cross-env)
+
+for binary in $NODE_BINS; do
+  alias ${binary}=node_modules/.bin/$binary
+done
