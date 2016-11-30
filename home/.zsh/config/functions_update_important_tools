@@ -34,6 +34,7 @@ update_important_tools() {
 
   BREW_CASKS=(
   Caskroom/cask/kdiff3
+  Caskroom/cask/macpass
   )
 
   NODE_PACKAGES=(
