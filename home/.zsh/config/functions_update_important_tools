@@ -24,7 +24,7 @@ update_important_tools() {
   redis
   ruby-build
   sqlite
-  the-silver-searcher
+  the_silver_searcher
   tig
   unrar
   watch
