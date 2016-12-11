@@ -33,8 +33,8 @@ update_important_tools() {
   )
 
   BREW_CASKS=(
-  Caskroom/cask/kdiff3
-  Caskroom/cask/macpass
+  kdiff3
+  macpass
   )
 
   NODE_PACKAGES=(
@@ -59,7 +59,7 @@ update_important_tools() {
     #brew tap homebrew/versions
     brew tap caskroom/cask
     brew install ${BREW_PACKAGES}
-    brew install ${BREW_CASKS}
+    brew cask install ${BREW_CASKS}
   fi
 
   echo "${ccyellow}Updating rubygems${ccend}"
