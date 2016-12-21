@@ -126,6 +126,12 @@ prompt_pure_string_length_to_var() {
 }
 
 prompt_pure_preprompt_render() {
+	# store the current prompt_subst setting so that it can be restored later
+	local prompt_subst_status=$options[prompt_subst]
+
+	# make sure prompt_subst is unset to prevent parameter expansion in preprompt
+	setopt local_options no_prompt_subst
+
 	# check that no command is currently running, the preprompt will otherwise be rendered in the wrong place
 	[[ -n ${prompt_pure_cmd_timestamp+x} && "$1" != "precmd" ]] && return
 
@@ -144,12 +150,15 @@ prompt_pure_preprompt_render() {
 	# execution time
 	preprompt+="%F{yellow}${prompt_pure_cmd_exec_time}%f"
 
+	# make sure prompt_pure_last_preprompt is a global array
+	typeset -g -a prompt_pure_last_preprompt
+
 	# if executing through precmd, do not perform fancy terminal editing
 	if [[ "$1" == "precmd" ]]; then
 		print -P "\n${preprompt}"
 	else
-		# only redraw if preprompt has changed
-		[[ "${prompt_pure_last_preprompt}" != "${preprompt}" ]] || return
+		# only redraw if the expanded preprompt has changed
+		[[ "${prompt_pure_last_preprompt[2]}" != "${(S%%)preprompt}" ]] || return
 
 		# calculate length of preprompt and store it locally in preprompt_length
 		integer preprompt_length lines
@@ -160,7 +169,7 @@ prompt_pure_preprompt_render() {
 
 		# calculate previous preprompt lines to figure out how the new preprompt should behave
 		integer last_preprompt_length last_lines
-		prompt_pure_string_length_to_var "${prompt_pure_last_preprompt}" "last_preprompt_length"
+		prompt_pure_string_length_to_var "${prompt_pure_last_preprompt[1]}" "last_preprompt_length"
 		(( last_lines = ( last_preprompt_length - 1 ) / COLUMNS + 1 ))
 
 		# clr_prev_preprompt erases visual artifacts from previous preprompt
@@ -189,12 +198,17 @@ prompt_pure_preprompt_render() {
 		# modify previous preprompt
 		print -Pn "${clr_prev_preprompt}\e[${lines}A\e[${COLUMNS}D${preprompt}${clr}\n"
 
+		if [[ $prompt_subst_status = 'on' ]]; then
+			# re-eanble prompt_subst for expansion on PS1
+			setopt prompt_subst
+		fi
+
 		# redraw prompt (also resets cursor position)
 		zle && zle .reset-prompt
 	fi
 
-	# store previous preprompt for comparison
-	prompt_pure_last_preprompt=$preprompt
+	# store both unexpanded and expanded preprompt for comparison
+	prompt_pure_last_preprompt=("$preprompt" "${(S%%)preprompt}")
 }
 
 prompt_pure_precmd() {
@@ -229,8 +243,8 @@ prompt_pure_async_git_dirty() {
 	local untracked_dirty=$1; shift
 
 	# use cd -q to avoid side effects of changing directory, e.g. chpwd hooks
-  builtin cd -q "$*"
-  
+	builtin cd -q "$*"
+
 	if [[ "$untracked_dirty" == "0" ]]; then
 		command git diff --no-ext-diff --quiet --exit-code
 	else
@@ -322,6 +336,8 @@ prompt_pure_setup() {
 
 	zmodload zsh/datetime
 	zmodload zsh/zle
+	zmodload zsh/parameter
+
 	autoload -Uz add-zsh-hook
 	autoload -Uz vcs_info
 	autoload -Uz async && async
