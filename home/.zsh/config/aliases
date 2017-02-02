@@ -27,7 +27,6 @@ alias 193="rbenv shell 1.9.3-perf"
 alias 211="rbenv shell 2.1.1-perf"
 alias 220="rbenv shell 2.3.0-perf"
 
-
 #
 # GIT RELATED
 #
@@ -37,8 +36,8 @@ alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 
 alias pu='git push'
 
-# multi repo management (http://myrepos.branchable.com/)
-alias mru="here=\$(pwd) && cd ~ && mr update && cd \${here}"
+# multi repo management (http://mixu.net/gr/)
+alias gru="gr @o2 git pull --rebase --autostash"
 
 alias gpr='git pull --rebase --autostash'
 

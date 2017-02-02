@@ -13,7 +13,6 @@ update_important_tools() {
   imagemagick
   jhead
   macvim
-  mr
   node
   nvm
   openssl
@@ -49,6 +48,7 @@ update_important_tools() {
   tslint
   typescript
   webpack
+  git-run
   )
 
   INSTALLED_PACKAGES=$(brew list ${BREW_PACKAGES})
