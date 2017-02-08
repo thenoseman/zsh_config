@@ -42,9 +42,13 @@ var opHangouts = slate.operation("move", {
   "screen" : rightScreenRef
 });
 
+var opToTop = slate.operation("focus", {
+  "direction" : "above"
+});
+
 var twoMonitorLayout = slate.layout("twoMonitors", {
   "Google Chrome": {
-    "operations": [ ifWindowTitle(/Hangouts-Videoanruf/, opHangouts, corner("3*2")) ],
+    "operations": [ ifWindowTitle(/Videoanruf/, opHangouts, corner("3*2")), ifWindowTitle(/Videoanruf/, opToTop) ],
     "ignore-fail" : true,
     "repeat" : true
   },
