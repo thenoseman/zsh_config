@@ -27,6 +27,7 @@ update_important_tools() {
   tig
   unrar
   watch
+  yarn
   youtube-dl
   zsh
   )
