@@ -1,5 +1,5 @@
 # Rails console
-rc() { bundle exec pry -r ./config/environment $@ }
+rc() { rib rails }
 
 # Rails server
 rs() { 
@@ -57,7 +57,6 @@ rssl() {
     echo "A backup of the original file was saved to:"
     echo "${puma_path}/lib/rack/handler/puma.rb.pre-ssl-patch${ccend}"
   fi
-
 
   # Check for cert/key
   # Generate a certificate
