@@ -70,7 +70,7 @@ update_important_tools() {
   gem install pry-byebug bundler bond wirb
 
   echo "${ccyellow}Installing important JS tools${ccend}"
-  npm install -g ${NODE_PACKAGES}
+  yarn global add ${NODE_PACKAGES} --prefer-offline 
 
   # Enable nesh repl history plugin
   [[ ! -d "~/.nesh_modules/node_modules/nesh-history-search" ]] && nesh --enable nesh-history-search
