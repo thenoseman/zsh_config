@@ -56,4 +56,9 @@ cp2phone() {
   done
 }
 
+# git-run on all o2
+gra() {
+  gr @o2 -- git $1
+}
+
 # vim:ft=sh
