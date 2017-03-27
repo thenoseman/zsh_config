@@ -28,7 +28,8 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_SPACE
+setopt histignorespace
+setopt histignoredups
 
 unsetopt SHARE_HISTORY # share history between sessions ???
 unsetopt bgnice nomatch
