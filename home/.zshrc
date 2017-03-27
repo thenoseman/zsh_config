@@ -14,14 +14,12 @@ setopt hist_ignore_dups hist_find_no_dups hist_save_no_dups
 setopt nobeep extended_glob prompt_subst interactive_comments
 setopt list_types list_packed print_eight_bit nohup notify
 setopt print_exit_value
-unsetopt bgnice nomatch
 setopt NO_BG_NICE # don't nice background tasks
 setopt NO_HUP
 setopt NO_LIST_BEEP
 setopt LOCAL_OPTIONS # allow functions to have local options
 setopt LOCAL_TRAPS # allow functions to have local traps
 setopt HIST_VERIFY
-unsetopt SHARE_HISTORY # share history between sessions ???
 setopt EXTENDED_HISTORY # add timestamps to history
 setopt PROMPT_SUBST
 setopt COMPLETE_IN_WORD
@@ -30,6 +28,10 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+
+unsetopt SHARE_HISTORY # share history between sessions ???
+unsetopt bgnice nomatch
 unsetopt correct_all
 
 HISTSIZE=5000
