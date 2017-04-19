@@ -19,6 +19,7 @@
   clone = clone --recursive
   create-patch = !NR=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | tr -d ' ') && git format-patch HEAD~$NR
   ami = am --committer-date-is-author-date --ignore-date
+  fuck = ci --amend
 [color]
   branch = auto
   status = auto
