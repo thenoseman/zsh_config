@@ -22,6 +22,7 @@ update_important_tools() {
   readline
   redis
   ruby-build
+  shellcheck
   sqlite
   the_silver_searcher
   tig
