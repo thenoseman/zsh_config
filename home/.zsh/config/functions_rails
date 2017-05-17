@@ -16,7 +16,7 @@ rs() {
   if [[ "$?" == "0" ]]; then
     APPENDIX="puma"
   fi
-  bundle exec rails s ${APPENDIX} -b 0.0.0.0
+  bundle exec rails s ${APPENDIX}
 }
 
 # Rails server (SSL)
