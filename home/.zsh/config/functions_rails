@@ -48,16 +48,6 @@ rssl() {
     return
   fi
 
-  # Check if puma launcher patch is needed
-  # The current puma launcher has no concept of SSL :(
-  grep -q "c.port port" ${puma_path}/lib/rack/handler/puma.rb
-  if [[ "$?" == "0" ]]; then
-    echo "${ccyellow}Patching puma rack handler to make 'rails server' work with SSL."
-    sed -i ".pre-ssl-patch" "s/c\.port port, host/c\.port\(port, host\) unless host == \"ssl\"/" ${puma_path}/lib/rack/handler/puma.rb
-    echo "A backup of the original file was saved to:"
-    echo "${puma_path}/lib/rack/handler/puma.rb.pre-ssl-patch${ccend}"
-  fi
-
   # Check for cert/key
   # Generate a certificate
   if [ ! -e "/tmp/ssl_dev_keys/ssl_dev.key" ]; then
@@ -110,25 +100,13 @@ rssl() {
     echo "Press any key to continue ..."
     read
     open /tmp/ssl_dev_keys/ssl_dev.pem 
+    echo "Press any key to continue ..."
   fi
 
-  puma_line="bind 'ssl://0.0.0.0:9292?key=/tmp/ssl_dev_keys/ssl_dev.key&cert=/tmp/ssl_dev_keys/ssl_dev.crt'"
-  puma_file="config/puma/development.rb"
-
-  # Check for obstruction puma configuration file
-  if [ ! -e "${puma_file}" ]; then
-    echo "${ccyellow}Creating puma SSL configuration in ${puma_file}${ccend}"
-    mkdir -p config/puma
-    echo "${puma_line}" > ${puma_file}
-    grep -q "${puma_file}" .gitignore
-    [[ "$?" != "0" ]] && echo "${puma_file}" >> .gitignore
-  elif [[ "$(cat ${puma_file})" != ${puma_line}* ]]; then
-    echo "${ccred}There is an puma configuration file ${puma_file}. Please remove it before continuing.${ccend}"
-    return
-  fi
+  puma_line="'ssl://0.0.0.0:9292?key=/tmp/ssl_dev_keys/ssl_dev.key&cert=/tmp/ssl_dev_keys/ssl_dev.crt'"
 
   # Start. -b "ssl" trigger the puma handler patch.
-  bundle exec rails server puma -b "ssl"
+  bundle exec rails server puma -b "${puma_line}"
 }
 
 # vim:ft=sh
