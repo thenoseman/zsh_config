@@ -1,5 +1,7 @@
 # Rails console
-rc() { rib rails }
+rc() { 
+  rib rails 
+}
 
 # Rails server
 rs() { 
@@ -103,10 +105,7 @@ rssl() {
     echo "Press any key to continue ..."
   fi
 
-  puma_line="'ssl://0.0.0.0:9292?key=/tmp/ssl_dev_keys/ssl_dev.key&cert=/tmp/ssl_dev_keys/ssl_dev.crt'"
-
-  # Start. -b "ssl" trigger the puma handler patch.
-  bundle exec rails server puma -b "${puma_line}"
+  bundle exec rails server puma -b "ssl://0.0.0.0:3000?key=/tmp/ssl_dev_keys/ssl_dev.key&cert=/tmp/ssl_dev_keys/ssl_dev.crt"
 }
 
 # vim:ft=sh
