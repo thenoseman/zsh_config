@@ -26,6 +26,7 @@ rs() {
 # rssl           -> Cert for localhost
 rssl() {
   local DOMAIN="${1:=localhost}"
+  local PORT="${2:=3000}"
 
   # Check Gemfile existance
   [ ! -e "Gemfile" ] && echo "This can only be run with a Gemfile" && return
@@ -105,7 +106,7 @@ rssl() {
     echo "Press any key to continue ..."
   fi
 
-  bundle exec rails server puma -b "ssl://0.0.0.0:3000?key=/tmp/ssl_dev_keys/ssl_dev.key&cert=/tmp/ssl_dev_keys/ssl_dev.crt"
+  bundle exec rails server puma -b "ssl://0.0.0.0:${PORT}?key=/tmp/ssl_dev_keys/ssl_dev.key&cert=/tmp/ssl_dev_keys/ssl_dev.crt"
 }
 
 # vim:ft=sh
