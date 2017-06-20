@@ -75,3 +75,5 @@
 	useUnicodeRuler = false
 [rebase]
 	autostash = true
+[user]
+	useconfigonly = true
