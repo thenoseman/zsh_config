@@ -18,7 +18,7 @@ export ARCHFLAGS="-arch x86_64"
 export MANPAGER=more
 
 # Maven
-export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:MaxPermSize=768m -XX:+CMSClassUnloadingEnabled -Dfile.encoding=UTF-8"
+export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:+CMSClassUnloadingEnabled -Dfile.encoding=UTF-8"
 
 # Direnv logging -> silent
 export DIRENV_LOG_FORMAT=""
