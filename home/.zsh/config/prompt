@@ -7,21 +7,8 @@ autoload -Uz promptinit && promptinit
 # https://github.com/sindresorhus/pure
 prompt pure
 
-# Display the running version of the intepreter in use
-rprompt_current_interpreter() {
-  local lang_version
-
-  if [[ -d node_modules ]]; then
-    echo "N $(nvm version | sed 's/v//')"
-  elif [[ -e Gemfile || -e Rakefile ]]; then
-    echo "R $(rbenv version | sed 's/[ \t].*$//')"
-  else
-    echo '?'
-  fi
-}
-
 rprompt_set() {
-  RPROMPT='%{$fg_no_bold[blue]%}$(rprompt_current_interpreter)%{$reset_color%}'
+  RPROMPT='%{$fg_no_bold[blue]%}%{$reset_color%}'
 }
 rprompt_set
 
