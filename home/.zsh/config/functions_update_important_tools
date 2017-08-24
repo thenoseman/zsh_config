@@ -24,13 +24,13 @@ update_important_tools() {
   ruby-build
   shellcheck
   sqlite
-  the_silver_searcher
   tig
   unrar
   watch
   yarn
   youtube-dl
   zsh
+  burntsushi/ripgrep/ripgrep-bin
   )
 
   BREW_CASKS=(
@@ -59,6 +59,7 @@ update_important_tools() {
   if [[ "$?" != "0" ]]; then
     echo "${ccyellow}Installing missing packages${ccend}"
     #brew tap homebrew/versions
+    brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
     brew tap caskroom/cask
     brew install ${BREW_PACKAGES}
     brew cask install ${BREW_CASKS}
