@@ -18,7 +18,7 @@ setopt hist_ignore_dups hist_find_no_dups hist_save_no_dups
 setopt nobeep extended_glob prompt_subst interactive_comments
 setopt list_types list_packed print_eight_bit nohup notify
 setopt print_exit_value
-setopt NO_BG_NICE # don't nice background tasks
+setopt NO_BG_NICE
 setopt NO_HUP
 setopt NO_LIST_BEEP
 setopt LOCAL_OPTIONS # allow functions to have local options
@@ -89,6 +89,10 @@ stty stop undef
 unalias run-help &>/dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/helpfile
+
+# Init async.zsh
+source ~/.zsh/modules/pure_prompt/async.zsh
+async_init
 
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
