@@ -43,8 +43,6 @@ update_important_tools() {
   eslint
   gulp
   jsome
-  nesh
-  nesh-history-search
   node-inspector
   npm-check-updates
   tslint
@@ -58,7 +56,6 @@ update_important_tools() {
   # If brew list fails there are missing packages
   if [[ "$?" != "0" ]]; then
     echo "${ccyellow}Installing missing packages${ccend}"
-    #brew tap homebrew/versions
     brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
     brew tap caskroom/cask
     brew install ${BREW_PACKAGES}
@@ -69,13 +66,10 @@ update_important_tools() {
   gem update --system
 
   echo "${ccyellow}Installing important gems${ccend}"
-  gem install pry-byebug bundler bond wirb
+  gem install --silent pry pry-byebug bundler bond wirb
 
   echo "${ccyellow}Installing important JS tools${ccend}"
-  yarn global add ${NODE_PACKAGES} --prefer-offline 
-
-  # Enable nesh repl history plugin
-  [[ ! -d "~/.nesh_modules/node_modules/nesh-history-search" ]] && nesh --enable nesh-history-search
+  yarn global add ${NODE_PACKAGES} --prefer-offline --no-lockfile -s
 
   echo "${ccyellow}Checking homebrew update (updating if more than 3 packages updated)${ccend}"
   brew update
