@@ -11,7 +11,7 @@ alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | c
 alias ll='ls -la'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
-alias rg='rg -F'
+alias rg='rg -F -i'
 
 #
 # VIM
