@@ -31,10 +31,10 @@ for file in "$@"; do
 
   if [[ "$video_format" == "" || "${FORCE}" == "1" ]]; then
     # Not a mp4 video steam inside
-    ffmpeg -i "$file" -movflags +faststart -strict experimental -y -f mp4 -vcodec libx264 -preset slow -crf 22 -acodec libmp3lame -ab 160000 -ac 2 -s $target "${filename}.mp4"
+    ffmpeg -i "$file" -movflags +faststart -vprofile baseline -strict experimental -y -f mp4 -vcodec libx264 -preset slow -crf 22 -acodec libmp3lame -ab 160000 -ac 2 -s $target "${filename}.mp4"
   else
     # mp4 inside container
-    ffmpeg -i "$file" -vcodec copy -acodec copy "${filename}.mp4"
+    ffmpeg -i "$file" -vprofile baseline -vcodec copy -acodec copy "${filename}.mp4"
   fi
 
   echo "Saved to ${filename}.mp4"
