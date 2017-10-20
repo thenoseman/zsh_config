@@ -31,6 +31,7 @@ update_important_tools() {
   youtube-dl
   zsh
   burntsushi/ripgrep/ripgrep-bin
+  jq
   )
 
   BREW_CASKS=(
@@ -38,17 +39,14 @@ update_important_tools() {
   macpass
   )
 
+
   NODE_PACKAGES=(
   babel-eslint
   eslint
   gulp
-  jsome
-  node-inspector
-  npm-check-updates
   tslint
   typescript
   webpack
-  git-run
   )
 
   INSTALLED_PACKAGES=$(brew list ${BREW_PACKAGES})
