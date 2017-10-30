@@ -43,10 +43,6 @@ Thumbs.db
 tags
 .tags
 
-# Ruby #
-########
-.rvmrc
-
 # direnv #
 # ########
 .envrc
