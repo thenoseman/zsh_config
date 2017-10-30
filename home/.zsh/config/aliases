@@ -78,4 +78,10 @@ alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrit
 
 alias adb='~/Dropbox/Software/adb'
 
+
+#
+# DOCKER
+#
+alias dc="docker-compose"
+
 # vim:ft=sh
