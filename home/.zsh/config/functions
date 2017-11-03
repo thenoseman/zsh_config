@@ -48,17 +48,23 @@ puall() {
   git push origin master ${LATEST_BRANCH} 
 }
 
-# Copy files to my phone
-cp2phone() {
-  for f in **/*${1}*; do 
-    echo "${f} -> /storage/sdcard1/Movies"
-    ~/Dropbox/Software/adb push -p ${f} /storage/sdcard1/Movies/
+# Copy files to phone
+mac2phone() {
+  MOVIES_PATH=$(~/Dropbox/Software/adb shell "cd /storage/*/Movies && pwd")
+  for f in ${@}; do 
+    echo "${f} -> ${MOVIES_PATH}"
+    ~/Dropbox/Software/adb push -p "${f}" "${MOVIES_PATH}"
   done
 }
 
-# git-run on all o2
-gra() {
-  gr @work -- git "$@"
+phone2mac() {
+  declare -a FILES
+  IFS=$'\n' FILES=($(~/Dropbox/Software/adb shell "ls /storage/*/Movies/${1}*"))
+  echo "Found ${#FILES[*]} files"
+
+  for f in $FILES; do 
+    ~/Dropbox/Software/adb pull -p "${f}" .
+  done
 }
 
 # vim:ft=sh
