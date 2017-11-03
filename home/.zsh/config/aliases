@@ -83,5 +83,6 @@ alias adb='~/Dropbox/Software/adb'
 # DOCKER
 #
 alias dc="docker-compose"
+alias dcl="docker-compose logs -f --tail=25"
 
 # vim:ft=sh
