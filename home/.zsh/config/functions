@@ -50,9 +50,9 @@ puall() {
 
 # Copy files to phone
 mac2phone() {
-  MOVIES_PATH=$(~/Dropbox/Software/adb shell "cd /storage/*/Movies && pwd")
+  MOVIES_PATH="$(~/Dropbox/Software/adb shell "cd /storage/*/Movies && pwd" | tr -d '\n')"
   for f in ${@}; do 
-    echo "${f} -> ${MOVIES_PATH}"
+    echo "Copy ${f} -> ${MOVIES_PATH}"
     ~/Dropbox/Software/adb push -p "${f}" "${MOVIES_PATH}"
   done
 }
