@@ -17,4 +17,8 @@ dcleanup() {
   fi
 }
 
+dbash() {
+  docker exec -ti "$1" bash
+}
+
 # vim:ft=sh
