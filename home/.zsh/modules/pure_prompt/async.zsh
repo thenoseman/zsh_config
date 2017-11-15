@@ -3,13 +3,13 @@
 #
 # zsh-async
 #
-# version: 1.5.1
+# version: 1.5.2
 # author: Mathias Fredriksson
 # url: https://github.com/mafredri/zsh-async
 #
 
 # Produce debug output from zsh-async when set to 1.
-ASYNC_DEBUG=${ASYNC_DEBUG:-0}
+typeset -g ASYNC_DEBUG=${ASYNC_DEBUG:-0}
 
 # Wrapper for jobs executed by the async worker, gives output in parseable format with execution time
 _async_job() {
@@ -204,7 +204,7 @@ _async_worker() {
 # 	$5 = resulting stderr from execution
 #
 async_process_results() {
-	setopt localoptions noshwordsplit
+	setopt localoptions unset noshwordsplit noksharrays noposixidentifiers noposixstrings
 
 	local worker=$1
 	local callback=$2
@@ -279,7 +279,7 @@ _async_zle_watcher() {
 # 	async_job <worker_name> <my_function> [<function_params>]
 #
 async_job() {
-	setopt localoptions noshwordsplit
+	setopt localoptions noshwordsplit noksharrays noposixidentifiers noposixstrings
 
 	local worker=$1; shift
 
@@ -297,6 +297,7 @@ async_job() {
 _async_notify_trap() {
 	setopt localoptions noshwordsplit
 
+	local k
 	for k in ${(k)ASYNC_CALLBACKS}; do
 		async_process_results $k ${ASYNC_CALLBACKS[$k]} trap
 	done
@@ -443,7 +444,7 @@ async_start_worker() {
 async_stop_worker() {
 	setopt localoptions noshwordsplit
 
-	local ret=0
+	local ret=0 worker k v
 	for worker in $@; do
 		# Find and unregister the zle handler for the worker
 		for k v in ${(@kv)ASYNC_PTYS}; do
@@ -471,14 +472,14 @@ async_stop_worker() {
 #
 async_init() {
 	(( ASYNC_INIT_DONE )) && return
-	ASYNC_INIT_DONE=1
+	typeset -g ASYNC_INIT_DONE=1
 
 	zmodload zsh/zpty
 	zmodload zsh/datetime
 
 	# Check if zsh/zpty returns a file descriptor or not,
 	# shell must also be interactive with zle enabled.
-	ASYNC_ZPTY_RETURNS_FD=0
+	typeset -g ASYNC_ZPTY_RETURNS_FD=0
 	[[ -o interactive ]] && [[ -o zle ]] && {
 		typeset -h REPLY
 		zpty _async_test :

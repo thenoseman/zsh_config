@@ -3,6 +3,9 @@
 # Update async.zsh
 curl -s -L "https://raw.githubusercontent.com/mafredri/zsh-async/master/async.zsh" -o home/.zsh/modules/pure_prompt/async.zsh
 
+# Update z.sh
+curl -s -L "https://raw.githubusercontent.com/ericbn/z/master/z.sh" -o home/.zsh/modules/ericbn-z/z.sh
+
 # First update all submodules to HEAD
 git submodule foreach git pull origin master
 
