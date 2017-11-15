@@ -9,6 +9,7 @@ update_important_tools() {
   exiftool
   ffmpeg
   flvstreamer
+  fzf
   git
   imagemagick
   jhead

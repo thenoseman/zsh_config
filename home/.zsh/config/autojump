@@ -1,5 +1,12 @@
 # autojump via "brew install autojump"
-export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim rake bundle'
+#export AUTOJUMP_AUTOCOMPLETE_CMDS='cp vim rake bundle'
+#[[ -s $(/usr/local/bin/brew --prefix)/etc/profile.d/autojump.sh ]] && . $(/usr/local/bin/brew --prefix)/etc/profile.d/autojump.sh
 
-[[ -s $(/usr/local/bin/brew --prefix)/etc/profile.d/autojump.sh ]] && . $(/usr/local/bin/brew --prefix)/etc/profile.d/autojump.sh
+. ~/.zsh/modules/ericbn-z/z.sh
+
+# Use "j" to autojump
+j() {
+  [[ $# -gt 0 ]] && _z "$*" && return
+  cd "$(_z -l 2>&1 | fzf --height 40% --reverse --inline-info +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
+}
 # vim:ft=sh
