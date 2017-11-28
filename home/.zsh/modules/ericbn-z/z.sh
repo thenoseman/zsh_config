@@ -98,11 +98,11 @@ _z() {
             BEGIN {
                 q = substr(q, 3)
                 # smart-case
-                is_lower = !(q ~ /[A-Z]/)
+                if( q == tolower(q) ) imatch = 1
                 gsub(/ /, ".*", q)
             }
             {
-                if( is_lower ) {
+                if( imatch ) {
                     if( tolower($1) ~ q ) print $1
                 } else if( $1 ~ q ) print $1
             }
@@ -111,18 +111,20 @@ _z() {
     else
         # list/go
         while [ "$1" ]; do case "$1" in
-            --) while [ "$1" ]; do shift; local fnd="$fnd${fnd:+ }$1";done;;
-            -*) local opt=${1:1}; while [ "$opt" ]; do case ${opt:0:1} in
+            --) while [ "$1" ]; do shift; local fnd="$fnd${fnd:+ }$1"; done;;
+            -*) local opt="${1:1}"; while [ "$opt" ]; do case "${opt:0:1}" in
                     c) local fnd="^$PWD $fnd";;
                     e) local echo=echo;;
-                    h) echo "${_Z_CMD:-z} [-cehlrtx] args" >&2; return;;
+                    h) echo "${_Z_CMD:-z} [-cehilrstx] [regex1 regex2 ... regexn]" >&2; return;;
+                    i) local cas='i';;
                     l) local list=1;;
-                    r) local typ="rank";;
-                    t) local typ="recent";;
+                    r) local typ='r';;
+                    s) local cas='s';;
+                    t) local typ='t';;
                     x) sed -i -e "\:^${PWD}|.*:d" "$datafile";;
-                esac; opt=${opt:1}; done;;
+                esac; opt="${opt:1}"; done;;
              *) local fnd="$fnd${fnd:+ }$1";;
-        esac; local last=$1; [ "$#" -gt 0 ] && shift; done
+        esac; local last="$1"; [ "$#" -gt 0 ] && shift; done
         [ "$fnd" -a "$fnd" != "^$PWD " ] || local list=1
 
         # if we hit enter on a completion just go there
@@ -135,28 +137,28 @@ _z() {
         [ -f "$datafile" ] || return
 
         local cd
-        cd="$( < <( _z_dirs ) awk -v t="$(date +%s)" -v list="$list" -v typ="$typ" -v q="$fnd" -F"|" '
+        cd="$( < <( _z_dirs ) awk -v now="$(date +%s)" -v cas="$cas" -v list="$list" -v typ="$typ" -v q="$fnd" -F'|' '
             function frecent(rank, time) {
                 # relate frequency and time
-                dx = t - time
+                dx = now - time
                 if( dx < 3600 ) return rank * 4
                 if( dx < 86400 ) return rank * 2
                 if( dx < 604800 ) return rank / 2
                 return rank / 4
             }
-            function output(matches, best_match, common) {
+            function output(files, out, common) {
                 # list or return the desired directory
                 if( list ) {
                     cmd = "sort -n >&2"
-                    for( x in matches ) {
-                        if( matches[x] ) printf "%-10s %s\n", matches[x], x | cmd
+                    for( x in files ) {
+                        if( files[x] ) printf "%-10s %s\n", files[x], x | cmd
                     }
                     if( common ) {
                         printf "%-10s %s\n", "common:", common > "/dev/stderr"
                     }
                 } else {
-                    if( common ) best_match = common
-                    print best_match
+                    if( common ) out = common
+                    print out
                 }
             }
             function common(matches) {
@@ -167,37 +169,45 @@ _z() {
                     }
                 }
                 if( short == "/" ) return
-                for( x in matches ) if( matches[x] && index(x, short) != 1 ) return
+                # use a copy to escape special characters, as we want to return
+                # the original. yeah, this escaping is awful.
+                clean_short = short
+                gsub(/\[\(\)\[\]\|\]/, "\\\\&", clean_short)
+                for( x in matches ) if( matches[x] && x !~ clean_short ) return
                 return short
             }
             BEGIN {
-                gsub(" ", ".*", q)
-                hi_rank = ihi_rank = -9999999999
+                if( length(q) ) {
+                    query = 1
+                    if( cas == "i" ) {
+                        q = tolower(q)
+                        imatch = 1
+                    } else if( cas != "s" && q == tolower(q) ) imatch = 1
+                    gsub(/ /, ".*", q)
+                    hi_rank = -9999999999
+                }
             }
             {
-                if( typ == "rank" ) {
+                if( typ == "r" ) {
                     rank = $2
-                } else if( typ == "recent" ) {
-                    rank = $3 - t
+                } else if( typ == "t" ) {
+                    rank = $3 - now
                 } else rank = frecent($2, $3)
-                if( $1 ~ q ) {
-                    matches[$1] = rank
-                } else if( tolower($1) ~ tolower(q) ) imatches[$1] = rank
-                if( matches[$1] && matches[$1] > hi_rank ) {
-                    best_match = $1
-                    hi_rank = matches[$1]
-                } else if( imatches[$1] && imatches[$1] > ihi_rank ) {
-                    ibest_match = $1
-                    ihi_rank = imatches[$1]
-                }
+                if( query ) {
+                    if( imatch ) {
+                        x = tolower($1)
+                    } else x = $1
+                    if( x ~ q ) {
+                        matches[$1] = rank
+                        if( rank > hi_rank ) {
+                            best_match = $1
+                            hi_rank = rank
+                        }
+                    }
+                } else matches[$1] = rank
             }
             END {
-                # prefer case sensitive
-                if( best_match ) {
-                    output(matches, best_match, common(matches))
-                } else if( ibest_match ) {
-                    output(imatches, ibest_match, common(imatches))
-                }
+                output(matches, best_match, common(matches))
             }
         ')"
 
