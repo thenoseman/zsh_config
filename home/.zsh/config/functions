@@ -50,7 +50,7 @@ puall() {
 
 # Copy files to phone
 mac2phone() {
-  EXT=$(~/Dropbox/Software/adb shell ls -la /storage/ | grep sdcard_rw | grep -v emulated | sed "s/^.* //")
+  EXT=$(~/Dropbox/Software/adb shell ls -la /storage/ | grep sdcard_rw | grep -v emulated | sed "s/^.* //" | tr -dc '[:print:]')
   for f in ${@}; do 
     echo "Copy ${f} -> /storage/${EXT}/${f}"
     ~/Dropbox/Software/adb push -p "${f}" "/storage/${EXT}/"
@@ -59,7 +59,7 @@ mac2phone() {
 
 phone2mac() {
   declare -a FILES
-  EXT=$(adb shell ls -la /storage/ | grep sdcard_rw | grep -v emulated | sed "s/^.* //")
+  EXT=$(adb shell ls -la /storage/ | grep sdcard_rw | grep -v emulated | sed "s/^.* //" | tr -dc '[:print:]')
   IFS=$'\n' FILES=($(~/Dropbox/Software/adb shell "ls /storage/${EXT}/${1}*"))
   echo "Found ${#FILES[*]} files"
 
