@@ -6,6 +6,10 @@ curl -s -L "https://raw.githubusercontent.com/mafredri/zsh-async/master/async.zs
 # Update z.sh
 curl -s -L "https://raw.githubusercontent.com/ericbn/z/master/z.sh" -o home/.zsh/modules/ericbn-z/z.sh
 
+# update adb-sync
+curl -s -L "https://raw.githubusercontent.com/google/adb-sync/master/adb-sync" -o home/.zsh/modules/tools/adb-sync
+chmod +x home/.zsh/modules/tools/adb-sync 
+
 # First update all submodules to HEAD
 git submodule foreach git pull origin master
 
