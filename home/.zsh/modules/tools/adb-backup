@@ -2,7 +2,8 @@
 # Backup of all installed packages into single adb restore capable files
 #
 declare -a PACKAGES
-IFS=$'\n' PACKAGES=($(adb shell 'pm list packages -f' | sed -e 's/.*=//' | sort))
+
+IFS=$'\n' PACKAGES=($(adb shell 'pm list packages -f' | sed -e 's/.*=//' | grep -v "com.android" | grep -v "com.google.android" | grep -v "com.qualcomm" | grep -v "org.cyanogenmod." | grep -v "android" | sort))
 echo "Found ${#PACKAGES[*]} packages"
 
 folder=$(date +%Y%m%d-%H%m)
