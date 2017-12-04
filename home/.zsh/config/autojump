@@ -2,6 +2,6 @@
 
 # Use "j" to autojump
 j() {
-  local line=$(_z -l 2>&1 | fzf --height 40% --reverse -1 --inline-info +s --tac --query "$*") && cd "${line##* }"
+  local line=$(_z -l -t -e "$*" 2>&1 | fzf --height 40% --reverse --tac --select-1 --query "$*") && cd "${line##* }"
 }
 # vim:ft=sh
