@@ -4,7 +4,7 @@ fpath=(~/.zsh/completions ~/.zsh/completions/docker ~/.zsh/zfunctions $fpath)
 # crazy tab completion
 autoload -U compinit
 autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+if [ -e ~/.zcompdump -a $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
   compinit
 else
   compinit -C
@@ -78,9 +78,6 @@ zstyle ':completion:*:complete:bundle' use-cache on
 zstyle ':completion:*:complete:bundle' rehash false
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' rehash yes
-
-# b update == bundle update
-compdef b=bundle
 
 # Disable ^S, useless and annoying
 stty stop undef
