@@ -1,10 +1,12 @@
-wget -nv -O Release.key https://build.opensuse.org/projects/home:manuelschneid3r/public_key
-sudo apt-key add - < Release.key
+wget -q -O - https://build.opensuse.org/projects/home:manuelschneid3r/public_key | sudo apt-key add -
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
 sudo add-apt-repository ppa:x4121/ripgrep
 sudo add-apt-repository ppa:linrunner/tlp
 sudo apt-get update
 sudo apt-get upgrade
-apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert
+
+apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert cmake libfreetype6-dev libfontconfig1-dev xclip gcc-6 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev openconnect google-chrome-stable
 
 chsh -s $(which zsh)
 
@@ -33,4 +35,23 @@ cd ../vim_config
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | zsh
 
 ln -s /usr/share/applications/albert.desktop ~/.config/autostart/
+
+# ALACRITTY
+curl https://sh.rustup.rs -sSf | sh
+git clone https://github.com/jwilm/alacritty.git
+cd alacritty
+cargo build --release
+sudo cp target/release/alacritty /usr/local/bin/
+mkdir ~/.local/share/applications
+cp Alacritty.desktop ~/.local/share/applications/
+mkdir ~/.config/alacritty
+cp alacritty.yml ~/.config/alacritty/
+
+#RBENV
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+cd ~/.rbenv && src/configure && make -C src
+mkdir -p "$(rbenv root)"/plugins
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+rbenv install 2.4.2
+
 
