@@ -2,10 +2,13 @@
 #
 # relinks all dotfiles in home to the homedir
 #
-FILES=`find home -maxdepth 1 -name ".*"`
-for f in $FILES 
-do
+FILES=`find home -type f -maxdepth 1 -name ".*"`
+for f in $FILES; do
   linkme=${f/home\//}
   rm -rf ~/$linkme
   ln -s `pwd`/home/$linkme ~/$linkme
 done
+
+ln -s `pwd`/home/.vim ~/.vim
+ln -s `pwd`/home/.rib ~/.rib
+ln -s `pwd`/home/.config/albert ~/.config/
