@@ -8,7 +8,13 @@ alias shellcolors="echo 'Usage: %F{COLORNUMBER}text%f\n' ; for code ({000..255})
 # Start a webserver here
 alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -run -e httpd . -p9090'
 
-alias ll='ls -la'
+if [[ "${OSTYPE}" =~ "darwin" ]]; then
+  alias ll='ls -la'
+else
+  alias ll='ls -la --color=auto'
+  alias ls='ls --color=auto'
+fi
+
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
 alias rg='rg -F -i'
