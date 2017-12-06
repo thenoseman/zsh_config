@@ -17,8 +17,12 @@ alias rg='rg -F -i'
 # VIM
 #
 
-alias v='mvim'
-alias vim='/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim'
+if [[ "${OSTYPE}" =~ "darwin" ]]; then
+  alias v='mvim'
+  alias vim='/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim'
+else
+  alias v='vim'
+fi
 
 # Generate tags for all installed gems
 alias tags="~/dev/privat/zsh_config/home/extras/generate_tags_for_gems"
@@ -36,9 +40,6 @@ alias 220="rbenv shell 2.3.0-perf"
 alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 
 alias pu='git push'
-
-# multi repo management (http://mixu.net/gr/)
-alias gru="gr @work -- git pull --rebase --autostash"
 
 alias gpr='git pull --rebase --autostash'
 
