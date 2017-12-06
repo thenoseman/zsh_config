@@ -1,0 +1,31 @@
+sudo add-apt-repository ppa:x4121/ripgrep
+sudo add-apt-repository ppa:linrunner/tlp
+sudo apt-get update
+sudo apt-get upgrade
+apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp
+
+chsh -s $(which zsh)
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+/etc/default/grub
+GRUB_HIDDEN_TIMEOUT=2
+GRUB_TIMEOUT=0
+update-grub
+
+copy .ssh
+chmod .ssh/id_rsa 
+
+ProBook% mkdir -p ~/dev/config
+ProBook% cd dev/config 
+ProBook% git clone git@github.com:thenoseman/vim_config.git 
+ProBook% git clone git@github.com:thenoseman/zsh_config.git 
+
+cd zsh_config
+./relink
+
+cd ../vim_config
+./relink..
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | zsh
