@@ -6,7 +6,7 @@ sudo add-apt-repository ppa:linrunner/tlp
 sudo apt-get update
 sudo apt-get upgrade
 
-apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert cmake libfreetype6-dev libfontconfig1-dev xclip gcc-6 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev openconnect google-chrome-stable
+apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert cmake libfreetype6-dev libfontconfig1-dev xclip gcc-6 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev openconnect google-chrome-stable parcellite xdotool gsimplecal
 
 chsh -s $(which zsh)
 
@@ -54,4 +54,10 @@ mkdir -p "$(rbenv root)"/plugins
 git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 rbenv install 2.4.2
 
+
+mkdir ~/.local/share/fonts
+curl -LO http://www.fantascienza.net/leonardo/ar/inconsolatag/inconsolata-g_font.zip
+unzip and put in "fonts"
+
+parcellite: ~/.config/parcellite/parcelliterc
 
