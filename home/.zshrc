@@ -86,6 +86,9 @@ HELPDIR=/usr/local/share/zsh/helpfile
 source ~/.zsh/modules/pure_prompt/async.zsh
 async_init
 
+# Init FZF
+[ -f "~/.fzf.zsh" ] && source ~/.fzf.zsh
+
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
