@@ -16,6 +16,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 /etc/default/grub
 GRUB_HIDDEN_TIMEOUT=2
 GRUB_TIMEOUT=0
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi_osi=Linux"
 update-grub
 
 copy .ssh
@@ -43,6 +44,13 @@ mkdir -p "$(rbenv root)"/plugins
 git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 rbenv install 2.4.2
 
+# i3
+/usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb keyring.deb SHA256:4c3c6685b1181d83efe3a479c5ae38a2a44e23add55e16a328b8c8560bf05e5f
+sudo su -
+dpkg -i ./keyring.deb
+echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list
+apt update
+apt install i3
 
 mkdir ~/.local/share/fonts
 curl -LO http://www.fantascienza.net/leonardo/ar/inconsolatag/inconsolata-g_font.zip
