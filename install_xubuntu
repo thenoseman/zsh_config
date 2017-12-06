@@ -1,8 +1,10 @@
+wget -nv -O Release.key https://build.opensuse.org/projects/home:manuelschneid3r/public_key
+sudo apt-key add - < Release.key
 sudo add-apt-repository ppa:x4121/ripgrep
 sudo add-apt-repository ppa:linrunner/tlp
 sudo apt-get update
 sudo apt-get upgrade
-apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp
+apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert
 
 chsh -s $(which zsh)
 
@@ -29,3 +31,6 @@ cd ../vim_config
 ./relink..
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | zsh
+
+ln -s /usr/share/applications/albert.desktop ~/.config/autostart/
+
