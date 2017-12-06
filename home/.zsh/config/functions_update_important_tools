@@ -1,7 +1,6 @@
 update_important_tools() {
 
   BREW_PACKAGES=(
-  autojump
   colordiff
   ctags
   diff-so-fancy
