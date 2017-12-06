@@ -6,7 +6,7 @@ export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
 export LC_ALL="en_US.UTF-8"
 
 # Use java 1.8
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+[ -e "/usr/libexec/java_home" ] && export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 # Show `time` output for any command that takes longer than 2 second of CPU time
 export REPORTTIME=2
