@@ -89,6 +89,12 @@ async_init
 # Init FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# gnome-keyring
+if [ "${DESKTOP_SESSION}" = "i3" ]; then
+  export $(gnome-keyring-daemon --start --components=pkcs11,ssh,secrets)
+fi
+
+
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
