@@ -6,7 +6,7 @@ sudo add-apt-repository ppa:linrunner/tlp
 sudo apt-get update
 sudo apt-get upgrade
 
-apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert cmake libfreetype6-dev libfontconfig1-dev xclip gcc-6 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev openconnect google-chrome-stable parcellite xdotool gsimplecal apt-transport-https pasystray xautolock
+apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert cmake libfreetype6-dev libfontconfig1-dev xclip gcc-6 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev openconnect google-chrome-stable parcellite xdotool gsimplecal apt-transport-https pasystray xautolock autofs
 
 chsh -s $(which zsh)
 
