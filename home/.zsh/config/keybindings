@@ -13,4 +13,21 @@ bindkey '^[[6~' down-history
 bindkey '^R' history-incremental-search-backward
 bindkey -s '^D' "logout\n"
 
+# Linux (see key sequnce using <ctrl-v>anykeycombo
+
+# ALT-<left>
+bindkey "^[[1;3D" backward-word
+
+# ALT-<right>
+bindkey "^[[1;3C" forward-word
+
+# strg+alt+7 = "/"
+bindkey -s "^_" "/"
+
+# brackets mac like
+bindkey -s "^[[5" "["
+bindkey -s "^[[6" "]"
+bindkey -s "^[[7" "{"
+bindkey -s "^[[8" "}"
+
 # vim:ft=sh
