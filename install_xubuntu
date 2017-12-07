@@ -6,7 +6,7 @@ sudo add-apt-repository ppa:linrunner/tlp
 sudo apt-get update
 sudo apt-get upgrade
 
-apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert cmake libfreetype6-dev libfontconfig1-dev xclip gcc-6 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev openconnect google-chrome-stable parcellite xdotool gsimplecal
+apt install vim zsh git exfat-fuse exfat-utils ripgrep ctags tig curl tlp albert cmake libfreetype6-dev libfontconfig1-dev xclip gcc-6 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev openconnect google-chrome-stable parcellite xdotool gsimplecal apt-transport-https
 
 chsh -s $(which zsh)
 
@@ -36,17 +36,6 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | z
 
 ln -s /usr/share/applications/albert.desktop ~/.config/autostart/
 
-# ALACRITTY
-curl https://sh.rustup.rs -sSf | sh
-git clone https://github.com/jwilm/alacritty.git
-cd alacritty
-cargo build --release
-sudo cp target/release/alacritty /usr/local/bin/
-mkdir ~/.local/share/applications
-cp Alacritty.desktop ~/.local/share/applications/
-mkdir ~/.config/alacritty
-cp alacritty.yml ~/.config/alacritty/
-
 #RBENV
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 cd ~/.rbenv && src/configure && make -C src
@@ -61,3 +50,7 @@ unzip and put in "fonts"
 
 parcellite: ~/.config/parcellite/parcelliterc
 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+   
