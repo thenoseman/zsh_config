@@ -27,7 +27,8 @@ if [[ "${OSTYPE}" =~ "darwin" ]]; then
   alias v='mvim'
   alias vim='/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim'
 else
-  alias v='vim'
+  alias v='gvim'
+  alias vim='gvim'
 fi
 
 # Generate tags for all installed gems
