@@ -30,4 +30,7 @@ bindkey -s "^[[6" "]"
 bindkey -s "^[[7" "{"
 bindkey -s "^[[8" "}"
 
+# alt-n : ~
+bindkey -s "^[n" "~"
+
 # vim:ft=sh
