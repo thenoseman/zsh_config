@@ -2,6 +2,11 @@
 
 # Use "j" to autojump
 j() {
-  local line=$(_z -l -t -e "$*" 2>&1 | fzf --height 40% --reverse --tac --select-1 --query "$*") && cd "${line##* }"
+  local matches=$(_z -l "$*" 2>&1)
+  if [[ $matches == common:* ]]; then
+    _z "$*"
+  else
+    local line=$(echo $matches | fzf --height 40% --reverse --tac --select-1 --query "$*") && cd "${line##* }"
+  fi
 }
 # vim:ft=sh

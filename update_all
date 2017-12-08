@@ -6,10 +6,6 @@ curl -s -L "https://raw.githubusercontent.com/mafredri/zsh-async/master/async.zs
 # Update z.sh
 curl -s -L "https://raw.githubusercontent.com/ericbn/z/master/z.sh" -o home/.zsh/modules/ericbn-z/z.sh
 
-# Modify to NOT include the score in the output
-sed -i "" "s/\%-10s \%s\\\n.*\|/%s\\\n\", x |/" home/.zsh/modules/ericbn-z/z.sh
-sed -i "" "s/\%-10s \%s\\\n.*common/%s\\\n\", common/" home/.zsh/modules/ericbn-z/z.sh
-
 # update adb-sync
 curl -s -L "https://raw.githubusercontent.com/google/adb-sync/master/adb-sync" -o home/.zsh/modules/tools/adb-sync
 chmod +x home/.zsh/modules/tools/adb-sync 
