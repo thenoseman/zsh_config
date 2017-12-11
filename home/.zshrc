@@ -1,3 +1,6 @@
+# profiling (execute zprof after shell is initialized)
+#zmodload zsh/zprof
+
 # Add paths to zsh function path
 fpath=(~/.zsh/completions ~/.zsh/completions/docker ~/.zsh/zfunctions $fpath)
 
