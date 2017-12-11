@@ -2,7 +2,7 @@
 
 # Use "j" to autojump
 j() {
-  local matches=$(_z -l "$*" 2>&1)
+  local matches=$(_z -e -l "$*" 2>&1)
   if [[ $matches == common:* ]]; then
     _z "$*"
   else
