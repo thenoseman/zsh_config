@@ -41,6 +41,9 @@ exec xautolock -locker "i3lock -c 000000" -detectsleep -time $lock_time_minutes
 # Turn off tap to click on touchpad
 exec synclient MaxTapTime=0
 
+# Keyboard repeat rate
+exec xset r rate 200 30
+
 # Audio Keys on laptop
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute; notify-send -i /usr/share/icons/gnome/48x48/status/audio-volume-high.png -t 1500 'Audio' 'Up'"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute; notify-send -i /usr/share/icons/gnome/48x48/status/audio-volume-low.png -t 1500 'Audio' 'Down'"
