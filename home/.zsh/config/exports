@@ -2,7 +2,13 @@ export SHELL=zsh
 export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
 export LESS="-mR"
-export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
+
+if [[ "${OSTYPE}" =~ "darwin" ]]; then
+  export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
+else
+  export EDITOR='vim'
+fi
+
 export LC_ALL="en_US.UTF-8"
 
 # Use java 1.8
