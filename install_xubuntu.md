@@ -24,10 +24,12 @@ apt install -y
   bison \  
   build-essential \  
   cmake \  
+  cryptsetup \
   ctags \  
   curl \  
   diskie \  
   docker-ce \  
+  ecryptfs-utils \
   exfat-fuse exfat-utils \  
   gcc-6 \  
   git \  
