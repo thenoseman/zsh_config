@@ -1,10 +1,11 @@
 # i3 config file (v4)
-#
 
 set $lock_time_minutes 10
 set $mod Mod4
 
+#
 # Autostarts
+#
 
 # albert (use strg+space to invoke)
 exec albert
@@ -22,19 +23,20 @@ exec syndaemon -d -K
 exec slack
 assign [class="Slack"] 10
 
-# google chome
+# google chome -> WS 2
 exec google-chrome
 assign [class="Google-chrome" title=".*New Tab.*"] 2
 
-# OWA
+# OWA -> WS 9
 exec google-chrome --user-data-dir=/tmp/owa --no-first-run "https://outlook.office365.com/owa/?realm=telefonica.com"
 assign [instance=".*owa.*" class="Google-chrome"] 9
 
-# terminals
+# terminal
 exec i3-sensible-terminal
 
-# audio settings
+# audio settings widget
 exec pasystray
+
 # lock screen after 10 minutes
 exec xautolock -locker "i3lock -c 000000" -detectsleep -time $lock_time_minutes
 
@@ -43,6 +45,9 @@ exec synclient MaxTapTime=0
 
 # Keyboard repeat rate
 exec xset r rate 200 30
+
+# Rebind caps-lock to ESC
+setxkbmap -option caps:escape
 
 # Audio Keys on laptop
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute; notify-send -i /usr/share/icons/gnome/48x48/status/audio-volume-high.png -t 1500 'Audio' 'Up'"
