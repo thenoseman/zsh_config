@@ -6,7 +6,7 @@
 #
 # curl -sSf https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/install.sh | bash
 # or
-# curl -sSf https://goo.gl/J2Xudx
+# curl -LsSf https://goo.gl/J2Xudx | bash
 #
 
 # Update the system
@@ -19,7 +19,7 @@ sudo apt-get install -y --no-install-recommends ansible
 echo "localhost ansible_connection=local" | sudo tee /etc/ansible/hosts > /dev/null
 
 # Run ansible locally
-FOLDER=$(mktemp)
+FOLDER=$(mktemp -d)
 cd "${FOLDER}"
 curl -LO "https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/install.yml"
 ansible-playbook all -K install.yml
