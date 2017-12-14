@@ -1,0 +1,160 @@
+---
+- hosts: all
+  become_user: root
+  become_method: sudo
+  vars:
+    user_name: "{{ ansible_user_id }}"
+    user_home: "{{ ansible_user_dir }}"
+    ruby_version: "2.4.2"
+  tasks: 
+
+  - name: "Add repository keys"
+    become: true
+    apt_key:
+      url: "{{ item }}"
+      state: present
+    with_items:
+      - "https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_17.10/Release.key"
+      - "https://dl-ssl.google.com/linux/linux_signing_key.pub"
+      - "https://download.docker.com/linux/ubuntu/gpg"
+
+  - name: "Add i3 key (only available as .deb)"
+    become: true
+    apt:
+      deb: "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
+
+  - name: "Add neccessary repositories"
+    become: true
+    apt_repository:
+      repo: "{{ item }}"
+      state: present
+    with_items:
+      - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+      - "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+      - "deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_{{ ansible_lsb.release }}/ /"
+      - "ppa:x4121/ripgrep"
+      - "ppa:linrunner/tlp"
+      - "deb http://debian.sur5r.net/i3/ {{ ansible_lsb.codename }} universe"
+
+  - name: "Install packages"
+    become: true
+    apt:
+      name: "{{ item }}"
+      update_cache: yes
+      state: present
+      install_recommends: no
+    with_items:
+      - "albert"
+      - "apt-transport-https"
+      - "autoconf"
+      - "bison"
+      - "build-essential"
+      - "cmake"
+      - "cryptsetup"
+      - "ctags"
+      - "curl"
+      - "udiskie"
+      - "docker-ce"
+      - "ecryptfs-utils"
+      - "exfat-fuse"
+      - "exfat-utils"
+      - "gcc-6"
+      - "git"
+      - "google-chrome-stable"
+      - "i3"
+      - "libffi-dev"
+      - "libfontconfig1-dev"
+      - "libfreetype6-dev"
+      - "libgdbm-dev"
+      - "libgdbm3"
+      - "libncurses5-dev"
+      - "libreadline6-dev"
+      - "libssl-dev"
+      - "libyaml-dev"
+      - "openconnect"
+      - "parcellite"
+      - "pasystray"
+      - "ripgrep"
+      - "tig"
+      - "tlp"
+      - "vim"
+      - "xautolock"
+      - "xclip"
+      - "xdotool"
+      - "zlib1g-dev"
+      - "zsh"
+        
+  - name: "Change current user '{{ user_name }}' shell to ZSH"
+    become: yes
+    user:
+      name: "{{ user_name }}"
+      shell: "/bin/zsh"
+
+  - name: "Clone fzf repo"
+    git:
+      repo: "https://github.com/junegunn/fzf.git"
+      dest: "{{ user_home }}/.fzf"
+
+  - name: "Install fzf"
+    shell: "{{ user_home}}/.fzf/install --no-bash --no-fish --64 --no-update-rc --completion --no-key-bindings"
+
+  - name: "Configure grub"
+    become: yes
+    lineinfile:
+      path: "/etc/default/grub"
+      regexp: "{{ item.regexp }}.*$"
+      line: "{{ item.line }}"
+    with_items:
+      - { regexp: "^GRUB_HIDDEN_TIMEOUT=", line: "GRUB_HIDDEN_TIMEOUT=2"}
+      - { regexp: "^GRUB_TIMEOUT=", line: "GRUB_TIMEOUT=0"}
+      - { regexp: "^GRUB_CMDLINE_LINUX_DEFAULT=", line: "GRUB_CMDLINE_LINUX_DEFAULT=\"acpi_osi=Linux\""}
+
+  - name: "Install NVM"
+    git:
+      repo: "https://github.com/creationix/nvm.git"
+      dest: "{{ user_home }}/.nvm"
+
+  - name: "Install RBENV (1/4)"
+    git:
+      repo: "https://github.com/rbenv/rbenv.git"
+      dest: "{{ user_home }}/.rbenv"
+
+  - name: "Install RBENV (2/4)"
+    shell: "cd {{ user_home }}/.rbenv && src/configure && make -C src"
+    args:
+      creates: "{{ user_home }}/.rbenv/libexec/rbenv-realpath.dynlib"
+
+  - name: "Install RBENV (3/4)"
+    file: 
+      path: "{{ user_home }}/.rbenv/plugins"
+      state: "directory"
+
+  - name: "Install RBENV (4/4)"
+    git:
+      repo: "https://github.com/rbenv/ruby-build.git"
+      dest: "{{ user_home }}/.rbenv/plugins/ruby-build"
+
+  - name: "Install ruby"
+    shell: "{{ user_home}}/.rbenv/bin/rbenv install {{ ruby_version }}"
+    args:
+      creates: "{{ user_home}}/.rbenv/versions/{{ ruby_version }}/bin/ruby"
+
+  - name: "Creating path for config files"
+    file: 
+      path: "{{ user_home }}/dev/config"
+      state: "directory"
+
+  - name: "Clone dotfiles"
+    git:
+      repo: "{{ item.url }}"
+      dest: "{{ user_home }}/dev/config/{{ item.dest }}"
+    with_items:
+      - { url: "https://github.com/thenoseman/zsh_config.git", dest: "zsh_config" }
+      - { url: "https://github.com/thenoseman/vim_config.git", dest: "vim_config" }
+
+  - name: "Link dotfiles"
+    shell: echo "1"
+
+  - name: "Rebuild font-cache"
+    become: true
+    shell: "fc-cache -f -v"
