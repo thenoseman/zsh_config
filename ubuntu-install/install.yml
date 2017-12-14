@@ -153,7 +153,9 @@
       - { url: "https://github.com/thenoseman/vim_config.git", dest: "vim_config" }
 
   - name: "Link dotfiles"
-    shell: echo "1"
+    shell: "cd {{ user_home }}/{{ item }} && ./relink"
+    with_item:
+      - "zsh_config"
 
   - name: "Rebuild font-cache"
     become: true
