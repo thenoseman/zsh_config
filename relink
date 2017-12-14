@@ -1,14 +1,34 @@
 #!/bin/bash
 #
-# relinks all dotfiles in home to the homedir
+# relinks all dotDOTTHINGS in home to the homedir
 #
-FILES=`find home -type f -maxdepth 1 -name ".*"`
-for f in $FILES; do
-  linkme=${f/home\//}
-  rm -rf ~/$linkme
-  ln -s `pwd`/home/$linkme ~/$linkme
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+link_or_fail() {
+  local file="$1"
+
+  name_only=${file/home\//}
+
+  if [ -e "${HOME}/${name_only}" ]; then
+    echo "fail: '${file}'"
+  else
+    ln -s ${DIR}/home/${name_only} ~/${name_only}
+    echo "ok  : ${file}'"
+  fi
+}
+
+# Link all files in home/
+DOTTHINGS=$(find home -type f -maxdepth 1 -name ".*" -not -name "*DS_Store*")
+for f in ${DOTTHINGS}; do
+  link_or_fail $f
 done
 
-ln -s `pwd`/home/.vim ~/.vim
-ln -s `pwd`/home/.rib ~/.rib
-ln -s `pwd`/home/.config/albert ~/.config/
+link_or_fail "home/.zsh"
+link_or_fail "home/.rib"
+link_or_fail "home/.fonts"
+
+mkdir -p "${HOME}/.config"
+DOTTHINGS=$(find home/.config -type d -depth 1)
+for f in ${DOTTHINGS}; do
+  link_or_fail $f
+done
