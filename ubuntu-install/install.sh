@@ -4,6 +4,10 @@
 # Installs a system with linux 
 # If you are not thenoseman this is probably not for you!
 #
+# curl -sSf https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/install.sh | bash
+# or
+# curl -sSf https://goo.gl/J2Xudx
+#
 
 # Update the system
 sudo apt update
@@ -15,4 +19,7 @@ sudo apt-get install -y --no-install-recommends ansible
 echo "localhost ansible_connection=local" | sudo tee /etc/ansible/hosts > /dev/null
 
 # Run ansible locally
-ansible-playbook all -K
+FOLDER=$(mktemp)
+cd "${FOLDER}"
+curl -LO "https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/install.yml"
+ansible-playbook all -K install.yml
