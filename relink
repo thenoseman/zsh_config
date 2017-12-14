@@ -18,7 +18,7 @@ link_or_fail() {
 }
 
 # Link all files in home/
-DOTTHINGS=$(find home -type f -maxdepth 1 -name ".*" -not -name "*DS_Store*")
+DOTTHINGS=$(find home -maxdepth 1 -type f -name ".*" -not -name "*DS_Store*")
 for f in ${DOTTHINGS}; do
   link_or_fail $f
 done
@@ -28,7 +28,7 @@ link_or_fail "home/.rib"
 link_or_fail "home/.fonts"
 
 mkdir -p "${HOME}/.config"
-DOTTHINGS=$(find home/.config -type d -depth 1)
+DOTTHINGS=$(find home/.config -mindepth 1 -maxdepth 1 -type d)
 for f in ${DOTTHINGS}; do
   link_or_fail $f
 done

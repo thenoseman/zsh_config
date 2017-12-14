@@ -22,4 +22,4 @@ echo "localhost ansible_connection=local" | sudo tee /etc/ansible/hosts > /dev/n
 FOLDER=$(mktemp -d)
 cd "${FOLDER}"
 curl -LO "https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/install.yml"
-ansible-playbook all -K install.yml
+ansible-playbook -K install.yml

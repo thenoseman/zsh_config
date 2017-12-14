@@ -154,8 +154,9 @@
 
   - name: "Link dotfiles"
     shell: "cd {{ user_home }}/{{ item }} && ./relink"
-    with_item:
+    with_items:
       - "zsh_config"
+      - "vim_config"
 
   - name: "Rebuild font-cache"
     become: true
