@@ -27,6 +27,7 @@
     with_items:
       - "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.0-amd64.deb"
       - "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
+      - "http://download.learnfree.eu/repository/skss/udev-notify_0.1.3_all.deb"
 
   - name: "Add neccessary repositories"
     become: true
@@ -40,7 +41,6 @@
       - "ppa:x4121/ripgrep"
       - "ppa:linrunner/tlp"
       - "deb http://debian.sur5r.net/i3/ {{ ansible_lsb.codename }} universe"
-      - "deb http://download.learnfree.eu/repository/skss / #SKSS"
 
   - name: "Install packages"
     become: true
@@ -86,7 +86,6 @@
       - "ripgrep"
       - "tig"
       - "tlp"
-      - "udev-notify"
       - "vim"
       - "vim-gtk3"
       - "xautolock"

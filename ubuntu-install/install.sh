@@ -15,6 +15,8 @@ echo <<EOF
 = If apt full-upgrade runs you might need to run the wget again      =
 = since sometimes it exits the script ¯\_(ツ)_/¯                     =
 =                                                                    =
+= You will be asked for your password so ansible can run as root     =
+=                                                                    =
 = PRESS ANY KEY TO CONTINUE                                          = 
 ======================================================================
 EOF
