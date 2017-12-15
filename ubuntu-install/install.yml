@@ -18,10 +18,13 @@
       - "https://dl-ssl.google.com/linux/linux_signing_key.pub"
       - "https://download.docker.com/linux/ubuntu/gpg"
 
-  - name: "Add i3 key (only available as .deb)"
+  - name: "Download and install direct download .deb packages"
     become: true
     apt:
-      deb: "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
+      deb: "{{ item }}"
+    with_items:
+      - "https://slack.com/intl/de-de/downloads/instructions/ubuntu?nojsmode=1"
+      - "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
 
   - name: "Add neccessary repositories"
     become: true
@@ -80,6 +83,7 @@
       - "tig"
       - "tlp"
       - "vim"
+      - "vim-gtk3"
       - "xautolock"
       - "xclip"
       - "xdotool"
