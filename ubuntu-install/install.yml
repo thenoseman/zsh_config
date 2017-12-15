@@ -29,7 +29,7 @@
       repo: "{{ item }}"
       state: present
     with_items:
-      - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable"
+      - "deb [arch=amd64] https://download.docker.com/linux/ubuntu zesty stable"
       - "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
       - "deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_{{ ansible_lsb.release }}/ /"
       - "ppa:x4121/ripgrep"
