@@ -26,7 +26,7 @@
     with_items:
       - "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.0-amd64.deb"
       - "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
-      - "https://downloads.sourceforge.net/project/usuproject/repository/skss/udev-notify_0.1.4_all.deb?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fusuproject%2Ffiles%2Frepository%2Fskss%2F&ts=1513368297&use_mirror=10gbps-io"
+      - "https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/udev-notify_0.1.4_all.deb"
 
   - name: "Add neccessary repositories"
     become: true
