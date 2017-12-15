@@ -17,6 +17,7 @@
       - "https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_17.10/Release.key"
       - "https://dl-ssl.google.com/linux/linux_signing_key.pub"
       - "https://download.docker.com/linux/ubuntu/gpg"
+      - "http://download.learnfree.eu/repository/skss/repo.pub.asc"
 
   - name: "Download and install direct download .deb packages"
     become: true
@@ -39,6 +40,7 @@
       - "ppa:x4121/ripgrep"
       - "ppa:linrunner/tlp"
       - "deb http://debian.sur5r.net/i3/ {{ ansible_lsb.codename }} universe"
+      - "deb http://download.learnfree.eu/repository/skss / #SKSS"
 
   - name: "Install packages"
     become: true
@@ -84,6 +86,7 @@
       - "ripgrep"
       - "tig"
       - "tlp"
+      - "udev-notify"
       - "vim"
       - "vim-gtk3"
       - "xautolock"
