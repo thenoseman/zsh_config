@@ -153,7 +153,7 @@
       - { url: "https://github.com/thenoseman/vim_config.git", dest: "vim_config" }
 
   - name: "Link dotfiles"
-    shell: "cd {{ user_home }}/{{ item }} && ./relink"
+    shell: "cd {{ user_home }}/dev/config/{{ item }} && ./relink"
     with_items:
       - "zsh_config"
       - "vim_config"
