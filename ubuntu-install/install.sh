@@ -7,7 +7,7 @@
 #  wget -O - https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/install.sh | bash
 #
 
-echo <<EOF
+tee /dev/null <<EOF
 ======================================================================
 = Ubuntu install script.                                             =
 = If you are not thenoseman this is probably not for you             =
@@ -20,6 +20,7 @@ echo <<EOF
 = PRESS ANY KEY TO CONTINUE                                          = 
 ======================================================================
 EOF
+
 read
 
 # Update the system
