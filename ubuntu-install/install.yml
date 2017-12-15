@@ -62,6 +62,8 @@
       - "git"
       - "google-chrome-stable"
       - "i3"
+      - "i3lock"
+      - "i3status"
       - "libffi-dev"
       - "libfontconfig1-dev"
       - "libfreetype6-dev"

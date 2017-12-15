@@ -47,7 +47,7 @@ exec synclient MaxTapTime=0
 exec xset r rate 200 30
 
 # Rebind caps-lock to ESC
-setxkbmap -option caps:escape
+exec setxkbmap -option caps:escape
 
 # Audio Keys on laptop
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute; notify-send -i /usr/share/icons/gnome/48x48/status/audio-volume-high.png -t 1500 'Audio' 'Up'"
