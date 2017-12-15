@@ -17,11 +17,8 @@ tee /dev/null <<EOF
 =                                                                    =
 = You will be asked for your password so ansible can run as root     =
 =                                                                    =
-= PRESS ANY KEY TO CONTINUE                                          = 
 ======================================================================
 EOF
-
-read
 
 # Update the system
 sudo apt update
