@@ -22,8 +22,9 @@
     become: true
     apt:
       deb: "{{ item }}"
+      allow_unauthenticated: true
     with_items:
-      - "https://slack.com/intl/de-de/downloads/instructions/ubuntu?nojsmode=1"
+      - "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.0-amd64.deb"
       - "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
 
   - name: "Add neccessary repositories"
@@ -51,6 +52,7 @@
       - "apt-transport-https"
       - "autoconf"
       - "bison"
+      - "blueman"
       - "build-essential"
       - "cmake"
       - "cryptsetup"
