@@ -20,5 +20,5 @@ echo "localhost ansible_connection=local" | sudo tee /etc/ansible/hosts > /dev/n
 FOLDER=$(mktemp -d)
 cd "${FOLDER}"
 rm -f install.yml
-wget -O install.yml "https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/install.yml"
+wget -O install.yml "https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/install.yml?cachebreaker=${RANDOM}"
 ansible-playbook -K install.yml
