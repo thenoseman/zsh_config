@@ -6,6 +6,7 @@
     user_name: "{{ ansible_user_id }}"
     user_home: "{{ ansible_user_dir }}"
     ruby_version: "2.4.2"
+    node_version: "8.9.3"
   tasks: 
 
   - name: "Add repository keys"
@@ -70,6 +71,8 @@
       - "i3"
       - "i3lock"
       - "i3status"
+      - "keepassx"
+      - "kdiff3-qt"
       - "libffi-dev"
       - "libfontconfig1-dev"
       - "libfreetype6-dev"
@@ -122,6 +125,19 @@
     git:
       repo: "https://github.com/creationix/nvm.git"
       dest: "{{ user_home }}/.nvm"
+
+  - name: "Install node {{ node_version }} and NPM"
+    shell: "nvm install {{ node_version }} --latest-npm"
+    args:
+      creates: "{{ user_home }}/.nvm/versions/node/v{{ node_version }}/bin/npm"
+
+  - name: "Install global packages via NPM"
+    npm:
+      name: "{{ item }}"
+      global: yes
+    with_items:
+      - "diff-so-fancy"
+      - "eslint"
 
   - name: "Install RBENV (1/4)"
     git:
