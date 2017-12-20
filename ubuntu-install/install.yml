@@ -22,10 +22,7 @@
 
   - name: "Get version of latest slack client"
     set_fact:
-      slack_dl_url: "{{ lookup('url', 'https://slack.com/intl/de-de/downloads/instructions/ubuntu') | regex_search('(https:\/\/downloads\.slack.*?\.deb)') }}"
-
-  - name: "d"
-    debug: msg="{{ slack_dl_url }}"
+      slack_dl_url: "{{ lookup('url', 'https://slack.com/intl/de-de/downloads/instructions/ubuntu') | regex_search('(https://downloads.slack.*?.deb)') }}"
 
   - name: "Download and install direct download .deb packages"
     become: true
@@ -35,7 +32,7 @@
       state: present
       autoremove: true
     with_items:
-      - "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.0-amd64.deb"
+      - "{{ slack_dl_url }}"
       - "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
       - "https://raw.githubusercontent.com/thenoseman/zsh_config/master/ubuntu-install/udev-notify_0.1.4_all.deb"
 
@@ -134,19 +131,17 @@
       - { regexp: "^GRUB_CMDLINE_LINUX_DEFAULT=", line: "GRUB_CMDLINE_LINUX_DEFAULT=\"acpi_osi=Linux\""}
 
   - name: "Install NVM"
-    git:
-      repo: "https://github.com/creationix/nvm.git"
-      dest: "{{ user_home }}/.nvm"
+    shell: "git clone https://github.com/creationix/nvm.git {{ user_home }}/.nvm"
+    args:
+      creates: "{{ user_home }}/.nvm"
 
   - name: "Install node {{ node_version }} and NPM"
-    shell: "nvm install {{ node_version }} --latest-npm"
+    shell: "nvm install {{ node_version }} --latest-npm && nvm use {{ node_version }} && nvm alias default {{ node_version }}"
     args:
       creates: "{{ user_home }}/.nvm/versions/node/v{{ node_version }}/bin/npm"
 
   - name: "Install global packages via NPM"
-    npm:
-      name: "{{ item }}"
-      global: yes
+    shell: "{{ user_home }}/.nvm/versions/node/v{{ node_version }}/bin/npm install -g {{ item }}"
     with_items:
       - "diff-so-fancy"
       - "eslint"
@@ -182,9 +177,9 @@
       state: "directory"
 
   - name: "Clone dotfiles"
-    git:
-      repo: "{{ item.url }}"
-      dest: "{{ user_home }}/dev/config/{{ item.dest }}"
+    shell: "git clone {{ item.url }} {{ user_home }}/dev/config/{{ item.dest }}"
+    args:
+      creates: "{{ user_home }}/dev/config/{{ item.dest }}"
     with_items:
       - { url: "https://github.com/thenoseman/zsh_config.git", dest: "zsh_config" }
       - { url: "https://github.com/thenoseman/vim_config.git", dest: "vim_config" }
@@ -200,6 +195,11 @@
     shell: "fc-cache -f -v"
 
   - name: "Install udev rules"
+    become: true
     template:
-      src: "etc/udev/rules.d/99-usb-keyboard-mac.rules"
-      dest: "etc/udev/rules.d/99-usb-keyboard-mac.rules"
+      src: "{{ item }}"
+      dest: "/{{ item }}"
+    with_items:
+      - "etc/udev/rules.d/99-usb-keyboard-mac.rules"
+      - "usr/local/bin/connect-apple-keyboard"
+      - "usr/local/bin/connect-apple-keyboard-x"

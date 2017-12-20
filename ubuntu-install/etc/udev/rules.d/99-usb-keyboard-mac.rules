@@ -1,6 +1,4 @@
 # Apple aluminium keyboard wire mini iso
-ACTION=="add",    ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="021e", RUN+="/home/{{ user_name }}/.zsh/modules/tools/udev/connect-apple-keyboard add"
-ACTION=="remove", ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="021e", RUN+="/home/{{ user_name }}/.zsh/modules/tools/udev/connect-apple-keyboard remove"
+ACTION=="add",    ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="021e", RUN+="/usr/local/bin/connect-apple-keyboard"
 
-# Any Cherry keyboard
-ACTION=="add",    ENV{ID_VENDOR_FROM_DATABASE}=="*Cherry*", RUN+="/home/{{ user_name }}/.zsh/modules/tools/udev/connect-apple-keyboard add"
+ACTION=="remove", ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="021e", RUN+="/usr/local/bin/connect-apple-keyboard"

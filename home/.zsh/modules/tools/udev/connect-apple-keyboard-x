@@ -1,8 +1,0 @@
-#!/bin/bash
-
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-echo $RANDOM > /tmp/udev
-cat $(env) >> /tmp/udev
-
-echo "HALLO"
