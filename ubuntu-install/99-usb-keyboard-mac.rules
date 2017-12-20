@@ -1,2 +1,0 @@
-ACTION=="add", ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="021e", RUN+="/home/frank/.zsh/modules/tools/udev/connect-apple-keyboard add"
-ACTION=="remove", ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="021e", RUN+="/home/frank/.zsh/modules/tools/udev/connect-apple-keyboard remove"
