@@ -24,6 +24,8 @@
     apt:
       deb: "{{ item }}"
       allow_unauthenticated: true
+      state: latest
+      ignore_errors: true
     with_items:
       - "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.0-amd64.deb"
       - "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
@@ -57,6 +59,7 @@
       - "blueman"
       - "build-essential"
       - "cmake"
+      - "console-data"
       - "cryptsetup"
       - "ctags"
       - "curl"
