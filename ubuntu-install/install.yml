@@ -7,6 +7,7 @@
     user_home: "{{ ansible_user_dir }}"
     ruby_version: "2.4.2"
     node_version: "8.9.3"
+
   tasks: 
 
   - name: "Add repository keys"
@@ -19,13 +20,20 @@
       - "https://dl-ssl.google.com/linux/linux_signing_key.pub"
       - "https://download.docker.com/linux/ubuntu/gpg"
 
+  - name: "Get version of latest slack client"
+    set_fact:
+      slack_dl_url: "{{ lookup('url', 'https://slack.com/intl/de-de/downloads/instructions/ubuntu') | regex_search('(https:\/\/downloads\.slack.*?\.deb)') }}"
+
+  - name: "d"
+    debug: msg="{{ slack_dl_url }}"
+
   - name: "Download and install direct download .deb packages"
     become: true
     apt:
       deb: "{{ item }}"
       allow_unauthenticated: true
-      state: latest
-      ignore_errors: true
+      state: present
+      autoremove: true
     with_items:
       - "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.0-amd64.deb"
       - "http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb"
@@ -51,6 +59,7 @@
       update_cache: yes
       state: present
       install_recommends: no
+      autoremove: true
     with_items:
       - "albert"
       - "apt-transport-https"
