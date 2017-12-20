@@ -77,6 +77,7 @@
       - "gcc-6"
       - "git"
       - "google-chrome-stable"
+      - "golang"
       - "i3"
       - "i3lock"
       - "i3status"
