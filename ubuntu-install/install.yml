@@ -142,7 +142,7 @@
       creates: "{{ user_home }}/.nvm/versions/node/v{{ node_version }}/bin/npm"
 
   - name: "Install global packages via NPM"
-    shell: "{{ user_home }}/.nvm/versions/node/v{{ node_version }}/bin/npm install -g {{ item }}"
+    shell: "{{ user_home }}/.nvm/versions/node/v{{ node_version }}/bin/node {{ user_home }}/.nvm/versions/node/v{{ node_version }}/bin/npm install -g {{ item }}"
     with_items:
       - "diff-so-fancy"
       - "eslint"
