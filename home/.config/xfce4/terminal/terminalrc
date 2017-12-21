@@ -33,6 +33,5 @@ ColorBoldUseDefault=FALSE
 TabActivityColor=#0f4999
 ColorSelection=#163b59
 ColorSelectionUseDefault=FALSE
-BindingAmbiguousWidth=TERMINAL_AMBIGUOUS_WIDTH_BINDING_WIDE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
 
