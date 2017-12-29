@@ -64,7 +64,7 @@ update_important_tools() {
   gem update --system
 
   echo "${ccyellow}Installing important gems${ccend}"
-  gem install --silent pry pry-byebug bundler bond wirb haml-lint
+  gem install --silent pry pry-byebug bundler bond wirb haml-lint ripper-tags
 
   echo "${ccyellow}Installing important JS tools${ccend}"
   yarn global add ${NODE_PACKAGES} --prefer-offline --no-lockfile -s
