@@ -17,7 +17,7 @@ fi
 
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
-alias rg='rg -F -i'
+alias rg='rg -F -i --hidden'
 
 #
 # VIM
