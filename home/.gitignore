@@ -46,3 +46,4 @@ tags
 # direnv #
 # ########
 .envrc
+.git
