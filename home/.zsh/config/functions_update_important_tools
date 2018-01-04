@@ -1,6 +1,7 @@
 update_important_tools() {
 
   BREW_PACKAGES=(
+  burntsushi/ripgrep/ripgrep-bin
   colordiff
   ctags
   diff-so-fancy
@@ -12,6 +13,7 @@ update_important_tools() {
   git
   imagemagick
   jhead
+  jq
   macvim
   node
   nvm
@@ -30,15 +32,12 @@ update_important_tools() {
   yarn
   youtube-dl
   zsh
-  burntsushi/ripgrep/ripgrep-bin
-  jq
   )
 
   BREW_CASKS=(
   kdiff3
   macpass
   )
-
 
   NODE_PACKAGES=(
   babel-eslint
@@ -49,29 +48,41 @@ update_important_tools() {
   webpack
   )
 
+  RUBY_GEMS=(
+  bond
+  bundler
+  haml-lint
+  pry
+  pry-byebug
+  ripper-tags
+  rufo
+  wirb
+  )
+
   INSTALLED_PACKAGES=$(brew list ${BREW_PACKAGES})
 
   # If brew list fails there are missing packages
   if [[ "$?" != "0" ]]; then
-    echo "${ccyellow}Installing missing packages${ccend}"
+    echo "${ccyellow}Installing missing homebrew packages${ccend}"
     brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
     brew tap caskroom/cask
     brew install ${BREW_PACKAGES}
     brew cask install ${BREW_CASKS}
   fi
 
-  echo "${ccyellow}Updating rubygems${ccend}"
-  gem update --system
-
-  echo "${ccyellow}Installing important gems${ccend}"
-  gem install --silent pry pry-byebug bundler bond wirb haml-lint ripper-tags
-
-  echo "${ccyellow}Installing important JS tools${ccend}"
-  yarn global add ${NODE_PACKAGES} --prefer-offline --no-lockfile -s
-
   echo "${ccyellow}Checking homebrew update (updating if more than 3 packages updated)${ccend}"
   brew update
   UPDATES=$(brew outdated | wc -l)
   [[ "${UPDATES}" -ge "3" ]] && brew upgrade
+
+  echo "${ccyellow}Updating rubygems${ccend}"
+  gem update --system
+
+  echo "${ccyellow}Installing important gems${ccend}"
+  gem install --silent "${RUBY_GEMS}"
+
+  echo "${ccyellow}Installing important JS tools${ccend}"
+  yarn global add ${NODE_PACKAGES} --prefer-offline --no-lockfile -s
+
 }
 # vim:ft=sh
