@@ -4,7 +4,7 @@
 #
 
 # spec now via spring
-bundled_commands=(cap capify cucumber guard rackup rails rake ruby shotgun spec spork thin unicorn unicorn_rails puma)
+bundled_commands=(cap capify cucumber guard rackup rails rake spork thin unicorn unicorn_rails puma)
 
 _bundler-installed() {
   which bundle > /dev/null 2>&1
