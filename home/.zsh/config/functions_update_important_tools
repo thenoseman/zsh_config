@@ -14,7 +14,6 @@ update_important_tools() {
   imagemagick
   jhead
   jq
-  macvim
   node
   nvm
   openssl
@@ -73,7 +72,7 @@ update_important_tools() {
   echo "${ccyellow}Checking homebrew update (updating if more than 3 packages updated)${ccend}"
   brew update
   UPDATES=$(brew outdated | wc -l)
-  [[ "${UPDATES}" -ge "3" ]] && brew upgrade
+  [[ "${UPDATES}" -ge "3" ]] && brew upgrade && brew install --HEAD macvim
 
   echo "${ccyellow}Updating rubygems${ccend}"
   gem update --system
