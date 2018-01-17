@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Updates the slack status to WORKING FROM HOME
+# or removes the status with "-d"
+[[ "${SLACK_API_TOKEN}" == "" ]] && echo "Please export SLACK_API_TOKEN=xoxp-24824642821-248.... before using this."
+
+if [[ "$1" == "-d" ]]; then
+  curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7B%22status_text%22%3A%22%22%2C%22status_emoji%22%3A%22%22%7D" "https://slack.com/api/users.profile.set"
+else
+  curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7B%22status_text%22%3A%22Working%20from%20home%22%2C%22status_emoji%22%3A%22%3Ahouse_with_garden%3A%22%7D" "https://slack.com/api/users.profile.set"
+fi
