@@ -41,7 +41,8 @@ exec pasystray
 exec xautolock -locker "i3lock -c 000000" -detectsleep -time $lock_time_minutes
 
 # Turn off tap to click on touchpad
-exec synclient MaxTapTime=0
+# Turn on kinetic scrolling
+exec synclient MaxTapTime=0 CornerCoasting=0 CoastingSpeed=20 CoastingFriction=50
 
 # Keyboard repeat rate
 exec xset r rate 200 30
