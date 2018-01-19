@@ -6,7 +6,7 @@ j() {
   if [[ $matches == common:* ]]; then
     _z "$*"
   else
-    local line=$(echo $matches | fzf --height 40% --reverse --tac --select-1 --query "$*") && cd "${line##* }"
+    local line=$(echo $matches | fzf --height 40% --reverse --tac --select-1) && cd "${line##* }"
   fi
 }
 # vim:ft=sh
