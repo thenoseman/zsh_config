@@ -2,6 +2,9 @@
 
 # Updates the slack status to WORKING FROM HOME
 # or removes the status with "-d"
+#
+# get a token here: https://api.slack.com/custom-integrations/legacy-tokens
+#
 [[ "${SLACK_API_TOKEN}" == "" ]] && echo "Please export SLACK_API_TOKEN=xoxp-24824642821-248.... before using this."
 
 if [[ "$1" == "-d" ]]; then
