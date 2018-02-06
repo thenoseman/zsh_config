@@ -81,7 +81,7 @@ update_important_tools() {
   gem install --silent "${RUBY_GEMS}"
 
   echo "${ccyellow}Installing important JS tools${ccend}"
-  yarn global add ${NODE_PACKAGES} --prefer-offline --no-lockfile -s
+  yarn global add ${NODE_PACKAGES} --prefer-offline --no-lockfile -s || true
 
 }
 # vim:ft=sh
