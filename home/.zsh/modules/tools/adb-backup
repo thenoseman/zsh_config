@@ -1,20 +1,42 @@
 #!/bin/bash
-# Backup of all installed packages into single adb restore capable files
 #
+# Backup of all installed packages into single adb restore capable files
+# adb backup -f full-backup-android.ab -obb -apk -all
+
 declare -a PACKAGES
+set -f
+saveIFS="$IFS"
 
-IFS=$'\n' PACKAGES=($(adb shell 'pm list packages -f' | sed -e 's/.*=//' | grep -v "com.android" | grep -v "com.google.android" | grep -v "com.qualcomm" | grep -v "org.cyanogenmod." | grep -v "android" | sort))
-echo "Found ${#PACKAGES[*]} packages"
+SLEEP_TIME=3
 
-folder=$(date +%Y%m%d-%H%m)
-mkdir "${folder}"
+# create backup folder or clean it up
+folder=$(date +%Y%m%d)
+mkdir -p "${folder}"
+find $folder -type f -size 0 -o -size 41c -exec rm {} \;
+echo "Writing backup to '${folder}'"
 
-for pack in ${PACKAGES[@]}; do
-  if [[ "${pack}" =~ \. ]]; then
+# Set coordinates to click on for backup
+DISPLAY_X=$(adb shell wm size | cut -d " " -f 3 | cut -d "x" -f 1)
+DISPLAY_Y=$(adb shell wm size | cut -d " " -f 3 | cut -d "x" -f 2 | sed -e 's/.$//')
+CLICK_X=$(($DISPLAY_X - 1))
+CLICK_Y=$(($DISPLAY_Y - 1))
+echo "Clicking on ${CLICK_X} x ${CLICK_Y}"
+
+# Backup
+adb shell 'pm list packages -f' | grep -Ev "priv-app|framework|system\/app" | sed -e 's/.*=//' | sed -e 's/.$//' | sort > /tmp/packages.txt
+IFS=$'\n\n'
+for pack in $(cat < "/tmp/packages.txt"); do
+  target="${folder}/${pack}.adb-backup"
+
+  if [ ! -e "${target}" ]; then
     echo "Saving ${pack} to ${pack}.adb-backup"
     adb backup -f "${folder}/${pack}.adb-backup" -apk -obb "${pack}" &
-    sleep 2
-    adb shell input touchscreen tap 1001 2456
+    sleep $SLEEP_TIME
+    adb shell input touchscreen tap $CLICK_X $CLICK_Y
     wait $(jobs -p)
+  else
+    echo "Ignoring ${pack}"
   fi
 done
+
+rm /tmp/packages.txt
