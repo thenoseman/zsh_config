@@ -1,13 +1,14 @@
 . ~/.zsh/modules/ericbn-z/z.sh
 
+alias j=_z
 # Use "j" to autojump
-j() {
-  local matches=$(_z -e -l "$*" 2>&1 | sort -n -r)
-  if [[ $matches == common:* ]]; then
-    _z "$*"
-  else
-    #local line=$(echo $matches | fzf --height 40% --reverse --tac --select-1 --query "$*") && cd "${line##* }"
-    local line=$(echo $matches | fzf --height 40% --reverse --select-1) && cd "${line##* }"
-  fi
-}
+#j() {
+  #local matches=$(_z -e -l "$*" 2>&1 | sort -n -r)
+  #if [[ $matches == common:* ]]; then
+    #_z "$*"
+  #else
+    ##local line=$(echo $matches | fzf --height 40% --reverse --tac --select-1 --query "$*") && cd "${line##* }"
+    #local line=$(echo $matches | fzf --height 40% --reverse --select-1) && cd "${line##* }"
+  #fi
+#}
 # vim:ft=sh
