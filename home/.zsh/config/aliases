@@ -17,7 +17,7 @@ fi
 
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
-alias rg='rg -F -i --hidden'
+alias rg='rg -F -i --hidden --max-columns 150'
 
 #
 # VIM
@@ -33,11 +33,6 @@ fi
 
 # Generate tags for all installed gems
 alias tags="~/dev/privat/zsh_config/home/extras/generate_tags_for_gems"
-
-# Rubies
-alias 193="rbenv shell 1.9.3-perf"
-alias 211="rbenv shell 2.1.1-perf"
-alias 220="rbenv shell 2.3.0-perf"
 
 #
 # GIT RELATED
