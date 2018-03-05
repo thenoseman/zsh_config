@@ -2,7 +2,9 @@ update_important_tools() {
 
   BREW_PACKAGES=(
   burntsushi/ripgrep/ripgrep-bin
+  boost
   colordiff
+  cmake
   ctags
   diff-so-fancy
   direnv
