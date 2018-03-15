@@ -46,4 +46,6 @@ export GPG_TTY=`tty`
 
 export UNISONLOCALHOSTNAME=mac
 
+export PYTHONHOME=/usr/local/Frameworks/Python.framework/Versions/Current/
+
 # vim:ft=sh
