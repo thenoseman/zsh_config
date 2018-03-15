@@ -69,6 +69,7 @@ update_important_tools() {
     brew tap caskroom/cask
     brew install ${BREW_PACKAGES}
     brew cask install ${BREW_CASKS}
+    brew cleanup &
   fi
 
   echo "${ccyellow}Checking homebrew update (updating if more than 3 packages updated)${ccend}"
