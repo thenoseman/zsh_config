@@ -75,7 +75,7 @@ update_important_tools() {
   echo "${ccyellow}Checking homebrew update (updating if more than 3 packages updated)${ccend}"
   brew update
   UPDATES=$(brew outdated | wc -l)
-  [[ "${UPDATES}" -ge "3" ]] && brew upgrade && brew install --HEAD macvim
+  [[ "${UPDATES}" -ge "3" ]] && brew upgrade
 
   echo "${ccyellow}Updating rubygems${ccend}"
   gem update --system
