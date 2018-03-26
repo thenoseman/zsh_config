@@ -46,7 +46,6 @@ update_important_tools() {
   gulp
   tslint
   typescript
-  webpack
   )
 
   RUBY_GEMS=(
@@ -84,7 +83,7 @@ update_important_tools() {
   gem install --silent "${RUBY_GEMS}"
 
   echo "${ccyellow}Installing important JS tools${ccend}"
-  yarn global add ${NODE_PACKAGES} --prefer-offline --no-lockfile -s || true
+  npm install -g ${NODE_PACKAGES} --no-package-lock || true
 
 }
 # vim:ft=sh
