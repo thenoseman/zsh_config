@@ -1,8 +1,4 @@
-# -*- encoding : utf-8 -*-
 #  gem install pry pry-doc debugger bond wirb awesome_print git-up
-#
-
-### END debundle.rb ###
 require 'irb/completion'
 require 'irb/ext/save-history'
 

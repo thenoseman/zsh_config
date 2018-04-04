@@ -1,6 +1,6 @@
 # Rails console
 rc() { 
-  rib rails 
+  rails console
 }
 
 # Rails server
