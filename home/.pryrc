@@ -6,7 +6,7 @@ Pry.config.editor = "mvim -f"
 Pry.config.pager = false
 
 Pry.config.prompt_name = File.basename(Dir.pwd)
-Pry.prompt = [proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} > " }, proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
+Pry.prompt = [proc { |obj, nest_level| "🛠 #{RUBY_VERSION} (#{obj}):#{nest_level} > " }, proc { |obj, nest_level| "🛠 #{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
 
 if defined?(Rails) && Rails.env && defined?(Rails::ConsoleMethods)
   extend Rails::ConsoleMethods
