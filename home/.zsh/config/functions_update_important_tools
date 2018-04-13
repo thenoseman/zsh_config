@@ -46,6 +46,7 @@ update_important_tools() {
   gulp
   tslint
   typescript
+  prettier
   )
 
   RUBY_GEMS=(
