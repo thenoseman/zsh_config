@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 #
 # Configuration for Pry
 #
@@ -21,3 +20,7 @@ Pry.commands.alias_command 'n', 'next'
 Pry.commands.alias_command 'f', 'finish'
 
 Pry.commands.alias_command "@", "whereami"
+
+Pry::Commands.block_command "trace", "shows #caller without the framework files" do 
+  output.puts Pry::ColorPrinter.pp(caller.reject { |s| s =~ /\/(pry|better_errors|rack|puma|byebug|actionpack|sentry|active)/ })
+end
