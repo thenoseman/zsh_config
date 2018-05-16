@@ -10,5 +10,5 @@
 if [[ "$1" == "-d" ]]; then
   curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7B%22status_text%22%3A%22%22%2C%22status_emoji%22%3A%22%22%7D" "https://slack.com/api/users.profile.set"
 else
-  curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7B%22status_text%22%3A%22Working%20from%20home%22%2C%22status_emoji%22%3A%22%3Ahouse_with_garden%3A%22%7D" "https://slack.com/api/users.profile.set"
+  curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7b%22status_text%22%3a%22Working+from+home%22%2c%22status_emoji%22%3a%22%3ahouse_with_garden%3a%22%2c%22status_expiration%22%3a%2210%22%7d" "https://slack.com/api/users.profile.set"
 fi
