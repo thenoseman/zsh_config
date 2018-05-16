@@ -89,6 +89,7 @@ update_important_tools() {
   gem install --silent "${RUBY_GEMS}"
 
   echo "${ccyellow}Installing important JS tools${ccend}"
+  npm install -g npm
   npm install -g ${NODE_PACKAGES} --no-package-lock || true
 
 }
