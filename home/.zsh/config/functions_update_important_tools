@@ -60,27 +60,17 @@ update_important_tools() {
   wirb
   )
 
-  INSTALLED_PACKAGES=$(brew list ${BREW_PACKAGES})
-
   # If brew list fails there are missing packages
-  if [[ "$?" != "0" ]]; then
-    echo "${ccyellow}Installing missing homebrew packages${ccend}"
-    brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
-    brew tap caskroom/cask
-    brew tap universal-ctags/universal-ctags
-
-    brew install ${BREW_PACKAGES}
-    brew cask install ${BREW_CASKS}
-    brew install --HEAD universal-ctags
-
-    brew cask upgrade
-    brew cleanup &
-  fi
-
-  echo "${ccyellow}Checking homebrew update (updating if more than 3 packages updated)${ccend}"
-  brew update
-  UPDATES=$(brew outdated | wc -l)
-  [[ "${UPDATES}" -ge "3" ]] && brew upgrade
+  echo "${ccyellow}Installing missing homebrew packages${ccend}"
+  brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
+  brew tap caskroom/cask
+  brew tap universal-ctags/universal-ctags
+  brew install ${BREW_PACKAGES}
+  brew cask install ${BREW_CASKS}
+  brew install --HEAD universal-ctags
+  brew upgrade
+  brew cask upgrade
+  brew cleanup &
 
   echo "${ccyellow}Updating rubygems${ccend}"
   gem update --system
