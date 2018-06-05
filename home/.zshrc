@@ -97,6 +97,11 @@ if [ "${DESKTOP_SESSION}" = "i3" ]; then
   export $(gnome-keyring-daemon --start --components=pkcs11,ssh,secrets)
 fi
 
+# Load direnv
+if type "direnv" > /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
 
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
