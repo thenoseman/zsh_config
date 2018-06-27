@@ -1,0 +1,19 @@
+if [[ "$TERM_PROGRAM" = *"iTerm"* ]]; then
+
+  # Minimal stripped down iterm2 shell integration
+  if [[ -o interactive ]]; then
+    iterm2_set_user_var() {
+      printf "\033]1337;SetUserVar=%s=%s\007" "$1" $(printf "%s" "$2" | base64 | tr -d '\n')
+    }
+
+    [[ -z $precmd_functions ]] && precmd_functions=()
+    precmd_functions=($precmd_functions iterm2_print_user_vars)
+  fi
+
+  session_timeout=$(grep session_expires ~/.aws/credentials | cut -d "=" -f 2 | tr -d " ")
+  timeout_in_seconds=$(( $(/usr/local/bin/gdate --date "${session_timeout}" +%s) - $(date +%s )))
+
+  iterm2_print_user_vars() {
+    iterm2_set_user_var timeout $timeout_in_seconds
+  }
+fi
