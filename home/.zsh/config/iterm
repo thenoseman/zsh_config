@@ -1,3 +1,4 @@
+# vim: ft=sh
 if [[ "$TERM_PROGRAM" = *"iTerm"* ]]; then
 
   # Minimal stripped down iterm2 shell integration
@@ -11,9 +12,10 @@ if [[ "$TERM_PROGRAM" = *"iTerm"* ]]; then
   fi
 
   session_timeout=$(grep session_expires ~/.aws/credentials | cut -d "=" -f 2 | tr -d " ")
-  timeout_in_seconds=$(( $(/usr/local/bin/gdate --date "${session_timeout}" +%s) - $(date +%s )))
+  timeout=$(( $(( $(/usr/local/bin/gdate --date "${session_timeout}" +%s) - $(date +%s ) )) / 60 ))
+  [[ "${timeout}" -lt 1 ]] && timeout="👎"
 
   iterm2_print_user_vars() {
-    iterm2_set_user_var timeout $timeout_in_seconds
+    iterm2_set_user_var timeout $timeout
   }
 fi
