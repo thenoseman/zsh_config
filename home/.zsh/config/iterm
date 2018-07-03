@@ -11,11 +11,9 @@ if [[ "$TERM_PROGRAM" = *"iTerm"* ]]; then
     precmd_functions=($precmd_functions iterm2_print_user_vars)
   fi
 
-  session_timeout=$(grep session_expires ~/.aws/credentials | cut -d "=" -f 2 | tr -d " ")
-  timeout=$(( $(( $(/usr/local/bin/gdate --date "${session_timeout}" +%s) - $(date +%s ) )) / 60 ))
-  [[ "${timeout}" -lt 1 ]] && timeout="👎"
-
   iterm2_print_user_vars() {
-    iterm2_set_user_var timeout $timeout
+    # This is where iterm2 vars get set
+    # Use \(user.timeout) in badge code in the preferences of iTerm2
+    iterm2_set_user_var timeout "${timeout}"
   }
 fi
