@@ -1,3 +1,4 @@
+# vim:ft=sh
 export SHELL=zsh
 export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
@@ -17,9 +18,6 @@ export LC_ALL="en_US.UTF-8"
 # Show `time` output for any command that takes longer than 2 second of CPU time
 export REPORTTIME=2
 
-# Need this to make homebrew happy in some cases
-export ARCHFLAGS="-arch x86_64"
-
 # Manpager with ascii-sequences
 export MANPAGER=more
 
@@ -29,21 +27,9 @@ export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:+CMSClassUnloadingEnabled -Dfile.encod
 # Direnv logging -> silent
 export DIRENV_LOG_FORMAT=""
 
-# Our oracle overlord
-if [ -e "/usr/local/oracle" ]; then
-  export DYLD_LIBRARY_PATH="/usr/local/oracle/instantclient_11_2"
-  export SQLPATH="/usr/local/oracle/instantclient_11_2"
-  export TNS_ADMIN="/usr/local/oracle/network/admin"
-  export NLS_LANG="AMERICAN_AMERICA.UTF8"
-  export PATH=$PATH:$DYLD_LIBRARY_PATH
-fi
-
 # For GPG command line and used in vim
 export GPG_TTY=`tty`
 
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-export UNISONLOCALHOSTNAME=mac
-
-# vim:ft=sh
