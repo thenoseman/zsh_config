@@ -89,9 +89,6 @@ HELPDIR=/usr/local/share/zsh/helpfile
 source ~/.zsh/modules/pure_prompt/async.zsh
 async_init
 
-# Init FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # gnome-keyring
 if [ "${DESKTOP_SESSION}" = "i3" ]; then
   export $(gnome-keyring-daemon --start --components=pkcs11,ssh,secrets)
