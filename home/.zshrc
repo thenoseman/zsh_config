@@ -95,10 +95,7 @@ if [ "${DESKTOP_SESSION}" = "i3" ]; then
 fi
 
 # Load direnv
-if type "direnv" > /dev/null; then
-  eval "$(direnv hook zsh)"
-fi
-
+eval "$(/usr/local/bin/direnv hook zsh)"
 
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
