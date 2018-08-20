@@ -19,4 +19,8 @@ export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/
 # go
 export GOPATH=$HOME/dev/golang
 export PATH=$PATH:$HOME/dev/golang/bin
+
+# mac curl is too old
+export PATH="/usr/local/opt/curl/bin:$PATH"
+
 # vim:ft=sh
