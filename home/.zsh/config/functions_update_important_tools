@@ -46,7 +46,6 @@ update_important_tools() {
   tslint
   typescript
   prettier
-  eslint-plugin-vue
   )
 
   RUBY_GEMS=(
