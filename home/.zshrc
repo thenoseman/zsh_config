@@ -5,8 +5,12 @@
 fpath=(~/.zsh/completions ~/.zsh/completions/docker ~/.zsh/zfunctions $fpath)
 
 # crazy tab completion
-autoload -U compinit
-compinit
+autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
 # crazy mad shit
 setopt auto_resume auto_cd auto_pushd pushd_to_home pushd_silent pushd_minus
