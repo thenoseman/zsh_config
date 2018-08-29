@@ -23,4 +23,5 @@ export PATH=$PATH:$HOME/dev/golang/bin
 # mac curl is too old
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
-# vim:ft=sh
+# Use python 3
+export PATH=/usr/local/opt/python/libexec/bin:$PATH
