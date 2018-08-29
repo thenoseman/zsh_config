@@ -10,7 +10,7 @@ rs() {
     echo "PUBLIC ASSETS EXISTS!"
     echo "=====================${ccend}"
   fi
-  rm -rf tmp/cache
+  /bin/rm -rf tmp/cache
 
   # Use puma?
   APPENDIX=""
