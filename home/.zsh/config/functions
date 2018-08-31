@@ -4,12 +4,9 @@ ccgreen=$(echo -e "\033[0;32m")
 ccyellow=$(echo -e "\033[0;33m")
 ccend=$(echo -e "\033[0m")
 
-# ps + grep
-psg() { ps auxww | grep $1 }
-
 # Find a file starting with $1 excluding .svn and color the match
 f() {
-  find . -name "*${@}*" | grep -v ".svn" | grep --color "${@}"
+  find . -iname "*${@}*" | grep -v ".svn" | grep --color "${@}"
 }
 
 # Start tig in status view if unstanged changes present
