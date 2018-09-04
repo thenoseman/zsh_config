@@ -41,9 +41,10 @@ unsetopt SHARE_HISTORY # share history between sessions ???
 unsetopt bgnice nomatch
 unsetopt correct_all
 
-HISTSIZE=5000
-SAVEHIST=5000
-HISTFILE=~/.history
+export HISTCONTROL=ignoredups:erasedups
+export HISTSIZE=5000
+export SAVEHIST=5000
+export HISTFILE=~/.history
 
 # eliminate duplicates from these lists
 typeset -U hosts path cdpath fpath fignore manpath mailpath classpath
