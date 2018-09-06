@@ -3,3 +3,4 @@ home/.zsh/private/*
 home/.config/albert/core.db
 home/.config/xfce4/terminal/accels.scm
 home/.config/xfce4/xfconf/
+.uuid
