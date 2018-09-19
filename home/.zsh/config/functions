@@ -60,9 +60,13 @@ phone2mac() {
   IFS=$'\n' FILES=($(~/Dropbox/Software/adb shell "ls /storage/${EXT}/${1}*"))
   echo "Found ${#FILES[*]} files"
 
-  for f in $FILES; do 
+  for f in ${FILES}; do 
     ~/Dropbox/Software/adb pull -p "${f}" .
   done
+}
+
+rm() {
+  /usr/local/bin/rmtrash "$1"
 }
 
 # vim:ft=sh
