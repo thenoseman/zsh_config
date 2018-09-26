@@ -7,8 +7,13 @@
 #
 [[ "${SLACK_API_TOKEN}" == "" ]] && echo "Please export SLACK_API_TOKEN=xoxp-24824642821-248.... before using this."
 
+date_bin="date"
+[[ "$(uname -s)" == "Darwin" ]] && date_bin="gdate"
+
+expiration=$(${date_bin} -d "+8 hours" +"%s")
+
 if [[ "$1" == "-d" ]]; then
-  curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7B%22status_text%22%3A%22%22%2C%22status_emoji%22%3A%22%22%7D" "https://slack.com/api/users.profile.set"
+  curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7B%22status_text%22%3A%22%22%2C%22status_emoji%22%3A%22%22%2C%22status_expiration%22%3A0%7DD" "https://slack.com/api/users.profile.set"
 else
-  curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7b%22status_text%22%3a%22Working+from+home%22%2c%22status_emoji%22%3a%22%3ahouse_with_garden%3a%22%2c%22status_expiration%22%3a%2210%22%7d" "https://slack.com/api/users.profile.set"
+  curl -X POST -d "token=${SLACK_API_TOKEN}&profile=%7b%22status_text%22%3a%22Working+from+home%22%2c%22status_emoji%22%3a%22%3ahouse_with_garden%3a%22%2c%22status_expiration%22%3a%22${expiration}%22%7d" "https://slack.com/api/users.profile.set"
 fi
