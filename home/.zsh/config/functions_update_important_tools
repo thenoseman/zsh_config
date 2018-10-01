@@ -60,12 +60,18 @@ update_important_tools() {
   wirb
   )
 
+  echo "${ccyellow}Updating zsh_config${ccend}"
+  git pull --rebase --autostash ~/dev/config/zsh_config
+
+  echo "${ccyellow}Updating vim_config${ccend}"
+  git pull --rebase --autostash ~/dev/config/vim_config
+
   # If brew list fails there are missing packages
   echo "${ccyellow}Installing missing homebrew packages${ccend}"
   brew tap burntsushi/ripgrep https://github.com/BurntSushi/ripgrep.git
   brew tap caskroom/cask
   brew tap universal-ctags/universal-ctags
-  brew install ${BREW_PACKAGES}
+  brew install "${BREW_PACKAGES}"
   brew cask install ${BREW_CASKS}
   brew install --HEAD universal-ctags
   brew upgrade
