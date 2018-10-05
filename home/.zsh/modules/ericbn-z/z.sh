@@ -37,11 +37,10 @@ _z() {
     # bail if we don't own ~/.z and $_Z_OWNER not set
     [ -z "$_Z_OWNER" -a -f "$datafile" -a ! -O "$datafile" ] && return
 
-    _z_dirs() {
-        local line
+    _z_dirs () {
         while read line; do
             # only count directories
-            [ -d "${line%%\|*}" ] && echo "$line"
+            [ -d "${line%%\|*}" ] && echo $line
         done < "$datafile"
         return 0
     }
@@ -50,8 +49,8 @@ _z() {
     if [ "$1" = "--add" ]; then
         shift
 
-        # $HOME and / aren't worth matching
-        [ "$*" = "$HOME" -o "$*" = '/' ] && return
+        # $HOME isn't worth matching
+        [ "$*" = "$HOME" ] && return
 
         # don't track excluded directory trees
         local exclude
@@ -93,17 +92,18 @@ _z() {
         fi
 
     # tab completion
-    elif [ "$1" = '--complete' -a -s "$datafile" ]; then
-        _z_dirs | awk -v q="$2" -F'|' '
+    elif [ "$1" = "--complete" -a -s "$datafile" ]; then
+        while read line; do
+            [ -d "${line%%\|*}" ] && echo $line
+        done < "$datafile" | awk -v q="$2" -F"|" '
             BEGIN {
-                q = substr(q, 3)
-                # smart-case
                 if( q == tolower(q) ) imatch = 1
-                gsub(/ /, ".*", q)
+                q = substr(q, 3)
+                gsub(" ", ".*", q)
             }
             {
                 if( imatch ) {
-                    if( tolower($1) ~ q ) print $1
+                    if( tolower($1) ~ tolower(q) ) print $1
                 } else if( $1 ~ q ) print $1
             }
         ' 2>/dev/null
@@ -111,20 +111,18 @@ _z() {
     else
         # list/go
         while [ "$1" ]; do case "$1" in
-            --) while [ "$1" ]; do shift; local fnd="$fnd${fnd:+ }$1"; done;;
-            -*) local opt="${1:1}"; while [ "$opt" ]; do case "${opt:0:1}" in
+            --) while [ "$1" ]; do shift; local fnd="$fnd${fnd:+ }$1";done;;
+            -*) local opt=${1:1}; while [ "$opt" ]; do case ${opt:0:1} in
                     c) local fnd="^$PWD $fnd";;
                     e) local echo=echo;;
-                    h) echo "${_Z_CMD:-z} [-cehilrstx] [regex1 regex2 ... regexn]" >&2; return;;
-                    i) local cas='i';;
+                    h) echo "${_Z_CMD:-z} [-cehlrtx] args" >&2; return;;
                     l) local list=1;;
-                    r) local typ='r';;
-                    s) local cas='s';;
-                    t) local typ='t';;
+                    r) local typ="rank";;
+                    t) local typ="recent";;
                     x) sed -i -e "\:^${PWD}|.*:d" "$datafile";;
-                esac; opt="${opt:1}"; done;;
+                esac; opt=${opt:1}; done;;
              *) local fnd="$fnd${fnd:+ }$1";;
-        esac; local last="$1"; [ "$#" -gt 0 ] && shift; done
+        esac; local last=$1; [ "$#" -gt 0 ] && shift; done
         [ "$fnd" -a "$fnd" != "^$PWD " ] || local list=1
 
         # if we hit enter on a completion just go there
@@ -137,28 +135,30 @@ _z() {
         [ -f "$datafile" ] || return
 
         local cd
-        cd="$( < <( _z_dirs ) awk -v now="$(date +%s)" -v cas="$cas" -v list="$list" -v typ="$typ" -v q="$fnd" -F'|' '
+        cd="$( < <( _z_dirs ) awk -v t="$(date +%s)" -v list="$list" -v typ="$typ" -v q="$fnd" -F"|" '
             function frecent(rank, time) {
                 # relate frequency and time
-                dx = now - time
+                dx = t - time
                 if( dx < 3600 ) return rank * 4
                 if( dx < 86400 ) return rank * 2
                 if( dx < 604800 ) return rank / 2
                 return rank / 4
             }
-            function output(files, out, common) {
+            function output(matches, best_match, common) {
                 # list or return the desired directory
                 if( list ) {
                     cmd = "sort -n >&2"
-                    for( x in files ) {
-                        if( files[x] ) printf "%-10s %s\n", files[x], x | cmd
+                    for( x in matches ) {
+                        if( matches[x] ) {
+                            printf "%-10s %s\n", matches[x], x | cmd
+                        }
                     }
                     if( common ) {
                         printf "%-10s %s\n", "common:", common > "/dev/stderr"
                     }
                 } else {
-                    if( common ) out = common
-                    print out
+                    if( common ) best_match = common
+                    print best_match
                 }
             }
             function common(matches) {
@@ -169,53 +169,45 @@ _z() {
                     }
                 }
                 if( short == "/" ) return
-                # use a copy to escape special characters, as we want to return
-                # the original. yeah, this escaping is awful.
-                clean_short = short
-                gsub(/\[\(\)\[\]\|\]/, "\\\\&", clean_short)
-                for( x in matches ) if( matches[x] && x !~ clean_short ) return
+                for( x in matches ) if( matches[x] && index(x, short) != 1 ) {
+                    return
+                }
                 return short
             }
             BEGIN {
-                if( length(q) ) {
-                    query = 1
-                    if( cas == "i" ) {
-                        q = tolower(q)
-                        imatch = 1
-                    } else if( cas != "s" && q == tolower(q) ) imatch = 1
-                    gsub(/ /, ".*", q)
-                    hi_rank = -9999999999
-                }
+                gsub(" ", ".*", q)
+                hi_rank = ihi_rank = -9999999999
             }
             {
-                if( typ == "r" ) {
+                if( typ == "rank" ) {
                     rank = $2
-                } else if( typ == "t" ) {
-                    rank = $3 - now
+                } else if( typ == "recent" ) {
+                    rank = $3 - t
                 } else rank = frecent($2, $3)
-                if( query ) {
-                    if( imatch ) {
-                        x = tolower($1)
-                    } else x = $1
-                    if( x ~ q ) {
-                        matches[$1] = rank
-                        if( rank > hi_rank ) {
-                            best_match = $1
-                            hi_rank = rank
-                        }
-                    }
-                } else matches[$1] = rank
+                if( $1 ~ q ) {
+                    matches[$1] = rank
+                } else if( tolower($1) ~ tolower(q) ) imatches[$1] = rank
+                if( matches[$1] && matches[$1] > hi_rank ) {
+                    best_match = $1
+                    hi_rank = matches[$1]
+                } else if( imatches[$1] && imatches[$1] > ihi_rank ) {
+                    ibest_match = $1
+                    ihi_rank = imatches[$1]
+                }
             }
             END {
-                output(matches, best_match, common(matches))
+                # prefer case sensitive
+                if( best_match ) {
+                    output(matches, best_match, common(matches))
+                } else if( ibest_match ) {
+                    output(imatches, ibest_match, common(imatches))
+                }
             }
         ')"
 
-        [ "$?" -eq 0 ] && if [ "$cd" ]; then
-            if [ "$echo" ]; then echo "$cd"; else builtin cd "$cd"; fi
-        else
-            [ -n "$list" ]
-        fi
+        [ $? -eq 0 ] && [ "$cd" ] && {
+          if [ "$echo" ]; then echo "$cd"; else builtin cd "$cd"; fi
+        }
     fi
 }
 
@@ -226,18 +218,19 @@ alias ${_Z_CMD:-z}='_z 2>&1'
 if type compctl >/dev/null 2>&1; then
     # zsh
     [ "$_Z_NO_PROMPT_COMMAND" ] || {
-        # populate directory list, avoid clobbering any other chpwd_functions.
+        # populate directory list, avoid clobbering any other precmds.
         if [ "$_Z_NO_RESOLVE_SYMLINKS" ]; then
-            _z_chpwd() {
+            _z_precmd() {
                 (_z --add "${PWD:a}" &)
             }
         else
-            _z_chpwd() {
+            _z_precmd() {
                 (_z --add "${PWD:A}" &)
             }
         fi
-        autoload -Uz add-zsh-hook
-        add-zsh-hook -Uz chpwd _z_chpwd
+        [[ -n "${precmd_functions[(r)_z_precmd]}" ]] || {
+            precmd_functions[$(($#precmd_functions+1))]=_z_precmd
+        }
     }
     _z_zsh_tab_completion() {
         # tab completion
