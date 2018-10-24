@@ -65,9 +65,4 @@ phone2mac() {
   done
 }
 
-rm() {
-  [[ "$1" == -* ]] && /usr/local/bin/rmtrash "$2" && return
-  /usr/local/bin/rmtrash "$1"
-}
-
 # vim:ft=sh
