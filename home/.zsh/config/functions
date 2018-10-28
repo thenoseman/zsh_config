@@ -20,11 +20,6 @@ ti() {
   fi
 }
 
-# SSH Tunnel
-tunnel() {
-  ssh -f guest@$1 -L 8080:$1:80 -N
-}
-
 # Do a command in every subdir (max depth = 1)
 dirdo() {
   echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
