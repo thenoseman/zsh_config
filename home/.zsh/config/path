@@ -11,10 +11,6 @@ export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 
 # Own zsh stuff
 export PATH=$PATH:~/.zsh/modules/tools
-export PATH=$PATH:~/.zsh/modules/git-imerge
-
-# vscode
-export PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 
 # go
 export GOPATH=$HOME/dev/golang
