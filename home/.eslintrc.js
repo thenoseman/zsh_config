@@ -40,7 +40,7 @@ module.exports = {
     "no-eval": 2,
     "no-unused-expressions": 2,
     "no-iterator": 2,
-    "comma-dangle": [2, "never"],
+    "comma-dangle": ["error", "only-multiline"],
     "no-sequences": 2,
     "no-loop-func": 2,
     "no-multi-str": 2,
