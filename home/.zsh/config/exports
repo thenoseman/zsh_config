@@ -13,7 +13,7 @@ fi
 export LC_ALL="en_US.UTF-8"
 
 # Use java 1.8
-[ -e "/usr/libexec/java_home" ] && export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+[ -e "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 # Show `time` output for any command that takes longer than 2 second of CPU time
 export REPORTTIME=2
@@ -28,7 +28,7 @@ export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:+CMSClassUnloadingEnabled -Dfile.encod
 export DIRENV_LOG_FORMAT=""
 
 # For GPG command line and used in vim
-export GPG_TTY=`tty`
+export GPG_TTY=$(tty)
 
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color
@@ -36,3 +36,6 @@ export GPG_TTY=`tty`
 # For homebrew curl:
 export LDFLAGS="-L/usr/local/opt/curl/lib"
 export CPPFLAGS="-I/usr/local/opt/curl/include"
+
+# shell-check global ignore
+export SHELLCHECK_OPTS="-e SC2039"
