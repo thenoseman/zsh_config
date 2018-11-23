@@ -3,7 +3,7 @@
 #
 
 # Display all possible shell colors
-alias shellcolors="echo 'Usage: %F{COLORNUMBER}text%f\n' ; for code ({000..255}) { print -nP -- \"\$code: %F{\$code}%K{\$code}Test%k%f \" ; (( code % 8 && code < 255 )) || printf '\n'}"
+alias shellcolors="echo 'Usage: %F{COLORNUMBER}text%f\\n' ; for code ({000..255}) { print -nP -- \"\$code: %F{\$code}%K{\$code}Test%k%f \" ; (( code % 8 && code < 255 )) || printf '\\n'}"
 
 # Start a webserver here
 alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -run -e httpd . -p9090'
