@@ -21,8 +21,6 @@ update_important_tools() {
   python
   rbenv
   readline
-  redis
-  rmtrash
   ruby-build
   shellcheck
   sqlite
