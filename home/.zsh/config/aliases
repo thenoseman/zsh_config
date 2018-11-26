@@ -19,7 +19,6 @@ alias ..='cd ..'
 alias dl='cd ~/Downloads'
 alias rg='rg -F -i --hidden --max-columns 150'
 alias sharelocalhost='ssh -R 80:localhost:3000 serveo.net'
-alias macdown="/Applications/MacDown.app/Contents/MacOS/MacDown"
 
 #
 # VIM

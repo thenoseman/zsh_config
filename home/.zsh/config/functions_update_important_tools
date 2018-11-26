@@ -35,6 +35,7 @@ update_important_tools() {
   BREW_CASKS=(
   kdiff3
   keepassxc
+  macdown
   )
 
   NODE_PACKAGES=(
