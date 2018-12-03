@@ -1,0 +1,2 @@
+# https://github.com/gsamokovarov/jump
+eval "$(/usr/local/bin/jump shell)"

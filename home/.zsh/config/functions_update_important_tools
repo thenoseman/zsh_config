@@ -14,6 +14,7 @@ update_important_tools() {
   imagemagick
   jhead
   jq
+  jump
   node
   nvm
   openssl
