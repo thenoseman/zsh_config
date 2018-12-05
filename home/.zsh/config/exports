@@ -33,6 +33,9 @@ export GPG_TTY=$(tty)
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color
 
+#homebrew 
+export HOMEBREW_INSTALL_CLEANUP=1
+
 # For homebrew curl:
 export LDFLAGS="-L/usr/local/opt/curl/lib"
 export CPPFLAGS="-I/usr/local/opt/curl/include"
