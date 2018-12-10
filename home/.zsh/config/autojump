@@ -1,2 +1,2 @@
 # https://github.com/gsamokovarov/jump
-eval "$(/usr/local/bin/jump shell)"
+eval "$(/usr/local/bin/jump shell zsh)"
