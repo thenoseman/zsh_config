@@ -82,7 +82,9 @@ update_important_tools() {
    [[ ${INSTALLED[(ie)$p]} -gt ${#INSTALLED} ]] && brew cask install "${p}"
   done
 
-  brew install --HEAD universal-ctags
+  if ! brew ls --versions universal-ctags; then
+    brew install --HEAD universal-ctags
+  fi
 
   brew upgrade
   brew cask upgrade
