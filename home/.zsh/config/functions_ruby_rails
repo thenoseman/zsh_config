@@ -1,3 +1,35 @@
+# vim:ft=sh
+
+# boot rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# GC Tuning
+export RUBY_GC_HEAP_INIT_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_HEAP_FREE_MIN=500000
+
+# bundle me happy
+b() {
+  bundle "$@"
+}
+
+# run rspec via spring
+rspec() {
+  if [ -f ./bin/rspec ]; then
+    bin/rspec "$@"
+  else
+    bundle exec rspec "$@"
+  fi
+}
+
+killruby() {
+  kill -9 $(ps | grep puma | awk '{print $1}' | head -n 1) || true
+  kill -9 $(ps | grep ruby | awk '{print $1}' | head -n 1)
+}
+
+# vim:ft=sh
 # Rails console
 rc() { 
   rails console

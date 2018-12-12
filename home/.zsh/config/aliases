@@ -70,10 +70,7 @@ alias jekyll="bundle exec jekyll server --watch"
 # VIDEO DOWNLOADING AND CONVERTING
 #
 
-# Convert any video to a mobile (and chromecast) friedly format
-alias all2mp4='~/.zsh/modules/ffmpeg/all2mp4'
-
-# Download a video in mo4 format from youtube/vimeo/etc via youtube-dl
+# Download a video in mp4 format from youtube/vimeo/etc via youtube-dl
 alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrites -f best --restrict-filenames"
 
 #
@@ -81,11 +78,12 @@ alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrit
 #
 alias adb='~/Dropbox/Software/adb'
 
-
 #
 # DOCKER
 #
 alias dc="docker-compose"
 alias dcl="docker-compose logs -f --tail=25"
+
+alias tf="terraform"
 
 # vim:ft=sh

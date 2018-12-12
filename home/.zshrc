@@ -102,6 +102,9 @@ fi
 # Load direnv
 eval "$(/usr/local/bin/direnv hook zsh)"
 
+# https://github.com/gsamokovarov/jump
+eval "$(/usr/local/bin/jump shell zsh)"
+
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
