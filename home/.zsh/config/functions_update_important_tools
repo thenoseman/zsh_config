@@ -37,6 +37,7 @@ update_important_tools() {
   kdiff3
   keepassxc
   macdown
+  android-platform-tools
   )
 
   NODE_PACKAGES=(

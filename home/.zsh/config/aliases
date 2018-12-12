@@ -32,24 +32,15 @@ else
   alias vim='gvim'
 fi
 
-# Generate tags for all installed gems
-alias tags="~/dev/privat/zsh_config/home/extras/generate_tags_for_gems"
-
 #
 # GIT RELATED
 #
 
 # Start tig in big iterm window
 alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
-
 alias pu='git push'
-
 alias gpr='git pull --rebase --autostash'
-
-# Back to master
 alias master='git checkout master'
-
-# Typos
 alias gti="git"
 
 #
@@ -63,9 +54,6 @@ alias rpipe='mkdir -p tmp && if [ ! -p tmp/rspec-test-pipe ]; then mkfifo tmp/rs
 # See https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
 alias next="rspec --next-failure"
 
-# Run jekyll in watch mode
-alias jekyll="bundle exec jekyll server --watch"
-
 #
 # VIDEO DOWNLOADING AND CONVERTING
 #
@@ -74,16 +62,14 @@ alias jekyll="bundle exec jekyll server --watch"
 alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrites -f best --restrict-filenames"
 
 #
-# ANDROID
-#
-alias adb='~/Dropbox/Software/adb'
-
-#
 # DOCKER
 #
 alias dc="docker-compose"
 alias dcl="docker-compose logs -f --tail=25"
 
+# 
+# AWS
+# 
 alias tf="terraform"
 
 # vim:ft=sh
