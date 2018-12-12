@@ -1,0 +1,102 @@
+# vim: set ft=sh:
+BREW_PACKAGES=(
+ripgrep
+boost
+colordiff
+cmake
+diff-so-fancy
+direnv
+exiftool
+ffmpeg
+flvstreamer
+git
+imagemagick
+jhead
+jq
+jump
+node
+nvm
+openssl
+pstree
+python
+rbenv
+readline
+ruby-build
+shellcheck
+sqlite
+tig
+unrar
+watch
+yarn
+youtube-dl
+zsh
+)
+
+BREW_CASKS=(
+kdiff3
+keepassxc
+macdown
+android-platform-tools
+)
+
+NODE_PACKAGES=(
+babel-eslint
+eslint
+gulp
+tslint
+typescript
+prettier
+)
+
+RUBY_GEMS=(
+bond
+bundler
+haml-lint
+pry
+pry-byebug
+ripper-tags
+rufo
+wirb
+)
+
+echo ">>> Updating zsh_config"
+[ -e ~/dev/config/zsh_config ] && cd  ~/dev/config/zsh_config && git pull --rebase --autostash
+
+echo ">>> Updating vim_config"
+[ -e ~/dev/config/zsh_config ] && cd  ~/dev/config/vim_config && git pull --rebase --autostash
+
+# If brew list fails there are missing packages
+echo ">>> Installing missing homebrew packages"
+brew tap caskroom/cask
+brew tap universal-ctags/universal-ctags
+
+# Check installed packages
+IFS=$'\n' INSTALLED=($(brew list -1))
+for p in "${BREW_PACKAGES[@]}"; do
+ echo "-${p}-"
+ [[ ${INSTALLED[(ie)$p]} -gt ${#INSTALLED} ]] && brew install "${p}"
+done
+
+# Check install casks
+IFS=$'\n' INSTALLED=($(brew cask list -1))
+for p in "${BREW_CASKS[@]}"; do
+ [[ ${INSTALLED[(ie)$p]} -gt ${#INSTALLED} ]] && brew cask install "${p}"
+done
+
+if ! brew ls --versions universal-ctags; then
+  brew install --HEAD universal-ctags
+fi
+
+brew upgrade
+brew cask upgrade
+brew cleanup &
+
+echo ">>> Updating rubygems"
+gem update --system
+
+echo ">>> Installing important gems"
+gem install --silent "${RUBY_GEMS[*]}"
+
+echo ">>> Installing important JS tools"
+npm install -g npm
+npm install -g "${NODE_PACKAGES[*]}" --no-package-lock || true
