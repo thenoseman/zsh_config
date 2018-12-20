@@ -95,8 +95,8 @@ echo ">>> Updating rubygems"
 gem update --system
 
 echo ">>> Installing important gems"
-gem install --silent "${RUBY_GEMS[*]}"
+gem install --silent "${RUBY_GEMS[@]}"
 
 echo ">>> Installing important JS tools"
 npm install -g npm
-npm install -g "${NODE_PACKAGES[*]}" --no-package-lock || true
+npm install -g "${NODE_PACKAGES[@]}" --no-package-lock || true
