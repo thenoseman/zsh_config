@@ -1,9 +1,9 @@
 # vim: set ft=sh:
+# shellcheck disable=SC2207
 BREW_PACKAGES=(
-ripgrep
 boost
-colordiff
 cmake
+colordiff
 diff-so-fancy
 direnv
 exiftool
@@ -21,6 +21,7 @@ pstree
 python
 rbenv
 readline
+ripgrep
 ruby-build
 shellcheck
 sqlite
@@ -33,19 +34,22 @@ zsh
 )
 
 BREW_CASKS=(
+android-platform-tools
+gpg-suite
+itsycal
 kdiff3
 keepassxc
 macdown
-android-platform-tools
+mattr-slate
 )
 
 NODE_PACKAGES=(
 babel-eslint
 eslint
 gulp
+prettier
 tslint
 typescript
-prettier
 )
 
 RUBY_GEMS=(
