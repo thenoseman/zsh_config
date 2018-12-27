@@ -1,3 +1,0 @@
-[submodule "home/.zsh/completions/docker"]
-	path = home/.zsh/completions/docker
-	url = https://github.com/felixr/docker-zsh-completion.git
