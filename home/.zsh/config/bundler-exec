@@ -2,8 +2,6 @@
 # auto-execute bundle exec .. when appropriate
 # Taken from https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/bundler/bundler.plugin.zsh
 #
-
-# spec now via spring
 bundled_commands=(cap capify cucumber guard rackup rails rake spork thin unicorn unicorn_rails puma)
 
 _bundler-installed() {
