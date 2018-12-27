@@ -1,6 +1,3 @@
-[submodule "home/.zsh/modules/git-imerge"]
-	path = home/.zsh/modules/git-imerge
-	url = git@github.com:mhagger/git-imerge.git
 [submodule "home/.zsh/completions/docker"]
 	path = home/.zsh/completions/docker
 	url = https://github.com/felixr/docker-zsh-completion.git
