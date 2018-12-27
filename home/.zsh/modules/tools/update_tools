@@ -41,6 +41,8 @@ kdiff3
 keepassxc
 macdown
 mattr-slate
+virtualbox
+virtualbox-extension-pack
 )
 
 NODE_PACKAGES=(
@@ -75,16 +77,15 @@ brew tap caskroom/cask
 brew tap universal-ctags/universal-ctags
 
 # Check installed packages
-IFS=$'\n' INSTALLED=($(brew list -1))
+IFS=$'\n' INSTALLED=($(brew list -1 | tr '\n' ' '))
 for p in "${BREW_PACKAGES[@]}"; do
- echo "-${p}-"
- [[ ${INSTALLED[(ie)$p]} -gt ${#INSTALLED} ]] && brew install "${p}"
+ [[ ${INSTALLED} != *$p* ]] && brew install "${p}"
 done
 
 # Check install casks
-IFS=$'\n' INSTALLED=($(brew cask list -1))
+INSTALLED=$(brew cask list -1 | tr '\n' ' ')
 for p in "${BREW_CASKS[@]}"; do
- [[ ${INSTALLED[(ie)$p]} -gt ${#INSTALLED} ]] && brew cask install "${p}"
+ [[ ${INSTALLED} != *$p* ]] && brew cask install "${p}"
 done
 
 if ! brew ls --versions universal-ctags; then
