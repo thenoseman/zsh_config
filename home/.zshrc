@@ -105,6 +105,13 @@ eval "$(/usr/local/bin/direnv hook zsh)"
 # https://github.com/gsamokovarov/jump
 eval "$(/usr/local/bin/jump shell zsh)"
 
+# Color settings
+# vim: set ft=sh:
+ccred=$(echo -e "\033[0;31m")
+ccgreen=$(echo -e "\033[0;32m")
+ccyellow=$(echo -e "\033[0;33m")
+ccend=$(echo -e "\033[0m")
+
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done

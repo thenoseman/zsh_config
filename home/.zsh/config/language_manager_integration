@@ -1,3 +1,5 @@
+# vim: set ft=sh:
+
 # async init of nvm
 export NVM_DIR="$HOME/.nvm"
 
@@ -6,3 +8,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Linux
 [ -s "${NVM_DIR}/nvm.sh" ] && source ${NVM_DIR}/nvm.sh --no-use
+
+# boot rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+

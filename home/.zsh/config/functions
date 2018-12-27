@@ -1,9 +1,3 @@
-# Color settings
-ccred=$(echo -e "\033[0;31m")
-ccgreen=$(echo -e "\033[0;32m")
-ccyellow=$(echo -e "\033[0;33m")
-ccend=$(echo -e "\033[0m")
-
 # Find a file starting with $1 excluding .svn and color the match
 f() {
   find . -iname "*${@}*" | grep -v ".svn" | grep --color "${@}"
