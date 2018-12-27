@@ -112,6 +112,45 @@ ccgreen=$(echo -e "\033[0;32m")
 ccyellow=$(echo -e "\033[0;33m")
 ccend=$(echo -e "\033[0m")
 
+#
+# Keybindings
+#
+# Vi command editing mode
+bindkey -e
+
+# Make delete work properly in all cases
+bindkey "^[[3~" delete-char
+
+# Mac specific keyboard mappings
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[5~' up-history
+bindkey '^[[6~' down-history
+
+bindkey '^R' history-incremental-search-backward
+bindkey -s '^D' "logout\n"
+
+# Linux (see key sequnce using <ctrl-v>anykeycombo
+
+# ALT-<left>
+bindkey "^[[1;3D" backward-word
+
+# ALT-<right>
+bindkey "^[[1;3C" forward-word
+
+# strg+alt+7 = "/"
+bindkey -s "^_" "/"
+
+# brackets mac like
+bindkey -s "^[[5" "["
+bindkey -s "^[[6" "]"
+bindkey -s "^[[7" "{"
+bindkey -s "^[[8" "}"
+
+# alt-n : ~
+bindkey -s "^[n" "~"
+
+
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
