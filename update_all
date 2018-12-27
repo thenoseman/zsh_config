@@ -3,15 +3,6 @@
 # Update async.zsh
 curl -s -L "https://raw.githubusercontent.com/mafredri/zsh-async/master/async.zsh" -o home/.zsh/modules/pure_prompt/async.zsh
 
-# First update all submodules to HEAD
-git submodule foreach git pull origin master
-
 # Commit
 git add home/.zsh/modules/*
-git commit -am "Updated modules to the newest version as of `date`" 
-
-echo
-echo "Changes in Submodules ..."
-echo "-------------------------"
-echo
-git log -1 -p --oneline | grep "+++" | sed "s/^.*modules\///"
+git commit -am "Updated modules to the newest version as of $(date)" 
