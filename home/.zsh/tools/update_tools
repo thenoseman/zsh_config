@@ -1,5 +1,9 @@
 # vim: set ft=sh:
-# shellcheck disable=SC2207
+
+log() {
+  echo "\033[0;33m${1}\033[0m"
+}
+
 BREW_PACKAGES=(
 boost
 cmake
@@ -65,21 +69,21 @@ rufo
 wirb
 )
 
-echo ">>> Updating zsh_config"
+log ">>> Updating zsh_config"
 [ -e ~/dev/config/zsh_config ] && cd  ~/dev/config/zsh_config && git pull --rebase --autostash
 
-echo ">>> Updating vim_config"
+log ">>> Updating vim_config"
 [ -e ~/dev/config/zsh_config ] && cd  ~/dev/config/vim_config && git pull --rebase --autostash
 
 # If brew list fails there are missing packages
-echo ">>> Installing missing homebrew packages"
+log ">>> Installing missing homebrew packages"
 brew tap caskroom/cask
 brew tap universal-ctags/universal-ctags
 
 # Check installed packages
-IFS=$'\n' INSTALLED=($(brew list -1 | tr '\n' ' '))
+INSTALLED=$(brew list -1 | tr '\n' ' ')
 for p in "${BREW_PACKAGES[@]}"; do
- [[ ${INSTALLED} != *$p* ]] && brew install "${p}"
+ [[ "${INSTALLED}" != *$p* ]] && brew install "${p}"
 done
 
 # Check install casks
@@ -96,12 +100,12 @@ brew upgrade
 brew cask upgrade
 brew cleanup &
 
-echo ">>> Updating rubygems"
+log ">>> Updating rubygems"
 gem update --system
 
-echo ">>> Installing important gems"
+log ">>> Installing important gems"
 gem install --silent "${RUBY_GEMS[@]}"
 
-echo ">>> Installing important JS tools"
+log ">>> Installing important JS tools"
 npm install -g npm
 npm install -g "${NODE_PACKAGES[@]}" --no-package-lock || true
