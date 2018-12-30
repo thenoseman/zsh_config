@@ -1,16 +1,15 @@
 # profiling (execute zprof after shell is initialized)
-#zmodload zsh/zprof
+# zmodload zsh/zprof
 
 # Add paths to zsh function path
-fpath=(~/.zsh/completions ~/.zsh/completions/docker ~/.zsh/zfunctions $fpath)
+fpath=(~/.zsh/completions ~/.zsh/zfunctions $fpath)
 
 # crazy tab completion
 autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+for dump in ~/.zcompdump(N.mh+24); do
   compinit
-else
-  compinit -C
-fi
+done
+compinit -C
 
 # crazy mad shit
 setopt auto_resume auto_cd auto_pushd pushd_to_home pushd_silent pushd_minus
@@ -49,6 +48,7 @@ export HISTFILE=~/.history
 # eliminate duplicates from these lists
 typeset -U hosts path cdpath fpath fignore manpath mailpath classpath
 
+# Compile all hostsfiles to include them in autocomplete
 if [ -f "$HOME/.ssh/known_hosts" ]; then
     sshhosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*})
 fi
@@ -56,6 +56,7 @@ if [ -f "/etc/hosts" ]; then
     : ${(A)etchosts:=${(s: :)${(ps:\t:)${${(f)~~"$(</etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}}
 fi
 hosts=($hosts $etchosts $sshhosts)
+zstyle ':completion:*:hosts' hosts $hosts
 
 # completion engine additions
 # keep cvs and *~ files out
@@ -64,7 +65,6 @@ zstyle ':completion:*:cd:*' ignored-patterns '(|*/)CVS'
 
 # kill command completion
 zstyle ':completion:*:kill:*:processes' command "ps x"
-zstyle ':completion:*:hosts' hosts $hosts
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
 zstyle ':completion:*:descriptions' format "- %d -"
 zstyle ':completion:*:corrections' format "- %d - (errors %e})"
@@ -154,3 +154,5 @@ bindkey -s "^[n" "~"
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
+
+ # zprof
