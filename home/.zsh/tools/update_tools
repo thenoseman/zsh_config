@@ -45,8 +45,6 @@ kdiff3
 keepassxc
 macdown
 mattr-slate
-virtualbox
-virtualbox-extension-pack
 )
 
 NODE_PACKAGES=(
