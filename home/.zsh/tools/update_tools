@@ -45,6 +45,7 @@ kdiff3
 keepassxc
 macdown
 mattr-slate
+vlc
 )
 
 NODE_PACKAGES=(
