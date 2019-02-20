@@ -1,8 +1,4 @@
 #!/bin/bash
 
 # Update async.zsh
-curl -s -L "https://raw.githubusercontent.com/mafredri/zsh-async/master/async.zsh" -o home/.zsh/modules/pure_prompt/async.zsh
-
-# Commit
-git add home/.zsh/modules/*
-git commit -am "Updated modules to the newest version as of $(date)" 
+curl -s -L "https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh" -o home/.zsh/modules/pure_prompt/async.zsh
