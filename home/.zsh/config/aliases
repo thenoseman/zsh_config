@@ -71,5 +71,6 @@ alias dcl="docker-compose logs -f --tail=25"
 # AWS
 # 
 alias tf="terraform"
+alias tf-a="terraform apply"
 
 # vim:ft=sh
