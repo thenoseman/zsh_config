@@ -46,6 +46,7 @@ keepassxc
 macdown
 mattr-slate
 vlc
+clipy
 )
 
 NODE_PACKAGES=(
