@@ -47,3 +47,6 @@ tags
 # ########
 .envrc
 .git
+
+tags.lock
+tags.temp
