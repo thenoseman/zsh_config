@@ -12,10 +12,6 @@ export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 # Own zsh stuff
 export PATH=$PATH:~/.zsh/tools
 
-# go
-export GOPATH=$HOME/dev/golang
-export PATH=$PATH:$HOME/dev/golang/bin
-
 # mac curl is too old
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
