@@ -28,12 +28,6 @@ wholistens() {
   lsof -n -i4TCP:${1} | grep LISTEN
 }
 
-# Push all branches to remote
-puall() {
-  LATEST_BRANCH=$(git branch --list | grep '[0-9][0-9][0-9]' | sort -r | head -n 1 | sed 's/* //g' | tr -d " ")
-  git push origin master ${LATEST_BRANCH} 
-}
-
 # Copy files to phone
 mac2phone() {
   EXT=$(~/Dropbox/Software/adb shell ls -la /storage/ | grep sdcard_rw | grep -v emulated | sed "s/^.* //" | tr -dc '[:print:]')
@@ -51,6 +45,14 @@ phone2mac() {
 
   for f in ${FILES}; do 
     ~/Dropbox/Software/adb pull -p "${f}" .
+  done
+}
+
+wg-up() {
+  for file in /etc/wireguard/*.conf; do
+    dev="${${file/\/etc\/wireguard\//}/.conf/}"
+    echo "Bringing ${dev} up"
+    sudo wg-quick up "${${a/\/etc\/wireguard\//}/.conf/}"
   done
 }
 
