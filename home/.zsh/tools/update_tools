@@ -101,7 +101,12 @@ if ! brew ls --versions universal-ctags; then
 fi
 
 brew upgrade
-brew cask upgrade
+
+# Need to do this one by one until cask upgrade doesn't fail if one fails
+for cask in $(brew cask outdated | cut -d '(' -f 1); do 
+  log ">>> Upgrading cask '${cask}'"
+  brew cask upgrade "$cask"
+done
 brew cleanup &
 
 log ">>> Updating rubygems"
