@@ -52,7 +52,7 @@ wg-up() {
   for file in /etc/wireguard/*.conf; do
     dev="${${file/\/etc\/wireguard\//}/.conf/}"
     echo "Bringing ${dev} up"
-    sudo wg-quick up "${${a/\/etc\/wireguard\//}/.conf/}"
+    sudo wg-quick up "${dev}"
   done
 }
 
