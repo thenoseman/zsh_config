@@ -2,7 +2,7 @@
 # 
 # Rename images according to their exit ate tags
 #
-[ -e "sorted" ] && echo "the direcory 'sorted' does already exists. exiting" && exit 1
+[ -e "sorted" ] && echo "The direcory 'sorted' already exists. Exiting" && exit 1
 
 mkdir sorted
 
@@ -12,7 +12,7 @@ find . -iname "*.jpg" -exec mv {} sorted \;
 cd sorted
 
 # Rotate images
-jhead -autorot *.jpg
+jhead -autorot "*.jpg"
 
 # Rename images according to exif-tag
 exiftool -r "-FileName<CreateDate" -d "%Y-%m-%d/%Y_%m_%d_%H_%M_%S.%%e" .
