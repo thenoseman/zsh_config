@@ -22,12 +22,6 @@ dirdo() {
   done
 }
 
-# Shows who listens to a portnumber
-# eg. wholistens 3000
-wholistens() {
-  lsof -n -i4TCP:${1} | grep LISTEN
-}
-
 # Copy files to phone
 mac2phone() {
   EXT=$(~/Dropbox/Software/adb shell ls -la /storage/ | grep sdcard_rw | grep -v emulated | sed "s/^.* //" | tr -dc '[:print:]')
