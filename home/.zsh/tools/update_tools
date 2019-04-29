@@ -107,7 +107,8 @@ for cask in $(brew cask outdated | cut -d '(' -f 1); do
   log ">>> Upgrading cask '${cask}'"
   brew cask upgrade "$cask"
 done
-brew cleanup &
+
+# brew cleanup is run via HOMEBREW_INSTALL_CLEANUP=1 automatically!
 
 log ">>> Updating rubygems"
 gem update --system
