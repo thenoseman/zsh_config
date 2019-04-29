@@ -12,6 +12,9 @@ fi
 
 export LC_ALL="en_US.UTF-8"
 
+# https://news.sherlock.stanford.edu/posts/when-setting-an-environment-variable-gives-you-a-40-x-speedup
+export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
+
 # Use java 1.8
 [ -e "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
