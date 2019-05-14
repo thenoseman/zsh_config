@@ -50,4 +50,8 @@ wg-up() {
   done
 }
 
+landscape() {
+ RBENV_VERSION="$(rbenv whence landscape | sort | tail -n 1)" rbenv exec landscape $*
+}
+
 # vim:ft=sh
