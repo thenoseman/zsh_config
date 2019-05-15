@@ -51,6 +51,9 @@ mattr-slate
 namechanger
 the-unarchiver
 vlc
+quicklook-json
+qlimagesize
+qlmarkdown
 )
 
 NODE_PACKAGES=(
