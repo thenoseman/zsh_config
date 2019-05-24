@@ -14,6 +14,8 @@ set main-view   = date:default author:full commit-title:refs=false
 bind generic P !git push
 bind generic <Ctrl-f> move-page-down  
 bind generic <Ctrl-b> move-page-up
+bind diff <Up> move-up
+bind diff <Down> move-down
 
 bind stage 1 stage-update-line # stage a single line
 
@@ -22,6 +24,8 @@ bind status U !git add .
 bind diff ! !git checkout %(file)
 bind diff <Down> move-down
 bind diff <Up> move-up
+bind diff E !git show %(commit):%(file)
 
 bind main R !git revert %(commit)
 bind main a !git commit --amend
+
