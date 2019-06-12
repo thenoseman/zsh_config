@@ -86,6 +86,7 @@ log ">>> Updating vim_config"
 # If brew list fails there are missing packages
 log ">>> Installing missing homebrew packages"
 brew tap universal-ctags/universal-ctags
+brew tap macvim-dev/macvim
 
 # Check installed packages
 INSTALLED=$(brew list -1 | tr '\n' ' ')
@@ -102,6 +103,8 @@ done
 if ! brew ls --versions universal-ctags; then
   brew install --HEAD universal-ctags
 fi
+
+brew install --HEAD macvim-dev/macvim/macvim
 
 brew upgrade
 
