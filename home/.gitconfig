@@ -9,7 +9,6 @@
   cp = cherry-pick -x
   b = branch -v
   r = remote -v
-  t = tag -l
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
   unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
@@ -33,11 +32,11 @@
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = "vim -u NONE -N -u ~/.vimrc-commit -c 'normal A' -c 'startinsert'"
-	pager = diff-so-fancy | less --tabs=4 -RFX
-	precomposeunicode = true
-	untrackedCache = true
+  pager = diff-so-fancy | less --tabs=4 -RFX
+  precomposeunicode = true
+  untrackedCache = true
 [gc]
-	auto = 1000
+  auto = 1000
 [branch]
   autosetupmerge = true
 [git-up "fetch"]
@@ -63,7 +62,7 @@
   prompt = false
   tool = kdiff3
 [grep]
-	patternType = perl
+  patternType = perl
 [rerere]
   enabled = true
 [difftool "kdiff3"]
@@ -72,8 +71,8 @@
   trustExitCode = false
   path = /usr/local/bin/kdiff3
 [diff-so-fancy]
-	useUnicodeRuler = false
+  useUnicodeRuler = false
 [rebase]
-	autostash = true
+  autostash = true
 [user]
-	useconfigonly = true
+  useconfigonly = true
