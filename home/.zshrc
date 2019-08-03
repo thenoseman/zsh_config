@@ -59,9 +59,8 @@ hosts=($hosts $etchosts $sshhosts)
 zstyle ':completion:*:hosts' hosts $hosts
 
 # completion engine additions
-# keep cvs and *~ files out
-zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS' '(|*/)*\~'
-zstyle ':completion:*:cd:*' ignored-patterns '(|*/)CVS'
+# keep *~ files out
+zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)*\~'
 
 # kill command completion
 zstyle ':completion:*:kill:*:processes' command "ps x"
@@ -95,9 +94,7 @@ source ~/.zsh/modules/pure_prompt/async.zsh
 async_init
 
 # gnome-keyring
-if [ "${DESKTOP_SESSION}" = "i3" ]; then
-  export $(gnome-keyring-daemon --start --components=pkcs11,ssh,secrets)
-fi
+[[ "${DESKTOP_SESSION}" == "i3" ]] && export $(gnome-keyring-daemon --start --components=pkcs11,ssh,secrets)
 
 # Load direnv
 eval "$(/usr/local/bin/direnv hook zsh)"
@@ -150,9 +147,8 @@ bindkey -s "^[[8" "}"
 # alt-n : ~
 bindkey -s "^[n" "~"
 
-
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
 
- # zprof
+# zprof
