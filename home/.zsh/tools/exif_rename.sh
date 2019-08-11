@@ -1,5 +1,5 @@
 #!/bin/bash
-# 
+#
 # Rename images according to their exit ate tags
 #
 [ -e "sorted" ] && echo "The direcory 'sorted' already exists. Exiting" && exit 1
@@ -15,13 +15,13 @@ cd sorted
 jhead -autorot "*.jpg"
 
 # Rename images according to exif-tag
-exiftool -r "-FileName<CreateDate" -d "%Y-%m-%d/%Y_%m_%d_%H_%M_%S.%%e" .
+exiftool -r "-FileName<CreateDate" -d "%Y/%Y-%m-%d/%Y_%m_%d_%H_%M_%S.%%e" .
 
 # Movies?
 for file in *.MOV; do mv "$file" "${file/.MOV}".mov; done
 ls *.m* > /dev/null
 if [[ "$?" == 0 ]]; then
-  for file in *.mov *.mp4; do 
+  for file in *.mov *.mp4; do
     creation_date=$(~/Dropbox/Software/ffmpeg/ffmpeg -i "$file" 2>&1 | grep creation_time | head -n 1 | cut -d ":" -f 2,3,4 | sed 's/^//g')
     date=$(echo $creation_date | cut -d " " -f 1 | sed 's/-/_/g')
     dateforfolder=$(echo $creation_date | cut -d " " -f 1)
