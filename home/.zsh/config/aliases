@@ -21,6 +21,7 @@ alias rg='rg -F -i --hidden --max-columns 150'
 alias sharelocalhost='ssh -R 80:localhost:3000 serveo.net'
 alias oscp="/usr/local/Cellar/openssh/7.5p1_1/bin/scp"
 
+alias killdns="sudo killall mDNSResponder"
 #
 # VIM
 #
@@ -68,9 +69,9 @@ alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrit
 alias dc="docker-compose"
 alias dcl="docker-compose logs -f --tail=25"
 
-# 
+#
 # AWS
-# 
+#
 alias tf="terraform"
 
 # vim:ft=sh
