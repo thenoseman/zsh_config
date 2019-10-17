@@ -112,7 +112,8 @@ ccend=$(echo -e "\033[0m")
 #
 # Keybindings
 #
-# Vi command editing mode
+# emacs command editing mode
+# https://sgeb.io/posts/2014/04/zsh-zle-custom-widgets/#what-are-keymaps?
 bindkey -e
 
 # Make delete work properly in all cases
