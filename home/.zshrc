@@ -16,7 +16,7 @@ setopt auto_resume auto_cd auto_pushd pushd_to_home pushd_silent pushd_minus
 setopt pushd_ignore_dups bad_pattern function_argzero inc_append_history
 setopt hist_verify hist_no_store hist_no_functions
 setopt hist_ignore_dups hist_find_no_dups hist_save_no_dups
-setopt nobeep extended_glob prompt_subst interactive_comments
+setopt no_beep extended_glob prompt_subst interactive_comments
 setopt list_types list_packed print_eight_bit nohup notify
 setopt print_exit_value
 setopt NO_BG_NICE
