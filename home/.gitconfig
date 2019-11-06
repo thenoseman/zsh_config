@@ -31,7 +31,7 @@
   trustctime = false
   autocrlf = input
   excludesfile = ~/.gitignore
-  editor = "vim -u NONE -N -u ~/.vimrc -c 'normal A' -c 'startinsert'"
+  editor = "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert'"
   pager = diff-so-fancy | less --tabs=4 -RFX
   precomposeunicode = true
   untrackedCache = true
