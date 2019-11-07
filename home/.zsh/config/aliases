@@ -22,6 +22,7 @@ alias sharelocalhost='ssh -R 80:localhost:3000 serveo.net'
 alias oscp="/usr/local/Cellar/openssh/7.5p1_1/bin/scp"
 
 alias killdns="sudo killall mDNSResponder"
+alias typora="open -a typora"
 #
 # VIM
 #
