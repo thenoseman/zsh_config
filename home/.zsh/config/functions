@@ -55,12 +55,12 @@ wg-up() {
 #
 aws() {
   [ -e "${AWS_VAULT_PROFILE}" ] && echo "Please set AWS_VAULT_PROFILE!" && exit 1
-  aws-vault  --assume-role-ttl 1h exec "${AWS_VAULT_PROFILE}" -- aws "$@"
+  exec aws-vault --assume-role-ttl 1h exec "${AWS_VAULT_PROFILE}" -- aws "$@"
 }
 
 tf() {
   [ -e "${AWS_VAULT_PROFILE}" ] && echo "Please set AWS_VAULT_PROFILE!" && exit 1
-  aws-vault --assume-role-ttl 1h exec "${AWS_VAULT_PROFILE}" -- terraform "$@"
+  exec aws-vault --assume-role-ttl 1h exec "${AWS_VAULT_PROFILE}" -- terraform "$@"
 }
 
 # vim:ft=sh
