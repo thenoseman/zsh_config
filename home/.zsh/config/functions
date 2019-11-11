@@ -54,11 +54,11 @@ wg-up() {
 # AWS
 #
 aws() {
-  exec aws-vault --assume-role-ttl 1h exec "${AWS_VAULT_PROFILE}" -- aws "$@"
+  aws-vault exec --assume-role-ttl=1h "${AWS_VAULT_PROFILE}" -- aws "$@"
 }
 
 tf() {
-  exec aws-vault --assume-role-ttl 1h exec "${AWS_VAULT_PROFILE}" -- terraform "$@"
+  aws-vault exec --assume-role-ttl=1h "${AWS_VAULT_PROFILE}" -- terraform "$@"
 }
 
 # vim:ft=sh
