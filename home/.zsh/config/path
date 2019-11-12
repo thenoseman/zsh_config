@@ -10,7 +10,7 @@ export PATH=$PATH:/usr/local/share/npm/bin
 export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 
 # Own zsh stuff
-export PATH=$PATH:~/.zsh/tools
+export PATH=~/.zsh/tools:$PATH
 
 # mac curl is too old
 export PATH="/usr/local/opt/curl/bin:$PATH"

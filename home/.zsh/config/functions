@@ -49,16 +49,4 @@ wg-up() {
     sudo wg-quick up "${dev}"
   done
 }
-
-#
-# AWS
-#
-aws() {
-  aws-vault exec --assume-role-ttl=1h "${AWS_VAULT_PROFILE}" -- aws "$@"
-}
-
-tf() {
-  aws-vault exec --assume-role-ttl=1h "${AWS_VAULT_PROFILE}" -- terraform "$@"
-}
-
 # vim:ft=sh
