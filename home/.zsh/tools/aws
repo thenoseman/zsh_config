@@ -1,2 +1,2 @@
 #!/bin/sh
-aws-vault exec --assume-role-ttl=1h "${AWS_PROFILE}" -- /usr/local/bin/aws "$@"
+aws-vault exec --assume-role-ttl=1h "${AWS_VAULT_PROFILE:-AWS_PROFILE}" -- /usr/local/bin/aws "$@"
