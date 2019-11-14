@@ -1,2 +1,8 @@
-#!/bin/sh
-aws-vault exec --assume-role-ttl=1h "${AWS_VAULT_PROFILE:-$AWS_PROFILE}" -- /usr/local/bin/terraform "$@"
+#!/usr/bin/env sh
+set -e
+BIN="/usr/local/bin/terraform"
+if [[ -n $AWS_VAULT ]] || [[ -n $VIMRUNTIME ]]; then
+  exec $BIN "$@"
+fi
+
+exec aws-vault exec --assume-role-ttl "1h" "${AWS_VAULT_PROFILE:-$AWS_PROFILE}" -- "${BIN}" "$@"
