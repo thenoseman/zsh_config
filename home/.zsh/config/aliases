@@ -1,3 +1,4 @@
+# vim:ft=sh
 #
 # SHELL HELPERS
 #
@@ -18,9 +19,7 @@ fi
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
 alias rg='rg -F -i --hidden --max-columns 150'
-alias sharelocalhost='ssh -R 80:localhost:3000 serveo.net'
 alias killdns="sudo killall mDNSResponder"
-alias typora="open -a typora"
 
 #
 # VIM
@@ -71,5 +70,6 @@ alias dcl="docker-compose logs -f --tail=25"
 #
 # AWS
 #
+alias terraform="aws-vault-wrapper /usr/local/bin/terraform"
 alias tf="terraform"
-# vim:ft=sh
+alias aws="aws-vault-wrapper /usr/local/bin/aws"
