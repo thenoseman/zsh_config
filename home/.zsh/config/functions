@@ -48,5 +48,6 @@ wg-up() {
     echo "Bringing ${dev} up"
     sudo wg-quick up "${dev}"
   done
+  sudo killall mDNSResponder
 }
 # vim:ft=sh
