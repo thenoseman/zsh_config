@@ -39,3 +39,17 @@ hs.hotkey.bind({"cmd", "shift"}, "2", function()
   windowFrame.h = screenFrame.h
   win:setFrame(windowFrame)
 end)
+
+-- Standard layout
+hs.hotkey.bind({"cmd", "shift"}, "9", function()
+  local primaryDisplay = hs.screen.primaryScreen()
+  local secondaryDisplay = hs.screen'Dell'
+  local windowLayout = {
+    {"Google Chrome", nil, primaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
+    {"MacVim", nil, primaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
+    {"iTerm2", nil, primaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1}, nil, nil},
+    {"Microsoft Outlook", nil, secondaryDisplay, { x = 0.34, y = 0, w = 0.66, h = 1}, nil, nil},
+    {"Slack", nil, secondaryDisplay, { x = 0, y = 0, w = 0.34, h = 1}, nil, nil},
+  }
+  hs.layout.apply(windowLayout)
+end)
