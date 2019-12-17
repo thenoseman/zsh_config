@@ -39,7 +39,7 @@ zsh
 
 BREW_CASKS=(
 android-platform-tools
-clipy
+hammerspoon
 disk-inventory-x
 gpg-suite
 iterm2
@@ -47,7 +47,6 @@ itsycal
 kdiff3
 keepassxc
 macdown
-mattr-slate
 namechanger
 the-unarchiver
 vlc
