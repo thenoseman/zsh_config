@@ -120,5 +120,5 @@ log ">>> Installing important gems"
 gem install --silent "${RUBY_GEMS[@]}"
 
 log ">>> Installing important JS tools"
-npm install -g npm
+npm install -g --force npm
 npm install -g "${NODE_PACKAGES[@]}" --no-package-lock || true
