@@ -1,3 +1,7 @@
+-- ReloadConfiguration
+hs.loadSpoon("ReloadConfiguration")
+spoon.ReloadConfiguration:start()
+
 -- Clipboardtools
 hs.loadSpoon("ClipboardTool")
 local cliboardtool_hotkeys = { 
@@ -9,7 +13,6 @@ spoon.ClipboardTool.show_in_menubar = false
 spoon.ClipboardTool:start()
 
 -- Window movement
-
 function focusedWindow() 
   local win = hs.window.focusedWindow()
   local windowFrame = win:frame()
