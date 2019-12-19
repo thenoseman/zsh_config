@@ -46,7 +46,3 @@ export CPPFLAGS="-I/usr/local/opt/curl/include"
 # shell-check global ignore
 export SHELLCHECK_OPTS="-e SC2039"
 
-# nodegyp messages like 
-# ld: warning: text-based stub file /System/Library/Frameworks//CoreFoundation.framework/CoreFoundation.tbd and library file /System/Library/Frameworks//CoreFoundation.framework/CoreFoundation are out of sync. Falling back to library file for linking.
-# need this
-export SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX"
