@@ -60,7 +60,7 @@
   path = /usr/local/bin/kdiff3
 [mergetool "meld"]
   trustExitCode = true
-  cmd = open -W -a Meld --args --auto-merge \"$LOCAL\" \"$BASE\" \"$REMOTE\" --output=\"$MERGED\"
+  cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
 [diff]
   algorithm = patience
   tool = meld
@@ -70,7 +70,7 @@
   trustExitCode = false
 [difftool "meld"]
   trustExitCode = true
-  cmd = open -W -a Meld --args \"$LOCAL\" \"$REMOTE\"
+  cmd = open -W -a Meld --args \"$PWD/$LOCAL\" \"$PWD/$REMOTE\"
 [grep]
   patternType = perl
 [rerere]
