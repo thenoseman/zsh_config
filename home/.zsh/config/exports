@@ -46,3 +46,4 @@ export CPPFLAGS="-I/usr/local/opt/curl/include"
 # shell-check global ignore
 export SHELLCHECK_OPTS="-e SC2039"
 
+export RIPGREP_CONFIG_PATH=~/.ripgreprc

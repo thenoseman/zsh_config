@@ -1,0 +1,5 @@
+--type-add 
+gems:*.gemspec
+
+--type-add 
+gems:Gemfile
