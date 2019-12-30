@@ -11,4 +11,4 @@ if [[ -z $AWS_VAULT_PROFILE ]] && [[ -z $AWS_PROFILE ]]; then
   echo "Please set AWS_VAULT_PROFILE to your profile name" && exit 1
 fi
 
-exec aws-vault exec --assume-role-ttl "1h" "${AWS_VAULT_PROFILE:-$AWS_PROFILE}" -- "${BIN}" "$@"
+exec aws-vault exec "${AWS_VAULT_PROFILE:-$AWS_PROFILE}" -- "${BIN}" "$@"
