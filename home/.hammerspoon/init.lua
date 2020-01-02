@@ -1,4 +1,5 @@
 local log = hs.logger.new('home','debug')
+local secondaryDisplayname = "Dell"
 
 -- ReloadConfiguration
 hs.loadSpoon("ReloadConfiguration")
@@ -19,7 +20,7 @@ hs.window.animationDuration = 0
 
 -- Notice that hammerspoon regards desktop = all screens combined = continguous X coordinates starting top left on primary screen
 local primaryDisplay = hs.screen.primaryScreen()
-local secondaryDisplay = hs.screen'Dell'
+local secondaryDisplay = hs.screen.find(secondaryDisplayname)
 local primaryScreenFrame = primaryDisplay:frame()
 local secondaryScreenFrame = secondaryDisplay:frame()
 
@@ -58,3 +59,39 @@ hs.hotkey.bind({"cmd", "shift"}, "9", function()
   }
   hs.layout.apply(windowLayout)
 end)
+
+-- Returns the best mode for usage on a screen returns a table with w and h
+-- to be used with hs.screen:setMode()
+function bestModeForScreen(screenName)
+  local sc = hs.screen.find(screenName)
+  local allModes = sc:availableModes()
+  local modes = {}
+  local i = 0
+
+  local oldW = 0
+  local oldH = 0
+
+  for mode, _ in pairs(allModes) do 
+    local w = tonumber(string.match(mode, "^(%d+)x"))
+    local h = tonumber(string.match(mode, "x(%d+)@"))
+
+    if(w > oldW and h > oldH) then
+      oldW = w
+      oldH = h
+    end
+
+    modes[i] = mode 
+    i = i + 1 
+  end
+
+  return { w = oldW, h = oldH, screen = sc }
+end
+
+-- Screen resizing
+function onScreenLayoutChange()
+  local secondaryDisplayMode = bestModeForScreen(secondaryDisplayname)
+  secondaryDisplayMode.screen:setMode(secondaryDisplayMode.w, secondaryDisplayMode.h, 1)
+end
+
+screenWatcher = hs.screen.watcher.new(onScreenLayoutChange);
+screenWatcher:start()
