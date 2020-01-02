@@ -22,7 +22,9 @@ hs.window.animationDuration = 0
 local primaryDisplay = hs.screen.primaryScreen()
 local secondaryDisplay = hs.screen.find(secondaryDisplayname)
 local primaryScreenFrame = primaryDisplay:frame()
-local secondaryScreenFrame = secondaryDisplay:frame()
+if not secondaryDisplay == nil then
+  local secondaryScreenFrame = secondaryDisplay:frame()
+end
 
 -- 2/3 screen size, anchor top left, screen 1
 hs.hotkey.bind({"cmd", "shift"}, "1", function()
@@ -94,6 +96,8 @@ function onScreenLayoutChange()
   log.i("onScreenLayoutChange triggered rescaling")
 end
 
-screenWatcher = hs.screen.watcher.new(onScreenLayoutChange);
-screenWatcher:start()
-log.i("Started screenWatcher")
+if not secondaryDisplay == nil then
+  screenWatcher = hs.screen.watcher.new(onScreenLayoutChange);
+  screenWatcher:start()
+  log.i("Started screenWatcher")
+end
