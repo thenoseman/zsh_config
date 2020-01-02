@@ -1,4 +1,4 @@
-local log = hs.logger.new('home','debug')
+local log = hs.logger.new('zsh_config','debug')
 local secondaryDisplayname = "Dell"
 
 -- ReloadConfiguration
@@ -91,7 +91,9 @@ end
 function onScreenLayoutChange()
   local secondaryDisplayMode = bestModeForScreen(secondaryDisplayname)
   secondaryDisplayMode.screen:setMode(secondaryDisplayMode.w, secondaryDisplayMode.h, 1)
+  log.i("onScreenLayoutChange triggered rescaling")
 end
 
 screenWatcher = hs.screen.watcher.new(onScreenLayoutChange);
 screenWatcher:start()
+log.i("Started screenWatcher")
