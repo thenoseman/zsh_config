@@ -77,7 +77,7 @@ function bestModeForScreen(screenName)
     local w = tonumber(string.match(mode, "^(%d+)x"))
     local h = tonumber(string.match(mode, "x(%d+)@"))
 
-    if(w > oldW and h > oldH) then
+    if((w > oldW) or (w == oldW and h > oldH)) then
       oldW = w
       oldH = h
     end
@@ -92,8 +92,8 @@ end
 -- Screen resizing
 function onScreenLayoutChange()
   local secondaryDisplayMode = bestModeForScreen(secondaryDisplayname)
-  secondaryDisplayMode.screen:setMode(secondaryDisplayMode.w, secondaryDisplayMode.h, 1)
-  log.i("onScreenLayoutChange triggered rescaling")
+--  secondaryDisplayMode.screen:setMode(secondaryDisplayMode.w, secondaryDisplayMode.h, 1)
+  log.i("onScreenLayoutChange triggered rescaling to W:" .. secondaryDisplayMode.w .. " H:" .. secondaryDisplayMode.h)
 end
 
 if not secondaryDisplay == nil then
