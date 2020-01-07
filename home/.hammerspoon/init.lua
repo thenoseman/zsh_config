@@ -1,5 +1,6 @@
 local log = hs.logger.new('zsh_config','debug')
 local secondaryDisplayname = "Dell"
+local secondaryDisplayMode = { w = 2560, h = 1440 }
 
 -- ReloadConfiguration
 hs.loadSpoon("ReloadConfiguration")
@@ -22,8 +23,8 @@ hs.window.animationDuration = 0
 local primaryDisplay = hs.screen.primaryScreen()
 local secondaryDisplay = hs.screen.find(secondaryDisplayname)
 local primaryScreenFrame = primaryDisplay:frame()
-if not secondaryDisplay == nil then
-  local secondaryScreenFrame = secondaryDisplay:frame()
+if not not secondaryDisplay then
+  secondaryScreenFrame = secondaryDisplay:frame()
 end
 
 -- 2/3 screen size, anchor top left, screen 1
@@ -58,45 +59,19 @@ hs.hotkey.bind({"cmd", "shift"}, "9", function()
     {"iTerm2", nil, primaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1}, nil, nil},
     {"Microsoft Outlook", nil, secondaryDisplay, { x = 0.34, y = 0, w = 0.66, h = 1}, nil, nil},
     {"Slack", nil, secondaryDisplay, { x = 0, y = 0, w = 0.34, h = 1}, nil, nil},
+    {"Microsoft Teams", nil, secondaryDisplay, { x = 0, y = 0, w = 0.34, h = 1}, nil, nil},
   }
   hs.layout.apply(windowLayout)
 end)
 
--- Returns the best mode for usage on a screen returns a table with w and h
--- to be used with hs.screen:setMode()
-function bestModeForScreen(screenName)
-  local sc = hs.screen.find(screenName)
-  local allModes = sc:availableModes()
-  local modes = {}
-  local i = 0
-
-  local oldW = 0
-  local oldH = 0
-
-  for mode, _ in pairs(allModes) do 
-    local w = tonumber(string.match(mode, "^(%d+)x"))
-    local h = tonumber(string.match(mode, "x(%d+)@"))
-
-    if((w > oldW) or (w == oldW and h > oldH)) then
-      oldW = w
-      oldH = h
-    end
-
-    modes[i] = mode 
-    i = i + 1 
-  end
-
-  return { w = oldW, h = oldH, screen = sc }
-end
-
 -- Screen resizing
 function onScreenLayoutChange()
-  local secondaryDisplayMode = bestModeForScreen(secondaryDisplayname)
---  secondaryDisplayMode.screen:setMode(secondaryDisplayMode.w, secondaryDisplayMode.h, 1)
+  local secondaryDisplay = hs.screen.find(secondaryDisplayname)
+  secondaryDisplay:setMode(secondaryDisplayMode.w, secondaryDisplayMode.h, 1)
   log.i("onScreenLayoutChange triggered rescaling to W:" .. secondaryDisplayMode.w .. " H:" .. secondaryDisplayMode.h)
 end
 
-if not secondaryDisplay == nil then
+if not not secondaryDisplay then
   screenWatcher = hs.screen.watcher.new(onScreenLayoutChange);
   screenWatcher:start()
   log.i("Started screenWatcher")
