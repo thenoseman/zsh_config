@@ -51,6 +51,12 @@ hs.hotkey.bind({"cmd", "shift"}, "4", function()
   focusedWindow:move({x = secondaryScreenFrame.x + secondaryScreenFrame.w / 3, y = 0, w = (secondaryScreenFrame.w / 3) * 2, h = secondaryScreenFrame.h})
 end)
 
+-- 2/3 screen size, anchor top right, screen 1
+hs.hotkey.bind({"cmd", "shift"}, "5", function()
+  local focusedWindow = hs.window.focusedWindow()
+  focusedWindow:move({x = 0.34, y = 0, w = 0.66, h = 1})
+end)
+
 -- Standard layout
 hs.hotkey.bind({"cmd", "shift"}, "9", function()
   local windowLayout = {
