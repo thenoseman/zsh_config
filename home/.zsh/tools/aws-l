@@ -1,0 +1,21 @@
+#!/bin/bash
+# vim: ft=sh
+#
+# A wildcard enabled awslogs
+#
+group_name=${1:-}
+bin="aws-vault-wrapper /usr/local/bin/awslogs"
+groups=$($bin groups | grep "$group_name" | sort)
+number_of_groups=$(echo "${groups}" | wc -l | tr -d ' ')
+
+if [[ "$number_of_groups" == "0" ]]; then
+  echo "Could not find a group containing string '${group_name}'" && exit 1
+fi
+
+if [[ "$number_of_groups" -gt "1" ]]; then
+  echo "Too many group containing string '${group_name}'. Select one." 
+  groups=$(echo -n "$groups" | fzf)
+fi
+
+echo "Now watching '$groups'."
+$bin get --timestamp --watch --start "2 hours ago" "$groups"
