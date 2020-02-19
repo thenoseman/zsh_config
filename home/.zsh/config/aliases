@@ -71,8 +71,8 @@ alias dcl="docker-compose logs -f --tail=25"
 #
 # AWS
 #
-alias terraform="aws-vault-wrapper /usr/local/bin/terraform"
 alias tf="terraform"
-alias aws="aws-vault-wrapper /usr/local/bin/aws"
-alias awslogs="aws-vault-wrapper /usr/local/bin/awslogs"
-alias packer="aws-vault-wrapper /usr/local/bin/packer"
+for bin in terraform aws awslogs packer; do
+  # shellcheck disable=SC2139
+  alias $bin="aws-vault-wrapper /usr/local/bin/$bin"
+done
