@@ -68,12 +68,12 @@ jsonlint
 # bundler is not installed automatically to not update to 2.0.1 every time
 RUBY_GEMS=(
 bond
-haml-lint
 pry
 pry-byebug
 ripper-tags
 rufo
 wirb
+solargraph
 )
 
 log ">>> Updating zsh_config"
