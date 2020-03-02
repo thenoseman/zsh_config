@@ -47,3 +47,5 @@ export CPPFLAGS="-I/usr/local/opt/curl/include"
 export SHELLCHECK_OPTS="-e SC2039"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
+export SOLARGRAPH_GLOBAL_CONFIG=~/.zsh/modules/solargraph/config.yml

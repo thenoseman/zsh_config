@@ -1,0 +1,14 @@
+---
+include:
+- "**/*.rb"
+- "gems/*/lib/*.rb"
+exclude:
+- spec/**/*
+- test/**/*
+- vendor/**/*
+- ".bundle/**/*"
+require: []
+domains: []
+reporters: []
+require_paths: []
+max_files: 5000
