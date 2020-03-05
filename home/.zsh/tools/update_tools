@@ -100,7 +100,7 @@ for p in "${BREW_CASKS[@]}"; do
 done
 
 if ! brew ls --versions universal-ctags; then
-  brew install --HEAD universal-ctags
+  brew install --fetch-HEAD --HEAD universal-ctags
 fi
 
 brew upgrade
@@ -117,7 +117,7 @@ log ">>> Updating rubygems"
 gem update --system
 
 log ">>> Installing important gems"
-gem install --silent "${RUBY_GEMS[@]}"
+gem install "${RUBY_GEMS[@]}"
 
 log ">>> Installing important JS tools"
 npm install -g --force npm
