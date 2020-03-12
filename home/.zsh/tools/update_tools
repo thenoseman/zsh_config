@@ -59,11 +59,12 @@ NODE_PACKAGES=(
 babel-eslint
 eslint
 gulp
+javascript-typescript-langserver
+jsonlint
 prettier
 tslint
 typescript
-jsonlint
-javascript-typescript-langserver
+vls
 )
 
 # bundler is not installed automatically to not update to 2.0.1 every time
