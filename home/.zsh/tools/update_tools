@@ -59,6 +59,7 @@ NODE_PACKAGES=(
 babel-eslint
 eslint
 gulp
+import-js
 javascript-typescript-langserver
 jsonlint
 prettier
