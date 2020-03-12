@@ -82,3 +82,25 @@ if not not secondaryDisplay then
   screenWatcher:start()
   log.i("Started screenWatcher")
 end
+
+--
+-- MS Teams mute by pressing F1
+--
+function toggleMsTeamsMute()
+  log.i("Toggling MS Teams mute")
+  hs.eventtap.event.newKeyEvent({"shift", "cmd"}, "m", true):post(hs.application.find("com.microsoft.teams"))
+end
+
+local teamsHotkey = hs.hotkey.new("", "f1", "🔇", toggleMsTeamsMute, nil, nil)
+function applicationWatcher(appName, eventType, appObject)
+  if (eventType == hs.application.watcher.activated) then
+    if (appName == "Microsoft Teams") then
+      teamsHotkey:enable()
+    else
+      teamsHotkey:disable()
+    end
+  end
+end
+appWatcher = hs.application.watcher.new(applicationWatcher)
+appWatcher:start()
+
