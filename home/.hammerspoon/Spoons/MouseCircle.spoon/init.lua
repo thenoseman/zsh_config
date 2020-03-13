@@ -69,10 +69,10 @@ function obj:show()
     else
         color = {["red"]=1,["blue"]=0,["green"]=0,["alpha"]=1}
     end
-    circle = hs.drawing.circle(hs.geometry.rect(mousepoint.x-40, mousepoint.y-40, 80, 80))
+    circle = hs.drawing.circle(hs.geometry.rect(mousepoint.x-30, mousepoint.y-30, 60, 60))
     circle:setStrokeColor(color)
     circle:setFill(false)
-    circle:setStrokeWidth(5)
+    circle:setStrokeWidth(15)
     circle:bringToFront(true)
     circle:show(0.5)
     self.circle = circle
