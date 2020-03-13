@@ -6,12 +6,13 @@ local secondaryDisplayMode = { w = 2560, h = 1440 }
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
+-- MouseCircle
+hs.loadSpoon("MouseCircle")
+spoon.MouseCircle:bindHotkeys({ show = {{"cmd", "shift"}, "m"}})
+
 -- Clipboardtools
 hs.loadSpoon("ClipboardTool")
-local cliboardtool_hotkeys = { 
-  show_clipboard = {{"cmd", "shift"}, "v"}
-}
-spoon.ClipboardTool:bindHotkeys(cliboardtool_hotkeys)
+spoon.ClipboardTool:bindHotkeys( { show_clipboard = {{"cmd", "shift"}, "v"} })
 spoon.ClipboardTool.paste_on_select = true
 spoon.ClipboardTool.show_in_menubar = false
 spoon.ClipboardTool:start()
