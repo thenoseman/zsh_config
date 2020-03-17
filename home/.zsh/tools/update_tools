@@ -39,20 +39,20 @@ zsh
 
 BREW_CASKS=(
 android-platform-tools
-hammerspoon
 disk-inventory-x
 gpg-suite
+hammerspoon
 iterm2
 itsycal
 kdiff3
 keepassxc
-macdown
 namechanger
-the-unarchiver
-vlc
-quicklook-json
 qlimagesize
 qlmarkdown
+quicklook-json
+the-unarchiver
+typora
+vlc
 )
 
 NODE_PACKAGES=(
