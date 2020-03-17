@@ -80,4 +80,4 @@ done
 #
 # Test editing
 #
-alias mt="/Applications/Mark\ Text.app/Contents/MacOS/Mark\ Text"
+alias typora="open -a typora"
