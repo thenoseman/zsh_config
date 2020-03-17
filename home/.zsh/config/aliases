@@ -76,3 +76,8 @@ for bin in terraform aws awslogs packer; do
   # shellcheck disable=SC2139
   alias $bin="aws-vault-wrapper /usr/local/bin/$bin"
 done
+
+#
+# Test editing
+#
+alias mt="/Applications/Mark\ Text.app/Contents/MacOS/Mark\ Text"
