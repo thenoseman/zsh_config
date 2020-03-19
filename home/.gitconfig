@@ -14,11 +14,11 @@
   unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
   rc = rebase --continue
   ra = rebase --abort
-  rh = reset --hard
   clone = clone --recursive
   create-patch = !NR=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | tr -d ' ') && git format-patch HEAD~$NR
   ami = am --committer-date-is-author-date --ignore-date
   fuck = commit --amend
+  d = difftool
 [color]
   branch = auto
   status = auto
@@ -32,7 +32,7 @@
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert'"
-  pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = less --tabs=4 -RFX
   precomposeunicode = true
   untrackedCache = true
 [gc]
@@ -65,7 +65,7 @@
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
   algorithm = patience
-  tool = kdiff3
+  tool = ydiff
 [difftool]
   prompt = false
 [difftool "kdiff3"]
@@ -75,6 +75,8 @@
   cmd = open -W -a Meld --args \"$PWD/$LOCAL\" \"$PWD/$REMOTE\"
 [difftool "Kaleidoscope"]
   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool "ydiff"]
+  cmd = ydiff -s -w 0 $LOCAL $REMOTE
 [grep]
   patternType = perl
 [rerere]
