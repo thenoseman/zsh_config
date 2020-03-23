@@ -8,7 +8,7 @@ spoon.ReloadConfiguration:start()
 
 -- MouseCircle
 hs.loadSpoon("MouseCircle")
-spoon.MouseCircle:bindHotkeys({ show = {{"cmd", "shift"}, "m"}})
+spoon.MouseCircle:bindHotkeys({ show = {{"cmd", "shift"}, "+"}})
 
 -- Clipboardtools
 hs.loadSpoon("ClipboardTool")
@@ -91,6 +91,7 @@ end
 function toggleMsTeamsMute()
   log.i("Toggling MS Teams mute")
   hs.eventtap.event.newKeyEvent({"shift", "cmd"}, "m", true):post(hs.application.find("com.microsoft.teams"))
+  hs.eventtap.event.newKeyEvent({"shift", "cmd"}, "space", true):post(hs.application.find("com.microsoft.teams"))
 end
 
 local teamsHotkey = hs.hotkey.new("", "escape", "🔇", toggleMsTeamsMute, nil, nil)
