@@ -2,6 +2,8 @@ local log = hs.logger.new('zsh_config','debug')
 local secondaryDisplayname = "Dell"
 local secondaryDisplayMode = { w = 2560, h = 1440 }
 
+require "audio"
+
 -- ReloadConfiguration
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
