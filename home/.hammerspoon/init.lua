@@ -3,6 +3,7 @@ local secondaryDisplayname = "Dell"
 local secondaryDisplayMode = { w = 2560, h = 1440 }
 
 require "audio"
+require "msteams"
 
 -- ReloadConfiguration
 hs.loadSpoon("ReloadConfiguration")
@@ -94,29 +95,6 @@ if not not secondaryDisplay then
   screenWatcher:start()
   log.i("Started screenWatcher")
 end
-
---
--- MS Teams mute by pressing ESCAPE
---
-
-function toggleMsTeamsMute()
-  log.i("Toggling MS Teams mute")
-  hs.eventtap.event.newKeyEvent({"shift", "cmd"}, "m", true):post(hs.application.find("com.microsoft.teams"))
-  hs.eventtap.event.newKeyEvent({"shift", "cmd"}, "space", true):post(hs.application.find("com.microsoft.teams"))
-end
-
-local teamsHotkey = hs.hotkey.new("", "escape", "🔇", toggleMsTeamsMute, nil, nil)
-function applicationWatcher(appName, eventType, appObject)
-  if (eventType == hs.application.watcher.activated) then
-    if (appName == "Microsoft Teams") then
-      teamsHotkey:enable()
-    else
-      teamsHotkey:disable()
-    end
-  end
-end
-appWatcher = hs.application.watcher.new(applicationWatcher)
-appWatcher:start()
 
 --
 -- hammerspoon window inspector
