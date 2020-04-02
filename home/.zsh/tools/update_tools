@@ -6,6 +6,7 @@ log() {
 
 BREW_PACKAGES=(
 boost
+chruby
 cmake
 colordiff
 diff-so-fancy
@@ -23,7 +24,6 @@ nvm
 openssl
 pstree
 python
-rbenv
 readline
 ripgrep
 ruby-build

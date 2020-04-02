@@ -1,5 +1,6 @@
 # vim: set ft=sh:
-eval "$(/usr/local/bin/rbenv init -)"
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # async init of nvm
 export NVM_DIR="$HOME/.nvm"
@@ -8,4 +9,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -e "/usr/local/opt/nvm/nvm.sh" ] && source /usr/local/opt/nvm/nvm.sh --no-use
 
 # Linux
-[ -s "${NVM_DIR}/nvm.sh" ] && source ${NVM_DIR}/nvm.sh --no-use
+[ -s "${NVM_DIR}/nvm.sh" ] && source "${NVM_DIR}/nvm.sh" --no-use

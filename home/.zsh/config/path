@@ -2,9 +2,6 @@
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
-# rbenv
-export PATH=$PATH:$HOME/.rbenv/bin
-
 # npm & yarn
 export PATH=$PATH:/usr/local/share/npm/bin
 export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
