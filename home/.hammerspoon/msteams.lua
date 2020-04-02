@@ -7,11 +7,15 @@ local menubar = nil
 -- Update menubar icon
 function setMenubarIcon()
   is_muted = input_device:inputMuted()
-  local icon = "🔈"
+  local menubar_icon = "🎤"
+  local alert_text = hs.styledtext.new("🎤", { font={size=60}})
+
   if is_muted then
-    icon = "🔇"
+    menubar_icon = "🔇"
+    alert_text = hs.styledtext.new("🎤", { font={ size=60}, color=hs.drawing.color.hammerspoon.osx_red, strikethroughStyle=hs.styledtext.lineStyles.thick})
   end
-  menubar:setTitle("Teams: " .. icon)
+  hs.alert.show(alert_text, nil, nil, 1)
+  menubar:setTitle("Teams: " .. menubar_icon)
 end
 
 -- Mut/Unmute Mic
@@ -29,7 +33,7 @@ local teamsHotkey = hs.hotkey.new("", "escape", nil, toggleMsTeamsMute, nil, nil
 --
 -- Install watcher for MS Teams
 --
-function applicationWatcher(appName, eventType, appObject)
+function applicationWatcher(appName, eventType)
   -- App activated
   if (eventType == hs.application.watcher.activated) then
     if (appName == "Microsoft Teams") then
@@ -62,3 +66,8 @@ end
 
 appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
+
+--- If teams is already running:
+if (type(hs.application.find("Microsoft Teams")) == "userdata") then
+  applicationWatcher("Microsoft Teams", hs.application.watcher.launched)
+end
