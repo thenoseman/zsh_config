@@ -4,6 +4,7 @@
 local input_device = hs.audiodevice.defaultInputDevice()
 local menubar = nil
 local appname_for_trigger = "Microsoft Teams"
+
 -- Update menubar icon
 function setMenubarIcon()
   is_muted = input_device:inputMuted()
@@ -68,6 +69,6 @@ appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
 
 --- If teams is already running:
-if (type(hs.application.find(appname_for_trigger)) == "userdata") then
+if (hs.application.find(appname_for_trigger) ~= nil) then
   applicationWatcher(appname_for_trigger, hs.application.watcher.launched)
 end
