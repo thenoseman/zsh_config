@@ -18,7 +18,13 @@ ti() {
 dirdo() {
   echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
   for a in *; do
-    [[ -d "$a" ]] && (cd $a && echo "${ccyellow}$(pwd)${ccend} ('${@}')" && ($@) || cd ..);
+    if [[ -d "$a" ]]; then
+      cd $a
+      [[ -f .ruby-version ]] && chruby $(cat .ruby-version)
+      echo "${ccyellow}$(pwd)${ccend} ('${@}')"
+      ($@)
+      cd ..
+    fi
   done
 }
 
