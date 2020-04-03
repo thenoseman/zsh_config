@@ -4,21 +4,7 @@ local secondaryDisplayMode = { w = 2560, h = 1440 }
 
 require "audio"
 require "msteams"
-
--- ReloadConfiguration
-hs.loadSpoon("ReloadConfiguration")
-spoon.ReloadConfiguration:start()
-
--- MouseCircle
-hs.loadSpoon("MouseCircle")
-spoon.MouseCircle:bindHotkeys({ show = {{"cmd", "shift"}, "+"}})
-
--- Clipboardtools
-hs.loadSpoon("ClipboardTool")
-spoon.ClipboardTool:bindHotkeys( { show_clipboard = {{"cmd", "shift"}, "v"} })
-spoon.ClipboardTool.paste_on_select = true
-spoon.ClipboardTool.show_in_menubar = false
-spoon.ClipboardTool:start()
+require "spoons"
 
 -- Screen/ Window movement
 hs.window.animationDuration = 0
@@ -70,15 +56,16 @@ hs.hotkey.bind({"cmd", "shift"}, "5", function()
 end)
 
 -- Standard layout
+-- Secodnary sits LEFT of the primary
 hs.hotkey.bind({"cmd", "shift"}, "9", function()
   local windowLayout = {
     {"Google Chrome", nil, primaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
-    {"Google Chrome", "E-Mail", secondaryDisplay, { x = 0.34, y = 0, w = 0.66, h = 1}, nil, nil},
     {"MacVim", nil, primaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
     {"iTerm2", nil, primaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1}, nil, nil},
-    {"Microsoft Outlook", nil, secondaryDisplay, { x = 0.34, y = 0, w = 0.66, h = 1}, nil, nil},
-    {"Slack", nil, secondaryDisplay, { x = 0, y = 0, w = 0.34, h = 1}, nil, nil},
-    {"Microsoft Teams", nil, secondaryDisplay, { x = 0, y = 0, w = 0.34, h = 1}, nil, nil},
+    {"Google Chrome", "E-Mail", secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
+    {"Microsoft Outlook", nil, secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
+    {"Slack", nil, secondaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1}, nil, nil},
+    {"Microsoft Teams", nil, secondaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1}, nil, nil},
   }
   hs.layout.apply(windowLayout, windowTitleComparator)
 end)
