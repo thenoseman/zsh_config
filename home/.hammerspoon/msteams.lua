@@ -61,6 +61,7 @@ function applicationWatcher(appName, eventType)
   if (eventType == hs.application.watcher.terminated) then
     if (appName == appname_for_trigger) then
       teamsHotkey:disable()
+      menubar = hs.menubar.delete()
     end
   end
 end
