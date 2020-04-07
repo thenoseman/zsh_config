@@ -20,8 +20,7 @@ function onaudiodevicechange(event)
       mic:setDefaultInputDevice()
 
       -- play sound
-      sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/headset.mp3"))
-      sound:play()
+      hs.speech.new():speak("Kopfhörer verbunden.")
     end
   end
 end
