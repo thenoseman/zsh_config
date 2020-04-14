@@ -29,6 +29,11 @@ dirdo() {
 }
 
 wg-up() {
+  # Cleanup routes just in case
+  sudo route -n delete 10.170.111/25
+  sudo route -n delete 10.170.111.192/26
+  sudo route -n delete 10.170.111.128/26
+
   for file in /etc/wireguard/*.conf; do
     dev="${${file/\/etc\/wireguard\//}/.conf/}"
     echo "Bringing ${dev} up"
