@@ -68,11 +68,9 @@ end)
 function onScreenLayoutChange()
   local secondaryDisplay = hs.screen.find(secondaryDisplayname)
   secondaryDisplay:setMode(secondaryDisplayMode.w, secondaryDisplayMode.h, 1)
-  log.i("onScreenLayoutChange triggered rescaling to W:" .. secondaryDisplayMode.w .. " H:" .. secondaryDisplayMode.h)
 end
 
 if not not secondaryDisplay then
   screenWatcher = hs.screen.watcher.new(onScreenLayoutChange);
   screenWatcher:start()
-  log.i("Started screenWatcher")
 end
