@@ -6,7 +6,6 @@ log() {
 
 BREW_PACKAGES=(
 boost
-chruby
 cmake
 colordiff
 diff-so-fancy
@@ -19,8 +18,8 @@ imagemagick
 jhead
 jq
 jump
+n
 node
-nvm
 openssl
 pstree
 python

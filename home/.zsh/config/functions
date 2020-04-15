@@ -20,7 +20,7 @@ dirdo() {
   for a in *; do
     if [[ -d "$a" ]]; then
       cd $a
-      [[ -f .ruby-version ]] && chruby $(cat .ruby-version)
+      # [[ -f .ruby-version ]] && chruby $(cat .ruby-version)
       echo "${ccyellow}$(pwd)${ccend} ('${@}')"
       ($@)
       cd ..
