@@ -14,3 +14,6 @@ use_node() {
   load_prefix $node_dir
   layout node
 }
+
+# Default system wide:
+use ruby 2.7.0
