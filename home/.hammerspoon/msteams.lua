@@ -4,26 +4,12 @@
 local input_device = hs.audiodevice.defaultInputDevice()
 local menubar = nil
 local appname_for_trigger = "Microsoft Teams"
-
--- Update menubar icon
-function setMenubarIcon()
-  is_muted = input_device:inputMuted()
-  local menubar_icon = "🎤"
-  local alert_text = hs.styledtext.new("🎤", { font={size=60}})
-
-  if is_muted then
-    menubar_icon = "🔇"
-    alert_text = hs.styledtext.new("🎤", { font={ size=60}, color=hs.drawing.color.hammerspoon.osx_red, strikethroughStyle=hs.styledtext.lineStyles.thick})
-  end
-  hs.alert.show(alert_text, nil, nil, 1)
-  menubar:setTitle("Mic: " .. menubar_icon)
-end
+local canvas = nil
 
 -- Mut/Unmute Mic
 function toggleInputMuted()
-  is_muted = input_device:inputMuted()
-  input_device:setInputMuted(not is_muted)
-  setMenubarIcon()
+  hs.eventtap.event.newKeyEvent({"shift", "cmd"}, "m", true):post(hs.application.find(appname_for_trigger))
+  hs.timer.doAfter(0.5, showTeamsMuteState)
 end
 
 --
@@ -49,19 +35,10 @@ function applicationWatcher(appName, eventType)
     end
   end
 
-  -- App launched
-  if (eventType == hs.application.watcher.launched) then
-    if (appName == appname_for_trigger) then
-      menubar = hs.menubar.new()
-      setMenubarIcon()
-    end
-  end
-
   -- App terminated
   if (eventType == hs.application.watcher.terminated) then
     if (appName == appname_for_trigger) then
       teamsHotkey:disable()
-      menubar:delete()
     end
   end
 end
@@ -89,10 +66,11 @@ function showTeamsMuteState()
   local areaRect = hs.geometry.rect(frame.x + (frame.w / 2) + 44, frame.y + frame.h - 100, snapWidth, snapHeight)
   local snapshot = screen:snapshot(areaRect)
 
-  local canvas = hs.canvas.new{x=canvasX, y=canvasY,h=snapHeight * 2,w=snapWidth * 2}:appendElements(
+  canvas = hs.canvas.new{x=canvasX, y=canvasY,h=snapHeight * 2,w=snapWidth * 2}:appendElements(
     {action = "fill", fillColor = { alpha = 0.5, green = 1.0  }, type = "rectangle", withShadow = true}, 
     {type = "image", image = snapshot, imageScaling = "none"}
     ):show()
+
   hs.timer.doAfter(2, function() canvas:delete() end)
 end
 
