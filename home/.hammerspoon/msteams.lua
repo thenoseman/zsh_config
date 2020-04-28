@@ -4,7 +4,6 @@
 local input_device = hs.audiodevice.defaultInputDevice()
 local menubar = nil
 local appname_for_trigger = "Microsoft Teams"
-local canvas = nil
 
 -- Mut/Unmute Mic
 function toggleInputMuted()
@@ -63,15 +62,17 @@ function showTeamsMuteState()
   local screen = window:screen()
   local canvasX = (screen:currentMode().w  - snapWidth) / 2 
   local canvasY = (screen:currentMode().h - snapHeight) / 2
-  local areaRect = hs.geometry.rect(frame.x + (frame.w / 2) + 44, frame.y + frame.h - 100, snapWidth, snapHeight)
+  local areaRect = hs.geometry.rect(frame.x + (frame.w / 2) - 60, frame.y + frame.h - 180, snapWidth, snapHeight)
   local snapshot = screen:snapshot(areaRect)
 
-  canvas = hs.canvas.new{x=canvasX, y=canvasY,h=snapHeight * 2,w=snapWidth * 2}:appendElements(
+  local canvas = hs.canvas.new{x=canvasX, y=canvasY,h=snapHeight * 2,w=snapWidth * 2}:appendElements(
     {action = "fill", fillColor = { alpha = 0.5, green = 1.0  }, type = "rectangle", withShadow = true}, 
     {type = "image", image = snapshot, imageScaling = "none"}
     ):show()
 
-  hs.timer.doAfter(2, function() canvas:delete() end)
+  hs.timer.doAfter(2, function() 
+    canvas:delete() 
+  end)
 end
 
 hs.hotkey.bind({"cmd", "alt", "shift"}, "1", showTeamsMuteState);
