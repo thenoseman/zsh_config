@@ -78,6 +78,12 @@ for bin in terraform aws awslogs packer; do
 done
 
 #
-# Test editing
+# Text editing
 #
 alias typora="open -a typora"
+
+
+#
+# JS
+#
+alias debugtest=" node --inspect node_modules/.bin/vue-cli-service test:unit --runInBand"
