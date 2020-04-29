@@ -83,5 +83,6 @@ end
 hs.hotkey.bind({"cmd", "alt", "shift"}, "x", function()
   if canvas then
     canvas:delete()
+    canvas = nil
   end
 end);
