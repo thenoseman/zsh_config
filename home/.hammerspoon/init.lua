@@ -4,5 +4,5 @@ require "spoons"
 require "screen_layout"
 require "audio"
 require "msteams"
-require "window_inspector"
+require "hotkeys"
 
