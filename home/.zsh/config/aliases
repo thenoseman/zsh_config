@@ -85,5 +85,5 @@ alias typora="open -a typora"
 #
 # JS
 #
-alias js-testd="node --inspect --inspect-brk node_modules/.bin/vue-cli-service test:unit --runInBand"
-alias js-test="node node_modules/.bin/vue-cli-service test:unit --runInBand"
+alias js-testd="NODE_ICU_DATA=node_modules/full-icu node --inspect --inspect-brk node_modules/.bin/vue-cli-service test:unit --runInBand"
+alias js-test="NODE_ICU_DATA=node_modules/full-icu node node_modules/.bin/vue-cli-service test:unit --runInBand"
