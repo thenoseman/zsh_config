@@ -5,11 +5,17 @@ local input_device = hs.audiodevice.defaultInputDevice()
 local menubar = nil
 local appname_for_trigger = "Microsoft Teams"
 local canvas = nil
+local removeOverlayTimer = nil
 
 -- Mut/Unmute Mic
 function toggleInputMuted()
   hs.eventtap.event.newKeyEvent({"shift", "cmd"}, "m", true):post(hs.application.find(appname_for_trigger))
   hs.timer.doAfter(0.5, showTeamsMuteState)
+ 
+  -- Automatically remove overlay after 5 minutes inactivity
+  removeOverlayTimer = hs.timer.doAfter(300, function()
+    canvas:delete()
+  end)
 end
 
 --
