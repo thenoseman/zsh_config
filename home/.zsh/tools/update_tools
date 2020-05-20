@@ -7,7 +7,6 @@ log() {
 BREW_PACKAGES=(
 boost
 cmake
-colordiff
 diff-so-fancy
 direnv
 exiftool
