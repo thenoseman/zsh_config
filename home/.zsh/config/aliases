@@ -48,8 +48,8 @@ alias gti="git"
 # RUBY
 #
 
-# pipe for use with vim + rspec
-alias rpipe='mkdir -p tmp && if [ ! -p tmp/rspec-test-pipe ]; then mkfifo tmp/rspec-test-pipe; fi && echo "Now listening to tmp/rspec-test-pipe" && while true; do sh -c "$(cat tmp/rspec-test-pipe)"; done'
+# pipe for use with vim + rspec and jest
+alias pipe='mkdir -p tmp && if [ ! -p tmp/test-pipe ]; then mkfifo tmp/test-pipe; fi && echo "Now listening to tmp/test-pipe" && while true; do sh -c "$(cat tmp/test-pipe)"; done'
 
 # Run next failing rspec test.
 # See https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
