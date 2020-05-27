@@ -20,7 +20,7 @@ function onaudiodevicechange(event)
       mic:setDefaultInputDevice()
 
       -- play sound
-      hs.speech.new():speak("Bitte warten. Kopfhörer verbunden.")
+      hs.speech.new():speak("Kopfhörer verbunden.")
     end
   end
 end
