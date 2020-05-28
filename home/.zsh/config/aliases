@@ -87,3 +87,10 @@ alias typora="open -a typora"
 #
 alias js-testd="NODE_ICU_DATA=node_modules/full-icu node --inspect node_modules/.bin/vue-cli-service test:unit --runInBand"
 alias js-test="NODE_ICU_DATA=node_modules/full-icu node node_modules/.bin/vue-cli-service test:unit --runInBand"
+
+#
+# Suffix aliases
+#
+alias -s md=typora
+# shellcheck disable=SC2139
+alias -s {json,js,html}=mvim
