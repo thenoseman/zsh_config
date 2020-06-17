@@ -93,4 +93,4 @@ alias js-test="node node_modules/.bin/vue-cli-service test:unit --runInBand"
 #
 alias -s md=typora
 # shellcheck disable=SC2139
-alias -s {json,js,html}=mvim
+alias -s {json,html}=mvim
