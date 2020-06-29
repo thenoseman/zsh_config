@@ -48,7 +48,5 @@ export SHELLCHECK_OPTS="-e SC2039"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
-export SOLARGRAPH_GLOBAL_CONFIG=~/.zsh/modules/solargraph/config.yml
-
 # Location of node js versions
 export N_PREFIX=~/.nodes
