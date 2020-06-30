@@ -73,7 +73,7 @@ function showTeamsMuteState()
   local screen = window:screen()
   local canvasX = screen:currentMode().w  - snapWidth - 10 
   local canvasY = screen:currentMode().h - snapHeight - 10
-  local areaRect = hs.geometry.rect(frame.x + (frame.w / 2) - 60, frame.y + frame.h - 180, snapWidth, snapHeight)
+  local areaRect = hs.geometry.rect(frame.x + (frame.w / 2) - 85, frame.y + frame.h - 180, snapWidth, snapHeight)
   local snapshot = screen:snapshot(areaRect)
 
   if canvas then
