@@ -75,11 +75,19 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
 # Complete cd.. (http://stackoverflow.com/questions/564648/zsh-tab-completion-for-cd)
 zstyle ':completion:*' special-dirs true
+
 # Cache completion results
 zstyle ':completion:*:complete:bundle' use-cache on
 zstyle ':completion:*:complete:bundle' rehash false
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' rehash yes
+
+# case insensitive path-completion
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+# partial completion suggestions
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
 
 # Disable ^S, useless and annoying
 stty stop undef
