@@ -7,12 +7,12 @@ log() {
 BREW_PACKAGES=(
 boost
 cmake
-diff-so-fancy
 direnv
 exiftool
 ffmpeg
 flvstreamer
 git
+git-delta
 imagemagick
 jhead
 jq

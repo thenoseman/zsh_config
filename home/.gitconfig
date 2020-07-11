@@ -32,7 +32,7 @@
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert'"
-  pager = less --tabs=4 -RFX
+  pager = delta
   precomposeunicode = true
   untrackedCache = true
 [gc]
@@ -65,7 +65,6 @@
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
   algorithm = patience
-  tool = ydiff
 [difftool]
   prompt = false
 [difftool "kdiff3"]
@@ -87,3 +86,12 @@
   autostash = true
 [user]
   useconfigonly = true
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  syntax-theme = zenburn
+  line-numbers = true
+  side-by-side = true
+  dark = true
+  tabs = 2
+
