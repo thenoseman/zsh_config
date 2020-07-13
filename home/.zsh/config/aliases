@@ -71,7 +71,7 @@ alias dcl="docker-compose logs -f --tail=25"
 #
 # AWS
 #
-alias tf="terraform -lock-timeout=5m"
+alias tf="terraform"
 for bin in terraform aws awslogs packer; do
   # shellcheck disable=SC2139
   alias $bin="aws-vault-wrapper /usr/local/bin/$bin"
