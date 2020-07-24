@@ -3,3 +3,5 @@ gems:*.gemspec
 
 --type-add 
 gems:Gemfile
+
+--glob=!node_modules/*
