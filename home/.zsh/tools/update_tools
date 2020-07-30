@@ -17,7 +17,6 @@ imagemagick
 jhead
 jq
 jump
-n
 node
 openssl
 pstree
@@ -60,7 +59,6 @@ eslint
 gulp
 import-js
 jsonlint
-n
 prettier
 tslint
 typescript
