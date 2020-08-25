@@ -28,6 +28,7 @@ dirdo() {
   done
 }
 
+# Start wireguard
 wg-up() {
   # Cleanup routes just in case
   sudo route -n delete 10.170.111/25
@@ -40,5 +41,22 @@ wg-up() {
     sudo wg-quick up "${dev}"
   done
   sudo killall mDNSResponder
+}
+
+#
+# Javascript testing with jest
+#
+js-test() {
+  local file=$1
+  local cmd=${2:-}
+  node node_modules/.bin/vue-cli-service test:unit "$cmd" --runInBand "$(find tests/unit -name "*.spec.js" -type f | fzf -1 -q "${file}")"
+}
+
+wjs-test() {
+  js-test "$1" --watch
+}
+
+djs-test() {
+  js-test "$1" --debug
 }
 # vim:ft=sh

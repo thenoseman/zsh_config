@@ -83,12 +83,6 @@ done
 alias typora="open -a typora"
 
 #
-# JS
-#
-alias js-testd="node --inspect node_modules/.bin/vue-cli-service test:unit --runInBand"
-alias js-test="node node_modules/.bin/vue-cli-service test:unit --runInBand"
-
-#
 # Suffix aliases
 #
 alias -s md=typora
