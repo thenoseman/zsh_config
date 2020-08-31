@@ -49,7 +49,7 @@ wg-up() {
 js-test() {
   local file=$1
   local cmd=${2:-}
-  node node_modules/.bin/vue-cli-service test:unit "$cmd" --runInBand "$(find tests/unit -name "*.spec.js" -type f | fzf -1 -q "${file}")"
+  node node_modules/.bin/vue-cli-service test:unit "$cmd" --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${file}")"
 }
 
 wjs-test() {
