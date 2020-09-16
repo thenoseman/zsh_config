@@ -46,17 +46,11 @@ wg-up() {
 #
 # Javascript testing with jest
 #
-js-test() {
-  local file=$1
-  local cmd=${2:-}
-  node node_modules/.bin/vue-cli-service test:unit "$cmd" --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${file}")"
-}
-
 wjs-test() {
-  js-test "$1" --watch
+  node node_modules/.bin/vue-cli-service test:unit --watch --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
 
 djs-test() {
-  js-test "$1" --debug
+  node --inspect node_modules/.bin/vue-cli-service test:unit --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
 # vim:ft=sh
