@@ -1,3 +1,6 @@
+local log = hs.logger.new('hotkey.lua','debug')
+
+--
 --
 -- hammerspoon window inspector
 --
