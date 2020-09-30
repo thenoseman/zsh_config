@@ -93,7 +93,7 @@ for p in "${BREW_PACKAGES[@]}"; do
 done
 
 # Check install casks
-INSTALLED=$(brew cask list -1 | tr '\n' ' ')
+INSTALLED=$(brew list --cask -1 | tr '\n' ' ')
 for p in "${BREW_CASKS[@]}"; do
  [[ ${INSTALLED} != *$p* ]] && brew cask install "${p}"
 done
@@ -105,7 +105,7 @@ fi
 brew upgrade
 
 # Need to do this one by one until cask upgrade doesn't fail if one fails
-for cask in $(brew cask outdated | cut -d '(' -f 1); do
+for cask in $(brew outdated --cask | cut -d '(' -f 1); do
   log ">>> Upgrading cask '${cask}'"
   brew cask upgrade "$cask"
 done
