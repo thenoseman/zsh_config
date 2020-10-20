@@ -1,0 +1,6 @@
+*.rb diff=ruby
+*.gemspec diff=ruby
+*.rake diff=ruby
+Gemfile diff=ruby
+*.css diff=css
+*.scss diff=css

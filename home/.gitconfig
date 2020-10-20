@@ -35,6 +35,7 @@
   pager = delta
   precomposeunicode = true
   untrackedCache = true
+	attributesfile = ~/.gitattributes
 [gc]
   auto = 1000
 [branch]
