@@ -81,19 +81,18 @@ log ">>> Updating zsh_config"
 log ">>> Updating vim_config"
 [ -e ~/dev/config/zsh_config ] && cd  ~/dev/config/vim_config && git pull --rebase --autostash
 
-# If brew list fails there are missing packages
 log ">>> Installing missing homebrew packages"
 brew tap universal-ctags/universal-ctags
 brew tap macvim-dev/macvim
 
 # Check installed packages
-INSTALLED=$(brew list -1 | tr '\n' ' ')
+INSTALLED=$(brew list --formula -1 | tr '\n' ' ')
 for p in "${BREW_PACKAGES[@]}"; do
  [[ "${INSTALLED}" != *$p* ]] && brew install "${p}"
 done
 
 # Check install casks
-INSTALLED=$(brew list --cask -1 | tr '\n' ' ')
+INSTALLED=$(brew list --formula --cask -1 | tr '\n' ' ')
 for p in "${BREW_CASKS[@]}"; do
  [[ ${INSTALLED} != *$p* ]] && brew cask install "${p}"
 done
@@ -107,7 +106,7 @@ brew upgrade
 # Need to do this one by one until cask upgrade doesn't fail if one fails
 for cask in $(brew outdated --cask | cut -d '(' -f 1); do
   log ">>> Upgrading cask '${cask}'"
-  brew cask upgrade "$cask"
+  brew upgrade --cask "$cask"
 done
 
 # brew cleanup is run via HOMEBREW_INSTALL_CLEANUP=1 automatically!
