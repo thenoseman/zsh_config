@@ -35,6 +35,7 @@ youtube-dl
 zsh
 )
 
+# keepass 2.6.2 is broken on macos 10.13
 BREW_CASKS=(
 android-platform-tools
 disk-inventory-x
@@ -43,7 +44,6 @@ hammerspoon
 iterm2
 itsycal
 kdiff3
-keepassxc
 namechanger
 qlimagesize
 qlmarkdown
