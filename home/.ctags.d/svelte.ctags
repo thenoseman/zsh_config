@@ -1,0 +1,4 @@
+--langdef=svelte
+--map-svelte=.svelte
+--_tabledef-svelte=svelte
+--_mtable-regex-svelte=svelte/.*(<script>).*(<\/script>)//{_guest=JavaScript,1end,2start}
