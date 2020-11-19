@@ -18,7 +18,7 @@ fi
 
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
-alias rg='rg -F -i --hidden -u --max-columns 150'
+alias rg='rg -F -i --hidden -u --max-columns 150 -g '\''!.terraform'\'''
 alias killdns="sudo killall mDNSResponder"
 alias b64d="pbpaste | base64 -D"
 
