@@ -15,5 +15,8 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 # Use python 3
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
-# Ruby 2.7.0
+# Default Ruby 2.7.0
 export PATH=~/.rubies/2.7.0/bin:$PATH
+
+# Shared dir
+export PATH=$PATH:~/Sync/shared-with-company/shell
