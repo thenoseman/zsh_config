@@ -1,3 +1,8 @@
+# Install a ruby-version
+install_ruby() {
+  ruby-build -v "$1" "$HOME/.rubies/$1"
+}
+
 # Find a file starting with $1 excluding .svn and color the match
 f() {
   find . -iname "*${@}*" | grep -v ".svn" | grep --color "${@}"
