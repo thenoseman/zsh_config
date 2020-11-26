@@ -86,14 +86,14 @@ brew tap universal-ctags/universal-ctags
 brew tap macvim-dev/macvim
 
 # Check installed packages
-INSTALLED=$(brew list -1 | tr '\n' ' ')
+INSTALLED=$(brew list --formula -1 | tr '\n' ' ')
 for p in "${BREW_PACKAGES[@]}"; do
  [[ "${INSTALLED}" != *$p* ]] && brew install "${p}"
 done
 
 # Check install casks
 for p in "${BREW_CASKS[@]}"; do
- [[ ${INSTALLED} != *$p* ]] && brew cask install "${p}"
+ [[ ${INSTALLED} != *$p* ]] && brew install --cask "${p}"
 done
 
 if ! brew ls --versions universal-ctags; then
