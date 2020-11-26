@@ -9,14 +9,14 @@ export PATH="$PATH:$HOME/.config/yarn/global/node_modules/.bin"
 # Own zsh stuff
 export PATH=~/.zsh/tools:$PATH
 
-# mac curl is too old
-export PATH="/usr/local/opt/curl/bin:$PATH"
-
 # Use python 3
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
 # Default Ruby 2.7.0
 export PATH=~/.rubies/2.7.0/bin:$PATH
+
+# Default node
+export PATH=$PATH:~/.nodes/n/versions/node/14.5.0/bin
 
 # Shared dir
 export PATH=$PATH:~/Sync/shared-with-company/shell
