@@ -39,13 +39,7 @@
 [gc]
   auto = 1000
 [branch]
-  autosetupmerge = true
-[git-up "fetch"]
-  prune = false
-  all = true
-[git-up "bundler"]
-  check = true
-  autoinstall = true
+  autoSetupRebase = always
 [push]
   default = current
 [pull]
