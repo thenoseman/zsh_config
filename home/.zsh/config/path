@@ -20,3 +20,6 @@ export PATH=$PATH:~/.nodes/n/versions/node/14.5.0/bin
 
 # Shared dir
 export PATH=$PATH:~/Sync/shared-with-company/shell
+
+# GPG
+export PATH=$PATH:/usr/local/MacGPG2/bin
