@@ -13,11 +13,16 @@ ffmpeg
 flvstreamer
 git
 git-delta
+homebrew/cask/macvim
 imagemagick
 jhead
 jq
 jump
+n
 node
+oath-toolkit
+openconnect
+openjdk@11
 openssl
 pstree
 python
@@ -29,13 +34,13 @@ sqlite
 tig
 unrar
 watch
+wireguard-tools
 yarn
 ydiff
 youtube-dl
 zsh
 )
 
-# keepass 2.6.2 is broken on macos 10.13
 BREW_CASKS=(
 android-platform-tools
 disk-inventory-x
@@ -44,6 +49,7 @@ hammerspoon
 iterm2
 itsycal
 kdiff3
+keepassxc
 namechanger
 qlimagesize
 qlmarkdown
@@ -83,7 +89,6 @@ log ">>> Updating vim_config"
 
 log ">>> Installing missing homebrew packages"
 brew tap universal-ctags/universal-ctags
-brew tap macvim-dev/macvim
 
 # Check installed packages
 INSTALLED=$(brew list --formula -1 | tr '\n' ' ')
