@@ -10,10 +10,8 @@ cmake
 direnv
 exiftool
 ffmpeg
-flvstreamer
 git
 git-delta
-homebrew/cask/macvim
 imagemagick
 jhead
 jq
@@ -49,6 +47,7 @@ hammerspoon
 iterm2
 itsycal
 kdiff3
+macvim
 keepassxc
 namechanger
 qlimagesize
@@ -97,6 +96,7 @@ for p in "${BREW_PACKAGES[@]}"; do
 done
 
 # Check install casks
+INSTALLED=$(brew list --casks -1 | tr '\n' ' ')
 for p in "${BREW_CASKS[@]}"; do
  [[ ${INSTALLED} != *$p* ]] && brew install --cask "${p}"
 done
