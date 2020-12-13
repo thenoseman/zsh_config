@@ -1,4 +1,4 @@
-# Homwbrew:
+# Homebrew:
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
@@ -12,11 +12,11 @@ export PATH=~/.zsh/tools:$PATH
 # Use python 3
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
 
-# Default Ruby 2.7.0
-export PATH=~/.rubies/2.7.0/bin:$PATH
+# Default Ruby 2.7.2
+export PATH=~/.rubies/2.7.2/bin:$PATH
 
 # Default node
-export PATH=$PATH:~/.nodes/n/versions/node/14.5.0/bin
+export PATH=$PATH:~/.nodes/n/versions/node/15.4.0/bin
 
 # Shared dir
 export PATH=$PATH:~/Sync/shared-with-company/shell
