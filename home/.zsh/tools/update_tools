@@ -12,6 +12,7 @@ exiftool
 ffmpeg
 git
 git-delta
+gsed
 imagemagick
 jhead
 jq
