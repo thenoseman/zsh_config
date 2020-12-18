@@ -1,6 +1,16 @@
+DEFAULT_RUBY_VERSION=2.7.2
+DEFAULT_NODE_VERSION=15.4.0
+
 # Homebrew:
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# Default Ruby
+export PATH=$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin:$PATH
+[[ ! -d "$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin" ]] && echo "INSTALLING RUBY ${DEFAULT_RUBY_VERSION}" && ruby-build $DEFAULT_RUBY_VERSION $HOME/.rubies/$DEFAULT_RUBY_VERSION
+
+# Default node
+export PATH=$PATH:$HOME/.nodes/n/versions/node/${DEFAULT_NODE_VERSION}/bin
+[[ ! -d "$HOME/.nodes/n/versions/node/${DEFAULT_NODE_VERSION}/bin" ]] &&  echo "INSTALLING NODE ${DEFAULT_NODE_VERSION}" && n install $DEFAULT_NODE_VERSION
 
 # npm & yarn
 export PATH=$PATH:/usr/local/share/npm/bin
@@ -11,12 +21,6 @@ export PATH=~/.zsh/tools:$PATH
 
 # Use python 3
 export PATH=/usr/local/opt/python/libexec/bin:$PATH
-
-# Default Ruby 2.7.2
-export PATH=~/.rubies/2.7.2/bin:$PATH
-
-# Default node
-export PATH=$PATH:~/.nodes/n/versions/node/15.4.0/bin
 
 # Shared dir
 export PATH=$PATH:~/Sync/shared-with-company/shell

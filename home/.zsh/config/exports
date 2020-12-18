@@ -16,7 +16,8 @@ export LC_ALL="en_US.UTF-8"
 export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 
 # Use openjdk 11
-[ -e "/usr/libexec/java_home" ] && export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+export JAVA_HOME
+[ -e "/usr/libexec/java_home" ] && JAVA_HOME=$(/usr/libexec/java_home -v 11)
 
 # Show `time` output for any command that takes longer than 2 second of CPU time
 export REPORTTIME=2
@@ -31,7 +32,8 @@ export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:+CMSClassUnloadingEnabled -Dfile.encod
 export DIRENV_LOG_FORMAT=""
 
 # For GPG command line and used in vim
-export GPG_TTY=$(tty)
+export GPG_TTY
+GPG_TTY=$(tty)
 
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color
