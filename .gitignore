@@ -6,3 +6,4 @@ home/.config/xfce4/xfconf/
 home/.zsh/cache/
 .uuid
 home/.kdiff3rc
+amazon-shell-tools.sh
