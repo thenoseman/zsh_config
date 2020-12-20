@@ -10,6 +10,7 @@ cmake
 direnv
 exiftool
 ffmpeg
+fzf
 git
 git-delta
 gsed
