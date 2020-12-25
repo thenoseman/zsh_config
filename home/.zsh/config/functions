@@ -1,4 +1,5 @@
 # Install a ruby-version
+# shellcheck disable=SC2145
 install_ruby() {
   ruby-build -v "$1" "$HOME/.rubies/$1"
 }
@@ -31,6 +32,17 @@ dirdo() {
       cd ..
     fi
   done
+}
+
+activate_ruby() {
+  local VERSION=${1:-}
+  [[ -z "$VERSION" ]] && echo "Pass the ruby version (eg. activate_ruby 3.0.0)" && return
+  if [[ ! -d "$HOME/.rubies/${VERSION}" ]]; then
+    echo "ruby version ${VERSION} not found. Installing."
+    ruby-build "${VERSION}" "$HOME/.rubies/${VERSION}"
+  fi
+  export PATH=~/.rubies/${VERSION}/bin:$PATH
+  ruby -v
 }
 
 # Start wireguard
