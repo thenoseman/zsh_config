@@ -32,7 +32,6 @@ ruby-build
 shellcheck
 sqlite
 tig
-unrar
 watch
 wireguard-tools
 yarn
