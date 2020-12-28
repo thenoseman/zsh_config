@@ -120,6 +120,18 @@ ccend=$(echo -e "\033[0m")
 #
 # Keybindings
 #
+
+# Generic "execute a shell command as ZLE widget"
+function zle_eval {
+  echo -en "\e[2K\r"
+  eval "$@"
+  zle redisplay
+}
+
+function zle_hist {
+  zle_eval fc -ln 0 | fzf --tac --no-sort --height 20% --border
+}
+
 # emacs command editing mode
 # https://sgeb.io/posts/2014/04/zsh-zle-custom-widgets/#what-are-keymaps?
 bindkey -e
@@ -133,7 +145,10 @@ bindkey '^[[F' end-of-line
 bindkey '^[[5~' up-history
 bindkey '^[[6~' down-history
 
-bindkey '^R' history-incremental-search-backward
+# fc -ln 0 | fzf --tac --no-sort --height 20% --border
+zle -N zle_hist
+bindkey "^R" zle_hist
+# bindkey '^R'  history-incremental-search-backward
 bindkey -s '^D' "logout\n"
 
 # Linux (see key sequnce using <ctrl-v>anykeycombo
