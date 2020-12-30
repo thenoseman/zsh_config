@@ -79,6 +79,7 @@ pry-byebug
 ripper-tags
 rufo
 wirb
+solargraph
 )
 
 log ">>> Updating zsh_config"
