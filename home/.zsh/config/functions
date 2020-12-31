@@ -1,15 +1,16 @@
-# Install a ruby-version
-# shellcheck disable=SC2145
-install_ruby() {
-  ruby-build -v "$1" "$HOME/.rubies/$1"
-}
+# vim:ft=sh
+# shellcheck disable=SC2145,SC2154
 
-# Find a file starting with $1 excluding .svn and color the match
+#
+# Find a file starting with $1
+#
 f() {
-  find . -iname "*${@}*" | grep -v ".svn" | grep --color "${@}"
+  rg --files --follow --glob "*${@}*" | grep --color "${@}"
 }
 
+#
 # Start tig in status view if unstanged changes present
+#
 ti() {
   DIRTY=$(git status -s)
   killall -m -9 tig > /dev/null 2>&1
@@ -20,20 +21,25 @@ ti() {
   fi
 }
 
+#
 # Do a command in every subdir (max depth = 1)
+#
 dirdo() {
   echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
   for a in *; do
     if [[ -d "$a" ]]; then
-      cd $a
+      cd "$a" || exit
       # [[ -f .ruby-version ]] && chruby $(cat .ruby-version)
       echo "${ccyellow}$(pwd)${ccend} ('${@}')"
-      ($@)
+      ("$@")
       cd ..
     fi
   done
 }
 
+#
+# Install / Activate a ruby version
+#
 activate_ruby() {
   local VERSION=${1:-}
   [[ -z "$VERSION" ]] && echo "Pass the ruby version (eg. activate_ruby 3.0.0)" && return
@@ -45,7 +51,9 @@ activate_ruby() {
   ruby -v
 }
 
+#
 # Start wireguard
+#
 wg-up() {
   # Cleanup routes just in case
   sudo route -n delete 10.170.111/25
@@ -70,4 +78,38 @@ wjs-test() {
 djs-test() {
   node --inspect node_modules/.bin/vue-cli-service test:unit --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
-# vim:ft=sh
+
+#
+# AWS related functions
+#
+aws_list_ec2_instances() {
+  aws ec2 describe-instances  --filters 'Name=instance-state-name,Values=running' \
+                            --query "$(cat <<-EOF | tr -d '\n' | tr -d ' '
+                                    Reservations[*].{
+                                        deets:Instances[*].[
+                                            (not_null(Tags[?Key==\`Name\`][].Value)[0]||\`_\`),
+                                            InstanceId,
+                                            PrivateDnsName
+                                        ][]
+                                    }
+																		EOF
+                                )" \
+                            --output json \
+                                | jq -r '.[]|.deets|join(" ")' \
+                                | column -t -s " "
+}
+
+#
+# AWS: SSH to an EC2 instance
+#
+aws-ssh() {
+  ssh "$(aws_list_ec2_instances | fzf -1 -q "$1" | awk '{print $3}')"
+}
+
+#
+# TERRAFORM: Targeted plan using @flojs amazing tfrs
+#
+tf-p() {
+  # shellcheck disable=SC2046
+  aws-vault-wrapper /usr/local/bin/terraform plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs -depth 3 -list | fzf -m -q "$1" | sed -e 's#^#-target #')
+}
