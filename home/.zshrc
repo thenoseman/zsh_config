@@ -134,10 +134,26 @@ bindkey '^[[F' end-of-line
 bindkey '^[[5~' up-history
 bindkey '^[[6~' down-history
 
-# This is done by fzf shell integration
-[[ ! -e "/usr/local/opt/fzf/shell/key-bindings.zsh" ]] && brew install fzf
-source /usr/local/opt/fzf/shell/key-bindings.zsh
+# CTRL-R - Paste the selected command from history into the command line
+# Source: https://github.com/junegunn/fzf/blob/577024f1e9bfc98f48e7c5bead445bc9d7dfc3c5/shell/key-bindings.zsh
 # bindkey '^R'  history-incremental-search-backward
+fzf-history-widget() {
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $(fc -rl 1 |
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" fzf) )
+  local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle reset-prompt
+  return $ret
+}
+zle -N fzf-history-widget
+bindkey '^R' fzf-history-widget
 
 bindkey -s '^D' "logout\n"
 
