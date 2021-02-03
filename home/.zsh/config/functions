@@ -5,7 +5,7 @@
 # Find a file starting with $1
 #
 f() {
-  rg --files --follow --glob "*${@}*" | grep --color "${@}"
+  find . -iname "*${@}*" | grep -v ".svn" | grep --color "${@}"
 }
 
 #
