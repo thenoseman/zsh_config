@@ -4,18 +4,13 @@
 # Cleans up local timemachine backups which
 # resulting in "no free space left on device"
 #
-# com.apple.TimeMachine.2021-02-02-202140.local
-
-snapshots=$(tmutil listlocalsnapshots / | grep -v "Snapshots")
-snapshots_data=$(tmutil listlocalsnapshots /System/Volumes/Data | grep -v "Snapshots")
+snapshots=$(tmutil listlocalsnapshotdates / | grep -v "Snapshot")
 
 echo "===================================="
 echo "Removing local timemachine snapshots"
 echo "===================================="
 
-for snapshot in $snapshots $snapshots_data; do
-  snapshot_date=${snapshot//com.apple.TimeMachine./}
-  snapshot_date=${snapshot_date//.local/}
+for snapshot_date in $snapshots; do
   echo "Removing snapshot '$snapshot_date'"
   tmutil deletelocalsnapshots "$snapshot_date"
 done
