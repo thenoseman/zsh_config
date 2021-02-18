@@ -28,3 +28,6 @@ export PATH=$PATH:$HOME/Sync/shared-with-company/shell
 
 # GPG
 export PATH=$PATH:/usr/local/MacGPG2/bin
+
+# Rust
+export PATH="$PATH:$HOME/.cargo/bin"
