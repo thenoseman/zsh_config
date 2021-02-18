@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Installs an old version of a homebrew formula
+# This is made extremly difficult by homebrew:
+
+FORMULA="$1"
+VERSION="$2"
+TAP="$(id -F)/$FORMULA"
+
+brew tap-new --no-git $TAP
+brew tap $TAP
+brew extract --version "$VERSION" "$FORMULA" "$TAP"
+brew install "$FORMULA@$VERSION"
