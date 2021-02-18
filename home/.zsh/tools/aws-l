@@ -23,4 +23,4 @@ if [[ "$number_of_groups" -gt "1" ]]; then
 fi
 
 echo "Now watching '$groups'"
-$bin get --timestamp --watch --start "1 hours ago" "$groups"
+$bin get --no-group -no-stream --timestamp --watch --start "1 hours ago" "$groups"
