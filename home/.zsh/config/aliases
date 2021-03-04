@@ -83,6 +83,12 @@ done
 alias typora="open -a typora"
 
 #
+# ANDROID
+#
+# Connect phone, do "adb tcpip 5555" to enable wireless connection, "adb connect <DEVICE_IP>:5555", start strcpy
+alias scrcpy="scrcpy --bit-rate 2M --max-size 1024 --window-borderless --no-control --show-touches"
+
+#
 # Suffix aliases
 #
 alias -s md=typora
