@@ -112,5 +112,5 @@ aws-ssh() {
 #
 tf-p() {
   # shellcheck disable=SC2046
-  aws-vault-wrapper /usr/local/bin/terraform plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs -depth 3 -list | fzf -m -q "$1" | sed -e 's#^#-target #')
+  aws-vault-wrapper /usr/local/bin/terraform plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs -depth 3 -list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
 }
