@@ -27,20 +27,7 @@ rc() {
 
 # Rails server
 rs() { 
-  if [[ -d public/assets ]]; then
-    echo "${ccred}====================="
-    echo "PUBLIC ASSETS EXISTS!"
-    echo "=====================${ccend}"
-  fi
-  /bin/rm -rf tmp/cache
-
-  # Use puma?
-  APPENDIX=""
-  grep -q puma Gemfile.lock
-  if [[ "$?" == "0" ]]; then
-    APPENDIX="puma"
-  fi
-  bundle exec rails s ${APPENDIX}
+  bundle exec rails server -u puma
 }
 
 # Rails server (SSL)
