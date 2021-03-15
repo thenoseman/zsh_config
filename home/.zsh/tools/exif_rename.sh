@@ -2,9 +2,7 @@
 #
 # Rename images according to their exit ate tags
 #
-[ -e "sorted" ] && echo "The directory 'sorted' already exists. Exiting" && exit 1
-
-mkdir sorted
+mkdir sorted || true
 
 # Collect images
 find . -iname "*.jpg" -exec mv {} sorted \;
