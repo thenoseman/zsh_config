@@ -21,6 +21,7 @@ alias dl='cd ~/Downloads'
 alias rg='rg -F -i --hidden -u --max-columns 150 -g '\''!.terraform'\'''
 alias killdns="sudo killall mDNSResponder"
 alias b64d="pbpaste | base64 -D"
+alias tar="gtar"
 
 #
 # VIM
@@ -89,7 +90,7 @@ alias typora="open -a typora"
 alias scrcpy="scrcpy --bit-rate 2M --max-size 1024 --window-borderless --no-control --show-touches"
 
 #
-# Suffix aliases
+# Suffix aliases (auto run app)
 #
 alias -s md=typora
 # shellcheck disable=SC2139
