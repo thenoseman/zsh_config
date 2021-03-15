@@ -14,12 +14,12 @@ ffmpeg
 fzf
 git
 git-delta
+gnu-tar
 gsed
 imagemagick
 jhead
 jq
 jump
-n
 node
 oath-toolkit
 openconnect
