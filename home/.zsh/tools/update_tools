@@ -128,3 +128,7 @@ gem install "${RUBY_GEMS[@]}"
 log ">>> Installing important JS tools"
 npm install -g --force npm
 npm install -g "${NODE_PACKAGES[@]}" --no-package-lock || true
+
+log ">>> Setting permission"
+xattr -r ~/Library/QuickLook > /dev/null
+xattr -d -r com.apple.quarantine ~/Library/QuickLook > /dev/null
