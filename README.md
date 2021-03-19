@@ -10,7 +10,7 @@
 
 # Mac OSX Delays:
 
-```
+```bash
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write -g QLPanelAnimationDuration -float 0
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -23,3 +23,14 @@ defaults write com.apple.mail DisableSendAnimations -bool true
 defaults write com.apple.Safari WebKitInitialTimedLayoutDelay 0.25
 defaults write NSGlobalDomain KeyRepeat -int 0
 ```
+
+# MS Teams use virtualcam
+
+```bash
+sudo codesign --remove-signature "/Applications/Microsoft Teams.app"
+sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper.app"
+sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (GPU).app"
+sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Renderer).app"
+sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Plugin).app"
+```
+
