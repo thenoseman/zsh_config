@@ -12,7 +12,7 @@ function onaudiodevicechange(event)
       --- headset as OUTPUT
       log.i("Headset " .. headset_name .." appeared: Setting as default output")
       headset:setDefaultOutputDevice()
-      headset:setVolume(33)
+      headset:setVolume(100)
 
       -- Build in mic as INPUT
       log.i("Setting build in mic as input")
