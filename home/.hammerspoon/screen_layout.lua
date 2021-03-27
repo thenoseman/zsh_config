@@ -49,6 +49,18 @@ hs.hotkey.bind({"cmd", "shift"}, "5", function()
   focusedWindow:move({x = 0.34, y = 0, w = 0.66, h = 1})
 end)
 
+-- 1/2 screen size, anchor top left, screen 1
+hs.hotkey.bind({"cmd", "shift"}, "6", function()
+  local focusedWindow = hs.window.focusedWindow()
+  focusedWindow:move({x = 0.0, y = 0, w = 0.50, h = 1})
+end)
+
+-- 1/2 screen size, anchor top right, screen 1
+hs.hotkey.bind({"cmd", "shift"}, "7", function()
+  local focusedWindow = hs.window.focusedWindow()
+  focusedWindow:move({x = 0.5, y = 0, w = 0.50, h = 1})
+end)
+
 -- Standard layout
 -- Secodnary sits LEFT of the primary
 hs.hotkey.bind({"cmd", "shift"}, "9", function()
