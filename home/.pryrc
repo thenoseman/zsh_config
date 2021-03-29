@@ -9,7 +9,7 @@ Pry.config.prompt = Pry::Prompt.new(
   "custom",
   "custom",
   [proc { |obj, nest_level| "🛠 #{RUBY_VERSION} (#{obj.class}):#{nest_level} > " },
-   proc { |obj, nest_level| "🛠 #{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
+    proc { |obj, nest_level| "🛠 #{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
 )
 
 if defined?(Rails) && Rails.env && defined?(Rails::ConsoleMethods)
@@ -19,10 +19,12 @@ end
 Pry.config.ls.instance_var_color = :bright_blue
 
 # For pry-debugger
-Pry.commands.alias_command "c", "continue"
-Pry.commands.alias_command "s", "step"
-Pry.commands.alias_command "n", "next"
-Pry.commands.alias_command "f", "finish"
+if defined?(PryByebug)
+  Pry.commands.alias_command "c", "continue"
+  Pry.commands.alias_command "s", "step"
+  Pry.commands.alias_command "n", "next"
+  Pry.commands.alias_command "f", "finish"
+end
 
 Pry.commands.alias_command "@", "whereami"
 
