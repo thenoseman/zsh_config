@@ -86,7 +86,7 @@
 [delta]
   syntax-theme = zenburn
   line-numbers = true
-  side-by-side = true
+  #side-by-side = true
   dark = true
   tabs = 2
 
