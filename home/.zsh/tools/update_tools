@@ -75,13 +75,9 @@ vls
 
 # bundler is not installed automatically to not update to 2.0.1 every time
 RUBY_GEMS=(
-bond
-pry
 pry-byebug
 ripper-tags
-rufo
 wirb
-solargraph
 )
 
 log ">>> Updating zsh_config"

@@ -1,11 +1,8 @@
-#  gem install pry pry-doc debugger bond wirb awesome_print git-up
 require "irb/completion"
 require "irb/ext/save-history"
 
 begin
   require "wirb"
-  require "bond"
-  Bond.start
   Wirb.start
 rescue LoadError
 end
