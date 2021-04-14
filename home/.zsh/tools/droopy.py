@@ -6,12 +6,15 @@ Copyright 2008-2013 (c) Pierre Duquesne <stackp@online.fr>
 Licensed under the New BSD License.
 
 Changelog
+   20190628 * Added multi-user support
+   20190614 * Added various file sort options
    20151025 * Global variables removed
             * Code refactoring and re-layout
             * Python 2 and 3 compatibility
             * Efficiency and Security improvements
             * Added --config-file option.
             * Retains backwards compatibility.
+   20141028 * Added bulk download as zip
    20131121 * Update HTML/CSS for mobile devices
             * Add HTTPS support
             * Add HTTP basic authentication
@@ -77,8 +80,7 @@ else:
 
 import cgi
 import os
-import posixpath
-import ntpath
+import os.path
 import argparse
 import mimetypes
 import shutil
@@ -86,7 +88,8 @@ import tempfile
 import socket
 import base64
 import functools
-
+import zipfile
+from enum import Enum
 
 def _decode_str_if_py2(inputstr, encoding='utf-8'):
     "Will return decoded with given encoding *if* input is a string and it's Py2."
@@ -102,26 +105,36 @@ def _encode_str_if_py2(inputstr, encoding='utf-8'):
     else:
         return inputstr
 
+def _sanitise_filename(inputstr):
+    """Remove any hazardous characters from filenames and replace with a -.
+       Blacklist is anything non-ascii, null and the prohibited characters for Linux and Windows"""
+    outputstr = ""
+    for char in inputstr:
+        if ord(char) < 128 and ord(char) > 0 and char not in """\/:*?"<>|""":
+            outputstr = outputstr + char
+        else:
+            outputstr = outputstr + "-"
+    if not outputstr == inputstr:
+        print("Sanitised " + inputstr + " to " + outputstr)
+    return outputstr
+
 def fullpath(path):
     "Shortcut for os.path abspath(expanduser())"
     return os.path.abspath(os.path.expanduser(path))
-
-def basename(path):
-    "Extract the file base name (some browsers send the full file path)."
-    for mod in posixpath, os.path, ntpath:
-        path = mod.basename(path)
-    return path
 
 def check_auth(method):
     "Wraps methods on the request handler to require simple auth checks."
     def decorated(self, *pargs):
         "Reject if auth fails."
         if self.auth:
-            # TODO: Between minor versions this handles str/bytes differently
             received = self.get_case_insensitive_header('Authorization', None)
-            expected = 'Basic ' + base64.b64encode(self.auth)
+            # Log out the received user:pass, the interesting part of which is base64-encoded.
+            # This means the user's password is (very mildly obfuscated) in the logs, not ideal, but if you can see the
+            # logs you can probably already see the plaintext password in the config anyway.
+            print(received)
             # TODO: Timing attack?
-            if received != expected:
+            # If the received auth string was not one of the allowed ones, ask for authentication
+            if received not in self.auth:
                 self.send_response(401)
                 self.send_header('WWW-Authenticate', 'Basic realm=\"Droopy\"')
                 self.send_header('Content-type', 'text/html')
@@ -133,6 +146,15 @@ def check_auth(method):
     functools.update_wrapper(decorated, method)
     return decorated
 
+# Allowable sort orders for the files
+class SORT_ORDER(Enum):
+    none = 'none'
+    filename = 'filename'
+    date = 'date'
+    size = 'size'
+
+    def __str__(self):
+        return self.value
 
 class Abort(Exception):
     "Used by handle to rethrow exceptions in ThreadedHTTPServer."
@@ -154,7 +176,7 @@ class DroopyFieldStorage(cgi.FieldStorage):
     def __init__(self, fp=None, headers=None, outerboundary=b'',
                  environ=os.environ, keep_blank_values=0, strict_parsing=0,
                  limit=None, encoding='utf-8', errors='replace',
-                 directory='.'):
+                 directory='.', something=None):
         """
         Adds 'directory' argument to FieldStorage.__init__.
         Retains compatibility with FieldStorage.__init__ (which involves magic)
@@ -203,14 +225,21 @@ class HTTPUploadHandler(httpserver.BaseHTTPRequestHandler):
         raise NotImplementedError("Must provide directory to host.")
 
     message = ''
+    motd = None
     picture = ''
     publish_files = False
+    sort = None
+    reverse = False
+    download_all = False
+    overwrite = False
     file_mode = None
     protocol_version = 'HTTP/1.0'
     form_field = 'upfile'
-    auth = ''
+    auth = []
     certfile = None
-    divpicture = '<div class="box"><img src="/__droopy/picture"/></div>'
+    divpicture = '<div class="box"><img src="__droopy/picture"/></div>'
+    staticfolder = os.environ.get("DROOPY_STATIC",
+      os.path.join(os.path.dirname(os.path.realpath(__file__)), "static"))
 
     def get_case_insensitive_header(self, hdrname, default):
         "Python 2 and 3 differ in header capitalisation!"
@@ -259,12 +288,25 @@ class HTTPUploadHandler(httpserver.BaseHTTPRequestHandler):
         """
         dico = {}
         dico.update(self.choose_language())
-        # -- Set message and picture
+        # Set message
         if self.message:
             dico['message'] = '<div id="message">{0}</div>'.format(self.message)
         else:
             dico["message"] = ''
-        # The default appears to be missing/broken, so needs a bit of love anyway.
+        # Set message-of-the-day
+        # This is re-read from file every time, to ensure it can be changed, e.g. by an external script, so we must
+        # be sure to handle the case where it has been deleted.
+        if self.motd:
+            try:
+                with open(self.motd) as motd_file:
+                    motd_text = motd_file.read()
+            except:
+                print("Problem reading MOTD file " + self.motd)
+                motd_text = ''
+            dico['motd'] = '<div id="motd">{0}</div>'.format(motd_text)
+        else:
+            dico['motd'] = ''
+        # Set picture
         if self.picture:
             dico["divpicture"] = self.divpicture
         else:
@@ -275,8 +317,11 @@ class HTTPUploadHandler(httpserver.BaseHTTPRequestHandler):
         if self.publish_files:
             for name in self.published_files():
                 encoded_name = urllibparse.quote(_encode_str_if_py2(name))
-                links += '<a href="/{0}">{1}</a>'.format(encoded_name, name)
+                links += '<a href="{0}">{1}</a>'.format(encoded_name, name)
             links = '<div id="files">' + links + '</div>'
+        # Possibly provide a "download all" link
+        if self.download_all:
+            links = '<a href="?download">Download all</a>' + links
         dico["files"] = links
         # -- Add a link to discover the url
         if self.client_address[0] == "127.0.0.1":
@@ -296,9 +341,25 @@ class HTTPUploadHandler(httpserver.BaseHTTPRequestHandler):
 
         # TODO: Refactor special-method handling to make more modular?
         # Include ability to self-define "special method" prefix path?
-        if self.picture != None and self.path == '/__droopy/picture':
+
+        #path = self.translate_path(self.path)
+        if self.path.endswith('?download'):
+            tmp_file = tempfile.mktemp()
+            self.path = self.path.replace("?download","")
+
+            zip = zipfile.ZipFile(tmp_file, 'w')
+            for file in self.published_files():
+                print("Adding file to archive: %s" % file)
+                zip.write(os.path.join(self.directory, file),file)
+            zip.close()
+            self.send_file(tmp_file)
+            os.remove(tmp_file)
+        elif self.picture != None and self.path == '/__droopy/picture':
             # send the picture
             self.send_file(self.picture)
+        # serve static files
+        elif self.path.startswith('/static'):
+            self.send_file(os.path.join(self.staticfolder, self.path.lstrip('/static/')))
         # TODO Verify that this is path-injection proof
         elif name in self.published_files():
             localpath = os.path.join(self.directory, name)
@@ -321,16 +382,19 @@ class HTTPUploadHandler(httpserver.BaseHTTPRequestHandler):
             if not isinstance(file_items, list):
                 file_items = [file_items]
             for item in file_items:
-                filename = _decode_str_if_py2(basename(item.filename), "utf-8")
+                filename = _decode_str_if_py2(os.path.basename(item.filename), "utf-8")
+                filename = _sanitise_filename(filename)
                 if filename == "":
                     continue
                 localpath = _encode_str_if_py2(os.path.join(self.directory, filename), "utf-8")
                 root, ext = os.path.splitext(localpath)
                 i = 1
-                # TODO: race condition...
-                while os.path.exists(localpath):
-                    localpath = "%s-%d%s" % (root, i, ext)
-                    i = i + 1
+                if not self.overwrite:
+
+                    # TODO: race condition...
+                    while os.path.exists(localpath):
+                        localpath = "%s-%d%s" % (root, i, ext)
+                        i = i + 1
                 if hasattr(item, 'tmpfile'):
                     # DroopyFieldStorage.make_file() has been called
                     item.tmpfile.close()
@@ -340,8 +404,7 @@ class HTTPUploadHandler(httpserver.BaseHTTPRequestHandler):
                     # see cgi.FieldStorage.read_lines()
                     with open(localpath, "wb") as fout:
                         shutil.copyfileobj(item.file, fout)
-                if self.file_mode is not None:
-                    os.chmod(localpath, self.file_mode)
+                os.chmod(localpath, 0o777)
                 self.log_message("Received: %s", os.path.basename(localpath))
 
             # -- Reply
@@ -379,7 +442,8 @@ class HTTPUploadHandler(httpserver.BaseHTTPRequestHandler):
             shutil.copyfileobj(f, self.wfile)
 
     def published_files(self):
-        "Returns the list of files that should appear as download links."
+        """Returns the list of files that should appear as download links,
+        sorted as specified by 'sort' and 'reverse' params."""
         names = []
         # In py2, listdir() returns strings when the directory is a string.
         for name in os.listdir(unicode(self.directory)):
@@ -388,7 +452,20 @@ class HTTPUploadHandler(httpserver.BaseHTTPRequestHandler):
             npath = os.path.join(self.directory, name)
             if os.path.isfile(npath):
                 names.append(name)
-        names.sort(key=lambda s: s.lower())
+
+        # Sort the links as specified by 'sort'
+        if self.sort==SORT_ORDER.filename:
+            names.sort(key=lambda s: s.lower())
+        elif self.sort==SORT_ORDER.date:
+            names.sort(key=lambda s: os.path.getmtime(os.path.join(self.directory, s)))
+        elif self.sort==SORT_ORDER.size:
+            names.sort(key=lambda s: os.path.getsize(os.path.join(self.directory, s)))
+            pass
+
+        # Optionally reverse the order as specified by 'reverse'
+        if self.reverse:
+            names.reverse()
+
         return names
 
     def handle(self):
@@ -418,9 +495,14 @@ def run(hostname='',
         timeout=3*60,
         picture=None,
         message='',
+        motd=None,
         file_mode=None,
         publish_files=False,
-        auth='',
+        sort=None,
+        reverse=False,
+        download_all=False,
+        overwrite=False,
+        auth=[],
         certfile=None,
         permitted_ciphers=(
             'ECDH+AESGCM:ECDH+AES256:ECDH+AES128:ECDH+3DES'
@@ -442,9 +524,21 @@ def run(hostname='',
     HTTPUploadHandler.localisations = localisations
     HTTPUploadHandler.certfile = certfile
     HTTPUploadHandler.publish_files = publish_files
+    HTTPUploadHandler.sort = sort
+    HTTPUploadHandler.reverse = reverse
+    HTTPUploadHandler.download_all = download_all
+    HTTPUploadHandler.overwrite = overwrite
     HTTPUploadHandler.picture = picture
     HTTPUploadHandler.message = message
+    HTTPUploadHandler.motd = motd
     HTTPUploadHandler.file_mode = file_mode
+
+    # Prepare a list of auth strings for all user:pass combinations
+    if sys.version_info >= (3, 0):
+        auth = ['Basic ' + base64.b64encode(userpass.encode('utf-8')).decode('utf-8') for userpass in auth]
+    else:
+        auth = ['Basic ' + base64.b64encode(userpass) for userpass in auth]
+
     HTTPUploadHandler.auth = auth
     httpd = ThreadedHTTPServer((hostname, port), HTTPUploadHandler)
     # TODO: Specify TLS1.2 only?
@@ -483,9 +577,11 @@ a {color: #4499cc; text-decoration: none;}
 #linkurl a:hover {color: #fff;}
 #message {padding: 5px 0; font-size: 2em; font-weight: lighter;
           letter-spacing: -2px; line-height: 50px; color: #aaa;}
+#motd {padding: 15px; font-size: 1.2em; font-weight: lighter;
+          letter-spacing: -1px; line-height: 25px; color: #888; text-align: justify}
 #sending {display: none; font-style: italic;}
 #sending .text {padding-top: 10px; color: #bbb; font-size: 0.8em;}
-#wrapform {height: 90px; padding-top:40px;}
+#wrapform {padding-top:40px;}
 #progress {display: inline;  border-collapse: separate; empty-cells: show;
            border-spacing: 24px 0; padding: 0; vertical-align: bottom;}
 #progress td {height: 17px; width: 17px; background-color: #eee;
@@ -508,6 +604,7 @@ a {color: #4499cc; text-decoration: none;}
 userinfo = '''
 <div id="userinfo">
   %(message)s
+  %(motd)s
   %(divpicture)s
 </div>
 '''
@@ -518,6 +615,7 @@ maintmpl = '''
 <head>
 <title>%(maintitle)s</title>
 ''' + style + '''
+<link rel="stylesheet" href="static/dropzone/dropzone.css">
 <script language="JavaScript">
 function swap() {
    document.getElementById("form").style.display = "none";
@@ -538,15 +636,19 @@ function onunload() {
    document.getElementById("form").style.display = "block";
    document.getElementById("sending").style.display = "none";
 }
-</script></head>
+</script>
+</head>
 <body>
 %(linkurl)s
 <div class="container">
 <div id="wrapform">
   <div id="form" class="box">
-    <form method="post" enctype="multipart/form-data" action="">
+    <form id="upload-form" method="post" enctype="multipart/form-data" action="" class="dropzone">
+    <!-- we only display the input elements if dropzone can't be used (no JS) -->
+    <div class="fallback">
       <input name="upfile" type="file" multiple="yes">
       <input value="%(submit)s" onclick="swap()" type="submit">
+    </div>
     </form>
   </div>
   <div id="sending" class="box">
@@ -562,6 +664,16 @@ function onunload() {
 ''' + userinfo + '''
 %(files)s
 </div>
+<script src="static/dropzone/dropzone.js"></script>
+<script>
+  Dropzone.autoDiscover = false;
+  var uploadDropzone = new Dropzone("#upload-form", {
+                                       url: "./",
+                                       paramName: "upfile",
+                                       // client-side filesize doesn't make sense
+                                       maxFilesize: 10000000000000
+                                   });
+</script>
 </body>
 </html>
 '''
@@ -1015,16 +1127,26 @@ def parse_args(cmd=None, ignore_defaults=False):
                         help='set the directory to upload files to')
     parser.add_argument('-m', '--message', type=str, default='',
                         help='set the message')
+    parser.add_argument('-mf', '--motd', type=str, default=None,
+                        help='set the message-of-the-day file')
     parser.add_argument('-p', '--picture', type=str, default='',
                         help='set the picture')
     parser.add_argument('--publish-files', '--dl', action='store_true', default=False,
                         help='provide download links')
+    parser.add_argument('--sort', type=SORT_ORDER, choices=list(SORT_ORDER),
+                        help='sort order for download links (ascending')
+    parser.add_argument('--reverse', action='store_true', default=False,
+                        help='reverse sort order (descending)')
+    parser.add_argument('--download-all', '--da', action='store_true', default=False,
+                        help='provide "download all" link')
     parser.add_argument('-a', '--auth', type=str, default='',
-                        help='set the authentication credentials, in form USER:PASS')
+                        help='set the authentication credentials, in form USER1:PASS1[,USER2:PASS2...]')
     parser.add_argument('--ssl', type=str, default='',
                         help='set up https using the certificate file')
     parser.add_argument('--chmod', type=str, default=None,
                         help='set the file permissions (octal value)')
+    parser.add_argument('-o', '--overwrite', action='store_true', default=False,
+                        help="overwrite existing files")
     parser.add_argument('--save-config', action='store_true', default=False,
                         help='save options in a configuration file')
     parser.add_argument('--delete-config', action='store_true', default=False,
@@ -1037,15 +1159,28 @@ def parse_args(cmd=None, ignore_defaults=False):
             args.picture = fullpath(args.picture)
         else:
             print("Picture not found: '{0}'".format(args.picture))
+    if args.motd:
+        if os.path.exists(args.motd):
+            args.motd = fullpath(args.motd)
+        else:
+            print("MOTD not found: '{0}'".format(args.motd))
     if args.delete_config:
         filename = default_configfile()
         os.remove(filename)
         print('Deleted ' + filename)
         sys.exit(0)
     if args.auth:
-        if ':' not in args.auth:
-            print("Error: authentication credentials must be "
-                  "specified as USER:PASSWORD")
+        # Split auth arg into an array of user:pass strings
+        args.auth = args.auth.split(",")
+        auth_ok = True
+        if len(args.auth) == 0:
+            auth_ok = False
+        for auth in args.auth:
+            if ':' not in auth:
+                auth_ok = False
+        if not auth_ok:
+            print("Error: authentication credentials must be specified as "
+            "USER:PASSWORD[,USER2:PASSWORD2...]")
             sys.exit(1)
     if args.ssl:
         if not os.path.isfile(args.ssl):
@@ -1100,9 +1235,14 @@ def main():
             certfile=args['ssl'],
             picture=args['picture'],
             message=args['message'],
+            motd=args['motd'],
             directory=args['directory'],
             file_mode=args['chmod'],
             publish_files=args['publish_files'],
+            sort=args['sort'],
+            reverse=args['reverse'],
+            download_all=args['download_all'],
+            overwrite=args['overwrite'],
             auth=args['auth'],
             templates=default_templates,
             localisations=default_localisations)
