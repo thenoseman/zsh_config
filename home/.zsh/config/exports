@@ -52,6 +52,3 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # Location of node js versions
 export N_PREFIX=~/.nodes
-
-# ruby-build should use system ruby
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
