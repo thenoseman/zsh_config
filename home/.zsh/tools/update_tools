@@ -93,6 +93,10 @@ for p in "${BREW_PACKAGES[@]}"; do
 done
 
 # Check install casks
+
+# Error: It seems there is already a Binary at '/usr/local/bin/gview'.
+rm /usr/local/bin/gview
+
 INSTALLED=$(brew list --casks -1 | tr '\n' ' ')
 for p in "${BREW_CASKS[@]}"; do
  [[ ${INSTALLED} != *$p* ]] && brew install --cask "${p}"
