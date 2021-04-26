@@ -5,4 +5,5 @@ require "screen_layout"
 require "audio"
 require "msteams"
 require "hotkeys"
+require "ambient_lighting"
 
