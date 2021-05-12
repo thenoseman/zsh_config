@@ -65,10 +65,10 @@ end)
 -- Secodnary sits LEFT of the primary
 hs.hotkey.bind({"cmd", "shift"}, "9", function()
   local windowLayout = {
-    {"Google Chrome", nil, primaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
+    {"Brave Browser", nil, primaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
     {"MacVim", nil, primaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
     {"iTerm2", nil, primaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1}, nil, nil},
-    {"Google Chrome", "E-Mail", secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
+    {"Brave Browser", "E-Mail", secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
     {"Microsoft Outlook", nil, secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1}, nil, nil},
     {"Slack", nil, secondaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1}, nil, nil},
     {"Microsoft Teams", nil, secondaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1}, nil, nil},
