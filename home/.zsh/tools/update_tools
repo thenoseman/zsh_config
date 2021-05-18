@@ -1,5 +1,5 @@
 # vim: set ft=sh:
-
+# shellcheck disable=SC3030,SC3054,SC3010
 log() {
   echo "\033[0;33m${1}\033[0m"
 }
@@ -114,14 +114,6 @@ if ! brew ls --versions universal-ctags; then
 fi
 
 brew upgrade
-
-# Need to do this one by one until cask upgrade doesn't fail if one fails
-for cask in $(brew outdated --cask | cut -d '(' -f 1); do
-  log ">>> Upgrading cask '${cask}'"
-  brew upgrade --cask "$cask"
-done
-
-# brew cleanup is run via HOMEBREW_INSTALL_CLEANUP=1 automatically!
 
 log ">>> Updating rubygems"
 gem update --system
