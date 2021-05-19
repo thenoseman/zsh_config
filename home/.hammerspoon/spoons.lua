@@ -4,7 +4,7 @@ spoon.ReloadConfiguration:start()
 
 -- MouseCircle
 hs.loadSpoon("MouseCircle")
-spoon.MouseCircle:bindHotkeys({ show = {{"cmd", "shift"}, "+"}})
+spoon.MouseCircle:bindHotkeys({ show = {{"cmd", "shift"}, "´"}})
 
 -- Clipboardtools
 hs.loadSpoon("ClipboardTool")

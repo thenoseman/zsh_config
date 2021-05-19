@@ -17,11 +17,3 @@ hs.hotkey.bind({"cmd", "shift"}, "ß", function()
   }
   log.i(hs.inspect.inspect(data))
 end)
-
---
--- One Commander
---
-hs.hotkey.bind({"cmd", "shift"}, "f", function()
-  hs.application.open("/Applications/Commander One.app")
-end)
-
