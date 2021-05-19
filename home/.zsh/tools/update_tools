@@ -73,7 +73,6 @@ vls
 # bundler is not installed automatically to not update to 2.0.1 every time
 RUBY_GEMS=(
 pry-byebug
-ripper-tags
 wirb
 )
 
