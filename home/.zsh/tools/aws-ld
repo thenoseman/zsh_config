@@ -1,0 +1,27 @@
+#!/bin/bash
+# vim: ft=sh
+#
+# A wildcard enabled awslogs
+#
+command -v aws-vault-wrapper >/dev/null 2>&1 || (echo "Needs 'aws-vault-wrapper'" && exit 1)
+command -v fzf >/dev/null 2>&1 || (echo "Needs 'fzf'" && brew install fzf && exit 1)
+
+group_name=${1:-}
+timeline=${2:-1 hours ago}
+[ -z "${group_name}" ] && echo "Please specify a searchpattern as first parameter" && exit 1
+
+bin="aws-vault-wrapper /usr/local/bin/awslogs"
+groups=$($bin groups | grep "$group_name" | sort)
+number_of_groups=$(echo "${groups}" | wc -l | tr -d ' ')
+
+if [[ "$number_of_groups" == "0" ]]; then
+  echo "Could not find a group containing string '${group_name}'" && exit 1
+fi
+
+if [[ "$number_of_groups" -gt "1" ]]; then
+  echo "Too many group containing string '${group_name}'. Select one." 
+  groups=$(echo -n "$groups" | fzf)
+fi
+
+echo "Now watching '$groups' (Since: $timeline)"
+$bin get --no-group -no-stream --timestamp --start "$timeline" "$groups"
