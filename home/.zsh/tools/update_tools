@@ -94,6 +94,7 @@ done
 # Check install casks
 
 # Error: It seems there is already a Binary at '/usr/local/bin/gview'.
+rm -rf /usr/local/bin/mvim
 rm -rf /usr/local/bin/mvimdiff
 rm -rf /usr/local/bin/mview
 rm -rf /usr/local/bin/mvimex
