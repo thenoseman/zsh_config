@@ -94,15 +94,9 @@ done
 # Check install casks
 
 # Error: It seems there is already a Binary at '/usr/local/bin/gview'.
-rm -rf /usr/local/bin/mvim
-rm -rf /usr/local/bin/mvimdiff
-rm -rf /usr/local/bin/mview
-rm -rf /usr/local/bin/mvimex
-rm -rf /usr/local/bin/gvim
-rm -rf /usr/local/bin/gvimdiff
-rm -rf /usr/local/bin/gview
-rm -rf /usr/local/bin/gvimex
-rm -rf /usr/local/bin/view
+for bin in mvim mvimdiff mview mvimex gvim gvimdiff gview gvimex view; do
+  rm -rf /usr/local/bin/$bin
+done
 
 INSTALLED=$(brew list --casks -1 | tr '\n' ' ')
 for p in "${BREW_CASKS[@]}"; do
