@@ -35,6 +35,7 @@ shellcheck
 sqlite
 tig
 watch
+watchman
 wireguard-tools
 yarn
 ydiff
