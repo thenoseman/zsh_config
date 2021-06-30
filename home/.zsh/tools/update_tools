@@ -41,6 +41,7 @@ yarn
 ydiff
 youtube-dl
 zsh
+findutils
 )
 
 BREW_CASKS=(
