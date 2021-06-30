@@ -84,9 +84,10 @@
 [interactive]
   diffFilter = delta --color-only
 [delta]
+  #side-by-side = true
   syntax-theme = zenburn
   line-numbers = true
-  #side-by-side = true
+  relative-paths = true
   dark = true
   tabs = 2
 
