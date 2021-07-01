@@ -3,3 +3,5 @@
 # Update async.zsh
 curl -s -L "https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh" -o home/.zsh/modules/pure_prompt/async.zsh
 curl -s -L "https://iterm2.com/shell_integration/zsh" -o ./home/.zsh/config/iterm2-integration.sh
+curl -s -L "https://gitlab.com/openconnect/vpnc-scripts/-/raw/master/vpnc-script" -o ./home/extras/vpnc-script && chmod +x ./home/extras/vpnc-script 
+
