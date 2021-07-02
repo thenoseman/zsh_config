@@ -110,7 +110,6 @@ if ! brew ls --versions universal-ctags; then
 fi
 
 brew upgrade
-brew upgrade --cask --greedy
 
 log ">>> Updating rubygems"
 gem update --system
