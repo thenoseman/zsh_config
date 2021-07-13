@@ -9,6 +9,7 @@ boost
 cmake
 coreutils
 direnv
+exa
 exiftool
 ffmpeg
 fzf
@@ -24,7 +25,6 @@ n
 node
 oath-toolkit
 openconnect
-openjdk@11
 openssl
 pstree
 python
@@ -32,6 +32,7 @@ readline
 ripgrep
 ruby-build
 shellcheck
+syncthing
 sqlite
 tig
 watch
