@@ -32,7 +32,6 @@ alias sed="gsed"
 #
 if [[ "${OSTYPE}" =~ "darwin" ]]; then
   alias v='mvim'
-  alias vim='/usr/local/opt/macvim/MacVim.app/Contents/MacOS/Vim'
 else
   alias v='gvim'
   alias vim='gvim'
