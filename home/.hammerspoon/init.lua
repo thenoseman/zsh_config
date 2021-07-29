@@ -6,4 +6,5 @@ require "audio"
 require "msteams"
 require "hotkeys"
 require "ambient_lighting"
+require "mediakeys"
 
