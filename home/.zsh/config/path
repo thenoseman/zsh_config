@@ -33,4 +33,4 @@ export PATH=$PATH:$HOME/Sync/shared-with-company/shell
 export PATH=$PATH:/usr/local/MacGPG2/bin
 
 # Rust
-export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-x86_64-apple-darwin/bin"
