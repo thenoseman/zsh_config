@@ -13,3 +13,6 @@ spoon.ClipboardTool.paste_on_select = true
 spoon.ClipboardTool.show_in_menubar = false
 spoon.ClipboardTool.max_size = true
 spoon.ClipboardTool:start()
+
+hs.loadSpoon("PopupTranslateSelection")
+spoon.PopupTranslateSelection:bindHotkeys({translate = { { "ctrl", "alt", "cmd" }, "t" }})
