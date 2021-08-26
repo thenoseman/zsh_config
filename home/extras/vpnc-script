@@ -64,7 +64,7 @@
 # 2) There are two different functions to set routes: generic routes and the
 #   default route. Why isn't the defaultroute handled via the generic route case?
 # 3) In the split tunnel case, all routes but the default route might get replaced
-#   without getting restored later. We should explicitely check and save them just
+#   without getting restored later. We should explicitly check and save them just
 #   like the defaultroute
 # 4) Replies to a dhcp-server should never be sent into the tunnel
 
@@ -265,7 +265,7 @@ if [ -n "$IPROUTE" ]; then
 	set_vpngateway_route() {
 		# We'll attempt to add a host route to the gateway through every route that matches
 		# its address (excluding those through TUNDEV because the goal is to avoid loopback).
-		echo "$1" | grep -q : && FAMILY=-6 || FAMILY=-4
+		echo "$VPNGATEWAY" | grep -q : && FAMILY=-6 || FAMILY=-4
 
 		list_non_loopback_routes "$VPNGATEWAY" |
 		while read LINE ; do
@@ -385,7 +385,7 @@ if [ -n "$IPROUTE" ]; then
 
 	del_ipv6_exclude_route() {
 		# FIXME: In theory, this could delete existing routes which are
-		# identical to split-exclude routes specificed by VPNGATEWAY
+		# identical to split-exclude routes specified by VPNGATEWAY
 		NETWORK="$1"
 		NETMASKLEN="$2"
 		$IPROUTE -6 route del "$NETWORK/$NETMASKLEN"
