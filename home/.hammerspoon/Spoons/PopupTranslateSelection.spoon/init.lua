@@ -21,7 +21,7 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 --- PopupTranslateSelection.popup_size
 --- Variable
 --- `hs.geometry` object representing the size to use for the translation popup window. Defaults to `hs.geometry.size(770, 610)`.
-obj.popup_size = hs.geometry.size(770, 610)
+obj.popup_size = hs.geometry.size(770, 310)
 
 --- PopupTranslateSelection.popup_style
 --- Variable
@@ -56,19 +56,16 @@ obj.webview = nil
 ---  * The PopupTranslateSelection object
 function obj:translatePopup(text, to, from)
    local query=hs.http.encodeForQuery(text)
-   local url = "http://translate.google.com/translate_t?" ..
+   local url = "https://translate.google.com/translate_t?" ..
       (from and ("sl=" .. from .. "&") or "") ..
       (to and ("tl=" .. to .. "&") or "") ..
       "text=" .. query
-   -- Persist the window between calls to reduce startup time on subsequent calls
-   if self.webview == nil then
-      local rect = hs.geometry.rect(0, 0, self.popup_size.w, self.popup_size.h)
-      rect.center = hs.screen.mainScreen():frame().center
-      self.webview=hs.webview.new(rect)
-         :allowTextEntry(true)
-         :windowStyle(self.popup_style)
-         :closeOnEscape(self.popup_close_on_escape)
-   end
+    local rect = hs.geometry.rect(0, 0, self.popup_size.w, self.popup_size.h)
+    rect.center = hs.screen.mainScreen():frame().center
+    self.webview=hs.webview.new(rect)
+       :allowTextEntry(true)
+       :windowStyle(self.popup_style)
+       :closeOnEscape(self.popup_close_on_escape)
    self.webview:url(url)
       :bringToFront()
       :show()
@@ -82,7 +79,7 @@ function obj:translatePopup(text, to, from)
        document.querySelectorAll("header, nav").forEach(e => e.remove());
        document.querySelector("div[aria-haspopup='dialog']").remove();
        var styleElem = document.head.appendChild(document.createElement("style"));
-       styleElem.innerHTML = "script + c-wiz:before { border: none !important; background: transparent !important;} ";
+       styleElem.innerHTML = "script + c-wiz:before { border: none !important; background: transparent !important;}; h1 + div + div { display: none !important;}";
      };
    ]]
    self.webview:evaluateJavaScript(injectJs);
