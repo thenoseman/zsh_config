@@ -4,7 +4,7 @@
 -- also show the current runign title for a time in the menubar
 -- 
 local log = hs.logger.new('mediakeys','debug')
-local cmus_socket_path = hs.fs.pathToAbsolute("~/.config/cmus/socket")
+local cmus_socket_path = nil
 
 -- http://asciimage.org/
 local icon = [[ASCII:
@@ -36,6 +36,11 @@ local function show_title_in_menubar(status_line)
 
 end
 
+function file_exists(name)
+   local f=io.open(name,"r")
+   if f~=nil then io.close(f) return true else return false end
+end
+
 local function receive_data(data)
   local artist=nil
   local title=nil
@@ -53,7 +58,8 @@ local function receive_data(data)
   show_title_in_menubar(artist .. ": " .. title)
 end
 
-local cmus_remote_socket = hs.socket.new(receive_data):connect(cmus_socket_path)
+local cmus_remote_socket = nil
+
 local key_to_cmus_command = {
   ["PLAY"] = "player-pause",
   ["FAST"] = "player-next",
@@ -69,13 +75,20 @@ local tap = hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function (e
      return false, nil
   end
 
+  -- Key released
   if not data["down"] then
-    if cmus_remote_socket == nil then
-      log.i("No socket present in " .. cmus_socket_path)
-      return true, nil
+    cmus_socket_path = hs.fs.pathToAbsolute("~/.config/cmus/socket")
+    if not cmus_socket_path then
+      log.i("cmus socket not found. skipping key.")
+      return
     end
 
-    local command=key_to_cmus_command[data["key"]]
+    -- Open the socket
+    if not cmus_remote_socket then
+      cmus_remote_socket = hs.socket.new(receive_data):connect(cmus_socket_path)
+    end
+
+    local command = key_to_cmus_command[data["key"]]
     log.i("Sending command '" .. command .. "' to cmus socket at " .. cmus_socket_path)
     cmus_remote_socket:send(command .. "\n")
 
