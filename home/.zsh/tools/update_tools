@@ -125,13 +125,13 @@ log ">>> Setting permission for quicklook plugins"
 xattr -r ~/Library/QuickLook > /dev/null
 xattr -d -r com.apple.quarantine ~/Library/QuickLook > /dev/null
 
-if [ -d /Applications/Microsoft\ Teams.app ]; then 
-  if 2>/dev/null 1>&2 codesign --verify "/Applications/Microsoft Teams.app"; then 
-    log ">>> Removing code signage from MS Teams for virtual cams to work"
-    sudo codesign --remove-signature "/Applications/Microsoft Teams.app"
-    sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper.app"
-    sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (GPU).app"
-    sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Renderer).app"
-    sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Plugin).app"
-  fi
-fi
+# if [ -d /Applications/Microsoft\ Teams.app ]; then 
+#   if 2>/dev/null 1>&2 codesign --verify "/Applications/Microsoft Teams.app"; then 
+#     log ">>> Removing code signage from MS Teams for virtual cams to work"
+#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app"
+#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper.app"
+#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (GPU).app"
+#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Renderer).app"
+#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Plugin).app"
+#   fi
+# fi
