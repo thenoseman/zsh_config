@@ -80,7 +80,7 @@ local tap = hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function (e
     cmus_socket_path = hs.fs.pathToAbsolute("~/.config/cmus/socket")
     if not cmus_socket_path then
       log.i("cmus socket not found. skipping key.")
-      return
+      return true, nil
     end
 
     -- Open the socket
