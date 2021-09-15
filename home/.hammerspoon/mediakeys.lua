@@ -69,7 +69,7 @@ local key_to_cmus_command = {
 --
 -- Stop mediakeys to start apple apps and use them for CMUS
 --
-local tap = hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function (event)
+media_tap = hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function (event)
   local data = event:systemKey()
   if data["key"] ~= "PLAY" and data["key"] ~= "FAST" and data["key"] ~= "REWIND" then
      return false, nil
@@ -101,5 +101,10 @@ local tap = hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function (e
   end
   return true, nil
 end)
-tap:start()
+media_tap:start()
+
+-- Call something on tap to keep it alove ... ????
+hs.timer.doEvery(15, function() 
+  media_tap:isEnabled()
+end)
 
