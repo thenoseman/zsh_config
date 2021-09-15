@@ -20,6 +20,13 @@ function applicationWatcher(appName, eventType)
     if (appName == appname_for_trigger) then
       log.i("enable")
       teamsHotkey:enable()
+
+      -- Teams reserves the mediakeys if focuses
+      -- To remedy this we reload the config!
+      hs.timer.doAfter(5, function ()
+        hs.reload()
+      end)
+      
     end
   end
 
