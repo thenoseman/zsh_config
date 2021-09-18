@@ -23,8 +23,9 @@
 # List of parameters passed through environment
 #* reason                       -- why this script was called, one of: pre-init connect disconnect reconnect attempt-reconnect
 #* VPNGATEWAY                   -- VPN gateway address (always present)
+#* VPNPID                       -- PID of the process controlling the VPN (OpenConnect v9.0+)
 #* TUNDEV                       -- tunnel device (always present)
-#* IDLE_TIMEOUT			-- gateway's idle timeout in seconds (OpenConnect v8.06+); unused
+#* IDLE_TIMEOUT                 -- gateway's idle timeout in seconds (OpenConnect v8.06+); unused
 #* INTERNAL_IP4_ADDRESS         -- address (always present)
 #* INTERNAL_IP4_MTU             -- MTU (often unset)
 #* INTERNAL_IP4_NETMASK         -- netmask (often unset)
@@ -88,9 +89,22 @@ PATH=/sbin:/usr/sbin:$PATH
 OS="`uname -s`"
 
 HOOKS_DIR=/etc/vpnc
-DEFAULT_ROUTE_FILE=/var/run/vpnc/defaultroute.${PPID}
-DEFAULT_ROUTE_FILE_IPV6=/var/run/vpnc/defaultroute_ipv6.${PPID}
-RESOLV_CONF_BACKUP=/var/run/vpnc/resolv.conf-backup
+
+# Use the PID of the controlling process (vpnc or OpenConnect) to
+# uniquely identify this VPN connection. Normally, the parent process
+# is a shell, and the grandparent's PID is the relevant one.
+# OpenConnect v9.0+ provides VPNPID, so we don't need to determine it.
+if [ -z "$VPNPID " ]; then
+    VPNPID=$PPID
+    PCMD=`ps -c -o cmd= -p $PPID`
+    case "$PCMD" in
+        *sh) VPNPID=`ps -o ppid= -p $PPID` ;;
+    esac
+fi
+
+DEFAULT_ROUTE_FILE=/var/run/vpnc/defaultroute.${VPNPID}
+DEFAULT_ROUTE_FILE_IPV6=/var/run/vpnc/defaultroute_ipv6.${VPNPID}
+RESOLV_CONF_BACKUP=/var/run/vpnc/resolv.conf-backup.${VPNPID}
 SCRIPTNAME=`basename $0`
 
 # some systems, eg. Darwin & FreeBSD, prune /var/run on boot
