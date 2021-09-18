@@ -7,3 +7,4 @@ home/.zsh/cache/
 .uuid
 home/.kdiff3rc
 amazon-shell-tools.sh
+home/.zsh/modules/fzf-tab/

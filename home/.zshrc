@@ -48,6 +48,11 @@ export HISTFILE=~/.history
 # eliminate duplicates from these lists
 typeset -U hosts path cdpath fpath fignore manpath mailpath classpath
 
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # Compile all hostsfiles to include them in autocomplete
 if [ -f "$HOME/.ssh/known_hosts" ]; then
     sshhosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*})
@@ -182,5 +187,12 @@ bindkey -s "^[n" "~"
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
+
+# Initialize fzf-tab
+source ~/.zsh/modules/fzf-tab/fzf-tab.plugin.zsh
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # zprof
