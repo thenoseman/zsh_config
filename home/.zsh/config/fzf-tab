@@ -1,0 +1,11 @@
+# vim: set ft=sh:
+# Initialize fzf-tab and configure it
+source "$HOME/.zsh/modules/fzf-tab/fzf-tab.plugin.zsh"
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+# Environment vars preview (https://github.com/Aloxaf/fzf-tab/wiki/Preview#environment-variable)
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
+# Simple file preview (https://github.com/Aloxaf/fzf-tab/wiki/Preview#show-file-contents)
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
