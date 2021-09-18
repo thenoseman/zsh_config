@@ -4,13 +4,12 @@ curl -s -L "https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh
 curl -s -L "https://iterm2.com/shell_integration/zsh" -o ./home/.zsh/config/iterm2-integration.sh
 curl -s -L "https://gitlab.com/openconnect/vpnc-scripts/-/raw/master/vpnc-script" -o ./home/extras/vpnc-script && chmod +x ./home/extras/vpnc-script 
 
-if [[ ! -e "./home/extras/fzf-tab" ]]; then
+if [[ ! -e "$HOME/.zsh/modules/fzf-tab" ]]; then
   git clone https://github.com/Aloxaf/fzf-tab ~/.zsh/modules/fzf-tab
 else
   (cd ~/.zsh/modules/fzf-tab && git pull --rebase)
 fi
 
-# Initialize fzf-tab
 # shellcheck disable=SC1091
 source "$HOME/.zsh/modules/fzf-tab/fzf-tab.plugin.zsh"
 build-fzf-tab-module
