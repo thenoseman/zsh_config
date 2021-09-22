@@ -6,17 +6,13 @@ local status_line_bar = nil
 local task = nil
 
 function open_connect_running(exitcode)
+  log.i(exitcode)
   if exitcode == 0 then
-    if status_line_bar == nil then
-      status_line_bar = hs.menubar.new()
-    end
+    status_line_bar = hs.menubar.new()
     status_line_bar:setTitle("☎️")
     status_line_bar:setTooltip("openconnect is running!")
   else
-    if status_line_bar ~= nil then
-      status_line_bar:delete()
-      status_line_bar = nil
-    end
+    status_line_bar:delete()
   end
   task:terminate()
 end
