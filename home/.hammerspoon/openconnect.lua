@@ -11,6 +11,7 @@ function open_connect_running(exitcode)
       status_line_bar = hs.menubar.new()
     end
     status_line_bar:setTitle("☎️")
+    status_line_bar:setTooltip("openconnect is running!")
   else
     if status_line_bar ~= nil then
       status_line_bar:delete()
