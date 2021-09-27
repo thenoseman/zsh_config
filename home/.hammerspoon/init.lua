@@ -1,3 +1,4 @@
+require "config"
 require "spoons"
 require "screen_layout"
 require "audio"
