@@ -9,7 +9,7 @@ function open_connect_running(exitcode, stdout, stderr)
   if status_line_bar ~= nil then
     status_line_bar:delete()
   end
-  if stdout ~= "" then
+  if string.find(stdout, "0 packets received") == nil then
     status_line_bar = hs.menubar.new()
     status_line_bar:setTitle("☎️")
     status_line_bar:setTooltip("openconnect is running!")
@@ -17,8 +17,6 @@ function open_connect_running(exitcode, stdout, stderr)
   task:terminate()
 end
 
-if _G["OPENCONNECT_TEST_DOMAIN"] ~= nil then
-  hs.timer.doEvery(30, function()
-    task = hs.task.new("/sbin/ping", open_connect_running, { "-c", "3", "-i", "1", "-o", "-t", "5", _G["OPENCONNECT_TEST_DOMAIN"]}):start()
-  end)
-end
+hs.timer.doEvery(30, function()
+  task = hs.task.new("/sbin/ping", open_connect_running, { "-c", "3", "-i", "1", "-o", "-t", "5", "10.120.2.45" }):start()
+end)
