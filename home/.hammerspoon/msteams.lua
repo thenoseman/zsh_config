@@ -18,7 +18,6 @@ function applicationWatcher(appName, eventType)
   -- App focused
   if (eventType == hs.application.watcher.activated) then
     if (appName == appname_for_trigger) then
-      log.i("enable")
       teamsHotkey:enable()
     end
   end
