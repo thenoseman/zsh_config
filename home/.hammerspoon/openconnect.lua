@@ -9,7 +9,7 @@ function open_connect_running(exitcode, stdout, stderr)
   if status_line_bar ~= nil then
     status_line_bar:delete()
   end
-  if string.find(stdout, "0 packets received") == nil then
+  if string.find(stdout, "1 packets received") ~= nil then
     status_line_bar = hs.menubar.new()
     status_line_bar:setTitle("☎️")
     status_line_bar:setTooltip("openconnect is running!")
