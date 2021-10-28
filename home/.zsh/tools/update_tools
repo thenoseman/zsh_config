@@ -68,7 +68,6 @@ NODE_PACKAGES=(
 eslint
 jsonlint
 prettier
-tslint
 typescript
 )
 
