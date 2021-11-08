@@ -4,7 +4,8 @@
 # A wildcard enabled awslogs
 #
 command -v aws-vault-wrapper >/dev/null 2>&1 || (echo "Needs 'aws-vault-wrapper'" && exit 1)
-command -v fzf >/dev/null 2>&1 || (echo "Needs 'fzf'" && brew install fzf && exit 1)
+command -v fzf >/dev/null 2>&1 || (echo "Needs 'fzf'" && exit 1)
+command -v saw >/dev/null 2>&1 || (echo "Needs 'saw' (https://github.com/TylerBrock/saw)" && exit 1)
 
 group_name=${1:-}
 timeline=${2:--1h}
