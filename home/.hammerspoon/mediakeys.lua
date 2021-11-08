@@ -103,7 +103,7 @@ media_tap = hs.eventtap.new({hs.eventtap.event.types.systemDefined}, function (e
 end)
 media_tap:start()
 
--- Call something on tap to keep it alove ... ????
+-- Call something on tap to keep it alive ... ????
 hs.timer.doEvery(15, function() 
   media_tap:isEnabled()
 end)
