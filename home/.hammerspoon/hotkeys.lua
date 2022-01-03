@@ -12,7 +12,8 @@ hs.hotkey.bind({"cmd", "shift"}, "ß", function()
     },
     application = {
       name = focusedWindow:application():name(),
-      title = focusedWindow:application():title()
+      title = focusedWindow:application():title(),
+      bundleID = focusedWindow:application():bundleID()
     }
   }
   log.i(hs.inspect.inspect(data))
