@@ -72,11 +72,11 @@ wg-up() {
 # Javascript testing with jest
 #
 wjs-test() {
-  node node_modules/.bin/vue-cli-service test:unit --watch --runInBand "$(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -1 -q "${1}")"
+  node_modules/.bin/vue-cli-service test:unit --watch --runInBand "$(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -1 -q "${1}")"
 }
 
 djs-test() {
-  node --inspect node_modules/.bin/vue-cli-service test:unit --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
+  node --inspect vue-cli-service test:unit --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
 
 #

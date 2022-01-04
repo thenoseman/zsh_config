@@ -69,6 +69,7 @@ eslint
 jsonlint
 prettier
 typescript
+pnpm
 )
 
 # bundler is not installed automatically to not update to 2.0.1 every time

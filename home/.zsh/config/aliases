@@ -87,10 +87,9 @@ done
 alias typora="open -a typora"
 
 #
-# ANDROID
+# Javascript
 #
-# Connect phone, do "adb tcpip 5555" to enable wireless connection, "adb connect <DEVICE_IP>:5555", start strcpy
-alias scrcpy="scrcpy --bit-rate 2M --max-size 1024 --window-borderless --no-control --show-touches"
+alias npm="pnpm"
 
 #
 # Suffix aliases (auto run app)
