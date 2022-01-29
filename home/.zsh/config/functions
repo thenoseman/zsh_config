@@ -1,5 +1,5 @@
 # vim:ft=sh
-# shellcheck disable=SC2145,SC2154
+# shellcheck disable=SC2145,SC2154,SC3010,SC3043,SC3033
 
 #
 # Find a file starting with $1
@@ -38,34 +38,15 @@ dirdo() {
 }
 
 #
-# Install / Activate a ruby version
+# Install ruby version
 #
-activate_ruby() {
-  local VERSION=${1:-}
+install_ruby() {
+  local VERSION="${1:-}"
   [[ -z "$VERSION" ]] && echo "Pass the ruby version (eg. activate_ruby 3.0.0)" && return
   if [[ ! -d "$HOME/.rubies/${VERSION}" ]]; then
     echo "ruby version ${VERSION} not found. Installing."
     ruby-build "${VERSION}" "$HOME/.rubies/${VERSION}"
   fi
-  export PATH=~/.rubies/${VERSION}/bin:$PATH
-  ruby -v
-}
-
-#
-# Start wireguard
-#
-wg-up() {
-  # Cleanup routes just in case
-  sudo route -n delete 10.170.111/25
-  sudo route -n delete 10.170.111.192/26
-  sudo route -n delete 10.170.111.128/26
-
-  for file in /etc/wireguard/*.conf; do
-    dev="${${file/\/etc\/wireguard\//}/.conf/}"
-    echo "Bringing ${dev} up"
-    sudo wg-quick up "${dev}"
-  done
-  sudo killall mDNSResponder
 }
 
 #
@@ -113,4 +94,19 @@ aws-ssh() {
 tf-p() {
   # shellcheck disable=SC2046
   aws-vault-wrapper /usr/local/bin/terraform plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
+}
+
+#
+# DOCKER
+#
+mc-start() {
+  minikube start --container-runtime=docker --no-kubernetes --driver=hyperkit
+}
+
+mc-stop() {
+  minikube stop
+}
+
+mc-e() {
+  eval "$(minikube -p minikube docker-env)"
 }

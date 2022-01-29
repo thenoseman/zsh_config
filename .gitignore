@@ -9,3 +9,4 @@ home/.kdiff3rc
 amazon-shell-tools.sh
 home/.zsh/modules/fzf-tab/
 home/.hammerspoon/config.lua
+default.profraw
