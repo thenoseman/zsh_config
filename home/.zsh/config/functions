@@ -99,14 +99,14 @@ tf-p() {
 #
 # DOCKER
 #
-mc-start() {
+mk-start() {
   minikube start --container-runtime=docker --no-kubernetes --driver=hyperkit
 }
 
-mc-stop() {
+mk-stop() {
   minikube stop
 }
 
-mc-e() {
+mk-e() {
   eval "$(minikube -p minikube docker-env)"
 }
