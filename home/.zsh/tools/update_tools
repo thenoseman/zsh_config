@@ -40,7 +40,7 @@ watchman
 wireguard-tools
 yarn
 ydiff
-youtube-dl
+yt-dlp
 zsh
 findutils
 )

@@ -64,7 +64,7 @@ alias next="rspec --next-failure"
 #
 
 # Download a video in mp4 format from youtube/vimeo/etc via youtube-dl
-alias yd="youtube-dl --recode-video mp4 --continue --ignore-errors --no-overwrites -f best --restrict-filenames"
+alias yd="yt-dlp --recode-video mp4 --continue --ignore-errors --no-overwrites --restrict-filenames"
 
 #
 # DOCKER
