@@ -5,7 +5,7 @@
 # Find a file starting with $1
 #
 f() {
-  find . -iname "*${@}*" | grep -v ".svn" | grep --color "${@}"
+  find . -iwholename "*${@}*" | grep -v ".svn" | grep --color "${@}"
 }
 
 #
@@ -71,6 +71,7 @@ aws_list_ec2_instances() {
                                         deets:Instances[*].[
                                             (not_null(Tags[?Key==\`Name\`][].Value)[0]||\`_\`),
                                             InstanceId,
+                                            LaunchTime,
                                             PrivateDnsName
                                         ][]
                                     }
@@ -85,7 +86,7 @@ aws_list_ec2_instances() {
 # AWS: SSH to an EC2 instance
 #
 aws-ssh() {
-  ssh "$(aws_list_ec2_instances | fzf -1 -q "$1" | awk '{print $3}')"
+  ssh "$(aws_list_ec2_instances | fzf -1 -q "$1" | awk '{print $4}')"
 }
 
 #

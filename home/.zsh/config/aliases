@@ -1,22 +1,17 @@
 # vim:ft=sh
 #
 # SHELL HELPERS
-#
+# shellcheck disable=SC3010,SC3028,SC3009
 
 # Display all possible shell colors
+# shellcheck disable=SC2154
 alias shellcolors="echo 'Usage: %F{COLORNUMBER}text%f\\n' ; for code ({000..255}) { print -nP -- \"\$code: %F{\$code}%K{\$code}Test%k%f \" ; (( code % 8 && code < 255 )) || printf '\\n'}"
 
 # Start a webserver here
 alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -run -e httpd . -p9090'
 
-if [[ "${OSTYPE}" =~ "darwin" ]]; then
-  # exa
-  alias ll='exa -alF --time-style long-iso --header'
-else
-  alias ll='ls -la --color=auto'
-  alias ls='ls --color=auto'
-fi
-
+alias ll='exa -alF --time-style long-iso --header'
+alias ls='exa'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
 alias rg='rg -F -i --hidden -u --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'''
@@ -59,18 +54,8 @@ alias pipe='mkdir -p tmp && if [ ! -p tmp/test-pipe ]; then mkfifo tmp/test-pipe
 # See https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
 alias next="rspec --next-failure"
 
-#
-# VIDEO DOWNLOADING AND CONVERTING
-#
-
 # Download a video in mp4 format from youtube/vimeo/etc via youtube-dl
 alias yd="yt-dlp --recode-video mp4 --continue --ignore-errors --no-overwrites --restrict-filenames"
-
-#
-# DOCKER
-#
-alias dc="docker-compose"
-alias dcl="docker-compose logs -f --tail=25"
 
 #
 # AWS
