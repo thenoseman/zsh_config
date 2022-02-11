@@ -57,7 +57,7 @@ wjs-test() {
 }
 
 djs-test() {
-  node --inspect vue-cli-service test:unit --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
+  NODE_OPTIONS="--inspect" node_modules/.bin/vue-cli-service test:unit --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
 
 #
