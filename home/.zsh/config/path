@@ -1,6 +1,6 @@
 # vim: set ft=sh:
 DEFAULT_RUBY_VERSION=3.0.1
-DEFAULT_NODE_VERSION=15.4.0
+DEFAULT_NODE_VERSION=16.14.0
 
 # Homebrew:
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
