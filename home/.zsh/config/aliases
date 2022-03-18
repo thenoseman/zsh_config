@@ -75,7 +75,7 @@ alias typora="open -a typora"
 #
 # Javascript
 #
-alias npm="pnpm --ignore-scripts"
+alias npm="pnpm"
 
 #
 # Suffix aliases (auto run app)
