@@ -5,6 +5,7 @@ log() {
 }
 
 BREW_PACKAGES=(
+alt-tab
 boost
 cmake
 coreutils
