@@ -5,7 +5,6 @@ log() {
 }
 
 BREW_PACKAGES=(
-alt-tab
 boost
 cmake
 coreutils
@@ -47,6 +46,7 @@ findutils
 )
 
 BREW_CASKS=(
+alt-tab
 android-platform-tools
 disk-inventory-x
 gpg-suite
