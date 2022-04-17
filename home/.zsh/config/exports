@@ -40,6 +40,7 @@ GPG_TTY=$(tty)
 
 #homebrew 
 export HOMEBREW_INSTALL_CLEANUP=1
+export HOMEBREW_NO_ENV_HINTS=1
 
 # For homebrew curl:
 export LDFLAGS="-L/usr/local/opt/curl/lib"
