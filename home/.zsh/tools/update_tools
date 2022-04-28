@@ -126,8 +126,8 @@ log ">>> Installing important JS tools"
 pnpm add -g "${NODE_PACKAGES[@]}" || true
 
 log ">>> Setting permission for quicklook plugins"
-xattr -r ~/Library/QuickLook > /dev/null
-xattr -d -r com.apple.quarantine ~/Library/QuickLook > /dev/null
+/usr/bin/xattr -r ~/Library/QuickLook > /dev/null
+/usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook > /dev/null
 
 # if [ -d /Applications/Microsoft\ Teams.app ]; then 
 #   if 2>/dev/null 1>&2 codesign --verify "/Applications/Microsoft Teams.app"; then 
