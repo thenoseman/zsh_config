@@ -3,8 +3,10 @@
 --
 local log = hs.logger.new('audio.lua','debug')
 local headset_name = "Jabra Talk 30"
+local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/gem.mp3"))
 
 function onaudiodevicechange(event)
+  log.i("AUDIO EVENT: " .. event)
   if event == "dev#" then
     headset = hs.audiodevice.findDeviceByName(headset_name)
 
@@ -20,7 +22,10 @@ function onaudiodevicechange(event)
       mic:setDefaultInputDevice()
 
       -- play sound
-      hs.speech.new():speak("Kopfhörer verbunden.")
+      hs.timer.doAfter(1, function() 
+        connection_sound:play()
+      end)
+      
     end
   end
 end
