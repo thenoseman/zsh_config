@@ -46,7 +46,6 @@ findutils
 )
 
 BREW_CASKS=(
-alt-tab
 android-platform-tools
 disk-inventory-x
 gpg-suite
