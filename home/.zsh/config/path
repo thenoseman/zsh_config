@@ -34,3 +34,7 @@ export PATH=$PATH:/usr/local/MacGPG2/bin
 
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-x86_64-apple-darwin/bin"
+
+# PNPM
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
