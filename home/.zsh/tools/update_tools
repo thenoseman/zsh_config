@@ -73,7 +73,6 @@ typescript
 pnpm
 prettier-plugin-svelte
 svelte
-pnpm
 )
 
 # bundler is not installed automatically to not update to 2.0.1 every time
@@ -122,6 +121,7 @@ log ">>> Installing important gems"
 gem install "${RUBY_GEMS[@]}"
 
 log ">>> Installing important JS tools"
+npm install --global --no-audit pnpm
 pnpm add -g "${NODE_PACKAGES[@]}" || true
 
 log ">>> Setting permission for quicklook plugins"
