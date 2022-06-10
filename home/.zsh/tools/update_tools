@@ -121,7 +121,8 @@ log ">>> Installing important gems"
 gem install "${RUBY_GEMS[@]}"
 
 log ">>> Installing important JS tools"
-npm install --global --no-audit pnpm
+log ">>> npm: $(which npm)"
+log ">>> pnpm: $(which pnpm)"
 pnpm add -g "${NODE_PACKAGES[@]}" || true
 
 log ">>> Setting permission for quicklook plugins"
