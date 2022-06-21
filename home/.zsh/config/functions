@@ -5,7 +5,7 @@
 # Find a file starting with $1
 #
 f() {
-  rg --hidden --files -g "*${@}*" | grep --color "${@}"
+  rg --hidden -g 'node_modules' --files -g "*${@}*" | grep --color "${@}"
 }
 
 #
