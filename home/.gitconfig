@@ -38,12 +38,8 @@
 	attributesfile = ~/.gitattributes
 [gc]
   auto = 1000
-[branch]
-  autoSetupRebase = always
 [push]
   default = current
-[pull]
-  rebase = true
 [merge]
   #summary=true
   tool = kdiff3
@@ -78,7 +74,7 @@
 [diff-so-fancy]
   useUnicodeRuler = false
 [rebase]
-  autostash = true
+  autoStash = true
 [user]
   useconfigonly = true
 [interactive]
