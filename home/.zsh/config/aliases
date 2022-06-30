@@ -40,7 +40,7 @@ fi
 # Start tig in big iterm window
 alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 alias pu='git push'
-alias gpr='git pull --rebase --autostash'
+alias gpr='SKIP_PRECOMMIT_HOOK=1 git pull --rebase --autostash'
 alias master='git checkout master'
 alias gti="git"
 
