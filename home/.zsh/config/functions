@@ -53,11 +53,11 @@ install_ruby() {
 # Javascript testing with jest
 #
 wjs-test() {
-  node_modules/.bin/vue-cli-service test:unit --watch --runInBand "$(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -1 -q "${1}")"
+  node_modules/.bin/jest --watch --runInBand "$(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -1 -q "${1}")"
 }
 
 djs-test() {
-  NODE_OPTIONS="--inspect" node_modules/.bin/vue-cli-service test:unit --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
+  NODE_OPTIONS="--inspect" node_modules/.bin/jest --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
 
 #
