@@ -51,8 +51,8 @@ export SHELLCHECK_OPTS="-e SC2039"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
-# Location of node js versions
-export N_PREFIX=~/.nodes
+# Location of node js versions managed by volta
+export VOLTA_HOME="$HOME/.volta"
 
 # Watchman
 export WATCHMAN_CONFIG_FILE="$HOME/.config/watchman/watchman.json"
