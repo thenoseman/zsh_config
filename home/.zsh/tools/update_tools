@@ -21,7 +21,6 @@ imagemagick
 jhead
 jq
 jump
-n
 node
 oath-toolkit
 openconnect
@@ -35,6 +34,7 @@ shellcheck
 syncthing
 sqlite
 tig
+volta
 watch
 watchman
 wireguard-tools

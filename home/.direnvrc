@@ -5,12 +5,3 @@ use_ruby() {
   local ruby_dir=$HOME/.rubies/$1
   load_prefix $ruby_dir
 }
-
-# Usage: use node <version>
-#
-# Loads the specified node.js version into the environment
-use_node() {
-  local node_dir=$N_PREFIX/n/versions/node/$1
-  load_prefix $node_dir
-  layout node
-}
