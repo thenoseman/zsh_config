@@ -72,6 +72,11 @@ done
 alias typora="open -a typora"
 
 #
+# Javascript
+#
+alias p="pnpm"
+
+#
 # Suffix aliases (auto run app)
 #
 alias -s md=typora
