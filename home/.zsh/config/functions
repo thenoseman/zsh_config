@@ -53,6 +53,7 @@ install_ruby() {
 # Javascript testing with jest
 #
 wjs-test() {
+  node_modules/.bin/jest --clearCache
   node_modules/.bin/jest --watch --runInBand "$(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -1 -q "${1}")"
 }
 
