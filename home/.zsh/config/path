@@ -1,9 +1,6 @@
+# shellcheck disable=SC2086,SC3010
 # vim: set ft=sh:
 DEFAULT_RUBY_VERSION=3.0.1
-DEFAULT_NODE_VERSION=16.14.0
-
-# Homebrew:
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # Default Ruby
 export PATH=$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin:$PATH
@@ -34,6 +31,10 @@ export PATH=$PATH:/usr/local/MacGPG2/bin
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-x86_64-apple-darwin/bin"
 
+
 # PNPM
 #export PNPM_HOME="$HOME/Library/pnpm"
 #export PATH="$PNPM_HOME:$PATH"
+
+# Homebrew:
+export PATH=$PATH:/usr/local/bin:/usr/local/sbin
