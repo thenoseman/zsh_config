@@ -10,8 +10,11 @@ export PATH=$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin:$PATH
 # To fix this we link a ruby version we want into /usr/local/bin/ruby 
 [[ ! -e "/usr/local/bin/ruby" ]] && ln -s "$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin/ruby" /usr/local/bin/ruby
 
+# Homebrew:
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
 # Default node
-export PATH=$PATH:$VOLTA_HOME/bin
+export PATH=$VOLTA_HOME/bin:$PATH
 
 # Own zsh stuff
 export PATH=$HOME/.zsh/tools:$PATH
@@ -35,6 +38,3 @@ export PATH="$PATH:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-x86_64-appl
 # PNPM
 #export PNPM_HOME="$HOME/Library/pnpm"
 #export PATH="$PNPM_HOME:$PATH"
-
-# Homebrew:
-export PATH=$PATH:/usr/local/bin:/usr/local/sbin
