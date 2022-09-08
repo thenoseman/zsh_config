@@ -1,7 +1,7 @@
 --
 -- Hammerspoon script to repurpose the mediakeys REWIND, PLAY and FAST 
--- It will remote control a runnning cmus (https://cmus.github.io/) and
--- also show the current runign title for a time in the menubar
+-- It will remote control a running cmus (https://cmus.github.io/) and
+-- also show the current runnign title for a time in the menubar when using "next" or "previous"
 -- 
 local log = hs.logger.new('mediakeys','debug')
 local cmus_socket_path = nil
@@ -33,7 +33,6 @@ local function show_title_in_menubar(status_line)
   end
   status_line_bar:setTitle(status_line)
   status_line_bar:setIcon(icon)
-
 end
 
 function file_exists(name)
