@@ -10,11 +10,12 @@ local output_switcher_menubar = hs.menubar.new()
 --
 -- Create icon in menubar to quickly toggle between INTERNAl and HEADSET output
 --
-local volumes = { default=18, headset=18 }
-local icons = { default="🔈", headset="🎧" }
+local volumes = { buildin=18, headset=18 }
+local icons = { buildin="🔈", headset="🎧" }
 
 local function output_switcher_menubar_set_title(device)
   output_switcher_menubar:setTitle(icons[device])
+  output_switcher_menubar:setTooltip("Audio output device: " .. device)
 end
 
 local function output_switcher_menubar_clicked() 
@@ -37,11 +38,11 @@ local function output_switcher_menubar_clicked()
     end
     default:setDefaultOutputDevice()
     default:setVolume(volumes.default)
-    output_switcher_menubar_set_title("default")
+    output_switcher_menubar_set_title("buildin")
   end
 end
 
-output_switcher_menubar_set_title("default")
+output_switcher_menubar_set_title("buildin")
 output_switcher_menubar:setClickCallback(output_switcher_menubar_clicked);
 
 --
@@ -72,7 +73,7 @@ function onaudiodevicechange(event)
 
   -- Reset menubar icon to default because the headset disconnected 
   if event == "sOut" and headset == nil then
-    output_switcher_menubar_set_title("default")
+    output_switcher_menubar_set_title("buildin")
   end
 end
 
