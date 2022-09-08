@@ -1,9 +1,10 @@
 -- 
 -- Audio functions and callbacks
 --
-local log = hs.logger.new('audio.lua','debug')
 local headset_name = "Jabra Talk 30"
 local default_name = "Built-in Output"
+
+local log = hs.logger.new('audio.lua','debug')
 local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/gem.mp3"))
 local output_switcher_menubar = hs.menubar.new()
 
@@ -11,10 +12,14 @@ local output_switcher_menubar = hs.menubar.new()
 -- Create icon in menubar to quickly toggle between INTERNAl and HEADSET output
 --
 local volumes = { buildin=18, headset=18 }
-local icons = { buildin="🔈", headset="🎧" }
+                               
+local icons = { 
+  buildin = hs.image.imageFromPath('bullhorn.png'):setSize({w=18,h=18}), 
+  headset=hs.image.imageFromPath('headset.png'):setSize({w=18,h=18})
+}
 
 local function output_switcher_menubar_set_title(device)
-  output_switcher_menubar:setTitle(icons[device])
+  output_switcher_menubar:setIcon(icons[device])
   output_switcher_menubar:setTooltip("Audio output device: " .. device)
 end
 
