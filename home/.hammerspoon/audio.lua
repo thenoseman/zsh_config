@@ -45,12 +45,11 @@ output_switcher_menubar_set_title("default")
 output_switcher_menubar:setClickCallback(output_switcher_menubar_clicked);
 
 --
--- Switch do HEASET for input + output when connected
+-- Switch do HEADSET for input + output when connected
 --
 function onaudiodevicechange(event)
+  headset = hs.audiodevice.findDeviceByName(headset_name)
   if event == "dev#" then
-    headset = hs.audiodevice.findDeviceByName(headset_name)
-
     if headset ~= nil then
       --- headset as OUTPUT
       log.i("Headset " .. headset_name .." appeared: Setting as default output")
@@ -69,6 +68,11 @@ function onaudiodevicechange(event)
 
       output_switcher_menubar_set_title("headset")
     end
+  end
+
+  -- Reset menubar icon to default because the headset disconnected 
+  if event == "sOut" and headset == nil then
+    output_switcher_menubar_set_title("default")
   end
 end
 
