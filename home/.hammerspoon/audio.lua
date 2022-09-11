@@ -9,7 +9,7 @@ local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon
 local output_switcher_menubar = hs.menubar.new()
 
 --
--- Create icon in menubar to quickly toggle between INTERNAl and HEADSET output
+-- Create icon in menubar to quickly toggle between INTERNAL and HEADSET output
 --
 local volumes = { buildin=18, headset=18 }
                                
@@ -18,18 +18,20 @@ local icons = {
   headset=hs.image.imageFromPath('headset.png'):setSize({w=18,h=18})
 }
 
+-- Set icon of output switcher
 local function output_switcher_menubar_set_title(device)
   output_switcher_menubar:setIcon(icons[device])
   output_switcher_menubar:setTooltip("Audio output device: " .. device)
 end
 
+-- Callback when icon is clicked
 local function output_switcher_menubar_clicked() 
   local current_output_device_info = hs.audiodevice.current(false)
   default = hs.audiodevice.findOutputByName(default_name)
   headset = hs.audiodevice.findOutputByName(headset_name)
 
   if current_output_device_info["name"] == default_name then
-    -- From DEFAULT -> HEADSET
+    -- From BUILDIN -> HEADSET
     volumes.default = default:outputVolume()
     if headset ~= nil then
       headset:setDefaultOutputDevice()
@@ -37,7 +39,7 @@ local function output_switcher_menubar_clicked()
       output_switcher_menubar_set_title("headset")
     end
   else
-    -- From HEADSET -> DEFAULT
+    -- From HEADSET -> BUILDIN
     if headset ~= nil then
       volumes.headset = headset:outputVolume()
     end
@@ -47,11 +49,13 @@ local function output_switcher_menubar_clicked()
   end
 end
 
+-- Init output switcher but hide it until the headset connects
 output_switcher_menubar_set_title("buildin")
-output_switcher_menubar:setClickCallback(output_switcher_menubar_clicked);
+output_switcher_menubar:setClickCallback(output_switcher_menubar_clicked)
+output_switcher_menubar:removeFromMenuBar()
 
 --
--- Switch do HEADSET for input + output when connected
+-- Switch to HEADSET for input + output when connected
 --
 function onaudiodevicechange(event)
   headset = hs.audiodevice.findDeviceByName(headset_name)
@@ -73,11 +77,13 @@ function onaudiodevicechange(event)
       end)
 
       output_switcher_menubar_set_title("headset")
+      output_switcher_menubar:returnToMenuBar()
     end
   end
 
   -- Reset menubar icon to default because the headset disconnected 
   if event == "sOut" and headset == nil then
+    output_switcher_menubar:removeFromMenuBar()
     output_switcher_menubar_set_title("buildin")
   end
 end
