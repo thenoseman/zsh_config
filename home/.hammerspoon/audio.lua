@@ -30,6 +30,7 @@ local function output_switcher_menubar_clicked()
   buildin = hs.audiodevice.findOutputByName(buildin_name)
   headset = hs.audiodevice.findOutputByName(headset_name)
 
+  log.i(1)
   if current_output_device_info["name"] == buildin_name then
     -- From BUILDIN -> HEADSET
     volumes.buildin = buildin:outputVolume()
@@ -52,7 +53,13 @@ end
 -- Init output switcher but hide it until the headset connects
 output_switcher_menubar_set_title("buildin")
 output_switcher_menubar:setClickCallback(output_switcher_menubar_clicked)
-output_switcher_menubar:removeFromMenuBar()
+
+-- If the headset is already connected
+if hs.audiodevice.findOutputByName(headset_name) == nil then
+  output_switcher_menubar:removeFromMenuBar()
+else
+  output_switcher_menubar_set_title("headset")
+end
 
 --
 -- Switch to HEADSET for input + output when connected
