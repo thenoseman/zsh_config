@@ -2,7 +2,7 @@
 -- Audio functions and callbacks
 --
 local headset_name = "Jabra Talk 30"
-local default_name = "Built-in Output"
+local buildin_name = "Built-in Output"
 
 local log = hs.logger.new('audio.lua','debug')
 local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/gem.mp3"))
@@ -27,12 +27,12 @@ end
 -- Callback when icon is clicked
 local function output_switcher_menubar_clicked() 
   local current_output_device_info = hs.audiodevice.current(false)
-  default = hs.audiodevice.findOutputByName(default_name)
+  buildin = hs.audiodevice.findOutputByName(buildin_name)
   headset = hs.audiodevice.findOutputByName(headset_name)
 
-  if current_output_device_info["name"] == default_name then
+  if current_output_device_info["name"] == buildin_name then
     -- From BUILDIN -> HEADSET
-    volumes.default = default:outputVolume()
+    volumes.buildin = buildin:outputVolume()
     if headset ~= nil then
       headset:setDefaultOutputDevice()
       headset:setVolume(volumes.headset)
@@ -43,8 +43,8 @@ local function output_switcher_menubar_clicked()
     if headset ~= nil then
       volumes.headset = headset:outputVolume()
     end
-    default:setDefaultOutputDevice()
-    default:setVolume(volumes.default)
+    buildin:setDefaultOutputDevice()
+    buildin:setVolume(volumes.headset)
     output_switcher_menubar_set_title("buildin")
   end
 end
@@ -62,7 +62,7 @@ function onaudiodevicechange(event)
   if event == "dev#" then
     if headset ~= nil then
       --- headset as OUTPUT
-      log.i("Headset " .. headset_name .." appeared: Setting as default output")
+      log.i("Headset " .. headset_name .." appeared: Setting as buildin output")
       headset:setDefaultOutputDevice()
       headset:setVolume(100)
 
@@ -71,13 +71,15 @@ function onaudiodevicechange(event)
       mic = hs.audiodevice.findDeviceByName("Built-in Microphone")
       mic:setDefaultInputDevice()
 
+      -- Shiw outpur switcher (again)
+      output_switcher_menubar:returnToMenuBar()
+      output_switcher_menubar_set_title("headset")
+
       -- play sound
       hs.timer.doAfter(1, function() 
         connection_sound:play()
       end)
 
-      output_switcher_menubar_set_title("headset")
-      output_switcher_menubar:returnToMenuBar()
     end
   end
 
