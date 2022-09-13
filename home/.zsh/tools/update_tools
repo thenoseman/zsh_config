@@ -114,6 +114,9 @@ fi
 
 brew upgrade
 
+log ">>> Installing ruplacer from github releases"
+curl -L -q -s -o /usr/local/bin/ruplacer "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x /usr/local/bin/ruplacer
+
 log ">>> Updating rubygems"
 gem update --system
 
