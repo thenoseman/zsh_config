@@ -75,7 +75,6 @@ prettier-plugin-svelte
 svelte
 )
 
-# bundler is not installed automatically to not update to 2.0.1 every time
 RUBY_GEMS=(
 pry-byebug
 wirb
@@ -96,13 +95,13 @@ for p in "${BREW_PACKAGES[@]}"; do
  [[ "${INSTALLED}" != *$p* ]] && brew install "${p}"
 done
 
-# Check install casks
 
 # Error: It seems there is already a Binary at '/usr/local/bin/gview'.
 # for bin in mvim mvimdiff mview mvimex gvim gvimdiff gview gvimex view; do
 #   rm -rf /usr/local/bin/$bin
 # done
 
+# Check install casks
 INSTALLED=$(brew list --casks -1 | tr '\n' ' ')
 for p in "${BREW_CASKS[@]}"; do
  [[ ${INSTALLED} != *$p* ]] && brew install --cask "${p}"
@@ -114,8 +113,10 @@ fi
 
 brew upgrade
 
-log ">>> Installing ruplacer from github releases"
-curl -L -q -s -o /usr/local/bin/ruplacer "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x /usr/local/bin/ruplacer
+if ! command -v ruplacer 2>/dev/null; then
+  log ">>> Installing ruplacer from github releases"
+  curl -L -q -s -o /usr/local/bin/ruplacer "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x /usr/local/bin/ruplacer
+fi
 
 log ">>> Updating rubygems"
 gem update --system
