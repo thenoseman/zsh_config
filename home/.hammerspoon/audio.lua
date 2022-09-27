@@ -18,11 +18,7 @@ local icons = {
   headset=hs.image.imageFromPath('headset.png'):setSize({w=18,h=18})
 }
 
--- Set icon of output switcher
-local function output_switcher_menubar_set_title(device)
-  output_switcher_menubar:setIcon(icons[device])
-  output_switcher_menubar:setTooltip("Audio output device: " .. device)
-end
+local output_switcher_menubar_set_title = function() return end
 
 -- Callback when icon is clicked
 local function output_switcher_menubar_clicked() 
@@ -30,9 +26,9 @@ local function output_switcher_menubar_clicked()
   buildin = hs.audiodevice.findOutputByName(buildin_name)
   headset = hs.audiodevice.findOutputByName(headset_name)
 
-  log.i(1)
   if current_output_device_info["name"] == buildin_name then
     -- From BUILDIN -> HEADSET
+    log.i("From BUILDIN -> HEADSET")
     volumes.buildin = buildin:outputVolume()
     if headset ~= nil then
       headset:setDefaultOutputDevice()
@@ -41,6 +37,7 @@ local function output_switcher_menubar_clicked()
     end
   else
     -- From HEADSET -> BUILDIN
+    log.i("From HEADSET -> BUILDIN")
     if headset ~= nil then
       volumes.headset = headset:outputVolume()
     end
@@ -50,11 +47,18 @@ local function output_switcher_menubar_clicked()
   end
 end
 
+-- Set icon of output switcher
+output_switcher_menubar_set_title = function(device)
+  output_switcher_menubar:setIcon(icons[device])
+  output_switcher_menubar:setTooltip("Audio output device: " .. device)
+  output_switcher_menubar:setClickCallback()
+  output_switcher_menubar:setClickCallback(output_switcher_menubar_clicked)
+end
+
 -- Init output switcher but hide it until the headset connects
 output_switcher_menubar_set_title("buildin")
-output_switcher_menubar:setClickCallback(output_switcher_menubar_clicked)
 
--- If the headset is already connected
+-- If the headset is not already connected
 if hs.audiodevice.findOutputByName(headset_name) == nil then
   output_switcher_menubar:removeFromMenuBar()
 else
@@ -69,7 +73,7 @@ function onaudiodevicechange(event)
   if event == "dev#" then
     if headset ~= nil then
       --- headset as OUTPUT
-      log.i("Headset " .. headset_name .." appeared: Setting as buildin output")
+      log.i("Headset " .. headset_name .." appeared: Setting as output")
       headset:setDefaultOutputDevice()
       headset:setVolume(100)
 
@@ -78,7 +82,7 @@ function onaudiodevicechange(event)
       mic = hs.audiodevice.findDeviceByName("Built-in Microphone")
       mic:setDefaultInputDevice()
 
-      -- Shiw outpur switcher (again)
+      -- Show output switcher (again)
       output_switcher_menubar:returnToMenuBar()
       output_switcher_menubar_set_title("headset")
 
