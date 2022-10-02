@@ -54,7 +54,8 @@ install_ruby() {
 #
 wjs-test() {
   node_modules/.bin/jest --clearCache
-  node_modules/.bin/jest --watch --runInBand "$(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -1 -q "${1}")"
+  # shellcheck disable=SC2046
+  node_modules/.bin/jest --watch --runInBand $(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
 }
 
 djs-test() {
