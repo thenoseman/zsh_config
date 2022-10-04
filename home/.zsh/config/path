@@ -10,7 +10,6 @@ export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}";
 export PATH=$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin:$PATH
 [[ ! -d "$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin" ]] && echo "INSTALLING RUBY ${DEFAULT_RUBY_VERSION}" && ruby-build $DEFAULT_RUBY_VERSION "$HOME/.rubies/$DEFAULT_RUBY_VERSION"
 
-echo "PREFIX $HOMEBREW_PREFIX"
 # If a program (eg. coc.vim) tries to discover the active ruby version using "zsh -l -c "ruby -v" it
 # won't pickup the ruby-build installed rubies because the path (~/.rubies) is AFTER the system ruby in $PATH
 # To fix this we link a ruby version we want into /usr/local/bin/ruby 
