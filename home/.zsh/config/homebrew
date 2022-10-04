@@ -1,0 +1,7 @@
+# vim: set ft=sh:
+# Homebrew (Intel + Arm)
+if [ -d "/usr/local/bin" ]; then 
+  export HOMEBREW_PREFIX="/usr/local";
+else
+  export HOMEBREW_PREFIX="/opt/homebrew";
+fi

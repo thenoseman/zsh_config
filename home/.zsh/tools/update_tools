@@ -30,6 +30,7 @@ python
 readline
 ripgrep
 ruby-build
+rustup-init
 shellcheck
 syncthing
 sqlite
@@ -115,7 +116,7 @@ brew upgrade
 
 if ! command -v ruplacer 2>/dev/null; then
   log ">>> Installing ruplacer from github releases"
-  curl -L -q -s -o /usr/local/bin/ruplacer "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x /usr/local/bin/ruplacer
+  curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
 fi
 
 log ">>> Updating rubygems"

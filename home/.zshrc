@@ -97,10 +97,13 @@ zstyle ':completion:*' expand prefix suffix
 # Disable ^S, useless and annoying
 stty stop undef
 
+# set homebrew prefix (needs to be sourced!)
+source ~/.zsh/config/homebrew
+
 # Init ZSH help system
 unalias run-help &>/dev/null
 autoload run-help
-HELPDIR=/usr/local/share/zsh/helpfile
+HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 
 # Init async.zsh
 source ~/.zsh/modules/pure_prompt/async.zsh
@@ -110,10 +113,10 @@ async_init
 [[ "${DESKTOP_SESSION}" == "i3" ]] && export $(gnome-keyring-daemon --start --components=pkcs11,ssh,secrets)
 
 # Load direnv
-eval "$(/usr/local/bin/direnv hook zsh)"
+eval "$($HOMEBREW_PREFIX/bin/direnv hook zsh)"
 
 # https://github.com/gsamokovarov/jump
-eval "$(/usr/local/bin/jump shell zsh)"
+eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"
 
 # Color settings
 # vim: set ft=sh:

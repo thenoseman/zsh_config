@@ -54,7 +54,7 @@ rssl() {
     echo "To fix that:"
     echo "1. uninstall the puma gem (at least the one in ${puma_path})"
     echo "2. brew install openssl"
-    echo "3. execute 'bundle config build.puma --with-opt-dir=/usr/local/opt/openssl'"
+    echo "3. execute 'bundle config build.puma --with-opt-dir=$HOMEBREW_PREFIX/opt/openssl'"
     echo "4. bundle"
     echo "${ccend}"
     return

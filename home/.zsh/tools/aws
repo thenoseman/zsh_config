@@ -1,3 +1,2 @@
 # this is just for our build scripts
-aws-vault-wrapper /usr/local/bin/aws "$@"
-
+aws-vault-wrapper $HOMEBREW_PREFIX/bin/aws "$@"
