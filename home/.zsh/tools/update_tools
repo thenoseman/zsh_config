@@ -5,10 +5,12 @@ log() {
 }
 
 BREW_PACKAGES=(
+aws_vault
 boost
 cmake
 coreutils
 direnv
+editorconfig
 exa
 exiftool
 ffmpeg
