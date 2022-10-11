@@ -8,6 +8,17 @@
   email = "some@example.com"
 ```
 
+
+
+# Essential settings
+
+```bash
+# Show task switcher on every display
+defaults write com.apple.dock appswitcher-all-displays -bool true && killall Dock
+```
+
+
+
 # MS Teams use virtualcam
 
 ```bash
