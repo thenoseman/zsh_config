@@ -14,6 +14,7 @@ editorconfig
 exa
 exiftool
 ffmpeg
+findutils
 fzf
 git
 git-delta
@@ -34,8 +35,8 @@ ripgrep
 ruby-build
 rustup-init
 shellcheck
-syncthing
 sqlite
+syncthing
 tig
 volta
 watch
@@ -45,7 +46,6 @@ yarn
 ydiff
 yt-dlp
 zsh
-findutils
 )
 
 BREW_CASKS=(
@@ -56,8 +56,8 @@ hammerspoon
 iterm2
 itsycal
 kdiff3
-macvim
 keepassxc
+macvim
 namechanger
 qlimagesize
 qlmarkdown
@@ -71,11 +71,11 @@ vlc
 NODE_PACKAGES=(
 eslint
 jsonlint
-prettier
-typescript
 pnpm
+prettier
 prettier-plugin-svelte
 svelte
+typescript
 )
 
 RUBY_GEMS=(

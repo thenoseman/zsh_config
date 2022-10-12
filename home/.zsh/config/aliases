@@ -18,10 +18,6 @@ alias rg='rg -F -i --hidden -u --max-columns 150 -g '\''!.terraform'\'' -g '\''!
 alias killdns="sudo killall mDNSResponder"
 alias b64d="pbpaste | base64 -D"
 
-# GNU aliases
-alias tar="gtar"
-alias sed="gsed"
-
 #
 # VIM
 #
