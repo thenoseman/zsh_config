@@ -73,8 +73,6 @@ eslint
 jsonlint
 pnpm
 prettier
-prettier-plugin-svelte
-svelte
 typescript
 )
 
