@@ -5,7 +5,6 @@ log() {
 }
 
 BREW_PACKAGES=(
-aws-vault
 boost
 cmake
 coreutils
@@ -50,6 +49,7 @@ zsh
 
 BREW_CASKS=(
 android-platform-tools
+aws-vault
 disk-inventory-x
 gpg-suite
 hammerspoon
