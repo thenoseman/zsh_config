@@ -2,7 +2,7 @@
 #
 # Originally part of vpnc source code:
 # © 2005-2012 Maurice Massar, Jörg Mayer, Antonio Borneo et al.
-# © 2009-2012 David Woodhouse <dwmw2@infradead.org>
+# © 2009-2022 David Woodhouse <dwmw2@infradead.org>, Daniel Lenski <dlenski@gmail.com> et al.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 #* VPNPID                       -- PID of the process controlling the VPN (OpenConnect v9.0+)
 #* TUNDEV                       -- tunnel device (always present)
 #* IDLE_TIMEOUT                 -- gateway's idle timeout in seconds (OpenConnect v8.06+); unused
+#* LOG_LEVEL                    -- log level; ERROR=0, INFO=1, DEBUG=2, TRACE=3 (OpenConnect v9.0+)
 #* INTERNAL_IP4_ADDRESS         -- address (always present)
 #* INTERNAL_IP4_MTU             -- MTU (often unset)
 #* INTERNAL_IP4_NETMASK         -- netmask (often unset)
@@ -78,7 +79,7 @@
 
 #TRACE# echo "------------------"
 #TRACE# echo "vpnc-script environment:"
-#TRACE# env | egrep '^(CISCO_|INTERNAL_IP|VPNGATEWAY|TUNDEV|IDLE_TIMEOUT|reason)' | sort
+#TRACE# env | grep -E '^(CISCO_|INTERNAL_IP|VPNGATEWAY|TUNDEV|IDLE_TIMEOUT|reason)' | sort
 #TRACE# echo "------------------"
 #TRACE# set -x
 
@@ -94,9 +95,9 @@ HOOKS_DIR=/etc/vpnc
 # uniquely identify this VPN connection. Normally, the parent process
 # is a shell, and the grandparent's PID is the relevant one.
 # OpenConnect v9.0+ provides VPNPID, so we don't need to determine it.
-if [ -z "$VPNPID " ]; then
+if [ -z "$VPNPID" ]; then
     VPNPID=$PPID
-    PCMD=`ps -c -o cmd= -p $PPID`
+    PCMD=`ps -c -o command= -p $PPID`
     case "$PCMD" in
         *sh) VPNPID=`ps -o ppid= -p $PPID` ;;
     esac
@@ -120,7 +121,7 @@ else
 fi
 
 if [ "$OS" = "Linux" ]; then
-	IPROUTE="`which ip 2> /dev/null | grep '^/'`"
+	IPROUTE="`command -v ip | grep '^/'`"
 	ifconfig_syntax_ptp="pointopoint"
 	route_syntax_gw="gw"
 	route_syntax_del="del"
@@ -132,7 +133,7 @@ if [ "$OS" = "Linux" ]; then
 	ifconfig_syntax_del() { case "$1" in *:*) echo del "$1" ;; *) echo 0.0.0.0 ;; esac; }
 	netstat_syntax_ipv6="-6"
 else
-	# iproute2 is Linux only; if `which ip` returns something on another OS, it's likely an unrelated tool
+	# iproute2 is Linux only; if `command -v ip` returns something on another OS, it's likely an unrelated tool
 	# (see https://github.com/dlenski/openconnect/issues/132#issuecomment-470475009)
 	IPROUTE=""
 	ifconfig_syntax_ptp=""
@@ -154,11 +155,13 @@ else
 	ifconfig_syntax_ptpv6=""
 fi
 
-grep '^hosts' /etc/nsswitch.conf 2>/dev/null|grep resolve >/dev/null 2>&1 && command systemd-resolve --status >/dev/null 2>&1
+RESOLVEDENABLED=0
+grep '^hosts' /etc/nsswitch.conf 2>/dev/null|grep resolve >/dev/null 2>&1
 if [ $? = 0 ];then
-	RESOLVEDENABLED=1
-else
-	RESOLVEDENABLED=0
+	command resolvectl status >/dev/null 2>&1 || command systemd-resolve --status >/dev/null 2>&1
+	if [ $? = 0 ];then
+		RESOLVEDENABLED=1
+	fi
 fi
 
 if [ -r /etc/openwrt_release ] && [ -n "$OPENWRT_INTERFACE" ]; then
@@ -192,6 +195,10 @@ elif [ -x /sbin/modify_resolvconf ]; then
 elif [ -x /usr/sbin/unbound-control ] && /usr/sbin/unbound-control status > /dev/null 2>&1; then
 	MODIFYRESOLVCONF=modify_resolvconf_unbound
 	RESTORERESOLVCONF=restore_resolvconf_unbound
+elif [ -x /usr/sbin/rcctl ] && /usr/sbin/rcctl check resolvd >/dev/null; then
+	# OpenBSD's resolvd by sending route messages
+	MODIFYRESOLVCONF=modify_resolvconf_resolvd
+	RESTORERESOLVCONF=restore_resolvconf_resolvd
 else # Generic for any OS
 	MODIFYRESOLVCONF=modify_resolvconf_generic
 	RESTORERESOLVCONF=restore_resolvconf_generic
@@ -684,6 +691,10 @@ search $DOMAINS"
 						close
 					EOF
 				fi
+				# For newer MacOS versions it is needed to set DNS
+				ACTIVE_INTERFACE=`route -n get default | grep interface | awk '{print $2}'`
+				ACTIVE_NETWORK_SERVICE=`networksetup -listnetworkserviceorder | grep -B 1 "$ACTIVE_INTERFACE" | head -n 1 | awk '/\([0-9]+\)/{ print }'|cut -d " " -f2-`
+				networksetup -setdnsservers "$ACTIVE_NETWORK_SERVICE" $INTERNAL_IP4_DNS
 				;;
 		esac
 	fi
@@ -724,6 +735,10 @@ restore_resolvconf_generic() {
 						EOF
 					fi
 				fi
+				# For newer MacOS versions it is needed to unset DNS
+				ACTIVE_INTERFACE=`route -n get default | grep interface | awk '{print $2}'`
+				ACTIVE_NETWORK_SERVICE=`networksetup -listnetworkserviceorder | grep -B 1 "$ACTIVE_INTERFACE" | head -n 1 | awk '/\([0-9]+\)/{ print }'|cut -d " " -f2-`
+				networksetup -setdnsservers "$ACTIVE_NETWORK_SERVICE" Empty
 				;;
 		esac
 	fi
@@ -900,6 +915,16 @@ restore_resolvconf_unbound() {
 	fi
 }
 
+# === resolv.conf handling via resolvd =========
+
+modify_resolvconf_resolvd() {
+	/sbin/route nameserver $TUNDEV $INTERNAL_IP4_DNS $INTERNAL_IP6_DNS
+}
+
+restore_resolvconf_resolvd() {
+	/sbin/route nameserver $TUNDEV
+}
+
 # ========= Toplevel state handling  =======================================
 
 do_pre_init() {
@@ -990,10 +1015,6 @@ do_connect() {
 			fi
 			i=`expr $i + 1`
 		done
-		for i in $INTERNAL_IP4_DNS ; do
-			echo "$i" | grep : >/dev/null || \
-				set_network_route "$i" "255.255.255.255" "32" "$TUNDEV"
-		done
 	elif [ -n "$INTERNAL_IP4_ADDRESS" ]; then
 		set_default_route
 	fi
@@ -1008,11 +1029,6 @@ do_connect() {
 				set_ipv6_network_route "$NETWORK" "$NETMASKLEN" "$TUNDEV"
 			fi
 			i=`expr $i + 1`
-		done
-		for i in $INTERNAL_IP4_DNS ; do
-			if echo "$i" | grep : >/dev/null; then
-				set_ipv6_network_route "$i" "128" "$TUNDEV"
-			fi
 		done
 	elif [ -n "$INTERNAL_IP6_NETMASK" -o -n "$INTERNAL_IP6_ADDRESS" ]; then
 		set_ipv6_default_route
@@ -1038,9 +1054,6 @@ do_disconnect() {
 				reset_default_route
 			fi
 			i=`expr $i + 1`
-		done
-		for i in $INTERNAL_IP4_DNS ; do
-			del_network_route "$i" "255.255.255.255" "32" "$TUNDEV"
 		done
 	else
 		reset_default_route
@@ -1079,9 +1092,6 @@ do_disconnect() {
 				del_ipv6_network_route "$NETWORK" "$NETMASKLEN" "$TUNDEV"
 			fi
 			i=`expr $i + 1`
-		done
-		for i in $INTERNAL_IP6_DNS ; do
-			del_ipv6_network_route "$i" "128" "$TUNDEV"
 		done
 	elif [ -n "$INTERNAL_IP6_NETMASK" -o -n "$INTERNAL_IP6_ADDRESS" ]; then
 		reset_ipv6_default_route
