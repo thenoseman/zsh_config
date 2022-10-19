@@ -92,11 +92,11 @@ aws-ssh() {
 }
 
 #
-# TERRAFORM: Targeted plan using @flojs amazing tfrs
+# TERRAFORM: Targeted plan using @floj amazing tfrs (https://github.com/floj/tfrs)
 #
 tf-p() {
   # shellcheck disable=SC2046
-  aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
+  aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $("tfrs-$ARCH" --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
 }
 
 #
