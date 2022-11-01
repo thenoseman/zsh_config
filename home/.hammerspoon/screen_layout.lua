@@ -28,13 +28,13 @@ local primaryScreenFrame = primaryDisplay:frame()
 secondaryDisplay = hs.screen.find(secondaryDisplayname)
 secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
 if not not secondaryDisplay then
+  log.i("Secondary display: " .. secondaryDisplay:name())
   secondaryScreenFrame = secondaryDisplay:frame()
   screenWatcher = hs.screen.watcher.new(onScreenLayoutChange);
   screenWatcher:start()
 end
 
 log.i("Primary display  : " .. primaryDisplay:name())
-log.i("Secondary display: " .. secondaryDisplay:name())
 
 -- { "fmbp.fritz.box", "localhost" }
 -- dots (".") are replaced by "_" so 
