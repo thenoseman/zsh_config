@@ -1,4 +1,4 @@
-local log = hs.logger.new('screen_layout.lua','debug')
+local log = hs.logger.new('screen_layout','debug')
 
 -- Screen/ Window movement
 local secondaryDisplayname = "Dell"
@@ -20,11 +20,12 @@ function onScreenLayoutChange()
 end
 
 -- Notice that hammerspoon regards desktop = all screens combined = continguous X coordinates starting top left on primary screen
-local primaryDisplay = hs.screen.primaryScreen()
+-- primaryDisplay cannot be local
+primaryDisplay = hs.screen.primaryScreen()
 local primaryScreenFrame = primaryDisplay:frame()
 
--- Secondary display if present
-local secondaryDisplay = hs.screen.find(secondaryDisplayname)
+-- Secondary display if present (cannot be "local" var)
+secondaryDisplay = hs.screen.find(secondaryDisplayname)
 secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
 if not not secondaryDisplay then
   secondaryScreenFrame = secondaryDisplay:frame()
@@ -32,9 +33,12 @@ if not not secondaryDisplay then
   screenWatcher:start()
 end
 
+log.i("Primary display  : " .. primaryDisplay:name())
+log.i("Secondary display: " .. secondaryDisplay:name())
+
 -- { "fmbp.fritz.box", "localhost" }
 -- dots (".") are replaced by "_" so 
--- hostname "a.b.c" becomes "a_b_c.lua" as an include file
+-- hostname "a-b.c" becomes "a-b_c.lua" as an include file
 local layout_file = hs.host.names()[1]:gsub("%.", "_") 
 if not file_exists(os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua") then
   layout_file = "default"
@@ -69,7 +73,7 @@ for trigger, moveConfig in pairs(triggers) do
   end)
 end
 
--- Standard layout: Secondary sits LEFT of the primary
+-- Standard layout: Defined in layout/*.lua
 hs.hotkey.bind({"cmd", "shift"}, "9", function()
   hs.layout.apply(CONFIG.windowLayout, windowTitleComparator)
 end)

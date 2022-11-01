@@ -1,6 +1,6 @@
 --
 -- Screen definitions for the default case of two screens next to each other (left <-> right)
--- "secondaryScreenFrame" will be available when this is included
+-- "primaryDisplay" and "secondaryDisplay" will be available when this is included
 --
 local M = {}
 
