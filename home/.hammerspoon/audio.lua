@@ -4,9 +4,16 @@
 local headset_name = "Jabra Talk 30"
 local buildin_name = "Built-in Output"
 
+-- "buildin" might be another name
+local device = hs.audiodevice.findOutputByName(buildin_name)
+if device == nil then
+  buildin_name = "MacBook Pro-Lautsprecher"
+end
+
 local log = hs.logger.new('audio.lua','debug')
 local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/gem.mp3"))
 local output_switcher_menubar = hs.menubar.new()
+log.i("Buildin output name is '" .. buildin_name .. "'")
 
 --
 -- Create icon in menubar to quickly toggle between INTERNAL and HEADSET output
@@ -78,15 +85,18 @@ function onaudiodevicechange(event)
       headset:setVolume(100)
 
       -- Build in mic as INPUT
-      log.i("Setting build in mic as input")
       mic = hs.audiodevice.findDeviceByName("Built-in Microphone")
+      if mic == nil then
+        mic = hs.audiodevice.findDeviceByName("MacBook Pro-Mikrofon")
+      end
+      log.i("Setting '" .. mic:name() .. "' mic as input")
       mic:setDefaultInputDevice()
 
       -- Show output switcher (again)
       output_switcher_menubar:returnToMenuBar()
       output_switcher_menubar_set_title("headset")
 
-      -- play sound
+      -- Play sound
       hs.timer.doAfter(1, function() 
         connection_sound:play()
       end)
