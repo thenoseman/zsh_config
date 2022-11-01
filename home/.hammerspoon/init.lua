@@ -1,14 +1,9 @@
--- global helper
-function file_exists(name)
-   local f = io.open(name,"r")
-   if f ~= nil then 
-     io.close(f) 
-     return true 
-   else 
-     return false 
-   end
-end
+local logger = hs.logger.new("init", "debug")
+logger.i("------------------------------------")
+logger.i("---------------- INIT --------------")
+logger.i("------------------------------------")
 
+require "helper"
 require "spoons"
 require "screen_layout"
 require "audio"
