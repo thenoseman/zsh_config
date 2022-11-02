@@ -16,17 +16,18 @@ end
 -- Notice that hammerspoon regards desktop = all screens combined = continguous X coordinates starting top left on primary screen
 -- primaryDisplay cannot be local
 primaryDisplay = hs.screen.primaryScreen()
+log.i("Primary display  : " .. primaryDisplay:name())
 local primaryScreenFrame = primaryDisplay:frame()
 
--- Secondary display if present (cannot be "local" var)
-secondaryDisplay = hs.screen.find(secondaryDisplayname)
+-- Detect Secondary display
+secondaryDisplay = hs.fnutils.filter(hs.screen.allScreens(), function(display) 
+  return string.find(string.lower(display:name()), string.lower(primaryDisplay:name())) == nil
+end)[1]
 secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
 if not not secondaryDisplay then
   log.i("Secondary display: " .. secondaryDisplay:name())
   secondaryScreenFrame = secondaryDisplay:frame()
 end
-
-log.i("Primary display  : " .. primaryDisplay:name())
 
 -- { "fmbp.fritz.box", "localhost" }
 -- dots (".") are replaced by "_" so 
