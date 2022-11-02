@@ -32,12 +32,11 @@ end
 -- { "fmbp.fritz.box", "localhost" }
 -- dots (".") are replaced by "_" so 
 -- hostname "a-b.c" becomes "a-b_c.lua" as an include file
-local layout_file = hs.host.names()[1]:gsub("%.", "_") 
+local layout_file = hs.host.names()[1]:gsub("%..*", "") 
 if not file_exists(os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua") then
   layout_file = "default"
 end
-
-log.i("Using config '" .. layout_file .. "'")
+log.i("Looked for '" ..  hs.host.names()[1]:gsub("%..*", "") .. "', using config '" .. layout_file .. "'")
 local CONFIG = require("layout." .. layout_file)
 
 -- cmd+shift+<trigger> config
