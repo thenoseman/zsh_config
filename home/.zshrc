@@ -138,7 +138,9 @@ bindkey "^[[3~" delete-char
 
 # Mac specific keyboard mappings
 bindkey '^[[H' beginning-of-line
+bindkey '^[[1;5D' beginning-of-line # Magic keyboard large
 bindkey '^[[F' end-of-line
+bindkey '^[[1;5C' end-of-line # Magic keyboard large
 bindkey '^[[5~' up-history
 bindkey '^[[6~' down-history
 
