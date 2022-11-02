@@ -20,13 +20,17 @@ log.i("Primary display  : " .. primaryDisplay:name())
 local primaryScreenFrame = primaryDisplay:frame()
 
 -- Detect Secondary display
-secondaryDisplay = hs.fnutils.filter(hs.screen.allScreens(), function(display) 
-  return string.find(string.lower(display:name()), string.lower(primaryDisplay:name())) == nil
-end)[1]
+local primary_display_lower = string.lower(primaryDisplay:name())
+secondaryDisplay = hs.fnutils.find(hs.screen.allScreens(), function(display) 
+  return string.find(string.lower(display:name()), primary_display_lower, 1, true) == nil
+end)
+
 secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
 if not not secondaryDisplay then
   log.i("Secondary display: " .. secondaryDisplay:name())
   secondaryScreenFrame = secondaryDisplay:frame()
+else
+  log.i("Secondary display: NONE")
 end
 
 -- { "fmbp.fritz.box", "localhost" }
