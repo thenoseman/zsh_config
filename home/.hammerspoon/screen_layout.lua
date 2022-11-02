@@ -13,12 +13,6 @@ function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
   end
 end
 
--- Screen resizing
-function onScreenLayoutChange()
-  local secondaryDisplay = hs.screen.find(secondaryDisplayname)
-  secondaryDisplay:setMode(secondaryDisplayMode.w, secondaryDisplayMode.h, 1)
-end
-
 -- Notice that hammerspoon regards desktop = all screens combined = continguous X coordinates starting top left on primary screen
 -- primaryDisplay cannot be local
 primaryDisplay = hs.screen.primaryScreen()
@@ -30,8 +24,6 @@ secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
 if not not secondaryDisplay then
   log.i("Secondary display: " .. secondaryDisplay:name())
   secondaryScreenFrame = secondaryDisplay:frame()
-  screenWatcher = hs.screen.watcher.new(onScreenLayoutChange);
-  screenWatcher:start()
 end
 
 log.i("Primary display  : " .. primaryDisplay:name())
