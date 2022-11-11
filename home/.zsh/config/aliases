@@ -15,7 +15,6 @@ alias ls='exa'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
 alias rg='rg -F -i --hidden -u --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'''
-alias killdns="sudo killall mDNSResponder"
 alias b64d="pbpaste | base64 -d"
 
 #

@@ -104,17 +104,8 @@ tf-p() {
   aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
 }
 
-#
-# DOCKER
-#
-mk-start() {
-  minikube start --container-runtime=docker --no-kubernetes --driver=hyperkit
+killdns() {
+  sudo dscacheutil -flushcache
+  sudo killall -HUP mDNSResponder
 }
 
-mk-stop() {
-  minikube stop
-}
-
-mk-e() {
-  eval "$(minikube -p minikube docker-env)"
-}
