@@ -1,8 +1,6 @@
 local log = hs.logger.new('screen_layout','debug')
 
 -- Screen/ Window movement
-local secondaryDisplayname = "Dell"
-local secondaryDisplayMode = { w = 2560, h = 1440 }
 hs.window.animationDuration = 0
 
 function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
@@ -34,13 +32,14 @@ else
 end
 
 -- { "fmbp.fritz.box", "localhost" }
--- dots (".") are replaced by "_" so 
--- hostname "a-b.c" becomes "a-b_c.lua" as an include file
-local layout_file = hs.host.names()[1]:gsub("%..*", "") 
+-- All non numeric or alpha chars are replaced by "-"
+-- hostname "a-b.c" becomes "a-b-c.lua" as an include file
+local layout_file = hs.host.names()[1]:gsub("[^a-z0-9]", "-")
+log.i("Looking for '" ..  os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua'")
 if not file_exists(os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua") then
   layout_file = "default"
 end
-log.i("Looked for '" ..  hs.host.names()[1]:gsub("%..*", "") .. "', using config '" .. layout_file .. "'")
+log.i("Using config '" .. layout_file .. "'")
 local CONFIG = require("layout." .. layout_file)
 
 -- cmd+shift+<trigger> config
