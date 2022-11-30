@@ -20,7 +20,9 @@ local primaryScreenFrame = primaryDisplay:frame()
 -- Detect Secondary display
 local primary_display_lower = string.lower(primaryDisplay:name())
 secondaryDisplay = hs.fnutils.find(hs.screen.allScreens(), function(display) 
-  return string.find(string.lower(display:name()), primary_display_lower, 1, true) == nil
+  local dname = string.lower(display:name())
+  -- Secondary = NOT primary and not "Built-in"
+  return string.find(dname, primary_display_lower, 1, true) == nil and string.find(dname, "built-in", 1, true) == nil
 end)
 
 secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
