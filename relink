@@ -28,6 +28,7 @@ link_or_fail "home/.rib"
 link_or_fail "home/.fonts"
 link_or_fail "home/.hammerspoon"
 link_or_fail "home/.ctags.d"
+link_or_fail "selene.toml"
 
 mkdir -p "${HOME}/.config"
 DOTTHINGS=$(find home/.config -mindepth 1 -maxdepth 1 -type d)

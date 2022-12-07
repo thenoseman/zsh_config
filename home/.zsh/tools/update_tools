@@ -33,8 +33,10 @@ readline
 ripgrep
 ruby-build
 rustup-init
+selene
 shellcheck
 sqlite
+stylua
 syncthing
 tig
 volta

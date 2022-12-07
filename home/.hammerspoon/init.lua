@@ -3,10 +3,10 @@ logger.i("------------------------------------")
 logger.i("---------------- INIT --------------")
 logger.i("------------------------------------")
 
-require "helper"
-require "spoons"
-require "screen_layout"
-require "audio"
-require "msteams"
-require "hotkeys"
-require "mediakeys"
+require("helper")
+require("spoons")
+require("screen_layout")
+require("audio")
+require("msteams")
+require("hotkeys")
+require("mediakeys")

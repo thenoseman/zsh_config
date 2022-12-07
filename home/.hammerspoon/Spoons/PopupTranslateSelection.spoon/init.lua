@@ -70,6 +70,7 @@ function obj:translatePopup(text, to, from)
       :bringToFront()
       :show()
 
+   -- Modified by the noseman:
    -- remove google translate stuff
    local injectJs = [[
      window.onload=function() {
