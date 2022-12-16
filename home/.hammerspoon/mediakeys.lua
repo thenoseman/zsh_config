@@ -21,83 +21,86 @@ local status_line_bar = nil
 local status_line_timeout_sec = 4
 
 local function show_title_in_menubar(status_line)
-	--
-	-- Show title in menubar
-	--
-	if status_line_bar == nil then
-		status_line_bar = hs.menubar.new()
-		hs.timer.doAfter(status_line_timeout_sec, function()
-			status_line_bar:delete()
-			status_line_bar = nil
-		end)
-	end
-	status_line_bar:setTitle(status_line)
-	status_line_bar:setIcon(icon)
+  --
+  -- Show title in menubar
+  --
+  if status_line_bar == nil then
+    status_line_bar = hs.menubar.new()
+    hs.timer.doAfter(status_line_timeout_sec, function()
+      status_line_bar:delete()
+      status_line_bar = nil
+    end)
+  end
+  status_line_bar:setTitle(status_line)
+  status_line_bar:setIcon(icon)
 end
 
 local function receive_data(data)
-	local artist = nil
-	local title = nil
+  local artist = nil
+  local title = nil
 
-	for line in data:gmatch("([^\n]*)\n?") do
-		if artist == nil then
-			artist = string.match(line, "tag artist (.+)")
-		end
+  for line in data:gmatch("([^\n]*)\n?") do
+    if artist == nil then
+      artist = string.match(line, "tag artist (.+)")
+    end
 
-		if title == nil then
-			title = string.match(line, "tag title (.+)")
-		end
-	end
+    if title == nil then
+      title = string.match(line, "tag title (.+)")
+    end
+  end
 
-	show_title_in_menubar(artist .. ": " .. title)
+  show_title_in_menubar(artist .. ": " .. title)
 end
 
 local cmus_remote_socket = nil
 
 local key_to_cmus_command = {
-	["PLAY"] = "player-pause",
-	["FAST"] = "player-next",
-	["REWIND"] = "player-prev",
+  ["PLAY"] = "player-pause",
+  ["FAST"] = "player-next",
+  ["REWIND"] = "player-prev",
 }
 
 --
 -- Stop mediakeys to start apple apps and use them for CMUS
 --
 local media_tap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, function(event)
-	local data = event:systemKey()
-	if data["key"] ~= "PLAY" and data["key"] ~= "FAST" and data["key"] ~= "REWIND" then
-		return false, nil
-	end
+  local data = event:systemKey()
+  if data["key"] ~= "PLAY" and data["key"] ~= "FAST" and data["key"] ~= "REWIND" then
+    return false, nil
+  end
 
-	-- Key released
-	if not data["down"] then
-		cmus_socket_path = hs.fs.pathToAbsolute("~/.config/cmus/socket")
-		if not cmus_socket_path then
-			log.i("cmus socket not found. skipping key.")
-			return true, nil
-		end
+  -- Key released
+  if not data["down"] then
+    cmus_socket_path = hs.fs.pathToAbsolute("~/.config/cmus/socket")
+    if not cmus_socket_path then
+      log.i("cmus socket not found. skipping key.")
+      return true, nil
+    end
 
-		-- Open the socket
-		if not cmus_remote_socket then
-			cmus_remote_socket = hs.socket.new(receive_data):connect(cmus_socket_path)
-		end
+    -- Open the socket
+    if not cmus_remote_socket then
+      cmus_remote_socket = hs.socket.new(receive_data):connect(cmus_socket_path)
+    end
 
-		local command = key_to_cmus_command[data["key"]]
-		log.i("Sending command '" .. command .. "' to cmus socket at " .. cmus_socket_path)
-		cmus_remote_socket:send(command .. "\n")
+    local command = key_to_cmus_command[data["key"]]
+    log.i("Sending command '" .. command .. "' to cmus socket at " .. cmus_socket_path)
+    cmus_remote_socket:send(command .. "\n")
 
-		-- Read cmus status to get current title
-		-- Delay to find the actual running title
-		hs.timer.doAfter(1, function()
-			cmus_remote_socket:send("status\n")
-			cmus_remote_socket:read("vol_right")
-		end)
-	end
-	return true, nil
+    -- Read cmus status to get current title
+    -- Delay to find the actual running title
+    hs.timer.doAfter(1, function()
+      cmus_remote_socket:send("status\n")
+      cmus_remote_socket:read("vol_right")
+    end)
+  end
+  return true, nil
 end)
 media_tap:start()
 
 -- Call something on tap to keep it alive ... ????
-hs.timer.doEvery(15, function()
-	media_tap:isEnabled()
+-- selene: allow(unscoped_variables)
+-- selene: allow(unused_variable)
+holdreference = hs.timer.doEvery(15, function()
+  log.i("MEDIATAP" .. hs.inspect(media_tap))
+  media_tap:isEnabled()
 end)
