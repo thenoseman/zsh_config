@@ -37,7 +37,9 @@ function applicationWatcher(appName, eventType)
   end
 end
 
-local appWatcher = hs.application.watcher.new(applicationWatcher)
+-- selene: allow(unscoped_variables)
+-- selene: allow(unused_variable)
+appWatcher = hs.application.watcher.new(applicationWatcher)
 appWatcher:start()
 
 --- If teams is already running:
