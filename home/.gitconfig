@@ -40,6 +40,7 @@
   auto = 1000
 [push]
   default = current
+	autoSetupRemote = true
 [merge]
   #summary=true
   tool = kdiff3
