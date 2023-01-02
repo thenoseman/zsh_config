@@ -3,6 +3,8 @@
 --
 local headset_name = "Jabra Talk 30"
 local buildin_name = "Built-in Output"
+-- selene:allow(unused_variable)
+local sound_timer = nil
 
 -- "buildin" might be another name
 local device = hs.audiodevice.findOutputByName(buildin_name)
@@ -98,8 +100,13 @@ function onaudiodevicechange(event)
       output_switcher_menubar:returnToMenuBar()
       output_switcher_menubar_set_title("headset")
 
+      --hs.timer.doEvery(1, function()
+      --  log.i(hs.inspect(hs.audiodevice.defaultOutputDevice()))
+      --end)
+
       -- Play sound
-      hs.timer.doAfter(2, function()
+      sound_timer = hs.timer.doAfter(7, function()
+        log.i("PLAYING SOUND")
         connection_sound:play()
       end)
     end
