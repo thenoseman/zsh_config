@@ -1,7 +1,7 @@
 # vim: set ft=sh:
 # shellcheck disable=SC3030,SC3054,SC3010
 log() {
-  echo "\033[0;33m${1}\033[0m"
+  printf "\033[0;33m%s\033[0m" "${1}"
 }
 
 BREW_PACKAGES=(
@@ -56,7 +56,6 @@ gpg-suite
 hammerspoon
 iterm2
 itsycal
-kdiff3
 keepassxc
 macvim
 namechanger
@@ -115,11 +114,6 @@ fi
 
 brew upgrade
 
-if ! command -v ruplacer 2>/dev/null; then
-  log ">>> Installing ruplacer from github releases"
-  curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
-fi
-
 log ">>> Updating rubygems"
 gem update --system
 
@@ -145,3 +139,15 @@ log ">>> Setting permission for quicklook plugins"
 #     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Plugin).app"
 #   fi
 # fi
+#
+log ">>> Special Apps"
+if ! command -v ruplacer 2>/dev/null; then
+  log ">>> Installing ruplacer from github releases"
+  curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
+fi
+
+if ! command -v kdiff3 2>/dev/null; then
+  log ">>> Installing kdiff3 from source (This will take some time)"
+  brew tap kde-mac/kde https://invent.kde.org/packaging/homebrew-kde.git --force-auto-update
+  brew install kde-mac/kde/kdiff3 --HEAD
+fi
