@@ -49,7 +49,7 @@
   prompt = false
 [mergetool "kdiff3"]
   trustExitCode = false
-  path = $HOMEBREW_PREFIX/bin/kdiff3
+  path = kdiff3
 [mergetool "meld"]
   trustExitCode = true
   cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
