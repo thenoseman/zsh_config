@@ -73,7 +73,6 @@ eslint
 jsonlint
 pnpm
 prettier
-typescript
 )
 
 RUBY_GEMS=(
