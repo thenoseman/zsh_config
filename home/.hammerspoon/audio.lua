@@ -100,9 +100,12 @@ function onaudiodevicechange(event)
       output_switcher_menubar:returnToMenuBar()
       output_switcher_menubar_set_title("headset")
 
-      --hs.timer.doEvery(1, function()
-      --  log.i(hs.inspect(hs.audiodevice.defaultOutputDevice()))
-      --end)
+      -- hs.timer.doEvery(1, function()
+      --   log.i("inUse" .. hs.inspect(headset:inUse()))
+      --   log.i("uid" .. hs.inspect(headset:uid()))
+      --   log.i("outputVolume" .. hs.inspect(headset:outputVolume()))
+      --   log.i("isOutputDevice" .. hs.inspect(headset:isOutputDevice()))
+      -- end)
 
       -- Play sound
       sound_timer = hs.timer.doAfter(7, function()
