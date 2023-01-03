@@ -11,6 +11,14 @@ function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
   end
 end
 
+--
+-- Watch for screen changes and reload config
+--
+hs.screen.watcher.new(function()
+  log.i("Reloading config because screensetup changed")
+  hs.reload()
+end)
+
 -- Notice that hammerspoon regards desktop = all screens combined = continguous X coordinates starting top left on primary screen
 -- primaryDisplay cannot be local
 -- selene: allow(unscoped_variables)
