@@ -15,7 +15,7 @@ end
 -- Watch for screen changes and reload config
 --
 hs.screen.watcher.new(function()
-  log.i("Reloading config because screensetup changed")
+  log.i("Reloading config because screen setup changed")
   hs.reload()
 end)
 
@@ -46,7 +46,7 @@ if not secondaryDisplay then
 end
 
 local secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
-if not not secondaryDisplay then
+if not not secondaryDisplay and primaryDisplay ~= secondaryDisplay then
   log.i("Secondary display: " .. secondaryDisplay:name())
   secondaryScreenFrame = secondaryDisplay:frame()
 else
@@ -66,7 +66,7 @@ end
 log.i("Using config '" .. layout_file .. "'")
 local CONFIG = require("layout." .. layout_file)
 
--- cmd+shift+<trigger> config
+-- cmd+shift+<trigger> config:
 --
 -- 1 : 2/3 screen size, anchor top left, screen 1
 -- 2 : 1/3 screen size, anchor at 2/3 width, screen 1
