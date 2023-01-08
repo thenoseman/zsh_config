@@ -29,16 +29,18 @@ obj.color = nil
 ---
 --- Parameters:
 ---  * mapping - A table containing hotkey modifier/key details for the following items:
----   * show - This will cause the mouse circle to be drawn
+---  * show - This will cause the mouse circle to be drawn
 function obj:bindHotkeys(mapping)
-    if (self.hotkey) then
-        self.hotkey:delete()
-    end
-    local showMods = mapping["show"][1]
-    local showKey = mapping["show"][2]
-    self.hotkey = hs.hotkey.bind(showMods, showKey, function() self:show() end)
+  if self.hotkey then
+    self.hotkey:delete()
+  end
+  local showMods = mapping["show"][1]
+  local showKey = mapping["show"][2]
+  self.hotkey = hs.hotkey.bind(showMods, showKey, function()
+    self:show()
+  end)
 
-    return self
+  return self
 end
 
 --- MouseCircle:show()
@@ -51,38 +53,41 @@ end
 --- Returns:
 ---  * None
 function obj:show()
-    local circle = self.circle
-    local timer = self.timer
+  local circle = self.circle
+  local timer = self.timer
 
-    if circle then
-        circle:hide(0.5)
-        if timer then
-            timer:stop()
-        end
+  if circle then
+    circle:hide(0.5)
+    if timer then
+      timer:stop()
     end
+  end
 
-    mousepoint = hs.mouse.getAbsolutePosition()
+  mousepoint = hs.mouse.absolutePosition()
 
-    local color = nil
-    if (self.color) then
-        color = self.color
-    else
-        color = {["red"]=1,["blue"]=0,["green"]=0,["alpha"]=1}
-    end
-    circle = hs.drawing.circle(hs.geometry.rect(mousepoint.x-30, mousepoint.y-30, 60, 60))
-    circle:setStrokeColor(color)
-    circle:setFill(false)
-    circle:setStrokeWidth(15)
-    circle:bringToFront(true)
-    circle:show(0.5)
-    self.circle = circle
+  local color = nil
+  if self.color then
+    color = self.color
+  else
+    color = { ["red"] = 1, ["blue"] = 0, ["green"] = 0, ["alpha"] = 1 }
+  end
+  circle = hs.drawing.circle(hs.geometry.rect(mousepoint.x - 30, mousepoint.y - 30, 60, 60))
+  circle:setStrokeColor(color)
+  circle:setFill(false)
+  circle:setStrokeWidth(15)
+  circle:bringToFront(true)
+  circle:show(0.5)
+  self.circle = circle
 
-    self.timer = hs.timer.doAfter(3, function()
-        self.circle:hide(0.5)
-        hs.timer.doAfter(0.6, function() self.circle:delete() self.circle = nil end)
+  self.timer = hs.timer.doAfter(3, function()
+    self.circle:hide(0.5)
+    hs.timer.doAfter(0.6, function()
+      --self.circle:delete()
+      self.circle = nil
     end)
+  end)
 
-    return self
+  return self
 end
 
 return obj
