@@ -12,7 +12,7 @@ if device == nil then
   buildin_name = "MacBook Pro-Lautsprecher"
 end
 
-local log = hs.logger.new("audio.lua", "debug")
+local log = hs.logger.new("🔈", "debug")
 local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/gem.mp3"))
 local output_switcher_menubar = hs.menubar.new()
 log.i("Buildin output name is '" .. buildin_name .. "'")

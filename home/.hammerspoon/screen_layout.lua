@@ -1,4 +1,4 @@
-local log = hs.logger.new("screen_layout", "debug")
+local log = hs.logger.new("📺", "debug")
 
 -- Screen/ Window movement
 hs.window.animationDuration = 0
@@ -9,6 +9,13 @@ function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
   else
     return false
   end
+end
+
+function width_to_word(width)
+  if width > 2000 then
+    return "large"
+  end
+  return "small"
 end
 
 --
@@ -49,22 +56,30 @@ local secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
 if not not secondaryDisplay and primaryDisplay ~= secondaryDisplay then
   log.i("Secondary display: " .. secondaryDisplay:name())
   secondaryScreenFrame = secondaryDisplay:frame()
+
+  -- Build name of layout file
+  -- The build-in screen width is 1280 px so just distinguish between big (eg. DELL) and small (eg. build-in)
+  local layout_file = "primary_"
+    .. width_to_word(primaryDisplay:currentMode().w)
+    .. "_secondary_"
+    .. width_to_word(secondaryDisplay:currentMode().w)
+  log.i("Looking for '" .. os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua'")
+
+  -- selene: allow(undefined_variable)
+  if not file_exists(os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua") then
+    layout_file = "default"
+  end
+  log.i("Using config '" .. layout_file .. "'")
+  local CONFIG = require("layout." .. layout_file)
+
+  -- Standard layout: Defined in layout/*.lua
+  hs.hotkey.bind({ "cmd", "shift" }, "9", function()
+    hs.layout.apply(CONFIG.windowLayout, windowTitleComparator)
+  end)
 else
+  -- No layout here since we are using only one display
   log.i("Secondary display: NONE")
 end
-
--- { "fmbp.fritz.box", "localhost" }
--- All non numeric or alpha chars are replaced by "-"
--- hostname "a-b.c" becomes "a-b-c.lua" as an include file
-local layout_file = hs.host.names()[1]:gsub("[^a-z0-9]", "-")
-log.i("Looking for '" .. os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua'")
-
--- selene: allow(undefined_variable)
-if not file_exists(os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua") then
-  layout_file = "default"
-end
-log.i("Using config '" .. layout_file .. "'")
-local CONFIG = require("layout." .. layout_file)
 
 -- cmd+shift+<trigger> config:
 --
@@ -96,8 +111,3 @@ for trigger, moveConfig in pairs(triggers) do
     focusedWindow:move(moveConfig)
   end)
 end
-
--- Standard layout: Defined in layout/*.lua
-hs.hotkey.bind({ "cmd", "shift" }, "9", function()
-  hs.layout.apply(CONFIG.windowLayout, windowTitleComparator)
-end)

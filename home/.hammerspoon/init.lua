@@ -1,4 +1,4 @@
-local logger = hs.logger.new("init", "debug")
+local logger = hs.logger.new("🏁", "debug")
 logger.i("------------------------------------")
 logger.i("---------------- INIT --------------")
 logger.i("------------------------------------")

@@ -3,7 +3,7 @@
 -- It will remote control a running cmus (https://cmus.github.io/) and
 -- also show the current runnign title for a time in the menubar when using "next" or "previous"
 --
-local log = hs.logger.new("mediakeys", "debug")
+local log = hs.logger.new("⏏️", "debug")
 local cmus_socket_path = nil
 
 -- http://asciimage.org/
