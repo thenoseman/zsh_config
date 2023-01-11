@@ -53,7 +53,7 @@ local function output_switcher_menubar_clicked()
       volumes.headset = headset:outputVolume()
     end
     buildin:setDefaultOutputDevice()
-    buildin:setVolume(volumes.headset)
+    buildin:setVolume(volumes.buildin)
     output_switcher_menubar_set_title("buildin")
   end
 end
