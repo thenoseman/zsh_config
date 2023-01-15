@@ -1,8 +1,4 @@
--- local popup_size = hs.geometry.size(770, 310)
--- local popup_style = hs.webview.windowMasks.utility
---   | hs.webview.windowMasks.HUD
---   | hs.webview.windowMasks.titled
---   | hs.webview.windowMasks.closable
+local popup_size = hs.geometry.size(600, 350)
 local logger = hs.logger.new("🎙", "debug")
 
 local headers = {
@@ -11,6 +7,17 @@ local headers = {
   ["Ocp-Apim-Subscription-Region"] = "germanywestcentral",
   ["Accept"] = "application/json",
 }
+
+local popup_style = hs.webview.windowMasks.utility
+  | hs.webview.windowMasks.HUD
+  | hs.webview.windowMasks.titled
+  | hs.webview.windowMasks.closable
+
+local rect = hs.geometry.rect(0, 0, popup_size.w, popup_size.h)
+rect.center = hs.screen.mainScreen():frame().center
+local webview = hs.webview.new(rect)
+webview:allowTextEntry(true):windowStyle(popup_style):closeOnEscape(true):windowTitle("translation")
+local hammerspoon_app = hs.application.applicationsForBundleID(hs.processInfo.bundleID)[1]
 
 function current_selection()
   local elem = hs.uielement.focusedElement()
@@ -24,6 +31,14 @@ function current_selection()
     sel = hs.pasteboard.getContents()
   end
   return (sel or "")
+end
+
+function prepare_html(translation, from)
+  -- selene: allow(undefined_variable)
+  local template = file_read(os.getenv("HOME") .. "/.hammerspoon/translate.html")
+  template = string.gsub(template, "<translation />", translation)
+  template = string.gsub(template, "<translation_from />", from)
+  return template
 end
 
 function translateSelectionPopup(text)
@@ -46,23 +61,20 @@ function translateSelectionPopup(text)
       }
     ]
     --]]
+    local translated_from = hs.json.decode(response)[1]["detectedLanguage"]["language"]
     local translation = hs.json.decode(response)[1]["translations"][1]["text"]
+    local h = prepare_html(translation, translated_from)
+    webview:html(h):bringToFront(true):show()
 
-    local screen_center = hs.screen.mainScreen():frame().center
-    local popup_size = { x = 600, y = 400 }
-    hs.dialog.alert(
-      screen_center.x - (popup_size.x / 2),
-      screen_center.y - (popup_size.y / 2),
-      function() end,
-      "Translation:",
-      translation,
-      "ok",
-      nil,
-      "informational"
-    )
+    -- Bring the window in focus so ESC works as expected
+    local window = hammerspoon_app:getWindow("translation")
+    hammerspoon_app:activate()
+    window:focus()
   else
     logger.e("Unable to request translation, status code=" .. status_code)
   end
 end
 
-translateSelectionPopup()
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "t", function()
+  translateSelectionPopup()
+end)
