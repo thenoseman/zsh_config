@@ -8,5 +8,5 @@ home/.zsh/cache/
 home/.kdiff3rc
 amazon-shell-tools.sh
 home/.zsh/modules/fzf-tab/
-home/.hammerspoon/config.lua
+home/.hammerspoon/secrets.lua
 default.profraw
