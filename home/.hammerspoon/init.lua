@@ -4,6 +4,14 @@ logger.i("---------------- INIT --------------")
 logger.i("------------------------------------")
 
 require("helper")
+
+-- selene: allow(undefined_variable, unscoped_variables, unused_variable)
+if file_exists(os.getenv("HOME") .. "/.hammerspoon/secrets.lua") then
+  SECRETS = require("secrets")
+else
+  logger.i("SECRETS not found")
+end
+
 require("spoons")
 require("screen_layout")
 require("audio")
