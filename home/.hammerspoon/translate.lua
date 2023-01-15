@@ -75,6 +75,4 @@ function translateSelectionPopup(text)
   end
 end
 
-hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "t", function()
-  translateSelectionPopup()
-end)
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "t", translateSelectionPopup)
