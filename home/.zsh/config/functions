@@ -66,7 +66,7 @@ cyp-headless() {
   cypress run --e2e --browser chrome --headless --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
 }
 
-cyp-headed() {
+cyp() {
   cypress run --e2e --browser chrome --headed --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
 }
 
