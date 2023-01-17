@@ -62,6 +62,14 @@ djs-test() {
   NODE_OPTIONS="--inspect" node_modules/.bin/jest --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
 
+cyp-headless() {
+  cypress run --e2e --browser chrome --headless --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
+}
+
+cyp-headed() {
+  cypress run --e2e --browser chrome --headed --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
+}
+
 #
 # AWS related functions
 #
