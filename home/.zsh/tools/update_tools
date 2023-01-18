@@ -1,7 +1,7 @@
 # vim: set ft=sh:
 # shellcheck disable=SC3030,SC3054,SC3010
 log() {
-  printf "\033[0;33m%s\033[0m" "${1}"
+  printf "\033[0;33m%s\033[0m\n" "${1}"
 }
 
 BREW_PACKAGES=(
