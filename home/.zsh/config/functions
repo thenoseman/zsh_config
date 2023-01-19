@@ -117,3 +117,17 @@ killdns() {
   sudo killall -HUP mDNSResponder
 }
 
+#
+# Citrix autostart annoyance
+#
+citrix-remove-services() {
+  launchctl remove com.citrix.ServiceRecords
+  launchctl remove com.citrix.ReceiverHelper
+  launchctl remove com.citrix.AuthManager_Mac
+  launchctl remove com.citrix.safariadapter
+}
+citrix-start-services() {
+  launchctl load /Library/LaunchAgents/com.citrix.ServiceRecords.plist
+  launchctl load /Library/LaunchAgents/com.citrix.ReceiverHelper.plist
+  launchctl load /Library/LaunchAgents/com.citrix.AuthManager_Mac.plist
+}
