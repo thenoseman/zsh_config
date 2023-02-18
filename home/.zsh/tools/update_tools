@@ -9,6 +9,7 @@ boost
 cmake
 coreutils
 direnv
+dust
 editorconfig
 exa
 exiftool
