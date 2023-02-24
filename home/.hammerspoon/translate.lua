@@ -1,11 +1,14 @@
+--
+-- https://libretranslate.com/
+--
 local popup_size = hs.geometry.size(600, 350)
 local logger = hs.logger.new("🎙", "debug")
 
 local headers = {
   ["Content-Type"] = "application/json",
-  ["Ocp-Apim-Subscription-Key"] = SECRETS.azure_translate_api_key,
-  ["Ocp-Apim-Subscription-Region"] = "germanywestcentral",
-  ["Accept"] = "application/json",
+  ["origin"] = "https://libretranslate.com",
+  ["user-agent"] = "curl/7.79.1",
+  ["accept"] = "*/*",
 }
 
 local popup_style = hs.webview.windowMasks.utility
@@ -45,24 +48,22 @@ function translateSelectionPopup(text)
   if not text then
     text = current_selection()
   end
-  local post = '[{"text":"' .. text .. '"}]'
 
-  local status_code, response =
-    hs.http.post("https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=de", post, headers)
+  local body = '{"q":"' .. text .. '","source":"auto","target":"de","format":"text","api_key":""}'
+  local status_code, response = hs.http.post("https://libretranslate.com/translate", body, headers)
 
   if status_code == 200 then
     --[[
-    [
-      {
-        "detectedLanguage": { "language": "ru", "score": 1.0 },
-        "translations": [
-          { "text": "Test", "to": "de" }
-        ]
-      }
-    ]
+    {
+    "detectedLanguage": {
+        "confidence": 92,
+        "language": "en"
+    },
+    "translatedText": "durchgestrichen"
+    }
     --]]
-    local translated_from = hs.json.decode(response)[1]["detectedLanguage"]["language"]
-    local translation = hs.json.decode(response)[1]["translations"][1]["text"]
+    local translated_from = hs.json.decode(response)["detectedLanguage"]["language"]
+    local translation = hs.json.decode(response)["translatedText"]
     local h = prepare_html(translation, translated_from)
     webview:html(h):bringToFront(true):show()
 
@@ -71,7 +72,7 @@ function translateSelectionPopup(text)
     hammerspoon_app:activate()
     window:focus()
   else
-    logger.e("Unable to request translation, status code=" .. status_code)
+    logger.e("Unable to request translation, status code=" .. status_code .. ", response = " .. response)
   end
 end
 
