@@ -1,4 +1,6 @@
 # vim:ft=sh
+. ~/.zsh/config/homebrew
+ 
 export SHELL=zsh
 export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
@@ -42,7 +44,7 @@ GPG_TTY=$(tty)
 export HOMEBREW_INSTALL_CLEANUP=1
 export HOMEBREW_NO_ENV_HINTS=1
 
-# For homebrew curl:
+# For building stuff with homebrew packages
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/curl/lib"
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/curl/include"
 
