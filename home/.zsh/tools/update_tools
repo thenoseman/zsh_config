@@ -29,7 +29,7 @@ oath-toolkit
 openconnect
 openssl
 pstree
-python
+python@3.11
 readline
 ripgrep
 ruby-build
@@ -43,7 +43,7 @@ tig
 volta
 watch
 wireguard-tools
-yarn
+yamllint
 yt-dlp
 zsh
 )
