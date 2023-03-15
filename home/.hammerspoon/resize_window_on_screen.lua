@@ -55,8 +55,8 @@ function applicationWatcher(appName, eventType)
 end
 
 -- selene: allow(unscoped_variables)
-appWatcher = hs.application.watcher.new(applicationWatcher)
-appWatcher:start()
+appWatcherTeamsScreen = hs.application.watcher.new(applicationWatcher)
+appWatcherTeamsScreen:start()
 
 --- If already running:
 if hs.application.find(appname_for_trigger) ~= nil then

@@ -39,8 +39,8 @@ end
 
 -- selene: allow(unscoped_variables)
 -- selene: allow(unused_variable)
-appWatcher = hs.application.watcher.new(applicationWatcher)
-appWatcher:start()
+appWatcherTeams = hs.application.watcher.new(applicationWatcher)
+appWatcherTeams:start()
 
 --- If teams is already running:
 if hs.application.find(appname_for_trigger) ~= nil then
