@@ -49,7 +49,15 @@ function translateSelectionPopup(text)
     text = current_selection()
   end
 
-  local body = '{"q":"' .. text .. '","source":"auto","target":"de","format":"text","api_key":""}'
+  -- First fetch the "secret"
+  local status_code, response = hs.http.get("https://libretranslate.com/js/app.js?v=" .. os.time())
+  local secret = string.match(response, 'apiSecret: "(%w+)"')
+
+  local body = '{"q":"'
+    .. text
+    .. '","source":"auto","target":"de","format":"text","api_key":"","secret":"'
+    .. secret
+    .. '"}'
   local status_code, response = hs.http.post("https://libretranslate.com/translate", body, headers)
 
   if status_code == 200 then
