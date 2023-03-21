@@ -19,7 +19,7 @@ M.windowLayout = {
   { "Brave Browser", "E-Mail", secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1 }, nil, nil },
   { "Microsoft Outlook", nil, secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1 }, nil, nil },
   { "Slack", nil, secondaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1 }, nil, nil },
-  { "Obsidian", nil, secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1 }, nil, nil },
+  { "Obsidian", nil, secondaryDisplay, { x = 0, y = 0, w = 1, h = 1 }, nil, nil },
   { "Microsoft Teams", nil, secondaryDisplay, { x = 0.66, y = 0, w = 0.34, h = 1 }, nil, nil },
   { "Brave Browser", "DevTools -", secondaryDisplay, { x = 0, y = 0, w = 0.66, h = 1 }, nil, nil },
 }
