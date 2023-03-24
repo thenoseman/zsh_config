@@ -13,6 +13,10 @@ local testIntervalSec = 1 -- How long to wait until runnign the resize function?
 local border = 30 -- The border/margin to leave around the window
 
 function resizeWindowIfOnScreen(window)
+  if window == nil then
+    return
+  end
+
   -- Check only every N seconds
   local screenWindowIsOn = window:screen()
 
