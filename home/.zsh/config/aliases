@@ -17,6 +17,7 @@ alias dl='cd ~/Downloads'
 alias rg='rg -F -i --hidden -u --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'''
 alias b64d="pbpaste | base64 -d"
 alias du="dust"
+alias cat="bat"
 
 #
 # VIM
@@ -77,7 +78,6 @@ alias p="pnpm"
 alias -s md=typora
 # shellcheck disable=SC2139
 alias -s {json,html}=mvim
-
 
 # Docker on M1 mac
 [[ $ARCH == "arm64" ]] && alias docker="/Applications/Docker.app/Contents/Resources/bin/com.docker.cli"

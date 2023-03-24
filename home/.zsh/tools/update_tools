@@ -5,6 +5,7 @@ log() {
 }
 
 BREW_PACKAGES=(
+bat
 boost
 cmake
 coreutils
