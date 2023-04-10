@@ -50,23 +50,24 @@ zsh
 )
 
 BREW_CASKS=(
-android-platform-tools
-aws-vault
-disk-inventory-x
-gpg-suite
-hammerspoon
-iterm2
-itsycal
-keepassxc
-macvim
-namechanger
-qlimagesize
-qlmarkdown
-quicklook-json
-shottr
-the-unarchiver
-typora
-vlc
+android-platform-tools # adb
+aws-vault              # AWS cred management
+disk-inventory-x       # Find large files
+gpg-suite              # PGP
+hammerspoon            # Control the mac via lua
+iterm2                 # Terminal
+itsycal                # Small menubar calendar
+kap                    # Screen video recorder
+keepassxc              # Passwords
+macvim                 # Editor
+namechanger            # File renamer GUI
+qlimagesize            # QuickLook Plugin: Image Info
+qlmarkdown             # Quicklook Plugin: Markdown
+quicklook-json         # Quicklook Plugin: JSON
+shottr                 # Menubar screenshot utility
+the-unarchiver         # Unpack all archive types
+typora                 # Markdown editor
+vlc                    # Video player
 )
 
 NODE_PACKAGES=(
