@@ -17,7 +17,7 @@ alias dl='cd ~/Downloads'
 alias rg='rg -F -i --hidden -u --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'''
 alias b64d="pbpaste | base64 -d"
 alias du="dust"
-alias cat="bat --paging=never"
+alias cat="bat --paging=never --style=header,grid,snip"
 
 #
 # VIM
