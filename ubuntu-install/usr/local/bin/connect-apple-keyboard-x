@@ -1,6 +1,0 @@
-#!/bin/bash
-
-ACTION=$1
-
-echo $ACTION > /tmp/udev
-echo $(env) >> /tmp/udev

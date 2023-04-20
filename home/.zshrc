@@ -187,7 +187,7 @@ bindkey -s "^[[8" "}"
 # alt-n : ~
 bindkey -s "^[n" "~"
 
-[[ "$(uname -s)" == "Darwin" ]] && ulimit -n 4096
+ulimit -n 4096
 
 # Includes
 for f in ~/.zsh/config/*; do source $f; done

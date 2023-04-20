@@ -1,4 +1,0 @@
-# Apple aluminium keyboard wire mini iso
-ACTION=="add",    ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="021e", RUN+="/usr/local/bin/connect-apple-keyboard"
-
-ACTION=="remove", ATTRS{idVendor}=="05ac", ATTRS{idProduct}=="021e", RUN+="/usr/local/bin/connect-apple-keyboard"

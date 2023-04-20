@@ -7,13 +7,8 @@ export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
 export LESS="-mR"
 
-if [[ "${OSTYPE}" =~ "darwin" ]]; then
-  # shellcheck disable=SC2089
-  export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
-else
-  # shellcheck disable=SC2090
-  export EDITOR="vim"
-fi
+# shellcheck disable=SC2089
+export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
 
 export LC_ALL="en_US.UTF-8"
 
@@ -58,9 +53,6 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # Location of node js versions managed by volta
 export VOLTA_HOME="$HOME/.volta"
-
-# Watchman
-export WATCHMAN_CONFIG_FILE="$HOME/.config/watchman/watchman.json"
 
 # aws-vault (https://github.com/99designs/aws-vault/blob/master/USAGE.md#environment-variables)
 export AWS_VAULT_PROMPT=terminal

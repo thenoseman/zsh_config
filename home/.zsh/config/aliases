@@ -22,12 +22,7 @@ alias cat="bat --paging=never --style=snip"
 #
 # VIM
 #
-if [[ "${OSTYPE}" =~ "darwin" ]]; then
-  alias v='mvim'
-else
-  alias v='gvim'
-  alias vim='gvim'
-fi
+alias v='mvim'
 
 #
 # GIT RELATED
