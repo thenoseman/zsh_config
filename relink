@@ -31,8 +31,3 @@ link_or_fail "home/.ctags.d"
 link_or_fail "selene.toml"
 link_or_fail "yamllint.yml"
 
-mkdir -p "${HOME}/.config"
-DOTTHINGS=$(find home/.config -mindepth 1 -maxdepth 1 -type d)
-for f in ${DOTTHINGS}; do
-  link_or_fail $f
-done
