@@ -162,7 +162,7 @@ function obj.choicesApps(query)
         instances = hs.application.applicationsForBundleID(app["bundleID"])
       end
       if #instances > 0 then
-        choice["text"] = name .. " (Running)"
+        choice["text"] = name .. " (Läuft)"
       else
         choice["text"] = name
       end
@@ -177,6 +177,9 @@ function obj.choicesApps(query)
       table.insert(choices, choice)
     end
   end
+  table.sort(choices, function(a, b)
+    return a["text"] < b["text"]
+  end)
   return choices
 end
 
@@ -223,6 +226,9 @@ function obj.choicesRevealCommand(query)
       table.insert(choices, choice)
     end
   end
+  table.sort(choices, function(a, b)
+    return a["text"] < b["text"]
+  end)
   return choices
 end
 
