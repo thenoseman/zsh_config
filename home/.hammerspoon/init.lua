@@ -12,14 +12,11 @@ else
   logger.i("SECRETS not found")
 end
 
--- German spotlight names
-hs.application.enableSpotlightForNameSearches(true)
-
 require("spoons")
 require("screen_layout")
 require("audio")
 require("msteams")
 require("hotkeys")
 require("mediakeys")
-require("translate")
+--require("translate")
 require("resize_window_on_screen")
