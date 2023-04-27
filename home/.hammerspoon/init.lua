@@ -12,6 +12,9 @@ else
   logger.i("SECRETS not found")
 end
 
+-- German spotlight names
+hs.application.enableSpotlightForNameSearches(true)
+
 require("spoons")
 require("screen_layout")
 require("audio")
