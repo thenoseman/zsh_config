@@ -40,4 +40,4 @@ spoon.Seal.plugins.useractions.actions = seal_user_actions
 spoon.Seal:start()
 
 hs.loadSpoon("DeepLTranslate")
-spoon.DeepLTranslate:bindHotkeys({ translate = { { "cmd", "alt", "ctrl" }, "t" } })
+spoon.DeepLTranslate:bindHotkeys({ translate = { { "cmd", "alt", "ctrl" }, "d" } })
