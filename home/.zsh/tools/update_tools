@@ -6,12 +6,9 @@ log() {
 
 BREW_PACKAGES=(
 bat
-boost
-cmake
 coreutils
 direnv
 dust
-editorconfig
 exa
 exiftool
 ffmpeg
