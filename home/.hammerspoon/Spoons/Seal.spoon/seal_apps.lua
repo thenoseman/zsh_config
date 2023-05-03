@@ -23,6 +23,10 @@ obj.appSearchPaths = {
   "/System/Library/CoreServices/",
 }
 
+local function starts_with(str, start)
+  return str:sub(1, #start) == start
+end
+
 local modifyNameMap = function(info, add)
   for _, item in ipairs(info) do
     icon = nil
@@ -155,7 +159,8 @@ function obj.choicesApps(query)
     return choices
   end
   for name, app in pairs(obj.appCache) do
-    if string.match(name:lower(), query:lower()) then
+    --if string.match(name:lower(), query:lower()) then
+    if starts_with(name:lower(), query:lower()) then
       local choice = {}
       local instances = {}
       if app["bundleID"] then
