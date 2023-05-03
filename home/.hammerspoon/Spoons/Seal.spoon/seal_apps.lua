@@ -153,6 +153,13 @@ function obj:bare()
   return self.choicesApps
 end
 
+function styled_text(text, highlight)
+  return hs.styledtext.new(
+    query,
+    { font = { size = 16 }, color = hs.drawing.color.definedCollections.hammerspoon.black }
+  ) .. hs.styledtext.new(string.sub(text, #query + 1), { font = { size = 16 } })
+end
+
 function obj.choicesApps(query)
   local choices = {}
   if query == nil or query == "" then
@@ -179,9 +186,14 @@ function obj.choicesApps(query)
       choice["uuid"] = obj.__name .. "__" .. (app["bundleID"] or name)
       choice["plugin"] = obj.__name
       choice["type"] = "launchOrFocus"
+
+      -- Highlight entered portion of text
+      choice["text"] = styled_text(choice["text"], query)
       table.insert(choices, choice)
     end
   end
+
+  -- Sort choices
   table.sort(choices, function(a, b)
     return a["text"] < b["text"]
   end)
