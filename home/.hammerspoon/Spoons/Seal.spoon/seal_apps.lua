@@ -155,9 +155,37 @@ end
 
 function styled_text(text, highlight)
   return hs.styledtext.new(
-    query,
+    highlight,
     { font = { size = 16 }, color = hs.drawing.color.definedCollections.hammerspoon.black }
-  ) .. hs.styledtext.new(string.sub(text, #query + 1), { font = { size = 16 } })
+  ) .. hs.styledtext.new(string.sub(text, #highlight + 1), { font = { size = 16 } })
+end
+
+function generate_choice(name, app, obj, query, mode)
+  local choice = {}
+  local instances = {}
+  if app["bundleID"] then
+    instances = hs.application.applicationsForBundleID(app["bundleID"])
+  end
+  if #instances > 0 then
+    choice["text"] = name .. " (Läuft)"
+  else
+    choice["text"] = name
+  end
+  choice["subText"] = app["path"]
+  if app["icon"] then
+    choice["image"] = app["icon"]
+  end
+  choice["path"] = app["path"]
+  choice["uuid"] = obj.__name .. "__" .. (app["bundleID"] or name)
+  choice["plugin"] = obj.__name
+  choice["type"] = "launchOrFocus"
+
+  -- Highlight entered portion of text
+  if mode == "starts_with" then
+    choice["text"] = styled_text(choice["text"], query)
+  end
+
+  return choice
 end
 
 function obj.choicesApps(query)
@@ -165,31 +193,18 @@ function obj.choicesApps(query)
   if query == nil or query == "" then
     return choices
   end
-  for name, app in pairs(obj.appCache) do
-    --if string.match(name:lower(), query:lower()) then
-    if starts_with(name:lower(), query:lower()) then
-      local choice = {}
-      local instances = {}
-      if app["bundleID"] then
-        instances = hs.application.applicationsForBundleID(app["bundleID"])
-      end
-      if #instances > 0 then
-        choice["text"] = name .. " (Läuft)"
-      else
-        choice["text"] = name
-      end
-      choice["subText"] = app["path"]
-      if app["icon"] then
-        choice["image"] = app["icon"]
-      end
-      choice["path"] = app["path"]
-      choice["uuid"] = obj.__name .. "__" .. (app["bundleID"] or name)
-      choice["plugin"] = obj.__name
-      choice["type"] = "launchOrFocus"
 
-      -- Highlight entered portion of text
-      choice["text"] = styled_text(choice["text"], query)
-      table.insert(choices, choice)
+  for name, app in pairs(obj.appCache) do
+    if starts_with(name:lower(), query:lower()) then
+      table.insert(choices, generate_choice(name, app, obj, query, "starts_with"))
+    end
+  end
+
+  if #choices == 0 then
+    for name, app in pairs(obj.appCache) do
+      if string.match(name:lower(), query:lower()) then
+        table.insert(choices, generate_choice(name, app, obj, query, "match"))
+      end
     end
   end
 
