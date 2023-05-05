@@ -43,7 +43,7 @@
 	autoSetupRemote = true
 [merge]
   #summary=true
-  tool = Kaleidoscope
+  tool = kdiff3
 [mergetool]
   keepBackup = false
   prompt = false
