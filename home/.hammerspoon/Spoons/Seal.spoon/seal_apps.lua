@@ -23,6 +23,12 @@ obj.appSearchPaths = {
   "/System/Library/CoreServices/",
 }
 
+-- Terms to ignore
+-- These apps will not be shown
+obj.ignoredApps = {
+  "aktien",
+}
+
 local function starts_with(str, start)
   return str:sub(1, #start) == start
 end
@@ -188,21 +194,32 @@ function generate_choice(name, app, obj, query, mode)
   return choice
 end
 
+function obj.is_app_ignored(app_name)
+  for _, name in pairs(obj.ignoredApps) do
+    if string.match(app_name:lower(), name:lower()) then
+      return true
+    end
+  end
+  return false
+end
+
 function obj.choicesApps(query)
   local choices = {}
   if query == nil or query == "" then
     return choices
   end
 
+  -- First search for apps that start with the term
   for name, app in pairs(obj.appCache) do
-    if starts_with(name:lower(), query:lower()) then
+    if starts_with(name:lower(), query:lower()) and not obj.is_app_ignored(name) then
       table.insert(choices, generate_choice(name, app, obj, query, "starts_with"))
     end
   end
 
+  -- If nothing was found search for includsion in the name
   if #choices == 0 then
     for name, app in pairs(obj.appCache) do
-      if string.match(name:lower(), query:lower()) then
+      if string.match(name:lower(), query:lower()) and not obj.is_app_ignored(name) then
         table.insert(choices, generate_choice(name, app, obj, query, "match"))
       end
     end
