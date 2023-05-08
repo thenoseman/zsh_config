@@ -1,0 +1,8 @@
+# After settng the path ...
+# https://github.com/cantino/mcfly
+export MCFLY_FUZZY=2
+export MCFLY_DISABLE_MENU=TRUE
+export MCFLY_PROMPT="❯"
+export MCFLY_INTERFACE_VIEW=BOTTOM
+export MCFLY_RESULTS=20
+eval "$($HOMEBREW_PREFIX/bin/mcfly init zsh)"
