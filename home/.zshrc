@@ -109,9 +109,6 @@ HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 source ~/.zsh/modules/pure_prompt/async.zsh
 async_init
 
-# gnome-keyring
-[[ "${DESKTOP_SESSION}" == "i3" ]] && export $(gnome-keyring-daemon --start --components=pkcs11,ssh,secrets)
-
 # Load direnv
 eval "$($HOMEBREW_PREFIX/bin/direnv hook zsh)"
 
