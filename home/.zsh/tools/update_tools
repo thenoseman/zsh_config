@@ -1,8 +1,16 @@
 # vim: set ft=sh:
-# shellcheck disable=SC3030,SC3054,SC3010
+# shellcheck disable=SC3030,SC3054,SC3010,SC3044
 log() {
   printf "\033[0;33m%s\033[0m\n" "${1}"
 }
+
+typeset -a BREW_TAPS
+typeset -a BREW_CASKS
+typeset -a BREW_PACKAGES
+
+BREW_TAPS=(
+  universal-ctags/universal-ctags
+)
 
 BREW_PACKAGES=(
 bat
@@ -86,14 +94,17 @@ log ">>> Updating vim_config"
 [ -e ~/dev/config/zsh_config ] && cd  ~/dev/config/vim_config && git pull --rebase --autostash
 
 log ">>> Installing missing homebrew packages"
-brew tap universal-ctags/universal-ctags
+installed_taps=$(brew tap)
+# shellcheck disable=SC2128
+for tap in $BREW_TAPS; do
+  [[ ! $installed_taps =~ $tap ]] && brew tap "$tap"
+done
 
 # Check installed packages
 INSTALLED=$(brew list --formula -1 | tr '\n' ' ')
 for p in "${BREW_PACKAGES[@]}"; do
  [[ "${INSTALLED}" != *$p* ]] && brew install "${p}"
 done
-
 
 # Error: It seems there is already a Binary at '/usr/local/bin/gview'.
 # for bin in mvim mvimdiff mview mvimex gvim gvimdiff gview gvimex view; do
