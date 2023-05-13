@@ -9,7 +9,6 @@ typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
 
 BREW_TAPS=(
-  cantino/mcfly
   universal-ctags/universal-ctags
 )
 
@@ -31,7 +30,6 @@ imagemagick
 jhead
 jq
 jump
-cantino/mcfly/mcfly
 node
 oath-toolkit
 openconnect
@@ -162,4 +160,3 @@ if ! hash kdiff3 2>/dev/null; then
   brew tap kde-mac/kde https://invent.kde.org/packaging/homebrew-kde.git --force-auto-update
   brew install kde-mac/kde/kdiff3 --HEAD
 fi
-
