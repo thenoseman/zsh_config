@@ -147,7 +147,8 @@ bindkey '^[[6~' down-history
 fzf-history-widget() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  selected=( $(fc -rl 1 |
+  # "fc" for history viewing, cut for stripping linenumbers
+  selected=( $(fc -rl 1 | cut -c 8- |
     FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" fzf) )
   local ret=$?
   if [ -n "$selected" ]; then
