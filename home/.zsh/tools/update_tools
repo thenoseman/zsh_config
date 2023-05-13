@@ -9,6 +9,7 @@ typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
 
 BREW_TAPS=(
+  cantino/mcfly
   universal-ctags/universal-ctags
 )
 
@@ -30,6 +31,7 @@ imagemagick
 jhead
 jq
 jump
+cantino/mcfly/mcfly
 node
 oath-toolkit
 openconnect

@@ -1,17 +1,8 @@
 # After settng the path ...
 # https://github.com/cantino/mcfly
-# mcfly is compiled cross arch to ~/Sync/...
-#
-# rustup target install x86_64-apple-darwin
-# rustup target install aarch64-apple-darwin
-# git clone https://github.com/cantino/mcfly.git
-# cargo build --release --target=aarch64-apple-darwin
-# cargo build --release --target=x86_64-apple-darwin
-# lipo -create -output mcfly target/aarch64-apple-darwin/release/mcfly target/x86_64-apple-darwin/release/mcfly 
-#
 export MCFLY_FUZZY=2
 export MCFLY_DISABLE_MENU=TRUE
 export MCFLY_PROMPT="❯"
 export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_RESULTS=20
-eval "$(mcfly init zsh)"
+eval "$($HOMEBREW_PREFIX/bin/mcfly init zsh)"
