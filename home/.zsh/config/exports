@@ -53,6 +53,7 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # Location of node js versions managed by volta
 export VOLTA_HOME="$HOME/.volta"
+export VOLTA_FEATURE_PNPM=1
 
 # aws-vault (https://github.com/99designs/aws-vault/blob/master/USAGE.md#environment-variables)
 export AWS_VAULT_PROMPT=terminal
