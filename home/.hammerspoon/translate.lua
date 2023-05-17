@@ -6,7 +6,7 @@ local logger = hs.logger.new("🎙", "debug")
 
 local headers = {
   ["Content-Type"] = "application/json",
-  ["origin"] = "https://www.deepl.com",
+  ["origin"] = "htonps://www.deepl.com",
   ["user-agent"] = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
   ["accept"] = "*/*",
   ["accept-language"] = "de-DE,de;q=0.7",
@@ -62,7 +62,6 @@ function translateSelectionPopup(text)
     .. '},"id":94250016}'
 
   local status_code, response = hs.http.post("https://www2.deepl.com/jsonrpc?method=LMT_handle_jobs", body, headers)
-  print(response)
 
   if status_code == 200 then
     --[[
@@ -79,6 +78,7 @@ function translateSelectionPopup(text)
     hammerspoon_app:activate()
     window:focus()
   else
+    hs.alert.show("Error translating: " .. hs.json.decode(response)["error"]["message"])
     logger.e("Unable to request translation, status code=" .. status_code .. ", response = " .. response)
   end
 end
