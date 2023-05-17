@@ -2,6 +2,7 @@
 -- Audio functions and callbacks
 --
 local headset_name = "Jabra Talk 30"
+local headset_usb_name = "USB Audio Device"
 local buildin_name = "Built-in Output"
 -- selene:allow(unused_variable)
 local sound_timer = nil
@@ -31,15 +32,23 @@ local output_switcher_menubar_set_title = function()
   return
 end
 
+local function output_headset()
+  local headset = hs.audiodevice.findOutputByName(headset_name)
+  if headset == nil then
+    headset = hs.audiodevice.findOutputByName(headset_usb_name)
+  end
+  return headset
+end
+
 -- Callback when icon is clicked
 local function output_switcher_menubar_clicked()
   local current_output_device_info = hs.audiodevice.current(false)
   local buildin = hs.audiodevice.findOutputByName(buildin_name)
-  local headset = hs.audiodevice.findOutputByName(headset_name)
+  local headset = output_headset()
 
   if current_output_device_info["name"] == buildin_name then
     -- From BUILDIN -> HEADSET
-    log.i("From BUILDIN -> HEADSET")
+    log.i("From BUILDIN -> HEADSET '" .. headset:name() .. "'")
     volumes.buildin = buildin:outputVolume()
     if headset ~= nil then
       headset:setDefaultOutputDevice()
@@ -48,7 +57,7 @@ local function output_switcher_menubar_clicked()
     end
   else
     -- From HEADSET -> BUILDIN
-    log.i("From HEADSET -> BUILDIN")
+    log.i("From HEADSET '" .. headset:name() .. "' -> BUILDIN")
     if headset ~= nil then
       volumes.headset = headset:outputVolume()
     end
@@ -70,7 +79,7 @@ end
 output_switcher_menubar_set_title("buildin")
 
 -- If the headset is not already connected
-if hs.audiodevice.findOutputByName(headset_name) == nil then
+if output_headset() == nil then
   output_switcher_menubar:removeFromMenuBar()
 else
   output_switcher_menubar_set_title("headset")
@@ -80,11 +89,12 @@ end
 -- Switch to HEADSET for input + output when connected
 --
 function onaudiodevicechange(event)
-  local headset = hs.audiodevice.findDeviceByName(headset_name)
+  local headset = output_headset()
+
   if event == "dev#" then
     if headset ~= nil then
       --- headset as OUTPUT
-      log.i("Headset " .. headset_name .. " appeared: Setting as output")
+      log.i("Headset " .. headset:name() .. " appeared: Setting as output")
       headset:setDefaultOutputDevice()
       headset:setVolume(100)
 
