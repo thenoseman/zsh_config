@@ -130,9 +130,10 @@ log ">>> Installing important gems"
 gem install "${RUBY_GEMS[@]}"
 
 log ">>> Installing important JS tools"
-log ">>> npm: $(which npm)"
-log ">>> pnpm: $(which pnpm)"
-pnpm add -g "${NODE_PACKAGES[@]}" || true
+current_toolchain=$(volta list --default --quiet --format plain)
+for p in "${NODE_PACKAGES[@]}"; do
+  [[ ! "$current_toolchain" == *"$p"* ]]  && volta install "${p}" 
+done
 
 log ">>> Setting permission for quicklook plugins"
 /usr/bin/xattr -r ~/Library/QuickLook > /dev/null
