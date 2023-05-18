@@ -66,6 +66,7 @@ alias typora="open -a typora"
 # Javascript
 #
 alias p="pnpm"
+alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
 #
 # Suffix aliases (auto run app)
