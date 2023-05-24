@@ -14,6 +14,8 @@ hs.hotkey.bind({ "cmd", "shift" }, "ß", function()
       subrole = focusedWindow:subrole(),
       role = focusedWindow:role(),
       tabCount = focusedWindow:tabCount(),
+      size_h = focusedWindow:size().h,
+      size_w = focusedWindow:size().w,
     },
     application = {
       name = app:name(),

@@ -2,8 +2,10 @@
 --
 -- uses primaryDisplay (which are hs.screen) from screen_layout.lua
 --
+local log = hs.logger.new("🖥", "debug")
 local appname_for_trigger = "Microsoft Teams" -- The app title to watch for changes
 local window_title_for_trigger = "| Microsoft Teams" -- The apps window title to watch for changes, partial match
+local window_min_width_to_trigger = 600 -- How wide must the window be to trigger the layout? Small windows should not triggered it.
 
 -- selene: allow(undefined_variable)
 local resizeIfDraggedToScreen = primaryDisplay
@@ -13,15 +15,15 @@ local testIntervalSec = 1 -- How long to wait until runnign the resize function?
 local border = 30 -- The border/margin to leave around the window
 
 function resizeWindowIfOnScreen(window)
-  if window == nil then
+  if window == nil or window:size().w < window_min_width_to_trigger then
     return
   end
 
-  -- Check only every N seconds
   local screenWindowIsOn = window:screen()
 
   -- selene: allow(undefined_variable)
   if screenWindowIsOn == resizeIfDraggedToScreen then
+    log.i("Moving and resizing window '" .. appname_for_trigger .. "'")
     window:setFrameWithWorkarounds({
       x = border,
       y = border,
