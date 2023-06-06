@@ -52,9 +52,13 @@ alias yd="yt-dlp --recode-video mp4 --continue --ignore-errors --no-overwrites -
 #
 # AWS
 #
-alias terraform='aws-vault-wrapper $HOMEBREW_PREFIX/bin/terraform'
-alias aws='aws-vault-wrapper $HOMEBREW_PREFIX/bin/aws'
-alias packer='aws-vault-wrapper $HOMEBREW_PREFIX/bin/packer'
+for bin in terraform aws packer; do
+  # shellcheck disable=SC2139
+  alias $bin="aws-vault-wrapper $HOMEBREW_PREFIX/bin/$bin"
+  # shellcheck disable=SC2139
+  alias o-${bin}="$HOMEBREW_PREFIX/bin/$bin"
+done
+
 alias tf="terraform"
 
 #
