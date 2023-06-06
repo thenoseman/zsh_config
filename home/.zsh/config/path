@@ -33,6 +33,9 @@ export PATH=$PATH:$HOME/Sync/shared-with-company/shell
 # Rust
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-x86_64-apple-darwin/bin"
 
+# Some apps still use /usr/local/bin
+export PATH="$PATH:/usr/local/bin"
+
 # PNPM
 #export PNPM_HOME="$HOME/Library/pnpm"
 #export PATH="$PNPM_HOME:$PATH"
