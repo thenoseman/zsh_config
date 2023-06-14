@@ -36,9 +36,9 @@ end
 local modifyNameMap = function(info, add)
   for _, item in ipairs(info) do
     icon = nil
-    local displayname = item._kMDItemDisplayNameWithExtensions or item.kMDItemDisplayName
+    local displayname = item.kMDItemDisplayName or item._kMDItemDisplayNameWithExtensions
 
-    if displayName == nil and item.kMDItemPath then
+    if displayname == nil and item.kMDItemPath then
       displayname = hs.fs.displayName(item.kMDItemPath)
     end
 
@@ -219,7 +219,7 @@ function obj.choicesApps(query)
     end
   end
 
-  -- If nothing was found search for includsion in the name
+  -- If nothing was found search for inclusion in the name
   if #choices == 0 then
     for name, app in pairs(obj.appCache) do
       if string.match(name:lower(), query:lower()) and not obj.is_app_ignored(name) then
