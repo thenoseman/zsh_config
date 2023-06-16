@@ -58,14 +58,23 @@ wjs-test() {
   node_modules/.bin/jest --watch --runInBand $(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
 }
 
+#
+# Run a test in debugging mode
+#
 djs-test() {
   NODE_OPTIONS="--inspect" node_modules/.bin/jest --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
 
+#
+# Runs a cypress test headless
+#
 cyp-headless() {
   cypress run --e2e --browser chrome --headless --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
 }
 
+#
+# Runs a cypress test with visible browser
+#
 cyp() {
   cypress run --e2e --browser chrome --headed --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
 }
@@ -130,4 +139,13 @@ citrix-start-services() {
   launchctl load /Library/LaunchAgents/com.citrix.ServiceRecords.plist
   launchctl load /Library/LaunchAgents/com.citrix.ReceiverHelper.plist
   launchctl load /Library/LaunchAgents/com.citrix.AuthManager_Mac.plist
+}
+
+#
+# DIRENV
+#
+direnv_java() {
+  # shellcheck disable=SC3037,SC2028,SC2086
+  echo -n "source_up\nexport JAVA_HOME=\"$(/usr/libexec/java_home -v ${1}:-17)\"\nexport MAVEN_OPTS=\"-Xms512m -Xmx1024m -Dfile.encoding=UTF-8\"" >> .envrc
+  cat .envrc
 }
