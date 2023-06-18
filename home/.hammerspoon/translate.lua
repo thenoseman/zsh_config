@@ -59,7 +59,9 @@ function translateSelectionPopup(text)
     .. text
     .. '","id":0,"prefix":""}],"raw_en_context_before":[],"raw_en_context_after":[],"preferred_num_beams":4,"quality":"fast"}],"lang":{"preference":{"weight":{"DE":0.38888,"EN":0.60206},"default":"default"},"source_lang_user_selected":"auto","target_lang":"DE"},"priority":-1,"commonJobParams":{"mode":"translate","browserType":1},"timestamp":'
     .. now
-    .. '},"id":94250016}'
+    .. '},"id":'
+    .. math.random(90000000, 99990000)
+    .. "}"
 
   local status_code, response = hs.http.post("https://www2.deepl.com/jsonrpc?method=LMT_handle_jobs", body, headers)
 
