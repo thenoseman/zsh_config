@@ -42,6 +42,7 @@ ruby-build
 rustup-init
 selene
 shellcheck
+shfmt
 sqlite
 stylua
 syncthing
