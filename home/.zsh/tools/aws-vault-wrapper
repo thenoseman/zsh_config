@@ -1,14 +1,19 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 set -e
+
+. $HOME/.zsh/tools/common.sh
+
 BIN="$1"
 shift
 
+# Make sure that we do not execute with aws-vault if we already are under aws-vault control
 if [[ -n $AWS_VAULT ]] || [[ -n $VIMRUNTIME ]]; then
-  exec "$BIN" "$@"
+	exec "$BIN" "$@"
 fi
 
-if [[ -z $AWS_VAULT_PROFILE ]] && [[ -z $AWS_PROFILE ]]; then
-  echo "Please set AWS_VAULT_PROFILE to your profile name" && exit 1
+if [[ -z $AWS_PROFILE ]]; then
+	echoc RED "Please set AWS_PROFILE to a profile name found in ~/.aws/config"
+	exit 1
 fi
 
-exec aws-vault exec "${AWS_VAULT_PROFILE:-$AWS_PROFILE}" -- "${BIN}" "$@"
+exec aws-vault exec "${AWS_PROFILE}" -- "${BIN}" "$@"

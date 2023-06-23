@@ -1,7 +1,7 @@
 # vim:ft=sh
 # shellcheck source=/dev/null disable=SC3010,SC3028
 . ~/.zsh/config/homebrew
- 
+
 export SHELL=zsh
 export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
@@ -38,16 +38,13 @@ GPG_TTY=$(tty)
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-#homebrew 
+#homebrew
 export HOMEBREW_INSTALL_CLEANUP=1
 export HOMEBREW_NO_ENV_HINTS=1
 
 # For building stuff with homebrew packages
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/curl/lib"
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/curl/include"
-
-# shell-check global ignore
-export SHELLCHECK_OPTS="-e SC2039"
 
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
