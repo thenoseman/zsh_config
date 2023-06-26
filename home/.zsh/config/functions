@@ -83,7 +83,7 @@ cyp() {
 # AWS related functions
 #
 aws_list_ec2_instances() {
-  [[ -z "$AWS_VAULT_PROFILE" ]] && echo "set 'AWS_VAULT_PROFILE' before use" && return
+  [[ -z "$AWS_PROFILE" ]] && echo "set 'AWS_PROFILE' before use" && return
   aws ec2 describe-instances  --filters 'Name=instance-state-name,Values=running' \
                             --query "$(cat <<-EOF | tr -d '\n' | tr -d ' '
                                     Reservations[*].{
