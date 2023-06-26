@@ -2,12 +2,14 @@
 # vim: set ft=sh:
 set -e
 
+[[ -e "/opt/homebrew/bin" ]] && HOMEBREW_PREFIX="/opt/homebrew" || HOMEBREW_PREFIX="/usr/local"
+
 if [[ -n $AWS_VAULT ]] || [[ -n $VIMRUNTIME ]]; then
-  exec "/opt/homebrew/bin/packer" "$@"
+  exec "$HOMEBREW_PREFIX/bin/packer" "$@"
 fi
 
 if [[ -z $AWS_PROFILE ]]; then
-  exec "/opt/homebrew/bin/packer" "$@"
+  exec "$HOMEBREW_PREFIX/bin/packer" "$@"
 fi
 
-exec aws-vault exec "$AWS_PROFILE" -- "/opt/homebrew/bin/packer" "$@"
+exec aws-vault exec "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/packer" "$@"
