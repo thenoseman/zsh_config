@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+# vim: set ft=sh:
+set -e
+
+if [[ -n $AWS_VAULT ]] || [[ -n $VIMRUNTIME ]]; then
+  exec "/opt/homebrew/bin/packer" "$@"
+fi
+
+if [[ -z $AWS_PROFILE ]]; then
+  exec "/opt/homebrew/bin/packer" "$@"
+fi
+
+exec aws-vault exec "$AWS_PROFILE" -- "/opt/homebrew/bin/packer" "$@"
