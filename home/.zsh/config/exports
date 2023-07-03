@@ -54,3 +54,6 @@ export VOLTA_FEATURE_PNPM=1
 
 # aws-vault (https://github.com/99designs/aws-vault/blob/master/USAGE.md#environment-variables)
 export AWS_VAULT_PROMPT=terminal
+
+# Lefthook
+export LEFTHOOK_QUIET=meta,execution,summary
