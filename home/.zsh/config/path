@@ -1,10 +1,10 @@
 # shellcheck disable=SC2086,SC3010
 # vim: set ft=sh:
-DEFAULT_RUBY_VERSION=3.0.1
+DEFAULT_RUBY_VERSION=3.2.2
 
-export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH 
-export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}";
+export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
+export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
 
 # Default Ruby
 export PATH=$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin:$PATH
@@ -12,7 +12,7 @@ export PATH=$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin:$PATH
 
 # If a program (eg. coc.vim) tries to discover the active ruby version using "zsh -l -c "ruby -v" it
 # won't pickup the ruby-build installed rubies because the path (~/.rubies) is AFTER the system ruby in $PATH
-# To fix this we link a ruby version we want into /usr/local/bin/ruby 
+# To fix this we link a ruby version we want into /usr/local/bin/ruby
 [[ ! -e "$HOMEBREW_PREFIX/bin/ruby" ]] && ln -s "$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin/ruby" $HOMEBREW_PREFIX/bin/ruby
 
 # Default node
