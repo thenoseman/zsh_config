@@ -12,29 +12,30 @@ done
 compinit -C
 
 # crazy mad shit
-setopt auto_resume auto_cd auto_pushd pushd_to_home pushd_silent pushd_minus
-setopt pushd_ignore_dups bad_pattern function_argzero inc_append_history
-setopt hist_verify hist_no_store hist_no_functions
-setopt hist_ignore_dups hist_find_no_dups hist_save_no_dups
-setopt no_beep extended_glob prompt_subst interactive_comments
-setopt list_types list_packed print_eight_bit nohup notify
-setopt print_exit_value
+setopt APPEND_HISTORY
+setopt COMPLETE_IN_WORD
+setopt EXTENDED_HISTORY # add timestamps to history
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt IGNORE_EOF
+setopt INC_APPEND_HISTORY
+setopt LOCAL_OPTIONS # allow functions to have local options
+setopt LOCAL_TRAPS # allow functions to have local traps
 setopt NO_BG_NICE
 setopt NO_HUP
 setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
-setopt HIST_VERIFY
-setopt EXTENDED_HISTORY # add timestamps to history
 setopt PROMPT_SUBST
-setopt COMPLETE_IN_WORD
-setopt IGNORE_EOF
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt histignorespace
+setopt auto_resume auto_cd auto_pushd pushd_to_home pushd_silent pushd_minus
+setopt hist_ignore_dups hist_find_no_dups hist_save_no_dups
+setopt hist_verify hist_no_store hist_no_functions
 setopt histignoredups
+setopt histignorespace
+setopt list_types list_packed print_eight_bit nohup notify
+setopt no_beep extended_glob prompt_subst interactive_comments
+setopt print_exit_value
+setopt pushd_ignore_dups bad_pattern function_argzero inc_append_history
 
 unsetopt SHARE_HISTORY # share history between sessions ???
 unsetopt bgnice nomatch
