@@ -1,0 +1,6 @@
+gui:
+  windowSize: "full"
+  scrollHeight: 2
+  language: "en"
+  timeFormat: "02.01" # https://gosamples.dev/date-time-format-cheatsheet/
+  shortTimeFormat: "15:04"

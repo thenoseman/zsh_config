@@ -6,6 +6,7 @@ export SHELL=zsh
 export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
 export LESS="-mR"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # shellcheck disable=SC2089
 export EDITOR='mvim -f --nomru -c "au VimLeave * !open -a iTerm"'
