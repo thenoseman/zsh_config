@@ -4,3 +4,5 @@ rules:
     max: 120
     level: warning
   document-start: disable
+  comments:
+    min-spaces-from-content: 1
