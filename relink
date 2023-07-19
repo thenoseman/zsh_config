@@ -29,3 +29,7 @@ link_or_fail "home/.hammerspoon"
 link_or_fail "home/.ctags.d"
 link_or_fail "selene.toml"
 link_or_fail "yamllint.yml"
+
+for f in home/.config/*; do
+	link_or_fail "$f"
+done
