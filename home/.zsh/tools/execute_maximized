@@ -4,7 +4,7 @@ tell application "iTerm"
 	set newWindow to (create window with profile "Default" command "${1}")
 	tell newWindow
 		tell current session
-			set columns to 300
+			set columns to 500
 			set rows to 200
 		end tell
 	end tell
