@@ -5,3 +5,8 @@ gui:
   shortTimeFormat: "15:04"
 git:
   skipHookPrefix: "[FORCE]"
+os:
+  edit: "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert' -- {{filename}}"
+  editAtLine: "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert' +{{line}} -- {{filename}}"
+  editAtLineAndWait: "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' --block -c 'startinsert' +{{line}} -- {{filename}}"
+  editInTerminal: true
