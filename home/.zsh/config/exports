@@ -1,5 +1,5 @@
 # vim:ft=sh
-# shellcheck source=/dev/null disable=SC3010,SC3028
+# shellcheck source=/dev/null disable=SC3010,SC3028,SC2155
 . ~/.zsh/config/homebrew
 
 export SHELL=zsh
@@ -29,12 +29,11 @@ export MANPAGER=more
 # Maven
 export MAVEN_OPTS="-Xms512m -Xmx1024m -XX:+CMSClassUnloadingEnabled -Dfile.encoding=UTF-8"
 
-# Direnv logging -> silent
+# Direnv logging -> silent (https://github.com/direnv/direnv/wiki)
 export DIRENV_LOG_FORMAT=""
 
 # For GPG command line and used in vim
-export GPG_TTY
-GPG_TTY=$(tty)
+export GPG_TTY="$(tty)"
 
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color
@@ -47,6 +46,7 @@ export HOMEBREW_NO_ENV_HINTS=1
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/curl/lib"
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/curl/include"
 
+# ripgrep (https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md)
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # Location of node js versions managed by volta
@@ -56,5 +56,8 @@ export VOLTA_FEATURE_PNPM=1
 # aws-vault (https://github.com/99designs/aws-vault/blob/master/USAGE.md#environment-variables)
 export AWS_VAULT_PROMPT=terminal
 
-# Lefthook
-export LEFTHOOK_QUIET=meta,execution,summary
+# packer (https://developer.hashicorp.com/packer/docs/configure#checkpoint_disable)
+export CHECKPOINT_DISABLE=1
+
+# Lefthook (https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md)
+export LEFTHOOK_QUIET=meta,execution,summary,success
