@@ -12,4 +12,4 @@ if [[ -z $AWS_PROFILE ]]; then
   exec "$HOMEBREW_PREFIX/bin/aws" "$@"
 fi
 
-exec aws-vault exec "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/aws" "$@"
+exec aws-vault exec --duration 2h "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/aws" "$@"
