@@ -3,6 +3,7 @@ gui:
   language: "en"
   timeFormat: "02.01" # https://gosamples.dev/date-time-format-cheatsheet/
   shortTimeFormat: "15:04"
+  nerdFontsVersion: "3"
 git:
   skipHookPrefix: "[FORCE]"
 os:
