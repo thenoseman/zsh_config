@@ -60,4 +60,7 @@ export AWS_VAULT_PROMPT=terminal
 export CHECKPOINT_DISABLE=1
 
 # Lefthook (https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md)
-export LEFTHOOK_QUIET=meta,execution,summary,success
+export LEFTHOOK_QUIET=meta,execution,summary,success,empty_summary,skips
+
+# docker
+export BUILDKIT_PROGRESS="plain"
