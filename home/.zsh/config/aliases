@@ -79,6 +79,7 @@ alias -s {json,html}=mvim
 
 # Docker on M1 mac
 [[ $ARCH == "arm64" ]] && alias docker="/Applications/Docker.app/Contents/Resources/bin/com.docker.cli"
+alias docker-compose="docker compose --progress=plain"
 
 # Lazygit
 alias lg="execute_maximized \${HOMEBREW_PREFIX}/bin/lazygit"
