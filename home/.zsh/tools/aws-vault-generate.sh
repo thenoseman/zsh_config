@@ -21,6 +21,6 @@ if [[ -z \$AWS_PROFILE ]]; then
   exec "\$HOMEBREW_PREFIX/bin/$bin" "\$@"
 fi
 
-exec aws-vault exec --duration 2h "\$AWS_PROFILE" -- "\$HOMEBREW_PREFIX/bin/$bin" "\$@"
+exec aws-vault exec --duration 1h "\$AWS_PROFILE" -- "\$HOMEBREW_PREFIX/bin/$bin" "\$@"
 EOF
 done
