@@ -1,8 +1,11 @@
 --
 -- Audio functions and callbacks
 --
-local headset_name = "Jabra Talk 30"
-local headset_usb_name = "USB Audio Device"
+local headsets_user_internal_mic_mapping = {
+  ["Jabra Talk 30"] = true,
+  ["Poly V4320 Series"] = false,
+  ["USB Audio Device"] = true,
+}
 local buildin_name = "Built-in Output"
 -- selene:allow(unused_variable)
 local sound_timer = nil
@@ -33,18 +36,25 @@ local output_switcher_menubar_set_title = function()
 end
 
 local function output_headset()
-  local headset = hs.audiodevice.findOutputByName(headset_name)
-  if headset == nil then
-    headset = hs.audiodevice.findOutputByName(headset_usb_name)
+  local headset
+  local use_internal_mic
+
+  for headset_name, internal_mic in pairs(headsets_user_internal_mic_mapping) do
+    headset = hs.audiodevice.findOutputByName(headset_name)
+    if headset then
+      use_internal_mic = internal_mic
+      break
+    end
   end
-  return headset
+
+  return headset, use_internal_mic
 end
 
 -- Callback when icon is clicked
 local function output_switcher_menubar_clicked()
   local current_output_device_info = hs.audiodevice.current(false)
   local buildin = hs.audiodevice.findOutputByName(buildin_name)
-  local headset = output_headset()
+  local headset, _ = output_headset()
 
   if current_output_device_info["name"] == buildin_name then
     -- From BUILDIN -> HEADSET
@@ -79,7 +89,8 @@ end
 output_switcher_menubar_set_title("buildin")
 
 -- If the headset is not already connected
-if output_headset() == nil then
+local the_headset, _ = output_headset()
+if the_headset == nil then
   output_switcher_menubar:removeFromMenuBar()
 else
   output_switcher_menubar_set_title("headset")
@@ -89,7 +100,7 @@ end
 -- Switch to HEADSET for input + output when connected
 --
 function onaudiodevicechange(event)
-  local headset = output_headset()
+  local headset, use_internal_mic = output_headset()
 
   if event == "dev#" then
     if headset ~= nil then
@@ -98,13 +109,17 @@ function onaudiodevicechange(event)
       headset:setDefaultOutputDevice()
       headset:setVolume(100)
 
-      -- Build in mic as INPUT
-      local mic = hs.audiodevice.findDeviceByName("Built-in Microphone")
-      if mic == nil then
-        mic = hs.audiodevice.findDeviceByName("MacBook Pro-Mikrofon")
+      if use_internal_mic then
+        -- Build in mic as INPUT
+        local mic = hs.audiodevice.findDeviceByName("Built-in Microphone")
+        if mic == nil then
+          mic = hs.audiodevice.findDeviceByName("MacBook Pro-Mikrofon")
+        end
+        log.i("Setting '" .. mic:name() .. "' mic as input")
+        mic:setDefaultInputDevice()
+      else
+        log.i("NOT setting internal mic as input")
       end
-      log.i("Setting '" .. mic:name() .. "' mic as input")
-      mic:setDefaultInputDevice()
 
       -- Show output switcher (again)
       output_switcher_menubar:returnToMenuBar()
@@ -119,7 +134,6 @@ function onaudiodevicechange(event)
 
       -- Play sound
       sound_timer = hs.timer.doAfter(7, function()
-        log.i("PLAYING SOUND")
         connection_sound:play()
       end)
     end
