@@ -3,7 +3,7 @@
 --
 local headsets_user_internal_mic_mapping = {
   ["Jabra Talk 30"] = true,
-  ["Poly V4320 Series"] = false,
+  ["Poly V4320 Series"] = true,
   ["USB Audio Device"] = true,
 }
 local buildin_name = "Built-in Output"
