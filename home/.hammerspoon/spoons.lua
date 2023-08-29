@@ -23,10 +23,10 @@ spoon.ClipboardTool:start()
 -- Seal
 --
 local seal_user_actions = {
-  ["function"] = {
-    fn = function()
-      hs.alert("function!")
-    end,
+  ["Lookup node 18 API docs"] = {
+    url = "https://devdocs.io/#q=node18+${query}",
+    icon = "favicon",
+    keyword = "n18",
   },
 }
 
