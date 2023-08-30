@@ -20,6 +20,11 @@ obj.download_url = "https://devdocs.io/docs/node/index.json"
 --- Seconds to wait until the node docs are downlaoded again
 obj.download_if_older_than_sec = 86400
 
+--- Seal.plugins.nodedocs.trigger
+--- Variable
+--- String that the query must start with to be recognized
+obj.trigger = "n "
+
 local docs_target_file = hs.fs.temporaryDirectory() .. "/node-docs.json"
 
 function download_docs(target_file)
@@ -48,6 +53,10 @@ obj.nameCache = hs.fnutils.imap(hs.json.read(docs_target_file), function(entry)
   return entry["name"] .. "|" .. entry["path"] .. "|" .. entry["type"]
 end)
 
+local function starts_with(str, start)
+  return str:sub(1, #start) == start
+end
+
 function fuzzyMatch(query)
   local matches = fzy.filter(query, obj.nameCache)
   -- Sort by score descending
@@ -73,9 +82,12 @@ end
 
 function obj.choices(query)
   local choices = {}
-  if query == nil or query == "" then
+  if query == nil or query == "" or not starts_with(query, obj.trigger) then
     return choices
   end
+
+  -- Strip trigger
+  query = query:gsub("^" .. obj.trigger, "")
 
   for _, definition in pairs(fuzzyMatch(query)) do
     local parts = hs.fnutils.split(definition, "|")
