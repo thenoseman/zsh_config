@@ -7,14 +7,13 @@ local fzy = require("fzy")
 local obj = {}
 obj.__index = obj
 obj.__name = "nodedocs"
-obj.cache = {}
 obj.nameCache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/node-js-logo.png")
 
---- Seal.plugins.nodedocs.nodejs_version
+--- Seal.plugins.nodedocs.download_url
 --- Variable
---- Specify the node js version that should be looked up (18, 20), defaults to "latest"
-obj.nodejs_version = nil
+--- Basis for functionality (URL on devdocs)
+obj.download_url = "https://devdocs.io/docs/node/index.json"
 
 --- Seal.plugins.nodedocs.download_if_older_than_sec
 --- Variable
@@ -25,8 +24,7 @@ local docs_target_file = hs.fs.temporaryDirectory() .. "/node-docs.json"
 
 function download_docs(target_file)
   --- Download node js documentation json
-  local sourceUrl = "https://devdocs.io/docs/node/index.json"
-  local response_code, response_body = hs.http.get(sourceUrl)
+  local response_code, response_body = hs.http.get(obj.download_url)
 
   if response_code == 200 then
     local json = hs.json.decode(response_body)["entries"]
@@ -43,17 +41,23 @@ if
 then
   download_docs(docs_target_file)
 end
-obj.cache = hs.json.read(docs_target_file)
-obj.nameCache = hs.fnutils.imap(obj.cache, function(entry)
+
+--- Fill caches
+--- Concatenate parts since we can only search over a string not a table
+obj.nameCache = hs.fnutils.imap(hs.json.read(docs_target_file), function(entry)
   return entry["name"] .. "|" .. entry["path"] .. "|" .. entry["type"]
 end)
 
 function fuzzyMatch(query)
   local matches = fzy.filter(query, obj.nameCache)
+  -- Sort by score descending
   table.sort(matches, function(a, b)
     return (a[3] > b[3])
   end)
+  --- Take first 10 matches
   matches = table.move(matches, 1, 10, 1, {})
+
+  -- Convert indices to the naemCache entries
   return hs.fnutils.imap(matches, function(match)
     return obj.nameCache[match[1]]
   end)
