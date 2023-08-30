@@ -1,13 +1,14 @@
 --- === Seal.plugins.nodedocs ===
 --- Open Node JS Documentation from Seal on devdocs.io
----
----
 local log = hs.logger.new("[nodedocs]", "debug")
+
+local fzy = require("fzy")
 
 local obj = {}
 obj.__index = obj
 obj.__name = "nodedocs"
 obj.cache = {}
+obj.nameCache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/node-js-logo.png")
 
 --- Seal.plugins.nodedocs.nodejs_version
@@ -43,6 +44,20 @@ then
   download_docs(docs_target_file)
 end
 obj.cache = hs.json.read(docs_target_file)
+obj.nameCache = hs.fnutils.imap(obj.cache, function(entry)
+  return entry["name"] .. "|" .. entry["path"] .. "|" .. entry["type"]
+end)
+
+function fuzzyMatch(query)
+  local matches = fzy.filter(query, obj.nameCache)
+  table.sort(matches, function(a, b)
+    return (a[3] > b[3])
+  end)
+  matches = table.move(matches, 1, 10, 1, {})
+  return hs.fnutils.imap(matches, function(match)
+    return obj.nameCache[match[1]]
+  end)
+end
 
 function obj:commands()
   return {}
@@ -58,17 +73,16 @@ function obj.choices(query)
     return choices
   end
 
-  for _, definition in pairs(obj.cache) do
-    if string.match(definition["name"]:lower(), query:lower()) then
-      local choice = {}
-      choice["text"] = definition["name"]
-      choice["subText"] = definition["type"]
-      choice["url"] = definition["path"]
-      choice["uuid"] = obj.__name .. "__" .. definition["path"]
-      choice["image"] = obj.icon
-      choice["plugin"] = obj.__name
-      table.insert(choices, choice)
-    end
+  for _, definition in pairs(fuzzyMatch(query)) do
+    local parts = hs.fnutils.split(definition, "|")
+    local choice = {}
+    choice["text"] = parts[1]
+    choice["subText"] = parts[3]
+    choice["url"] = parts[2]
+    choice["uuid"] = obj.__name .. "__" .. parts[2]
+    choice["image"] = obj.icon
+    choice["plugin"] = obj.__name
+    table.insert(choices, choice)
   end
   return choices
 end
