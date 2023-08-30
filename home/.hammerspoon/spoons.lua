@@ -22,13 +22,7 @@ spoon.ClipboardTool:start()
 --
 -- Seal
 --
-local seal_user_actions = {
-  ["Lookup node 18 API docs"] = {
-    url = "https://devdocs.io/#q=node18+${query}",
-    icon = "favicon",
-    keyword = "n18",
-  },
-}
+local seal_user_actions = {}
 
 if not hs.hotkey.assignable({ "cmd" }, "Space") then
   hs.alert("CMD+SPACE hotkey not assignable. Remove as spotlight search hotkey")
