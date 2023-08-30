@@ -1,28 +1,24 @@
 #!/bin/bash
 # vim: ft=sh
 #
-# A wildcard enabled awslogs
-#
-command -v aws-vault-wrapper >/dev/null 2>&1 || (echo "Needs 'aws-vault-wrapper'" && exit 1)
+# Select and tail a cloudwatch logfile
 command -v fzf >/dev/null 2>&1 || (echo "Needs 'fzf'" && exit 1)
-command -v saw >/dev/null 2>&1 || (echo "Needs 'saw' (https://github.com/TylerBrock/saw)" && exit 1)
 
 group_name=${1:-}
-timeline=${2:--1h}
-[ -z "${group_name}" ] && echo "Please specify a searchpattern as first parameter" && exit 1
+timeline=${2:-1h}
+[ -z "${group_name}" ] && echo "Please specify a search pattern as first parameter" && exit 1
 
-bin="aws-vault-wrapper saw"
-groups=$($bin groups | grep "$group_name" | sort)
+groups=$(aws logs describe-log-groups --query 'logGroups[*].logGroupName' --output text | tr "\t" "\n")
 number_of_groups=$(echo "${groups}" | wc -l | tr -d ' ')
 
 if [[ "$number_of_groups" == "0" ]]; then
-  echo "Could not find a group containing string '${group_name}'" && exit 1
+	echo "Could not find a group containing string '${group_name}'" && exit 1
 fi
 
 if [[ "$number_of_groups" -gt "1" ]]; then
-  echo "Too many group containing string '${group_name}'. Select one." 
-  groups=$(echo -n "$groups" | fzf)
+	echo "Too many group containing string '${group_name}'. Select one."
+	groups=$(echo -n "$groups" | fzf -1 -q "$group_name")
 fi
 
 echo "Fetching '$groups' (Since: $timeline)"
-$bin get "$groups" --start "$timeline"
+aws logs tail "$groups" --since "$timeline"
