@@ -1,6 +1,6 @@
 local log = hs.logger.new("[colima]", "debug")
 local colimaPath = os.getenv("HOME") .. "/.colima"
-local colimaPathDocker = colimaPath .. "/docker.sock"
+local colimaPathDocker = colimaPath .. "/default/daemon/daemon.pid"
 local menuBar = nil
 local icon = hs.image.imageFromPath("colima.png"):setSize({ w = 18, h = 18 })
 log.i("Watching " .. colimaPath .. " for changes")
@@ -35,4 +35,4 @@ if hs.fs.attributes(colimaPathDocker, "size") then
   colimaMenuBar()
 end
 
-local colimaPathWatcher = hs.pathwatcher.new(colimaPath, colimaWatcher):start()
+colimaPathWatcher = hs.pathwatcher.new(colimaPath, colimaWatcher):start()
