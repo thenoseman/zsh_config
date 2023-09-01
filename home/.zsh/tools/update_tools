@@ -1,7 +1,7 @@
 # vim: set ft=sh:
 # shellcheck disable=SC3030,SC3054,SC3010,SC3044
 log() {
-  printf "\033[0;33m%s\033[0m\n" "${1}"
+	printf "\033[0;33m%s\033[0m\n" "${1}"
 }
 
 typeset -a BREW_TAPS
@@ -9,102 +9,105 @@ typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
 
 BREW_TAPS=(
-  universal-ctags/universal-ctags
+	universal-ctags/universal-ctags
 )
 
 BREW_PACKAGES=(
-bat
-coreutils
-direnv
-dust
-exa
-exiftool
-ffmpeg
-findutils
-fzf
-git
-git-delta
-gnu-tar
-gsed
-imagemagick
-jhead
-jq
-jump
-node
-oath-toolkit
-openconnect
-openssl
-pstree
-python@3.11
-readline
-ripgrep
-ruby-build
-rustup-init
-selene
-shellcheck
-shfmt
-sqlite
-stylua
-syncthing
-tig
-volta
-watch
-wireguard-tools
-yamllint
-yt-dlp
-zsh
+	bat
+	colima
+	coreutils
+	direnv
+	docker
+	docker-compose
+	dust
+	exa
+	exiftool
+	ffmpeg
+	findutils
+	fzf
+	git
+	git-delta
+	gnu-tar
+	gsed
+	imagemagick
+	jhead
+	jq
+	jump
+	node
+	oath-toolkit
+	openconnect
+	openssl
+	pstree
+	python@3.11
+	readline
+	ripgrep
+	ruby-build
+	rustup-init
+	selene
+	shellcheck
+	shfmt
+	sqlite
+	stylua
+	syncthing
+	tig
+	volta
+	watch
+	wireguard-tools
+	yamllint
+	yt-dlp
+	zsh
 )
 
 BREW_CASKS=(
-android-platform-tools # adb
-aws-vault              # AWS cred management
-disk-inventory-x       # Find large files
-gpg-suite              # PGP
-hammerspoon            # Control the mac via lua
-iterm2                 # Terminal
-itsycal                # Small menubar calendar
-kap                    # Screen video recorder
-keepassxc              # Passwords
-macvim                 # Editor
-namechanger            # File renamer GUI
-qlimagesize            # QuickLook Plugin: Image Info
-qlmarkdown             # Quicklook Plugin: Markdown
-quicklook-json         # Quicklook Plugin: JSON
-shottr                 # Menubar screenshot utility
-the-unarchiver         # Unpack all archive types
-typora                 # Markdown editor
-vlc                    # Video player
+	android-platform-tools # adb
+	aws-vault              # AWS cred management
+	disk-inventory-x       # Find large files
+	gpg-suite              # PGP
+	hammerspoon            # Control the mac via lua
+	iterm2                 # Terminal
+	itsycal                # Small menubar calendar
+	kap                    # Screen video recorder
+	keepassxc              # Passwords
+	macvim                 # Editor
+	namechanger            # File renamer GUI
+	qlimagesize            # QuickLook Plugin: Image Info
+	qlmarkdown             # Quicklook Plugin: Markdown
+	quicklook-json         # Quicklook Plugin: JSON
+	shottr                 # Menubar screenshot utility
+	the-unarchiver         # Unpack all archive types
+	typora                 # Markdown editor
+	vlc                    # Video player
 )
 
 NODE_PACKAGES=(
-eslint
-jsonlint
-pnpm
-prettier
+	eslint
+	jsonlint
+	pnpm
+	prettier
 )
 
 RUBY_GEMS=(
-pry-byebug
-wirb
+	pry-byebug
+	wirb
 )
 
 log ">>> Updating zsh_config"
-[ -e ~/dev/config/zsh_config ] && cd  ~/dev/config/zsh_config && git pull --rebase --autostash
+[ -e ~/dev/config/zsh_config ] && cd ~/dev/config/zsh_config && git pull --rebase --autostash
 
 log ">>> Updating vim_config"
-[ -e ~/dev/config/zsh_config ] && cd  ~/dev/config/vim_config && git pull --rebase --autostash
+[ -e ~/dev/config/zsh_config ] && cd ~/dev/config/vim_config && git pull --rebase --autostash
 
 log ">>> Installing missing homebrew packages"
 installed_taps=$(brew tap)
 # shellcheck disable=SC2128
 for tap in $BREW_TAPS; do
-  [[ ! $installed_taps =~ $tap ]] && brew tap "$tap"
+	[[ ! $installed_taps =~ $tap ]] && brew tap "$tap"
 done
 
 # Check installed packages
 INSTALLED=$(brew list --formula -1 | tr '\n' ' ')
 for p in "${BREW_PACKAGES[@]}"; do
- [[ "${INSTALLED}" != *$p* ]] && brew install "${p}"
+	[[ "${INSTALLED}" != *$p* ]] && brew install "${p}"
 done
 
 # Error: It seems there is already a Binary at '/usr/local/bin/gview'.
@@ -115,11 +118,11 @@ done
 # Check install casks
 INSTALLED=$(brew list --casks -1 | tr '\n' ' ')
 for p in "${BREW_CASKS[@]}"; do
- [[ ${INSTALLED} != *$p* ]] && brew install --cask "${p}"
+	[[ ${INSTALLED} != *$p* ]] && brew install --cask "${p}"
 done
 
 if ! brew ls --versions universal-ctags; then
-  brew install --fetch-HEAD --HEAD universal-ctags
+	brew install --fetch-HEAD --HEAD universal-ctags
 fi
 
 brew upgrade
@@ -133,15 +136,15 @@ gem install "${RUBY_GEMS[@]}"
 log ">>> Installing important JS tools"
 current_toolchain=$(volta list --default --quiet --format plain)
 for p in "${NODE_PACKAGES[@]}"; do
-  [[ ! "$current_toolchain" == *"$p"* ]]  && volta install "${p}" 
+	[[ ! "$current_toolchain" == *"$p"* ]] && volta install "${p}"
 done
 
 log ">>> Setting permission for quicklook plugins"
-/usr/bin/xattr -r ~/Library/QuickLook > /dev/null
-/usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook > /dev/null
+/usr/bin/xattr -r ~/Library/QuickLook >/dev/null
+/usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook >/dev/null
 
-# if [ -d /Applications/Microsoft\ Teams.app ]; then 
-#   if 2>/dev/null 1>&2 codesign --verify "/Applications/Microsoft Teams.app"; then 
+# if [ -d /Applications/Microsoft\ Teams.app ]; then
+#   if 2>/dev/null 1>&2 codesign --verify "/Applications/Microsoft Teams.app"; then
 #     log ">>> Removing code signage from MS Teams for virtual cams to work"
 #     sudo codesign --remove-signature "/Applications/Microsoft Teams.app"
 #     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper.app"
@@ -153,12 +156,12 @@ log ">>> Setting permission for quicklook plugins"
 #
 log ">>> Special Apps"
 if ! hash ruplacer 2>/dev/null; then
-  log ">>> Installing ruplacer from github releases"
-  curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
+	log ">>> Installing ruplacer from github releases"
+	curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
 fi
 
 if ! hash kdiff3 2>/dev/null; then
-  log ">>> Installing kdiff3 from source (This will take some time)"
-  brew tap kde-mac/kde https://invent.kde.org/packaging/homebrew-kde.git --force-auto-update
-  brew install kde-mac/kde/kdiff3 --HEAD
+	log ">>> Installing kdiff3 from source (This will take some time)"
+	brew tap kde-mac/kde https://invent.kde.org/packaging/homebrew-kde.git --force-auto-update
+	brew install kde-mac/kde/kdiff3 --HEAD
 fi
