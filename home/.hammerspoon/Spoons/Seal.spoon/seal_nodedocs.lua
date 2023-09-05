@@ -26,6 +26,7 @@ obj.download_if_older_than_sec = 86400
 obj.trigger = "n "
 
 local docs_target_file = hs.fs.temporaryDirectory() .. "/node-docs.json"
+log.i("Target file is " .. docs_target_file)
 
 function download_docs(target_file)
   --- Download node js documentation json
@@ -47,7 +48,7 @@ then
   download_docs(docs_target_file)
 end
 
---- Fill caches
+--- Fill caches:
 --- Concatenate parts since we can only search over a string not a table
 obj.nameCache = hs.fnutils.imap(hs.json.read(docs_target_file), function(entry)
   return entry["name"] .. "|" .. entry["path"] .. "|" .. entry["type"]
