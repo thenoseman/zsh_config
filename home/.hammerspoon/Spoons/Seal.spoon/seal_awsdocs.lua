@@ -1,0 +1,126 @@
+--
+-- Lookup AWS JS SDK docs
+--
+-- Enter "aws <your query>" in the Seal chooser
+--
+-- To make this work you must run ./aws/create_aws_sdk_index.mjs at least once!
+--
+--
+local log = hs.logger.new("[awsdocs]", "debug")
+local fzy = require("fzy")
+
+local obj = {}
+obj.__index = obj
+obj.__name = "awsdocs"
+obj.packageMapCache = {}
+obj.methodCache = {}
+obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws/logo.png")
+
+--- Seal.plugins.awssdkdocs.trigger
+--- Variable
+--- String that the query must start with to be recognized
+obj.trigger = "aws "
+obj.trigger_min_length = 4
+
+function script_path()
+  local str = debug.getinfo(2, "S").source:sub(2)
+  return str:match("(.*/)")
+end
+
+local function starts_with(str, start)
+  return str:sub(1, #start) == start
+end
+
+function fuzzyMatch(query, hackstay)
+  local matches = fzy.filter(query, hackstay)
+
+  -- Sort by score descending
+  table.sort(matches, function(a, b)
+    return (a[3] > b[3])
+  end)
+  --- Take first 10 matches
+  matches = table.move(matches, 1, 10, 1, {})
+
+  -- Convert indices to the nameCache entries
+  return hs.fnutils.imap(matches, function(match)
+    return hackstay[match[1]]
+  end)
+end
+
+function fill_aws_sdk_lines()
+  if #obj.methodCache == 0 then
+    for line in io.lines(script_path() .. "/aws/aws-sdk-js.txt") do
+      obj.methodCache[#obj.methodCache + 1] = line
+    end
+    log.i("Filled obj.methodCache with " .. #obj.methodCache .. " entries")
+  end
+end
+
+--- Fill caches (index => package name)
+obj.packageMapCache = hs.json.read(script_path() .. "/aws/aws-sdk-package-map.json")
+
+-- When Seal i
+function obj:stop()
+  obj.packageMap = nil
+  obj.methodCache = nil
+end
+
+function obj:commands()
+  return {}
+end
+
+function obj:bare()
+  return self.choices
+end
+
+function obj.choices(query)
+  local choices = {}
+
+  if query == nil or query == "" or not starts_with(query, obj.trigger) then
+    return choices
+  end
+
+  if #query < (#obj.trigger + obj.trigger_min_length) then
+    return {
+      {
+        ["text"] = "AWS SDK search: Need at least " .. obj.trigger_min_length .. " characters",
+        ["image"] = obj.icon,
+      },
+    }
+  end
+
+  -- Strip trigger
+  query = query:gsub("^" .. obj.trigger, "")
+  fill_aws_sdk_lines()
+
+  for _, definition in pairs(fuzzyMatch(query, obj.methodCache)) do
+    local parts = hs.fnutils.split(definition, "|")
+    local choice = {}
+    choice["text"] = parts[1]
+    choice["subText"] = "package: " .. obj.packageMapCache[parts[3]]
+    choice["package"] = obj.packageMapCache[parts[3]]
+    choice["type"] = parts[2]
+    choice["uuid"] = obj.__name .. "__" .. parts[1]
+    choice["image"] = obj.icon
+    choice["plugin"] = obj.__name
+    table.insert(choices, choice)
+  end
+
+  return choices
+end
+
+-- https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-sesv2/Interface/SendEmailCommandInput/
+function obj.completionCallback(choice)
+  local url = "https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-"
+    .. choice["package"]
+    .. "/"
+    .. choice["type"]
+    .. "/"
+    .. choice["text"]
+    .. "/"
+  log.i("Opening " .. url)
+  hs.execute(string.format("/usr/bin/open '%s'", url))
+  obj.stop()
+end
+
+return obj

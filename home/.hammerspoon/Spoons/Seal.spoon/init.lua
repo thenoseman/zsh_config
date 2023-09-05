@@ -14,7 +14,6 @@
 ---  * useractions : User defined custom actions
 ---  * vpn : Connect and disconnect VPNs (currently supports Viscosity and macOS system preferences)A
 
-
 local obj = {}
 obj.__index = obj
 
@@ -40,7 +39,7 @@ obj.spoonPath = hs.spoons.scriptPath()
 ---
 --- Notes:
 ---  * Defaults to 0.02s (20ms).
-obj.queryChangedTimerDuration = 0.02
+obj.queryChangedTimerDuration = 0.1
 
 --- Seal.plugin_search_paths
 --- Variable
@@ -60,16 +59,16 @@ obj.plugin_search_paths = { hs.configdir .. "/seal_plugins", obj.spoonPath }
 --- Notes:
 ---  * Most Seal plugins expose a static list of commands (if any), which are registered at the time the plugin is loaded. This method is used for plugins which expose a dynamic or changing (e.g. depending on configuration) list of commands.
 function obj:refreshCommandsForPlugin(plugin_name)
-   plugin = self.plugins[plugin_name]
-   if plugin.commands then
-      for cmd,cmdInfo in pairs(plugin:commands()) do
-         if not self.commands[cmd] then
-            print("-- Adding Seal command: "..cmd)
-            self.commands[cmd] = cmdInfo
-         end
+  plugin = self.plugins[plugin_name]
+  if plugin.commands then
+    for cmd, cmdInfo in pairs(plugin:commands()) do
+      if not self.commands[cmd] then
+        print("-- Adding Seal command: " .. cmd)
+        self.commands[cmd] = cmdInfo
       end
-   end
-   return self
+    end
+  end
+  return self
 end
 
 --- Seal:refreshAllCommands()
@@ -85,10 +84,10 @@ end
 --- Notes:
 ---  * Most Seal plugins expose a static list of commands (if any), which are registered at the time the plugin is loaded. This method is used for plugins which expose a dynamic or changing (e.g. depending on configuration) list of commands.
 function obj:refreshAllCommands()
-   for p, _ in pairs(self.plugins) do
-      self:refreshCommandsForPlugin(p)
-   end
-   return self
+  for p, _ in pairs(self.plugins) do
+    self:refreshCommandsForPlugin(p)
+  end
+  return self
 end
 
 --- Seal:loadPluginFromFile(plugin_name, file)
@@ -107,16 +106,16 @@ end
 ---    from non-standard locations and is mostly a development interface.
 ---  * Some plugins may immediately begin doing background work (e.g. Spotlight searches)
 function obj:loadPluginFromFile(plugin_name, file)
-   local f,err = loadfile(file)
-   if f~= nil then
-      local plugin = f()
-      plugin.seal = self
-      self.plugins[plugin_name] = plugin
-      self:refreshCommandsForPlugin(plugin_name)
-      return self
-   else
-      return nil
-   end
+  local f, err = loadfile(file)
+  if f ~= nil then
+    local plugin = f()
+    plugin.seal = self
+    self.plugins[plugin_name] = plugin
+    self:refreshCommandsForPlugin(plugin_name)
+    return self
+  else
+    return nil
+  end
 end
 
 --- Seal:loadPlugins(plugins)
@@ -134,24 +133,30 @@ end
 ---  * The plugin names in the list, should not have `seal_` at the start, or `.lua` at the end
 ---  * Some plugins may immediately begin doing background work (e.g. Spotlight searches)
 function obj:loadPlugins(plugins)
-    self.chooser = hs.chooser.new(self.completionCallback)
-    self.chooser:choices(self.choicesCallback)
-    self.chooser:queryChangedCallback(self.queryChangedCallback)
+  self.chooser = hs.chooser.new(self.completionCallback)
+  self.chooser:choices(self.choicesCallback)
+  self.chooser:queryChangedCallback(self.queryChangedCallback)
 
-    for k,plugin_name in pairs(plugins) do
-       local loaded=nil
-       print("-- Loading Seal plugin: " .. plugin_name)
-       for _,dir in ipairs(self.plugin_search_paths) do
-          if obj.plugins[plugin_name] == nil then
-             local file = dir .. "/seal_" .. plugin_name .. ".lua"
-             loaded = (self:loadPluginFromFile(plugin_name, file) ~= nil)
-          end
-       end
-       if (not loaded) then
-          hs.showError(string.format("Error: could not find Seal plugin %s in any of the load paths %s", plugin_name, hs.inspect(self.plugin_search_paths)))
-       end
+  for k, plugin_name in pairs(plugins) do
+    local loaded = nil
+    print("-- Loading Seal plugin: " .. plugin_name)
+    for _, dir in ipairs(self.plugin_search_paths) do
+      if obj.plugins[plugin_name] == nil then
+        local file = dir .. "/seal_" .. plugin_name .. ".lua"
+        loaded = (self:loadPluginFromFile(plugin_name, file) ~= nil)
+      end
     end
-    return self
+    if not loaded then
+      hs.showError(
+        string.format(
+          "Error: could not find Seal plugin %s in any of the load paths %s",
+          plugin_name,
+          hs.inspect(self.plugin_search_paths)
+        )
+      )
+    end
+  end
+  return self
 end
 
 --- Seal:bindHotkeys(mapping)
@@ -166,25 +171,29 @@ end
 --- Returns:
 ---  * The Seal object
 function obj:bindHotkeys(mapping)
-    if (self.hotkeyShow) then
-        self.hotkeyShow:delete()
-    end
-    if (self.hotkeyToggle) then
-        self.hotkeyToggle:delete()
-    end
+  if self.hotkeyShow then
+    self.hotkeyShow:delete()
+  end
+  if self.hotkeyToggle then
+    self.hotkeyToggle:delete()
+  end
 
-    if mapping["show"] ~= nil then
-        local showMods = mapping["show"][1]
-        local showKey = mapping["show"][2]
-        self.hotkeyShow = hs.hotkey.new(showMods, showKey, function() self:show() end)
-    end
-    if mapping["toggle"] ~= nil then
-        local toggleMods = mapping["toggle"][1]
-        local toggleKey = mapping["toggle"][2]
-        self.hotkeyToggle = hs.hotkey.new(toggleMods, toggleKey, function() self:toggle() end)
-    end
+  if mapping["show"] ~= nil then
+    local showMods = mapping["show"][1]
+    local showKey = mapping["show"][2]
+    self.hotkeyShow = hs.hotkey.new(showMods, showKey, function()
+      self:show()
+    end)
+  end
+  if mapping["toggle"] ~= nil then
+    local toggleMods = mapping["toggle"][1]
+    local toggleKey = mapping["toggle"][2]
+    self.hotkeyToggle = hs.hotkey.new(toggleMods, toggleKey, function()
+      self:toggle()
+    end)
+  end
 
-    return self
+  return self
 end
 
 --- Seal:start()
@@ -197,14 +206,14 @@ end
 --- Returns:
 ---  * The Seal object
 function obj:start()
-    print("-- Starting Seal")
-    if self.hotkeyShow then
-        self.hotkeyShow:enable()
-    end
-    if self.hotkeyToggle then
-        self.hotkeyToggle:enable()
-    end
-    return self
+  print("-- Starting Seal")
+  if self.hotkeyShow then
+    self.hotkeyShow:enable()
+  end
+  if self.hotkeyToggle then
+    self.hotkeyToggle:enable()
+  end
+  return self
 end
 
 --- Seal:stop()
@@ -220,15 +229,15 @@ end
 --- Notes:
 ---  * Some Seal plugins will continue performing background work even after this call (e.g. Spotlight searches)
 function obj:stop()
-    print("-- Stopping Seal")
-    self.chooser:hide()
-    if self.hotkeyShow then
-        self.hotkeyShow:disable()
-    end
-    if self.hotkeyToggle then
-        self.hotkeyToggle:disable()
-    end
-    return self
+  print("-- Stopping Seal")
+  self.chooser:hide()
+  if self.hotkeyShow then
+    self.hotkeyShow:disable()
+  end
+  if self.hotkeyToggle then
+    self.hotkeyToggle:disable()
+  end
+  return self
 end
 
 --- Seal:show(query)
@@ -244,9 +253,11 @@ end
 --- Notes:
 ---  * This may be useful if you wish to show Seal in response to something other than its hotkey
 function obj:show(query)
-    self.chooser:show()
-    if query then self.chooser:query(query) end
-    return self
+  self.chooser:show()
+  if query then
+    self.chooser:query(query)
+  end
+  return self
 end
 
 --- Seal:toggle(query)
@@ -259,92 +270,93 @@ end
 --- Returns:
 ---  * None
 function obj:toggle(query)
-    if self.chooser:isVisible() then
-        self.chooser:hide()
-    else
-        self:show(query)
-    end
-    return self
+  if self.chooser:isVisible() then
+    self.chooser:hide()
+  else
+    self:show(query)
+  end
+  return self
 end
 
 function obj.completionCallback(rowInfo)
-    if rowInfo == nil then
-        return
+  if rowInfo == nil then
+    return
+  end
+  if rowInfo["type"] == "plugin_cmd" then
+    obj.chooser:query(rowInfo["cmd"])
+    return
+  end
+  for k, plugin in pairs(obj.plugins) do
+    if plugin.__name == rowInfo["plugin"] then
+      plugin.completionCallback(rowInfo)
+      break
     end
-    if rowInfo["type"] == "plugin_cmd" then
-        obj.chooser:query(rowInfo["cmd"])
-        return
-    end
-    for k,plugin in pairs(obj.plugins) do
-        if plugin.__name == rowInfo["plugin"] then
-            plugin.completionCallback(rowInfo)
-            break
-        end
-    end
+  end
 end
 
 function obj.choicesCallback()
-    -- TODO: Sort each of these clusters of choices, alphabetically
-    choices = {}
-    query = obj.chooser:query()
-    cmd = nil
-    query_words = {}
-    if tostring(query):find("^%s*$") ~= nil then
-        return choices
-    end
-    for word in string.gmatch(query, "%S+") do
-        if cmd == nil then
-            cmd = word
-        else
-            table.insert(query_words, word)
-        end
-    end
-    query_words = table.concat(query_words, " ")
-    -- First get any direct command matches
-    for command,cmdInfo in pairs(obj.commands) do
-        cmd_fn = cmdInfo["fn"]
-        if cmd:lower() == command:lower() then
-            if (query_words or "") == "" then
-                query_words = ".*"
-            end
-            fn_choices = cmd_fn(query_words)
-            if fn_choices ~= nil then
-                for j,choice in pairs(fn_choices) do
-                    table.insert(choices, choice)
-                end
-            end
-        end
-    end
-    -- Now get any bare matches
-    for k,plugin in pairs(obj.plugins) do
-        bare = plugin:bare()
-        if bare then
-            for i,choice in pairs(bare(query)) do
-                table.insert(choices, choice)
-            end
-        end
-    end
-    -- Now add in any matching commands
-    -- TODO: This only makes sense to do if we can select the choice without dismissing the chooser, which requires changes to HSChooser
-    for command,cmdInfo in pairs(obj.commands) do
-        if string.match(command, query) and #query_words == 0 then
-            choice = {}
-            choice["text"] = cmdInfo["name"]
-            choice["subText"] = cmdInfo["description"]
-            choice["type"] = "plugin_cmd"
-            table.insert(choices,choice)
-        end
-    end
-
+  -- TODO: Sort each of these clusters of choices, alphabetically
+  choices = {}
+  query = obj.chooser:query()
+  cmd = nil
+  query_words = {}
+  if tostring(query):find("^%s*$") ~= nil then
     return choices
+  end
+  for word in string.gmatch(query, "%S+") do
+    if cmd == nil then
+      cmd = word
+    else
+      table.insert(query_words, word)
+    end
+  end
+  query_words = table.concat(query_words, " ")
+  -- First get any direct command matches
+  for command, cmdInfo in pairs(obj.commands) do
+    cmd_fn = cmdInfo["fn"]
+    if cmd:lower() == command:lower() then
+      if (query_words or "") == "" then
+        query_words = ".*"
+      end
+      fn_choices = cmd_fn(query_words)
+      if fn_choices ~= nil then
+        for j, choice in pairs(fn_choices) do
+          table.insert(choices, choice)
+        end
+      end
+    end
+  end
+  -- Now get any bare matches
+  for k, plugin in pairs(obj.plugins) do
+    bare = plugin:bare()
+    if bare then
+      for i, choice in pairs(bare(query)) do
+        table.insert(choices, choice)
+      end
+    end
+  end
+  -- Now add in any matching commands
+  -- TODO: This only makes sense to do if we can select the choice without dismissing the chooser, which requires changes to HSChooser
+  for command, cmdInfo in pairs(obj.commands) do
+    if string.match(command, query) and #query_words == 0 then
+      choice = {}
+      choice["text"] = cmdInfo["name"]
+      choice["subText"] = cmdInfo["description"]
+      choice["type"] = "plugin_cmd"
+      table.insert(choices, choice)
+    end
+  end
+
+  return choices
 end
 
 function obj.queryChangedCallback(query)
-    if obj.queryChangedTimer then
-        obj.queryChangedTimer:stop()
-    end
-    obj.queryChangedTimer = hs.timer.doAfter(obj.queryChangedTimerDuration,
-                                             function() obj.chooser:refreshChoicesCallback() end)
+  if obj.queryChangedTimer then
+    obj.queryChangedTimer:stop()
+  end
+  obj.queryChangedTimer = hs.timer.doAfter(obj.queryChangedTimerDuration, function()
+    obj.chooser:refreshChoicesCallback()
+  end)
 end
 
 return obj
