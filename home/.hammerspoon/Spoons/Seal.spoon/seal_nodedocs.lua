@@ -25,11 +25,17 @@ obj.download_if_older_than_sec = 86400
 --- String that the query must start with to be recognized
 obj.trigger = "n "
 
-local docs_target_file = hs.fs.temporaryDirectory() .. "/node-docs.json"
+function script_path()
+  local str = debug.getinfo(2, "S").source:sub(2)
+  return str:match("(.*/)")
+end
+
+local docs_target_file = script_path() .. "/node-docs.json"
 log.i("Target file is " .. docs_target_file)
 
 function download_docs(target_file)
   --- Download node js documentation json
+  log.i("Downloading " .. obj.download_url)
   local response_code, response_body = hs.http.get(obj.download_url)
 
   if response_code == 200 then
@@ -58,7 +64,7 @@ local function starts_with(str, start)
   return str:sub(1, #start) == start
 end
 
-function fuzzyMatch(query)
+function fuzzyMatchNode(query)
   local matches = fzy.filter(query, obj.nameCache)
   -- Sort by score descending
   table.sort(matches, function(a, b)
@@ -90,7 +96,7 @@ function obj.choices(query)
   -- Strip trigger
   query = query:gsub("^" .. obj.trigger, "")
 
-  for _, definition in pairs(fuzzyMatch(query)) do
+  for _, definition in pairs(fuzzyMatchNode(query)) do
     local parts = hs.fnutils.split(definition, "|")
     local choice = {}
     choice["text"] = parts[1]

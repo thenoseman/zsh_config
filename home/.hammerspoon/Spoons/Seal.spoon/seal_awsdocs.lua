@@ -57,6 +57,15 @@ function fill_aws_sdk_lines()
 end
 
 --- Fill caches (index => package name)
+local packageMapFile = script_path() .. "/aws/aws-sdk-package-map.json"
+log.i("Looking for " .. packageMapFile)
+
+local file_info_last_modified = hs.fs.attributes(packageMapFile, "modification")
+if file_info_last_modified == nil then
+  local t = "Download the aws sdk docs using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/aws/create_aws_sdk_index.mjs'"
+  log.i(t)
+  hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
+end
 obj.packageMapCache = hs.json.read(script_path() .. "/aws/aws-sdk-package-map.json")
 
 -- When Seal i
