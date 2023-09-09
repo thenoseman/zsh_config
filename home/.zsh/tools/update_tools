@@ -19,6 +19,7 @@ BREW_PACKAGES=(
 	direnv
 	docker
 	docker-compose
+	docker-credential-helper
 	dust
 	exa
 	exiftool
