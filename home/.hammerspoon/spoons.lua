@@ -34,9 +34,3 @@ spoon.Seal:bindHotkeys({ show = { { "cmd" }, "Space" } })
 spoon.Seal:loadPlugins({ "apps", "calc", "useractions", "nodedocs", "awsdocs" })
 spoon.Seal.plugins.useractions.actions = seal_user_actions
 spoon.Seal:start()
-
---
--- DeepLTranslate
---
-hs.loadSpoon("DeepLTranslate")
-spoon.DeepLTranslate:bindHotkeys({ translate = { { "cmd", "alt", "ctrl" }, "d" } })
