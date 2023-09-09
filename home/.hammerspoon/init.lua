@@ -8,6 +8,9 @@ require("helper")
 -- selene: allow(undefined_variable, unscoped_variables, unused_variable)
 if file_exists(os.getenv("HOME") .. "/.hammerspoon/secrets.lua") then
   SECRETS = require("secrets")
+  logger.i("SECRETS found and available")
+  -- Depending on present secrets
+  require("translate")
 else
   logger.i("SECRETS not found")
 end
@@ -18,6 +21,5 @@ require("audio")
 require("msteams")
 require("hotkeys")
 require("mediakeys")
-require("translate")
 require("resize_window_on_screen")
 require("colima")
