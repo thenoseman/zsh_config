@@ -18,3 +18,17 @@ EOT
 ```
 
 Notice there is no real access control (security groups etc.) available when using app runner so this uses the battle tested [security by obscurity](https://de.wikipedia.org/wiki/Security_through_obscurity) method.
+
+
+
+# Invalid token error
+
+When you get
+
+```
+An error occurred ... : The security token included in the request is invalid.
+```
+
+you can try to add MFA to your AWS account. 
+
+At least that solved it for me...
