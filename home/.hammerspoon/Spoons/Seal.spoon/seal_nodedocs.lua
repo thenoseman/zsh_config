@@ -52,6 +52,8 @@ if
   or file_info_last_modified < (os.time(os.date("!*t")) - obj.download_if_older_than_sec)
 then
   download_docs(docs_target_file)
+else
+  log.i("JSON file current enough")
 end
 
 --- Fill caches:
