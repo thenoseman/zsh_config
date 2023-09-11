@@ -8,14 +8,6 @@ local headers = {
   ["Content-Type"] = "application/json",
 }
 
--- Detect known languages
--- [{"code":"en","name":"English","targets":["de","en","es","ru"]},{"code":"de","name":"German","targets":["de","en","es","ru"]},{"code":"ru","name":"Russian","targets":["de","en","es","ru"]},{"code":"es","name":"Spanish","targets":["de","en","es","ru"]}]
-local _status, response = hs.http.get(SECRETS.libre_translate_api_url .. "/languages")
-local languages = hs.fnutils.imap(hs.json.decode(response), function(language)
-  return language["code"]
-end)
-logger.i("Detected languages: " .. hs.inspect(languages))
-
 local popup_style = hs.webview.windowMasks.utility
   | hs.webview.windowMasks.HUD
   | hs.webview.windowMasks.titled

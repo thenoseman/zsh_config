@@ -65,6 +65,8 @@ if file_info_last_modified == nil then
   local t = "Download the aws sdk docs using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/aws/create_aws_sdk_index.mjs'"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
+else
+  log.i("Using pre-existing '$HOME/.hammerspoon/Spoons/Seal.spoon/aws/create_aws_sdk_index.mjs'")
 end
 obj.packageMapCache = hs.json.read(script_path() .. "/aws/aws-sdk-package-map.json")
 
