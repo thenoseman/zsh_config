@@ -6,12 +6,12 @@
 -- To make this work you must run ./aws/create_aws_sdk_index.mjs at least once!
 --
 --
-local log = hs.logger.new("[awsdocs]", "debug")
+local log = hs.logger.new("[awsjs]", "debug")
 local fzy = require("fzy")
 
 local obj = {}
 obj.__index = obj
-obj.__name = "awsdocs"
+obj.__name = "awsjsdocs"
 obj.packageMapCache = {}
 obj.methodCache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws/logo.png")
@@ -66,7 +66,7 @@ if file_info_last_modified == nil then
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 else
-  log.i("Using pre-existing '$HOME/.hammerspoon/Spoons/Seal.spoon/aws/create_aws_sdk_index.mjs'")
+  log.i("Using pre-existing '$HOME/.hammerspoon/Spoons/Seal.spoon/aws/aws-sdk-package-map.json")
 end
 obj.packageMapCache = hs.json.read(script_path() .. "/aws/aws-sdk-package-map.json")
 
