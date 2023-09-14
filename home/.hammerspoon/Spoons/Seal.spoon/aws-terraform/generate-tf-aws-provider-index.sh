@@ -19,7 +19,7 @@ process() {
 	local file=$1
 
 	local type="resources"
-	[[ $file == *"docs/d/"* ]] && type="data"
+	[[ $file == *"docs/d/"* ]] && type="data-sources"
 
 	local element_name
 	element_name=$(echo "$file" | sed -e "s/.*\/docs\/[rd]\///g" | sed -e "s/\.html.*//g")
