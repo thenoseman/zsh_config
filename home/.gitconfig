@@ -19,6 +19,7 @@
   ami = am --committer-date-is-author-date --ignore-date
   fuck = commit --amend
   d = difftool
+  who = !git config user.name && git config user.email
 [color]
   branch = auto
   status = auto
