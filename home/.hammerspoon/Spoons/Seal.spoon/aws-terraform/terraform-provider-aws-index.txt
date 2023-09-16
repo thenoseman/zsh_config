@@ -1631,6 +1631,7 @@ transfer_ssh_key|Transfer Family|resources|Provides a AWS Transfer SSH Public Ke
 transfer_tag|Transfer Family|resources|Manages an individual Transfer Family resource tag
 transfer_user|Transfer Family|resources|Provides a AWS Transfer User resource.
 transfer_workflow|Transfer Family|resources|Provides a AWS Transfer Workflow resource.
+verifiedaccess_instance|Verified Access|resources|Terraform resource for managing a Verified Access Instance.
 verifiedaccess_trust_provider|Verified Access|resources|Terraform resource for managing a Verified Access Trust Provider.
 volume_attachment|EBS (EC2)|resources|Provides an AWS EBS Volume Attachment
 vpc_dhcp_options_association|VPC (Virtual Private Cloud)|resources|Provides a VPC DHCP Options Association resource.
