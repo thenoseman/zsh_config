@@ -8,7 +8,6 @@ resource "aws_apprunner_service" "libretranslate" {
       image_configuration {
         port                          = var.libretranslate_config.port
         runtime_environment_variables = local.environment_vars
-
       }
 
       image_identifier      = local.image_identifier

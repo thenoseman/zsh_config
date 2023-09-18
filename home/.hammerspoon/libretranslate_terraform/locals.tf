@@ -8,8 +8,8 @@ locals {
     LT_HOST           = "0.0.0.0"
     LT_URL_PREFIX     = random_uuid.libretranslate_prefix.result
     LT_DISABLE_WEB_UI = var.libretranslate_config.enable_web_ui ? "false" : "true"
-    LT_REQ_LIMIT      = "100"
-    LT_PORT           = var.libretranslate_config.port
+    //LT_REQ_LIMIT      = "100"
+    LT_PORT = var.libretranslate_config.port
     LT_DISABLE_FILES_TRANSLATION = "true" },
   length(var.libretranslate_config.languages) > 0 ? { LT_LOAD_ONLY = join(",", var.libretranslate_config.languages) } : {})
 
