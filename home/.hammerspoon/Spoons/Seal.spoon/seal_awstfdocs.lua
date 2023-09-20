@@ -13,7 +13,12 @@ local obj = {}
 obj.__index = obj
 obj.__name = "awstfdocs"
 obj.cache = {}
-obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/terraform-logo.png")
+obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-logo.png")
+
+local icons = {
+  ["resources"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-resource.png"),
+  ["data-sources"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-data.png"),
+}
 
 --- Seal.plugins.awssdkdocs.trigger
 --- Variable
@@ -101,13 +106,14 @@ function obj.choices(query)
   for _, definition in pairs(fuzzyMatch(query, obj.cache)) do
     -- accessanalyzer_analyzer|IAM Access Analyzer|resource|Manages an Access Analyzer Analyzer
     local parts = hs.fnutils.split(definition, "|")
+
     local choice = {}
     choice["text"] = "aws_" .. parts[1]
     choice["subText"] = parts[2] .. ": " .. parts[4]
     choice["type"] = parts[3]
     choice["name"] = parts[1]
     choice["uuid"] = obj.__name .. "__" .. parts[1]
-    choice["image"] = obj.icon
+    choice["image"] = icons[parts[3]]
     choice["plugin"] = obj.__name
     table.insert(choices, choice)
   end
