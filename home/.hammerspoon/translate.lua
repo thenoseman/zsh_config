@@ -63,13 +63,19 @@ end
 
 function translate(text, target_language)
   local body = '{"q":"'
-    .. string.gsub(text, '"', '\\"')
+    .. string.gsub(string.gsub(text, '"', '\\"'), "\n", " ")
     .. '","source":"auto","target":"'
     .. target_language
     .. '","format":"text"}'
+
   logger.i("Calling " .. SECRETS.libre_translate_api_url .. "/translate")
+  logger.i("BODY:")
+  logger.i(body)
+
   local status_code, response = hs.http.post(SECRETS.libre_translate_api_url .. "/translate", body, headers)
 
+  logger.i("Response:")
+  logger.i(response)
   local r = {
     translated_from = nil,
     translation = nil,
@@ -107,7 +113,7 @@ function translateSelectionPopup(text, target_language)
   end
 
   hs.alert("Translating ...")
-  logger.i("Translating text from '" .. target_language .. "' to '" .. target_language .. "'")
+  logger.i("Translating text to '" .. target_language .. "'")
 
   local translation = translate(text, target_language)
   -- If the detected language is the default language translate it into the default_target_language_if_source_default
