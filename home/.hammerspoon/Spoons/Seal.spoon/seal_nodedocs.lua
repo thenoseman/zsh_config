@@ -7,18 +7,8 @@ local fzy = require("fzy")
 local obj = {}
 obj.__index = obj
 obj.__name = "nodedocs"
-obj.nameCache = {}
-obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/node-js-logo.png")
-
---- Seal.plugins.nodedocs.download_url
---- Variable
---- Basis for functionality (URL on devdocs)
-obj.download_url = "https://devdocs.io/docs/node/index.json"
-
---- Seal.plugins.nodedocs.download_if_older_than_sec
---- Variable
---- Seconds to wait until the node docs are downlaoded again
-obj.download_if_older_than_sec = 86400
+obj.cache = {}
+obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/node-js/node-js-logo.png")
 
 --- Seal.plugins.nodedocs.trigger
 --- Variable
@@ -30,44 +20,25 @@ function script_path()
   return str:match("(.*/)")
 end
 
-local docs_target_file = script_path() .. "/node-docs.json"
-log.i("Target file is " .. docs_target_file)
+local indexFile = script_path() .. "/node-js/node-js-index.txt"
+log.i("Looking for " .. indexFile)
 
-function download_docs(target_file)
-  --- Download node js documentation json
-  log.i("Downloading " .. obj.download_url)
-  local response_code, response_body = hs.http.get(obj.download_url)
-
-  if response_code == 200 then
-    local json = hs.json.decode(response_body)["entries"]
-    log.i("Writing node JSON file to " .. target_file)
-    hs.json.write(json, target_file, false, true)
-  end
-end
-
---- Download JSON file if necessary
-local file_info_last_modified = hs.fs.attributes(docs_target_file, "modification")
-if
-  file_info_last_modified == nil
-  or file_info_last_modified < (os.time(os.date("!*t")) - obj.download_if_older_than_sec)
-then
-  download_docs(docs_target_file)
+local file_info_last_modified = hs.fs.attributes(indexFile, "modification")
+if file_info_last_modified == nil then
+  local t = "Generate the node-js index using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh"
+  log.i(t)
+  hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 else
-  log.i("JSON file current enough")
+  log.i("Using pre-existing '" .. indexFile)
 end
-
---- Fill caches:
---- Concatenate parts since we can only search over a string not a table
-obj.nameCache = hs.fnutils.imap(hs.json.read(docs_target_file), function(entry)
-  return entry["name"] .. "|" .. entry["path"] .. "|" .. entry["type"]
-end)
 
 local function starts_with(str, start)
   return str:sub(1, #start) == start
 end
 
-function fuzzyMatchNode(query)
-  local matches = fzy.filter(query, obj.nameCache)
+function fuzzyMatch(query, hackstay)
+  local matches = fzy.filter(query, hackstay)
+
   -- Sort by score descending
   table.sort(matches, function(a, b)
     return (a[3] > b[3])
@@ -75,10 +46,14 @@ function fuzzyMatchNode(query)
   --- Take first 10 matches
   matches = table.move(matches, 1, 10, 1, {})
 
-  -- Convert indices to the naemCache entries
+  -- Convert indices to the cache entries
   return hs.fnutils.imap(matches, function(match)
-    return obj.nameCache[match[1]]
+    return hackstay[match[1]]
   end)
+end
+
+function obj:stop()
+  obj.cache = nil
 end
 
 function obj:commands()
@@ -98,7 +73,12 @@ function obj.choices(query)
   -- Strip trigger
   query = query:gsub("^" .. obj.trigger, "")
 
-  for _, definition in pairs(fuzzyMatchNode(query)) do
+  obj.cache = {}
+  for line in io.lines(indexFile) do
+    obj.cache[#obj.cache + 1] = line
+  end
+
+  for _, definition in pairs(fuzzyMatch(query, obj.cache)) do
     local parts = hs.fnutils.split(definition, "|")
     local choice = {}
     choice["text"] = parts[1]

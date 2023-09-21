@@ -3,7 +3,7 @@
 --
 -- Enter "aws <your query>" in the Seal chooser
 --
--- To make this work you must run ./aws/create_aws_sdk_index.mjs at least once!
+-- To make this work you must run ./aws-js-sdk/create_aws_sdk_index.mjs at least once!
 --
 --
 local log = hs.logger.new("[awsjs]", "debug")
@@ -14,7 +14,7 @@ obj.__index = obj
 obj.__name = "awsjsdocs"
 obj.packageMapCache = {}
 obj.methodCache = {}
-obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws/logo.png")
+obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-js-sdk/logo.png")
 
 --- Seal.plugins.awssdkdocs.trigger
 --- Variable
@@ -47,28 +47,19 @@ function fuzzyMatch(query, hackstay)
   end)
 end
 
-function fill_aws_sdk_lines()
-  if #obj.methodCache == 0 then
-    for line in io.lines(script_path() .. "/aws/aws-sdk-js.txt") do
-      obj.methodCache[#obj.methodCache + 1] = line
-    end
-    log.i("Filled obj.methodCache with " .. #obj.methodCache .. " entries")
-  end
-end
-
 --- Fill caches (index => package name)
-local packageMapFile = script_path() .. "/aws/aws-sdk-package-map.json"
+local packageMapFile = script_path() .. "/aws-js-sdk/aws-sdk-package-map.json"
 log.i("Looking for " .. packageMapFile)
 
 local file_info_last_modified = hs.fs.attributes(packageMapFile, "modification")
 if file_info_last_modified == nil then
-  local t = "Download the aws sdk docs using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/aws/create_aws_sdk_index.mjs'"
+  local t = "Download the aws sdk docs using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/aws-js-sdk/generate.mjs'"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 else
-  log.i("Using pre-existing '$HOME/.hammerspoon/Spoons/Seal.spoon/aws/aws-sdk-package-map.json")
+  log.i("Using pre-existing '$HOME/.hammerspoon/Spoons/Seal.spoon/aws-js-sdk/aws-sdk-package-map.json")
 end
-obj.packageMapCache = hs.json.read(script_path() .. "/aws/aws-sdk-package-map.json")
+obj.packageMapCache = hs.json.read(script_path() .. "/aws-js-sdk/aws-sdk-package-map.json")
 
 -- When Seal i
 function obj:stop()
@@ -102,7 +93,12 @@ function obj.choices(query)
 
   -- Strip trigger
   query = query:gsub("^" .. obj.trigger, "")
-  fill_aws_sdk_lines()
+
+  if #obj.methodCache == 0 then
+    for line in io.lines(script_path() .. "/aws-js-sdk/aws-sdk-js.txt") do
+      obj.methodCache[#obj.methodCache + 1] = line
+    end
+  end
 
   for _, definition in pairs(fuzzyMatch(query, obj.methodCache)) do
     local parts = hs.fnutils.split(definition, "|")

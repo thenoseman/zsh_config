@@ -1,0 +1,3130 @@
+"exports"|packages#exports|Modules: Packages
+"imports"|packages#imports|Modules: Packages
+"main"|packages#main|Modules: Packages
+"name"|packages#name|Modules: Packages
+"packageManager"|packages#packagemanager|Modules: Packages
+"type"|packages#type|Modules: Packages
+-|cli#-|Command-line API
+--|cli#--|Command-line API
+--abort-on-uncaught-exception|cli#--abort-on-uncaught-exception|Command-line API
+--build-snapshot|cli#--build-snapshot|Command-line API
+--check|cli#-c---check|Command-line API
+--completion-bash|cli#--completion-bash|Command-line API
+--conditions=condition|cli#-ccondition---conditionscondition|Command-line API
+--cpu-prof|cli#--cpu-prof|Command-line API
+--cpu-prof-dir|cli#--cpu-prof-dir|Command-line API
+--cpu-prof-interval|cli#--cpu-prof-interval|Command-line API
+--cpu-prof-name|cli#--cpu-prof-name|Command-line API
+--diagnostic-dir=directory|cli#--diagnostic-dirdirectory|Command-line API
+--disable-proto=mode|cli#--disable-protomode|Command-line API
+--disallow-code-generation-from-strings|cli#--disallow-code-generation-from-strings|Command-line API
+--dns-result-order=order|cli#--dns-result-orderorder|Command-line API
+--enable-fips|cli#--enable-fips|Command-line API
+--enable-source-maps|cli#--enable-source-maps|Command-line API
+--eval "script"|cli#-e---eval-script|Command-line API
+--experimental-import-meta-resolve|cli#--experimental-import-meta-resolve|Command-line API
+--experimental-loader=module|cli#--experimental-loadermodule|Command-line API
+--experimental-network-imports|cli#--experimental-network-imports|Command-line API
+--experimental-policy|cli#--experimental-policy|Command-line API
+--experimental-shadow-realm|cli#--experimental-shadow-realm|Command-line API
+--experimental-vm-modules|cli#--experimental-vm-modules|Command-line API
+--experimental-wasi-unstable-preview1|cli#--experimental-wasi-unstable-preview1|Command-line API
+--experimental-wasm-modules|cli#--experimental-wasm-modules|Command-line API
+--force-context-aware|cli#--force-context-aware|Command-line API
+--force-fips|cli#--force-fips|Command-line API
+--force-node-api-uncaught-exceptions-policy|cli#--force-node-api-uncaught-exceptions-policy|Command-line API
+--frozen-intrinsics|cli#--frozen-intrinsics|Command-line API
+--heap-prof|cli#--heap-prof|Command-line API
+--heap-prof-dir|cli#--heap-prof-dir|Command-line API
+--heap-prof-interval|cli#--heap-prof-interval|Command-line API
+--heap-prof-name|cli#--heap-prof-name|Command-line API
+--heapsnapshot-near-heap-limit=max_count|cli#--heapsnapshot-near-heap-limitmax_count|Command-line API
+--heapsnapshot-signal=signal|cli#--heapsnapshot-signalsignal|Command-line API
+--help|cli#-h---help|Command-line API
+--icu-data-dir=file|cli#--icu-data-dirfile|Command-line API
+--import=module|cli#--importmodule|Command-line API
+--input-type|packages#--input-type-flag|Modules: Packages
+--input-type=type|cli#--input-typetype|Command-line API
+--insecure-http-parser|cli#--insecure-http-parser|Command-line API
+--inspect-brk[=[host:]port]|cli#--inspect-brkhostport|Command-line API
+--inspect-port=[host:]port|cli#--inspect-porthostport|Command-line API
+--inspect-publish-uid=stderr,http|cli#--inspect-publish-uidstderrhttp|Command-line API
+--inspect[=[host:]port]|cli#--inspecthostport|Command-line API
+--interactive|cli#-i---interactive|Command-line API
+--jitless|cli#--jitless|Command-line API
+--max-http-header-size=size|cli#--max-http-header-sizesize|Command-line API
+--max-old-space-size=SIZE|cli#--max-old-space-sizesize-in-megabytes|Command-line API
+--max-semi-space-size=SIZE|cli#--max-semi-space-sizesize-in-megabytes|Command-line API
+--napi-modules|cli#--napi-modules|Command-line API
+--no-addons|cli#--no-addons|Command-line API
+--no-deprecation|cli#--no-deprecation|Command-line API
+--no-experimental-fetch|cli#--no-experimental-fetch|Command-line API
+--no-experimental-global-customevent|cli#--no-experimental-global-customevent|Command-line API
+--no-experimental-global-webcrypto|cli#--no-experimental-global-webcrypto|Command-line API
+--no-experimental-repl-await|cli#--no-experimental-repl-await|Command-line API
+--no-extra-info-on-fatal-exception|cli#--no-extra-info-on-fatal-exception|Command-line API
+--no-force-async-hooks-checks|cli#--no-force-async-hooks-checks|Command-line API
+--no-global-search-paths|cli#--no-global-search-paths|Command-line API
+--no-warnings|cli#--no-warnings|Command-line API
+--node-memory-debug|cli#--node-memory-debug|Command-line API
+--openssl-config=file|cli#--openssl-configfile|Command-line API
+--openssl-legacy-provider|cli#--openssl-legacy-provider|Command-line API
+--openssl-shared-config|cli#--openssl-shared-config|Command-line API
+--pending-deprecation|cli#--pending-deprecation|Command-line API
+--policy-integrity=sri|cli#--policy-integritysri|Command-line API
+--preserve-symlinks|cli#--preserve-symlinks|Command-line API
+--preserve-symlinks-main|cli#--preserve-symlinks-main|Command-line API
+--print "script"|cli#-p---print-script|Command-line API
+--prof|cli#--prof|Command-line API
+--prof-process|cli#--prof-process|Command-line API
+--redirect-warnings=file|cli#--redirect-warningsfile|Command-line API
+--report-compact|cli#--report-compact|Command-line API
+--report-dir=directory|cli#--report-dirdirectory-report-directorydirectory|Command-line API
+--report-filename=filename|cli#--report-filenamefilename|Command-line API
+--report-on-fatalerror|cli#--report-on-fatalerror|Command-line API
+--report-on-signal|cli#--report-on-signal|Command-line API
+--report-signal=signal|cli#--report-signalsignal|Command-line API
+--report-uncaught-exception|cli#--report-uncaught-exception|Command-line API
+--require module|cli#-r---require-module|Command-line API
+--secure-heap-min=n|cli#--secure-heap-minn|Command-line API
+--secure-heap=n|cli#--secure-heapn|Command-line API
+--snapshot-blob=path|cli#--snapshot-blobpath|Command-line API
+--test|cli#--test|Command-line API
+--test-name-pattern|cli#--test-name-pattern|Command-line API
+--test-only|cli#--test-only|Command-line API
+--throw-deprecation|cli#--throw-deprecation|Command-line API
+--title=title|cli#--titletitle|Command-line API
+--tls-cipher-list=list|cli#--tls-cipher-listlist|Command-line API
+--tls-keylog=file|cli#--tls-keylogfile|Command-line API
+--tls-max-v1.2|cli#--tls-max-v12|Command-line API
+--tls-max-v1.3|cli#--tls-max-v13|Command-line API
+--tls-min-v1.0|cli#--tls-min-v10|Command-line API
+--tls-min-v1.1|cli#--tls-min-v11|Command-line API
+--tls-min-v1.2|cli#--tls-min-v12|Command-line API
+--tls-min-v1.3|cli#--tls-min-v13|Command-line API
+--trace-atomics-wait|cli#--trace-atomics-wait|Command-line API
+--trace-deprecation|cli#--trace-deprecation|Command-line API
+--trace-event-categories|cli#--trace-event-categories|Command-line API
+--trace-event-file-pattern|cli#--trace-event-file-pattern|Command-line API
+--trace-events-enabled|cli#--trace-events-enabled|Command-line API
+--trace-exit|cli#--trace-exit|Command-line API
+--trace-sigint|cli#--trace-sigint|Command-line API
+--trace-sync-io|cli#--trace-sync-io|Command-line API
+--trace-tls|cli#--trace-tls|Command-line API
+--trace-uncaught|cli#--trace-uncaught|Command-line API
+--trace-warnings|cli#--trace-warnings|Command-line API
+--track-heap-objects|cli#--track-heap-objects|Command-line API
+--unhandled-rejections=mode|cli#--unhandled-rejectionsmode|Command-line API
+--update-assert-snapshot|cli#--update-assert-snapshot|Command-line API
+--use-bundled-ca|cli#--use-bundled-ca---use-openssl-ca|Command-line API
+--use-largepages=mode|cli#--use-largepagesmode|Command-line API
+--use-openssl-ca|cli#--use-bundled-ca---use-openssl-ca|Command-line API
+--v8-options|cli#--v8-options|Command-line API
+--v8-pool-size=num|cli#--v8-pool-sizenum|Command-line API
+--version|cli#-v---version|Command-line API
+--watch|cli#--watch|Command-line API
+--watch-path|cli#--watch-path|Command-line API
+--zero-fill-buffers|cli#--zero-fill-buffers|Command-line API
+-C=condition|cli#-ccondition---conditionscondition|Command-line API
+-c|cli#-c---check|Command-line API
+-e|cli#-e---eval-script|Command-line API
+-h|cli#-h---help|Command-line API
+-i|cli#-i---interactive|Command-line API
+-p|cli#-p---print-script|Command-line API
+-r|cli#-r---require-module|Command-line API
+-v|cli#-v---version|Command-line API
+ABORT_ERR|errors#abort_err|Errors
+Assert|assert|Assert
+Async hooks|async_hooks|Async hooks
+Asynchronous context tracking|async_context|Asynchronous context tracking
+Blob|buffer#blob-objects-and-messagechannel|Buffer
+BroadcastChannel|globals#broadcastchannel|Global objects
+Buffer|buffer|Buffer
+Buffer.alloc()|buffer#bufferfrom-bufferalloc-and-bufferallocunsafe|Buffer
+Buffer.allocUnsafe()|buffer#bufferfrom-bufferalloc-and-bufferallocunsafe|Buffer
+Buffer.from()|buffer#bufferfrom-bufferalloc-and-bufferallocunsafe|Buffer
+C++ addons|addons|C++ addons
+C++ embedder API|embedding|C++ embedder API
+Child process|child_process|Child process
+Class AbortController|globals#class-abortcontroller|Global objects
+Class AbortSignal|globals#class-abortsignal|Global objects
+Class AesCbcParams|webcrypto#class-aescbcparams|Web Crypto API
+Class AesCtrParams|webcrypto#class-aesctrparams|Web Crypto API
+Class AesGcmParams|webcrypto#class-aesgcmparams|Web Crypto API
+Class AesKeyGenParams|webcrypto#class-aeskeygenparams|Web Crypto API
+Class AlgorithmIdentifier|webcrypto#class-algorithmidentifier|Web Crypto API
+Class AssertionError|errors#class-assertionerror|Errors
+Class AsyncHook|async_hooks#class-asynchook|Async hooks
+Class AsyncLocalStorage|async_hooks#class-asynclocalstorage|Async hooks
+Class AsyncLocalStorage|async_context#class-asynclocalstorage|Asynchronous context tracking
+Class AsyncResource|async_context#class-asyncresource|Asynchronous context tracking
+Class AsyncResource|async_hooks#class-asyncresource|Async hooks
+Class Blob|buffer#class-blob|Buffer
+Class Blob|globals#class-blob|Global objects
+Class BroadcastChannel extends EventTarget|worker_threads#class-broadcastchannel-extends-eventtarget|Worker threads
+Class BrotliOptions|zlib#class-brotlioptions|Zlib
+Class Buffer|buffer#class-buffer|Buffer
+Class Buffer|globals#class-buffer|Global objects
+Class Buffer.poolSize|buffer#class-property-bufferpoolsize|Buffer
+Class ByteLengthQueuingStrategy|globals#class-bytelengthqueuingstrategy|Global objects
+Class ByteLengthQueuingStrategy|webstreams#class-bytelengthqueuingstrategy|Web Streams API
+Class Certificate|crypto#class-certificate|Crypto
+Class Channel|diagnostics_channel#class-channel|Diagnostics Channel
+Class ChildProcess|child_process#class-childprocess|Child process
+Class Cipher|crypto#class-cipher|Crypto
+Class ClientHttp2Session|http2#class-clienthttp2session|HTTP/2
+Class ClientHttp2Stream|http2#class-clienthttp2stream|HTTP/2
+Class CompressionStream|globals#class-compressionstream|Global objects
+Class CompressionStream|webstreams#class-compressionstream|Web Streams API
+Class Console|console#class-console|Console
+Class CountQueuingStrategy|globals#class-countqueuingstrategy|Global objects
+Class CountQueuingStrategy|webstreams#class-countqueuingstrategy|Web Streams API
+Class Crypto|webcrypto#class-crypto|Web Crypto API
+Class CryptoKey|webcrypto#class-cryptokey|Web Crypto API
+Class CryptoKeyPair|webcrypto#class-cryptokeypair|Web Crypto API
+Class CustomEvent|events#class-customevent|Events
+Class Decipher|crypto#class-decipher|Crypto
+Class DecompressionStream|globals#class-decompressionstream|Global objects
+Class DecompressionStream|webstreams#class-decompressionstream|Web Streams API
+Class DiffieHellman|crypto#class-diffiehellman|Crypto
+Class DiffieHellmanGroup|crypto#class-diffiehellmangroup|Crypto
+Class Domain|domain#class-domain|Domain
+Class ECDH|crypto#class-ecdh|Crypto
+Class EcKeyGenParams|webcrypto#class-eckeygenparams|Web Crypto API
+Class EcKeyImportParams|webcrypto#class-eckeyimportparams|Web Crypto API
+Class EcdhKeyDeriveParams|webcrypto#class-ecdhkeyderiveparams|Web Crypto API
+Class EcdsaParams|webcrypto#class-ecdsaparams|Web Crypto API
+Class Ed448Params|webcrypto#class-ed448params|Web Crypto API
+Class Error|errors#class-error|Errors
+Class Event|events#class-event|Events
+Class EventEmitter|events#class-eventemitter|Events
+Class EventTarget|events#class-eventtarget|Events
+Class FileHandle|fs#class-filehandle|File system
+Class FormData|globals#class-formdata|Global objects
+Class Hash|crypto#class-hash|Crypto
+Class Headers|globals#class-headers|Global objects
+Class Histogram|perf_hooks#class-histogram|Performance measurement APIs
+Class HkdfParams|webcrypto#class-hkdfparams|Web Crypto API
+Class Hmac|crypto#class-hmac|Crypto
+Class HmacImportParams|webcrypto#class-hmacimportparams|Web Crypto API
+Class HmacKeyGenParams|webcrypto#class-hmackeygenparams|Web Crypto API
+Class Http2SecureServer|http2#class-http2secureserver|HTTP/2
+Class Http2Server|http2#class-http2server|HTTP/2
+Class Http2Session|http2#class-http2session|HTTP/2
+Class Http2Stream|http2#class-http2stream|HTTP/2
+Class Immediate|timers#class-immediate|Timers
+Class InterfaceConstructor|readline#class-interfaceconstructor|Readline
+Class IntervalHistogram extends Histogram|perf_hooks#class-intervalhistogram-extends-histogram|Performance measurement APIs
+Class KeyObject|crypto#class-keyobject|Crypto
+Class MessageChannel|worker_threads#class-messagechannel|Worker threads
+Class MessagePort|worker_threads#class-messageport|Worker threads
+Class NodeEventTarget|events#class-nodeeventtarget|Events
+Class Options|zlib#class-options|Zlib
+Class Pbkdf2Params|webcrypto#class-pbkdf2params|Web Crypto API
+Class PerformanceEntry|perf_hooks#class-performanceentry|Performance measurement APIs
+Class PerformanceMark|perf_hooks#class-performancemark|Performance measurement APIs
+Class PerformanceMeasure|perf_hooks#class-performancemeasure|Performance measurement APIs
+Class PerformanceNodeEntry|perf_hooks#class-performancenodeentry|Performance measurement APIs
+Class PerformanceNodeTiming|perf_hooks#class-performancenodetiming|Performance measurement APIs
+Class PerformanceObserver|perf_hooks#class-performanceobserver|Performance measurement APIs
+Class PerformanceObserverEntryList|perf_hooks#class-performanceobserverentrylist|Performance measurement APIs
+Class PerformanceResourceTiming|perf_hooks#class-performanceresourcetiming|Performance measurement APIs
+Class REPLServer|repl#class-replserver|REPL
+Class RangeError|errors#class-rangeerror|Errors
+Class ReadableByteStreamController|webstreams#class-readablebytestreamcontroller|Web Streams API
+Class ReadableByteStreamController|globals#class-readablebytestreamcontroller|Global objects
+Class ReadableStream|globals#class-readablestream|Global objects
+Class ReadableStream|webstreams#class-readablestream|Web Streams API
+Class ReadableStreamBYOBReader|webstreams#class-readablestreambyobreader|Web Streams API
+Class ReadableStreamBYOBReader|globals#class-readablestreambyobreader|Global objects
+Class ReadableStreamBYOBRequest|webstreams#class-readablestreambyobrequest|Web Streams API
+Class ReadableStreamBYOBRequest|globals#class-readablestreambyobrequest|Global objects
+Class ReadableStreamDefaultController|webstreams#class-readablestreamdefaultcontroller|Web Streams API
+Class ReadableStreamDefaultController|globals#class-readablestreamdefaultcontroller|Global objects
+Class ReadableStreamDefaultReader|globals#class-readablestreamdefaultreader|Global objects
+Class ReadableStreamDefaultReader|webstreams#class-readablestreamdefaultreader|Web Streams API
+Class RecordableHistogram extends Histogram|perf_hooks#class-recordablehistogram-extends-histogram|Performance measurement APIs
+Class ReferenceError|errors#class-referenceerror|Errors
+Class RsaHashedImportParams|webcrypto#class-rsahashedimportparams|Web Crypto API
+Class RsaHashedKeyGenParams|webcrypto#class-rsahashedkeygenparams|Web Crypto API
+Class RsaOaepParams|webcrypto#class-rsaoaepparams|Web Crypto API
+Class RsaPssParams|webcrypto#class-rsapssparams|Web Crypto API
+Class ServerHttp2Session|http2#class-serverhttp2session|HTTP/2
+Class ServerHttp2Stream|http2#class-serverhttp2stream|HTTP/2
+Class Sign|crypto#class-sign|Crypto
+Class SlowBuffer|buffer#class-slowbuffer|Buffer
+Class StringDecoder|string_decoder#class-stringdecoder|String decoder
+Class SubtleCrypto|webcrypto#class-subtlecrypto|Web Crypto API
+Class SuiteContext|test#class-suitecontext|Test runner
+Class SyntaxError|errors#class-syntaxerror|Errors
+Class SystemError|errors#class-systemerror|Errors
+Class TapStream|test#class-tapstream|Test runner
+Class TestContext|test#class-testcontext|Test runner
+Class TextDecoderStream|globals#class-textdecoderstream|Global objects
+Class TextDecoderStream|webstreams#class-textdecoderstream|Web Streams API
+Class TextEncoderStream|webstreams#class-textencoderstream|Web Streams API
+Class TextEncoderStream|globals#class-textencoderstream|Global objects
+Class Timeout|timers#class-timeout|Timers
+Class TransformStream|webstreams#class-transformstream|Web Streams API
+Class TransformStream|globals#class-transformstream|Global objects
+Class TransformStreamDefaultController|globals#class-transformstreamdefaultcontroller|Global objects
+Class TransformStreamDefaultController|webstreams#class-transformstreamdefaultcontroller|Web Streams API
+Class TypeError|errors#class-typeerror|Errors
+Class URL|url#class-url|URL
+Class URLSearchParams|url#class-urlsearchparams|URL
+Class Verify|crypto#class-verify|Crypto
+Class WASI|wasi#class-wasi|WebAssembly System Interface (WASI)
+Class Worker|cluster#class-worker|Cluster
+Class Worker|worker_threads#class-worker|Worker threads
+Class WritableStream|globals#class-writablestream|Global objects
+Class WritableStream|webstreams#class-writablestream|Web Streams API
+Class WritableStreamDefaultController|webstreams#class-writablestreamdefaultcontroller|Web Streams API
+Class WritableStreamDefaultController|globals#class-writablestreamdefaultcontroller|Global objects
+Class WritableStreamDefaultWriter|webstreams#class-writablestreamdefaultwriter|Web Streams API
+Class WritableStreamDefaultWriter|globals#class-writablestreamdefaultwriter|Global objects
+Class X509Certificate|crypto#class-x509certificate|Crypto
+Class assert.CallTracker|assert#class-assertcalltracker|Assert
+Class dgram.Socket|dgram#class-dgramsocket|UDP/datagram sockets
+Class dns.Resolver|dns#class-dnsresolver|DNS
+Class dnsPromises.Resolver|dns#class-dnspromisesresolver|DNS
+Class events.EventEmitterAsyncResource extends EventEmitter|events#class-eventseventemitterasyncresource-extends-eventemitter|Events
+Class fs.Dir|fs#class-fsdir|File system
+Class fs.Dirent|fs#class-fsdirent|File system
+Class fs.FSWatcher|fs#class-fsfswatcher|File system
+Class fs.ReadStream|fs#class-fsreadstream|File system
+Class fs.StatWatcher|fs#class-fsstatwatcher|File system
+Class fs.Stats|fs#class-fsstats|File system
+Class fs.WriteStream|fs#class-fswritestream|File system
+Class http.Agent|http#class-httpagent|HTTP
+Class http.ClientRequest|http#class-httpclientrequest|HTTP
+Class http.IncomingMessage|http#class-httpincomingmessage|HTTP
+Class http.OutgoingMessage|http#class-httpoutgoingmessage|HTTP
+Class http.Server|http#class-httpserver|HTTP
+Class http.ServerResponse|http#class-httpserverresponse|HTTP
+Class http2.Http2ServerRequest|http2#class-http2http2serverrequest|HTTP/2
+Class http2.Http2ServerResponse|http2#class-http2http2serverresponse|HTTP/2
+Class https.Agent|https#class-httpsagent|HTTPS
+Class https.Server|https#class-httpsserver|HTTPS
+Class inspector.Session|inspector#class-inspectorsession|Inspector
+Class inspector.Session|inspector#class-inspectorsession_1|Inspector
+Class module.SourceMap|module#class-modulesourcemap|Modules: node:module API
+Class net.BlockList|net#class-netblocklist|Net
+Class net.Server|net#class-netserver|Net
+Class net.Socket|net#class-netsocket|Net
+Class net.SocketAddress|net#class-netsocketaddress|Net
+Class readline.Interface|readline#class-readlineinterface|Readline
+Class readlinePromises.Interface|readline#class-readlinepromisesinterface|Readline
+Class readlinePromises.Readline|readline#class-readlinepromisesreadline|Readline
+Class stream.Duplex|stream#class-streamduplex|Stream[src]
+Class stream.PassThrough|stream#class-streampassthrough|Stream[src]
+Class stream.Readable|stream#class-streamreadable|Stream[src]
+Class stream.Transform|stream#class-streamtransform|Stream[src]
+Class stream.Writable|stream#class-streamwritable|Stream[src]
+Class tls.CryptoStream|tls#class-tlscryptostream|TLS (SSL)
+Class tls.SecurePair|tls#class-tlssecurepair|TLS (SSL)
+Class tls.Server|tls#class-tlsserver|TLS (SSL)
+Class tls.TLSSocket|tls#class-tlstlssocket|TLS (SSL)
+Class tty.ReadStream|tty#class-ttyreadstream|TTY
+Class tty.WriteStream|tty#class-ttywritestream|TTY
+Class util.TextDecoder|util#class-utiltextdecoder|Util
+Class util.TextEncoder|util#class-utiltextencoder|Util
+Class v8.DefaultDeserializer|v8#class-v8defaultdeserializer|V8
+Class v8.DefaultSerializer|v8#class-v8defaultserializer|V8
+Class v8.Deserializer|v8#class-v8deserializer|V8
+Class v8.Serializer|v8#class-v8serializer|V8
+Class vm.Module|vm#class-vmmodule|VM (executing JavaScript)
+Class vm.Script|vm#class-vmscript|VM (executing JavaScript)
+Class vm.SourceTextModule|vm#class-vmsourcetextmodule|VM (executing JavaScript)
+Class vm.SyntheticModule|vm#class-vmsyntheticmodule|VM (executing JavaScript)
+Class zlib.BrotliCompress|zlib#class-zlibbrotlicompress|Zlib
+Class zlib.BrotliDecompress|zlib#class-zlibbrotlidecompress|Zlib
+Class zlib.Deflate|zlib#class-zlibdeflate|Zlib
+Class zlib.DeflateRaw|zlib#class-zlibdeflateraw|Zlib
+Class zlib.Gunzip|zlib#class-zlibgunzip|Zlib
+Class zlib.Gzip|zlib#class-zlibgzip|Zlib
+Class zlib.Inflate|zlib#class-zlibinflate|Zlib
+Class zlib.InflateRaw|zlib#class-zlibinflateraw|Zlib
+Class zlib.Unzip|zlib#class-zlibunzip|Zlib
+Class zlib.ZlibBase|zlib#class-zlibzlibbase|Zlib
+Cluster|cluster|Cluster
+Command-line API|cli|Command-line API
+Console|console|Console
+Corepack|corepack|Corepack
+Crypto|globals#crypto|Global objects
+Crypto|crypto|Crypto
+CryptoKey|globals#cryptokey|Global objects
+CustomEvent|globals#customevent|Global objects
+DNS|dns|DNS
+DOMException|globals#domexception|Global objects
+Debugger|debugger|Debugger
+Deprecated APIs|deprecations|Deprecated APIs
+Diagnostic report|report|Diagnostic report
+Diagnostics Channel|diagnostics_channel|Diagnostics Channel
+Domain|domain|Domain
+ERR_AMBIGUOUS_ARGUMENT|errors#err_ambiguous_argument|Errors
+ERR_ARG_NOT_ITERABLE|errors#err_arg_not_iterable|Errors
+ERR_ASSERTION|errors#err_assertion|Errors
+ERR_ASSERT_SNAPSHOT_NOT_SUPPORTED|errors#err_assert_snapshot_not_supported|Errors
+ERR_ASYNC_CALLBACK|errors#err_async_callback|Errors
+ERR_ASYNC_TYPE|errors#err_async_type|Errors
+ERR_BROTLI_COMPRESSION_FAILED|errors#err_brotli_compression_failed|Errors
+ERR_BROTLI_INVALID_PARAM|errors#err_brotli_invalid_param|Errors
+ERR_BUFFER_CONTEXT_NOT_AVAILABLE|errors#err_buffer_context_not_available|Errors
+ERR_BUFFER_OUT_OF_BOUNDS|errors#err_buffer_out_of_bounds|Errors
+ERR_BUFFER_TOO_LARGE|errors#err_buffer_too_large|Errors
+ERR_CANNOT_TRANSFER_OBJECT|errors#err_cannot_transfer_object|Errors
+ERR_CANNOT_WATCH_SIGINT|errors#err_cannot_watch_sigint|Errors
+ERR_CHILD_CLOSED_BEFORE_REPLY|errors#err_child_closed_before_reply|Errors
+ERR_CHILD_PROCESS_IPC_REQUIRED|errors#err_child_process_ipc_required|Errors
+ERR_CHILD_PROCESS_STDIO_MAXBUFFER|errors#err_child_process_stdio_maxbuffer|Errors
+ERR_CLOSED_MESSAGE_PORT|errors#err_closed_message_port|Errors
+ERR_CONSOLE_WRITABLE_STREAM|errors#err_console_writable_stream|Errors
+ERR_CONSTRUCT_CALL_INVALID|errors#err_construct_call_invalid|Errors
+ERR_CONSTRUCT_CALL_REQUIRED|errors#err_construct_call_required|Errors
+ERR_CONTEXT_NOT_INITIALIZED|errors#err_context_not_initialized|Errors
+ERR_CPU_USAGE|errors#err_cpu_usage|Errors
+ERR_CRYPTO_CUSTOM_ENGINE_NOT_SUPPORTED|errors#err_crypto_custom_engine_not_supported|Errors
+ERR_CRYPTO_ECDH_INVALID_FORMAT|errors#err_crypto_ecdh_invalid_format|Errors
+ERR_CRYPTO_ECDH_INVALID_PUBLIC_KEY|errors#err_crypto_ecdh_invalid_public_key|Errors
+ERR_CRYPTO_ENGINE_UNKNOWN|errors#err_crypto_engine_unknown|Errors
+ERR_CRYPTO_FIPS_FORCED|errors#err_crypto_fips_forced|Errors
+ERR_CRYPTO_FIPS_UNAVAILABLE|errors#err_crypto_fips_unavailable|Errors
+ERR_CRYPTO_HASH_DIGEST_NO_UTF16|errors#err_crypto_hash_digest_no_utf16|Errors
+ERR_CRYPTO_HASH_FINALIZED|errors#err_crypto_hash_finalized|Errors
+ERR_CRYPTO_HASH_UPDATE_FAILED|errors#err_crypto_hash_update_failed|Errors
+ERR_CRYPTO_INCOMPATIBLE_KEY|errors#err_crypto_incompatible_key|Errors
+ERR_CRYPTO_INCOMPATIBLE_KEY_OPTIONS|errors#err_crypto_incompatible_key_options|Errors
+ERR_CRYPTO_INITIALIZATION_FAILED|errors#err_crypto_initialization_failed|Errors
+ERR_CRYPTO_INVALID_AUTH_TAG|errors#err_crypto_invalid_auth_tag|Errors
+ERR_CRYPTO_INVALID_COUNTER|errors#err_crypto_invalid_counter|Errors
+ERR_CRYPTO_INVALID_CURVE|errors#err_crypto_invalid_curve|Errors
+ERR_CRYPTO_INVALID_DIGEST|errors#err_crypto_invalid_digest|Errors
+ERR_CRYPTO_INVALID_IV|errors#err_crypto_invalid_iv|Errors
+ERR_CRYPTO_INVALID_JWK|errors#err_crypto_invalid_jwk|Errors
+ERR_CRYPTO_INVALID_KEYLEN|errors#err_crypto_invalid_keylen|Errors
+ERR_CRYPTO_INVALID_KEYPAIR|errors#err_crypto_invalid_keypair|Errors
+ERR_CRYPTO_INVALID_KEYTYPE|errors#err_crypto_invalid_keytype|Errors
+ERR_CRYPTO_INVALID_KEY_OBJECT_TYPE|errors#err_crypto_invalid_key_object_type|Errors
+ERR_CRYPTO_INVALID_MESSAGELEN|errors#err_crypto_invalid_messagelen|Errors
+ERR_CRYPTO_INVALID_SCRYPT_PARAMS|errors#err_crypto_invalid_scrypt_params|Errors
+ERR_CRYPTO_INVALID_STATE|errors#err_crypto_invalid_state|Errors
+ERR_CRYPTO_INVALID_TAG_LENGTH|errors#err_crypto_invalid_tag_length|Errors
+ERR_CRYPTO_JOB_INIT_FAILED|errors#err_crypto_job_init_failed|Errors
+ERR_CRYPTO_JWK_UNSUPPORTED_CURVE|errors#err_crypto_jwk_unsupported_curve|Errors
+ERR_CRYPTO_JWK_UNSUPPORTED_KEY_TYPE|errors#err_crypto_jwk_unsupported_key_type|Errors
+ERR_CRYPTO_OPERATION_FAILED|errors#err_crypto_operation_failed|Errors
+ERR_CRYPTO_PBKDF2_ERROR|errors#err_crypto_pbkdf2_error|Errors
+ERR_CRYPTO_SCRYPT_INVALID_PARAMETER|errors#err_crypto_scrypt_invalid_parameter|Errors
+ERR_CRYPTO_SCRYPT_NOT_SUPPORTED|errors#err_crypto_scrypt_not_supported|Errors
+ERR_CRYPTO_SIGN_KEY_REQUIRED|errors#err_crypto_sign_key_required|Errors
+ERR_CRYPTO_TIMING_SAFE_EQUAL_LENGTH|errors#err_crypto_timing_safe_equal_length|Errors
+ERR_CRYPTO_UNKNOWN_CIPHER|errors#err_crypto_unknown_cipher|Errors
+ERR_CRYPTO_UNKNOWN_DH_GROUP|errors#err_crypto_unknown_dh_group|Errors
+ERR_CRYPTO_UNSUPPORTED_OPERATION|errors#err_crypto_unsupported_operation|Errors
+ERR_DEBUGGER_ERROR|errors#err_debugger_error|Errors
+ERR_DEBUGGER_STARTUP_ERROR|errors#err_debugger_startup_error|Errors
+ERR_DIR_CLOSED|errors#err_dir_closed|Errors
+ERR_DIR_CONCURRENT_OPERATION|errors#err_dir_concurrent_operation|Errors
+ERR_DLOPEN_DISABLED|errors#err_dlopen_disabled|Errors
+ERR_DLOPEN_FAILED|errors#err_dlopen_failed|Errors
+ERR_DNS_SET_SERVERS_FAILED|errors#err_dns_set_servers_failed|Errors
+ERR_DOMAIN_CALLBACK_NOT_AVAILABLE|errors#err_domain_callback_not_available|Errors
+ERR_DOMAIN_CANNOT_SET_UNCAUGHT_EXCEPTION_CAPTURE|errors#err_domain_cannot_set_uncaught_exception_capture|Errors
+ERR_DUPLICATE_STARTUP_SNAPSHOT_MAIN_FUNCTION|errors#err_duplicate_startup_snapshot_main_function|Errors
+ERR_ENCODING_INVALID_ENCODED_DATA|errors#err_encoding_invalid_encoded_data|Errors
+ERR_ENCODING_NOT_SUPPORTED|errors#err_encoding_not_supported|Errors
+ERR_EVAL_ESM_CANNOT_PRINT|errors#err_eval_esm_cannot_print|Errors
+ERR_EVENT_RECURSION|errors#err_event_recursion|Errors
+ERR_EXECUTION_ENVIRONMENT_NOT_AVAILABLE|errors#err_execution_environment_not_available|Errors
+ERR_FALSY_VALUE_REJECTION|errors#err_falsy_value_rejection|Errors
+ERR_FEATURE_UNAVAILABLE_ON_PLATFORM|errors#err_feature_unavailable_on_platform|Errors
+ERR_FS_CP_DIR_TO_NON_DIR|errors#err_fs_cp_dir_to_non_dir|Errors
+ERR_FS_CP_EEXIST|errors#err_fs_cp_eexist|Errors
+ERR_FS_CP_EINVAL|errors#err_fs_cp_einval|Errors
+ERR_FS_CP_FIFO_PIPE|errors#err_fs_cp_fifo_pipe|Errors
+ERR_FS_CP_NON_DIR_TO_DIR|errors#err_fs_cp_non_dir_to_dir|Errors
+ERR_FS_CP_SOCKET|errors#err_fs_cp_socket|Errors
+ERR_FS_CP_SYMLINK_TO_SUBDIRECTORY|errors#err_fs_cp_symlink_to_subdirectory|Errors
+ERR_FS_CP_UNKNOWN|errors#err_fs_cp_unknown|Errors
+ERR_FS_EISDIR|errors#err_fs_eisdir|Errors
+ERR_FS_FILE_TOO_LARGE|errors#err_fs_file_too_large|Errors
+ERR_FS_INVALID_SYMLINK_TYPE|errors#err_fs_invalid_symlink_type|Errors
+ERR_HTTP2_ALTSVC_INVALID_ORIGIN|errors#err_http2_altsvc_invalid_origin|Errors
+ERR_HTTP2_ALTSVC_LENGTH|errors#err_http2_altsvc_length|Errors
+ERR_HTTP2_CONNECT_AUTHORITY|errors#err_http2_connect_authority|Errors
+ERR_HTTP2_CONNECT_PATH|errors#err_http2_connect_path|Errors
+ERR_HTTP2_CONNECT_SCHEME|errors#err_http2_connect_scheme|Errors
+ERR_HTTP2_ERROR|errors#err_http2_error|Errors
+ERR_HTTP2_FRAME_ERROR|errors#err_http2_frame_error|Errors
+ERR_HTTP2_GOAWAY_SESSION|errors#err_http2_goaway_session|Errors
+ERR_HTTP2_HEADERS_AFTER_RESPOND|errors#err_http2_headers_after_respond|Errors
+ERR_HTTP2_HEADERS_OBJECT|errors#err_http2_headers_object|Errors
+ERR_HTTP2_HEADERS_SENT|errors#err_http2_headers_sent|Errors
+ERR_HTTP2_HEADER_REQUIRED|errors#err_http2_header_required|Errors
+ERR_HTTP2_HEADER_SINGLE_VALUE|errors#err_http2_header_single_value|Errors
+ERR_HTTP2_INFO_HEADERS_AFTER_RESPOND|errors#err_http2_info_headers_after_respond|Errors
+ERR_HTTP2_INFO_STATUS_NOT_ALLOWED|errors#err_http2_info_status_not_allowed|Errors
+ERR_HTTP2_INVALID_CONNECTION_HEADERS|errors#err_http2_invalid_connection_headers|Errors
+ERR_HTTP2_INVALID_HEADER_VALUE|errors#err_http2_invalid_header_value|Errors
+ERR_HTTP2_INVALID_INFO_STATUS|errors#err_http2_invalid_info_status|Errors
+ERR_HTTP2_INVALID_ORIGIN|errors#err_http2_invalid_origin|Errors
+ERR_HTTP2_INVALID_PACKED_SETTINGS_LENGTH|errors#err_http2_invalid_packed_settings_length|Errors
+ERR_HTTP2_INVALID_PSEUDOHEADER|errors#err_http2_invalid_pseudoheader|Errors
+ERR_HTTP2_INVALID_SESSION|errors#err_http2_invalid_session|Errors
+ERR_HTTP2_INVALID_SETTING_VALUE|errors#err_http2_invalid_setting_value|Errors
+ERR_HTTP2_INVALID_STREAM|errors#err_http2_invalid_stream|Errors
+ERR_HTTP2_MAX_PENDING_SETTINGS_ACK|errors#err_http2_max_pending_settings_ack|Errors
+ERR_HTTP2_NESTED_PUSH|errors#err_http2_nested_push|Errors
+ERR_HTTP2_NO_MEM|errors#err_http2_no_mem|Errors
+ERR_HTTP2_NO_SOCKET_MANIPULATION|errors#err_http2_no_socket_manipulation|Errors
+ERR_HTTP2_ORIGIN_LENGTH|errors#err_http2_origin_length|Errors
+ERR_HTTP2_OUT_OF_STREAMS|errors#err_http2_out_of_streams|Errors
+ERR_HTTP2_PAYLOAD_FORBIDDEN|errors#err_http2_payload_forbidden|Errors
+ERR_HTTP2_PING_CANCEL|errors#err_http2_ping_cancel|Errors
+ERR_HTTP2_PING_LENGTH|errors#err_http2_ping_length|Errors
+ERR_HTTP2_PSEUDOHEADER_NOT_ALLOWED|errors#err_http2_pseudoheader_not_allowed|Errors
+ERR_HTTP2_PUSH_DISABLED|errors#err_http2_push_disabled|Errors
+ERR_HTTP2_SEND_FILE|errors#err_http2_send_file|Errors
+ERR_HTTP2_SEND_FILE_NOSEEK|errors#err_http2_send_file_noseek|Errors
+ERR_HTTP2_SESSION_ERROR|errors#err_http2_session_error|Errors
+ERR_HTTP2_SETTINGS_CANCEL|errors#err_http2_settings_cancel|Errors
+ERR_HTTP2_SOCKET_BOUND|errors#err_http2_socket_bound|Errors
+ERR_HTTP2_SOCKET_UNBOUND|errors#err_http2_socket_unbound|Errors
+ERR_HTTP2_STATUS_101|errors#err_http2_status_101|Errors
+ERR_HTTP2_STATUS_INVALID|errors#err_http2_status_invalid|Errors
+ERR_HTTP2_STREAM_CANCEL|errors#err_http2_stream_cancel|Errors
+ERR_HTTP2_STREAM_CLOSED|errors#err_http2_stream_closed|Errors
+ERR_HTTP2_STREAM_ERROR|errors#err_http2_stream_error|Errors
+ERR_HTTP2_STREAM_SELF_DEPENDENCY|errors#err_http2_stream_self_dependency|Errors
+ERR_HTTP2_TOO_MANY_INVALID_FRAMES|errors#err_http2_too_many_invalid_frames|Errors
+ERR_HTTP2_TRAILERS_ALREADY_SENT|errors#err_http2_trailers_already_sent|Errors
+ERR_HTTP2_TRAILERS_NOT_READY|errors#err_http2_trailers_not_ready|Errors
+ERR_HTTP2_UNSUPPORTED_PROTOCOL|errors#err_http2_unsupported_protocol|Errors
+ERR_HTTP_CONTENT_LENGTH_MISMATCH|errors#err_http_content_length_mismatch|Errors
+ERR_HTTP_HEADERS_SENT|errors#err_http_headers_sent|Errors
+ERR_HTTP_INVALID_CHAR|errors#err_http_invalid_char|Errors
+ERR_HTTP_INVALID_HEADER_VALUE|errors#err_http_invalid_header_value|Errors
+ERR_HTTP_INVALID_STATUS_CODE|errors#err_http_invalid_status_code|Errors
+ERR_HTTP_REQUEST_TIMEOUT|errors#err_http_request_timeout|Errors
+ERR_HTTP_SOCKET_ENCODING|errors#err_http_socket_encoding|Errors
+ERR_HTTP_TRAILER_INVALID|errors#err_http_trailer_invalid|Errors
+ERR_ILLEGAL_CONSTRUCTOR|errors#err_illegal_constructor|Errors
+ERR_IMPORT_ASSERTION_TYPE_FAILED|errors#err_import_assertion_type_failed|Errors
+ERR_IMPORT_ASSERTION_TYPE_MISSING|errors#err_import_assertion_type_missing|Errors
+ERR_IMPORT_ASSERTION_TYPE_UNSUPPORTED|errors#err_import_assertion_type_unsupported|Errors
+ERR_INCOMPATIBLE_OPTION_PAIR|errors#err_incompatible_option_pair|Errors
+ERR_INDEX_OUT_OF_RANGE|errors#err_index_out_of_range|Errors
+ERR_INPUT_TYPE_NOT_ALLOWED|errors#err_input_type_not_allowed|Errors
+ERR_INSPECTOR_ALREADY_ACTIVATED|errors#err_inspector_already_activated|Errors
+ERR_INSPECTOR_ALREADY_CONNECTED|errors#err_inspector_already_connected|Errors
+ERR_INSPECTOR_CLOSED|errors#err_inspector_closed|Errors
+ERR_INSPECTOR_COMMAND|errors#err_inspector_command|Errors
+ERR_INSPECTOR_NOT_ACTIVE|errors#err_inspector_not_active|Errors
+ERR_INSPECTOR_NOT_AVAILABLE|errors#err_inspector_not_available|Errors
+ERR_INSPECTOR_NOT_CONNECTED|errors#err_inspector_not_connected|Errors
+ERR_INSPECTOR_NOT_WORKER|errors#err_inspector_not_worker|Errors
+ERR_INTERNAL_ASSERTION|errors#err_internal_assertion|Errors
+ERR_INVALID_ADDRESS_FAMILY|errors#err_invalid_address_family|Errors
+ERR_INVALID_ARG_TYPE|errors#err_invalid_arg_type|Errors
+ERR_INVALID_ARG_VALUE|errors#err_invalid_arg_value|Errors
+ERR_INVALID_ASYNC_ID|errors#err_invalid_async_id|Errors
+ERR_INVALID_BUFFER_SIZE|errors#err_invalid_buffer_size|Errors
+ERR_INVALID_CHAR|errors#err_invalid_char|Errors
+ERR_INVALID_CURSOR_POS|errors#err_invalid_cursor_pos|Errors
+ERR_INVALID_FD|errors#err_invalid_fd|Errors
+ERR_INVALID_FD_TYPE|errors#err_invalid_fd_type|Errors
+ERR_INVALID_FILE_URL_HOST|errors#err_invalid_file_url_host|Errors
+ERR_INVALID_FILE_URL_PATH|errors#err_invalid_file_url_path|Errors
+ERR_INVALID_HANDLE_TYPE|errors#err_invalid_handle_type|Errors
+ERR_INVALID_HTTP_TOKEN|errors#err_invalid_http_token|Errors
+ERR_INVALID_IP_ADDRESS|errors#err_invalid_ip_address|Errors
+ERR_INVALID_MODULE|errors#err_invalid_module|Errors
+ERR_INVALID_MODULE_SPECIFIER|errors#err_invalid_module_specifier|Errors
+ERR_INVALID_OBJECT_DEFINE_PROPERTY|errors#err_invalid_object_define_property|Errors
+ERR_INVALID_OPT_VALUE|errors#err_invalid_opt_value|Errors
+ERR_INVALID_OPT_VALUE_ENCODING|errors#err_invalid_opt_value_encoding|Errors
+ERR_INVALID_PACKAGE_CONFIG|errors#err_invalid_package_config|Errors
+ERR_INVALID_PACKAGE_TARGET|errors#err_invalid_package_target|Errors
+ERR_INVALID_PERFORMANCE_MARK|errors#err_invalid_performance_mark|Errors
+ERR_INVALID_PROTOCOL|errors#err_invalid_protocol|Errors
+ERR_INVALID_REPL_EVAL_CONFIG|errors#err_invalid_repl_eval_config|Errors
+ERR_INVALID_REPL_INPUT|errors#err_invalid_repl_input|Errors
+ERR_INVALID_RETURN_PROPERTY|errors#err_invalid_return_property|Errors
+ERR_INVALID_RETURN_PROPERTY_VALUE|errors#err_invalid_return_property_value|Errors
+ERR_INVALID_RETURN_VALUE|errors#err_invalid_return_value|Errors
+ERR_INVALID_STATE|errors#err_invalid_state|Errors
+ERR_INVALID_SYNC_FORK_INPUT|errors#err_invalid_sync_fork_input|Errors
+ERR_INVALID_THIS|errors#err_invalid_this|Errors
+ERR_INVALID_TRANSFER_OBJECT|errors#err_invalid_transfer_object|Errors
+ERR_INVALID_TUPLE|errors#err_invalid_tuple|Errors
+ERR_INVALID_URI|errors#err_invalid_uri|Errors
+ERR_INVALID_URL|errors#err_invalid_url|Errors
+ERR_INVALID_URL_SCHEME|errors#err_invalid_url_scheme|Errors
+ERR_IPC_CHANNEL_CLOSED|errors#err_ipc_channel_closed|Errors
+ERR_IPC_DISCONNECTED|errors#err_ipc_disconnected|Errors
+ERR_IPC_ONE_PIPE|errors#err_ipc_one_pipe|Errors
+ERR_IPC_SYNC_FORK|errors#err_ipc_sync_fork|Errors
+ERR_LOADER_CHAIN_INCOMPLETE|errors#err_loader_chain_incomplete|Errors
+ERR_MANIFEST_ASSERT_INTEGRITY|errors#err_manifest_assert_integrity|Errors
+ERR_MANIFEST_DEPENDENCY_MISSING|errors#err_manifest_dependency_missing|Errors
+ERR_MANIFEST_INTEGRITY_MISMATCH|errors#err_manifest_integrity_mismatch|Errors
+ERR_MANIFEST_INVALID_RESOURCE_FIELD|errors#err_manifest_invalid_resource_field|Errors
+ERR_MANIFEST_INVALID_SPECIFIER|errors#err_manifest_invalid_specifier|Errors
+ERR_MANIFEST_PARSE_POLICY|errors#err_manifest_parse_policy|Errors
+ERR_MANIFEST_TDZ|errors#err_manifest_tdz|Errors
+ERR_MANIFEST_UNKNOWN_ONERROR|errors#err_manifest_unknown_onerror|Errors
+ERR_MEMORY_ALLOCATION_FAILED|errors#err_memory_allocation_failed|Errors
+ERR_MESSAGE_TARGET_CONTEXT_UNAVAILABLE|errors#err_message_target_context_unavailable|Errors
+ERR_METHOD_NOT_IMPLEMENTED|errors#err_method_not_implemented|Errors
+ERR_MISSING_ARGS|errors#err_missing_args|Errors
+ERR_MISSING_MESSAGE_PORT_IN_TRANSFER_LIST|errors#err_missing_message_port_in_transfer_list|Errors
+ERR_MISSING_OPTION|errors#err_missing_option|Errors
+ERR_MISSING_PASSPHRASE|errors#err_missing_passphrase|Errors
+ERR_MISSING_PLATFORM_FOR_WORKER|errors#err_missing_platform_for_worker|Errors
+ERR_MISSING_TRANSFERABLE_IN_TRANSFER_LIST|errors#err_missing_transferable_in_transfer_list|Errors
+ERR_MODULE_NOT_FOUND|errors#err_module_not_found|Errors
+ERR_MULTIPLE_CALLBACK|errors#err_multiple_callback|Errors
+ERR_NAPI_CONS_FUNCTION|errors#err_napi_cons_function|Errors
+ERR_NAPI_CONS_PROTOTYPE_OBJECT|errors#err_napi_cons_prototype_object|Errors
+ERR_NAPI_INVALID_DATAVIEW_ARGS|errors#err_napi_invalid_dataview_args|Errors
+ERR_NAPI_INVALID_TYPEDARRAY_ALIGNMENT|errors#err_napi_invalid_typedarray_alignment|Errors
+ERR_NAPI_INVALID_TYPEDARRAY_LENGTH|errors#err_napi_invalid_typedarray_length|Errors
+ERR_NAPI_TSFN_CALL_JS|errors#err_napi_tsfn_call_js|Errors
+ERR_NAPI_TSFN_GET_UNDEFINED|errors#err_napi_tsfn_get_undefined|Errors
+ERR_NAPI_TSFN_START_IDLE_LOOP|errors#err_napi_tsfn_start_idle_loop|Errors
+ERR_NAPI_TSFN_STOP_IDLE_LOOP|errors#err_napi_tsfn_stop_idle_loop|Errors
+ERR_NETWORK_IMPORT_BAD_RESPONSE|errors#err_network_import_bad_response|Errors
+ERR_NETWORK_IMPORT_DISALLOWED|errors#err_network_import_disallowed|Errors
+ERR_NON_CONTEXT_AWARE_DISABLED|errors#err_non_context_aware_disabled|Errors
+ERR_NOT_BUILDING_SNAPSHOT|errors#err_not_building_snapshot|Errors
+ERR_NO_CRYPTO|errors#err_no_crypto|Errors
+ERR_NO_ICU|errors#err_no_icu|Errors
+ERR_NO_LONGER_SUPPORTED|errors#err_no_longer_supported|Errors
+ERR_OPERATION_FAILED|errors#err_operation_failed|Errors
+ERR_OUTOFMEMORY|errors#err_outofmemory|Errors
+ERR_OUT_OF_RANGE|errors#err_out_of_range|Errors
+ERR_PACKAGE_IMPORT_NOT_DEFINED|errors#err_package_import_not_defined|Errors
+ERR_PACKAGE_PATH_NOT_EXPORTED|errors#err_package_path_not_exported|Errors
+ERR_PARSE_ARGS_INVALID_OPTION_VALUE|errors#err_parse_args_invalid_option_value|Errors
+ERR_PARSE_ARGS_UNEXPECTED_POSITIONAL|errors#err_parse_args_unexpected_positional|Errors
+ERR_PARSE_ARGS_UNKNOWN_OPTION|errors#err_parse_args_unknown_option|Errors
+ERR_PARSE_HISTORY_DATA|errors#err_parse_history_data|Errors
+ERR_PERFORMANCE_INVALID_TIMESTAMP|errors#err_performance_invalid_timestamp|Errors
+ERR_PERFORMANCE_MEASURE_INVALID_OPTIONS|errors#err_performance_measure_invalid_options|Errors
+ERR_PROTO_ACCESS|errors#err_proto_access|Errors
+ERR_REQUIRE_ESM|errors#err_require_esm|Errors
+ERR_SCRIPT_EXECUTION_INTERRUPTED|errors#err_script_execution_interrupted|Errors
+ERR_SCRIPT_EXECUTION_TIMEOUT|errors#err_script_execution_timeout|Errors
+ERR_SERVER_ALREADY_LISTEN|errors#err_server_already_listen|Errors
+ERR_SERVER_NOT_RUNNING|errors#err_server_not_running|Errors
+ERR_SOCKET_ALREADY_BOUND|errors#err_socket_already_bound|Errors
+ERR_SOCKET_BAD_BUFFER_SIZE|errors#err_socket_bad_buffer_size|Errors
+ERR_SOCKET_BAD_PORT|errors#err_socket_bad_port|Errors
+ERR_SOCKET_BAD_TYPE|errors#err_socket_bad_type|Errors
+ERR_SOCKET_BUFFER_SIZE|errors#err_socket_buffer_size|Errors
+ERR_SOCKET_CANNOT_SEND|errors#err_socket_cannot_send|Errors
+ERR_SOCKET_CLOSED|errors#err_socket_closed|Errors
+ERR_SOCKET_DGRAM_IS_CONNECTED|errors#err_socket_dgram_is_connected|Errors
+ERR_SOCKET_DGRAM_NOT_CONNECTED|errors#err_socket_dgram_not_connected|Errors
+ERR_SOCKET_DGRAM_NOT_RUNNING|errors#err_socket_dgram_not_running|Errors
+ERR_SRI_PARSE|errors#err_sri_parse|Errors
+ERR_STDERR_CLOSE|errors#err_stderr_close|Errors
+ERR_STDOUT_CLOSE|errors#err_stdout_close|Errors
+ERR_STREAM_ALREADY_FINISHED|errors#err_stream_already_finished|Errors
+ERR_STREAM_CANNOT_PIPE|errors#err_stream_cannot_pipe|Errors
+ERR_STREAM_DESTROYED|errors#err_stream_destroyed|Errors
+ERR_STREAM_NULL_VALUES|errors#err_stream_null_values|Errors
+ERR_STREAM_PREMATURE_CLOSE|errors#err_stream_premature_close|Errors
+ERR_STREAM_PUSH_AFTER_EOF|errors#err_stream_push_after_eof|Errors
+ERR_STREAM_READ_NOT_IMPLEMENTED|errors#err_stream_read_not_implemented|Errors
+ERR_STREAM_UNSHIFT_AFTER_END_EVENT|errors#err_stream_unshift_after_end_event|Errors
+ERR_STREAM_WRAP|errors#err_stream_wrap|Errors
+ERR_STREAM_WRITE_AFTER_END|errors#err_stream_write_after_end|Errors
+ERR_STRING_TOO_LONG|errors#err_string_too_long|Errors
+ERR_SYNTHETIC|errors#err_synthetic|Errors
+ERR_SYSTEM_ERROR|errors#err_system_error|Errors
+ERR_TEST_FAILURE|errors#err_test_failure|Errors
+ERR_TLS_CERT_ALTNAME_FORMAT|errors#err_tls_cert_altname_format|Errors
+ERR_TLS_CERT_ALTNAME_INVALID|errors#err_tls_cert_altname_invalid|Errors
+ERR_TLS_DH_PARAM_SIZE|errors#err_tls_dh_param_size|Errors
+ERR_TLS_HANDSHAKE_TIMEOUT|errors#err_tls_handshake_timeout|Errors
+ERR_TLS_INVALID_CONTEXT|errors#err_tls_invalid_context|Errors
+ERR_TLS_INVALID_PROTOCOL_METHOD|errors#err_tls_invalid_protocol_method|Errors
+ERR_TLS_INVALID_PROTOCOL_VERSION|errors#err_tls_invalid_protocol_version|Errors
+ERR_TLS_INVALID_STATE|errors#err_tls_invalid_state|Errors
+ERR_TLS_PROTOCOL_VERSION_CONFLICT|errors#err_tls_protocol_version_conflict|Errors
+ERR_TLS_PSK_SET_IDENTIY_HINT_FAILED|errors#err_tls_psk_set_identiy_hint_failed|Errors
+ERR_TLS_RENEGOTIATION_DISABLED|errors#err_tls_renegotiation_disabled|Errors
+ERR_TLS_RENEGOTIATION_FAILED|errors#err_tls_renegotiation_failed|Errors
+ERR_TLS_REQUIRED_SERVER_NAME|errors#err_tls_required_server_name|Errors
+ERR_TLS_SESSION_ATTACK|errors#err_tls_session_attack|Errors
+ERR_TLS_SNI_FROM_SERVER|errors#err_tls_sni_from_server|Errors
+ERR_TRACE_EVENTS_CATEGORY_REQUIRED|errors#err_trace_events_category_required|Errors
+ERR_TRACE_EVENTS_UNAVAILABLE|errors#err_trace_events_unavailable|Errors
+ERR_TRANSFERRING_EXTERNALIZED_SHAREDARRAYBUFFER|errors#err_transferring_externalized_sharedarraybuffer|Errors
+ERR_TRANSFORM_ALREADY_TRANSFORMING|errors#err_transform_already_transforming|Errors
+ERR_TRANSFORM_WITH_LENGTH_0|errors#err_transform_with_length_0|Errors
+ERR_TTY_INIT_FAILED|errors#err_tty_init_failed|Errors
+ERR_UNAVAILABLE_DURING_EXIT|errors#err_unavailable_during_exit|Errors
+ERR_UNCAUGHT_EXCEPTION_CAPTURE_ALREADY_SET|errors#err_uncaught_exception_capture_already_set|Errors
+ERR_UNESCAPED_CHARACTERS|errors#err_unescaped_characters|Errors
+ERR_UNHANDLED_ERROR|errors#err_unhandled_error|Errors
+ERR_UNKNOWN_BUILTIN_MODULE|errors#err_unknown_builtin_module|Errors
+ERR_UNKNOWN_CREDENTIAL|errors#err_unknown_credential|Errors
+ERR_UNKNOWN_ENCODING|errors#err_unknown_encoding|Errors
+ERR_UNKNOWN_FILE_EXTENSION|errors#err_unknown_file_extension|Errors
+ERR_UNKNOWN_MODULE_FORMAT|errors#err_unknown_module_format|Errors
+ERR_UNKNOWN_SIGNAL|errors#err_unknown_signal|Errors
+ERR_UNKNOWN_STDIN_TYPE|errors#err_unknown_stdin_type|Errors
+ERR_UNKNOWN_STREAM_TYPE|errors#err_unknown_stream_type|Errors
+ERR_UNSUPPORTED_DIR_IMPORT|errors#err_unsupported_dir_import|Errors
+ERR_UNSUPPORTED_ESM_URL_SCHEME|errors#err_unsupported_esm_url_scheme|Errors
+ERR_USE_AFTER_CLOSE|errors#err_use_after_close|Errors
+ERR_V8BREAKITERATOR|errors#err_v8breakiterator|Errors
+ERR_VALID_PERFORMANCE_ENTRY_TYPE|errors#err_valid_performance_entry_type|Errors
+ERR_VALUE_OUT_OF_RANGE|errors#err_value_out_of_range|Errors
+ERR_VM_DYNAMIC_IMPORT_CALLBACK_MISSING|errors#err_vm_dynamic_import_callback_missing|Errors
+ERR_VM_MODULE_ALREADY_LINKED|errors#err_vm_module_already_linked|Errors
+ERR_VM_MODULE_CACHED_DATA_REJECTED|errors#err_vm_module_cached_data_rejected|Errors
+ERR_VM_MODULE_CANNOT_CREATE_CACHED_DATA|errors#err_vm_module_cannot_create_cached_data|Errors
+ERR_VM_MODULE_DIFFERENT_CONTEXT|errors#err_vm_module_different_context|Errors
+ERR_VM_MODULE_LINKING_ERRORED|errors#err_vm_module_linking_errored|Errors
+ERR_VM_MODULE_LINK_FAILURE|errors#err_vm_module_link_failure|Errors
+ERR_VM_MODULE_NOT_LINKED|errors#err_vm_module_not_linked|Errors
+ERR_VM_MODULE_NOT_MODULE|errors#err_vm_module_not_module|Errors
+ERR_VM_MODULE_STATUS|errors#err_vm_module_status|Errors
+ERR_WASI_ALREADY_STARTED|errors#err_wasi_already_started|Errors
+ERR_WASI_NOT_STARTED|errors#err_wasi_not_started|Errors
+ERR_WEBASSEMBLY_RESPONSE|errors#err_webassembly_response|Errors
+ERR_WORKER_INIT_FAILED|errors#err_worker_init_failed|Errors
+ERR_WORKER_INVALID_EXEC_ARGV|errors#err_worker_invalid_exec_argv|Errors
+ERR_WORKER_NOT_RUNNING|errors#err_worker_not_running|Errors
+ERR_WORKER_OUT_OF_MEMORY|errors#err_worker_out_of_memory|Errors
+ERR_WORKER_PATH|errors#err_worker_path|Errors
+ERR_WORKER_UNSERIALIZABLE_ERROR|errors#err_worker_unserializable_error|Errors
+ERR_WORKER_UNSUPPORTED_EXTENSION|errors#err_worker_unsupported_extension|Errors
+ERR_WORKER_UNSUPPORTED_OPERATION|errors#err_worker_unsupported_operation|Errors
+ERR_ZLIB_BINDING_CLOSED|errors#err_zlib_binding_closed|Errors
+ERR_ZLIB_INITIALIZATION_FAILED|errors#err_zlib_initialization_failed|Errors
+Error.captureStackTrace()|errors#errorcapturestacktracetargetobject-constructoropt|Errors
+Error.stackTraceLimit|errors#errorstacktracelimit|Errors
+Errors|errors|Errors
+Event|globals#event|Global objects
+Event|events#eventtarget-and-event-api|Events
+Event 'OCSPRequest'|tls#event-ocsprequest|TLS (SSL)
+Event 'OCSPResponse'|tls#event-ocspresponse|TLS (SSL)
+Event 'SIGCONT'|readline#event-sigcont|Readline
+Event 'SIGINT'|readline#event-sigint|Readline
+Event 'SIGTSTP'|readline#event-sigtstp|Readline
+Event 'abort'|globals#event-abort|Global objects
+Event 'abort'|http#event-abort|HTTP
+Event 'aborted'|http2#event-aborted_1|HTTP/2
+Event 'aborted'|http2#event-aborted|HTTP/2
+Event 'aborted'|http#event-aborted|HTTP
+Event 'altsvc'|http2#event-altsvc|HTTP/2
+Event 'beforeExit'|process#event-beforeexit|Process
+Event 'change'|fs#event-change|File system
+Event 'checkContinue'|http#event-checkcontinue|HTTP
+Event 'checkContinue'|http2#event-checkcontinue_1|HTTP/2
+Event 'checkContinue'|http2#event-checkcontinue|HTTP/2
+Event 'checkExpectation'|http#event-checkexpectation|HTTP
+Event 'clientError'|http#event-clienterror|HTTP
+Event 'close'|worker_threads#event-close|Worker threads
+Event 'close'|fs#event-close_1|File system
+Event 'close'|fs#event-close_2|File system
+Event 'close'|net#event-close|Net
+Event 'close'|http#event-close_2|HTTP
+Event 'close'|fs#event-close_3|File system
+Event 'close'|child_process#event-close|Child process
+Event 'close'|fs#event-close|File system
+Event 'close'|http#event-close_1|HTTP
+Event 'close'|dgram#event-close|UDP/datagram sockets
+Event 'close'|net#event-close_1|Net
+Event 'close'|http#event-close|HTTP
+Event 'close'|http#event-close_3|HTTP
+Event 'close'|http2#event-close|HTTP/2
+Event 'close'|http2#event-close_1|HTTP/2
+Event 'close'|readline#event-close|Readline
+Event 'close'|http2#event-close_3|HTTP/2
+Event 'close'|http2#event-close_2|HTTP/2
+Event 'connect'|http#event-connect|HTTP
+Event 'connect'|http2#event-connect|HTTP/2
+Event 'connect'|http#event-connect_1|HTTP
+Event 'connect'|dgram#event-connect|UDP/datagram sockets
+Event 'connect'|net#event-connect|Net
+Event 'connection'|net#event-connection|Net
+Event 'connection'|http2#event-connection_1|HTTP/2
+Event 'connection'|http2#event-connection|HTTP/2
+Event 'connection'|tls#event-connection|TLS (SSL)
+Event 'connection'|http#event-connection|HTTP
+Event 'continue'|http2#event-continue|HTTP/2
+Event 'continue'|http#event-continue|HTTP
+Event 'data'|net#event-data|Net
+Event 'disconnect'|cluster#event-disconnect|Cluster
+Event 'disconnect'|child_process#event-disconnect|Child process
+Event 'disconnect'|cluster#event-disconnect_1|Cluster
+Event 'disconnect'|process#event-disconnect|Process
+Event 'drain'|net#event-drain|Net
+Event 'drain'|http#event-drain|HTTP
+Event 'drop'|net#event-drop|Net
+Event 'dropRequest'|http#event-droprequest|HTTP
+Event 'end'|net#event-end|Net
+Event 'end'|stream#event-end_1|Stream[src]
+Event 'error'|cluster#event-error|Cluster
+Event 'error'|net#event-error_1|Net
+Event 'error'|worker_threads#event-error|Worker threads
+Event 'error'|dgram#event-error|UDP/datagram sockets
+Event 'error'|child_process#event-error|Child process
+Event 'error'|net#event-error|Net
+Event 'error'|http2#event-error_1|HTTP/2
+Event 'error'|fs#event-error|File system
+Event 'error'|http2#event-error|HTTP/2
+Event 'exit'|cluster#event-exit|Cluster
+Event 'exit'|child_process#event-exit|Child process
+Event 'exit'|process#event-exit|Process
+Event 'exit'|worker_threads#event-exit|Worker threads
+Event 'exit'|cluster#event-exit_1|Cluster
+Event 'exit'|repl#event-exit|REPL
+Event 'finish'|http#event-finish_1|HTTP
+Event 'finish'|stream#event-finish_1|Stream[src]
+Event 'finish'|http#event-finish|HTTP
+Event 'finish'|http#event-finish_2|HTTP
+Event 'finish'|http2#event-finish|HTTP/2
+Event 'fork'|cluster#event-fork|Cluster
+Event 'frameError'|http2#event-frameerror|HTTP/2
+Event 'frameError'|http2#event-frameerror_1|HTTP/2
+Event 'goaway'|http2#event-goaway|HTTP/2
+Event 'headers'|http2#event-headers|HTTP/2
+Event 'history'|readline#event-history|Readline
+Event 'information'|http#event-information|HTTP
+Event 'inspectorNotification'|inspector#event-inspectornotification|Inspector
+Event 'inspectorNotification'|inspector#event-inspectornotification_1|Inspector
+Event 'keylog'|https#event-keylog|HTTPS
+Event 'keylog'|tls#event-keylog|TLS (SSL)
+Event 'keylog'|tls#event-keylog_1|TLS (SSL)
+Event 'line'|readline#event-line|Readline
+Event 'listening'|net#event-listening|Net
+Event 'listening'|cluster#event-listening|Cluster
+Event 'listening'|dgram#event-listening|UDP/datagram sockets
+Event 'listening'|cluster#event-listening_1|Cluster
+Event 'localSettings'|http2#event-localsettings|HTTP/2
+Event 'lookup'|net#event-lookup|Net
+Event 'message'|process#event-message|Process
+Event 'message'|dgram#event-message|UDP/datagram sockets
+Event 'message'|cluster#event-message|Cluster
+Event 'message'|worker_threads#event-message|Worker threads
+Event 'message'|cluster#event-message_1|Cluster
+Event 'message'|worker_threads#event-message_1|Worker threads
+Event 'message'|child_process#event-message|Child process
+Event 'messageerror'|worker_threads#event-messageerror_1|Worker threads
+Event 'messageerror'|worker_threads#event-messageerror|Worker threads
+Event 'multipleResolves'|process#event-multipleresolves|Process
+Event 'newListener'|events#event-newlistener|Events
+Event 'newSession'|tls#event-newsession|TLS (SSL)
+Event 'online'|cluster#event-online_1|Cluster
+Event 'online'|cluster#event-online|Cluster
+Event 'online'|worker_threads#event-online|Worker threads
+Event 'open'|fs#event-open_1|File system
+Event 'open'|fs#event-open|File system
+Event 'origin'|http2#event-origin|HTTP/2
+Event 'pause'|readline#event-pause|Readline
+Event 'ping'|http2#event-ping|HTTP/2
+Event 'prefinish'|http#event-prefinish|HTTP
+Event 'push'|http2#event-push|HTTP/2
+Event 'ready'|net#event-ready|Net
+Event 'ready'|http2#event-ready|HTTP/2
+Event 'ready'|fs#event-ready|File system
+Event 'ready'|fs#event-ready_1|File system
+Event 'rejectionHandled'|process#event-rejectionhandled|Process
+Event 'remoteSettings'|http2#event-remotesettings|HTTP/2
+Event 'removeListener'|events#event-removelistener|Events
+Event 'request'|http2#event-request_1|HTTP/2
+Event 'request'|http2#event-request|HTTP/2
+Event 'request'|http#event-request|HTTP
+Event 'reset'|repl#event-reset|REPL
+Event 'resize'|tty#event-resize|TTY
+Event 'resourcetimingbufferfull'|perf_hooks#event-resourcetimingbufferfull|Performance measurement APIs
+Event 'response'|http#event-response|HTTP
+Event 'response'|http2#event-response|HTTP/2
+Event 'resume'|readline#event-resume|Readline
+Event 'resumeSession'|tls#event-resumesession|TLS (SSL)
+Event 'secure'|tls#event-secure|TLS (SSL)
+Event 'secureConnect'|tls#event-secureconnect|TLS (SSL)
+Event 'secureConnection'|tls#event-secureconnection|TLS (SSL)
+Event 'session'|http2#event-session|HTTP/2
+Event 'session'|http2#event-session_1|HTTP/2
+Event 'session'|tls#event-session|TLS (SSL)
+Event 'sessionError'|http2#event-sessionerror_1|HTTP/2
+Event 'sessionError'|http2#event-sessionerror|HTTP/2
+Event 'setup'|cluster#event-setup|Cluster
+Event 'socket'|http#event-socket|HTTP
+Event 'spawn'|child_process#event-spawn|Child process
+Event 'stream'|http2#event-stream_2|HTTP/2
+Event 'stream'|http2#event-stream_1|HTTP/2
+Event 'stream'|http2#event-stream|HTTP/2
+Event 'test:diagnostic'|test#event-testdiagnostic|Test runner
+Event 'test:fail'|test#event-testfail|Test runner
+Event 'test:pass'|test#event-testpass|Test runner
+Event 'timeout'|http2#event-timeout|HTTP/2
+Event 'timeout'|http2#event-timeout_2|HTTP/2
+Event 'timeout'|http2#event-timeout_1|HTTP/2
+Event 'timeout'|http2#event-timeout_3|HTTP/2
+Event 'timeout'|net#event-timeout|Net
+Event 'timeout'|http#event-timeout|HTTP
+Event 'tlsClientError'|tls#event-tlsclienterror|TLS (SSL)
+Event 'trailers'|http2#event-trailers|HTTP/2
+Event 'uncaughtException'|process#event-uncaughtexception|Process
+Event 'uncaughtExceptionMonitor'|process#event-uncaughtexceptionmonitor|Process
+Event 'unhandledRejection'|process#event-unhandledrejection|Process
+Event 'unknownProtocol'|http2#event-unknownprotocol|HTTP/2
+Event 'upgrade'|http#event-upgrade|HTTP
+Event 'upgrade'|http#event-upgrade_1|HTTP
+Event 'wantTrailers'|http2#event-wanttrailers|HTTP/2
+Event 'warning'|process#event-warning|Process
+Event 'worker'|process#event-worker|Process
+Event <inspector-protocol-method>|inspector#event-inspector-protocol-method_1|Inspector
+Event <inspector-protocol-method>|inspector#event-inspector-protocol-method|Inspector
+Event CustomEvent|globals#customevent|Global objects
+Event Event|globals#event|Global objects
+Event Event|events#eventtarget-and-event-api|Events
+Event EventEmitter|events#nodeeventtarget-vs-eventemitter|Events
+Event EventTarget|events#eventtarget-and-event-api|Events
+Event EventTarget|events#eventtarget-error-handling|Events
+Event EventTarget|globals#eventtarget|Global objects
+Event MessageEvent|globals#messageevent|Global objects
+Event NodeEventTarget|events#nodeeventtarget-vs-eventemitter|Events
+Event eventTarget.addEventListener()|events#eventtargetaddeventlistenertype-listener-options|Events
+Event eventTarget.dispatchEvent()|events#eventtargetdispatcheventevent|Events
+Event eventTarget.removeEventListener()|events#eventtargetremoveeventlistenertype-listener|Events
+Event events.getEventListeners()|events#eventsgeteventlistenersemitterortarget-eventname|Events
+Event new events.EventEmitterAsyncResource()|events#new-eventseventemitterasyncresourceoptions|Events
+Event nodeEventTarget.addListener()|events#nodeeventtargetaddlistenertype-listener-options|Events
+Event nodeEventTarget.eventNames()|events#nodeeventtargeteventnames|Events
+Event nodeEventTarget.listenerCount()|events#nodeeventtargetlistenercounttype|Events
+Event nodeEventTarget.off()|events#nodeeventtargetofftype-listener|Events
+Event nodeEventTarget.on()|events#nodeeventtargetontype-listener-options|Events
+Event nodeEventTarget.once()|events#nodeeventtargetoncetype-listener-options|Events
+Event nodeEventTarget.removeAllListeners()|events#nodeeventtargetremovealllistenerstype|Events
+Event nodeEventTarget.removeListener()|events#nodeeventtargetremovelistenertype-listener|Events
+Event perf_hooks.monitorEventLoopDelay()|perf_hooks#perf_hooksmonitoreventloopdelayoptions|Performance measurement APIs
+Event readline.emitKeypressEvents()|readline#readlineemitkeypresseventsstream-interface|Readline
+EventEmitter|events#nodeeventtarget-vs-eventemitter|Events
+EventTarget|globals#eventtarget|Global objects
+EventTarget|events#eventtarget-error-handling|Events
+EventTarget|events#eventtarget-and-event-api|Events
+Events|events|Events
+FORCE_COLOR=[1, 2, 3]|cli#force_color1-2-3|Command-line API
+File system|fs|File system
+Global objects|globals|Global objects
+HPE_HEADER_OVERFLOW|errors#hpe_header_overflow|Errors
+HPE_UNEXPECTED_CONTENT_LENGTH|errors#hpe_unexpected_content_length|Errors
+HTTP|http|HTTP
+HTTP/2|http2|HTTP/2
+HTTPS|https|HTTPS
+Http2Session|http2#http2session-and-sockets|HTTP/2
+Http2Stream|http2#http2stream-lifecycle|HTTP/2
+Inspector|inspector|Inspector
+Internationalization support|intl|Internationalization support
+MODULE_NOT_FOUND|errors#module_not_found|Errors
+MessageChannel|buffer#blob-objects-and-messagechannel|Buffer
+MessageChannel|globals#messagechannel|Global objects
+MessageEvent|globals#messageevent|Global objects
+MessagePort|globals#messageport|Global objects
+Modules: CommonJS modules|modules|Modules: CommonJS modules
+Modules: ECMAScript modules|esm|Modules: ECMAScript modules
+Modules: Packages|packages|Modules: Packages
+Modules: node:module API|module|Modules: node:module API
+NODE_DEBUG=module[,…]|cli#node_debugmodule|Command-line API
+NODE_DEBUG_NATIVE=module[,…]|cli#node_debug_nativemodule|Command-line API
+NODE_DISABLE_COLORS=1|cli#node_disable_colors1|Command-line API
+NODE_EXTRA_CA_CERTS=file|cli#node_extra_ca_certsfile|Command-line API
+NODE_ICU_DATA=file|cli#node_icu_datafile|Command-line API
+NODE_NO_WARNINGS=1|cli#node_no_warnings1|Command-line API
+NODE_OPTIONS=options...|cli#node_optionsoptions|Command-line API
+NODE_PATH=path[:…]|cli#node_pathpath|Command-line API
+NODE_PENDING_DEPRECATION=1|cli#node_pending_deprecation1|Command-line API
+NODE_PENDING_PIPE_INSTANCES=instances|cli#node_pending_pipe_instancesinstances|Command-line API
+NODE_PRESERVE_SYMLINKS=1|cli#node_preserve_symlinks1|Command-line API
+NODE_REDIRECT_WARNINGS=file|cli#node_redirect_warningsfile|Command-line API
+NODE_REPL_EXTERNAL_MODULE=file|cli#node_repl_external_modulefile|Command-line API
+NODE_REPL_HISTORY=file|cli#node_repl_historyfile|Command-line API
+NODE_SKIP_PLATFORM_CHECK=value|cli#node_skip_platform_checkvalue|Command-line API
+NODE_TLS_REJECT_UNAUTHORIZED=value|cli#node_tls_reject_unauthorizedvalue|Command-line API
+NODE_V8_COVERAGE=dir|cli#node_v8_coveragedir|Command-line API
+NO_COLOR=<any>|cli#no_colorany|Command-line API
+Net|net|Net
+Node-API|n-api|Node-API
+NodeEventTarget|events#nodeeventtarget-vs-eventemitter|Events
+OPENSSL_CONF=file|cli#openssl_conffile|Command-line API
+OS|os|OS
+Path|path|Path
+Performance measurement APIs|perf_hooks|Performance measurement APIs
+PerformanceEntry|globals#performanceentry|Global objects
+PerformanceMark|globals#performancemark|Global objects
+PerformanceMeasure|globals#performancemeasure|Global objects
+PerformanceObserver|globals#performanceobserver|Global objects
+PerformanceObserverEntryList|globals#performanceobserverentrylist|Global objects
+PerformanceResourceTiming|globals#performanceresourcetiming|Global objects
+Permissions|permissions|Permissions
+Process|process|Process
+Punycode|punycode|Punycode
+Query string|querystring|Query string
+REPL|repl|REPL
+Readline|readline|Readline
+Request|globals#request|Global objects
+Resolver()|dns#resolveroptions|DNS
+Response|globals#response|Global objects
+SSL_CERT_DIR=dir|cli#ssl_cert_dirdir|Command-line API
+SSL_CERT_FILE=file|cli#ssl_cert_filefile|Command-line API
+Stream[src]|stream|Stream[src]
+String decoder|string_decoder|String decoder
+SubtleCrypto|globals#subtlecrypto|Global objects
+TLS (SSL)|tls|TLS (SSL)
+TTY|tty|TTY
+TZ|cli#tz|Command-line API
+Test runner|test|Test runner
+TextDecoder|globals#textdecoder|Global objects
+TextEncoder|globals#textencoder|Global objects
+Timers|timers|Timers
+Trace events|tracing|Trace events
+Tracing|tracing#tracing-object|Trace events
+UDP/datagram sockets|dgram|UDP/datagram sockets
+URL|url|URL
+URL|globals#url|Global objects
+URL.createObjectURL()|url#urlcreateobjecturlblob|URL
+URL.revokeObjectURL()|url#urlrevokeobjecturlid|URL
+URLSearchParams|globals#urlsearchparams|Global objects
+UV_THREADPOOL_SIZE=size|cli#uv_threadpool_sizesize|Command-line API
+Util|util|Util
+V8|v8|V8
+VM (executing JavaScript)|vm|VM (executing JavaScript)
+Web Crypto API|webcrypto|Web Crypto API
+Web Streams API|webstreams|Web Streams API
+WebAssembly|globals#webassembly|Global objects
+WebAssembly System Interface (WASI)|wasi|WebAssembly System Interface (WASI)
+Worker threads|worker_threads|Worker threads
+Zlib|zlib|Zlib
+__dirname|globals#__dirname|Global objects
+__dirname|modules#__dirname|Modules: CommonJS modules
+__filename|globals#__filename|Global objects
+__filename|modules#__filename|Modules: CommonJS modules
+abortController.abort()|globals#abortcontrollerabortreason|Global objects
+abortController.signal|globals#abortcontrollersignal|Global objects
+abortSignal.aborted|globals#abortsignalaborted|Global objects
+abortSignal.onabort|globals#abortsignalonabort|Global objects
+abortSignal.reason|globals#abortsignalreason|Global objects
+abortSignal.throwIfAborted()|globals#abortsignalthrowifaborted|Global objects
+aesCbcParams.iv|webcrypto#aescbcparamsiv|Web Crypto API
+aesCbcParams.name|webcrypto#aescbcparamsname|Web Crypto API
+aesCtrParams.counter|webcrypto#aesctrparamscounter|Web Crypto API
+aesCtrParams.length|webcrypto#aesctrparamslength|Web Crypto API
+aesCtrParams.name|webcrypto#aesctrparamsname|Web Crypto API
+aesGcmParams.additionalData|webcrypto#aesgcmparamsadditionaldata|Web Crypto API
+aesGcmParams.iv|webcrypto#aesgcmparamsiv|Web Crypto API
+aesGcmParams.name|webcrypto#aesgcmparamsname|Web Crypto API
+aesGcmParams.tagLength|webcrypto#aesgcmparamstaglength|Web Crypto API
+aesKeyGenParams.length|webcrypto#aeskeygenparamslength|Web Crypto API
+aesKeyGenParams.name|webcrypto#aeskeygenparamsname|Web Crypto API
+after()|v8#afterpromise|V8
+after()|test#afterfn-options|Test runner
+after()|async_hooks#afterasyncid|Async hooks
+afterEach()|test#aftereachfn-options|Test runner
+agent.createConnection()|http#agentcreateconnectionoptions-callback|HTTP
+agent.destroy()|http#agentdestroy|HTTP
+agent.freeSockets|http#agentfreesockets|HTTP
+agent.getName()|http#agentgetnameoptions|HTTP
+agent.keepSocketAlive()|http#agentkeepsocketalivesocket|HTTP
+agent.maxFreeSockets|http#agentmaxfreesockets|HTTP
+agent.maxSockets|http#agentmaxsockets|HTTP
+agent.maxTotalSockets|http#agentmaxtotalsockets|HTTP
+agent.requests|http#agentrequests|HTTP
+agent.reuseSocket()|http#agentreusesocketsocket-request|HTTP
+agent.sockets|http#agentsockets|HTTP
+algorithmIdentifier.name|webcrypto#algorithmidentifiername|Web Crypto API
+assert()|assert#assertvalue-message|Assert
+assert.deepEqual()|assert#assertdeepequalactual-expected-message|Assert
+assert.deepStrictEqual()|assert#assertdeepstrictequalactual-expected-message|Assert
+assert.doesNotMatch()|assert#assertdoesnotmatchstring-regexp-message|Assert
+assert.doesNotReject()|assert#assertdoesnotrejectasyncfn-error-message|Assert
+assert.doesNotThrow()|assert#assertdoesnotthrowfn-error-message|Assert
+assert.equal()|assert#assertequalactual-expected-message|Assert
+assert.fail()|assert#assertfailmessage|Assert
+assert.fail()|assert#assertfailactual-expected-message-operator-stackstartfn|Assert
+assert.ifError()|assert#assertiferrorvalue|Assert
+assert.match()|assert#assertmatchstring-regexp-message|Assert
+assert.notDeepEqual()|assert#assertnotdeepequalactual-expected-message|Assert
+assert.notDeepStrictEqual()|assert#assertnotdeepstrictequalactual-expected-message|Assert
+assert.notEqual()|assert#assertnotequalactual-expected-message|Assert
+assert.notStrictEqual()|assert#assertnotstrictequalactual-expected-message|Assert
+assert.ok()|assert#assertokvalue-message|Assert
+assert.rejects()|assert#assertrejectsasyncfn-error-message|Assert
+assert.snapshot()|assert#assertsnapshotvalue-name|Assert
+assert.strictEqual()|assert#assertstrictequalactual-expected-message|Assert
+assert.throws()|assert#assertthrowsfn-error-message|Assert
+asyncHook.disable()|async_hooks#asynchookdisable|Async hooks
+asyncHook.enable()|async_hooks#asynchookenable|Async hooks
+asyncLocalStorage.disable()|async_context#asynclocalstoragedisable|Asynchronous context tracking
+asyncLocalStorage.enterWith()|async_context#asynclocalstorageenterwithstore|Asynchronous context tracking
+asyncLocalStorage.exit()|async_context#asynclocalstorageexitcallback-args|Asynchronous context tracking
+asyncLocalStorage.getStore()|async_context#asynclocalstoragegetstore|Asynchronous context tracking
+asyncLocalStorage.run()|async_context#asynclocalstoragerunstore-callback-args|Asynchronous context tracking
+asyncResource.asyncId()|async_context#asyncresourceasyncid|Asynchronous context tracking
+asyncResource.bind()|async_context#asyncresourcebindfn-thisarg|Asynchronous context tracking
+asyncResource.emitDestroy()|async_context#asyncresourceemitdestroy|Asynchronous context tracking
+asyncResource.runInAsyncScope()|async_context#asyncresourceruninasyncscopefn-thisarg-args|Asynchronous context tracking
+asyncResource.triggerAsyncId()|async_context#asyncresourcetriggerasyncid|Asynchronous context tracking
+async_hooks.asyncWrapProviders|async_hooks#async_hooksasyncwrapproviders|Async hooks
+async_hooks.createHook()|async_hooks#async_hookscreatehookcallbacks|Async hooks
+async_hooks.executionAsyncId()|async_hooks#async_hooksexecutionasyncid|Async hooks
+async_hooks.executionAsyncResource()|async_hooks#async_hooksexecutionasyncresource|Async hooks
+async_hooks.triggerAsyncId()|async_hooks#async_hookstriggerasyncid|Async hooks
+atob()|globals#atobdata|Global objects
+await|repl#await-keyword|REPL
+before()|async_hooks#beforeasyncid|Async hooks
+before()|v8#beforepromise|V8
+before()|test#beforefn-options|Test runner
+beforeEach()|test#beforeeachfn-options|Test runner
+blob.arrayBuffer()|buffer#blobarraybuffer|Buffer
+blob.size|buffer#blobsize|Buffer
+blob.slice()|buffer#blobslicestart-end-type|Buffer
+blob.stream()|buffer#blobstream|Buffer
+blob.text()|buffer#blobtext|Buffer
+blob.type|buffer#blobtype|Buffer
+blockList.addAddress()|net#blocklistaddaddressaddress-type|Net
+blockList.addRange()|net#blocklistaddrangestart-end-type|Net
+blockList.addSubnet()|net#blocklistaddsubnetnet-prefix-type|Net
+blockList.check()|net#blocklistcheckaddress-type|Net
+blockList.rules|net#blocklistrules|Net
+broadcastChannel.close()|worker_threads#broadcastchannelclose|Worker threads
+broadcastChannel.onmessage|worker_threads#broadcastchannelonmessage|Worker threads
+broadcastChannel.onmessageerror|worker_threads#broadcastchannelonmessageerror|Worker threads
+broadcastChannel.postMessage()|worker_threads#broadcastchannelpostmessagemessage|Worker threads
+broadcastChannel.ref()|worker_threads#broadcastchannelref|Worker threads
+broadcastChannel.unref()|worker_threads#broadcastchannelunref|Worker threads
+btoa()|globals#btoadata|Global objects
+buf.buffer|buffer#bufbuffer|Buffer
+buf.byteOffset|buffer#bufbyteoffset|Buffer
+buf.compare()|buffer#bufcomparetarget-targetstart-targetend-sourcestart-sourceend|Buffer
+buf.copy()|buffer#bufcopytarget-targetstart-sourcestart-sourceend|Buffer
+buf.entries()|buffer#bufentries|Buffer
+buf.equals()|buffer#bufequalsotherbuffer|Buffer
+buf.fill()|buffer#buffillvalue-offset-end-encoding|Buffer
+buf.includes()|buffer#bufincludesvalue-byteoffset-encoding|Buffer
+buf.indexOf()|buffer#bufindexofvalue-byteoffset-encoding|Buffer
+buf.keys()|buffer#bufkeys|Buffer
+buf.lastIndexOf()|buffer#buflastindexofvalue-byteoffset-encoding|Buffer
+buf.length|buffer#buflength|Buffer
+buf.parent|buffer#bufparent|Buffer
+buf.readBigInt64BE()|buffer#bufreadbigint64beoffset|Buffer
+buf.readBigInt64LE()|buffer#bufreadbigint64leoffset|Buffer
+buf.readBigUInt64BE()|buffer#bufreadbiguint64beoffset|Buffer
+buf.readBigUInt64LE()|buffer#bufreadbiguint64leoffset|Buffer
+buf.readDoubleBE()|buffer#bufreaddoublebeoffset|Buffer
+buf.readDoubleLE()|buffer#bufreaddoubleleoffset|Buffer
+buf.readFloatBE()|buffer#bufreadfloatbeoffset|Buffer
+buf.readFloatLE()|buffer#bufreadfloatleoffset|Buffer
+buf.readInt16BE()|buffer#bufreadint16beoffset|Buffer
+buf.readInt16LE()|buffer#bufreadint16leoffset|Buffer
+buf.readInt32BE()|buffer#bufreadint32beoffset|Buffer
+buf.readInt32LE()|buffer#bufreadint32leoffset|Buffer
+buf.readInt8()|buffer#bufreadint8offset|Buffer
+buf.readIntBE()|buffer#bufreadintbeoffset-bytelength|Buffer
+buf.readIntLE()|buffer#bufreadintleoffset-bytelength|Buffer
+buf.readUInt16BE()|buffer#bufreaduint16beoffset|Buffer
+buf.readUInt16LE()|buffer#bufreaduint16leoffset|Buffer
+buf.readUInt32BE()|buffer#bufreaduint32beoffset|Buffer
+buf.readUInt32LE()|buffer#bufreaduint32leoffset|Buffer
+buf.readUInt8()|buffer#bufreaduint8offset|Buffer
+buf.readUIntBE()|buffer#bufreaduintbeoffset-bytelength|Buffer
+buf.readUIntLE()|buffer#bufreaduintleoffset-bytelength|Buffer
+buf.slice()|buffer#bufslicestart-end|Buffer
+buf.subarray()|buffer#bufsubarraystart-end|Buffer
+buf.swap16()|buffer#bufswap16|Buffer
+buf.swap32()|buffer#bufswap32|Buffer
+buf.swap64()|buffer#bufswap64|Buffer
+buf.toJSON()|buffer#buftojson|Buffer
+buf.toString()|buffer#buftostringencoding-start-end|Buffer
+buf.values()|buffer#bufvalues|Buffer
+buf.write()|buffer#bufwritestring-offset-length-encoding|Buffer
+buf.writeBigInt64BE()|buffer#bufwritebigint64bevalue-offset|Buffer
+buf.writeBigInt64LE()|buffer#bufwritebigint64levalue-offset|Buffer
+buf.writeBigUInt64BE()|buffer#bufwritebiguint64bevalue-offset|Buffer
+buf.writeBigUInt64LE()|buffer#bufwritebiguint64levalue-offset|Buffer
+buf.writeDoubleBE()|buffer#bufwritedoublebevalue-offset|Buffer
+buf.writeDoubleLE()|buffer#bufwritedoublelevalue-offset|Buffer
+buf.writeFloatBE()|buffer#bufwritefloatbevalue-offset|Buffer
+buf.writeFloatLE()|buffer#bufwritefloatlevalue-offset|Buffer
+buf.writeInt16BE()|buffer#bufwriteint16bevalue-offset|Buffer
+buf.writeInt16LE()|buffer#bufwriteint16levalue-offset|Buffer
+buf.writeInt32BE()|buffer#bufwriteint32bevalue-offset|Buffer
+buf.writeInt32LE()|buffer#bufwriteint32levalue-offset|Buffer
+buf.writeInt8()|buffer#bufwriteint8value-offset|Buffer
+buf.writeIntBE()|buffer#bufwriteintbevalue-offset-bytelength|Buffer
+buf.writeIntLE()|buffer#bufwriteintlevalue-offset-bytelength|Buffer
+buf.writeUInt16BE()|buffer#bufwriteuint16bevalue-offset|Buffer
+buf.writeUInt16LE()|buffer#bufwriteuint16levalue-offset|Buffer
+buf.writeUInt32BE()|buffer#bufwriteuint32bevalue-offset|Buffer
+buf.writeUInt32LE()|buffer#bufwriteuint32levalue-offset|Buffer
+buf.writeUInt8()|buffer#bufwriteuint8value-offset|Buffer
+buf.writeUIntBE()|buffer#bufwriteuintbevalue-offset-bytelength|Buffer
+buf.writeUIntLE()|buffer#bufwriteuintlevalue-offset-bytelength|Buffer
+buf[index]|buffer#bufindex|Buffer
+buffer.INSPECT_MAX_BYTES|buffer#bufferinspect_max_bytes|Buffer
+buffer.atob()|buffer#bufferatobdata|Buffer
+buffer.btoa()|buffer#bufferbtoadata|Buffer
+buffer.constants.MAX_LENGTH|buffer#bufferconstantsmax_length|Buffer
+buffer.constants.MAX_STRING_LENGTH|buffer#bufferconstantsmax_string_length|Buffer
+buffer.kMaxLength|buffer#bufferkmaxlength|Buffer
+buffer.kStringMaxLength|buffer#bufferkstringmaxlength|Buffer
+buffer.resolveObjectURL()|buffer#bufferresolveobjecturlid|Buffer
+buffer.transcode()|buffer#buffertranscodesource-fromenc-toenc|Buffer
+byteLengthQueuingStrategy.highWaterMark|webstreams#bytelengthqueuingstrategyhighwatermark|Web Streams API
+byteLengthQueuingStrategy.size|webstreams#bytelengthqueuingstrategysize|Web Streams API
+certificate.exportChallenge()|crypto#certificateexportchallengespkac-encoding|Crypto
+certificate.exportPublicKey()|crypto#certificateexportpublickeyspkac-encoding|Crypto
+certificate.verifySpkac()|crypto#certificateverifyspkacspkac-encoding|Crypto
+channel.hasSubscribers|diagnostics_channel#channelhassubscribers|Diagnostics Channel
+channel.publish()|diagnostics_channel#channelpublishmessage|Diagnostics Channel
+channel.subscribe()|diagnostics_channel#channelsubscribeonmessage|Diagnostics Channel
+channel.unsubscribe()|diagnostics_channel#channelunsubscribeonmessage|Diagnostics Channel
+child_process.exec()|child_process#child_processexeccommand-options-callback|Child process
+child_process.execFile()|child_process#child_processexecfilefile-args-options-callback|Child process
+child_process.execFileSync()|child_process#child_processexecfilesyncfile-args-options|Child process
+child_process.execSync()|child_process#child_processexecsynccommand-options|Child process
+child_process.fork()|child_process#child_processforkmodulepath-args-options|Child process
+child_process.spawn()|child_process#child_processspawncommand-args-options|Child process
+child_process.spawnSync()|child_process#child_processspawnsynccommand-args-options|Child process
+cipher.final()|crypto#cipherfinaloutputencoding|Crypto
+cipher.getAuthTag()|crypto#ciphergetauthtag|Crypto
+cipher.setAAD()|crypto#ciphersetaadbuffer-options|Crypto
+cipher.setAutoPadding()|crypto#ciphersetautopaddingautopadding|Crypto
+cipher.update()|crypto#cipherupdatedata-inputencoding-outputencoding|Crypto
+clearImmediate()|globals#clearimmediateimmediateobject|Global objects
+clearImmediate()|timers#clearimmediateimmediate|Timers
+clearInterval()|timers#clearintervaltimeout|Timers
+clearInterval()|globals#clearintervalintervalobject|Global objects
+clearTimeout()|globals#cleartimeouttimeoutobject|Global objects
+clearTimeout()|timers#cleartimeouttimeout|Timers
+clienthttp2session.request()|http2#clienthttp2sessionrequestheaders-options|HTTP/2
+cluster.disconnect()|cluster#clusterdisconnectcallback|Cluster
+cluster.fork()|cluster#clusterforkenv|Cluster
+cluster.isMaster|cluster#clusterismaster|Cluster
+cluster.isPrimary|cluster#clusterisprimary|Cluster
+cluster.isWorker|cluster#clusterisworker|Cluster
+cluster.schedulingPolicy|cluster#clusterschedulingpolicy|Cluster
+cluster.settings|cluster#clustersettings|Cluster
+cluster.setupMaster()|cluster#clustersetupmastersettings|Cluster
+cluster.setupPrimary()|cluster#clustersetupprimarysettings|Cluster
+cluster.worker|cluster#clusterworker|Cluster
+cluster.workers|cluster#clusterworkers|Cluster
+compressionStream.readable|webstreams#compressionstreamreadable|Web Streams API
+compressionStream.writable|webstreams#compressionstreamwritable|Web Streams API
+console|globals#console|Global objects
+console.assert()|console#consoleassertvalue-message|Console
+console.clear()|console#consoleclear|Console
+console.count()|console#consolecountlabel|Console
+console.countReset()|console#consolecountresetlabel|Console
+console.debug()|console#consoledebugdata-args|Console
+console.dir()|console#consoledirobj-options|Console
+console.dirxml()|console#consoledirxmldata|Console
+console.error()|console#consoleerrordata-args|Console
+console.group()|console#consolegrouplabel|Console
+console.groupCollapsed()|console#consolegroupcollapsed|Console
+console.groupEnd()|console#consolegroupend|Console
+console.info()|console#consoleinfodata-args|Console
+console.log()|console#consolelogdata-args|Console
+console.profile()|console#consoleprofilelabel|Console
+console.profileEnd()|console#consoleprofileendlabel|Console
+console.table()|console#consoletabletabulardata-properties|Console
+console.time()|console#consoletimelabel|Console
+console.timeEnd()|console#consoletimeendlabel|Console
+console.timeLog()|console#consoletimeloglabel-data|Console
+console.timeStamp()|console#consoletimestamplabel|Console
+console.trace()|console#consoletracemessage-args|Console
+console.warn()|console#consolewarndata-args|Console
+context.afterEach()|test#contextaftereachfn-options|Test runner
+context.beforeEach()|test#contextbeforeeachfn-options|Test runner
+context.diagnostic()|test#contextdiagnosticmessage|Test runner
+context.name|test#contextname_1|Test runner
+context.name|test#contextname|Test runner
+context.runOnly()|test#contextrunonlyshouldrunonlytests|Test runner
+context.signal|test#contextsignal|Test runner
+context.signal|test#contextsignal_1|Test runner
+context.skip()|test#contextskipmessage|Test runner
+context.test()|test#contexttestname-options-fn|Test runner
+context.todo()|test#contexttodomessage|Test runner
+countQueuingStrategy.highWaterMark|webstreams#countqueuingstrategyhighwatermark|Web Streams API
+countQueuingStrategy.size|webstreams#countqueuingstrategysize|Web Streams API
+crypto|globals#crypto_1|Global objects
+crypto.DEFAULT_ENCODING|crypto#cryptodefault_encoding|Crypto
+crypto.checkPrime()|crypto#cryptocheckprimecandidate-options-callback|Crypto
+crypto.checkPrimeSync()|crypto#cryptocheckprimesynccandidate-options|Crypto
+crypto.constants|crypto#cryptoconstants|Crypto
+crypto.createCipher()|crypto#cryptocreatecipheralgorithm-password-options|Crypto
+crypto.createCipheriv()|crypto#cryptocreatecipherivalgorithm-key-iv-options|Crypto
+crypto.createDecipher()|crypto#cryptocreatedecipheralgorithm-password-options|Crypto
+crypto.createDecipheriv()|crypto#cryptocreatedecipherivalgorithm-key-iv-options|Crypto
+crypto.createDiffieHellman()|crypto#cryptocreatediffiehellmanprimelength-generator|Crypto
+crypto.createDiffieHellman()|crypto#cryptocreatediffiehellmanprime-primeencoding-generator-generatorencoding|Crypto
+crypto.createDiffieHellmanGroup()|crypto#cryptocreatediffiehellmangroupname|Crypto
+crypto.createECDH()|crypto#cryptocreateecdhcurvename|Crypto
+crypto.createHash()|crypto#cryptocreatehashalgorithm-options|Crypto
+crypto.createHmac()|crypto#cryptocreatehmacalgorithm-key-options|Crypto
+crypto.createPrivateKey()|crypto#cryptocreateprivatekeykey|Crypto
+crypto.createPublicKey()|crypto#cryptocreatepublickeykey|Crypto
+crypto.createSecretKey()|crypto#cryptocreatesecretkeykey-encoding|Crypto
+crypto.createSign()|crypto#cryptocreatesignalgorithm-options|Crypto
+crypto.createVerify()|crypto#cryptocreateverifyalgorithm-options|Crypto
+crypto.diffieHellman()|crypto#cryptodiffiehellmanoptions|Crypto
+crypto.fips|crypto#cryptofips|Crypto
+crypto.generateKey()|crypto#cryptogeneratekeytype-options-callback|Crypto
+crypto.generateKeyPair()|crypto#cryptogeneratekeypairtype-options-callback|Crypto
+crypto.generateKeyPairSync()|crypto#cryptogeneratekeypairsynctype-options|Crypto
+crypto.generateKeySync()|crypto#cryptogeneratekeysynctype-options|Crypto
+crypto.generatePrime()|crypto#cryptogenerateprimesize-options-callback|Crypto
+crypto.generatePrimeSync()|crypto#cryptogenerateprimesyncsize-options|Crypto
+crypto.getCipherInfo()|crypto#cryptogetcipherinfonameornid-options|Crypto
+crypto.getCiphers()|crypto#cryptogetciphers|Crypto
+crypto.getCurves()|crypto#cryptogetcurves|Crypto
+crypto.getDiffieHellman()|crypto#cryptogetdiffiehellmangroupname|Crypto
+crypto.getFips()|crypto#cryptogetfips|Crypto
+crypto.getHashes()|crypto#cryptogethashes|Crypto
+crypto.getRandomValues()|crypto#cryptogetrandomvaluestypedarray|Crypto
+crypto.getRandomValues()|webcrypto#cryptogetrandomvaluestypedarray|Web Crypto API
+crypto.hkdf()|crypto#cryptohkdfdigest-ikm-salt-info-keylen-callback|Crypto
+crypto.hkdfSync()|crypto#cryptohkdfsyncdigest-ikm-salt-info-keylen|Crypto
+crypto.pbkdf2()|crypto#cryptopbkdf2password-salt-iterations-keylen-digest-callback|Crypto
+crypto.pbkdf2Sync()|crypto#cryptopbkdf2syncpassword-salt-iterations-keylen-digest|Crypto
+crypto.privateDecrypt()|crypto#cryptoprivatedecryptprivatekey-buffer|Crypto
+crypto.privateEncrypt()|crypto#cryptoprivateencryptprivatekey-buffer|Crypto
+crypto.publicDecrypt()|crypto#cryptopublicdecryptkey-buffer|Crypto
+crypto.publicEncrypt()|crypto#cryptopublicencryptkey-buffer|Crypto
+crypto.randomBytes()|crypto#cryptorandombytessize-callback|Crypto
+crypto.randomFill()|crypto#cryptorandomfillbuffer-offset-size-callback|Crypto
+crypto.randomFillSync()|crypto#cryptorandomfillsyncbuffer-offset-size|Crypto
+crypto.randomInt()|crypto#cryptorandomintmin-max-callback|Crypto
+crypto.randomUUID()|webcrypto#cryptorandomuuid|Web Crypto API
+crypto.randomUUID()|crypto#cryptorandomuuidoptions|Crypto
+crypto.scrypt()|crypto#cryptoscryptpassword-salt-keylen-options-callback|Crypto
+crypto.scryptSync()|crypto#cryptoscryptsyncpassword-salt-keylen-options|Crypto
+crypto.secureHeapUsed()|crypto#cryptosecureheapused|Crypto
+crypto.setEngine()|crypto#cryptosetengineengine-flags|Crypto
+crypto.setFips()|crypto#cryptosetfipsbool|Crypto
+crypto.sign()|crypto#cryptosignalgorithm-data-key-callback|Crypto
+crypto.subtle|webcrypto#cryptosubtle|Web Crypto API
+crypto.subtle|crypto#cryptosubtle|Crypto
+crypto.timingSafeEqual()|crypto#cryptotimingsafeequala-b|Crypto
+crypto.verify()|crypto#cryptoverifyalgorithm-data-key-signature-callback|Crypto
+crypto.webcrypto|crypto#cryptowebcrypto|Crypto
+cryptoKey.algorithm|webcrypto#cryptokeyalgorithm|Web Crypto API
+cryptoKey.extractable|webcrypto#cryptokeyextractable|Web Crypto API
+cryptoKey.type|webcrypto#cryptokeytype|Web Crypto API
+cryptoKey.usages|webcrypto#cryptokeyusages|Web Crypto API
+cryptoKeyPair.privateKey|webcrypto#cryptokeypairprivatekey|Web Crypto API
+cryptoKeyPair.publicKey|webcrypto#cryptokeypairpublickey|Web Crypto API
+cryptoStream.bytesWritten|tls#cryptostreambyteswritten|TLS (SSL)
+data:|esm#data-imports|Modules: ECMAScript modules
+debuglog().enabled|util#debuglogenabled|Util
+decipher.final()|crypto#decipherfinaloutputencoding|Crypto
+decipher.setAAD()|crypto#deciphersetaadbuffer-options|Crypto
+decipher.setAuthTag()|crypto#deciphersetauthtagbuffer-encoding|Crypto
+decipher.setAutoPadding()|crypto#deciphersetautopaddingautopadding|Crypto
+decipher.update()|crypto#decipherupdatedata-inputencoding-outputencoding|Crypto
+decompressionStream.readable|webstreams#decompressionstreamreadable|Web Streams API
+decompressionStream.writable|webstreams#decompressionstreamwritable|Web Streams API
+describe|test#describeit-syntax|Test runner
+describe()|test#describename-options-fn|Test runner
+describe.skip()|test#describeskipname-options-fn|Test runner
+describe.todo()|test#describetodoname-options-fn|Test runner
+deserializer._readHostObject()|v8#deserializer_readhostobject|V8
+deserializer.getWireFormatVersion()|v8#deserializergetwireformatversion|V8
+deserializer.readDouble()|v8#deserializerreaddouble|V8
+deserializer.readHeader()|v8#deserializerreadheader|V8
+deserializer.readRawBytes()|v8#deserializerreadrawbyteslength|V8
+deserializer.readUint32()|v8#deserializerreaduint32|V8
+deserializer.readUint64()|v8#deserializerreaduint64|V8
+deserializer.readValue()|v8#deserializerreadvalue|V8
+deserializer.transferArrayBuffer()|v8#deserializertransferarraybufferid-arraybuffer|V8
+destroy()|async_hooks#destroyasyncid|Async hooks
+dgram.createSocket()|dgram#dgramcreatesocketoptions-callback|UDP/datagram sockets
+dgram.createSocket()|dgram#dgramcreatesockettype-callback|UDP/datagram sockets
+diagnostics_channel.channel()|diagnostics_channel#diagnostics_channelchannelname|Diagnostics Channel
+diagnostics_channel.hasSubscribers()|diagnostics_channel#diagnostics_channelhassubscribersname|Diagnostics Channel
+diagnostics_channel.subscribe()|diagnostics_channel#diagnostics_channelsubscribename-onmessage|Diagnostics Channel
+diagnostics_channel.unsubscribe()|diagnostics_channel#diagnostics_channelunsubscribename-onmessage|Diagnostics Channel
+diffieHellman.computeSecret()|crypto#diffiehellmancomputesecretotherpublickey-inputencoding-outputencoding|Crypto
+diffieHellman.generateKeys()|crypto#diffiehellmangeneratekeysencoding|Crypto
+diffieHellman.getGenerator()|crypto#diffiehellmangetgeneratorencoding|Crypto
+diffieHellman.getPrime()|crypto#diffiehellmangetprimeencoding|Crypto
+diffieHellman.getPrivateKey()|crypto#diffiehellmangetprivatekeyencoding|Crypto
+diffieHellman.getPublicKey()|crypto#diffiehellmangetpublickeyencoding|Crypto
+diffieHellman.setPrivateKey()|crypto#diffiehellmansetprivatekeyprivatekey-encoding|Crypto
+diffieHellman.setPublicKey()|crypto#diffiehellmansetpublickeypublickey-encoding|Crypto
+diffieHellman.verifyError|crypto#diffiehellmanverifyerror|Crypto
+dir.close()|fs#dirclose|File system
+dir.close()|fs#dirclosecallback|File system
+dir.closeSync()|fs#dirclosesync|File system
+dir.path|fs#dirpath|File system
+dir.read()|fs#dirread|File system
+dir.read()|fs#dirreadcallback|File system
+dir.readSync()|fs#dirreadsync|File system
+dir[Symbol.asyncIterator]()|fs#dirsymbolasynciterator|File system
+dirent.isBlockDevice()|fs#direntisblockdevice|File system
+dirent.isCharacterDevice()|fs#direntischaracterdevice|File system
+dirent.isDirectory()|fs#direntisdirectory|File system
+dirent.isFIFO()|fs#direntisfifo|File system
+dirent.isFile()|fs#direntisfile|File system
+dirent.isSocket()|fs#direntissocket|File system
+dirent.isSymbolicLink()|fs#direntissymboliclink|File system
+dirent.name|fs#direntname|File system
+dns.getServers()|dns#dnsgetservers|DNS
+dns.lookup()|dns#dnslookuphostname-options-callback|DNS
+dns.lookup()|dns#dnslookup|DNS
+dns.lookupService()|dns#dnslookupserviceaddress-port-callback|DNS
+dns.resolve()|dns#dnsresolvehostname-rrtype-callback|DNS
+dns.resolve()|dns#dnsresolve-dnsresolve-and-dnsreverse|DNS
+dns.resolve*()|dns#dnsresolve-dnsresolve-and-dnsreverse|DNS
+dns.resolve4()|dns#dnsresolve4hostname-options-callback|DNS
+dns.resolve6()|dns#dnsresolve6hostname-options-callback|DNS
+dns.resolveAny()|dns#dnsresolveanyhostname-callback|DNS
+dns.resolveCaa()|dns#dnsresolvecaahostname-callback|DNS
+dns.resolveCname()|dns#dnsresolvecnamehostname-callback|DNS
+dns.resolveMx()|dns#dnsresolvemxhostname-callback|DNS
+dns.resolveNaptr()|dns#dnsresolvenaptrhostname-callback|DNS
+dns.resolveNs()|dns#dnsresolvenshostname-callback|DNS
+dns.resolvePtr()|dns#dnsresolveptrhostname-callback|DNS
+dns.resolveSoa()|dns#dnsresolvesoahostname-callback|DNS
+dns.resolveSrv()|dns#dnsresolvesrvhostname-callback|DNS
+dns.resolveTxt()|dns#dnsresolvetxthostname-callback|DNS
+dns.reverse()|dns#dnsresolve-dnsresolve-and-dnsreverse|DNS
+dns.reverse()|dns#dnsreverseip-callback|DNS
+dns.setDefaultResultOrder()|dns#dnssetdefaultresultorderorder|DNS
+dns.setServers()|dns#dnssetserversservers|DNS
+dnsPromises.getServers()|dns#dnspromisesgetservers|DNS
+dnsPromises.lookup()|dns#dnspromiseslookuphostname-options|DNS
+dnsPromises.lookupService()|dns#dnspromiseslookupserviceaddress-port|DNS
+dnsPromises.resolve()|dns#dnspromisesresolvehostname-rrtype|DNS
+dnsPromises.resolve4()|dns#dnspromisesresolve4hostname-options|DNS
+dnsPromises.resolve6()|dns#dnspromisesresolve6hostname-options|DNS
+dnsPromises.resolveAny()|dns#dnspromisesresolveanyhostname|DNS
+dnsPromises.resolveCaa()|dns#dnspromisesresolvecaahostname|DNS
+dnsPromises.resolveCname()|dns#dnspromisesresolvecnamehostname|DNS
+dnsPromises.resolveMx()|dns#dnspromisesresolvemxhostname|DNS
+dnsPromises.resolveNaptr()|dns#dnspromisesresolvenaptrhostname|DNS
+dnsPromises.resolveNs()|dns#dnspromisesresolvenshostname|DNS
+dnsPromises.resolvePtr()|dns#dnspromisesresolveptrhostname|DNS
+dnsPromises.resolveSoa()|dns#dnspromisesresolvesoahostname|DNS
+dnsPromises.resolveSrv()|dns#dnspromisesresolvesrvhostname|DNS
+dnsPromises.resolveTxt()|dns#dnspromisesresolvetxthostname|DNS
+dnsPromises.reverse()|dns#dnspromisesreverseip|DNS
+dnsPromises.setDefaultResultOrder()|dns#dnspromisessetdefaultresultorderorder|DNS
+dnsPromises.setServers()|dns#dnspromisessetserversservers|DNS
+domain.add()|domain#domainaddemitter|Domain
+domain.bind()|domain#domainbindcallback|Domain
+domain.create()|domain#domaincreate|Domain
+domain.enter()|domain#domainenter|Domain
+domain.exit()|domain#domainexit|Domain
+domain.intercept()|domain#domaininterceptcallback|Domain
+domain.members|domain#domainmembers|Domain
+domain.remove()|domain#domainremoveemitter|Domain
+domain.run()|domain#domainrunfn-args|Domain
+ecKeyGenParams.name|webcrypto#eckeygenparamsname|Web Crypto API
+ecKeyGenParams.namedCurve|webcrypto#eckeygenparamsnamedcurve|Web Crypto API
+ecKeyImportParams.name|webcrypto#eckeyimportparamsname|Web Crypto API
+ecKeyImportParams.namedCurve|webcrypto#eckeyimportparamsnamedcurve|Web Crypto API
+ecdh.computeSecret()|crypto#ecdhcomputesecretotherpublickey-inputencoding-outputencoding|Crypto
+ecdh.generateKeys()|crypto#ecdhgeneratekeysencoding-format|Crypto
+ecdh.getPrivateKey()|crypto#ecdhgetprivatekeyencoding|Crypto
+ecdh.getPublicKey()|crypto#ecdhgetpublickeyencoding-format|Crypto
+ecdh.setPrivateKey()|crypto#ecdhsetprivatekeyprivatekey-encoding|Crypto
+ecdh.setPublicKey()|crypto#ecdhsetpublickeypublickey-encoding|Crypto
+ecdhKeyDeriveParams.name|webcrypto#ecdhkeyderiveparamsname|Web Crypto API
+ecdhKeyDeriveParams.public|webcrypto#ecdhkeyderiveparamspublic|Web Crypto API
+ecdsaParams.hash|webcrypto#ecdsaparamshash|Web Crypto API
+ecdsaParams.name|webcrypto#ecdsaparamsname|Web Crypto API
+ed448Params.context|webcrypto#ed448paramscontext|Web Crypto API
+ed448Params.name|webcrypto#ed448paramsname|Web Crypto API
+emitter.addListener()|events#emitteraddlistenereventname-listener|Events
+emitter.emit()|events#emitteremiteventname-args|Events
+emitter.eventNames()|events#emittereventnames|Events
+emitter.getMaxListeners()|events#emittergetmaxlisteners|Events
+emitter.listenerCount()|events#emitterlistenercounteventname|Events
+emitter.listeners()|events#emitterlistenerseventname|Events
+emitter.off()|events#emitteroffeventname-listener|Events
+emitter.on()|events#emitteroneventname-listener|Events
+emitter.once()|events#emitteronceeventname-listener|Events
+emitter.prependListener()|events#emitterprependlistenereventname-listener|Events
+emitter.prependOnceListener()|events#emitterprependoncelistenereventname-listener|Events
+emitter.rawListeners()|events#emitterrawlistenerseventname|Events
+emitter.removeAllListeners()|events#emitterremovealllistenerseventname|Events
+emitter.removeListener()|events#emitterremovelistenereventname-listener|Events
+emitter.setMaxListeners()|events#emittersetmaxlistenersn|Events
+emitter[Symbol.for()|events#emittersymbolfornodejsrejectionerr-eventname-args|Events
+error.address|errors#erroraddress|Errors
+error.cause|errors#errorcause|Errors
+error.code|errors#errorcode|Errors
+error.code|errors#errorcode_1|Errors
+error.dest|errors#errordest|Errors
+error.errno|errors#errorerrno|Errors
+error.function|errors#errorfunction|Errors
+error.info|errors#errorinfo|Errors
+error.library|errors#errorlibrary|Errors
+error.message|errors#errormessage|Errors
+error.message|errors#errormessage_1|Errors
+error.opensslErrorStack|errors#erroropensslerrorstack|Errors
+error.path|errors#errorpath|Errors
+error.port|errors#errorport|Errors
+error.reason|errors#errorreason|Errors
+error.stack|errors#errorstack|Errors
+error.syscall|errors#errorsyscall|Errors
+event.bubbles|events#eventbubbles|Events
+event.cancelBubble()|events#eventcancelbubble|Events
+event.cancelable|events#eventcancelable|Events
+event.composed|events#eventcomposed|Events
+event.composedPath()|events#eventcomposedpath|Events
+event.currentTarget|events#eventcurrenttarget|Events
+event.defaultPrevented|events#eventdefaultprevented|Events
+event.detail|events#eventdetail|Events
+event.eventPhase|events#eventeventphase|Events
+event.isTrusted|events#eventistrusted|Events
+event.preventDefault()|events#eventpreventdefault|Events
+event.returnValue|events#eventreturnvalue|Events
+event.srcElement|events#eventsrcelement|Events
+event.stopImmediatePropagation()|events#eventstopimmediatepropagation|Events
+event.stopPropagation()|events#eventstoppropagation|Events
+event.target|events#eventtarget|Events
+event.timeStamp|events#eventtimestamp|Events
+event.type|events#eventtype|Events
+eventTarget.addEventListener()|events#eventtargetaddeventlistenertype-listener-options|Events
+eventTarget.dispatchEvent()|events#eventtargetdispatcheventevent|Events
+eventTarget.removeEventListener()|events#eventtargetremoveeventlistenertype-listener|Events
+eventemitterasyncresource.asyncId|events#eventemitterasyncresourceasyncid|Events
+eventemitterasyncresource.asyncResource|events#eventemitterasyncresourceasyncresource|Events
+eventemitterasyncresource.emitDestroy()|events#eventemitterasyncresourceemitdestroy|Events
+eventemitterasyncresource.triggerAsyncId|events#eventemitterasyncresourcetriggerasyncid|Events
+events.captureRejectionSymbol|events#eventscapturerejectionsymbol|Events
+events.captureRejections|events#eventscapturerejections|Events
+events.defaultMaxListeners|events#eventsdefaultmaxlisteners|Events
+events.errorMonitor|events#eventserrormonitor|Events
+events.getEventListeners()|events#eventsgeteventlistenersemitterortarget-eventname|Events
+events.listenerCount()|events#eventslistenercountemitter-eventname|Events
+events.on()|events#eventsonemitter-eventname-options|Events
+events.once()|events#eventsonceemitter-name-options|Events
+events.setMaxListeners()|events#eventssetmaxlistenersn-eventtargets|Events
+exports|globals#exports|Global objects
+exports|modules#exports|Modules: CommonJS modules
+exports|modules#exports-shortcut|Modules: CommonJS modules
+fetch|globals#fetch|Global objects
+file:|esm#file-urls|Modules: ECMAScript modules
+filehandle.appendFile()|fs#filehandleappendfiledata-options|File system
+filehandle.chmod()|fs#filehandlechmodmode|File system
+filehandle.chown()|fs#filehandlechownuid-gid|File system
+filehandle.close()|fs#filehandleclose|File system
+filehandle.createReadStream()|fs#filehandlecreatereadstreamoptions|File system
+filehandle.createWriteStream()|fs#filehandlecreatewritestreamoptions|File system
+filehandle.datasync()|fs#filehandledatasync|File system
+filehandle.fd|fs#filehandlefd|File system
+filehandle.read()|fs#filehandlereadbuffer-options|File system
+filehandle.read()|fs#filehandlereadoptions|File system
+filehandle.read()|fs#filehandlereadbuffer-offset-length-position|File system
+filehandle.readFile()|fs#filehandlereadfileoptions|File system
+filehandle.readLines()|fs#filehandlereadlinesoptions|File system
+filehandle.readableWebStream()|fs#filehandlereadablewebstream|File system
+filehandle.readv()|fs#filehandlereadvbuffers-position|File system
+filehandle.stat()|fs#filehandlestatoptions|File system
+filehandle.sync()|fs#filehandlesync|File system
+filehandle.truncate()|fs#filehandletruncatelen|File system
+filehandle.utimes()|fs#filehandleutimesatime-mtime|File system
+filehandle.write()|fs#filehandlewritebuffer-offset-length-position|File system
+filehandle.write()|fs#filehandlewritestring-position-encoding|File system
+filehandle.write()|fs#filehandlewritebuffer-options|File system
+filehandle.writeFile()|fs#filehandlewritefiledata-options|File system
+filehandle.writev()|fs#filehandlewritevbuffers-position|File system
+fs.access()|fs#fsaccesspath-mode-callback|File system
+fs.accessSync()|fs#fsaccesssyncpath-mode|File system
+fs.appendFile()|fs#fsappendfilepath-data-options-callback|File system
+fs.appendFileSync()|fs#fsappendfilesyncpath-data-options|File system
+fs.chmod()|fs#fschmodpath-mode-callback|File system
+fs.chmodSync()|fs#fschmodsyncpath-mode|File system
+fs.chown()|fs#fschownpath-uid-gid-callback|File system
+fs.chownSync()|fs#fschownsyncpath-uid-gid|File system
+fs.close()|fs#fsclosefd-callback|File system
+fs.closeSync()|fs#fsclosesyncfd|File system
+fs.constants|fs#fsconstants|File system
+fs.copyFile()|fs#fscopyfilesrc-dest-mode-callback|File system
+fs.copyFileSync()|fs#fscopyfilesyncsrc-dest-mode|File system
+fs.cp()|fs#fscpsrc-dest-options-callback|File system
+fs.cpSync()|fs#fscpsyncsrc-dest-options|File system
+fs.createReadStream()|fs#fscreatereadstreampath-options|File system
+fs.createWriteStream()|fs#fscreatewritestreampath-options|File system
+fs.exists()|fs#fsexistspath-callback|File system
+fs.existsSync()|fs#fsexistssyncpath|File system
+fs.fchmod()|fs#fsfchmodfd-mode-callback|File system
+fs.fchmodSync()|fs#fsfchmodsyncfd-mode|File system
+fs.fchown()|fs#fsfchownfd-uid-gid-callback|File system
+fs.fchownSync()|fs#fsfchownsyncfd-uid-gid|File system
+fs.fdatasync()|fs#fsfdatasyncfd-callback|File system
+fs.fdatasyncSync()|fs#fsfdatasyncsyncfd|File system
+fs.fstat()|fs#fsfstatfd-options-callback|File system
+fs.fstatSync()|fs#fsfstatsyncfd-options|File system
+fs.fsync()|fs#fsfsyncfd-callback|File system
+fs.fsyncSync()|fs#fsfsyncsyncfd|File system
+fs.ftruncate()|fs#fsftruncatefd-len-callback|File system
+fs.ftruncateSync()|fs#fsftruncatesyncfd-len|File system
+fs.futimes()|fs#fsfutimesfd-atime-mtime-callback|File system
+fs.futimesSync()|fs#fsfutimessyncfd-atime-mtime|File system
+fs.lchmod()|fs#fslchmodpath-mode-callback|File system
+fs.lchmodSync()|fs#fslchmodsyncpath-mode|File system
+fs.lchown()|fs#fslchownpath-uid-gid-callback|File system
+fs.lchownSync()|fs#fslchownsyncpath-uid-gid|File system
+fs.link()|fs#fslinkexistingpath-newpath-callback|File system
+fs.linkSync()|fs#fslinksyncexistingpath-newpath|File system
+fs.lstat()|fs#fslstatpath-options-callback|File system
+fs.lstatSync()|fs#fslstatsyncpath-options|File system
+fs.lutimes()|fs#fslutimespath-atime-mtime-callback|File system
+fs.lutimesSync()|fs#fslutimessyncpath-atime-mtime|File system
+fs.mkdir()|fs#fsmkdirpath-options-callback|File system
+fs.mkdirSync()|fs#fsmkdirsyncpath-options|File system
+fs.mkdtemp()|fs#fsmkdtempprefix-options-callback|File system
+fs.mkdtempSync()|fs#fsmkdtempsyncprefix-options|File system
+fs.open()|fs#fsopenpath-flags-mode-callback|File system
+fs.openSync()|fs#fsopensyncpath-flags-mode|File system
+fs.opendir()|fs#fsopendirpath-options-callback|File system
+fs.opendirSync()|fs#fsopendirsyncpath-options|File system
+fs.read()|fs#fsreadfd-buffer-options-callback|File system
+fs.read()|fs#fsreadfd-options-callback|File system
+fs.read()|fs#fsreadfd-buffer-offset-length-position-callback|File system
+fs.readFile()|fs#fsreadfilepath-options-callback|File system
+fs.readFileSync()|fs#fsreadfilesyncpath-options|File system
+fs.readSync()|fs#fsreadsyncfd-buffer-offset-length-position|File system
+fs.readSync()|fs#fsreadsyncfd-buffer-options|File system
+fs.readdir()|fs#fsreaddirpath-options-callback|File system
+fs.readdirSync()|fs#fsreaddirsyncpath-options|File system
+fs.readlink()|fs#fsreadlinkpath-options-callback|File system
+fs.readlinkSync()|fs#fsreadlinksyncpath-options|File system
+fs.readv()|fs#fsreadvfd-buffers-position-callback|File system
+fs.readvSync()|fs#fsreadvsyncfd-buffers-position|File system
+fs.realpath()|fs#fsrealpathpath-options-callback|File system
+fs.realpath.native()|fs#fsrealpathnativepath-options-callback|File system
+fs.realpathSync()|fs#fsrealpathsyncpath-options|File system
+fs.realpathSync.native()|fs#fsrealpathsyncnativepath-options|File system
+fs.rename()|fs#fsrenameoldpath-newpath-callback|File system
+fs.renameSync()|fs#fsrenamesyncoldpath-newpath|File system
+fs.rm()|fs#fsrmpath-options-callback|File system
+fs.rmSync()|fs#fsrmsyncpath-options|File system
+fs.rmdir()|fs#fsrmdirpath-options-callback|File system
+fs.rmdirSync()|fs#fsrmdirsyncpath-options|File system
+fs.stat()|fs#fsstatpath-options-callback|File system
+fs.statSync()|fs#fsstatsyncpath-options|File system
+fs.symlink()|fs#fssymlinktarget-path-type-callback|File system
+fs.symlinkSync()|fs#fssymlinksynctarget-path-type|File system
+fs.truncate()|fs#fstruncatepath-len-callback|File system
+fs.truncateSync()|fs#fstruncatesyncpath-len|File system
+fs.unlink()|fs#fsunlinkpath-callback|File system
+fs.unlinkSync()|fs#fsunlinksyncpath|File system
+fs.unwatchFile()|fs#fsunwatchfilefilename-listener|File system
+fs.utimes()|fs#fsutimespath-atime-mtime-callback|File system
+fs.utimesSync()|fs#fsutimessyncpath-atime-mtime|File system
+fs.watch()|fs#fswatchfilename-options-listener|File system
+fs.watchFile()|fs#fswatchfilefilename-options-listener|File system
+fs.write()|fs#fswritefd-buffer-options-callback|File system
+fs.write()|fs#fswritefd-buffer-offset-length-position-callback|File system
+fs.write()|fs#fswritefd-string-position-encoding-callback|File system
+fs.writeFile()|fs#fswritefilefile-data-options-callback|File system
+fs.writeFileSync()|fs#fswritefilesyncfile-data-options|File system
+fs.writeSync()|fs#fswritesyncfd-buffer-offset-length-position|File system
+fs.writeSync()|fs#fswritesyncfd-buffer-options|File system
+fs.writeSync()|fs#fswritesyncfd-string-position-encoding|File system
+fs.writev()|fs#fswritevfd-buffers-position-callback|File system
+fs.writevSync()|fs#fswritevsyncfd-buffers-position|File system
+fsPromises.access()|fs#fspromisesaccesspath-mode|File system
+fsPromises.appendFile()|fs#fspromisesappendfilepath-data-options|File system
+fsPromises.chmod()|fs#fspromiseschmodpath-mode|File system
+fsPromises.chown()|fs#fspromiseschownpath-uid-gid|File system
+fsPromises.constants|fs#fspromisesconstants|File system
+fsPromises.copyFile()|fs#fspromisescopyfilesrc-dest-mode|File system
+fsPromises.cp()|fs#fspromisescpsrc-dest-options|File system
+fsPromises.lchmod()|fs#fspromiseslchmodpath-mode|File system
+fsPromises.lchown()|fs#fspromiseslchownpath-uid-gid|File system
+fsPromises.link()|fs#fspromiseslinkexistingpath-newpath|File system
+fsPromises.lstat()|fs#fspromiseslstatpath-options|File system
+fsPromises.lutimes()|fs#fspromiseslutimespath-atime-mtime|File system
+fsPromises.mkdir()|fs#fspromisesmkdirpath-options|File system
+fsPromises.mkdtemp()|fs#fspromisesmkdtempprefix-options|File system
+fsPromises.open()|fs#fspromisesopenpath-flags-mode|File system
+fsPromises.opendir()|fs#fspromisesopendirpath-options|File system
+fsPromises.readFile()|fs#fspromisesreadfilepath-options|File system
+fsPromises.readdir()|fs#fspromisesreaddirpath-options|File system
+fsPromises.readlink()|fs#fspromisesreadlinkpath-options|File system
+fsPromises.realpath()|fs#fspromisesrealpathpath-options|File system
+fsPromises.rename()|fs#fspromisesrenameoldpath-newpath|File system
+fsPromises.rm()|fs#fspromisesrmpath-options|File system
+fsPromises.rmdir()|fs#fspromisesrmdirpath-options|File system
+fsPromises.stat()|fs#fspromisesstatpath-options|File system
+fsPromises.symlink()|fs#fspromisessymlinktarget-path-type|File system
+fsPromises.truncate()|fs#fspromisestruncatepath-len|File system
+fsPromises.unlink()|fs#fspromisesunlinkpath|File system
+fsPromises.utimes()|fs#fspromisesutimespath-atime-mtime|File system
+fsPromises.watch()|fs#fspromiseswatchfilename-options|File system
+fsPromises.writeFile()|fs#fspromiseswritefilefile-data-options|File system
+global|globals#global|Global objects
+globalPreload()|esm#globalpreload|Modules: ECMAScript modules
+hash.copy()|crypto#hashcopyoptions|Crypto
+hash.digest()|crypto#hashdigestencoding|Crypto
+hash.update()|crypto#hashupdatedata-inputencoding|Crypto
+highWaterMark|stream#highwatermark-discrepancy-after-calling-readablesetencoding|Stream[src]
+histogram.add()|perf_hooks#histogramaddother|Performance measurement APIs
+histogram.count|perf_hooks#histogramcount|Performance measurement APIs
+histogram.countBigInt|perf_hooks#histogramcountbigint|Performance measurement APIs
+histogram.disable()|perf_hooks#histogramdisable|Performance measurement APIs
+histogram.enable()|perf_hooks#histogramenable|Performance measurement APIs
+histogram.exceeds|perf_hooks#histogramexceeds|Performance measurement APIs
+histogram.exceedsBigInt|perf_hooks#histogramexceedsbigint|Performance measurement APIs
+histogram.max|perf_hooks#histogrammax|Performance measurement APIs
+histogram.maxBigInt|perf_hooks#histogrammaxbigint|Performance measurement APIs
+histogram.mean|perf_hooks#histogrammean|Performance measurement APIs
+histogram.min|perf_hooks#histogrammin|Performance measurement APIs
+histogram.minBigInt|perf_hooks#histogramminbigint|Performance measurement APIs
+histogram.percentile()|perf_hooks#histogrampercentilepercentile|Performance measurement APIs
+histogram.percentileBigInt()|perf_hooks#histogrampercentilebigintpercentile|Performance measurement APIs
+histogram.percentiles|perf_hooks#histogrampercentiles|Performance measurement APIs
+histogram.percentilesBigInt|perf_hooks#histogrampercentilesbigint|Performance measurement APIs
+histogram.record()|perf_hooks#histogramrecordval|Performance measurement APIs
+histogram.recordDelta()|perf_hooks#histogramrecorddelta|Performance measurement APIs
+histogram.reset()|perf_hooks#histogramreset|Performance measurement APIs
+histogram.stddev|perf_hooks#histogramstddev|Performance measurement APIs
+hkdfParams.hash|webcrypto#hkdfparamshash|Web Crypto API
+hkdfParams.info|webcrypto#hkdfparamsinfo|Web Crypto API
+hkdfParams.name|webcrypto#hkdfparamsname|Web Crypto API
+hkdfParams.salt|webcrypto#hkdfparamssalt|Web Crypto API
+hmac.digest()|crypto#hmacdigestencoding|Crypto
+hmac.update()|crypto#hmacupdatedata-inputencoding|Crypto
+hmacImportParams.hash|webcrypto#hmacimportparamshash|Web Crypto API
+hmacImportParams.length|webcrypto#hmacimportparamslength|Web Crypto API
+hmacImportParams.name|webcrypto#hmacimportparamsname|Web Crypto API
+hmacKeyGenParams.hash|webcrypto#hmackeygenparamshash|Web Crypto API
+hmacKeyGenParams.length|webcrypto#hmackeygenparamslength|Web Crypto API
+hmacKeyGenParams.name|webcrypto#hmackeygenparamsname|Web Crypto API
+http.METHODS|http#httpmethods|HTTP
+http.STATUS_CODES|http#httpstatus_codes|HTTP
+http.createServer()|http#httpcreateserveroptions-requestlistener|HTTP
+http.get()|http#httpgeturl-options-callback|HTTP
+http.get()|http#httpgetoptions-callback|HTTP
+http.globalAgent|http#httpglobalagent|HTTP
+http.maxHeaderSize|http#httpmaxheadersize|HTTP
+http.request()|http#httprequestoptions-callback|HTTP
+http.request()|http#httprequesturl-options-callback|HTTP
+http.setMaxIdleHTTPParsers|http#httpsetmaxidlehttpparsers|HTTP
+http.validateHeaderName()|http#httpvalidateheadernamename|HTTP
+http.validateHeaderValue()|http#httpvalidateheadervaluename-value|HTTP
+http2.connect()|http2#http2connectauthority-options-listener|HTTP/2
+http2.constants|http2#http2constants|HTTP/2
+http2.createSecureServer()|http2#http2createsecureserveroptions-onrequesthandler|HTTP/2
+http2.createServer()|http2#http2createserveroptions-onrequesthandler|HTTP/2
+http2.getDefaultSettings()|http2#http2getdefaultsettings|HTTP/2
+http2.getPackedSettings()|http2#http2getpackedsettingssettings|HTTP/2
+http2.getUnpackedSettings()|http2#http2getunpackedsettingsbuf|HTTP/2
+http2.sensitiveHeaders|http2#http2sensitiveheaders|HTTP/2
+http2session.alpnProtocol|http2#http2sessionalpnprotocol|HTTP/2
+http2session.close()|http2#http2sessionclosecallback|HTTP/2
+http2session.closed|http2#http2sessionclosed|HTTP/2
+http2session.connecting|http2#http2sessionconnecting|HTTP/2
+http2session.destroy()|http2#http2sessiondestroyerror-code|HTTP/2
+http2session.destroyed|http2#http2sessiondestroyed|HTTP/2
+http2session.encrypted|http2#http2sessionencrypted|HTTP/2
+http2session.goaway()|http2#http2sessiongoawaycode-laststreamid-opaquedata|HTTP/2
+http2session.localSettings|http2#http2sessionlocalsettings|HTTP/2
+http2session.originSet|http2#http2sessionoriginset|HTTP/2
+http2session.pendingSettingsAck|http2#http2sessionpendingsettingsack|HTTP/2
+http2session.ping()|http2#http2sessionpingpayload-callback|HTTP/2
+http2session.ref()|http2#http2sessionref|HTTP/2
+http2session.remoteSettings|http2#http2sessionremotesettings|HTTP/2
+http2session.setLocalWindowSize()|http2#http2sessionsetlocalwindowsizewindowsize|HTTP/2
+http2session.setTimeout()|http2#http2sessionsettimeoutmsecs-callback|HTTP/2
+http2session.settings()|http2#http2sessionsettingssettings-callback|HTTP/2
+http2session.socket|http2#http2sessionsocket|HTTP/2
+http2session.state|http2#http2sessionstate|HTTP/2
+http2session.type|http2#http2sessiontype|HTTP/2
+http2session.unref()|http2#http2sessionunref|HTTP/2
+http2stream.aborted|http2#http2streamaborted|HTTP/2
+http2stream.additionalHeaders()|http2#http2streamadditionalheadersheaders|HTTP/2
+http2stream.bufferSize|http2#http2streambuffersize|HTTP/2
+http2stream.close()|http2#http2streamclosecode-callback|HTTP/2
+http2stream.closed|http2#http2streamclosed|HTTP/2
+http2stream.destroyed|http2#http2streamdestroyed|HTTP/2
+http2stream.endAfterHeaders|http2#http2streamendafterheaders|HTTP/2
+http2stream.headersSent|http2#http2streamheaderssent|HTTP/2
+http2stream.id|http2#http2streamid|HTTP/2
+http2stream.pending|http2#http2streampending|HTTP/2
+http2stream.priority()|http2#http2streampriorityoptions|HTTP/2
+http2stream.pushAllowed|http2#http2streampushallowed|HTTP/2
+http2stream.pushStream()|http2#http2streampushstreamheaders-options-callback|HTTP/2
+http2stream.respond()|http2#http2streamrespondheaders-options|HTTP/2
+http2stream.respondWithFD()|http2#http2streamrespondwithfdfd-headers-options|HTTP/2
+http2stream.respondWithFile()|http2#http2streamrespondwithfilepath-headers-options|HTTP/2
+http2stream.rstCode|http2#http2streamrstcode|HTTP/2
+http2stream.sendTrailers()|http2#http2streamsendtrailersheaders|HTTP/2
+http2stream.sentHeaders|http2#http2streamsentheaders|HTTP/2
+http2stream.sentInfoHeaders|http2#http2streamsentinfoheaders|HTTP/2
+http2stream.sentTrailers|http2#http2streamsenttrailers|HTTP/2
+http2stream.session|http2#http2streamsession|HTTP/2
+http2stream.setTimeout()|http2#http2streamsettimeoutmsecs-callback|HTTP/2
+http2stream.state|http2#http2streamstate|HTTP/2
+https.createServer()|https#httpscreateserveroptions-requestlistener|HTTPS
+https.get()|https#httpsgetoptions-callback|HTTPS
+https.get()|https#httpsgeturl-options-callback|HTTPS
+https.globalAgent|https#httpsglobalagent|HTTPS
+https.request()|https#httpsrequesturl-options-callback|HTTPS
+https.request()|https#httpsrequestoptions-callback|HTTPS
+immediate.hasRef()|timers#immediatehasref|Timers
+immediate.ref()|timers#immediateref|Timers
+immediate.unref()|timers#immediateunref|Timers
+import|esm#import-specifiers|Modules: ECMAScript modules
+import|esm#import-statements|Modules: ECMAScript modules
+import()|esm#import-expressions|Modules: ECMAScript modules
+import.meta|esm#importmeta|Modules: ECMAScript modules
+import.meta.resolve()|esm#importmetaresolvespecifier-parent|Modules: ECMAScript modules
+import.meta.url|esm#importmetaurl|Modules: ECMAScript modules
+init()|v8#initpromise-parent|V8
+init()|async_hooks#initasyncid-type-triggerasyncid-resource|Async hooks
+inspector.close()|inspector#inspectorclose|Inspector
+inspector.console|inspector#inspectorconsole|Inspector
+inspector.open()|inspector#inspectoropenport-host-wait|Inspector
+inspector.url()|inspector#inspectorurl|Inspector
+inspector.waitForDebugger()|inspector#inspectorwaitfordebugger|Inspector
+it|test#describeit-syntax|Test runner
+it()|test#itname-options-fn|Test runner
+it.skip()|test#itskipname-options-fn|Test runner
+it.todo()|test#ittodoname-options-fn|Test runner
+keyObject.asymmetricKeyDetails|crypto#keyobjectasymmetrickeydetails|Crypto
+keyObject.asymmetricKeyType|crypto#keyobjectasymmetrickeytype|Crypto
+keyObject.equals()|crypto#keyobjectequalsotherkeyobject|Crypto
+keyObject.export()|crypto#keyobjectexportoptions|Crypto
+keyObject.symmetricKeySize|crypto#keyobjectsymmetrickeysize|Crypto
+keyObject.type|crypto#keyobjecttype|Crypto
+load()|esm#loadurl-context-nextload|Modules: ECMAScript modules
+maxBuffer|child_process#maxbuffer-and-unicode|Child process
+message.aborted|http#messageaborted|HTTP
+message.complete|http#messagecomplete|HTTP
+message.connection|http#messageconnection|HTTP
+message.destroy()|http#messagedestroyerror|HTTP
+message.headers|http#messageheaders|HTTP
+message.headersDistinct|http#messageheadersdistinct|HTTP
+message.httpVersion|http#messagehttpversion|HTTP
+message.method|http#messagemethod|HTTP
+message.rawHeaders|http#messagerawheaders|HTTP
+message.rawTrailers|http#messagerawtrailers|HTTP
+message.setTimeout()|http#messagesettimeoutmsecs-callback|HTTP
+message.socket|http#messagesocket|HTTP
+message.statusCode|http#messagestatuscode|HTTP
+message.statusMessage|http#messagestatusmessage|HTTP
+message.trailers|http#messagetrailers|HTTP
+message.trailersDistinct|http#messagetrailersdistinct|HTTP
+message.url|http#messageurl|HTTP
+module|modules#module|Modules: CommonJS modules
+module|globals#module|Global objects
+module.builtinModules|module#modulebuiltinmodules|Modules: node:module API
+module.children|modules#modulechildren|Modules: CommonJS modules
+module.createRequire()|module#modulecreaterequirefilename|Modules: node:module API
+module.dependencySpecifiers|vm#moduledependencyspecifiers|VM (executing JavaScript)
+module.error|vm#moduleerror|VM (executing JavaScript)
+module.evaluate()|vm#moduleevaluateoptions|VM (executing JavaScript)
+module.exports|modules#moduleexports|Modules: CommonJS modules
+module.filename|modules#modulefilename|Modules: CommonJS modules
+module.findSourceMap()|module#modulefindsourcemappath|Modules: node:module API
+module.id|modules#moduleid|Modules: CommonJS modules
+module.identifier|vm#moduleidentifier|VM (executing JavaScript)
+module.isBuiltin()|module#moduleisbuiltinmodulename|Modules: node:module API
+module.isPreloading|modules#moduleispreloading|Modules: CommonJS modules
+module.link()|vm#modulelinklinker|VM (executing JavaScript)
+module.loaded|modules#moduleloaded|Modules: CommonJS modules
+module.namespace|vm#modulenamespace|VM (executing JavaScript)
+module.parent|modules#moduleparent|Modules: CommonJS modules
+module.path|modules#modulepath|Modules: CommonJS modules
+module.paths|modules#modulepaths|Modules: CommonJS modules
+module.require()|modules#modulerequireid|Modules: CommonJS modules
+module.status|vm#modulestatus|VM (executing JavaScript)
+module.syncBuiltinESMExports()|module#modulesyncbuiltinesmexports|Modules: node:module API
+napi_acquire_threadsafe_function|n-api#napi_acquire_threadsafe_function|Node-API
+napi_add_async_cleanup_hook|n-api#napi_add_async_cleanup_hook|Node-API
+napi_add_env_cleanup_hook|n-api#napi_add_env_cleanup_hook|Node-API
+napi_add_finalizer|n-api#napi_add_finalizer|Node-API
+napi_adjust_external_memory|n-api#napi_adjust_external_memory|Node-API
+napi_async_cleanup_hook|n-api#napi_async_cleanup_hook|Node-API
+napi_async_cleanup_hook_handle|n-api#napi_async_cleanup_hook_handle|Node-API
+napi_async_complete_callback|n-api#napi_async_complete_callback|Node-API
+napi_async_destroy|n-api#napi_async_destroy|Node-API
+napi_async_execute_callback|n-api#napi_async_execute_callback|Node-API
+napi_async_init|n-api#napi_async_init|Node-API
+napi_call_function|n-api#napi_call_function|Node-API
+napi_call_threadsafe_function|n-api#napi_call_threadsafe_function|Node-API
+napi_callback|n-api#napi_callback|Node-API
+napi_callback_info|n-api#napi_callback_info|Node-API
+napi_cancel_async_work|n-api#napi_cancel_async_work|Node-API
+napi_check_object_type_tag|n-api#napi_check_object_type_tag|Node-API
+napi_close_callback_scope|n-api#napi_close_callback_scope|Node-API
+napi_close_escapable_handle_scope|n-api#napi_close_escapable_handle_scope|Node-API
+napi_close_handle_scope|n-api#napi_close_handle_scope|Node-API
+napi_coerce_to_bool|n-api#napi_coerce_to_bool|Node-API
+napi_coerce_to_number|n-api#napi_coerce_to_number|Node-API
+napi_coerce_to_object|n-api#napi_coerce_to_object|Node-API
+napi_coerce_to_string|n-api#napi_coerce_to_string|Node-API
+napi_create_array|n-api#napi_create_array|Node-API
+napi_create_array_with_length|n-api#napi_create_array_with_length|Node-API
+napi_create_arraybuffer|n-api#napi_create_arraybuffer|Node-API
+napi_create_async_work|n-api#napi_create_async_work|Node-API
+napi_create_bigint_int64|n-api#napi_create_bigint_int64|Node-API
+napi_create_bigint_uint64|n-api#napi_create_bigint_uint64|Node-API
+napi_create_bigint_words|n-api#napi_create_bigint_words|Node-API
+napi_create_buffer|n-api#napi_create_buffer|Node-API
+napi_create_buffer_copy|n-api#napi_create_buffer_copy|Node-API
+napi_create_dataview|n-api#napi_create_dataview|Node-API
+napi_create_date|n-api#napi_create_date|Node-API
+napi_create_double|n-api#napi_create_double|Node-API
+napi_create_error|n-api#napi_create_error|Node-API
+napi_create_external|n-api#napi_create_external|Node-API
+napi_create_external_arraybuffer|n-api#napi_create_external_arraybuffer|Node-API
+napi_create_external_buffer|n-api#napi_create_external_buffer|Node-API
+napi_create_function|n-api#napi_create_function|Node-API
+napi_create_int32|n-api#napi_create_int32|Node-API
+napi_create_int64|n-api#napi_create_int64|Node-API
+napi_create_object|n-api#napi_create_object|Node-API
+napi_create_promise|n-api#napi_create_promise|Node-API
+napi_create_range_error|n-api#napi_create_range_error|Node-API
+napi_create_reference|n-api#napi_create_reference|Node-API
+napi_create_string_latin1|n-api#napi_create_string_latin1|Node-API
+napi_create_string_utf16|n-api#napi_create_string_utf16|Node-API
+napi_create_string_utf8|n-api#napi_create_string_utf8|Node-API
+napi_create_symbol|n-api#napi_create_symbol|Node-API
+napi_create_threadsafe_function|n-api#napi_create_threadsafe_function|Node-API
+napi_create_type_error|n-api#napi_create_type_error|Node-API
+napi_create_typedarray|n-api#napi_create_typedarray|Node-API
+napi_create_uint32|n-api#napi_create_uint32|Node-API
+napi_define_class|n-api#napi_define_class|Node-API
+napi_define_properties|n-api#napi_define_properties|Node-API
+napi_delete_async_work|n-api#napi_delete_async_work|Node-API
+napi_delete_element|n-api#napi_delete_element|Node-API
+napi_delete_property|n-api#napi_delete_property|Node-API
+napi_delete_reference|n-api#napi_delete_reference|Node-API
+napi_detach_arraybuffer|n-api#napi_detach_arraybuffer|Node-API
+napi_env|n-api#napi_env|Node-API
+napi_escapable_handle_scope|n-api#napi_escapable_handle_scope|Node-API
+napi_escape_handle|n-api#napi_escape_handle|Node-API
+napi_extended_error_info|n-api#napi_extended_error_info|Node-API
+napi_fatal_error|n-api#napi_fatal_error|Node-API
+napi_fatal_exception|n-api#napi_fatal_exception|Node-API
+napi_finalize|n-api#napi_finalize|Node-API
+napi_get_all_property_names|n-api#napi_get_all_property_names|Node-API
+napi_get_and_clear_last_exception|n-api#napi_get_and_clear_last_exception|Node-API
+napi_get_array_length|n-api#napi_get_array_length|Node-API
+napi_get_arraybuffer_info|n-api#napi_get_arraybuffer_info|Node-API
+napi_get_boolean|n-api#napi_get_boolean|Node-API
+napi_get_buffer_info|n-api#napi_get_buffer_info|Node-API
+napi_get_cb_info|n-api#napi_get_cb_info|Node-API
+napi_get_dataview_info|n-api#napi_get_dataview_info|Node-API
+napi_get_date_value|n-api#napi_get_date_value|Node-API
+napi_get_element|n-api#napi_get_element|Node-API
+napi_get_global|n-api#napi_get_global|Node-API
+napi_get_instance_data|n-api#napi_get_instance_data|Node-API
+napi_get_last_error_info|n-api#napi_get_last_error_info|Node-API
+napi_get_named_property|n-api#napi_get_named_property|Node-API
+napi_get_new_target|n-api#napi_get_new_target|Node-API
+napi_get_node_version|n-api#napi_get_node_version|Node-API
+napi_get_null|n-api#napi_get_null|Node-API
+napi_get_property|n-api#napi_get_property|Node-API
+napi_get_property_names|n-api#napi_get_property_names|Node-API
+napi_get_prototype|n-api#napi_get_prototype|Node-API
+napi_get_reference_value|n-api#napi_get_reference_value|Node-API
+napi_get_threadsafe_function_context|n-api#napi_get_threadsafe_function_context|Node-API
+napi_get_typedarray_info|n-api#napi_get_typedarray_info|Node-API
+napi_get_undefined|n-api#napi_get_undefined|Node-API
+napi_get_uv_event_loop|n-api#napi_get_uv_event_loop|Node-API
+napi_get_value_bigint_int64|n-api#napi_get_value_bigint_int64|Node-API
+napi_get_value_bigint_uint64|n-api#napi_get_value_bigint_uint64|Node-API
+napi_get_value_bigint_words|n-api#napi_get_value_bigint_words|Node-API
+napi_get_value_bool|n-api#napi_get_value_bool|Node-API
+napi_get_value_double|n-api#napi_get_value_double|Node-API
+napi_get_value_external|n-api#napi_get_value_external|Node-API
+napi_get_value_int32|n-api#napi_get_value_int32|Node-API
+napi_get_value_int64|n-api#napi_get_value_int64|Node-API
+napi_get_value_string_latin1|n-api#napi_get_value_string_latin1|Node-API
+napi_get_value_string_utf16|n-api#napi_get_value_string_utf16|Node-API
+napi_get_value_string_utf8|n-api#napi_get_value_string_utf8|Node-API
+napi_get_value_uint32|n-api#napi_get_value_uint32|Node-API
+napi_get_version|n-api#napi_get_version|Node-API
+napi_handle_scope|n-api#napi_handle_scope|Node-API
+napi_has_element|n-api#napi_has_element|Node-API
+napi_has_named_property|n-api#napi_has_named_property|Node-API
+napi_has_own_property|n-api#napi_has_own_property|Node-API
+napi_has_property|n-api#napi_has_property|Node-API
+napi_instanceof|n-api#napi_instanceof|Node-API
+napi_is_array|n-api#napi_is_array|Node-API
+napi_is_arraybuffer|n-api#napi_is_arraybuffer|Node-API
+napi_is_buffer|n-api#napi_is_buffer|Node-API
+napi_is_dataview|n-api#napi_is_dataview|Node-API
+napi_is_date|n-api#napi_is_date|Node-API
+napi_is_detached_arraybuffer|n-api#napi_is_detached_arraybuffer|Node-API
+napi_is_error|n-api#napi_is_error|Node-API
+napi_is_error|n-api#napi_is_error_1|Node-API
+napi_is_exception_pending|n-api#napi_is_exception_pending|Node-API
+napi_is_promise|n-api#napi_is_promise|Node-API
+napi_is_typedarray|n-api#napi_is_typedarray|Node-API
+napi_key_collection_mode|n-api#napi_key_collection_mode|Node-API
+napi_key_conversion|n-api#napi_key_conversion|Node-API
+napi_key_filter|n-api#napi_key_filter|Node-API
+napi_make_callback|n-api#napi_make_callback|Node-API
+napi_new_instance|n-api#napi_new_instance|Node-API
+napi_object_freeze|n-api#napi_object_freeze|Node-API
+napi_object_seal|n-api#napi_object_seal|Node-API
+napi_open_callback_scope|n-api#napi_open_callback_scope|Node-API
+napi_open_escapable_handle_scope|n-api#napi_open_escapable_handle_scope|Node-API
+napi_open_handle_scope|n-api#napi_open_handle_scope|Node-API
+napi_property_attributes|n-api#napi_property_attributes|Node-API
+napi_property_descriptor|n-api#napi_property_descriptor|Node-API
+napi_queue_async_work|n-api#napi_queue_async_work|Node-API
+napi_ref|n-api#napi_ref|Node-API
+napi_ref_threadsafe_function|n-api#napi_ref_threadsafe_function|Node-API
+napi_reference_ref|n-api#napi_reference_ref|Node-API
+napi_reference_unref|n-api#napi_reference_unref|Node-API
+napi_reject_deferred|n-api#napi_reject_deferred|Node-API
+napi_release_threadsafe_function|n-api#napi_release_threadsafe_function|Node-API
+napi_remove_async_cleanup_hook|n-api#napi_remove_async_cleanup_hook|Node-API
+napi_remove_env_cleanup_hook|n-api#napi_remove_env_cleanup_hook|Node-API
+napi_remove_wrap|n-api#napi_remove_wrap|Node-API
+napi_resolve_deferred|n-api#napi_resolve_deferred|Node-API
+napi_run_script|n-api#napi_run_script|Node-API
+napi_set_element|n-api#napi_set_element|Node-API
+napi_set_instance_data|n-api#napi_set_instance_data|Node-API
+napi_set_named_property|n-api#napi_set_named_property|Node-API
+napi_set_property|n-api#napi_set_property|Node-API
+napi_status|n-api#napi_status|Node-API
+napi_strict_equals|n-api#napi_strict_equals|Node-API
+napi_threadsafe_function|n-api#napi_threadsafe_function|Node-API
+napi_threadsafe_function_call_js|n-api#napi_threadsafe_function_call_js|Node-API
+napi_threadsafe_function_call_mode|n-api#napi_threadsafe_function_call_mode|Node-API
+napi_threadsafe_function_release_mode|n-api#napi_threadsafe_function_release_mode|Node-API
+napi_throw|n-api#napi_throw|Node-API
+napi_throw_error|n-api#napi_throw_error|Node-API
+napi_throw_range_error|n-api#napi_throw_range_error|Node-API
+napi_throw_type_error|n-api#napi_throw_type_error|Node-API
+napi_type_tag|n-api#napi_type_tag|Node-API
+napi_type_tag_object|n-api#napi_type_tag_object|Node-API
+napi_typedarray_type|n-api#napi_typedarray_type|Node-API
+napi_typeof|n-api#napi_typeof|Node-API
+napi_unref_threadsafe_function|n-api#napi_unref_threadsafe_function|Node-API
+napi_unwrap|n-api#napi_unwrap|Node-API
+napi_value|n-api#napi_value|Node-API
+napi_valuetype|n-api#napi_valuetype|Node-API
+napi_wrap|n-api#napi_wrap|Node-API
+net.connect()|net#netconnectport-host-connectlistener|Net
+net.connect()|net#netconnect|Net
+net.connect()|net#netconnectoptions-connectlistener|Net
+net.connect()|net#netconnectpath-connectlistener|Net
+net.createConnection()|net#netcreateconnection|Net
+net.createConnection()|net#netcreateconnectionport-host-connectlistener|Net
+net.createConnection()|net#netcreateconnectionpath-connectlistener|Net
+net.createConnection()|net#netcreateconnectionoptions-connectlistener|Net
+net.createServer()|net#netcreateserveroptions-connectionlistener|Net
+net.isIP()|net#netisipinput|Net
+net.isIPv4()|net#netisipv4input|Net
+net.isIPv6()|net#netisipv6input|Net
+new Agent()|https#new-agentoptions|HTTPS
+new Agent()|http#new-agentoptions|HTTP
+new AsyncLocalStorage()|async_context#new-asynclocalstorage|Asynchronous context tracking
+new AsyncResource()|async_context#new-asyncresourcetype-options|Asynchronous context tracking
+new BroadcastChannel()|worker_threads#new-broadcastchannelname|Worker threads
+new Buffer()|buffer#new-bufferarray|Buffer
+new Buffer()|buffer#new-bufferarraybuffer-byteoffset-length|Buffer
+new Buffer()|buffer#new-bufferbuffer|Buffer
+new Buffer()|buffer#new-buffersize|Buffer
+new Buffer()|buffer#new-bufferstring-encoding|Buffer
+new ByteLengthQueuingStrategy()|webstreams#new-bytelengthqueuingstrategyoptions|Web Streams API
+new CompressionStream()|webstreams#new-compressionstreamformat|Web Streams API
+new Console()|console#new-consolestdout-stderr-ignoreerrors|Console
+new Console()|console#new-consoleoptions|Console
+new CountQueuingStrategy()|webstreams#new-countqueuingstrategyoptions|Web Streams API
+new DecompressionStream()|webstreams#new-decompressionstreamformat|Web Streams API
+new Deserializer()|v8#new-deserializerbuffer|V8
+new Error()|errors#new-errormessage-options|Errors
+new PerformanceObserver()|perf_hooks#new-performanceobservercallback|Performance measurement APIs
+new ReadableStream()|webstreams#new-readablestreamunderlyingsource--strategy|Web Streams API
+new ReadableStreamBYOBReader()|webstreams#new-readablestreambyobreaderstream|Web Streams API
+new ReadableStreamDefaultReader()|webstreams#new-readablestreamdefaultreaderstream|Web Streams API
+new Serializer()|v8#new-serializer|V8
+new SlowBuffer()|buffer#new-slowbuffersize|Buffer
+new SourceMap()|module#new-sourcemappayload|Modules: node:module API
+new StringDecoder()|string_decoder#new-stringdecoderencoding|String decoder
+new TextDecoder()|util#new-textdecoderencoding-options|Util
+new TextDecoderStream()|webstreams#new-textdecoderstreamencoding-options|Web Streams API
+new TextEncoderStream()|webstreams#new-textencoderstream|Web Streams API
+new TransformStream()|webstreams#new-transformstreamtransformer-writablestrategy-readablestrategy|Web Streams API
+new URL()|url#new-urlinput-base|URL
+new URLSearchParams()|url#new-urlsearchparamsiterable|URL
+new URLSearchParams()|url#new-urlsearchparamsobj|URL
+new URLSearchParams()|url#new-urlsearchparamsstring|URL
+new URLSearchParams()|url#new-urlsearchparams|URL
+new WASI()|wasi#new-wasioptions|WebAssembly System Interface (WASI)
+new Worker()|worker_threads#new-workerfilename-options|Worker threads
+new WritableStream()|webstreams#new-writablestreamunderlyingsink-strategy|Web Streams API
+new WritableStreamDefaultWriter()|webstreams#new-writablestreamdefaultwriterstream|Web Streams API
+new X509Certificate()|crypto#new-x509certificatebuffer|Crypto
+new assert.AssertionError()|assert#new-assertassertionerroroptions|Assert
+new assert.CallTracker()|assert#new-assertcalltracker|Assert
+new buffer.Blob()|buffer#new-bufferblobsources-options|Buffer
+new crypto.Certificate()|crypto#new-cryptocertificate|Crypto
+new events.EventEmitterAsyncResource()|events#new-eventseventemitterasyncresourceoptions|Events
+new inspector.Session()|inspector#new-inspectorsession_1|Inspector
+new inspector.Session()|inspector#new-inspectorsession|Inspector
+new net.Server()|net#new-netserveroptions-connectionlistener|Net
+new net.Socket()|net#new-netsocketoptions|Net
+new net.SocketAddress()|net#new-netsocketaddressoptions|Net
+new readlinePromises.Readline()|readline#new-readlinepromisesreadlinestream-options|Readline
+new stream.Duplex()|stream#new-streamduplexoptions|Stream[src]
+new stream.Readable()|stream#new-streamreadableoptions|Stream[src]
+new stream.Transform()|stream#new-streamtransformoptions|Stream[src]
+new stream.Writable()|stream#new-streamwritableoptions|Stream[src]
+new tls.TLSSocket()|tls#new-tlstlssocketsocket-options|TLS (SSL)
+new vm.Script()|vm#new-vmscriptcode-options|VM (executing JavaScript)
+new vm.SourceTextModule()|vm#new-vmsourcetextmodulecode-options|VM (executing JavaScript)
+new vm.SyntheticModule()|vm#new-vmsyntheticmoduleexportnames-evaluatecallback-options|VM (executing JavaScript)
+node:|esm#node-imports|Modules: ECMAScript modules
+node:buffer|buffer#nodebuffer-module-apis|Buffer
+node:crypto|crypto#nodecrypto-module-methods-and-properties|Crypto
+node:dgram|dgram#nodedgram-module-functions|UDP/datagram sockets
+nodeEventTarget.addListener()|events#nodeeventtargetaddlistenertype-listener-options|Events
+nodeEventTarget.eventNames()|events#nodeeventtargeteventnames|Events
+nodeEventTarget.listenerCount()|events#nodeeventtargetlistenercounttype|Events
+nodeEventTarget.off()|events#nodeeventtargetofftype-listener|Events
+nodeEventTarget.on()|events#nodeeventtargetontype-listener-options|Events
+nodeEventTarget.once()|events#nodeeventtargetoncetype-listener-options|Events
+nodeEventTarget.removeAllListeners()|events#nodeeventtargetremovealllistenerstype|Events
+nodeEventTarget.removeListener()|events#nodeeventtargetremovelistenertype-listener|Events
+node_api_create_syntax_error|n-api#node_api_create_syntax_error|Node-API
+node_api_get_module_file_name|n-api#node_api_get_module_file_name|Node-API
+node_api_symbol_for|n-api#node_api_symbol_for|Node-API
+node_api_throw_syntax_error|n-api#node_api_throw_syntax_error|Node-API
+only|test#only-tests|Test runner
+options.detached|child_process#optionsdetached|Child process
+options.stdio|child_process#optionsstdio|Child process
+os.EOL|os#oseol|OS
+os.arch()|os#osarch|OS
+os.constants|os#osconstants|OS
+os.cpus()|os#oscpus|OS
+os.devNull|os#osdevnull|OS
+os.endianness()|os#osendianness|OS
+os.freemem()|os#osfreemem|OS
+os.getPriority()|os#osgetprioritypid|OS
+os.homedir()|os#oshomedir|OS
+os.hostname()|os#oshostname|OS
+os.loadavg()|os#osloadavg|OS
+os.machine()|os#osmachine|OS
+os.networkInterfaces()|os#osnetworkinterfaces|OS
+os.platform()|os#osplatform|OS
+os.release()|os#osrelease|OS
+os.setPriority()|os#ossetprioritypid-priority|OS
+os.tmpdir()|os#ostmpdir|OS
+os.totalmem()|os#ostotalmem|OS
+os.type()|os#ostype|OS
+os.uptime()|os#osuptime|OS
+os.userInfo()|os#osuserinfooptions|OS
+os.version()|os#osversion|OS
+outgoingMessage.addTrailers()|http#outgoingmessageaddtrailersheaders|HTTP
+outgoingMessage.appendHeader()|http#outgoingmessageappendheadername-value|HTTP
+outgoingMessage.connection|http#outgoingmessageconnection|HTTP
+outgoingMessage.cork()|http#outgoingmessagecork|HTTP
+outgoingMessage.destroy()|http#outgoingmessagedestroyerror|HTTP
+outgoingMessage.end()|http#outgoingmessageendchunk-encoding-callback|HTTP
+outgoingMessage.flushHeaders()|http#outgoingmessageflushheaders|HTTP
+outgoingMessage.getHeader()|http#outgoingmessagegetheadername|HTTP
+outgoingMessage.getHeaderNames()|http#outgoingmessagegetheadernames|HTTP
+outgoingMessage.getHeaders()|http#outgoingmessagegetheaders|HTTP
+outgoingMessage.hasHeader()|http#outgoingmessagehasheadername|HTTP
+outgoingMessage.headersSent|http#outgoingmessageheaderssent|HTTP
+outgoingMessage.pipe()|http#outgoingmessagepipe|HTTP
+outgoingMessage.removeHeader()|http#outgoingmessageremoveheadername|HTTP
+outgoingMessage.setHeader()|http#outgoingmessagesetheadername-value|HTTP
+outgoingMessage.setTimeout()|http#outgoingmessagesettimeoutmsesc-callback|HTTP
+outgoingMessage.socket|http#outgoingmessagesocket|HTTP
+outgoingMessage.uncork()|http#outgoingmessageuncork|HTTP
+outgoingMessage.writableCorked|http#outgoingmessagewritablecorked|HTTP
+outgoingMessage.writableEnded|http#outgoingmessagewritableended|HTTP
+outgoingMessage.writableFinished|http#outgoingmessagewritablefinished|HTTP
+outgoingMessage.writableHighWaterMark|http#outgoingmessagewritablehighwatermark|HTTP
+outgoingMessage.writableLength|http#outgoingmessagewritablelength|HTTP
+outgoingMessage.writableObjectMode|http#outgoingmessagewritableobjectmode|HTTP
+outgoingMessage.write()|http#outgoingmessagewritechunk-encoding-callback|HTTP
+package.json|packages#packagejson-and-file-extensions|Modules: Packages
+parseArgs|util#parseargs-tokens|Util
+path.basename()|path#pathbasenamepath-suffix|Path
+path.delimiter|path#pathdelimiter|Path
+path.dirname()|path#pathdirnamepath|Path
+path.extname()|path#pathextnamepath|Path
+path.format()|path#pathformatpathobject|Path
+path.isAbsolute()|path#pathisabsolutepath|Path
+path.join()|path#pathjoinpaths|Path
+path.normalize()|path#pathnormalizepath|Path
+path.parse()|path#pathparsepath|Path
+path.posix|path#pathposix|Path
+path.relative()|path#pathrelativefrom-to|Path
+path.resolve()|path#pathresolvepaths|Path
+path.sep|path#pathsep|Path
+path.toNamespacedPath()|path#pathtonamespacedpathpath|Path
+path.win32|path#pathwin32|Path
+pbkdb2Params.hash|webcrypto#pbkdb2paramshash|Web Crypto API
+pbkdf2Params.iterations|webcrypto#pbkdf2paramsiterations|Web Crypto API
+pbkdf2Params.name|webcrypto#pbkdf2paramsname|Web Crypto API
+pbkdf2Params.salt|webcrypto#pbkdf2paramssalt|Web Crypto API
+perf_hooks.createHistogram()|perf_hooks#perf_hookscreatehistogramoptions|Performance measurement APIs
+perf_hooks.monitorEventLoopDelay()|perf_hooks#perf_hooksmonitoreventloopdelayoptions|Performance measurement APIs
+perf_hooks.performance|perf_hooks#perf_hooksperformance|Performance measurement APIs
+performance|globals#performance|Global objects
+performance.clearMarks()|perf_hooks#performanceclearmarksname|Performance measurement APIs
+performance.clearMeasures()|perf_hooks#performanceclearmeasuresname|Performance measurement APIs
+performance.clearResourceTimings()|perf_hooks#performanceclearresourcetimingsname|Performance measurement APIs
+performance.eventLoopUtilization()|perf_hooks#performanceeventlooputilizationutilization1-utilization2|Performance measurement APIs
+performance.eventLoopUtilization()|worker_threads#performanceeventlooputilizationutilization1-utilization2|Worker threads
+performance.getEntries()|perf_hooks#performancegetentries|Performance measurement APIs
+performance.getEntriesByName()|perf_hooks#performancegetentriesbynamename-type|Performance measurement APIs
+performance.getEntriesByType()|perf_hooks#performancegetentriesbytypetype|Performance measurement APIs
+performance.mark()|perf_hooks#performancemarkname-options|Performance measurement APIs
+performance.markResourceTiming()|perf_hooks#performancemarkresourcetimingtiminginfo-requestedurl-initiatortype-global-cachemode|Performance measurement APIs
+performance.measure()|perf_hooks#performancemeasurename-startmarkoroptions-endmark|Performance measurement APIs
+performance.nodeTiming|perf_hooks#performancenodetiming|Performance measurement APIs
+performance.now()|perf_hooks#performancenow|Performance measurement APIs
+performance.setResourceTimingBufferSize()|perf_hooks#performancesetresourcetimingbuffersizemaxsize|Performance measurement APIs
+performance.timeOrigin|perf_hooks#performancetimeorigin|Performance measurement APIs
+performance.timerify()|perf_hooks#performancetimerifyfn-options|Performance measurement APIs
+performance.toJSON()|perf_hooks#performancetojson|Performance measurement APIs
+performanceEntry.duration|perf_hooks#performanceentryduration|Performance measurement APIs
+performanceEntry.entryType|perf_hooks#performanceentryentrytype|Performance measurement APIs
+performanceEntry.name|perf_hooks#performanceentryname|Performance measurement APIs
+performanceEntry.startTime|perf_hooks#performanceentrystarttime|Performance measurement APIs
+performanceMark.detail|perf_hooks#performancemarkdetail|Performance measurement APIs
+performanceMeasure.detail|perf_hooks#performancemeasuredetail|Performance measurement APIs
+performanceNodeEntry.detail|perf_hooks#performancenodeentrydetail|Performance measurement APIs
+performanceNodeEntry.flags|perf_hooks#performancenodeentryflags|Performance measurement APIs
+performanceNodeEntry.kind|perf_hooks#performancenodeentrykind|Performance measurement APIs
+performanceNodeTiming.bootstrapComplete|perf_hooks#performancenodetimingbootstrapcomplete|Performance measurement APIs
+performanceNodeTiming.environment|perf_hooks#performancenodetimingenvironment|Performance measurement APIs
+performanceNodeTiming.idleTime|perf_hooks#performancenodetimingidletime|Performance measurement APIs
+performanceNodeTiming.loopExit|perf_hooks#performancenodetimingloopexit|Performance measurement APIs
+performanceNodeTiming.loopStart|perf_hooks#performancenodetimingloopstart|Performance measurement APIs
+performanceNodeTiming.nodeStart|perf_hooks#performancenodetimingnodestart|Performance measurement APIs
+performanceNodeTiming.v8Start|perf_hooks#performancenodetimingv8start|Performance measurement APIs
+performanceObserver.disconnect()|perf_hooks#performanceobserverdisconnect|Performance measurement APIs
+performanceObserver.observe()|perf_hooks#performanceobserverobserveoptions|Performance measurement APIs
+performanceObserverEntryList.getEntries()|perf_hooks#performanceobserverentrylistgetentries|Performance measurement APIs
+performanceObserverEntryList.getEntriesByName()|perf_hooks#performanceobserverentrylistgetentriesbynamename-type|Performance measurement APIs
+performanceObserverEntryList.getEntriesByType()|perf_hooks#performanceobserverentrylistgetentriesbytypetype|Performance measurement APIs
+performanceResourceTiming.connectEnd|perf_hooks#performanceresourcetimingconnectend|Performance measurement APIs
+performanceResourceTiming.connectStart|perf_hooks#performanceresourcetimingconnectstart|Performance measurement APIs
+performanceResourceTiming.decodedBodySize|perf_hooks#performanceresourcetimingdecodedbodysize|Performance measurement APIs
+performanceResourceTiming.domainLookupEnd|perf_hooks#performanceresourcetimingdomainlookupend|Performance measurement APIs
+performanceResourceTiming.domainLookupStart|perf_hooks#performanceresourcetimingdomainlookupstart|Performance measurement APIs
+performanceResourceTiming.encodedBodySize|perf_hooks#performanceresourcetimingencodedbodysize|Performance measurement APIs
+performanceResourceTiming.fetchStart|perf_hooks#performanceresourcetimingfetchstart|Performance measurement APIs
+performanceResourceTiming.redirectEnd|perf_hooks#performanceresourcetimingredirectend|Performance measurement APIs
+performanceResourceTiming.redirectStart|perf_hooks#performanceresourcetimingredirectstart|Performance measurement APIs
+performanceResourceTiming.requestStart|perf_hooks#performanceresourcetimingrequeststart|Performance measurement APIs
+performanceResourceTiming.responseEnd|perf_hooks#performanceresourcetimingresponseend|Performance measurement APIs
+performanceResourceTiming.secureConnectionStart|perf_hooks#performanceresourcetimingsecureconnectionstart|Performance measurement APIs
+performanceResourceTiming.toJSON()|perf_hooks#performanceresourcetimingtojson|Performance measurement APIs
+performanceResourceTiming.transferSize|perf_hooks#performanceresourcetimingtransfersize|Performance measurement APIs
+performanceResourceTiming.workerStart|perf_hooks#performanceresourcetimingworkerstart|Performance measurement APIs
+port.close()|worker_threads#portclose|Worker threads
+port.hasRef()|worker_threads#porthasref|Worker threads
+port.postMessage()|worker_threads#portpostmessagevalue-transferlist|Worker threads
+port.ref()|worker_threads#portref|Worker threads
+port.start()|worker_threads#portstart|Worker threads
+port.unref()|worker_threads#portunref|Worker threads
+process|globals#process|Global objects
+process.abort()|process#processabort|Process
+process.allowedNodeEnvironmentFlags|process#processallowednodeenvironmentflags|Process
+process.arch|process#processarch|Process
+process.argv|process#processargv|Process
+process.argv0|process#processargv0|Process
+process.channel|process#processchannel|Process
+process.channel.ref()|process#processchannelref|Process
+process.channel.unref()|process#processchannelunref|Process
+process.chdir()|process#processchdirdirectory|Process
+process.config|process#processconfig|Process
+process.connected|process#processconnected|Process
+process.cpuUsage()|process#processcpuusagepreviousvalue|Process
+process.cwd()|process#processcwd|Process
+process.debugPort|process#processdebugport|Process
+process.disconnect()|process#processdisconnect|Process
+process.dlopen()|process#processdlopenmodule-filename-flags|Process
+process.emitWarning()|process#processemitwarningwarning-options|Process
+process.emitWarning()|process#processemitwarningwarning-type-code-ctor|Process
+process.env|process#processenv|Process
+process.execArgv|process#processexecargv|Process
+process.execPath|process#processexecpath|Process
+process.exit()|process#processexitcode|Process
+process.exitCode|process#processexitcode_1|Process
+process.getActiveResourcesInfo()|process#processgetactiveresourcesinfo|Process
+process.getegid()|process#processgetegid|Process
+process.geteuid()|process#processgeteuid|Process
+process.getgid()|process#processgetgid|Process
+process.getgroups()|process#processgetgroups|Process
+process.getuid()|process#processgetuid|Process
+process.hasUncaughtExceptionCaptureCallback()|process#processhasuncaughtexceptioncapturecallback|Process
+process.hrtime()|process#processhrtimetime|Process
+process.hrtime.bigint()|process#processhrtimebigint|Process
+process.initgroups()|process#processinitgroupsuser-extragroup|Process
+process.kill()|process#processkillpid-signal|Process
+process.mainModule|process#processmainmodule|Process
+process.memoryUsage()|process#processmemoryusage|Process
+process.memoryUsage.rss()|process#processmemoryusagerss|Process
+process.nextTick()|process#processnexttickcallback-args|Process
+process.noDeprecation|process#processnodeprecation|Process
+process.pid|process#processpid|Process
+process.platform|process#processplatform|Process
+process.ppid|process#processppid|Process
+process.release|process#processrelease|Process
+process.report|process#processreport|Process
+process.report.compact|process#processreportcompact|Process
+process.report.directory|process#processreportdirectory|Process
+process.report.filename|process#processreportfilename|Process
+process.report.getReport()|process#processreportgetreporterr|Process
+process.report.reportOnFatalError|process#processreportreportonfatalerror|Process
+process.report.reportOnSignal|process#processreportreportonsignal|Process
+process.report.reportOnUncaughtException|process#processreportreportonuncaughtexception|Process
+process.report.signal|process#processreportsignal|Process
+process.report.writeReport()|process#processreportwritereportfilename-err|Process
+process.resourceUsage()|process#processresourceusage|Process
+process.send()|process#processsendmessage-sendhandle-options-callback|Process
+process.setSourceMapsEnabled()|process#processsetsourcemapsenabledval|Process
+process.setUncaughtExceptionCaptureCallback()|process#processsetuncaughtexceptioncapturecallbackfn|Process
+process.setegid()|process#processsetegidid|Process
+process.seteuid()|process#processseteuidid|Process
+process.setgid()|process#processsetgidid|Process
+process.setgroups()|process#processsetgroupsgroups|Process
+process.setuid()|process#processsetuidid|Process
+process.stderr|process#processstderr|Process
+process.stderr.fd|process#processstderrfd|Process
+process.stdin|process#processstdin|Process
+process.stdin.fd|process#processstdinfd|Process
+process.stdout|process#processstdout|Process
+process.stdout.fd|process#processstdoutfd|Process
+process.throwDeprecation|process#processthrowdeprecation|Process
+process.title|process#processtitle|Process
+process.traceDeprecation|process#processtracedeprecation|Process
+process.umask()|process#processumaskmask|Process
+process.umask()|process#processumask|Process
+process.uptime()|process#processuptime|Process
+process.version|process#processversion|Process
+process.versions|process#processversions|Process
+promiseHooks.createHook()|v8#promisehookscreatehookcallbacks|V8
+promiseHooks.onAfter()|v8#promisehooksonafterafter|V8
+promiseHooks.onBefore()|v8#promisehooksonbeforebefore|V8
+promiseHooks.onInit()|v8#promisehooksoninitinit|V8
+promiseHooks.onSettled()|v8#promisehooksonsettledsettled|V8
+promiseResolve()|async_hooks#promiseresolveasyncid|Async hooks
+punycode.decode()|punycode#punycodedecodestring|Punycode
+punycode.encode()|punycode#punycodeencodestring|Punycode
+punycode.toASCII()|punycode#punycodetoasciidomain|Punycode
+punycode.toUnicode()|punycode#punycodetounicodedomain|Punycode
+punycode.ucs2|punycode#punycodeucs2|Punycode
+punycode.ucs2.decode()|punycode#punycodeucs2decodestring|Punycode
+punycode.ucs2.encode()|punycode#punycodeucs2encodecodepoints|Punycode
+punycode.version|punycode#punycodeversion|Punycode
+querystring.decode()|querystring#querystringdecode|Query string
+querystring.encode()|querystring#querystringencode|Query string
+querystring.escape()|querystring#querystringescapestr|Query string
+querystring.parse()|querystring#querystringparsestr-sep-eq-options|Query string
+querystring.stringify()|querystring#querystringstringifyobj-sep-eq-options|Query string
+querystring.unescape()|querystring#querystringunescapestr|Query string
+queueMicrotask()|globals#queuemicrotaskcallback|Global objects
+readStream.bytesRead|fs#readstreambytesread|File system
+readStream.isRaw|tty#readstreamisraw|TTY
+readStream.isTTY|tty#readstreamistty|TTY
+readStream.path|fs#readstreampath|File system
+readStream.pending|fs#readstreampending|File system
+readStream.setRawMode()|tty#readstreamsetrawmodemode|TTY
+readable._construct()|stream#readable_constructcallback|Stream[src]
+readable._destroy()|stream#readable_destroyerr-callback|Stream[src]
+readable._read()|stream#readable_readsize|Stream[src]
+readable.push()|stream#readablepushchunk-encoding|Stream[src]
+readable.push()|stream#readablepush|Stream[src]
+readable.read()|stream#readableread0|Stream[src]
+readable.setEncoding()|stream#highwatermark-discrepancy-after-calling-readablesetencoding|Stream[src]
+readableByteStreamController.byobRequest|webstreams#readablebytestreamcontrollerbyobrequest|Web Streams API
+readableByteStreamController.close()|webstreams#readablebytestreamcontrollerclose|Web Streams API
+readableByteStreamController.desiredSize|webstreams#readablebytestreamcontrollerdesiredsize|Web Streams API
+readableByteStreamController.enqueue()|webstreams#readablebytestreamcontrollerenqueuechunk|Web Streams API
+readableByteStreamController.error()|webstreams#readablebytestreamcontrollererrorerror|Web Streams API
+readableStream.cancel()|webstreams#readablestreamcancelreason|Web Streams API
+readableStream.getReader()|webstreams#readablestreamgetreaderoptions|Web Streams API
+readableStream.locked|webstreams#readablestreamlocked|Web Streams API
+readableStream.pipeThrough()|webstreams#readablestreampipethroughtransform-options|Web Streams API
+readableStream.pipeTo()|webstreams#readablestreampipetodestination-options|Web Streams API
+readableStream.tee()|webstreams#readablestreamtee|Web Streams API
+readableStream.values()|webstreams#readablestreamvaluesoptions|Web Streams API
+readableStreamBYOBReader.cancel()|webstreams#readablestreambyobreadercancelreason|Web Streams API
+readableStreamBYOBReader.closed|webstreams#readablestreambyobreaderclosed|Web Streams API
+readableStreamBYOBReader.read()|webstreams#readablestreambyobreaderreadview|Web Streams API
+readableStreamBYOBReader.releaseLock()|webstreams#readablestreambyobreaderreleaselock|Web Streams API
+readableStreamBYOBRequest.respond()|webstreams#readablestreambyobrequestrespondbyteswritten|Web Streams API
+readableStreamBYOBRequest.respondWithNewView()|webstreams#readablestreambyobrequestrespondwithnewviewview|Web Streams API
+readableStreamBYOBRequest.view|webstreams#readablestreambyobrequestview|Web Streams API
+readableStreamDefaultController.close()|webstreams#readablestreamdefaultcontrollerclose|Web Streams API
+readableStreamDefaultController.desiredSize|webstreams#readablestreamdefaultcontrollerdesiredsize|Web Streams API
+readableStreamDefaultController.enqueue()|webstreams#readablestreamdefaultcontrollerenqueuechunk|Web Streams API
+readableStreamDefaultController.error()|webstreams#readablestreamdefaultcontrollererrorerror|Web Streams API
+readableStreamDefaultReader.cancel()|webstreams#readablestreamdefaultreadercancelreason|Web Streams API
+readableStreamDefaultReader.closed|webstreams#readablestreamdefaultreaderclosed|Web Streams API
+readableStreamDefaultReader.read()|webstreams#readablestreamdefaultreaderread|Web Streams API
+readableStreamDefaultReader.releaseLock()|webstreams#readablestreamdefaultreaderreleaselock|Web Streams API
+readline.clearLine()|readline#readlineclearlinestream-dir-callback|Readline
+readline.clearScreenDown()|readline#readlineclearscreendownstream-callback|Readline
+readline.createInterface()|readline#readlinecreateinterfaceoptions|Readline
+readline.cursorTo()|readline#readlinecursortostream-x-y-callback|Readline
+readline.emitKeypressEvents()|readline#readlineemitkeypresseventsstream-interface|Readline
+readline.moveCursor()|readline#readlinemovecursorstream-dx-dy-callback|Readline
+readlinePromises.createInterface()|readline#readlinepromisescreateinterfaceoptions|Readline
+repl.builtinModules|repl#replbuiltinmodules|REPL
+repl.start()|repl#replstartoptions|REPL
+replServer.clearBufferedCommand()|repl#replserverclearbufferedcommand|REPL
+replServer.defineCommand()|repl#replserverdefinecommandkeyword-cmd|REPL
+replServer.displayPrompt()|repl#replserverdisplaypromptpreservecursor|REPL
+replServer.parseREPLKeyword()|repl#replserverparsereplkeywordkeyword-rest|REPL
+replServer.setupHistory()|repl#replserversetuphistoryhistorypath-callback|REPL
+report-directory=directory|cli#--report-dirdirectory-report-directorydirectory|Command-line API
+request.abort()|http#requestabort|HTTP
+request.aborted|http#requestaborted|HTTP
+request.aborted|http2#requestaborted|HTTP/2
+request.authority|http2#requestauthority|HTTP/2
+request.complete|http2#requestcomplete|HTTP/2
+request.connection|http#requestconnection|HTTP
+request.connection|http2#requestconnection|HTTP/2
+request.cork()|http#requestcork|HTTP
+request.destroy()|http2#requestdestroyerror|HTTP/2
+request.destroy()|http#requestdestroyerror|HTTP
+request.destroyed|http#requestdestroyed|HTTP
+request.end()|http#requestenddata-encoding-callback|HTTP
+request.finished|http#requestfinished|HTTP
+request.flushHeaders()|http#requestflushheaders|HTTP
+request.getHeader()|http#requestgetheadername|HTTP
+request.getHeaderNames()|http#requestgetheadernames|HTTP
+request.getHeaders()|http#requestgetheaders|HTTP
+request.getRawHeaderNames()|http#requestgetrawheadernames|HTTP
+request.hasHeader()|http#requesthasheadername|HTTP
+request.headers|http2#requestheaders|HTTP/2
+request.host|http#requesthost|HTTP
+request.httpVersion|http2#requesthttpversion|HTTP/2
+request.maxHeadersCount|http#requestmaxheaderscount|HTTP
+request.method|http#requestmethod|HTTP
+request.method|http2#requestmethod|HTTP/2
+request.path|http#requestpath|HTTP
+request.protocol|http#requestprotocol|HTTP
+request.rawHeaders|http2#requestrawheaders|HTTP/2
+request.rawTrailers|http2#requestrawtrailers|HTTP/2
+request.removeHeader()|http#requestremoveheadername|HTTP
+request.reusedSocket|http#requestreusedsocket|HTTP
+request.scheme|http2#requestscheme|HTTP/2
+request.setHeader()|http#requestsetheadername-value|HTTP
+request.setNoDelay()|http#requestsetnodelaynodelay|HTTP
+request.setSocketKeepAlive()|http#requestsetsocketkeepaliveenable-initialdelay|HTTP
+request.setTimeout()|http#requestsettimeouttimeout-callback|HTTP
+request.setTimeout()|http2#requestsettimeoutmsecs-callback|HTTP/2
+request.socket|http2#requestsocket|HTTP/2
+request.socket|http#requestsocket|HTTP
+request.stream|http2#requeststream|HTTP/2
+request.trailers|http2#requesttrailers|HTTP/2
+request.uncork()|http#requestuncork|HTTP
+request.url|http2#requesturl|HTTP/2
+request.writableEnded|http#requestwritableended|HTTP
+request.writableFinished|http#requestwritablefinished|HTTP
+request.write()|http#requestwritechunk-encoding-callback|HTTP
+require|esm#require|Modules: ECMAScript modules
+require()|modules#requireid|Modules: CommonJS modules
+require()|globals#require|Global objects
+require.cache|modules#requirecache|Modules: CommonJS modules
+require.extensions|modules#requireextensions|Modules: CommonJS modules
+require.main|modules#requiremain|Modules: CommonJS modules
+require.resolve()|modules#requireresolverequest-options|Modules: CommonJS modules
+resolve()|esm#resolvespecifier-context-nextresolve|Modules: ECMAScript modules
+resolver.cancel()|dns#resolvercancel_1|DNS
+resolver.cancel()|dns#resolvercancel|DNS
+resolver.setLocalAddress()|dns#resolversetlocaladdressipv4-ipv6|DNS
+response.addTrailers()|http#responseaddtrailersheaders|HTTP
+response.addTrailers()|http2#responseaddtrailersheaders|HTTP/2
+response.connection|http#responseconnection|HTTP
+response.connection|http2#responseconnection|HTTP/2
+response.cork()|http#responsecork|HTTP
+response.createPushResponse()|http2#responsecreatepushresponseheaders-callback|HTTP/2
+response.end()|http2#responseenddata-encoding-callback|HTTP/2
+response.end()|http#responseenddata-encoding-callback|HTTP
+response.finished|http#responsefinished|HTTP
+response.finished|http2#responsefinished|HTTP/2
+response.flushHeaders()|http#responseflushheaders|HTTP
+response.getHeader()|http2#responsegetheadername|HTTP/2
+response.getHeader()|http#responsegetheadername|HTTP
+response.getHeaderNames()|http#responsegetheadernames|HTTP
+response.getHeaderNames()|http2#responsegetheadernames|HTTP/2
+response.getHeaders()|http2#responsegetheaders|HTTP/2
+response.getHeaders()|http#responsegetheaders|HTTP
+response.hasHeader()|http#responsehasheadername|HTTP
+response.hasHeader()|http2#responsehasheadername|HTTP/2
+response.headersSent|http2#responseheaderssent|HTTP/2
+response.headersSent|http#responseheaderssent|HTTP
+response.removeHeader()|http#responseremoveheadername|HTTP
+response.removeHeader()|http2#responseremoveheadername|HTTP/2
+response.req|http2#responsereq|HTTP/2
+response.req|http#responsereq|HTTP
+response.sendDate|http#responsesenddate|HTTP
+response.sendDate|http2#responsesenddate|HTTP/2
+response.setHeader()|http2#responsesetheadername-value|HTTP/2
+response.setHeader()|http#responsesetheadername-value|HTTP
+response.setTimeout()|http#responsesettimeoutmsecs-callback|HTTP
+response.setTimeout()|http2#responsesettimeoutmsecs-callback|HTTP/2
+response.socket|http2#responsesocket|HTTP/2
+response.socket|http#responsesocket|HTTP
+response.statusCode|http#responsestatuscode|HTTP
+response.statusCode|http2#responsestatuscode|HTTP/2
+response.statusMessage|http#responsestatusmessage|HTTP
+response.statusMessage|http2#responsestatusmessage|HTTP/2
+response.stream|http2#responsestream|HTTP/2
+response.uncork()|http#responseuncork|HTTP
+response.writableEnded|http#responsewritableended|HTTP
+response.writableEnded|http2#responsewritableended|HTTP/2
+response.writableFinished|http#responsewritablefinished|HTTP
+response.write()|http2#responsewritechunk-encoding-callback|HTTP/2
+response.write()|http#responsewritechunk-encoding-callback|HTTP
+response.writeContinue()|http2#responsewritecontinue|HTTP/2
+response.writeContinue()|http#responsewritecontinue|HTTP
+response.writeEarlyHints()|http2#responsewriteearlyhintslinks|HTTP/2
+response.writeEarlyHints()|http#responsewriteearlyhintshints-callback|HTTP
+response.writeHead()|http2#responsewriteheadstatuscode-statusmessage-headers|HTTP/2
+response.writeHead()|http#responsewriteheadstatuscode-statusmessage-headers|HTTP
+response.writeProcessing()|http#responsewriteprocessing|HTTP
+rl.clearLine()|readline#rlclearlinedir|Readline
+rl.clearScreenDown()|readline#rlclearscreendown|Readline
+rl.close()|readline#rlclose|Readline
+rl.commit()|readline#rlcommit|Readline
+rl.cursor|readline#rlcursor|Readline
+rl.cursorTo()|readline#rlcursortox-y|Readline
+rl.getCursorPos()|readline#rlgetcursorpos|Readline
+rl.getPrompt()|readline#rlgetprompt|Readline
+rl.line|readline#rlline|Readline
+rl.moveCursor()|readline#rlmovecursordx-dy|Readline
+rl.pause()|readline#rlpause|Readline
+rl.prompt()|readline#rlpromptpreservecursor|Readline
+rl.question()|readline#rlquestionquery-options|Readline
+rl.question()|readline#rlquestionquery-options-callback|Readline
+rl.resume()|readline#rlresume|Readline
+rl.rollback()|readline#rlrollback|Readline
+rl.setPrompt()|readline#rlsetpromptprompt|Readline
+rl.write()|readline#rlwritedata-key|Readline
+rl[Symbol.asyncIterator]()|readline#rlsymbolasynciterator|Readline
+rsaHashedImportParams.hash|webcrypto#rsahashedimportparamshash|Web Crypto API
+rsaHashedImportParams.name|webcrypto#rsahashedimportparamsname|Web Crypto API
+rsaHashedKeyGenParams.hash|webcrypto#rsahashedkeygenparamshash|Web Crypto API
+rsaHashedKeyGenParams.modulusLength|webcrypto#rsahashedkeygenparamsmoduluslength|Web Crypto API
+rsaHashedKeyGenParams.name|webcrypto#rsahashedkeygenparamsname|Web Crypto API
+rsaHashedKeyGenParams.publicExponent|webcrypto#rsahashedkeygenparamspublicexponent|Web Crypto API
+rsaPssParams.name|webcrypto#rsapssparamsname|Web Crypto API
+rsaPssParams.saltLength|webcrypto#rsapssparamssaltlength|Web Crypto API
+run()|test#runoptions|Test runner
+script.cachedDataRejected|vm#scriptcacheddatarejected|VM (executing JavaScript)
+script.createCachedData()|vm#scriptcreatecacheddata|VM (executing JavaScript)
+script.runInContext()|vm#scriptrunincontextcontextifiedobject-options|VM (executing JavaScript)
+script.runInNewContext()|vm#scriptruninnewcontextcontextobject-options|VM (executing JavaScript)
+script.runInThisContext()|vm#scriptruninthiscontextoptions|VM (executing JavaScript)
+serializer._getDataCloneError()|v8#serializer_getdatacloneerrormessage|V8
+serializer._getSharedArrayBufferId()|v8#serializer_getsharedarraybufferidsharedarraybuffer|V8
+serializer._setTreatArrayBufferViewsAsHostObjects()|v8#serializer_settreatarraybufferviewsashostobjectsflag|V8
+serializer._writeHostObject()|v8#serializer_writehostobjectobject|V8
+serializer.releaseBuffer()|v8#serializerreleasebuffer|V8
+serializer.transferArrayBuffer()|v8#serializertransferarraybufferid-arraybuffer|V8
+serializer.writeDouble()|v8#serializerwritedoublevalue|V8
+serializer.writeHeader()|v8#serializerwriteheader|V8
+serializer.writeRawBytes()|v8#serializerwriterawbytesbuffer|V8
+serializer.writeUint32()|v8#serializerwriteuint32value|V8
+serializer.writeUint64()|v8#serializerwriteuint64hi-lo|V8
+serializer.writeValue()|v8#serializerwritevaluevalue|V8
+server.addContext()|tls#serveraddcontexthostname-context|TLS (SSL)
+server.address()|net#serveraddress|Net
+server.address()|tls#serveraddress|TLS (SSL)
+server.close()|tls#serverclosecallback|TLS (SSL)
+server.close()|http2#serverclosecallback_1|HTTP/2
+server.close()|http#serverclosecallback|HTTP
+server.close()|https#serverclosecallback|HTTPS
+server.close()|net#serverclosecallback|Net
+server.close()|http2#serverclosecallback|HTTP/2
+server.closeAllConnections()|http#servercloseallconnections|HTTP
+server.closeAllConnections()|https#servercloseallconnections|HTTPS
+server.closeIdleConnections()|http#servercloseidleconnections|HTTP
+server.closeIdleConnections()|https#servercloseidleconnections|HTTPS
+server.getConnections()|net#servergetconnectionscallback|Net
+server.getTicketKeys()|tls#servergetticketkeys|TLS (SSL)
+server.headersTimeout|https#serverheaderstimeout|HTTPS
+server.headersTimeout|http#serverheaderstimeout|HTTP
+server.keepAliveTimeout|https#serverkeepalivetimeout|HTTPS
+server.keepAliveTimeout|http#serverkeepalivetimeout|HTTP
+server.listen()|net#serverlisten|Net
+server.listen()|net#serverlistenport-host-backlog-callback|Net
+server.listen()|net#serverlistenpath-backlog-callback|Net
+server.listen()|net#serverlistenoptions-callback|Net
+server.listen()|http#serverlisten|HTTP
+server.listen()|net#serverlistenhandle-backlog-callback|Net
+server.listen()|tls#serverlisten|TLS (SSL)
+server.listen()|https#serverlisten|HTTPS
+server.listening|net#serverlistening|Net
+server.listening|http#serverlistening|HTTP
+server.maxConnections|net#servermaxconnections|Net
+server.maxHeadersCount|https#servermaxheaderscount|HTTPS
+server.maxHeadersCount|http#servermaxheaderscount|HTTP
+server.maxRequestsPerSocket|http#servermaxrequestspersocket|HTTP
+server.ref()|net#serverref|Net
+server.requestTimeout|https#serverrequesttimeout|HTTPS
+server.requestTimeout|http#serverrequesttimeout|HTTP
+server.setSecureContext()|tls#serversetsecurecontextoptions|TLS (SSL)
+server.setTicketKeys()|tls#serversetticketkeyskeys|TLS (SSL)
+server.setTimeout()|http2#serversettimeoutmsecs-callback|HTTP/2
+server.setTimeout()|https#serversettimeoutmsecs-callback|HTTPS
+server.setTimeout()|http2#serversettimeoutmsecs-callback_1|HTTP/2
+server.setTimeout()|http#serversettimeoutmsecs-callback|HTTP
+server.timeout|http#servertimeout|HTTP
+server.timeout|https#servertimeout|HTTPS
+server.timeout|http2#servertimeout_1|HTTP/2
+server.timeout|http2#servertimeout|HTTP/2
+server.unref()|net#serverunref|Net
+server.updateSettings()|http2#serverupdatesettingssettings|HTTP/2
+server.updateSettings()|http2#serverupdatesettingssettings_1|HTTP/2
+serverhttp2session.altsvc()|http2#serverhttp2sessionaltsvcalt-originorstream|HTTP/2
+serverhttp2session.origin()|http2#serverhttp2sessionoriginorigins|HTTP/2
+session.connect()|inspector#sessionconnect_1|Inspector
+session.connect()|inspector#sessionconnect|Inspector
+session.connectToMainThread()|inspector#sessionconnecttomainthread|Inspector
+session.connectToMainThread()|inspector#sessionconnecttomainthread_1|Inspector
+session.disconnect()|inspector#sessiondisconnect|Inspector
+session.disconnect()|inspector#sessiondisconnect_1|Inspector
+session.post()|inspector#sessionpostmethod-params-callback|Inspector
+session.post()|inspector#sessionpostmethod-params|Inspector
+setImmediate()|timers#setimmediatecallback-args|Timers
+setImmediate()|globals#setimmediatecallback-args|Global objects
+setInterval()|globals#setintervalcallback-delay-args|Global objects
+setInterval()|timers#setintervalcallback-delay-args|Timers
+setTimeout()|globals#settimeoutcallback-delay-args|Global objects
+setTimeout()|timers#settimeoutcallback-delay-args|Timers
+settled()|v8#settledpromise|V8
+sign.sign()|crypto#signsignprivatekey-outputencoding|Crypto
+sign.update()|crypto#signupdatedata-inputencoding|Crypto
+socket.addMembership()|dgram#socketaddmembershipmulticastaddress-multicastinterface|UDP/datagram sockets
+socket.addSourceSpecificMembership()|dgram#socketaddsourcespecificmembershipsourceaddress-groupaddress-multicastinterface|UDP/datagram sockets
+socket.address()|dgram#socketaddress|UDP/datagram sockets
+socket.address()|net#socketaddress|Net
+socket.bind()|dgram#socketbindport-address-callback|UDP/datagram sockets
+socket.bind()|dgram#socketbindoptions-callback|UDP/datagram sockets
+socket.bufferSize|net#socketbuffersize|Net
+socket.bytesRead|net#socketbytesread|Net
+socket.bytesWritten|net#socketbyteswritten|Net
+socket.close()|dgram#socketclosecallback|UDP/datagram sockets
+socket.connect()|net#socketconnectport-host-connectlistener|Net
+socket.connect()|dgram#socketconnectport-address-callback|UDP/datagram sockets
+socket.connect()|net#socketconnectpath-connectlistener|Net
+socket.connect()|net#socketconnectoptions-connectlistener|Net
+socket.connect()|net#socketconnect|Net
+socket.connecting|net#socketconnecting|Net
+socket.destroy()|net#socketdestroyerror|Net
+socket.destroyed|net#socketdestroyed|Net
+socket.disconnect()|dgram#socketdisconnect|UDP/datagram sockets
+socket.dropMembership()|dgram#socketdropmembershipmulticastaddress-multicastinterface|UDP/datagram sockets
+socket.dropSourceSpecificMembership()|dgram#socketdropsourcespecificmembershipsourceaddress-groupaddress-multicastinterface|UDP/datagram sockets
+socket.end()|net#socketenddata-encoding-callback|Net
+socket.getRecvBufferSize()|dgram#socketgetrecvbuffersize|UDP/datagram sockets
+socket.getSendBufferSize()|dgram#socketgetsendbuffersize|UDP/datagram sockets
+socket.getSendQueueCount()|dgram#socketgetsendqueuecount|UDP/datagram sockets
+socket.getSendQueueSize()|dgram#socketgetsendqueuesize|UDP/datagram sockets
+socket.localAddress|net#socketlocaladdress|Net
+socket.localFamily|net#socketlocalfamily|Net
+socket.localPort|net#socketlocalport|Net
+socket.pause()|net#socketpause|Net
+socket.pending|net#socketpending|Net
+socket.readyState|net#socketreadystate|Net
+socket.ref()|dgram#socketref|UDP/datagram sockets
+socket.ref()|net#socketref|Net
+socket.remoteAddress|net#socketremoteaddress|Net
+socket.remoteAddress()|dgram#socketremoteaddress|UDP/datagram sockets
+socket.remoteFamily|net#socketremotefamily|Net
+socket.remotePort|net#socketremoteport|Net
+socket.resetAndDestroy()|net#socketresetanddestroy|Net
+socket.resume()|net#socketresume|Net
+socket.send()|dgram#socketsendmsg-offset-length-port-address-callback|UDP/datagram sockets
+socket.setBroadcast()|dgram#socketsetbroadcastflag|UDP/datagram sockets
+socket.setEncoding()|net#socketsetencodingencoding|Net
+socket.setKeepAlive()|net#socketsetkeepaliveenable-initialdelay|Net
+socket.setMulticastInterface()|dgram#socketsetmulticastinterfacemulticastinterface|UDP/datagram sockets
+socket.setMulticastLoopback()|dgram#socketsetmulticastloopbackflag|UDP/datagram sockets
+socket.setMulticastTTL()|dgram#socketsetmulticastttlttl|UDP/datagram sockets
+socket.setNoDelay()|net#socketsetnodelaynodelay|Net
+socket.setRecvBufferSize()|dgram#socketsetrecvbuffersizesize|UDP/datagram sockets
+socket.setSendBufferSize()|dgram#socketsetsendbuffersizesize|UDP/datagram sockets
+socket.setTTL()|dgram#socketsetttlttl|UDP/datagram sockets
+socket.setTimeout()|net#socketsettimeouttimeout-callback|Net
+socket.timeout|net#sockettimeout|Net
+socket.unref()|dgram#socketunref|UDP/datagram sockets
+socket.unref()|net#socketunref|Net
+socket.write()|net#socketwritedata-encoding-callback|Net
+socketaddress.address|net#socketaddressaddress|Net
+socketaddress.family|net#socketaddressfamily|Net
+socketaddress.flowlabel|net#socketaddressflowlabel|Net
+socketaddress.port|net#socketaddressport|Net
+sourceMap.findEntry()|module#sourcemapfindentrylinenumber-columnnumber|Modules: node:module API
+sourceMap.payload|module#sourcemappayload|Modules: node:module API
+sourceTextModule.createCachedData()|vm#sourcetextmodulecreatecacheddata|VM (executing JavaScript)
+stats.atime|fs#statsatime|File system
+stats.atimeMs|fs#statsatimems|File system
+stats.atimeNs|fs#statsatimens|File system
+stats.birthtime|fs#statsbirthtime|File system
+stats.birthtimeMs|fs#statsbirthtimems|File system
+stats.birthtimeNs|fs#statsbirthtimens|File system
+stats.blksize|fs#statsblksize|File system
+stats.blocks|fs#statsblocks|File system
+stats.ctime|fs#statsctime|File system
+stats.ctimeMs|fs#statsctimems|File system
+stats.ctimeNs|fs#statsctimens|File system
+stats.dev|fs#statsdev|File system
+stats.gid|fs#statsgid|File system
+stats.ino|fs#statsino|File system
+stats.isBlockDevice()|fs#statsisblockdevice|File system
+stats.isCharacterDevice()|fs#statsischaracterdevice|File system
+stats.isDirectory()|fs#statsisdirectory|File system
+stats.isFIFO()|fs#statsisfifo|File system
+stats.isFile()|fs#statsisfile|File system
+stats.isSocket()|fs#statsissocket|File system
+stats.isSymbolicLink()|fs#statsissymboliclink|File system
+stats.mode|fs#statsmode|File system
+stats.mtime|fs#statsmtime|File system
+stats.mtimeMs|fs#statsmtimems|File system
+stats.mtimeNs|fs#statsmtimens|File system
+stats.nlink|fs#statsnlink|File system
+stats.rdev|fs#statsrdev|File system
+stats.size|fs#statssize|File system
+stats.uid|fs#statsuid|File system
+stream.Duplex.from()|stream#streamduplexfromsrc|Stream[src]
+stream.Duplex.fromWeb()|stream#streamduplexfromwebpair-options|Stream[src]
+stream.Duplex.toWeb()|stream#streamduplextowebstreamduplex|Stream[src]
+stream.Readable.from()|stream#streamreadablefromiterable-options|Stream[src]
+stream.Readable.fromWeb()|stream#streamreadablefromwebreadablestream-options|Stream[src]
+stream.Readable.isDisturbed()|stream#streamreadableisdisturbedstream|Stream[src]
+stream.Readable.toWeb()|stream#streamreadabletowebstreamreadable-options|Stream[src]
+stream.Writable.fromWeb()|stream#streamwritablefromwebwritablestream-options|Stream[src]
+stream.Writable.toWeb()|stream#streamwritabletowebstreamwritable|Stream[src]
+stream.addAbortSignal()|stream#streamaddabortsignalsignal-stream|Stream[src]
+stream.compose()|stream#streamcomposestreams|Stream[src]
+stream.finished()|stream#streamfinishedstream-options-callback|Stream[src]
+stream.isErrored()|stream#streamiserroredstream|Stream[src]
+stream.isReadable()|stream#streamisreadablestream|Stream[src]
+stream.pipeline()|stream#streampipelinestreams-callback|Stream[src]
+stream.pipeline()|stream#streampipelinesource-transforms-destination-callback|Stream[src]
+streamConsumers.arrayBuffer()|webstreams#streamconsumersarraybufferstream|Web Streams API
+streamConsumers.blob()|webstreams#streamconsumersblobstream|Web Streams API
+streamConsumers.buffer()|webstreams#streamconsumersbufferstream|Web Streams API
+streamConsumers.json()|webstreams#streamconsumersjsonstream|Web Streams API
+streamConsumers.text()|webstreams#streamconsumerstextstream|Web Streams API
+stringDecoder.end()|string_decoder#stringdecoderendbuffer|String decoder
+stringDecoder.write()|string_decoder#stringdecoderwritebuffer|String decoder
+structuredClone()|globals#structuredclonevalue-options|Global objects
+subprocess.channel|child_process#subprocesschannel|Child process
+subprocess.channel.ref()|child_process#subprocesschannelref|Child process
+subprocess.channel.unref()|child_process#subprocesschannelunref|Child process
+subprocess.connected|child_process#subprocessconnected|Child process
+subprocess.disconnect()|child_process#subprocessdisconnect|Child process
+subprocess.exitCode|child_process#subprocessexitcode|Child process
+subprocess.kill()|child_process#subprocesskillsignal|Child process
+subprocess.killed|child_process#subprocesskilled|Child process
+subprocess.pid|child_process#subprocesspid|Child process
+subprocess.ref()|child_process#subprocessref|Child process
+subprocess.send()|child_process#subprocesssendmessage-sendhandle-options-callback|Child process
+subprocess.signalCode|child_process#subprocesssignalcode|Child process
+subprocess.spawnargs|child_process#subprocessspawnargs|Child process
+subprocess.spawnfile|child_process#subprocessspawnfile|Child process
+subprocess.stderr|child_process#subprocessstderr|Child process
+subprocess.stdin|child_process#subprocessstdin|Child process
+subprocess.stdio|child_process#subprocessstdio|Child process
+subprocess.stdout|child_process#subprocessstdout|Child process
+subprocess.unref()|child_process#subprocessunref|Child process
+subtle.decrypt()|webcrypto#subtledecryptalgorithm-key-data|Web Crypto API
+subtle.deriveBits()|webcrypto#subtlederivebitsalgorithm-basekey-length|Web Crypto API
+subtle.deriveKey()|webcrypto#subtlederivekeyalgorithm-basekey-derivedkeyalgorithm-extractable-keyusages|Web Crypto API
+subtle.digest()|webcrypto#subtledigestalgorithm-data|Web Crypto API
+subtle.encrypt()|webcrypto#subtleencryptalgorithm-key-data|Web Crypto API
+subtle.exportKey()|webcrypto#subtleexportkeyformat-key|Web Crypto API
+subtle.generateKey()|webcrypto#subtlegeneratekeyalgorithm-extractable-keyusages|Web Crypto API
+subtle.importKey()|webcrypto#subtleimportkeyformat-keydata-algorithm-extractable-keyusages|Web Crypto API
+subtle.sign()|webcrypto#subtlesignalgorithm-key-data|Web Crypto API
+subtle.unwrapKey()|webcrypto#subtleunwrapkeyformat-wrappedkey-unwrappingkey-unwrapalgo-unwrappedkeyalgo-extractable-keyusages|Web Crypto API
+subtle.verify()|webcrypto#subtleverifyalgorithm-key-signature-data|Web Crypto API
+subtle.wrapKey()|webcrypto#subtlewrapkeyformat-key-wrappingkey-wrapalgo|Web Crypto API
+syntheticModule.setExport()|vm#syntheticmodulesetexportname-value|VM (executing JavaScript)
+test()|test#testname-options-fn|Test runner
+textDecoder.decode()|util#textdecoderdecodeinput-options|Util
+textDecoder.encoding|util#textdecoderencoding|Util
+textDecoder.fatal|util#textdecoderfatal|Util
+textDecoder.ignoreBOM|util#textdecoderignorebom|Util
+textDecoderStream.encoding|webstreams#textdecoderstreamencoding|Web Streams API
+textDecoderStream.fatal|webstreams#textdecoderstreamfatal|Web Streams API
+textDecoderStream.ignoreBOM|webstreams#textdecoderstreamignorebom|Web Streams API
+textDecoderStream.readable|webstreams#textdecoderstreamreadable|Web Streams API
+textDecoderStream.writable|webstreams#textdecoderstreamwritable|Web Streams API
+textEncoder.encode()|util#textencoderencodeinput|Util
+textEncoder.encodeInto()|util#textencoderencodeintosrc-dest|Util
+textEncoder.encoding|util#textencoderencoding|Util
+textEncoderStream.encoding|webstreams#textencoderstreamencoding|Web Streams API
+textEncoderStream.readable|webstreams#textencoderstreamreadable|Web Streams API
+textEncoderStream.writable|webstreams#textencoderstreamwritable|Web Streams API
+timeout.close()|timers#timeoutclose|Timers
+timeout.hasRef()|timers#timeouthasref|Timers
+timeout.ref()|timers#timeoutref|Timers
+timeout.refresh()|timers#timeoutrefresh|Timers
+timeout.unref()|timers#timeoutunref|Timers
+timeout[Symbol.toPrimitive]()|timers#timeoutsymboltoprimitive|Timers
+timersPromises.scheduler.wait()|timers#timerspromisesschedulerwaitdelay-options|Timers
+timersPromises.scheduler.yield()|timers#timerspromisesscheduleryield|Timers
+timersPromises.setImmediate()|timers#timerspromisessetimmediatevalue-options|Timers
+timersPromises.setInterval()|timers#timerspromisessetintervaldelay-value-options|Timers
+timersPromises.setTimeout()|timers#timerspromisessettimeoutdelay-value-options|Timers
+tls.DEFAULT_ECDH_CURVE|tls#tlsdefault_ecdh_curve|TLS (SSL)
+tls.DEFAULT_MAX_VERSION|tls#tlsdefault_max_version|TLS (SSL)
+tls.DEFAULT_MIN_VERSION|tls#tlsdefault_min_version|TLS (SSL)
+tls.checkServerIdentity()|tls#tlscheckserveridentityhostname-cert|TLS (SSL)
+tls.connect()|tls#tlsconnectoptions-callback|TLS (SSL)
+tls.connect()|tls#tlsconnectport-host-options-callback|TLS (SSL)
+tls.connect()|tls#tlsconnectpath-options-callback|TLS (SSL)
+tls.createSecureContext()|tls#tlscreatesecurecontextoptions|TLS (SSL)
+tls.createSecurePair()|tls#tlscreatesecurepaircontext-isserver-requestcert-rejectunauthorized-options|TLS (SSL)
+tls.createServer()|tls#tlscreateserveroptions-secureconnectionlistener|TLS (SSL)
+tls.getCiphers()|tls#tlsgetciphers|TLS (SSL)
+tls.rootCertificates|tls#tlsrootcertificates|TLS (SSL)
+tlsSocket.address()|tls#tlssocketaddress|TLS (SSL)
+tlsSocket.authorizationError|tls#tlssocketauthorizationerror|TLS (SSL)
+tlsSocket.authorized|tls#tlssocketauthorized|TLS (SSL)
+tlsSocket.disableRenegotiation()|tls#tlssocketdisablerenegotiation|TLS (SSL)
+tlsSocket.enableTrace()|tls#tlssocketenabletrace|TLS (SSL)
+tlsSocket.encrypted|tls#tlssocketencrypted|TLS (SSL)
+tlsSocket.exportKeyingMaterial()|tls#tlssocketexportkeyingmateriallength-label-context|TLS (SSL)
+tlsSocket.getCertificate()|tls#tlssocketgetcertificate|TLS (SSL)
+tlsSocket.getCipher()|tls#tlssocketgetcipher|TLS (SSL)
+tlsSocket.getEphemeralKeyInfo()|tls#tlssocketgetephemeralkeyinfo|TLS (SSL)
+tlsSocket.getFinished()|tls#tlssocketgetfinished|TLS (SSL)
+tlsSocket.getPeerCertificate()|tls#tlssocketgetpeercertificatedetailed|TLS (SSL)
+tlsSocket.getPeerFinished()|tls#tlssocketgetpeerfinished|TLS (SSL)
+tlsSocket.getPeerX509Certificate()|tls#tlssocketgetpeerx509certificate|TLS (SSL)
+tlsSocket.getProtocol()|tls#tlssocketgetprotocol|TLS (SSL)
+tlsSocket.getSession()|tls#tlssocketgetsession|TLS (SSL)
+tlsSocket.getSharedSigalgs()|tls#tlssocketgetsharedsigalgs|TLS (SSL)
+tlsSocket.getTLSTicket()|tls#tlssocketgettlsticket|TLS (SSL)
+tlsSocket.getX509Certificate()|tls#tlssocketgetx509certificate|TLS (SSL)
+tlsSocket.isSessionReused()|tls#tlssocketissessionreused|TLS (SSL)
+tlsSocket.localAddress|tls#tlssocketlocaladdress|TLS (SSL)
+tlsSocket.localPort|tls#tlssocketlocalport|TLS (SSL)
+tlsSocket.remoteAddress|tls#tlssocketremoteaddress|TLS (SSL)
+tlsSocket.remoteFamily|tls#tlssocketremotefamily|TLS (SSL)
+tlsSocket.remotePort|tls#tlssocketremoteport|TLS (SSL)
+tlsSocket.renegotiate()|tls#tlssocketrenegotiateoptions-callback|TLS (SSL)
+tlsSocket.setMaxSendFragment()|tls#tlssocketsetmaxsendfragmentsize|TLS (SSL)
+tokens|util#parseargs-tokens|Util
+trace_events.createTracing()|tracing#trace_eventscreatetracingoptions|Trace events
+trace_events.getEnabledCategories()|tracing#trace_eventsgetenabledcategories|Trace events
+tracing.categories|tracing#tracingcategories|Trace events
+tracing.disable()|tracing#tracingdisable|Trace events
+tracing.enable()|tracing#tracingenable|Trace events
+tracing.enabled|tracing#tracingenabled|Trace events
+tracker.calls()|assert#trackercallsfn-exact|Assert
+tracker.getCalls()|assert#trackergetcallsfn|Assert
+tracker.report()|assert#trackerreport|Assert
+tracker.reset()|assert#trackerresetfn|Assert
+tracker.verify()|assert#trackerverify|Assert
+transform._flush()|stream#transform_flushcallback|Stream[src]
+transform._transform()|stream#transform_transformchunk-encoding-callback|Stream[src]
+transformStream.readable|webstreams#transformstreamreadable|Web Streams API
+transformStream.writable|webstreams#transformstreamwritable|Web Streams API
+transformStreamDefaultController.desiredSize|webstreams#transformstreamdefaultcontrollerdesiredsize|Web Streams API
+transformStreamDefaultController.enqueue()|webstreams#transformstreamdefaultcontrollerenqueuechunk|Web Streams API
+transformStreamDefaultController.error()|webstreams#transformstreamdefaultcontrollererrorreason|Web Streams API
+transformStreamDefaultController.terminate()|webstreams#transformstreamdefaultcontrollerterminate|Web Streams API
+tty.isatty()|tty#ttyisattyfd|TTY
+url.domainToASCII()|url#urldomaintoasciidomain|URL
+url.domainToUnicode()|url#urldomaintounicodedomain|URL
+url.fileURLToPath()|url#urlfileurltopathurl|URL
+url.format()|url#urlformaturlobject|URL
+url.format()|url#urlformaturl-options|URL
+url.hash|url#urlhash|URL
+url.host|url#urlhost|URL
+url.hostname|url#urlhostname|URL
+url.href|url#urlhref|URL
+url.origin|url#urlorigin|URL
+url.parse()|url#urlparseurlstring-parsequerystring-slashesdenotehost|URL
+url.password|url#urlpassword|URL
+url.pathToFileURL()|url#urlpathtofileurlpath|URL
+url.pathname|url#urlpathname|URL
+url.port|url#urlport|URL
+url.protocol|url#urlprotocol|URL
+url.resolve()|url#urlresolvefrom-to|URL
+url.search|url#urlsearch|URL
+url.searchParams|url#urlsearchparams|URL
+url.toJSON()|url#urltojson|URL
+url.toString()|url#urltostring|URL
+url.urlToHttpOptions()|url#urlurltohttpoptionsurl|URL
+url.username|url#urlusername|URL
+urlObject.auth|url#urlobjectauth|URL
+urlObject.hash|url#urlobjecthash|URL
+urlObject.host|url#urlobjecthost|URL
+urlObject.hostname|url#urlobjecthostname|URL
+urlObject.href|url#urlobjecthref|URL
+urlObject.path|url#urlobjectpath|URL
+urlObject.pathname|url#urlobjectpathname|URL
+urlObject.port|url#urlobjectport|URL
+urlObject.protocol|url#urlobjectprotocol|URL
+urlObject.query|url#urlobjectquery|URL
+urlObject.search|url#urlobjectsearch|URL
+urlObject.slashes|url#urlobjectslashes|URL
+urlSearchParams.append()|url#urlsearchparamsappendname-value|URL
+urlSearchParams.delete()|url#urlsearchparamsdeletename|URL
+urlSearchParams.entries()|url#urlsearchparamsentries|URL
+urlSearchParams.forEach()|url#urlsearchparamsforeachfn-thisarg|URL
+urlSearchParams.get()|url#urlsearchparamsgetname|URL
+urlSearchParams.getAll()|url#urlsearchparamsgetallname|URL
+urlSearchParams.has()|url#urlsearchparamshasname|URL
+urlSearchParams.keys()|url#urlsearchparamskeys|URL
+urlSearchParams.set()|url#urlsearchparamssetname-value|URL
+urlSearchParams.sort()|url#urlsearchparamssort|URL
+urlSearchParams.toString()|url#urlsearchparamstostring|URL
+urlSearchParams.values()|url#urlsearchparamsvalues|URL
+urlSearchParams[Symbol.iterator]()|url#urlsearchparamssymboliterator|URL
+util._extend()|util#util_extendtarget-source|Util
+util.callbackify()|util#utilcallbackifyoriginal|Util
+util.debug()|util#utildebugsection|Util
+util.debuglog()|util#utildebuglogsection-callback|Util
+util.deprecate()|util#utildeprecatefn-msg-code|Util
+util.format()|util#utilformatformat-args|Util
+util.formatWithOptions()|util#utilformatwithoptionsinspectoptions-format-args|Util
+util.getSystemErrorMap()|util#utilgetsystemerrormap|Util
+util.getSystemErrorName()|util#utilgetsystemerrornameerr|Util
+util.inherits()|util#utilinheritsconstructor-superconstructor|Util
+util.inspect()|util#utilinspectobject-showhidden-depth-colors|Util
+util.inspect()|util#utilinspectobject-options|Util
+util.inspect.custom|util#utilinspectcustom|Util
+util.inspect.defaultOptions|util#utilinspectdefaultoptions|Util
+util.isArray()|util#utilisarrayobject|Util
+util.isBoolean()|util#utilisbooleanobject|Util
+util.isBuffer()|util#utilisbufferobject|Util
+util.isDate()|util#utilisdateobject|Util
+util.isDeepStrictEqual()|util#utilisdeepstrictequalval1-val2|Util
+util.isError()|util#utiliserrorobject|Util
+util.isFunction()|util#utilisfunctionobject|Util
+util.isNull()|util#utilisnullobject|Util
+util.isNullOrUndefined()|util#utilisnullorundefinedobject|Util
+util.isNumber()|util#utilisnumberobject|Util
+util.isObject()|util#utilisobjectobject|Util
+util.isPrimitive()|util#utilisprimitiveobject|Util
+util.isRegExp()|util#utilisregexpobject|Util
+util.isString()|util#utilisstringobject|Util
+util.isSymbol()|util#utilissymbolobject|Util
+util.isUndefined()|util#utilisundefinedobject|Util
+util.log()|util#utillogstring|Util
+util.parseArgs()|util#utilparseargsconfig|Util
+util.promisify()|util#utilpromisifyoriginal|Util
+util.promisify.custom|util#utilpromisifycustom|Util
+util.stripVTControlCharacters()|util#utilstripvtcontrolcharactersstr|Util
+util.toUSVString()|util#utiltousvstringstring|Util
+util.transferableAbortController()|util#utiltransferableabortcontroller|Util
+util.transferableAbortSignal()|util#utiltransferableabortsignalsignal|Util
+util.types|util#utiltypes|Util
+util.types.isAnyArrayBuffer()|util#utiltypesisanyarraybuffervalue|Util
+util.types.isArgumentsObject()|util#utiltypesisargumentsobjectvalue|Util
+util.types.isArrayBuffer()|util#utiltypesisarraybuffervalue|Util
+util.types.isArrayBufferView()|util#utiltypesisarraybufferviewvalue|Util
+util.types.isAsyncFunction()|util#utiltypesisasyncfunctionvalue|Util
+util.types.isBigInt64Array()|util#utiltypesisbigint64arrayvalue|Util
+util.types.isBigUint64Array()|util#utiltypesisbiguint64arrayvalue|Util
+util.types.isBooleanObject()|util#utiltypesisbooleanobjectvalue|Util
+util.types.isBoxedPrimitive()|util#utiltypesisboxedprimitivevalue|Util
+util.types.isCryptoKey()|util#utiltypesiscryptokeyvalue|Util
+util.types.isDataView()|util#utiltypesisdataviewvalue|Util
+util.types.isDate()|util#utiltypesisdatevalue|Util
+util.types.isExternal()|util#utiltypesisexternalvalue|Util
+util.types.isFloat32Array()|util#utiltypesisfloat32arrayvalue|Util
+util.types.isFloat64Array()|util#utiltypesisfloat64arrayvalue|Util
+util.types.isGeneratorFunction()|util#utiltypesisgeneratorfunctionvalue|Util
+util.types.isGeneratorObject()|util#utiltypesisgeneratorobjectvalue|Util
+util.types.isInt16Array()|util#utiltypesisint16arrayvalue|Util
+util.types.isInt32Array()|util#utiltypesisint32arrayvalue|Util
+util.types.isInt8Array()|util#utiltypesisint8arrayvalue|Util
+util.types.isKeyObject()|util#utiltypesiskeyobjectvalue|Util
+util.types.isMap()|util#utiltypesismapvalue|Util
+util.types.isMapIterator()|util#utiltypesismapiteratorvalue|Util
+util.types.isModuleNamespaceObject()|util#utiltypesismodulenamespaceobjectvalue|Util
+util.types.isNativeError()|util#utiltypesisnativeerrorvalue|Util
+util.types.isNumberObject()|util#utiltypesisnumberobjectvalue|Util
+util.types.isPromise()|util#utiltypesispromisevalue|Util
+util.types.isProxy()|util#utiltypesisproxyvalue|Util
+util.types.isRegExp()|util#utiltypesisregexpvalue|Util
+util.types.isSet()|util#utiltypesissetvalue|Util
+util.types.isSetIterator()|util#utiltypesissetiteratorvalue|Util
+util.types.isSharedArrayBuffer()|util#utiltypesissharedarraybuffervalue|Util
+util.types.isStringObject()|util#utiltypesisstringobjectvalue|Util
+util.types.isSymbolObject()|util#utiltypesissymbolobjectvalue|Util
+util.types.isTypedArray()|util#utiltypesistypedarrayvalue|Util
+util.types.isUint16Array()|util#utiltypesisuint16arrayvalue|Util
+util.types.isUint32Array()|util#utiltypesisuint32arrayvalue|Util
+util.types.isUint8Array()|util#utiltypesisuint8arrayvalue|Util
+util.types.isUint8ClampedArray()|util#utiltypesisuint8clampedarrayvalue|Util
+util.types.isWeakMap()|util#utiltypesisweakmapvalue|Util
+util.types.isWeakSet()|util#utiltypesisweaksetvalue|Util
+util.types.isWebAssemblyCompiledModule()|util#utiltypesiswebassemblycompiledmodulevalue|Util
+v8.cachedDataVersionTag()|v8#v8cacheddataversiontag|V8
+v8.deserialize()|v8#v8deserializebuffer|V8
+v8.getHeapCodeStatistics()|v8#v8getheapcodestatistics|V8
+v8.getHeapSnapshot()|v8#v8getheapsnapshot|V8
+v8.getHeapSpaceStatistics()|v8#v8getheapspacestatistics|V8
+v8.getHeapStatistics()|v8#v8getheapstatistics|V8
+v8.serialize()|v8#v8serializevalue|V8
+v8.setFlagsFromString()|v8#v8setflagsfromstringflags|V8
+v8.setHeapSnapshotNearHeapLimit()|v8#v8setheapsnapshotnearheaplimitlimit|V8
+v8.startupSnapshot.addDeserializeCallback()|v8#v8startupsnapshotadddeserializecallbackcallback-data|V8
+v8.startupSnapshot.addSerializeCallback()|v8#v8startupsnapshotaddserializecallbackcallback-data|V8
+v8.startupSnapshot.isBuildingSnapshot()|v8#v8startupsnapshotisbuildingsnapshot|V8
+v8.startupSnapshot.setDeserializeMainFunction()|v8#v8startupsnapshotsetdeserializemainfunctioncallback-data|V8
+v8.stopCoverage()|v8#v8stopcoverage|V8
+v8.takeCoverage()|v8#v8takecoverage|V8
+v8.writeHeapSnapshot()|v8#v8writeheapsnapshotfilename|V8
+verify.update()|crypto#verifyupdatedata-inputencoding|Crypto
+verify.verify()|crypto#verifyverifyobject-signature-signatureencoding|Crypto
+vm.compileFunction()|vm#vmcompilefunctioncode-params-options|VM (executing JavaScript)
+vm.createContext()|vm#vmcreatecontextcontextobject-options|VM (executing JavaScript)
+vm.isContext()|vm#vmiscontextobject|VM (executing JavaScript)
+vm.measureMemory()|vm#vmmeasurememoryoptions|VM (executing JavaScript)
+vm.runInContext()|vm#vmrunincontextcode-contextifiedobject-options|VM (executing JavaScript)
+vm.runInNewContext()|vm#vmruninnewcontextcode-contextobject-options|VM (executing JavaScript)
+vm.runInThisContext()|vm#vmruninthiscontextcode-options|VM (executing JavaScript)
+wasi.initialize()|wasi#wasiinitializeinstance|WebAssembly System Interface (WASI)
+wasi.start()|wasi#wasistartinstance|WebAssembly System Interface (WASI)
+wasi.wasiImport|wasi#wasiwasiimport|WebAssembly System Interface (WASI)
+watcher.close()|fs#watcherclose|File system
+watcher.ref()|fs#watcherref|File system
+watcher.ref()|fs#watcherref_1|File system
+watcher.unref()|fs#watcherunref|File system
+watcher.unref()|fs#watcherunref_1|File system
+worker.SHARE_ENV|worker_threads#workershare_env|Worker threads
+worker.disconnect()|cluster#workerdisconnect|Cluster
+worker.exitedAfterDisconnect|cluster#workerexitedafterdisconnect|Cluster
+worker.getEnvironmentData()|worker_threads#workergetenvironmentdatakey|Worker threads
+worker.getHeapSnapshot()|worker_threads#workergetheapsnapshot|Worker threads
+worker.id|cluster#workerid|Cluster
+worker.isConnected()|cluster#workerisconnected|Cluster
+worker.isDead()|cluster#workerisdead|Cluster
+worker.isMainThread|worker_threads#workerismainthread|Worker threads
+worker.kill()|cluster#workerkillsignal|Cluster
+worker.markAsUntransferable()|worker_threads#workermarkasuntransferableobject|Worker threads
+worker.moveMessagePortToContext()|worker_threads#workermovemessageporttocontextport-contextifiedsandbox|Worker threads
+worker.parentPort|worker_threads#workerparentport|Worker threads
+worker.performance|worker_threads#workerperformance|Worker threads
+worker.postMessage()|worker_threads#workerpostmessagevalue-transferlist|Worker threads
+worker.process|cluster#workerprocess|Cluster
+worker.receiveMessageOnPort()|worker_threads#workerreceivemessageonportport|Worker threads
+worker.ref()|worker_threads#workerref|Worker threads
+worker.resourceLimits|worker_threads#workerresourcelimits_1|Worker threads
+worker.resourceLimits|worker_threads#workerresourcelimits|Worker threads
+worker.send()|cluster#workersendmessage-sendhandle-options-callback|Cluster
+worker.setEnvironmentData()|worker_threads#workersetenvironmentdatakey-value|Worker threads
+worker.stderr|worker_threads#workerstderr|Worker threads
+worker.stdin|worker_threads#workerstdin|Worker threads
+worker.stdout|worker_threads#workerstdout|Worker threads
+worker.terminate()|worker_threads#workerterminate|Worker threads
+worker.threadId|worker_threads#workerthreadid|Worker threads
+worker.threadId|worker_threads#workerthreadid_1|Worker threads
+worker.unref()|worker_threads#workerunref|Worker threads
+worker.workerData|worker_threads#workerworkerdata|Worker threads
+writable._construct()|stream#writable_constructcallback|Stream[src]
+writable._destroy()|stream#writable_destroyerr-callback|Stream[src]
+writable._final()|stream#writable_finalcallback|Stream[src]
+writable._write()|stream#writable_writechunk-encoding-callback|Stream[src]
+writable._writev()|stream#writable_writevchunks-callback|Stream[src]
+writableStream.abort()|webstreams#writablestreamabortreason|Web Streams API
+writableStream.close()|webstreams#writablestreamclose|Web Streams API
+writableStream.getWriter()|webstreams#writablestreamgetwriter|Web Streams API
+writableStream.locked|webstreams#writablestreamlocked|Web Streams API
+writableStreamDefaultController.error()|webstreams#writablestreamdefaultcontrollererrorerror|Web Streams API
+writableStreamDefaultController.signal|webstreams#writablestreamdefaultcontrollersignal|Web Streams API
+writableStreamDefaultWriter.abort()|webstreams#writablestreamdefaultwriterabortreason|Web Streams API
+writableStreamDefaultWriter.close()|webstreams#writablestreamdefaultwriterclose|Web Streams API
+writableStreamDefaultWriter.closed|webstreams#writablestreamdefaultwriterclosed|Web Streams API
+writableStreamDefaultWriter.desiredSize|webstreams#writablestreamdefaultwriterdesiredsize|Web Streams API
+writableStreamDefaultWriter.ready|webstreams#writablestreamdefaultwriterready|Web Streams API
+writableStreamDefaultWriter.releaseLock()|webstreams#writablestreamdefaultwriterreleaselock|Web Streams API
+writableStreamDefaultWriter.write()|webstreams#writablestreamdefaultwriterwritechunk|Web Streams API
+writeStream.bytesWritten|fs#writestreambyteswritten|File system
+writeStream.clearLine()|tty#writestreamclearlinedir-callback|TTY
+writeStream.clearScreenDown()|tty#writestreamclearscreendowncallback|TTY
+writeStream.close()|fs#writestreamclosecallback|File system
+writeStream.columns|tty#writestreamcolumns|TTY
+writeStream.cursorTo()|tty#writestreamcursortox-y-callback|TTY
+writeStream.getColorDepth()|tty#writestreamgetcolordepthenv|TTY
+writeStream.getWindowSize()|tty#writestreamgetwindowsize|TTY
+writeStream.hasColors()|tty#writestreamhascolorscount-env|TTY
+writeStream.isTTY|tty#writestreamistty|TTY
+writeStream.moveCursor()|tty#writestreammovecursordx-dy-callback|TTY
+writeStream.path|fs#writestreampath|File system
+writeStream.pending|fs#writestreampending|File system
+writeStream.rows|tty#writestreamrows|TTY
+x509.ca|crypto#x509ca|Crypto
+x509.checkEmail()|crypto#x509checkemailemail-options|Crypto
+x509.checkHost()|crypto#x509checkhostname-options|Crypto
+x509.checkIP()|crypto#x509checkipip|Crypto
+x509.checkIssued()|crypto#x509checkissuedothercert|Crypto
+x509.checkPrivateKey()|crypto#x509checkprivatekeyprivatekey|Crypto
+x509.fingerprint|crypto#x509fingerprint|Crypto
+x509.fingerprint256|crypto#x509fingerprint256|Crypto
+x509.fingerprint512|crypto#x509fingerprint512|Crypto
+x509.infoAccess|crypto#x509infoaccess|Crypto
+x509.issuer|crypto#x509issuer|Crypto
+x509.issuerCertificate|crypto#x509issuercertificate|Crypto
+x509.keyUsage|crypto#x509keyusage|Crypto
+x509.publicKey|crypto#x509publickey|Crypto
+x509.raw|crypto#x509raw|Crypto
+x509.serialNumber|crypto#x509serialnumber|Crypto
+x509.subject|crypto#x509subject|Crypto
+x509.subjectAltName|crypto#x509subjectaltname|Crypto
+x509.toJSON()|crypto#x509tojson|Crypto
+x509.toLegacyObject()|crypto#x509tolegacyobject|Crypto
+x509.toString()|crypto#x509tostring|Crypto
+x509.validFrom|crypto#x509validfrom|Crypto
+x509.validTo|crypto#x509validto|Crypto
+x509.verify()|crypto#x509verifypublickey|Crypto
+zlib.brotliCompress()|zlib#zlibbrotlicompressbuffer-options-callback|Zlib
+zlib.brotliCompressSync()|zlib#zlibbrotlicompresssyncbuffer-options|Zlib
+zlib.brotliDecompress()|zlib#zlibbrotlidecompressbuffer-options-callback|Zlib
+zlib.brotliDecompressSync()|zlib#zlibbrotlidecompresssyncbuffer-options|Zlib
+zlib.bytesRead|zlib#zlibbytesread|Zlib
+zlib.bytesWritten|zlib#zlibbyteswritten|Zlib
+zlib.close()|zlib#zlibclosecallback|Zlib
+zlib.constants|zlib#zlibconstants|Zlib
+zlib.createBrotliCompress()|zlib#zlibcreatebrotlicompressoptions|Zlib
+zlib.createBrotliDecompress()|zlib#zlibcreatebrotlidecompressoptions|Zlib
+zlib.createDeflate()|zlib#zlibcreatedeflateoptions|Zlib
+zlib.createDeflateRaw()|zlib#zlibcreatedeflaterawoptions|Zlib
+zlib.createGunzip()|zlib#zlibcreategunzipoptions|Zlib
+zlib.createGzip()|zlib#zlibcreategzipoptions|Zlib
+zlib.createInflate()|zlib#zlibcreateinflateoptions|Zlib
+zlib.createInflateRaw()|zlib#zlibcreateinflaterawoptions|Zlib
+zlib.createUnzip()|zlib#zlibcreateunzipoptions|Zlib
+zlib.deflate()|zlib#zlibdeflatebuffer-options-callback|Zlib
+zlib.deflateRaw()|zlib#zlibdeflaterawbuffer-options-callback|Zlib
+zlib.deflateRawSync()|zlib#zlibdeflaterawsyncbuffer-options|Zlib
+zlib.deflateSync()|zlib#zlibdeflatesyncbuffer-options|Zlib
+zlib.flush()|zlib#zlibflushkind-callback|Zlib
+zlib.gunzip()|zlib#zlibgunzipbuffer-options-callback|Zlib
+zlib.gunzipSync()|zlib#zlibgunzipsyncbuffer-options|Zlib
+zlib.gzip()|zlib#zlibgzipbuffer-options-callback|Zlib
+zlib.gzipSync()|zlib#zlibgzipsyncbuffer-options|Zlib
+zlib.inflate()|zlib#zlibinflatebuffer-options-callback|Zlib
+zlib.inflateRaw()|zlib#zlibinflaterawbuffer-options-callback|Zlib
+zlib.inflateRawSync()|zlib#zlibinflaterawsyncbuffer-options|Zlib
+zlib.inflateSync()|zlib#zlibinflatesyncbuffer-options|Zlib
+zlib.params()|zlib#zlibparamslevel-strategy-callback|Zlib
+zlib.reset()|zlib#zlibreset|Zlib
+zlib.unzip()|zlib#zlibunzipbuffer-options-callback|Zlib
+zlib.unzipSync()|zlib#zlibunzipsyncbuffer-options|Zlib

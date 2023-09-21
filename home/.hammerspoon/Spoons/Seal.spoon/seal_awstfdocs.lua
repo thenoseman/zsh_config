@@ -57,18 +57,11 @@ log.i("Looking for " .. indexFile)
 local file_info_last_modified = hs.fs.attributes(indexFile, "modification")
 if file_info_last_modified == nil then
   local t =
-    "Generate the terraform AWS provider index using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate-tf-aws-provider-index.sh"
+    "Generate the terraform AWS provider index using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 else
   log.i("Using pre-existing '" .. indexFile)
-end
-
-function fill_cache()
-  obj.cache = {}
-  for line in io.lines(indexFile) do
-    obj.cache[#obj.cache + 1] = line
-  end
 end
 
 function obj:stop()
@@ -101,7 +94,11 @@ function obj.choices(query)
 
   -- Strip trigger
   query = query:gsub("^" .. obj.trigger, "")
-  fill_cache()
+
+  obj.cache = {}
+  for line in io.lines(indexFile) do
+    obj.cache[#obj.cache + 1] = line
+  end
 
   for _, definition in pairs(fuzzyMatch(query, obj.cache)) do
     -- accessanalyzer_analyzer|IAM Access Analyzer|resource|Manages an Access Analyzer Analyzer

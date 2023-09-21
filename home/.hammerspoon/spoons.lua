@@ -24,13 +24,10 @@ spoon.ClipboardTool:start()
 --
 -- Seal
 --
-local seal_user_actions = {}
-
 if not hs.hotkey.assignable({ "cmd" }, "Space") then
   hs.alert("CMD+SPACE hotkey not assignable. Remove as spotlight search hotkey")
 end
 hs.loadSpoon("Seal")
 spoon.Seal:bindHotkeys({ show = { { "cmd" }, "Space" } })
-spoon.Seal:loadPlugins({ "apps", "calc", "useractions", "nodedocs", "awsjsdocs", "awstfdocs" })
-spoon.Seal.plugins.useractions.actions = seal_user_actions
+spoon.Seal:loadPlugins({ "apps", "calc", "nodedocs", "awsjsdocs", "awstfdocs" })
 spoon.Seal:start()
