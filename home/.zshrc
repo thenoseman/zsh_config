@@ -83,8 +83,7 @@ zstyle ':completion:*' verbose yes
 zstyle ':completion:*' special-dirs true
 
 # Cache completion results
-zstyle ':completion:*:complete:bundle' use-cache on
-zstyle ':completion:*:complete:bundle' rehash false
+zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 zstyle ':completion:*' rehash yes
 
