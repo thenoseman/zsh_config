@@ -9,3 +9,6 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
 # Simple file preview (https://github.com/Aloxaf/fzf-tab/wiki/Preview#show-file-contents)
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+
+# AUTOCOMPLETES that are not autoloaded (_*.sh)
+source $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh
