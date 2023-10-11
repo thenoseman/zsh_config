@@ -2,7 +2,7 @@
 -- MS Teams mute by pressing ESCAPE
 --
 --
-local appname_for_trigger = "Microsoft Teams"
+local appname_for_trigger = "Microsoft Teams classic"
 
 -- Hotkey setup
 local teamsHotkey = hs.hotkey.new("", "escape", nil, function()
