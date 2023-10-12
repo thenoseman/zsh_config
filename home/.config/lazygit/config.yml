@@ -7,7 +7,7 @@ gui:
 git:
   skipHookPrefix: "[FORCE]"
 os:
-  edit: "PATH=/opt/homebrew/bin/:$PATH; vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert' -- {{filename}}"
-  editAtLine: "PATH=/opt/homebrew/bin/:$PATH; vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert' +{{line}} -- {{filename}}"
-  editAtLineAndWait: "PATH=/opt/homebrew/bin/:$PATH; vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' --block -c 'startinsert' +{{line}} -- {{filename}}"
+  edit: "/opt/homebrew/bin/zsh -c vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert' -- {{filename}}"
+  editAtLine: "/opt/homebrew/bin/zsh -c vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert' +{{line}} -- {{filename}}"
+  editAtLineAndWait: "/opt/homebrew/bin/zsh -c vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' --block -c 'startinsert' +{{line}} -- {{filename}}"
   editInTerminal: true
