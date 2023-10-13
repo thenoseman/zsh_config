@@ -52,11 +52,6 @@ alias yd="yt-dlp --recode-video mp4 --continue --ignore-errors --no-overwrites -
 #
 # AWS
 #
-for bin in terraform aws packer; do
-	# shellcheck disable=SC2139
-	alias o-${bin}="$HOMEBREW_PREFIX/bin/$bin"
-done
-
 alias tf="terraform"
 
 #
@@ -79,3 +74,9 @@ alias -s {json,html}=mvim
 
 # Lazygit
 alias lg="execute_maximized \${HOMEBREW_PREFIX}/bin/lazygit"
+
+# Original versions as o-<original name>
+for bin in terraform aws packer rg; do
+	# shellcheck disable=SC2139
+	alias o-${bin}="$HOMEBREW_PREFIX/bin/$bin"
+done
