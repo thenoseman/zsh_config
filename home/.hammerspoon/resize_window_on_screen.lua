@@ -3,7 +3,7 @@
 -- uses primaryDisplay (which are hs.screen) from screen_layout.lua
 --
 local log = hs.logger.new("🖥", "debug")
-local appname_for_trigger = "Microsoft Teams" -- The app title to watch for changes
+local appname_for_trigger = "Microsoft Teams classic" -- The app title to watch for changes
 local window_title_for_trigger = "| Microsoft Teams" -- The apps window title to watch for changes, partial match
 local window_min_width_to_trigger = 600 -- How wide must the window be to trigger the layout? Small windows should not triggered it.
 
