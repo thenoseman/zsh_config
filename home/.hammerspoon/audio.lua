@@ -21,11 +21,12 @@ local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon
 local output_switcher_menubar = hs.menubar.new()
 log.i("Buildin output name is '" .. buildin_name .. "'")
 
+-- Volume to set when a headset connects
+local volumes = { buildin = 18, headset = 18 }
+
 --
 -- Create icon in menubar to quickly toggle between INTERNAL and HEADSET output
 --
-local volumes = { buildin = 18, headset = 18 }
-
 local icons = {
   buildin = hs.image.imageFromPath("bullhorn.png"):setSize({ w = 18, h = 18 }),
   headset = hs.image.imageFromPath("headset.png"):setSize({ w = 18, h = 18 }),
