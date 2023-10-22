@@ -1,8 +1,18 @@
 # Usage: use ruby <version>
-#
 # Loads the specified ruby version into the environment
 use_ruby() {
   local ruby_dir=$HOME/.rubies/$1
   PATH_add $ruby_dir
   load_prefix $ruby_dir
+}
+
+# Usage: use node 20
+use_node() {
+  search_version=$(semver_search "$NODE_VERSIONS" "" "${1}")
+  node_prefix="${NODE_VERSIONS}/${search_version}"
+  local dir="${NODE_VERSIONS}/${search_version}"
+
+  PATH_add $dir
+  load_prefix $dir
+  layout node
 }

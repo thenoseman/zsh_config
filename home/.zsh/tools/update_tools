@@ -51,7 +51,6 @@ BREW_PACKAGES=(
 	stylua
 	syncthing
 	tig
-	volta
 	watch
 	wireguard-tools
 	yamllint
@@ -135,9 +134,8 @@ log ">>> Installing important gems"
 gem install "${RUBY_GEMS[@]}"
 
 log ">>> Installing important JS tools"
-current_toolchain=$(volta list --default --quiet --format plain)
 for p in "${NODE_PACKAGES[@]}"; do
-	[[ ! "$current_toolchain" == *"$p"* ]] && volta install "${p}"
+	npm install -g "${p}"
 done
 
 log ">>> Setting permission for quicklook plugins"

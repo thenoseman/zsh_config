@@ -15,9 +15,6 @@ export PATH=$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin:$PATH
 # To fix this we link a ruby version we want into /usr/local/bin/ruby
 [[ ! -e "$HOMEBREW_PREFIX/bin/ruby" ]] && ln -s "$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin/ruby" $HOMEBREW_PREFIX/bin/ruby
 
-# Default node
-export PATH=$VOLTA_HOME/bin:$PATH
-
 # Own zsh stuff
 export PATH=$HOME/.zsh/tools:$PATH
 

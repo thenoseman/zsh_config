@@ -5,107 +5,117 @@
 # Find a file starting with $1
 #
 f() {
-  rg --hidden --files | grep --color "${@}"
+	rg --hidden --files | grep --color "${@}"
 }
 
 #
 # Start tig in status view if unstanged changes present
 #
 ti() {
-  DIRTY=$(git status -s)
-  killall -m -9 tig > /dev/null 2>&1
-  if [[ "$DIRTY" != "" ]]; then
-    tig status
-  else
-    tig "$@"
-  fi
+	DIRTY=$(git status -s)
+	killall -m -9 tig >/dev/null 2>&1
+	if [[ "$DIRTY" != "" ]]; then
+		tig status
+	else
+		tig "$@"
+	fi
 }
 
 #
 # Do a command in every subdir (max depth = 1)
 #
 dirdo() {
-  echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
-  for a in *; do
-    if [[ -d "$a" ]]; then
-      cd "$a" || exit
-      # [[ -f .ruby-version ]] && chruby $(cat .ruby-version)
-      echo "${ccyellow}$(pwd)${ccend} ('${@}')"
-      ("$@")
-      cd ..
-    fi
-  done
+	echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
+	for a in *; do
+		if [[ -d "$a" ]]; then
+			cd "$a" || exit
+			# [[ -f .ruby-version ]] && chruby $(cat .ruby-version)
+			echo "${ccyellow}$(pwd)${ccend} ('${@}')"
+			("$@")
+			cd ..
+		fi
+	done
 }
 
 #
 # Install ruby version
 #
 install_ruby() {
-  local VERSION="${1:-}"
-  [[ -z "$VERSION" ]] && echo "Pass the ruby version (eg. activate_ruby 3.0.0)" && return
-  if [[ ! -d "$HOME/.rubies/${VERSION}" ]]; then
-    echo "ruby version ${VERSION} not found. Installing."
-    ruby-build "${VERSION}" "$HOME/.rubies/${VERSION}"
-  fi
+	local VERSION="${1:-}"
+	[[ -z "$VERSION" ]] && echo "Pass the ruby version (eg. activate_ruby 3.0.0)" && return
+	if [[ ! -d "$HOME/.rubies/${VERSION}" ]]; then
+		echo "ruby version ${VERSION} not found. Installing."
+		ruby-build "${VERSION}" "$HOME/.rubies/${VERSION}"
+	fi
+}
+
+#
+# Install a node version
+#
+install_node() {
+	[[ -z "$1" ]] && echo "Pass a matcher for the node version you want" && return
+	NODE_VERSION=$(node-build --definitions | grep -E "^[0-9.]+$" | sort -t "." -k1,1n -k2,2n -k3,3n | fzf -1 --query "$1" -e --tac)
+	node-build "$NODE_VERSION" "$HOME/.nodes/$NODE_VERSION"
 }
 
 #
 # Javascript testing with jest
 #
 wjs-test() {
-  node_modules/.bin/jest --clearCache
-  # shellcheck disable=SC2046
-  node_modules/.bin/jest --watch --runInBand $(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
+	node_modules/.bin/jest --clearCache
+	# shellcheck disable=SC2046
+	node_modules/.bin/jest --watch --runInBand $(rg --files --hidden --follow --glob 'tests/unit/**/*.spec.js' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
 }
 
 #
 # Run a test in debugging mode
 #
 djs-test() {
-  NODE_OPTIONS="--inspect" node_modules/.bin/jest --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
+	NODE_OPTIONS="--inspect" node_modules/.bin/jest --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
 }
 
 #
 # Runs a cypress test headless
 #
 cyp-headless() {
-  cypress run --e2e --browser chrome --headless --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
+	cypress run --e2e --browser chrome --headless --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
 }
 
 #
 # Runs a cypress test with visible browser
 #
 cyp() {
-  cypress run --e2e --browser chrome --headed --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
+	cypress run --e2e --browser chrome --headed --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
 }
 
 #
 # AWS related functions
 #
 aws_list_ec2_instances() {
-  [[ -z "$AWS_PROFILE" ]] && echo "set 'AWS_PROFILE' before use" && return
-  aws ec2 describe-instances  --filters 'Name=instance-state-name,Values=running' \
-                            --query "$(cat <<-EOF | tr -d '\n' | tr -d ' '
-                                    Reservations[*].{
-                                        deets:Instances[*].[
-                                            (not_null(Tags[?Key==\`Name\`][].Value)[0]||\`_\`),
-                                            InstanceId,
-                                            LaunchTime,
-                                            PrivateDnsName
-                                        ][]
-                                    }
-																		EOF
-                                )" \
-                            --output json \
-                                | jq -r '.[]|.deets|join(" ")' \
-                                | column -t -s " "
+	[[ -z "$AWS_PROFILE" ]] && echo "set 'AWS_PROFILE' before use" && return
+	aws ec2 describe-instances --filters 'Name=instance-state-name,Values=running' \
+		--query "$(
+			cat <<-EOF | tr -d '\n' | tr -d ' '
+				                                    Reservations[*].{
+				                                        deets:Instances[*].[
+				                                            (not_null(Tags[?Key==\`Name\`][].Value)[0]||\`_\`),
+				                                            InstanceId,
+				                                            LaunchTime,
+				                                            PrivateDnsName
+				                                        ][]
+				                                    }
+			EOF
+		)" \
+		--output json |
+		jq -r '.[]|.deets|join(" ")' |
+		column -t -s " "
 }
 
 #
 # AWS: SSH to an EC2 instance
 #
 aws-ssh() {
-  ssh "$(aws_list_ec2_instances | fzf -1 -q "$1" | awk '{print $4}')"
+	ssh "$(aws_list_ec2_instances | fzf -1 -q "$1" | awk '{print $4}')"
 }
 
 #
@@ -115,37 +125,37 @@ aws-ssh() {
 # GOOS=darwin GOARCH=arm64 go build -v -o tfrs-arm64 .
 # GOOS=darwin GOARCH=amd64 go build -v -o tfrs-amd64 .
 # lipo -create -output tfrs tfrs-arm64 tfrs-amd64
-# 
+#
 tf-p() {
-  # shellcheck disable=SC2046
-  aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
+	# shellcheck disable=SC2046
+	aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
 }
 
 killdns() {
-  sudo dscacheutil -flushcache
-  sudo killall -HUP mDNSResponder
+	sudo dscacheutil -flushcache
+	sudo killall -HUP mDNSResponder
 }
 
 #
 # Citrix autostart annoyance
 #
 citrix-remove-services() {
-  launchctl remove com.citrix.ServiceRecords
-  launchctl remove com.citrix.ReceiverHelper
-  launchctl remove com.citrix.AuthManager_Mac
-  launchctl remove com.citrix.safariadapter
+	launchctl remove com.citrix.ServiceRecords
+	launchctl remove com.citrix.ReceiverHelper
+	launchctl remove com.citrix.AuthManager_Mac
+	launchctl remove com.citrix.safariadapter
 }
 citrix-start-services() {
-  launchctl load /Library/LaunchAgents/com.citrix.ServiceRecords.plist
-  launchctl load /Library/LaunchAgents/com.citrix.ReceiverHelper.plist
-  launchctl load /Library/LaunchAgents/com.citrix.AuthManager_Mac.plist
+	launchctl load /Library/LaunchAgents/com.citrix.ServiceRecords.plist
+	launchctl load /Library/LaunchAgents/com.citrix.ReceiverHelper.plist
+	launchctl load /Library/LaunchAgents/com.citrix.AuthManager_Mac.plist
 }
 
 #
 # DIRENV
 #
 direnv_java() {
-  # shellcheck disable=SC3037,SC2028,SC2086
-  echo -n "source_up\nexport JAVA_HOME=\"$(/usr/libexec/java_home -v ${1}:-17)\"\nexport MAVEN_OPTS=\"-Xms512m -Xmx1024m -Dfile.encoding=UTF-8\"" >> .envrc
-  cat .envrc
+	# shellcheck disable=SC3037,SC2028,SC2086
+	echo -n "source_up\nexport JAVA_HOME=\"$(/usr/libexec/java_home -v ${1}:-17)\"\nexport MAVEN_OPTS=\"-Xms512m -Xmx1024m -Dfile.encoding=UTF-8\"" >>.envrc
+	cat .envrc
 }

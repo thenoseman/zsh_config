@@ -49,10 +49,6 @@ export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/curl/include"
 # ripgrep (https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md)
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
-# Location of node js versions managed by volta
-export VOLTA_HOME="$HOME/.volta"
-export VOLTA_FEATURE_PNPM=1
-
 # aws-vault (https://github.com/99designs/aws-vault/blob/master/USAGE.md#environment-variables)
 export AWS_VAULT_PROMPT=terminal
 
@@ -64,3 +60,7 @@ export LEFTHOOK_QUIET=meta,execution,summary,success,execution,empty_summary,exe
 
 # docker
 export BUILDKIT_PROGRESS="plain"
+
+# node js -> direnv
+export NODE_VERSIONS="$HOME/.nodes"
+export NODE_VERSION_PREFIX=""
