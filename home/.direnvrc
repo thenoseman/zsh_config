@@ -1,6 +1,10 @@
+# Extend standard-lib
+# https://direnv.net/man/direnv-stdlib.1.html
+# 
 # Usage: use ruby <version>
 # Loads the specified ruby version into the environment
 use_ruby() {
+  source_up_if_exists
   local ruby_dir=$HOME/.rubies/$1
   PATH_add $ruby_dir
   load_prefix $ruby_dir
@@ -8,8 +12,8 @@ use_ruby() {
 
 # Usage: use node 20
 use_node() {
+  source_up_if_exists
   search_version=$(semver_search "$NODE_VERSIONS" "" "${1}")
-  node_prefix="${NODE_VERSIONS}/${search_version}"
   local dir="${NODE_VERSIONS}/${search_version}"
 
   PATH_add $dir
