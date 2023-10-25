@@ -35,6 +35,7 @@ BREW_PACKAGES=(
 	jq
 	jump
 	node
+	node-build
 	oath-toolkit
 	openconnect
 	openssl
