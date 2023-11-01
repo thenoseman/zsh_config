@@ -134,6 +134,7 @@ tf-p() {
 killdns() {
 	sudo dscacheutil -flushcache
 	sudo killall -HUP mDNSResponder
+	sudo brew services restart coredns
 }
 
 #
