@@ -21,11 +21,11 @@ local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon
 local output_switcher_menubar = hs.menubar.new()
 log.i("Buildin output name is '" .. buildin_name .. "'")
 
--- Volume to set when a headset connects
+-- Volume to set when switching output
 local volumes = { buildin = 18, headset = 18 }
 
 --
--- Create icon in menubar to quickly toggle between INTERNAL and HEADSET output
+-- Create icon in menubar to quickly toggle between BUILDIN and HEADSET output
 --
 local icons = {
   buildin = hs.image.imageFromPath("bullhorn.png"):setSize({ w = 18, h = 18 }),
@@ -59,7 +59,7 @@ local function output_switcher_menubar_clicked()
 
   if current_output_device_info["name"] == buildin_name then
     -- From BUILDIN -> HEADSET
-    log.i("From BUILDIN -> HEADSET '" .. headset:name() .. "'")
+    log.i("From BUILDIN -> HEADSET '" .. headset:name() .. "' (Volume " .. volumes.headset .. ")")
     volumes.buildin = buildin:outputVolume()
     if headset ~= nil then
       headset:setDefaultOutputDevice()
@@ -68,7 +68,7 @@ local function output_switcher_menubar_clicked()
     end
   else
     -- From HEADSET -> BUILDIN
-    log.i("From HEADSET '" .. headset:name() .. "' -> BUILDIN")
+    log.i("From HEADSET '" .. headset:name() .. "' -> BUILDIN (Volume " .. volumes.buildin .. ")")
     if headset ~= nil then
       volumes.headset = headset:outputVolume()
     end
