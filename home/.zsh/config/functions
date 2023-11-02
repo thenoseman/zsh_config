@@ -54,7 +54,7 @@ install_ruby() {
 #
 install_node() {
 	[[ -z "$1" ]] && echo "Pass a matcher for the node version you want" && return
-	NODE_VERSION=$(node-build --definitions | grep -E "^[0-9.]+$" | semversort | fzf -1 --query "$1" -e --no-sort --tac)
+	NODE_VERSION=$(node-build --definitions | grep -E "^[0-9.]+$" | semversort | fzf -1 --query "^$1" -e --no-sort --tac)
 	node-build "$NODE_VERSION" "$HOME/.nodes/$NODE_VERSION"
 }
 
