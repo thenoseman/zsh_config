@@ -108,7 +108,7 @@ function onaudiodevicechange(event)
       --- headset as OUTPUT
       log.i("Headset " .. headset:name() .. " appeared: Setting as output")
       headset:setDefaultOutputDevice()
-      headset:setVolume(100)
+      headset:setVolume(volumes.headset)
 
       if use_internal_mic then
         -- Build in mic as INPUT
