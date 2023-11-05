@@ -226,7 +226,7 @@ COUNTER=1
 while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
 	msg "${GREEN}Waiting for async jobs to finish (#${COUNTER}, Finished: $COMPLETED/$WAIT_UNTIL_COMPLETED)${NOFORMAT}"
 	COUNTER=$((COUNTER + 1))
-	sleep 1
+	sleep 5
 done
 
 info ">>> Updating homebrew formulas/casks"
@@ -247,7 +247,7 @@ COUNTER=1
 while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
 	msg "${GREEN}Waiting for async jobs to finish (#${COUNTER}, Finished: $COMPLETED/$WAIT_UNTIL_COMPLETED)${NOFORMAT}"
 	COUNTER=$((COUNTER + 1))
-	sleep 1
+	sleep 5
 done
 
 info ">>> Setting permission for quicklook plugins"
