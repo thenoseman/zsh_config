@@ -5,7 +5,7 @@
 command -v fzf >/dev/null 2>&1 || (echo "Needs 'fzf'" && exit 1)
 
 group_name=${1:-}
-timeline=${2:-1h}
+timeline=${2:1h}
 [ -z "${group_name}" ] && echo "Please specify a search pattern as first parameter" && exit 1
 
 groups=$(aws logs describe-log-groups --query 'logGroups[*].logGroupName' --output text | tr "\t" "\n")
