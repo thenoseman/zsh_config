@@ -44,6 +44,7 @@ local modifyNameMap = function(info, add)
 
     displayname = displayname:gsub("%.app$", "", 1)
     if string.find(item.kMDItemPath, "%.prefPane$") then
+      displayname = displayname:gsub("%.prefPane$", "", 1)
       displayname = displayname .. " Systemeinstellungen"
       if add then
         icon = hs.image.iconForFile(item.kMDItemPath)

@@ -7,6 +7,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const downloadUrl =
   "https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/_next/static/chunks/3711.88eee830d1c25cc8.js";
 
+console.log("Generating searchindex from " + downloadUrl);
+
 // Download aws js sdk JS
 const response = await fetch(downloadUrl);
 let body = await response.text();

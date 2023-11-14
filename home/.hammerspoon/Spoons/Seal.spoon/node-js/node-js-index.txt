@@ -7,10 +7,14 @@
 -|cli#-|Command-line API
 --|cli#--|Command-line API
 --abort-on-uncaught-exception|cli#--abort-on-uncaught-exception|Command-line API
+--allow-child-process|cli#--allow-child-process|Command-line API
+--allow-fs-read|cli#--allow-fs-read|Command-line API
+--allow-fs-write|cli#--allow-fs-write|Command-line API
+--allow-worker|cli#--allow-worker|Command-line API
 --build-snapshot|cli#--build-snapshot|Command-line API
 --check|cli#-c---check|Command-line API
 --completion-bash|cli#--completion-bash|Command-line API
---conditions=condition|cli#-ccondition---conditionscondition|Command-line API
+--conditions=condition|cli#-c-condition---conditionscondition|Command-line API
 --cpu-prof|cli#--cpu-prof|Command-line API
 --cpu-prof-dir|cli#--cpu-prof-dir|Command-line API
 --cpu-prof-interval|cli#--cpu-prof-interval|Command-line API
@@ -21,12 +25,16 @@
 --dns-result-order=order|cli#--dns-result-orderorder|Command-line API
 --enable-fips|cli#--enable-fips|Command-line API
 --enable-source-maps|cli#--enable-source-maps|Command-line API
+--env-file=config|cli#--env-fileconfig|Command-line API
 --eval "script"|cli#-e---eval-script|Command-line API
 --experimental-import-meta-resolve|cli#--experimental-import-meta-resolve|Command-line API
 --experimental-loader=module|cli#--experimental-loadermodule|Command-line API
 --experimental-network-imports|cli#--experimental-network-imports|Command-line API
+--experimental-permission|cli#--experimental-permission|Command-line API
 --experimental-policy|cli#--experimental-policy|Command-line API
+--experimental-sea-config|cli#--experimental-sea-config|Command-line API
 --experimental-shadow-realm|cli#--experimental-shadow-realm|Command-line API
+--experimental-test-coverage|cli#--experimental-test-coverage|Command-line API
 --experimental-vm-modules|cli#--experimental-vm-modules|Command-line API
 --experimental-wasi-unstable-preview1|cli#--experimental-wasi-unstable-preview1|Command-line API
 --experimental-wasm-modules|cli#--experimental-wasm-modules|Command-line API
@@ -65,6 +73,7 @@
 --no-extra-info-on-fatal-exception|cli#--no-extra-info-on-fatal-exception|Command-line API
 --no-force-async-hooks-checks|cli#--no-force-async-hooks-checks|Command-line API
 --no-global-search-paths|cli#--no-global-search-paths|Command-line API
+--no-network-family-autoselection|cli#--no-network-family-autoselection|Command-line API
 --no-warnings|cli#--no-warnings|Command-line API
 --node-memory-debug|cli#--node-memory-debug|Command-line API
 --openssl-config=file|cli#--openssl-configfile|Command-line API
@@ -92,6 +101,9 @@
 --test|cli#--test|Command-line API
 --test-name-pattern|cli#--test-name-pattern|Command-line API
 --test-only|cli#--test-only|Command-line API
+--test-reporter|cli#--test-reporter|Command-line API
+--test-reporter-destination|cli#--test-reporter-destination|Command-line API
+--test-shard|cli#--test-shard|Command-line API
 --throw-deprecation|cli#--throw-deprecation|Command-line API
 --title=title|cli#--titletitle|Command-line API
 --tls-cipher-list=list|cli#--tls-cipher-listlist|Command-line API
@@ -115,7 +127,6 @@
 --trace-warnings|cli#--trace-warnings|Command-line API
 --track-heap-objects|cli#--track-heap-objects|Command-line API
 --unhandled-rejections=mode|cli#--unhandled-rejectionsmode|Command-line API
---update-assert-snapshot|cli#--update-assert-snapshot|Command-line API
 --use-bundled-ca|cli#--use-bundled-ca---use-openssl-ca|Command-line API
 --use-largepages=mode|cli#--use-largepagesmode|Command-line API
 --use-openssl-ca|cli#--use-bundled-ca---use-openssl-ca|Command-line API
@@ -124,8 +135,9 @@
 --version|cli#-v---version|Command-line API
 --watch|cli#--watch|Command-line API
 --watch-path|cli#--watch-path|Command-line API
+--watch-preserve-output|cli#--watch-preserve-output|Command-line API
 --zero-fill-buffers|cli#--zero-fill-buffers|Command-line API
--C=condition|cli#-ccondition---conditionscondition|Command-line API
+-C condition|cli#-c-condition---conditionscondition|Command-line API
 -c|cli#-c---check|Command-line API
 -e|cli#-e---eval-script|Command-line API
 -h|cli#-h---help|Command-line API
@@ -163,8 +175,8 @@ Class Blob|buffer#class-blob|Buffer
 Class Blob|globals#class-blob|Global objects
 Class BroadcastChannel extends EventTarget|worker_threads#class-broadcastchannel-extends-eventtarget|Worker threads
 Class BrotliOptions|zlib#class-brotlioptions|Zlib
-Class Buffer|buffer#class-buffer|Buffer
 Class Buffer|globals#class-buffer|Global objects
+Class Buffer|buffer#class-buffer|Buffer
 Class Buffer.poolSize|buffer#class-property-bufferpoolsize|Buffer
 Class ByteLengthQueuingStrategy|globals#class-bytelengthqueuingstrategy|Global objects
 Class ByteLengthQueuingStrategy|webstreams#class-bytelengthqueuingstrategy|Web Streams API
@@ -199,6 +211,8 @@ Class Error|errors#class-error|Errors
 Class Event|events#class-event|Events
 Class EventEmitter|events#class-eventemitter|Events
 Class EventTarget|events#class-eventtarget|Events
+Class File|buffer#class-file|Buffer
+Class File|globals#class-file|Global objects
 Class FileHandle|fs#class-filehandle|File system
 Class FormData|globals#class-formdata|Global objects
 Class Hash|crypto#class-hash|Crypto
@@ -218,6 +232,9 @@ Class IntervalHistogram extends Histogram|perf_hooks#class-intervalhistogram-ext
 Class KeyObject|crypto#class-keyobject|Crypto
 Class MessageChannel|worker_threads#class-messagechannel|Worker threads
 Class MessagePort|worker_threads#class-messageport|Worker threads
+Class MockFunctionContext|test#class-mockfunctioncontext|Test runner
+Class MockTimers|test#class-mocktimers|Test runner
+Class MockTracker|test#class-mocktracker|Test runner
 Class NodeEventTarget|events#class-nodeeventtarget|Events
 Class Options|zlib#class-options|Zlib
 Class Pbkdf2Params|webcrypto#class-pbkdf2params|Web Crypto API
@@ -233,16 +250,16 @@ Class REPLServer|repl#class-replserver|REPL
 Class RangeError|errors#class-rangeerror|Errors
 Class ReadableByteStreamController|webstreams#class-readablebytestreamcontroller|Web Streams API
 Class ReadableByteStreamController|globals#class-readablebytestreamcontroller|Global objects
-Class ReadableStream|globals#class-readablestream|Global objects
 Class ReadableStream|webstreams#class-readablestream|Web Streams API
+Class ReadableStream|globals#class-readablestream|Global objects
 Class ReadableStreamBYOBReader|webstreams#class-readablestreambyobreader|Web Streams API
 Class ReadableStreamBYOBReader|globals#class-readablestreambyobreader|Global objects
 Class ReadableStreamBYOBRequest|webstreams#class-readablestreambyobrequest|Web Streams API
 Class ReadableStreamBYOBRequest|globals#class-readablestreambyobrequest|Global objects
-Class ReadableStreamDefaultController|webstreams#class-readablestreamdefaultcontroller|Web Streams API
 Class ReadableStreamDefaultController|globals#class-readablestreamdefaultcontroller|Global objects
-Class ReadableStreamDefaultReader|globals#class-readablestreamdefaultreader|Global objects
+Class ReadableStreamDefaultController|webstreams#class-readablestreamdefaultcontroller|Web Streams API
 Class ReadableStreamDefaultReader|webstreams#class-readablestreamdefaultreader|Web Streams API
+Class ReadableStreamDefaultReader|globals#class-readablestreamdefaultreader|Global objects
 Class RecordableHistogram extends Histogram|perf_hooks#class-recordablehistogram-extends-histogram|Performance measurement APIs
 Class ReferenceError|errors#class-referenceerror|Errors
 Class RsaHashedImportParams|webcrypto#class-rsahashedimportparams|Web Crypto API
@@ -258,13 +275,14 @@ Class SubtleCrypto|webcrypto#class-subtlecrypto|Web Crypto API
 Class SuiteContext|test#class-suitecontext|Test runner
 Class SyntaxError|errors#class-syntaxerror|Errors
 Class SystemError|errors#class-systemerror|Errors
-Class TapStream|test#class-tapstream|Test runner
 Class TestContext|test#class-testcontext|Test runner
-Class TextDecoderStream|globals#class-textdecoderstream|Global objects
+Class TestsStream|test#class-testsstream|Test runner
 Class TextDecoderStream|webstreams#class-textdecoderstream|Web Streams API
-Class TextEncoderStream|webstreams#class-textencoderstream|Web Streams API
+Class TextDecoderStream|globals#class-textdecoderstream|Global objects
 Class TextEncoderStream|globals#class-textencoderstream|Global objects
+Class TextEncoderStream|webstreams#class-textencoderstream|Web Streams API
 Class Timeout|timers#class-timeout|Timers
+Class TracingChannel|diagnostics_channel#class-tracingchannel|Diagnostics Channel
 Class TransformStream|webstreams#class-transformstream|Web Streams API
 Class TransformStream|globals#class-transformstream|Global objects
 Class TransformStreamDefaultController|globals#class-transformstreamdefaultcontroller|Global objects
@@ -276,10 +294,10 @@ Class Verify|crypto#class-verify|Crypto
 Class WASI|wasi#class-wasi|WebAssembly System Interface (WASI)
 Class Worker|cluster#class-worker|Cluster
 Class Worker|worker_threads#class-worker|Worker threads
-Class WritableStream|globals#class-writablestream|Global objects
 Class WritableStream|webstreams#class-writablestream|Web Streams API
-Class WritableStreamDefaultController|webstreams#class-writablestreamdefaultcontroller|Web Streams API
+Class WritableStream|globals#class-writablestream|Global objects
 Class WritableStreamDefaultController|globals#class-writablestreamdefaultcontroller|Global objects
+Class WritableStreamDefaultController|webstreams#class-writablestreamdefaultcontroller|Web Streams API
 Class WritableStreamDefaultWriter|webstreams#class-writablestreamdefaultwriter|Web Streams API
 Class WritableStreamDefaultWriter|globals#class-writablestreamdefaultwriter|Global objects
 Class X509Certificate|crypto#class-x509certificate|Crypto
@@ -292,6 +310,7 @@ Class fs.Dir|fs#class-fsdir|File system
 Class fs.Dirent|fs#class-fsdirent|File system
 Class fs.FSWatcher|fs#class-fsfswatcher|File system
 Class fs.ReadStream|fs#class-fsreadstream|File system
+Class fs.StatFs|fs#class-fsstatfs|File system
 Class fs.StatWatcher|fs#class-fsstatwatcher|File system
 Class fs.Stats|fs#class-fsstats|File system
 Class fs.WriteStream|fs#class-fswritestream|File system
@@ -305,8 +324,8 @@ Class http2.Http2ServerRequest|http2#class-http2http2serverrequest|HTTP/2
 Class http2.Http2ServerResponse|http2#class-http2http2serverresponse|HTTP/2
 Class https.Agent|https#class-httpsagent|HTTPS
 Class https.Server|https#class-httpsserver|HTTPS
-Class inspector.Session|inspector#class-inspectorsession|Inspector
 Class inspector.Session|inspector#class-inspectorsession_1|Inspector
+Class inspector.Session|inspector#class-inspectorsession|Inspector
 Class module.SourceMap|module#class-modulesourcemap|Modules: node:module API
 Class net.BlockList|net#class-netblocklist|Net
 Class net.Server|net#class-netserver|Net
@@ -326,11 +345,14 @@ Class tls.Server|tls#class-tlsserver|TLS (SSL)
 Class tls.TLSSocket|tls#class-tlstlssocket|TLS (SSL)
 Class tty.ReadStream|tty#class-ttyreadstream|TTY
 Class tty.WriteStream|tty#class-ttywritestream|TTY
+Class util.MIMEParams|util#class-utilmimeparams|Util
+Class util.MIMEType|util#class-utilmimetype|Util
 Class util.TextDecoder|util#class-utiltextdecoder|Util
 Class util.TextEncoder|util#class-utiltextencoder|Util
 Class v8.DefaultDeserializer|v8#class-v8defaultdeserializer|V8
 Class v8.DefaultSerializer|v8#class-v8defaultserializer|V8
 Class v8.Deserializer|v8#class-v8deserializer|V8
+Class v8.GCProfiler|v8#class-v8gcprofiler|V8
 Class v8.Serializer|v8#class-v8serializer|V8
 Class vm.Module|vm#class-vmmodule|VM (executing JavaScript)
 Class vm.Script|vm#class-vmscript|VM (executing JavaScript)
@@ -361,10 +383,10 @@ Deprecated APIs|deprecations|Deprecated APIs
 Diagnostic report|report|Diagnostic report
 Diagnostics Channel|diagnostics_channel|Diagnostics Channel
 Domain|domain|Domain
+ERR_ACCESS_DENIED|errors#err_access_denied|Errors
 ERR_AMBIGUOUS_ARGUMENT|errors#err_ambiguous_argument|Errors
 ERR_ARG_NOT_ITERABLE|errors#err_arg_not_iterable|Errors
 ERR_ASSERTION|errors#err_assertion|Errors
-ERR_ASSERT_SNAPSHOT_NOT_SUPPORTED|errors#err_assert_snapshot_not_supported|Errors
 ERR_ASYNC_CALLBACK|errors#err_async_callback|Errors
 ERR_ASYNC_TYPE|errors#err_async_type|Errors
 ERR_BROTLI_COMPRESSION_FAILED|errors#err_brotli_compression_failed|Errors
@@ -500,12 +522,14 @@ ERR_HTTP2_TOO_MANY_INVALID_FRAMES|errors#err_http2_too_many_invalid_frames|Error
 ERR_HTTP2_TRAILERS_ALREADY_SENT|errors#err_http2_trailers_already_sent|Errors
 ERR_HTTP2_TRAILERS_NOT_READY|errors#err_http2_trailers_not_ready|Errors
 ERR_HTTP2_UNSUPPORTED_PROTOCOL|errors#err_http2_unsupported_protocol|Errors
+ERR_HTTP_BODY_NOT_ALLOWED|errors#err_http_body_not_allowed|Errors
 ERR_HTTP_CONTENT_LENGTH_MISMATCH|errors#err_http_content_length_mismatch|Errors
 ERR_HTTP_HEADERS_SENT|errors#err_http_headers_sent|Errors
 ERR_HTTP_INVALID_CHAR|errors#err_http_invalid_char|Errors
 ERR_HTTP_INVALID_HEADER_VALUE|errors#err_http_invalid_header_value|Errors
 ERR_HTTP_INVALID_STATUS_CODE|errors#err_http_invalid_status_code|Errors
 ERR_HTTP_REQUEST_TIMEOUT|errors#err_http_request_timeout|Errors
+ERR_HTTP_SOCKET_ASSIGNED|errors#err_http_socket_assigned|Errors
 ERR_HTTP_SOCKET_ENCODING|errors#err_http_socket_encoding|Errors
 ERR_HTTP_TRAILER_INVALID|errors#err_http_trailer_invalid|Errors
 ERR_ILLEGAL_CONSTRUCTOR|errors#err_illegal_constructor|Errors
@@ -538,6 +562,7 @@ ERR_INVALID_FILE_URL_PATH|errors#err_invalid_file_url_path|Errors
 ERR_INVALID_HANDLE_TYPE|errors#err_invalid_handle_type|Errors
 ERR_INVALID_HTTP_TOKEN|errors#err_invalid_http_token|Errors
 ERR_INVALID_IP_ADDRESS|errors#err_invalid_ip_address|Errors
+ERR_INVALID_MIME_SYNTAX|errors#err_invalid_mime_syntax|Errors
 ERR_INVALID_MODULE|errors#err_invalid_module|Errors
 ERR_INVALID_MODULE_SPECIFIER|errors#err_invalid_module_specifier|Errors
 ERR_INVALID_OBJECT_DEFINE_PROPERTY|errors#err_invalid_object_define_property|Errors
@@ -597,6 +622,7 @@ ERR_NETWORK_IMPORT_BAD_RESPONSE|errors#err_network_import_bad_response|Errors
 ERR_NETWORK_IMPORT_DISALLOWED|errors#err_network_import_disallowed|Errors
 ERR_NON_CONTEXT_AWARE_DISABLED|errors#err_non_context_aware_disabled|Errors
 ERR_NOT_BUILDING_SNAPSHOT|errors#err_not_building_snapshot|Errors
+ERR_NOT_SUPPORTED_IN_SNAPSHOT|errors#err_not_supported_in_snapshot|Errors
 ERR_NO_CRYPTO|errors#err_no_crypto|Errors
 ERR_NO_ICU|errors#err_no_icu|Errors
 ERR_NO_LONGER_SUPPORTED|errors#err_no_longer_supported|Errors
@@ -624,6 +650,8 @@ ERR_SOCKET_BAD_TYPE|errors#err_socket_bad_type|Errors
 ERR_SOCKET_BUFFER_SIZE|errors#err_socket_buffer_size|Errors
 ERR_SOCKET_CANNOT_SEND|errors#err_socket_cannot_send|Errors
 ERR_SOCKET_CLOSED|errors#err_socket_closed|Errors
+ERR_SOCKET_CLOSED_BEFORE_CONNECTION|errors#err_socket_closed_before_connection|Errors
+ERR_SOCKET_CONNECTION_TIMEOUT|errors#err_socket_connection_timeout|Errors
 ERR_SOCKET_DGRAM_IS_CONNECTED|errors#err_socket_dgram_is_connected|Errors
 ERR_SOCKET_DGRAM_NOT_CONNECTED|errors#err_socket_dgram_not_connected|Errors
 ERR_SOCKET_DGRAM_NOT_RUNNING|errors#err_socket_dgram_not_running|Errors
@@ -643,7 +671,12 @@ ERR_STREAM_WRITE_AFTER_END|errors#err_stream_write_after_end|Errors
 ERR_STRING_TOO_LONG|errors#err_string_too_long|Errors
 ERR_SYNTHETIC|errors#err_synthetic|Errors
 ERR_SYSTEM_ERROR|errors#err_system_error|Errors
+ERR_TAP_LEXER_ERROR|errors#err_tap_lexer_error|Errors
+ERR_TAP_PARSER_ERROR|errors#err_tap_parser_error|Errors
+ERR_TAP_VALIDATION_ERROR|errors#err_tap_validation_error|Errors
 ERR_TEST_FAILURE|errors#err_test_failure|Errors
+ERR_TLS_ALPN_CALLBACK_INVALID_RESULT|errors#err_tls_alpn_callback_invalid_result|Errors
+ERR_TLS_ALPN_CALLBACK_WITH_PROTOCOLS|errors#err_tls_alpn_callback_with_protocols|Errors
 ERR_TLS_CERT_ALTNAME_FORMAT|errors#err_tls_cert_altname_format|Errors
 ERR_TLS_CERT_ALTNAME_INVALID|errors#err_tls_cert_altname_invalid|Errors
 ERR_TLS_DH_PARAM_SIZE|errors#err_tls_dh_param_size|Errors
@@ -724,194 +757,219 @@ Event 'aborted'|http#event-aborted|HTTP
 Event 'altsvc'|http2#event-altsvc|HTTP/2
 Event 'beforeExit'|process#event-beforeexit|Process
 Event 'change'|fs#event-change|File system
-Event 'checkContinue'|http#event-checkcontinue|HTTP
 Event 'checkContinue'|http2#event-checkcontinue_1|HTTP/2
+Event 'checkContinue'|http#event-checkcontinue|HTTP
 Event 'checkContinue'|http2#event-checkcontinue|HTTP/2
 Event 'checkExpectation'|http#event-checkexpectation|HTTP
 Event 'clientError'|http#event-clienterror|HTTP
-Event 'close'|worker_threads#event-close|Worker threads
-Event 'close'|fs#event-close_1|File system
-Event 'close'|fs#event-close_2|File system
-Event 'close'|net#event-close|Net
-Event 'close'|http#event-close_2|HTTP
-Event 'close'|fs#event-close_3|File system
 Event 'close'|child_process#event-close|Child process
-Event 'close'|fs#event-close|File system
+Event 'close'|stream#event-close_1|Stream[src]
 Event 'close'|http#event-close_1|HTTP
-Event 'close'|dgram#event-close|UDP/datagram sockets
-Event 'close'|net#event-close_1|Net
-Event 'close'|http#event-close|HTTP
-Event 'close'|http#event-close_3|HTTP
-Event 'close'|http2#event-close|HTTP/2
 Event 'close'|http2#event-close_1|HTTP/2
-Event 'close'|readline#event-close|Readline
+Event 'close'|net#event-close_1|Net
+Event 'close'|fs#event-close|File system
+Event 'close'|fs#event-close_2|File system
+Event 'close'|dgram#event-close|UDP/datagram sockets
+Event 'close'|stream#event-close|Stream[src]
+Event 'close'|http#event-close_2|HTTP
 Event 'close'|http2#event-close_3|HTTP/2
+Event 'close'|http2#event-close|HTTP/2
+Event 'close'|worker_threads#event-close|Worker threads
+Event 'close'|net#event-close|Net
+Event 'close'|http#event-close|HTTP
+Event 'close'|fs#event-close_1|File system
+Event 'close'|fs#event-close_3|File system
+Event 'close'|readline#event-close|Readline
 Event 'close'|http2#event-close_2|HTTP/2
-Event 'connect'|http#event-connect|HTTP
+Event 'close'|http#event-close_3|HTTP
 Event 'connect'|http2#event-connect|HTTP/2
+Event 'connect'|net#event-connect|Net
+Event 'connect'|http#event-connect|HTTP
 Event 'connect'|http#event-connect_1|HTTP
 Event 'connect'|dgram#event-connect|UDP/datagram sockets
-Event 'connect'|net#event-connect|Net
-Event 'connection'|net#event-connection|Net
-Event 'connection'|http2#event-connection_1|HTTP/2
+Event 'connection'|http#event-connection|HTTP
 Event 'connection'|http2#event-connection|HTTP/2
 Event 'connection'|tls#event-connection|TLS (SSL)
-Event 'connection'|http#event-connection|HTTP
-Event 'continue'|http2#event-continue|HTTP/2
+Event 'connection'|http2#event-connection_1|HTTP/2
+Event 'connection'|net#event-connection|Net
 Event 'continue'|http#event-continue|HTTP
+Event 'continue'|http2#event-continue|HTTP/2
 Event 'data'|net#event-data|Net
-Event 'disconnect'|cluster#event-disconnect|Cluster
+Event 'data'|stream#event-data|Stream[src]
+Event 'disconnect'|process#event-disconnect|Process
 Event 'disconnect'|child_process#event-disconnect|Child process
 Event 'disconnect'|cluster#event-disconnect_1|Cluster
-Event 'disconnect'|process#event-disconnect|Process
+Event 'disconnect'|cluster#event-disconnect|Cluster
 Event 'drain'|net#event-drain|Net
+Event 'drain'|stream#event-drain|Stream[src]
 Event 'drain'|http#event-drain|HTTP
 Event 'drop'|net#event-drop|Net
 Event 'dropRequest'|http#event-droprequest|HTTP
-Event 'end'|net#event-end|Net
 Event 'end'|stream#event-end_1|Stream[src]
-Event 'error'|cluster#event-error|Cluster
-Event 'error'|net#event-error_1|Net
-Event 'error'|worker_threads#event-error|Worker threads
+Event 'end'|stream#event-end|Stream[src]
+Event 'end'|net#event-end|Net
+Event 'error'|fs#event-error|File system
+Event 'error'|stream#event-error|Stream[src]
 Event 'error'|dgram#event-error|UDP/datagram sockets
 Event 'error'|child_process#event-error|Child process
+Event 'error'|stream#event-error_1|Stream[src]
 Event 'error'|net#event-error|Net
+Event 'error'|cluster#event-error|Cluster
 Event 'error'|http2#event-error_1|HTTP/2
-Event 'error'|fs#event-error|File system
+Event 'error'|worker_threads#event-error|Worker threads
 Event 'error'|http2#event-error|HTTP/2
+Event 'error'|net#event-error_1|Net
 Event 'exit'|cluster#event-exit|Cluster
+Event 'exit'|repl#event-exit|REPL
+Event 'exit'|cluster#event-exit_1|Cluster
+Event 'exit'|worker_threads#event-exit|Worker threads
 Event 'exit'|child_process#event-exit|Child process
 Event 'exit'|process#event-exit|Process
-Event 'exit'|worker_threads#event-exit|Worker threads
-Event 'exit'|cluster#event-exit_1|Cluster
-Event 'exit'|repl#event-exit|REPL
-Event 'finish'|http#event-finish_1|HTTP
 Event 'finish'|stream#event-finish_1|Stream[src]
 Event 'finish'|http#event-finish|HTTP
-Event 'finish'|http#event-finish_2|HTTP
+Event 'finish'|stream#event-finish|Stream[src]
+Event 'finish'|http#event-finish_1|HTTP
 Event 'finish'|http2#event-finish|HTTP/2
+Event 'finish'|http#event-finish_2|HTTP
 Event 'fork'|cluster#event-fork|Cluster
-Event 'frameError'|http2#event-frameerror|HTTP/2
 Event 'frameError'|http2#event-frameerror_1|HTTP/2
+Event 'frameError'|http2#event-frameerror|HTTP/2
 Event 'goaway'|http2#event-goaway|HTTP/2
 Event 'headers'|http2#event-headers|HTTP/2
 Event 'history'|readline#event-history|Readline
 Event 'information'|http#event-information|HTTP
 Event 'inspectorNotification'|inspector#event-inspectornotification|Inspector
 Event 'inspectorNotification'|inspector#event-inspectornotification_1|Inspector
-Event 'keylog'|https#event-keylog|HTTPS
 Event 'keylog'|tls#event-keylog|TLS (SSL)
 Event 'keylog'|tls#event-keylog_1|TLS (SSL)
+Event 'keylog'|https#event-keylog|HTTPS
 Event 'line'|readline#event-line|Readline
-Event 'listening'|net#event-listening|Net
 Event 'listening'|cluster#event-listening|Cluster
 Event 'listening'|dgram#event-listening|UDP/datagram sockets
 Event 'listening'|cluster#event-listening_1|Cluster
+Event 'listening'|net#event-listening|Net
 Event 'localSettings'|http2#event-localsettings|HTTP/2
 Event 'lookup'|net#event-lookup|Net
-Event 'message'|process#event-message|Process
 Event 'message'|dgram#event-message|UDP/datagram sockets
-Event 'message'|cluster#event-message|Cluster
 Event 'message'|worker_threads#event-message|Worker threads
+Event 'message'|process#event-message|Process
+Event 'message'|cluster#event-message|Cluster
+Event 'message'|child_process#event-message|Child process
 Event 'message'|cluster#event-message_1|Cluster
 Event 'message'|worker_threads#event-message_1|Worker threads
-Event 'message'|child_process#event-message|Child process
-Event 'messageerror'|worker_threads#event-messageerror_1|Worker threads
 Event 'messageerror'|worker_threads#event-messageerror|Worker threads
+Event 'messageerror'|worker_threads#event-messageerror_1|Worker threads
 Event 'multipleResolves'|process#event-multipleresolves|Process
 Event 'newListener'|events#event-newlistener|Events
 Event 'newSession'|tls#event-newsession|TLS (SSL)
 Event 'online'|cluster#event-online_1|Cluster
-Event 'online'|cluster#event-online|Cluster
 Event 'online'|worker_threads#event-online|Worker threads
+Event 'online'|cluster#event-online|Cluster
 Event 'open'|fs#event-open_1|File system
 Event 'open'|fs#event-open|File system
 Event 'origin'|http2#event-origin|HTTP/2
 Event 'pause'|readline#event-pause|Readline
+Event 'pause'|stream#event-pause|Stream[src]
 Event 'ping'|http2#event-ping|HTTP/2
+Event 'pipe'|stream#event-pipe|Stream[src]
 Event 'prefinish'|http#event-prefinish|HTTP
 Event 'push'|http2#event-push|HTTP/2
-Event 'ready'|net#event-ready|Net
+Event 'readable'|stream#event-readable|Stream[src]
 Event 'ready'|http2#event-ready|HTTP/2
+Event 'ready'|net#event-ready|Net
 Event 'ready'|fs#event-ready|File system
 Event 'ready'|fs#event-ready_1|File system
 Event 'rejectionHandled'|process#event-rejectionhandled|Process
 Event 'remoteSettings'|http2#event-remotesettings|HTTP/2
 Event 'removeListener'|events#event-removelistener|Events
+Event 'request'|http#event-request|HTTP
 Event 'request'|http2#event-request_1|HTTP/2
 Event 'request'|http2#event-request|HTTP/2
-Event 'request'|http#event-request|HTTP
 Event 'reset'|repl#event-reset|REPL
 Event 'resize'|tty#event-resize|TTY
 Event 'resourcetimingbufferfull'|perf_hooks#event-resourcetimingbufferfull|Performance measurement APIs
-Event 'response'|http#event-response|HTTP
 Event 'response'|http2#event-response|HTTP/2
+Event 'response'|http#event-response|HTTP
 Event 'resume'|readline#event-resume|Readline
+Event 'resume'|stream#event-resume|Stream[src]
 Event 'resumeSession'|tls#event-resumesession|TLS (SSL)
 Event 'secure'|tls#event-secure|TLS (SSL)
 Event 'secureConnect'|tls#event-secureconnect|TLS (SSL)
 Event 'secureConnection'|tls#event-secureconnection|TLS (SSL)
-Event 'session'|http2#event-session|HTTP/2
 Event 'session'|http2#event-session_1|HTTP/2
+Event 'session'|http2#event-session|HTTP/2
 Event 'session'|tls#event-session|TLS (SSL)
-Event 'sessionError'|http2#event-sessionerror_1|HTTP/2
 Event 'sessionError'|http2#event-sessionerror|HTTP/2
+Event 'sessionError'|http2#event-sessionerror_1|HTTP/2
 Event 'setup'|cluster#event-setup|Cluster
 Event 'socket'|http#event-socket|HTTP
 Event 'spawn'|child_process#event-spawn|Child process
-Event 'stream'|http2#event-stream_2|HTTP/2
 Event 'stream'|http2#event-stream_1|HTTP/2
+Event 'stream'|http2#event-stream_2|HTTP/2
 Event 'stream'|http2#event-stream|HTTP/2
+Event 'test:coverage'|test#event-testcoverage|Test runner
+Event 'test:dequeue'|test#event-testdequeue|Test runner
 Event 'test:diagnostic'|test#event-testdiagnostic|Test runner
+Event 'test:enqueue'|test#event-testenqueue|Test runner
 Event 'test:fail'|test#event-testfail|Test runner
 Event 'test:pass'|test#event-testpass|Test runner
-Event 'timeout'|http2#event-timeout|HTTP/2
-Event 'timeout'|http2#event-timeout_2|HTTP/2
-Event 'timeout'|http2#event-timeout_1|HTTP/2
+Event 'test:plan'|test#event-testplan|Test runner
+Event 'test:start'|test#event-teststart|Test runner
+Event 'test:stderr'|test#event-teststderr|Test runner
+Event 'test:stdout'|test#event-teststdout|Test runner
+Event 'test:watch:drained'|test#event-testwatchdrained|Test runner
 Event 'timeout'|http2#event-timeout_3|HTTP/2
-Event 'timeout'|net#event-timeout|Net
+Event 'timeout'|http2#event-timeout|HTTP/2
+Event 'timeout'|http2#event-timeout_1|HTTP/2
+Event 'timeout'|http2#event-timeout_2|HTTP/2
 Event 'timeout'|http#event-timeout|HTTP
+Event 'timeout'|net#event-timeout|Net
 Event 'tlsClientError'|tls#event-tlsclienterror|TLS (SSL)
 Event 'trailers'|http2#event-trailers|HTTP/2
 Event 'uncaughtException'|process#event-uncaughtexception|Process
 Event 'uncaughtExceptionMonitor'|process#event-uncaughtexceptionmonitor|Process
 Event 'unhandledRejection'|process#event-unhandledrejection|Process
 Event 'unknownProtocol'|http2#event-unknownprotocol|HTTP/2
+Event 'unpipe'|stream#event-unpipe|Stream[src]
 Event 'upgrade'|http#event-upgrade|HTTP
 Event 'upgrade'|http#event-upgrade_1|HTTP
 Event 'wantTrailers'|http2#event-wanttrailers|HTTP/2
 Event 'warning'|process#event-warning|Process
 Event 'worker'|process#event-worker|Process
-Event <inspector-protocol-method>|inspector#event-inspector-protocol-method_1|Inspector
 Event <inspector-protocol-method>|inspector#event-inspector-protocol-method|Inspector
+Event <inspector-protocol-method>|inspector#event-inspector-protocol-method_1|Inspector
 Event CustomEvent|globals#customevent|Global objects
-Event Event|globals#event|Global objects
 Event Event|events#eventtarget-and-event-api|Events
+Event Event|globals#event|Global objects
 Event EventEmitter|events#nodeeventtarget-vs-eventemitter|Events
+Event EventTarget|globals#eventtarget|Global objects
 Event EventTarget|events#eventtarget-and-event-api|Events
 Event EventTarget|events#eventtarget-error-handling|Events
-Event EventTarget|globals#eventtarget|Global objects
 Event MessageEvent|globals#messageevent|Global objects
 Event NodeEventTarget|events#nodeeventtarget-vs-eventemitter|Events
+Event event.initEvent()|events#eventiniteventtype-bubbles-cancelable|Events
 Event eventTarget.addEventListener()|events#eventtargetaddeventlistenertype-listener-options|Events
 Event eventTarget.dispatchEvent()|events#eventtargetdispatcheventevent|Events
-Event eventTarget.removeEventListener()|events#eventtargetremoveeventlistenertype-listener|Events
+Event eventTarget.removeEventListener()|events#eventtargetremoveeventlistenertype-listener-options|Events
 Event events.getEventListeners()|events#eventsgeteventlistenersemitterortarget-eventname|Events
 Event new events.EventEmitterAsyncResource()|events#new-eventseventemitterasyncresourceoptions|Events
-Event nodeEventTarget.addListener()|events#nodeeventtargetaddlistenertype-listener-options|Events
+Event nodeEventTarget.addListener()|events#nodeeventtargetaddlistenertype-listener|Events
+Event nodeEventTarget.emit()|events#nodeeventtargetemittype-arg|Events
 Event nodeEventTarget.eventNames()|events#nodeeventtargeteventnames|Events
+Event nodeEventTarget.getMaxListeners()|events#nodeeventtargetgetmaxlisteners|Events
 Event nodeEventTarget.listenerCount()|events#nodeeventtargetlistenercounttype|Events
-Event nodeEventTarget.off()|events#nodeeventtargetofftype-listener|Events
-Event nodeEventTarget.on()|events#nodeeventtargetontype-listener-options|Events
-Event nodeEventTarget.once()|events#nodeeventtargetoncetype-listener-options|Events
+Event nodeEventTarget.off()|events#nodeeventtargetofftype-listener-options|Events
+Event nodeEventTarget.on()|events#nodeeventtargetontype-listener|Events
+Event nodeEventTarget.once()|events#nodeeventtargetoncetype-listener|Events
 Event nodeEventTarget.removeAllListeners()|events#nodeeventtargetremovealllistenerstype|Events
-Event nodeEventTarget.removeListener()|events#nodeeventtargetremovelistenertype-listener|Events
+Event nodeEventTarget.removeListener()|events#nodeeventtargetremovelistenertype-listener-options|Events
+Event nodeEventTarget.setMaxListeners()|events#nodeeventtargetsetmaxlistenersn|Events
 Event perf_hooks.monitorEventLoopDelay()|perf_hooks#perf_hooksmonitoreventloopdelayoptions|Performance measurement APIs
 Event readline.emitKeypressEvents()|readline#readlineemitkeypresseventsstream-interface|Readline
 EventEmitter|events#nodeeventtarget-vs-eventemitter|Events
-EventTarget|globals#eventtarget|Global objects
-EventTarget|events#eventtarget-error-handling|Events
 EventTarget|events#eventtarget-and-event-api|Events
+EventTarget|events#eventtarget-error-handling|Events
+EventTarget|globals#eventtarget|Global objects
 Events|events|Events
 FORCE_COLOR=[1, 2, 3]|cli#force_color1-2-3|Command-line API
 File system|fs|File system
@@ -926,8 +984,8 @@ Http2Stream|http2#http2stream-lifecycle|HTTP/2
 Inspector|inspector|Inspector
 Internationalization support|intl|Internationalization support
 MODULE_NOT_FOUND|errors#module_not_found|Errors
-MessageChannel|buffer#blob-objects-and-messagechannel|Buffer
 MessageChannel|globals#messagechannel|Global objects
+MessageChannel|buffer#blob-objects-and-messagechannel|Buffer
 MessageEvent|globals#messageevent|Global objects
 MessagePort|globals#messageport|Global objects
 Modules: CommonJS modules|modules|Modules: CommonJS modules
@@ -949,6 +1007,7 @@ NODE_REDIRECT_WARNINGS=file|cli#node_redirect_warningsfile|Command-line API
 NODE_REPL_EXTERNAL_MODULE=file|cli#node_repl_external_modulefile|Command-line API
 NODE_REPL_HISTORY=file|cli#node_repl_historyfile|Command-line API
 NODE_SKIP_PLATFORM_CHECK=value|cli#node_skip_platform_checkvalue|Command-line API
+NODE_TEST_CONTEXT=value|cli#node_test_contextvalue|Command-line API
 NODE_TLS_REJECT_UNAUTHORIZED=value|cli#node_tls_reject_unauthorizedvalue|Command-line API
 NODE_V8_COVERAGE=dir|cli#node_v8_coveragedir|Command-line API
 NO_COLOR=<any>|cli#no_colorany|Command-line API
@@ -963,6 +1022,7 @@ PerformanceEntry|globals#performanceentry|Global objects
 PerformanceMark|globals#performancemark|Global objects
 PerformanceMeasure|globals#performancemeasure|Global objects
 PerformanceObserver|globals#performanceobserver|Global objects
+PerformanceObserver.supportedEntryTypes|perf_hooks#performanceobserversupportedentrytypes|Performance measurement APIs
 PerformanceObserverEntryList|globals#performanceobserverentrylist|Global objects
 PerformanceResourceTiming|globals#performanceresourcetiming|Global objects
 Permissions|permissions|Permissions
@@ -970,12 +1030,14 @@ Process|process|Process
 Punycode|punycode|Punycode
 Query string|querystring|Query string
 REPL|repl|REPL
+ReadableStream.from()|webstreams#readablestreamfromiterable|Web Streams API
 Readline|readline|Readline
 Request|globals#request|Global objects
 Resolver()|dns#resolveroptions|DNS
 Response|globals#response|Global objects
 SSL_CERT_DIR=dir|cli#ssl_cert_dirdir|Command-line API
 SSL_CERT_FILE=file|cli#ssl_cert_filefile|Command-line API
+Single executable applications|single-executable-applications|Single executable applications
 Stream[src]|stream|Stream[src]
 String decoder|string_decoder|String decoder
 SubtleCrypto|globals#subtlecrypto|Global objects
@@ -991,6 +1053,7 @@ Tracing|tracing#tracing-object|Trace events
 UDP/datagram sockets|dgram|UDP/datagram sockets
 URL|url|URL
 URL|globals#url|Global objects
+URL.canParse()|url#urlcanparseinput-base|URL
 URL.createObjectURL()|url#urlcreateobjecturlblob|URL
 URL.revokeObjectURL()|url#urlrevokeobjecturlid|URL
 URLSearchParams|globals#urlsearchparams|Global objects
@@ -1004,10 +1067,12 @@ WebAssembly|globals#webassembly|Global objects
 WebAssembly System Interface (WASI)|wasi|WebAssembly System Interface (WASI)
 Worker threads|worker_threads|Worker threads
 Zlib|zlib|Zlib
-__dirname|globals#__dirname|Global objects
 __dirname|modules#__dirname|Modules: CommonJS modules
-__filename|globals#__filename|Global objects
+__dirname|globals#__dirname|Global objects
+__dirname|single-executable-applications#__dirname-in-the-injected-module|Single executable applications
 __filename|modules#__filename|Modules: CommonJS modules
+__filename|globals#__filename|Global objects
+__filename|single-executable-applications#__filename-and-modulefilename-in-the-injected-module|Single executable applications
 abortController.abort()|globals#abortcontrollerabortreason|Global objects
 abortController.signal|globals#abortcontrollersignal|Global objects
 abortSignal.aborted|globals#abortsignalaborted|Global objects
@@ -1058,9 +1123,9 @@ assert.notEqual()|assert#assertnotequalactual-expected-message|Assert
 assert.notStrictEqual()|assert#assertnotstrictequalactual-expected-message|Assert
 assert.ok()|assert#assertokvalue-message|Assert
 assert.rejects()|assert#assertrejectsasyncfn-error-message|Assert
-assert.snapshot()|assert#assertsnapshotvalue-name|Assert
 assert.strictEqual()|assert#assertstrictequalactual-expected-message|Assert
 assert.throws()|assert#assertthrowsfn-error-message|Assert
+asyncEnd()|diagnostics_channel#asyncendevent|Diagnostics Channel
 asyncHook.disable()|async_hooks#asynchookdisable|Async hooks
 asyncHook.enable()|async_hooks#asynchookenable|Async hooks
 asyncLocalStorage.disable()|async_context#asynclocalstoragedisable|Asynchronous context tracking
@@ -1073,6 +1138,7 @@ asyncResource.bind()|async_context#asyncresourcebindfn-thisarg|Asynchronous cont
 asyncResource.emitDestroy()|async_context#asyncresourceemitdestroy|Asynchronous context tracking
 asyncResource.runInAsyncScope()|async_context#asyncresourceruninasyncscopefn-thisarg-args|Asynchronous context tracking
 asyncResource.triggerAsyncId()|async_context#asyncresourcetriggerasyncid|Asynchronous context tracking
+asyncStart()|diagnostics_channel#asyncstartevent|Diagnostics Channel
 async_hooks.asyncWrapProviders|async_hooks#async_hooksasyncwrapproviders|Async hooks
 async_hooks.createHook()|async_hooks#async_hookscreatehookcallbacks|Async hooks
 async_hooks.executionAsyncId()|async_hooks#async_hooksexecutionasyncid|Async hooks
@@ -1080,8 +1146,8 @@ async_hooks.executionAsyncResource()|async_hooks#async_hooksexecutionasyncresour
 async_hooks.triggerAsyncId()|async_hooks#async_hookstriggerasyncid|Async hooks
 atob()|globals#atobdata|Global objects
 await|repl#await-keyword|REPL
-before()|async_hooks#beforeasyncid|Async hooks
 before()|v8#beforepromise|V8
+before()|async_hooks#beforeasyncid|Async hooks
 before()|test#beforefn-options|Test runner
 beforeEach()|test#beforeeachfn-options|Test runner
 blob.arrayBuffer()|buffer#blobarraybuffer|Buffer
@@ -1174,6 +1240,8 @@ buffer.atob()|buffer#bufferatobdata|Buffer
 buffer.btoa()|buffer#bufferbtoadata|Buffer
 buffer.constants.MAX_LENGTH|buffer#bufferconstantsmax_length|Buffer
 buffer.constants.MAX_STRING_LENGTH|buffer#bufferconstantsmax_string_length|Buffer
+buffer.isAscii()|buffer#bufferisasciiinput|Buffer
+buffer.isUtf8()|buffer#bufferisutf8input|Buffer
 buffer.kMaxLength|buffer#bufferkmaxlength|Buffer
 buffer.kStringMaxLength|buffer#bufferkstringmaxlength|Buffer
 buffer.resolveObjectURL()|buffer#bufferresolveobjecturlid|Buffer
@@ -1183,9 +1251,12 @@ byteLengthQueuingStrategy.size|webstreams#bytelengthqueuingstrategysize|Web Stre
 certificate.exportChallenge()|crypto#certificateexportchallengespkac-encoding|Crypto
 certificate.exportPublicKey()|crypto#certificateexportpublickeyspkac-encoding|Crypto
 certificate.verifySpkac()|crypto#certificateverifyspkacspkac-encoding|Crypto
+channel.bindStore()|diagnostics_channel#channelbindstorestore-transform|Diagnostics Channel
 channel.hasSubscribers|diagnostics_channel#channelhassubscribers|Diagnostics Channel
 channel.publish()|diagnostics_channel#channelpublishmessage|Diagnostics Channel
+channel.runStores()|diagnostics_channel#channelrunstorescontext-fn-thisarg-args|Diagnostics Channel
 channel.subscribe()|diagnostics_channel#channelsubscribeonmessage|Diagnostics Channel
+channel.unbindStore()|diagnostics_channel#channelunbindstorestore|Diagnostics Channel
 channel.unsubscribe()|diagnostics_channel#channelunsubscribeonmessage|Diagnostics Channel
 child_process.exec()|child_process#child_processexeccommand-options-callback|Child process
 child_process.execFile()|child_process#child_processexecfilefile-args-options-callback|Child process
@@ -1199,8 +1270,8 @@ cipher.getAuthTag()|crypto#ciphergetauthtag|Crypto
 cipher.setAAD()|crypto#ciphersetaadbuffer-options|Crypto
 cipher.setAutoPadding()|crypto#ciphersetautopaddingautopadding|Crypto
 cipher.update()|crypto#cipherupdatedata-inputencoding-outputencoding|Crypto
-clearImmediate()|globals#clearimmediateimmediateobject|Global objects
 clearImmediate()|timers#clearimmediateimmediate|Timers
+clearImmediate()|globals#clearimmediateimmediateobject|Global objects
 clearInterval()|timers#clearintervaltimeout|Timers
 clearInterval()|globals#clearintervalintervalobject|Global objects
 clearTimeout()|globals#cleartimeouttimeoutobject|Global objects
@@ -1242,11 +1313,13 @@ console.timeLog()|console#consoletimeloglabel-data|Console
 console.timeStamp()|console#consoletimestamplabel|Console
 console.trace()|console#consoletracemessage-args|Console
 console.warn()|console#consolewarndata-args|Console
+context.after()|test#contextafterfn-options|Test runner
 context.afterEach()|test#contextaftereachfn-options|Test runner
+context.before()|test#contextbeforefn-options|Test runner
 context.beforeEach()|test#contextbeforeeachfn-options|Test runner
 context.diagnostic()|test#contextdiagnosticmessage|Test runner
-context.name|test#contextname_1|Test runner
 context.name|test#contextname|Test runner
+context.name|test#contextname_1|Test runner
 context.runOnly()|test#contextrunonlyshouldrunonlytests|Test runner
 context.signal|test#contextsignal|Test runner
 context.signal|test#contextsignal_1|Test runner
@@ -1256,7 +1329,6 @@ context.todo()|test#contexttodomessage|Test runner
 countQueuingStrategy.highWaterMark|webstreams#countqueuingstrategyhighwatermark|Web Streams API
 countQueuingStrategy.size|webstreams#countqueuingstrategysize|Web Streams API
 crypto|globals#crypto_1|Global objects
-crypto.DEFAULT_ENCODING|crypto#cryptodefault_encoding|Crypto
 crypto.checkPrime()|crypto#cryptocheckprimecandidate-options-callback|Crypto
 crypto.checkPrimeSync()|crypto#cryptocheckprimesynccandidate-options|Crypto
 crypto.constants|crypto#cryptoconstants|Crypto
@@ -1264,8 +1336,8 @@ crypto.createCipher()|crypto#cryptocreatecipheralgorithm-password-options|Crypto
 crypto.createCipheriv()|crypto#cryptocreatecipherivalgorithm-key-iv-options|Crypto
 crypto.createDecipher()|crypto#cryptocreatedecipheralgorithm-password-options|Crypto
 crypto.createDecipheriv()|crypto#cryptocreatedecipherivalgorithm-key-iv-options|Crypto
-crypto.createDiffieHellman()|crypto#cryptocreatediffiehellmanprimelength-generator|Crypto
 crypto.createDiffieHellman()|crypto#cryptocreatediffiehellmanprime-primeencoding-generator-generatorencoding|Crypto
+crypto.createDiffieHellman()|crypto#cryptocreatediffiehellmanprimelength-generator|Crypto
 crypto.createDiffieHellmanGroup()|crypto#cryptocreatediffiehellmangroupname|Crypto
 crypto.createECDH()|crypto#cryptocreateecdhcurvename|Crypto
 crypto.createHash()|crypto#cryptocreatehashalgorithm-options|Crypto
@@ -1289,8 +1361,8 @@ crypto.getCurves()|crypto#cryptogetcurves|Crypto
 crypto.getDiffieHellman()|crypto#cryptogetdiffiehellmangroupname|Crypto
 crypto.getFips()|crypto#cryptogetfips|Crypto
 crypto.getHashes()|crypto#cryptogethashes|Crypto
-crypto.getRandomValues()|crypto#cryptogetrandomvaluestypedarray|Crypto
 crypto.getRandomValues()|webcrypto#cryptogetrandomvaluestypedarray|Web Crypto API
+crypto.getRandomValues()|crypto#cryptogetrandomvaluestypedarray|Crypto
 crypto.hkdf()|crypto#cryptohkdfdigest-ikm-salt-info-keylen-callback|Crypto
 crypto.hkdfSync()|crypto#cryptohkdfsyncdigest-ikm-salt-info-keylen|Crypto
 crypto.pbkdf2()|crypto#cryptopbkdf2password-salt-iterations-keylen-digest-callback|Crypto
@@ -1311,8 +1383,8 @@ crypto.secureHeapUsed()|crypto#cryptosecureheapused|Crypto
 crypto.setEngine()|crypto#cryptosetengineengine-flags|Crypto
 crypto.setFips()|crypto#cryptosetfipsbool|Crypto
 crypto.sign()|crypto#cryptosignalgorithm-data-key-callback|Crypto
-crypto.subtle|webcrypto#cryptosubtle|Web Crypto API
 crypto.subtle|crypto#cryptosubtle|Crypto
+crypto.subtle|webcrypto#cryptosubtle|Web Crypto API
 crypto.timingSafeEqual()|crypto#cryptotimingsafeequala-b|Crypto
 crypto.verify()|crypto#cryptoverifyalgorithm-data-key-signature-callback|Crypto
 crypto.webcrypto|crypto#cryptowebcrypto|Crypto
@@ -1323,6 +1395,12 @@ cryptoKey.usages|webcrypto#cryptokeyusages|Web Crypto API
 cryptoKeyPair.privateKey|webcrypto#cryptokeypairprivatekey|Web Crypto API
 cryptoKeyPair.publicKey|webcrypto#cryptokeypairpublickey|Web Crypto API
 cryptoStream.bytesWritten|tls#cryptostreambyteswritten|TLS (SSL)
+ctx.callCount()|test#ctxcallcount|Test runner
+ctx.calls|test#ctxcalls|Test runner
+ctx.mockImplementation()|test#ctxmockimplementationimplementation|Test runner
+ctx.mockImplementationOnce()|test#ctxmockimplementationonceimplementation-oncall|Test runner
+ctx.resetCalls()|test#ctxresetcalls|Test runner
+ctx.restore()|test#ctxrestore|Test runner
 data:|esm#data-imports|Modules: ECMAScript modules
 debuglog().enabled|util#debuglogenabled|Util
 decipher.final()|crypto#decipherfinaloutputencoding|Crypto
@@ -1334,6 +1412,7 @@ decompressionStream.readable|webstreams#decompressionstreamreadable|Web Streams 
 decompressionStream.writable|webstreams#decompressionstreamwritable|Web Streams API
 describe|test#describeit-syntax|Test runner
 describe()|test#describename-options-fn|Test runner
+describe.only()|test#describeonlyname-options-fn|Test runner
 describe.skip()|test#describeskipname-options-fn|Test runner
 describe.todo()|test#describetodoname-options-fn|Test runner
 deserializer._readHostObject()|v8#deserializer_readhostobject|V8
@@ -1346,11 +1425,12 @@ deserializer.readUint64()|v8#deserializerreaduint64|V8
 deserializer.readValue()|v8#deserializerreadvalue|V8
 deserializer.transferArrayBuffer()|v8#deserializertransferarraybufferid-arraybuffer|V8
 destroy()|async_hooks#destroyasyncid|Async hooks
-dgram.createSocket()|dgram#dgramcreatesocketoptions-callback|UDP/datagram sockets
 dgram.createSocket()|dgram#dgramcreatesockettype-callback|UDP/datagram sockets
+dgram.createSocket()|dgram#dgramcreatesocketoptions-callback|UDP/datagram sockets
 diagnostics_channel.channel()|diagnostics_channel#diagnostics_channelchannelname|Diagnostics Channel
 diagnostics_channel.hasSubscribers()|diagnostics_channel#diagnostics_channelhassubscribersname|Diagnostics Channel
 diagnostics_channel.subscribe()|diagnostics_channel#diagnostics_channelsubscribename-onmessage|Diagnostics Channel
+diagnostics_channel.tracingChannel()|diagnostics_channel#diagnostics_channeltracingchannelnameorchannels|Diagnostics Channel
 diagnostics_channel.unsubscribe()|diagnostics_channel#diagnostics_channelunsubscribename-onmessage|Diagnostics Channel
 diffieHellman.computeSecret()|crypto#diffiehellmancomputesecretotherpublickey-inputencoding-outputencoding|Crypto
 diffieHellman.generateKeys()|crypto#diffiehellmangeneratekeysencoding|Crypto
@@ -1361,12 +1441,12 @@ diffieHellman.getPublicKey()|crypto#diffiehellmangetpublickeyencoding|Crypto
 diffieHellman.setPrivateKey()|crypto#diffiehellmansetprivatekeyprivatekey-encoding|Crypto
 diffieHellman.setPublicKey()|crypto#diffiehellmansetpublickeypublickey-encoding|Crypto
 diffieHellman.verifyError|crypto#diffiehellmanverifyerror|Crypto
-dir.close()|fs#dirclose|File system
 dir.close()|fs#dirclosecallback|File system
+dir.close()|fs#dirclose|File system
 dir.closeSync()|fs#dirclosesync|File system
 dir.path|fs#dirpath|File system
-dir.read()|fs#dirread|File system
 dir.read()|fs#dirreadcallback|File system
+dir.read()|fs#dirread|File system
 dir.readSync()|fs#dirreadsync|File system
 dir[Symbol.asyncIterator]()|fs#dirsymbolasynciterator|File system
 dirent.isBlockDevice()|fs#direntisblockdevice|File system
@@ -1377,6 +1457,8 @@ dirent.isFile()|fs#direntisfile|File system
 dirent.isSocket()|fs#direntissocket|File system
 dirent.isSymbolicLink()|fs#direntissymboliclink|File system
 dirent.name|fs#direntname|File system
+dirent.path|fs#direntpath|File system
+dns.getDefaultResultOrder()|dns#dnsgetdefaultresultorder|DNS
 dns.getServers()|dns#dnsgetservers|DNS
 dns.lookup()|dns#dnslookuphostname-options-callback|DNS
 dns.lookup()|dns#dnslookup|DNS
@@ -1400,6 +1482,7 @@ dns.reverse()|dns#dnsresolve-dnsresolve-and-dnsreverse|DNS
 dns.reverse()|dns#dnsreverseip-callback|DNS
 dns.setDefaultResultOrder()|dns#dnssetdefaultresultorderorder|DNS
 dns.setServers()|dns#dnssetserversservers|DNS
+dnsPromises.getDefaultResultOrder()|dns#dnspromisesgetdefaultresultorder|DNS
 dnsPromises.getServers()|dns#dnspromisesgetservers|DNS
 dnsPromises.lookup()|dns#dnspromiseslookuphostname-options|DNS
 dnsPromises.lookupService()|dns#dnspromiseslookupserviceaddress-port|DNS
@@ -1428,6 +1511,7 @@ domain.intercept()|domain#domaininterceptcallback|Domain
 domain.members|domain#domainmembers|Domain
 domain.remove()|domain#domainremoveemitter|Domain
 domain.run()|domain#domainrunfn-args|Domain
+duplex.allowHalfOpen|stream#duplexallowhalfopen|Stream[src]
 ecKeyGenParams.name|webcrypto#eckeygenparamsname|Web Crypto API
 ecKeyGenParams.namedCurve|webcrypto#eckeygenparamsnamedcurve|Web Crypto API
 ecKeyImportParams.name|webcrypto#eckeyimportparamsname|Web Crypto API
@@ -1448,7 +1532,7 @@ emitter.addListener()|events#emitteraddlistenereventname-listener|Events
 emitter.emit()|events#emitteremiteventname-args|Events
 emitter.eventNames()|events#emittereventnames|Events
 emitter.getMaxListeners()|events#emittergetmaxlisteners|Events
-emitter.listenerCount()|events#emitterlistenercounteventname|Events
+emitter.listenerCount()|events#emitterlistenercounteventname-listener|Events
 emitter.listeners()|events#emitterlistenerseventname|Events
 emitter.off()|events#emitteroffeventname-listener|Events
 emitter.on()|events#emitteroneventname-listener|Events
@@ -1460,17 +1544,19 @@ emitter.removeAllListeners()|events#emitterremovealllistenerseventname|Events
 emitter.removeListener()|events#emitterremovelistenereventname-listener|Events
 emitter.setMaxListeners()|events#emittersetmaxlistenersn|Events
 emitter[Symbol.for()|events#emittersymbolfornodejsrejectionerr-eventname-args|Events
+end()|diagnostics_channel#endevent|Diagnostics Channel
+error()|diagnostics_channel#errorevent|Diagnostics Channel
 error.address|errors#erroraddress|Errors
 error.cause|errors#errorcause|Errors
-error.code|errors#errorcode|Errors
 error.code|errors#errorcode_1|Errors
+error.code|errors#errorcode|Errors
 error.dest|errors#errordest|Errors
 error.errno|errors#errorerrno|Errors
 error.function|errors#errorfunction|Errors
 error.info|errors#errorinfo|Errors
 error.library|errors#errorlibrary|Errors
-error.message|errors#errormessage|Errors
 error.message|errors#errormessage_1|Errors
+error.message|errors#errormessage|Errors
 error.opensslErrorStack|errors#erroropensslerrorstack|Errors
 error.path|errors#errorpath|Errors
 error.port|errors#errorport|Errors
@@ -1478,7 +1564,7 @@ error.reason|errors#errorreason|Errors
 error.stack|errors#errorstack|Errors
 error.syscall|errors#errorsyscall|Errors
 event.bubbles|events#eventbubbles|Events
-event.cancelBubble()|events#eventcancelbubble|Events
+event.cancelBubble|events#eventcancelbubble|Events
 event.cancelable|events#eventcancelable|Events
 event.composed|events#eventcomposed|Events
 event.composedPath()|events#eventcomposedpath|Events
@@ -1486,6 +1572,7 @@ event.currentTarget|events#eventcurrenttarget|Events
 event.defaultPrevented|events#eventdefaultprevented|Events
 event.detail|events#eventdetail|Events
 event.eventPhase|events#eventeventphase|Events
+event.initEvent()|events#eventiniteventtype-bubbles-cancelable|Events
 event.isTrusted|events#eventistrusted|Events
 event.preventDefault()|events#eventpreventdefault|Events
 event.returnValue|events#eventreturnvalue|Events
@@ -1497,24 +1584,28 @@ event.timeStamp|events#eventtimestamp|Events
 event.type|events#eventtype|Events
 eventTarget.addEventListener()|events#eventtargetaddeventlistenertype-listener-options|Events
 eventTarget.dispatchEvent()|events#eventtargetdispatcheventevent|Events
-eventTarget.removeEventListener()|events#eventtargetremoveeventlistenertype-listener|Events
+eventTarget.removeEventListener()|events#eventtargetremoveeventlistenertype-listener-options|Events
 eventemitterasyncresource.asyncId|events#eventemitterasyncresourceasyncid|Events
 eventemitterasyncresource.asyncResource|events#eventemitterasyncresourceasyncresource|Events
 eventemitterasyncresource.emitDestroy()|events#eventemitterasyncresourceemitdestroy|Events
 eventemitterasyncresource.triggerAsyncId|events#eventemitterasyncresourcetriggerasyncid|Events
+events.addAbortListener()|events#eventsaddabortlistenersignal-listener|Events
 events.captureRejectionSymbol|events#eventscapturerejectionsymbol|Events
 events.captureRejections|events#eventscapturerejections|Events
 events.defaultMaxListeners|events#eventsdefaultmaxlisteners|Events
 events.errorMonitor|events#eventserrormonitor|Events
 events.getEventListeners()|events#eventsgeteventlistenersemitterortarget-eventname|Events
+events.getMaxListeners()|events#eventsgetmaxlistenersemitterortarget|Events
 events.listenerCount()|events#eventslistenercountemitter-eventname|Events
 events.on()|events#eventsonemitter-eventname-options|Events
 events.once()|events#eventsonceemitter-name-options|Events
 events.setMaxListeners()|events#eventssetmaxlistenersn-eventtargets|Events
+exports|modules#exports-shortcut|Modules: CommonJS modules
 exports|globals#exports|Global objects
 exports|modules#exports|Modules: CommonJS modules
-exports|modules#exports-shortcut|Modules: CommonJS modules
 fetch|globals#fetch|Global objects
+file.lastModified|buffer#filelastmodified|Buffer
+file.name|buffer#filename|Buffer
 file:|esm#file-urls|Modules: ECMAScript modules
 filehandle.appendFile()|fs#filehandleappendfiledata-options|File system
 filehandle.chmod()|fs#filehandlechmodmode|File system
@@ -1524,22 +1615,23 @@ filehandle.createReadStream()|fs#filehandlecreatereadstreamoptions|File system
 filehandle.createWriteStream()|fs#filehandlecreatewritestreamoptions|File system
 filehandle.datasync()|fs#filehandledatasync|File system
 filehandle.fd|fs#filehandlefd|File system
-filehandle.read()|fs#filehandlereadbuffer-options|File system
 filehandle.read()|fs#filehandlereadoptions|File system
 filehandle.read()|fs#filehandlereadbuffer-offset-length-position|File system
+filehandle.read()|fs#filehandlereadbuffer-options|File system
 filehandle.readFile()|fs#filehandlereadfileoptions|File system
 filehandle.readLines()|fs#filehandlereadlinesoptions|File system
-filehandle.readableWebStream()|fs#filehandlereadablewebstream|File system
+filehandle.readableWebStream()|fs#filehandlereadablewebstreamoptions|File system
 filehandle.readv()|fs#filehandlereadvbuffers-position|File system
 filehandle.stat()|fs#filehandlestatoptions|File system
 filehandle.sync()|fs#filehandlesync|File system
 filehandle.truncate()|fs#filehandletruncatelen|File system
 filehandle.utimes()|fs#filehandleutimesatime-mtime|File system
+filehandle.write()|fs#filehandlewritebuffer-options|File system
 filehandle.write()|fs#filehandlewritebuffer-offset-length-position|File system
 filehandle.write()|fs#filehandlewritestring-position-encoding|File system
-filehandle.write()|fs#filehandlewritebuffer-options|File system
 filehandle.writeFile()|fs#filehandlewritefiledata-options|File system
 filehandle.writev()|fs#filehandlewritevbuffers-position|File system
+filehandle[Symbol.asyncDispose]()|fs#filehandlesymbolasyncdispose|File system
 fs.access()|fs#fsaccesspath-mode-callback|File system
 fs.accessSync()|fs#fsaccesssyncpath-mode|File system
 fs.appendFile()|fs#fsappendfilepath-data-options-callback|File system
@@ -1588,12 +1680,13 @@ fs.mkdirSync()|fs#fsmkdirsyncpath-options|File system
 fs.mkdtemp()|fs#fsmkdtempprefix-options-callback|File system
 fs.mkdtempSync()|fs#fsmkdtempsyncprefix-options|File system
 fs.open()|fs#fsopenpath-flags-mode-callback|File system
+fs.openAsBlob()|fs#fsopenasblobpath-options|File system
 fs.openSync()|fs#fsopensyncpath-flags-mode|File system
 fs.opendir()|fs#fsopendirpath-options-callback|File system
 fs.opendirSync()|fs#fsopendirsyncpath-options|File system
-fs.read()|fs#fsreadfd-buffer-options-callback|File system
 fs.read()|fs#fsreadfd-options-callback|File system
 fs.read()|fs#fsreadfd-buffer-offset-length-position-callback|File system
+fs.read()|fs#fsreadfd-buffer-options-callback|File system
 fs.readFile()|fs#fsreadfilepath-options-callback|File system
 fs.readFileSync()|fs#fsreadfilesyncpath-options|File system
 fs.readSync()|fs#fsreadsyncfd-buffer-offset-length-position|File system
@@ -1616,6 +1709,8 @@ fs.rmdir()|fs#fsrmdirpath-options-callback|File system
 fs.rmdirSync()|fs#fsrmdirsyncpath-options|File system
 fs.stat()|fs#fsstatpath-options-callback|File system
 fs.statSync()|fs#fsstatsyncpath-options|File system
+fs.statfs()|fs#fsstatfspath-options-callback|File system
+fs.statfsSync()|fs#fsstatfssyncpath-options|File system
 fs.symlink()|fs#fssymlinktarget-path-type-callback|File system
 fs.symlinkSync()|fs#fssymlinksynctarget-path-type|File system
 fs.truncate()|fs#fstruncatepath-len-callback|File system
@@ -1627,14 +1722,14 @@ fs.utimes()|fs#fsutimespath-atime-mtime-callback|File system
 fs.utimesSync()|fs#fsutimessyncpath-atime-mtime|File system
 fs.watch()|fs#fswatchfilename-options-listener|File system
 fs.watchFile()|fs#fswatchfilefilename-options-listener|File system
-fs.write()|fs#fswritefd-buffer-options-callback|File system
 fs.write()|fs#fswritefd-buffer-offset-length-position-callback|File system
+fs.write()|fs#fswritefd-buffer-options-callback|File system
 fs.write()|fs#fswritefd-string-position-encoding-callback|File system
 fs.writeFile()|fs#fswritefilefile-data-options-callback|File system
 fs.writeFileSync()|fs#fswritefilesyncfile-data-options|File system
-fs.writeSync()|fs#fswritesyncfd-buffer-offset-length-position|File system
-fs.writeSync()|fs#fswritesyncfd-buffer-options|File system
 fs.writeSync()|fs#fswritesyncfd-string-position-encoding|File system
+fs.writeSync()|fs#fswritesyncfd-buffer-options|File system
+fs.writeSync()|fs#fswritesyncfd-buffer-offset-length-position|File system
 fs.writev()|fs#fswritevfd-buffers-position-callback|File system
 fs.writevSync()|fs#fswritevsyncfd-buffers-position|File system
 fsPromises.access()|fs#fspromisesaccesspath-mode|File system
@@ -1661,6 +1756,7 @@ fsPromises.rename()|fs#fspromisesrenameoldpath-newpath|File system
 fsPromises.rm()|fs#fspromisesrmpath-options|File system
 fsPromises.rmdir()|fs#fspromisesrmdirpath-options|File system
 fsPromises.stat()|fs#fspromisesstatpath-options|File system
+fsPromises.statfs()|fs#fspromisesstatfspath-options|File system
 fsPromises.symlink()|fs#fspromisessymlinktarget-path-type|File system
 fsPromises.truncate()|fs#fspromisestruncatepath-len|File system
 fsPromises.unlink()|fs#fspromisesunlinkpath|File system
@@ -1668,7 +1764,7 @@ fsPromises.utimes()|fs#fspromisesutimespath-atime-mtime|File system
 fsPromises.watch()|fs#fspromiseswatchfilename-options|File system
 fsPromises.writeFile()|fs#fspromiseswritefilefile-data-options|File system
 global|globals#global|Global objects
-globalPreload()|esm#globalpreload|Modules: ECMAScript modules
+globalPreload()|module#globalpreload|Modules: node:module API
 hash.copy()|crypto#hashcopyoptions|Crypto
 hash.digest()|crypto#hashdigestencoding|Crypto
 hash.update()|crypto#hashupdatedata-inputencoding|Crypto
@@ -1708,14 +1804,14 @@ hmacKeyGenParams.name|webcrypto#hmackeygenparamsname|Web Crypto API
 http.METHODS|http#httpmethods|HTTP
 http.STATUS_CODES|http#httpstatus_codes|HTTP
 http.createServer()|http#httpcreateserveroptions-requestlistener|HTTP
-http.get()|http#httpgeturl-options-callback|HTTP
 http.get()|http#httpgetoptions-callback|HTTP
+http.get()|http#httpgeturl-options-callback|HTTP
 http.globalAgent|http#httpglobalagent|HTTP
 http.maxHeaderSize|http#httpmaxheadersize|HTTP
-http.request()|http#httprequestoptions-callback|HTTP
 http.request()|http#httprequesturl-options-callback|HTTP
-http.setMaxIdleHTTPParsers|http#httpsetmaxidlehttpparsers|HTTP
-http.validateHeaderName()|http#httpvalidateheadernamename|HTTP
+http.request()|http#httprequestoptions-callback|HTTP
+http.setMaxIdleHTTPParsers()|http#httpsetmaxidlehttpparsersmax|HTTP
+http.validateHeaderName()|http#httpvalidateheadernamename-label|HTTP
 http.validateHeaderValue()|http#httpvalidateheadervaluename-value|HTTP
 http2.connect()|http2#http2connectauthority-options-listener|HTTP/2
 http2.constants|http2#http2constants|HTTP/2
@@ -1771,22 +1867,24 @@ http2stream.session|http2#http2streamsession|HTTP/2
 http2stream.setTimeout()|http2#http2streamsettimeoutmsecs-callback|HTTP/2
 http2stream.state|http2#http2streamstate|HTTP/2
 https.createServer()|https#httpscreateserveroptions-requestlistener|HTTPS
-https.get()|https#httpsgetoptions-callback|HTTPS
 https.get()|https#httpsgeturl-options-callback|HTTPS
+https.get()|https#httpsgetoptions-callback|HTTPS
 https.globalAgent|https#httpsglobalagent|HTTPS
 https.request()|https#httpsrequesturl-options-callback|HTTPS
 https.request()|https#httpsrequestoptions-callback|HTTPS
 immediate.hasRef()|timers#immediatehasref|Timers
 immediate.ref()|timers#immediateref|Timers
 immediate.unref()|timers#immediateunref|Timers
-import|esm#import-specifiers|Modules: ECMAScript modules
+immediate[Symbol.dispose]()|timers#immediatesymboldispose|Timers
 import|esm#import-statements|Modules: ECMAScript modules
+import|esm#import-specifiers|Modules: ECMAScript modules
 import()|esm#import-expressions|Modules: ECMAScript modules
 import.meta|esm#importmeta|Modules: ECMAScript modules
-import.meta.resolve()|esm#importmetaresolvespecifier-parent|Modules: ECMAScript modules
+import.meta.resolve()|esm#importmetaresolvespecifier|Modules: ECMAScript modules
 import.meta.url|esm#importmetaurl|Modules: ECMAScript modules
 init()|v8#initpromise-parent|V8
 init()|async_hooks#initasyncid-type-triggerasyncid-resource|Async hooks
+initialize()|module#initialize|Modules: node:module API
 inspector.close()|inspector#inspectorclose|Inspector
 inspector.console|inspector#inspectorconsole|Inspector
 inspector.open()|inspector#inspectoropenport-host-wait|Inspector
@@ -1794,6 +1892,7 @@ inspector.url()|inspector#inspectorurl|Inspector
 inspector.waitForDebugger()|inspector#inspectorwaitfordebugger|Inspector
 it|test#describeit-syntax|Test runner
 it()|test#itname-options-fn|Test runner
+it.only()|test#itonlyname-options-fn|Test runner
 it.skip()|test#itskipname-options-fn|Test runner
 it.todo()|test#ittodoname-options-fn|Test runner
 keyObject.asymmetricKeyDetails|crypto#keyobjectasymmetrickeydetails|Crypto
@@ -1802,7 +1901,7 @@ keyObject.equals()|crypto#keyobjectequalsotherkeyobject|Crypto
 keyObject.export()|crypto#keyobjectexportoptions|Crypto
 keyObject.symmetricKeySize|crypto#keyobjectsymmetrickeysize|Crypto
 keyObject.type|crypto#keyobjecttype|Crypto
-load()|esm#loadurl-context-nextload|Modules: ECMAScript modules
+load()|module#loadurl-context-nextload|Modules: node:module API
 maxBuffer|child_process#maxbuffer-and-unicode|Child process
 message.aborted|http#messageaborted|HTTP
 message.complete|http#messagecomplete|HTTP
@@ -1821,6 +1920,26 @@ message.statusMessage|http#messagestatusmessage|HTTP
 message.trailers|http#messagetrailers|HTTP
 message.trailersDistinct|http#messagetrailersdistinct|HTTP
 message.url|http#messageurl|HTTP
+mime.essence|util#mimeessence|Util
+mime.params|util#mimeparams|Util
+mime.subtype|util#mimesubtype|Util
+mime.toJSON()|util#mimetojson|Util
+mime.toString()|util#mimetostring|Util
+mime.type|util#mimetype|Util
+mimeParams.delete()|util#mimeparamsdeletename|Util
+mimeParams.entries()|util#mimeparamsentries|Util
+mimeParams.get()|util#mimeparamsgetname|Util
+mimeParams.has()|util#mimeparamshasname|Util
+mimeParams.keys()|util#mimeparamskeys|Util
+mimeParams.set()|util#mimeparamssetname-value|Util
+mimeParams.values()|util#mimeparamsvalues|Util
+mimeParams[@@iterator]()|util#mimeparamsiterator|Util
+mock.fn()|test#mockfnoriginal-implementation-options|Test runner
+mock.getter()|test#mockgetterobject-methodname-implementation-options|Test runner
+mock.method()|test#mockmethodobject-methodname-implementation-options|Test runner
+mock.reset()|test#mockreset|Test runner
+mock.restoreAll()|test#mockrestoreall|Test runner
+mock.setter()|test#mocksetterobject-methodname-implementation-options|Test runner
 module|modules#module|Modules: CommonJS modules
 module|globals#module|Global objects
 module.builtinModules|module#modulebuiltinmodules|Modules: node:module API
@@ -1831,6 +1950,7 @@ module.error|vm#moduleerror|VM (executing JavaScript)
 module.evaluate()|vm#moduleevaluateoptions|VM (executing JavaScript)
 module.exports|modules#moduleexports|Modules: CommonJS modules
 module.filename|modules#modulefilename|Modules: CommonJS modules
+module.filename|single-executable-applications#__filename-and-modulefilename-in-the-injected-module|Single executable applications
 module.findSourceMap()|module#modulefindsourcemappath|Modules: node:module API
 module.id|modules#moduleid|Modules: CommonJS modules
 module.identifier|vm#moduleidentifier|VM (executing JavaScript)
@@ -1842,6 +1962,7 @@ module.namespace|vm#modulenamespace|VM (executing JavaScript)
 module.parent|modules#moduleparent|Modules: CommonJS modules
 module.path|modules#modulepath|Modules: CommonJS modules
 module.paths|modules#modulepaths|Modules: CommonJS modules
+module.register()|module#moduleregisterspecifier-parenturl-options|Modules: node:module API
 module.require()|modules#modulerequireid|Modules: CommonJS modules
 module.status|vm#modulestatus|VM (executing JavaScript)
 module.syncBuiltinESMExports()|module#modulesyncbuiltinesmexports|Modules: node:module API
@@ -1862,6 +1983,7 @@ napi_callback|n-api#napi_callback|Node-API
 napi_callback_info|n-api#napi_callback_info|Node-API
 napi_cancel_async_work|n-api#napi_cancel_async_work|Node-API
 napi_check_object_type_tag|n-api#napi_check_object_type_tag|Node-API
+napi_cleanup_hook|n-api#napi_cleanup_hook|Node-API
 napi_close_callback_scope|n-api#napi_close_callback_scope|Node-API
 napi_close_escapable_handle_scope|n-api#napi_close_escapable_handle_scope|Node-API
 napi_close_handle_scope|n-api#napi_close_handle_scope|Node-API
@@ -1964,8 +2086,8 @@ napi_is_buffer|n-api#napi_is_buffer|Node-API
 napi_is_dataview|n-api#napi_is_dataview|Node-API
 napi_is_date|n-api#napi_is_date|Node-API
 napi_is_detached_arraybuffer|n-api#napi_is_detached_arraybuffer|Node-API
-napi_is_error|n-api#napi_is_error|Node-API
 napi_is_error|n-api#napi_is_error_1|Node-API
+napi_is_error|n-api#napi_is_error|Node-API
 napi_is_exception_pending|n-api#napi_is_exception_pending|Node-API
 napi_is_promise|n-api#napi_is_promise|Node-API
 napi_is_typedarray|n-api#napi_is_typedarray|Node-API
@@ -2016,33 +2138,37 @@ napi_unwrap|n-api#napi_unwrap|Node-API
 napi_value|n-api#napi_value|Node-API
 napi_valuetype|n-api#napi_valuetype|Node-API
 napi_wrap|n-api#napi_wrap|Node-API
+net.connect()|net#netconnectpath-connectlistener|Net
+net.connect()|net#netconnectoptions-connectlistener|Net
 net.connect()|net#netconnectport-host-connectlistener|Net
 net.connect()|net#netconnect|Net
-net.connect()|net#netconnectoptions-connectlistener|Net
-net.connect()|net#netconnectpath-connectlistener|Net
-net.createConnection()|net#netcreateconnection|Net
-net.createConnection()|net#netcreateconnectionport-host-connectlistener|Net
 net.createConnection()|net#netcreateconnectionpath-connectlistener|Net
 net.createConnection()|net#netcreateconnectionoptions-connectlistener|Net
+net.createConnection()|net#netcreateconnection|Net
+net.createConnection()|net#netcreateconnectionport-host-connectlistener|Net
 net.createServer()|net#netcreateserveroptions-connectionlistener|Net
+net.getDefaultAutoSelectFamily()|net#netgetdefaultautoselectfamily|Net
+net.getDefaultAutoSelectFamilyAttemptTimeout()|net#netgetdefaultautoselectfamilyattempttimeout|Net
 net.isIP()|net#netisipinput|Net
 net.isIPv4()|net#netisipv4input|Net
 net.isIPv6()|net#netisipv6input|Net
+net.setDefaultAutoSelectFamily()|net#netsetdefaultautoselectfamilyvalue|Net
+net.setDefaultAutoSelectFamilyAttemptTimeout()|net#netsetdefaultautoselectfamilyattempttimeoutvalue|Net
 new Agent()|https#new-agentoptions|HTTPS
 new Agent()|http#new-agentoptions|HTTP
 new AsyncLocalStorage()|async_context#new-asynclocalstorage|Asynchronous context tracking
 new AsyncResource()|async_context#new-asyncresourcetype-options|Asynchronous context tracking
 new BroadcastChannel()|worker_threads#new-broadcastchannelname|Worker threads
-new Buffer()|buffer#new-bufferarray|Buffer
-new Buffer()|buffer#new-bufferarraybuffer-byteoffset-length|Buffer
-new Buffer()|buffer#new-bufferbuffer|Buffer
 new Buffer()|buffer#new-buffersize|Buffer
+new Buffer()|buffer#new-bufferbuffer|Buffer
 new Buffer()|buffer#new-bufferstring-encoding|Buffer
-new ByteLengthQueuingStrategy()|webstreams#new-bytelengthqueuingstrategyoptions|Web Streams API
+new Buffer()|buffer#new-bufferarraybuffer-byteoffset-length|Buffer
+new Buffer()|buffer#new-bufferarray|Buffer
+new ByteLengthQueuingStrategy()|webstreams#new-bytelengthqueuingstrategyinit|Web Streams API
 new CompressionStream()|webstreams#new-compressionstreamformat|Web Streams API
-new Console()|console#new-consolestdout-stderr-ignoreerrors|Console
 new Console()|console#new-consoleoptions|Console
-new CountQueuingStrategy()|webstreams#new-countqueuingstrategyoptions|Web Streams API
+new Console()|console#new-consolestdout-stderr-ignoreerrors|Console
+new CountQueuingStrategy()|webstreams#new-countqueuingstrategyinit|Web Streams API
 new DecompressionStream()|webstreams#new-decompressionstreamformat|Web Streams API
 new Deserializer()|v8#new-deserializerbuffer|V8
 new Error()|errors#new-errormessage-options|Errors
@@ -2052,17 +2178,17 @@ new ReadableStreamBYOBReader()|webstreams#new-readablestreambyobreaderstream|Web
 new ReadableStreamDefaultReader()|webstreams#new-readablestreamdefaultreaderstream|Web Streams API
 new Serializer()|v8#new-serializer|V8
 new SlowBuffer()|buffer#new-slowbuffersize|Buffer
-new SourceMap()|module#new-sourcemappayload|Modules: node:module API
+new SourceMap()|module#new-sourcemappayload--linelengths-|Modules: node:module API
 new StringDecoder()|string_decoder#new-stringdecoderencoding|String decoder
 new TextDecoder()|util#new-textdecoderencoding-options|Util
 new TextDecoderStream()|webstreams#new-textdecoderstreamencoding-options|Web Streams API
 new TextEncoderStream()|webstreams#new-textencoderstream|Web Streams API
 new TransformStream()|webstreams#new-transformstreamtransformer-writablestrategy-readablestrategy|Web Streams API
 new URL()|url#new-urlinput-base|URL
-new URLSearchParams()|url#new-urlsearchparamsiterable|URL
 new URLSearchParams()|url#new-urlsearchparamsobj|URL
-new URLSearchParams()|url#new-urlsearchparamsstring|URL
+new URLSearchParams()|url#new-urlsearchparamsiterable|URL
 new URLSearchParams()|url#new-urlsearchparams|URL
+new URLSearchParams()|url#new-urlsearchparamsstring|URL
 new WASI()|wasi#new-wasioptions|WebAssembly System Interface (WASI)
 new Worker()|worker_threads#new-workerfilename-options|Worker threads
 new WritableStream()|webstreams#new-writablestreamunderlyingsink-strategy|Web Streams API
@@ -2071,6 +2197,7 @@ new X509Certificate()|crypto#new-x509certificatebuffer|Crypto
 new assert.AssertionError()|assert#new-assertassertionerroroptions|Assert
 new assert.CallTracker()|assert#new-assertcalltracker|Assert
 new buffer.Blob()|buffer#new-bufferblobsources-options|Buffer
+new buffer.File()|buffer#new-bufferfilesources-filename-options|Buffer
 new crypto.Certificate()|crypto#new-cryptocertificate|Crypto
 new events.EventEmitterAsyncResource()|events#new-eventseventemitterasyncresourceoptions|Events
 new inspector.Session()|inspector#new-inspectorsession_1|Inspector
@@ -2084,6 +2211,7 @@ new stream.Readable()|stream#new-streamreadableoptions|Stream[src]
 new stream.Transform()|stream#new-streamtransformoptions|Stream[src]
 new stream.Writable()|stream#new-streamwritableoptions|Stream[src]
 new tls.TLSSocket()|tls#new-tlstlssocketsocket-options|TLS (SSL)
+new v8.GCProfiler()|v8#new-v8gcprofiler|V8
 new vm.Script()|vm#new-vmscriptcode-options|VM (executing JavaScript)
 new vm.SourceTextModule()|vm#new-vmsourcetextmodulecode-options|VM (executing JavaScript)
 new vm.SyntheticModule()|vm#new-vmsyntheticmoduleexportnames-evaluatecallback-options|VM (executing JavaScript)
@@ -2091,14 +2219,19 @@ node:|esm#node-imports|Modules: ECMAScript modules
 node:buffer|buffer#nodebuffer-module-apis|Buffer
 node:crypto|crypto#nodecrypto-module-methods-and-properties|Crypto
 node:dgram|dgram#nodedgram-module-functions|UDP/datagram sockets
-nodeEventTarget.addListener()|events#nodeeventtargetaddlistenertype-listener-options|Events
+nodeEventTarget.addListener()|events#nodeeventtargetaddlistenertype-listener|Events
+nodeEventTarget.emit()|events#nodeeventtargetemittype-arg|Events
 nodeEventTarget.eventNames()|events#nodeeventtargeteventnames|Events
+nodeEventTarget.getMaxListeners()|events#nodeeventtargetgetmaxlisteners|Events
 nodeEventTarget.listenerCount()|events#nodeeventtargetlistenercounttype|Events
-nodeEventTarget.off()|events#nodeeventtargetofftype-listener|Events
-nodeEventTarget.on()|events#nodeeventtargetontype-listener-options|Events
-nodeEventTarget.once()|events#nodeeventtargetoncetype-listener-options|Events
+nodeEventTarget.off()|events#nodeeventtargetofftype-listener-options|Events
+nodeEventTarget.on()|events#nodeeventtargetontype-listener|Events
+nodeEventTarget.once()|events#nodeeventtargetoncetype-listener|Events
 nodeEventTarget.removeAllListeners()|events#nodeeventtargetremovealllistenerstype|Events
-nodeEventTarget.removeListener()|events#nodeeventtargetremovelistenertype-listener|Events
+nodeEventTarget.removeListener()|events#nodeeventtargetremovelistenertype-listener-options|Events
+nodeEventTarget.setMaxListeners()|events#nodeeventtargetsetmaxlistenersn|Events
+node_api_create_external_string_latin1|n-api#node_api_create_external_string_latin1|Node-API
+node_api_create_external_string_utf16|n-api#node_api_create_external_string_utf16|Node-API
 node_api_create_syntax_error|n-api#node_api_create_syntax_error|Node-API
 node_api_get_module_file_name|n-api#node_api_get_module_file_name|Node-API
 node_api_symbol_for|n-api#node_api_symbol_for|Node-API
@@ -2108,6 +2241,7 @@ options.detached|child_process#optionsdetached|Child process
 options.stdio|child_process#optionsstdio|Child process
 os.EOL|os#oseol|OS
 os.arch()|os#osarch|OS
+os.availableParallelism()|os#osavailableparallelism|OS
 os.constants|os#osconstants|OS
 os.cpus()|os#oscpus|OS
 os.devNull|os#osdevnull|OS
@@ -2143,6 +2277,7 @@ outgoingMessage.headersSent|http#outgoingmessageheaderssent|HTTP
 outgoingMessage.pipe()|http#outgoingmessagepipe|HTTP
 outgoingMessage.removeHeader()|http#outgoingmessageremoveheadername|HTTP
 outgoingMessage.setHeader()|http#outgoingmessagesetheadername-value|HTTP
+outgoingMessage.setHeaders()|http#outgoingmessagesetheadersheaders|HTTP
 outgoingMessage.setTimeout()|http#outgoingmessagesettimeoutmsesc-callback|HTTP
 outgoingMessage.socket|http#outgoingmessagesocket|HTTP
 outgoingMessage.uncork()|http#outgoingmessageuncork|HTTP
@@ -2181,8 +2316,8 @@ performance|globals#performance|Global objects
 performance.clearMarks()|perf_hooks#performanceclearmarksname|Performance measurement APIs
 performance.clearMeasures()|perf_hooks#performanceclearmeasuresname|Performance measurement APIs
 performance.clearResourceTimings()|perf_hooks#performanceclearresourcetimingsname|Performance measurement APIs
-performance.eventLoopUtilization()|perf_hooks#performanceeventlooputilizationutilization1-utilization2|Performance measurement APIs
 performance.eventLoopUtilization()|worker_threads#performanceeventlooputilizationutilization1-utilization2|Worker threads
+performance.eventLoopUtilization()|perf_hooks#performanceeventlooputilizationutilization1-utilization2|Performance measurement APIs
 performance.getEntries()|perf_hooks#performancegetentries|Performance measurement APIs
 performance.getEntriesByName()|perf_hooks#performancegetentriesbynamename-type|Performance measurement APIs
 performance.getEntriesByType()|perf_hooks#performancegetentriesbytypetype|Performance measurement APIs
@@ -2231,6 +2366,7 @@ performanceResourceTiming.secureConnectionStart|perf_hooks#performanceresourceti
 performanceResourceTiming.toJSON()|perf_hooks#performanceresourcetimingtojson|Performance measurement APIs
 performanceResourceTiming.transferSize|perf_hooks#performanceresourcetimingtransfersize|Performance measurement APIs
 performanceResourceTiming.workerStart|perf_hooks#performanceresourcetimingworkerstart|Performance measurement APIs
+permission.has()|permissions#permissionhasscope-reference|Permissions
 port.close()|worker_threads#portclose|Worker threads
 port.hasRef()|worker_threads#porthasref|Worker threads
 port.postMessage()|worker_threads#portpostmessagevalue-transferlist|Worker threads
@@ -2249,6 +2385,7 @@ process.channel.unref()|process#processchannelunref|Process
 process.chdir()|process#processchdirdirectory|Process
 process.config|process#processconfig|Process
 process.connected|process#processconnected|Process
+process.constrainedMemory()|process#processconstrainedmemory|Process
 process.cpuUsage()|process#processcpuusagepreviousvalue|Process
 process.cwd()|process#processcwd|Process
 process.debugPort|process#processdebugport|Process
@@ -2277,6 +2414,8 @@ process.memoryUsage()|process#processmemoryusage|Process
 process.memoryUsage.rss()|process#processmemoryusagerss|Process
 process.nextTick()|process#processnexttickcallback-args|Process
 process.noDeprecation|process#processnodeprecation|Process
+process.permission|process#processpermission|Process
+process.permission.has()|process#processpermissionhasscope-reference|Process
 process.pid|process#processpid|Process
 process.platform|process#processplatform|Process
 process.ppid|process#processppid|Process
@@ -2300,6 +2439,7 @@ process.seteuid()|process#processseteuidid|Process
 process.setgid()|process#processsetgidid|Process
 process.setgroups()|process#processsetgroupsgroups|Process
 process.setuid()|process#processsetuidid|Process
+process.sourceMapsEnabled|process#processsourcemapsenabled|Process
 process.stderr|process#processstderr|Process
 process.stderr.fd|process#processstderrfd|Process
 process.stdin|process#processstdin|Process
@@ -2314,6 +2454,8 @@ process.umask()|process#processumask|Process
 process.uptime()|process#processuptime|Process
 process.version|process#processversion|Process
 process.versions|process#processversions|Process
+profiler.start()|v8#profilerstart|V8
+profiler.stop()|v8#profilerstop|V8
 promiseHooks.createHook()|v8#promisehookscreatehookcallbacks|V8
 promiseHooks.onAfter()|v8#promisehooksonafterafter|V8
 promiseHooks.onBefore()|v8#promisehooksonbeforebefore|V8
@@ -2344,10 +2486,46 @@ readStream.setRawMode()|tty#readstreamsetrawmodemode|TTY
 readable._construct()|stream#readable_constructcallback|Stream[src]
 readable._destroy()|stream#readable_destroyerr-callback|Stream[src]
 readable._read()|stream#readable_readsize|Stream[src]
+readable.asIndexedPairs()|stream#readableasindexedpairsoptions|Stream[src]
+readable.closed|stream#readableclosed|Stream[src]
+readable.compose()|stream#readablecomposestream-options|Stream[src]
+readable.destroy()|stream#readabledestroyerror|Stream[src]
+readable.destroyed|stream#readabledestroyed|Stream[src]
+readable.drop()|stream#readabledroplimit-options|Stream[src]
+readable.errored|stream#readableerrored|Stream[src]
+readable.every()|stream#readableeveryfn-options|Stream[src]
+readable.filter()|stream#readablefilterfn-options|Stream[src]
+readable.find()|stream#readablefindfn-options|Stream[src]
+readable.flatMap()|stream#readableflatmapfn-options|Stream[src]
+readable.forEach()|stream#readableforeachfn-options|Stream[src]
+readable.isPaused()|stream#readableispaused|Stream[src]
+readable.iterator()|stream#readableiteratoroptions|Stream[src]
+readable.map()|stream#readablemapfn-options|Stream[src]
+readable.pause()|stream#readablepause|Stream[src]
+readable.pipe()|stream#readablepipedestination-options|Stream[src]
 readable.push()|stream#readablepushchunk-encoding|Stream[src]
 readable.push()|stream#readablepush|Stream[src]
+readable.read()|stream#readablereadsize|Stream[src]
 readable.read()|stream#readableread0|Stream[src]
+readable.readable|stream#readablereadable|Stream[src]
+readable.readableAborted|stream#readablereadableaborted|Stream[src]
+readable.readableDidRead|stream#readablereadabledidread|Stream[src]
+readable.readableEncoding|stream#readablereadableencoding|Stream[src]
+readable.readableEnded|stream#readablereadableended|Stream[src]
+readable.readableFlowing|stream#readablereadableflowing|Stream[src]
+readable.readableHighWaterMark|stream#readablereadablehighwatermark|Stream[src]
+readable.readableLength|stream#readablereadablelength|Stream[src]
+readable.readableObjectMode|stream#readablereadableobjectmode|Stream[src]
+readable.reduce()|stream#readablereducefn-initial-options|Stream[src]
+readable.resume()|stream#readableresume|Stream[src]
 readable.setEncoding()|stream#highwatermark-discrepancy-after-calling-readablesetencoding|Stream[src]
+readable.setEncoding()|stream#readablesetencodingencoding|Stream[src]
+readable.some()|stream#readablesomefn-options|Stream[src]
+readable.take()|stream#readabletakelimit-options|Stream[src]
+readable.toArray()|stream#readabletoarrayoptions|Stream[src]
+readable.unpipe()|stream#readableunpipedestination|Stream[src]
+readable.unshift()|stream#readableunshiftchunk-encoding|Stream[src]
+readable.wrap()|stream#readablewrapstream|Stream[src]
 readableByteStreamController.byobRequest|webstreams#readablebytestreamcontrollerbyobrequest|Web Streams API
 readableByteStreamController.close()|webstreams#readablebytestreamcontrollerclose|Web Streams API
 readableByteStreamController.desiredSize|webstreams#readablebytestreamcontrollerdesiredsize|Web Streams API
@@ -2375,6 +2553,8 @@ readableStreamDefaultReader.cancel()|webstreams#readablestreamdefaultreadercance
 readableStreamDefaultReader.closed|webstreams#readablestreamdefaultreaderclosed|Web Streams API
 readableStreamDefaultReader.read()|webstreams#readablestreamdefaultreaderread|Web Streams API
 readableStreamDefaultReader.releaseLock()|webstreams#readablestreamdefaultreaderreleaselock|Web Streams API
+readable[Symbol.asyncDispose]()|stream#readablesymbolasyncdispose|Stream[src]
+readable[Symbol.asyncIterator]()|stream#readablesymbolasynciterator|Stream[src]
 readline.clearLine()|readline#readlineclearlinestream-dir-callback|Readline
 readline.clearScreenDown()|readline#readlineclearscreendownstream-callback|Readline
 readline.createInterface()|readline#readlinecreateinterfaceoptions|Readline
@@ -2395,8 +2575,8 @@ request.aborted|http#requestaborted|HTTP
 request.aborted|http2#requestaborted|HTTP/2
 request.authority|http2#requestauthority|HTTP/2
 request.complete|http2#requestcomplete|HTTP/2
-request.connection|http#requestconnection|HTTP
 request.connection|http2#requestconnection|HTTP/2
+request.connection|http#requestconnection|HTTP
 request.cork()|http#requestcork|HTTP
 request.destroy()|http2#requestdestroyerror|HTTP/2
 request.destroy()|http#requestdestroyerror|HTTP
@@ -2413,8 +2593,8 @@ request.headers|http2#requestheaders|HTTP/2
 request.host|http#requesthost|HTTP
 request.httpVersion|http2#requesthttpversion|HTTP/2
 request.maxHeadersCount|http#requestmaxheaderscount|HTTP
-request.method|http#requestmethod|HTTP
 request.method|http2#requestmethod|HTTP/2
+request.method|http#requestmethod|HTTP
 request.path|http#requestpath|HTTP
 request.protocol|http#requestprotocol|HTTP
 request.rawHeaders|http2#requestrawheaders|HTTP/2
@@ -2425,10 +2605,10 @@ request.scheme|http2#requestscheme|HTTP/2
 request.setHeader()|http#requestsetheadername-value|HTTP
 request.setNoDelay()|http#requestsetnodelaynodelay|HTTP
 request.setSocketKeepAlive()|http#requestsetsocketkeepaliveenable-initialdelay|HTTP
-request.setTimeout()|http#requestsettimeouttimeout-callback|HTTP
 request.setTimeout()|http2#requestsettimeoutmsecs-callback|HTTP/2
-request.socket|http2#requestsocket|HTTP/2
+request.setTimeout()|http#requestsettimeouttimeout-callback|HTTP
 request.socket|http#requestsocket|HTTP
+request.socket|http2#requestsocket|HTTP/2
 request.stream|http2#requeststream|HTTP/2
 request.trailers|http2#requesttrailers|HTTP/2
 request.uncork()|http#requestuncork|HTTP
@@ -2437,26 +2617,29 @@ request.writableEnded|http#requestwritableended|HTTP
 request.writableFinished|http#requestwritablefinished|HTTP
 request.write()|http#requestwritechunk-encoding-callback|HTTP
 require|esm#require|Modules: ECMAScript modules
-require()|modules#requireid|Modules: CommonJS modules
 require()|globals#require|Global objects
+require()|single-executable-applications#requireid-in-the-injected-module-is-not-file-based|Single executable applications
+require()|modules#requireid|Modules: CommonJS modules
 require.cache|modules#requirecache|Modules: CommonJS modules
 require.extensions|modules#requireextensions|Modules: CommonJS modules
 require.main|modules#requiremain|Modules: CommonJS modules
 require.resolve()|modules#requireresolverequest-options|Modules: CommonJS modules
-resolve()|esm#resolvespecifier-context-nextresolve|Modules: ECMAScript modules
+require.resolve.paths()|modules#requireresolvepathsrequest|Modules: CommonJS modules
+resolve()|module#resolvespecifier-context-nextresolve|Modules: node:module API
 resolver.cancel()|dns#resolvercancel_1|DNS
 resolver.cancel()|dns#resolvercancel|DNS
 resolver.setLocalAddress()|dns#resolversetlocaladdressipv4-ipv6|DNS
+resource|async_hooks#resource|Async hooks
 response.addTrailers()|http#responseaddtrailersheaders|HTTP
 response.addTrailers()|http2#responseaddtrailersheaders|HTTP/2
-response.connection|http#responseconnection|HTTP
 response.connection|http2#responseconnection|HTTP/2
+response.connection|http#responseconnection|HTTP
 response.cork()|http#responsecork|HTTP
 response.createPushResponse()|http2#responsecreatepushresponseheaders-callback|HTTP/2
-response.end()|http2#responseenddata-encoding-callback|HTTP/2
 response.end()|http#responseenddata-encoding-callback|HTTP
-response.finished|http#responsefinished|HTTP
+response.end()|http2#responseenddata-encoding-callback|HTTP/2
 response.finished|http2#responsefinished|HTTP/2
+response.finished|http#responsefinished|HTTP
 response.flushHeaders()|http#responseflushheaders|HTTP
 response.getHeader()|http2#responsegetheadername|HTTP/2
 response.getHeader()|http#responsegetheadername|HTTP
@@ -2464,36 +2647,37 @@ response.getHeaderNames()|http#responsegetheadernames|HTTP
 response.getHeaderNames()|http2#responsegetheadernames|HTTP/2
 response.getHeaders()|http2#responsegetheaders|HTTP/2
 response.getHeaders()|http#responsegetheaders|HTTP
-response.hasHeader()|http#responsehasheadername|HTTP
 response.hasHeader()|http2#responsehasheadername|HTTP/2
+response.hasHeader()|http#responsehasheadername|HTTP
 response.headersSent|http2#responseheaderssent|HTTP/2
 response.headersSent|http#responseheaderssent|HTTP
-response.removeHeader()|http#responseremoveheadername|HTTP
 response.removeHeader()|http2#responseremoveheadername|HTTP/2
+response.removeHeader()|http#responseremoveheadername|HTTP
 response.req|http2#responsereq|HTTP/2
 response.req|http#responsereq|HTTP
 response.sendDate|http#responsesenddate|HTTP
 response.sendDate|http2#responsesenddate|HTTP/2
 response.setHeader()|http2#responsesetheadername-value|HTTP/2
 response.setHeader()|http#responsesetheadername-value|HTTP
-response.setTimeout()|http#responsesettimeoutmsecs-callback|HTTP
 response.setTimeout()|http2#responsesettimeoutmsecs-callback|HTTP/2
-response.socket|http2#responsesocket|HTTP/2
+response.setTimeout()|http#responsesettimeoutmsecs-callback|HTTP
 response.socket|http#responsesocket|HTTP
-response.statusCode|http#responsestatuscode|HTTP
+response.socket|http2#responsesocket|HTTP/2
 response.statusCode|http2#responsestatuscode|HTTP/2
+response.statusCode|http#responsestatuscode|HTTP
 response.statusMessage|http#responsestatusmessage|HTTP
 response.statusMessage|http2#responsestatusmessage|HTTP/2
 response.stream|http2#responsestream|HTTP/2
+response.strictContentLength|http#responsestrictcontentlength|HTTP
 response.uncork()|http#responseuncork|HTTP
 response.writableEnded|http#responsewritableended|HTTP
 response.writableEnded|http2#responsewritableended|HTTP/2
 response.writableFinished|http#responsewritablefinished|HTTP
-response.write()|http2#responsewritechunk-encoding-callback|HTTP/2
 response.write()|http#responsewritechunk-encoding-callback|HTTP
+response.write()|http2#responsewritechunk-encoding-callback|HTTP/2
 response.writeContinue()|http2#responsewritecontinue|HTTP/2
 response.writeContinue()|http#responsewritecontinue|HTTP
-response.writeEarlyHints()|http2#responsewriteearlyhintslinks|HTTP/2
+response.writeEarlyHints()|http2#responsewriteearlyhintshints|HTTP/2
 response.writeEarlyHints()|http#responsewriteearlyhintshints-callback|HTTP
 response.writeHead()|http2#responsewriteheadstatuscode-statusmessage-headers|HTTP/2
 response.writeHead()|http#responsewriteheadstatuscode-statusmessage-headers|HTTP
@@ -2510,8 +2694,8 @@ rl.line|readline#rlline|Readline
 rl.moveCursor()|readline#rlmovecursordx-dy|Readline
 rl.pause()|readline#rlpause|Readline
 rl.prompt()|readline#rlpromptpreservecursor|Readline
-rl.question()|readline#rlquestionquery-options|Readline
 rl.question()|readline#rlquestionquery-options-callback|Readline
+rl.question()|readline#rlquestionquery-options|Readline
 rl.resume()|readline#rlresume|Readline
 rl.rollback()|readline#rlrollback|Readline
 rl.setPrompt()|readline#rlsetpromptprompt|Readline
@@ -2523,6 +2707,8 @@ rsaHashedKeyGenParams.hash|webcrypto#rsahashedkeygenparamshash|Web Crypto API
 rsaHashedKeyGenParams.modulusLength|webcrypto#rsahashedkeygenparamsmoduluslength|Web Crypto API
 rsaHashedKeyGenParams.name|webcrypto#rsahashedkeygenparamsname|Web Crypto API
 rsaHashedKeyGenParams.publicExponent|webcrypto#rsahashedkeygenparamspublicexponent|Web Crypto API
+rsaOaepParams.label|webcrypto#rsaoaepparamslabel|Web Crypto API
+rsaOaepParams.name|webcrypto#rsaoaepparamsname|Web Crypto API
 rsaPssParams.name|webcrypto#rsapssparamsname|Web Crypto API
 rsaPssParams.saltLength|webcrypto#rsapssparamssaltlength|Web Crypto API
 run()|test#runoptions|Test runner
@@ -2531,6 +2717,7 @@ script.createCachedData()|vm#scriptcreatecacheddata|VM (executing JavaScript)
 script.runInContext()|vm#scriptrunincontextcontextifiedobject-options|VM (executing JavaScript)
 script.runInNewContext()|vm#scriptruninnewcontextcontextobject-options|VM (executing JavaScript)
 script.runInThisContext()|vm#scriptruninthiscontextoptions|VM (executing JavaScript)
+script.sourceMapURL|vm#scriptsourcemapurl|VM (executing JavaScript)
 serializer._getDataCloneError()|v8#serializer_getdatacloneerrormessage|V8
 serializer._getSharedArrayBufferId()|v8#serializer_getsharedarraybufferidsharedarraybuffer|V8
 serializer._setTreatArrayBufferViewsAsHostObjects()|v8#serializer_settreatarraybufferviewsashostobjectsflag|V8
@@ -2546,32 +2733,32 @@ serializer.writeValue()|v8#serializerwritevaluevalue|V8
 server.addContext()|tls#serveraddcontexthostname-context|TLS (SSL)
 server.address()|net#serveraddress|Net
 server.address()|tls#serveraddress|TLS (SSL)
-server.close()|tls#serverclosecallback|TLS (SSL)
-server.close()|http2#serverclosecallback_1|HTTP/2
 server.close()|http#serverclosecallback|HTTP
-server.close()|https#serverclosecallback|HTTPS
+server.close()|tls#serverclosecallback|TLS (SSL)
 server.close()|net#serverclosecallback|Net
+server.close()|https#serverclosecallback|HTTPS
+server.close()|http2#serverclosecallback_1|HTTP/2
 server.close()|http2#serverclosecallback|HTTP/2
-server.closeAllConnections()|http#servercloseallconnections|HTTP
 server.closeAllConnections()|https#servercloseallconnections|HTTPS
+server.closeAllConnections()|http#servercloseallconnections|HTTP
 server.closeIdleConnections()|http#servercloseidleconnections|HTTP
 server.closeIdleConnections()|https#servercloseidleconnections|HTTPS
 server.getConnections()|net#servergetconnectionscallback|Net
 server.getTicketKeys()|tls#servergetticketkeys|TLS (SSL)
-server.headersTimeout|https#serverheaderstimeout|HTTPS
 server.headersTimeout|http#serverheaderstimeout|HTTP
-server.keepAliveTimeout|https#serverkeepalivetimeout|HTTPS
+server.headersTimeout|https#serverheaderstimeout|HTTPS
 server.keepAliveTimeout|http#serverkeepalivetimeout|HTTP
-server.listen()|net#serverlisten|Net
-server.listen()|net#serverlistenport-host-backlog-callback|Net
-server.listen()|net#serverlistenpath-backlog-callback|Net
-server.listen()|net#serverlistenoptions-callback|Net
-server.listen()|http#serverlisten|HTTP
+server.keepAliveTimeout|https#serverkeepalivetimeout|HTTPS
 server.listen()|net#serverlistenhandle-backlog-callback|Net
+server.listen()|net#serverlistenoptions-callback|Net
+server.listen()|net#serverlistenpath-backlog-callback|Net
+server.listen()|net#serverlistenport-host-backlog-callback|Net
 server.listen()|tls#serverlisten|TLS (SSL)
+server.listen()|http#serverlisten|HTTP
 server.listen()|https#serverlisten|HTTPS
-server.listening|net#serverlistening|Net
+server.listen()|net#serverlisten|Net
 server.listening|http#serverlistening|HTTP
+server.listening|net#serverlistening|Net
 server.maxConnections|net#servermaxconnections|Net
 server.maxHeadersCount|https#servermaxheaderscount|HTTPS
 server.maxHeadersCount|http#servermaxheaderscount|HTTP
@@ -2581,17 +2768,21 @@ server.requestTimeout|https#serverrequesttimeout|HTTPS
 server.requestTimeout|http#serverrequesttimeout|HTTP
 server.setSecureContext()|tls#serversetsecurecontextoptions|TLS (SSL)
 server.setTicketKeys()|tls#serversetticketkeyskeys|TLS (SSL)
-server.setTimeout()|http2#serversettimeoutmsecs-callback|HTTP/2
-server.setTimeout()|https#serversettimeoutmsecs-callback|HTTPS
 server.setTimeout()|http2#serversettimeoutmsecs-callback_1|HTTP/2
+server.setTimeout()|https#serversettimeoutmsecs-callback|HTTPS
+server.setTimeout()|http2#serversettimeoutmsecs-callback|HTTP/2
 server.setTimeout()|http#serversettimeoutmsecs-callback|HTTP
-server.timeout|http#servertimeout|HTTP
-server.timeout|https#servertimeout|HTTPS
-server.timeout|http2#servertimeout_1|HTTP/2
 server.timeout|http2#servertimeout|HTTP/2
+server.timeout|http#servertimeout|HTTP
+server.timeout|http2#servertimeout_1|HTTP/2
+server.timeout|https#servertimeout|HTTPS
 server.unref()|net#serverunref|Net
 server.updateSettings()|http2#serverupdatesettingssettings|HTTP/2
 server.updateSettings()|http2#serverupdatesettingssettings_1|HTTP/2
+server[Symbol.asyncDispose]()|https#serversymbolasyncdispose|HTTPS
+server[Symbol.asyncDispose]()|http#serversymbolasyncdispose|HTTP
+server[Symbol.asyncDispose]()|http2#serversymbolasyncdispose|HTTP/2
+server[Symbol.asyncDispose]()|net#serversymbolasyncdispose|Net
 serverhttp2session.altsvc()|http2#serverhttp2sessionaltsvcalt-originorstream|HTTP/2
 serverhttp2session.origin()|http2#serverhttp2sessionoriginorigins|HTTP/2
 session.connect()|inspector#sessionconnect_1|Inspector
@@ -2602,8 +2793,8 @@ session.disconnect()|inspector#sessiondisconnect|Inspector
 session.disconnect()|inspector#sessiondisconnect_1|Inspector
 session.post()|inspector#sessionpostmethod-params-callback|Inspector
 session.post()|inspector#sessionpostmethod-params|Inspector
-setImmediate()|timers#setimmediatecallback-args|Timers
 setImmediate()|globals#setimmediatecallback-args|Global objects
+setImmediate()|timers#setimmediatecallback-args|Timers
 setInterval()|globals#setintervalcallback-delay-args|Global objects
 setInterval()|timers#setintervalcallback-delay-args|Timers
 setTimeout()|globals#settimeoutcallback-delay-args|Global objects
@@ -2615,19 +2806,21 @@ socket.addMembership()|dgram#socketaddmembershipmulticastaddress-multicastinterf
 socket.addSourceSpecificMembership()|dgram#socketaddsourcespecificmembershipsourceaddress-groupaddress-multicastinterface|UDP/datagram sockets
 socket.address()|dgram#socketaddress|UDP/datagram sockets
 socket.address()|net#socketaddress|Net
+socket.autoSelectFamilyAttemptedAddresses|net#socketautoselectfamilyattemptedaddresses|Net
 socket.bind()|dgram#socketbindport-address-callback|UDP/datagram sockets
 socket.bind()|dgram#socketbindoptions-callback|UDP/datagram sockets
 socket.bufferSize|net#socketbuffersize|Net
 socket.bytesRead|net#socketbytesread|Net
 socket.bytesWritten|net#socketbyteswritten|Net
 socket.close()|dgram#socketclosecallback|UDP/datagram sockets
-socket.connect()|net#socketconnectport-host-connectlistener|Net
 socket.connect()|dgram#socketconnectport-address-callback|UDP/datagram sockets
-socket.connect()|net#socketconnectpath-connectlistener|Net
 socket.connect()|net#socketconnectoptions-connectlistener|Net
 socket.connect()|net#socketconnect|Net
+socket.connect()|net#socketconnectport-host-connectlistener|Net
+socket.connect()|net#socketconnectpath-connectlistener|Net
 socket.connecting|net#socketconnecting|Net
 socket.destroy()|net#socketdestroyerror|Net
+socket.destroySoon()|net#socketdestroysoon|Net
 socket.destroyed|net#socketdestroyed|Net
 socket.disconnect()|dgram#socketdisconnect|UDP/datagram sockets
 socket.dropMembership()|dgram#socketdropmembershipmulticastaddress-multicastinterface|UDP/datagram sockets
@@ -2643,8 +2836,8 @@ socket.localPort|net#socketlocalport|Net
 socket.pause()|net#socketpause|Net
 socket.pending|net#socketpending|Net
 socket.readyState|net#socketreadystate|Net
-socket.ref()|dgram#socketref|UDP/datagram sockets
 socket.ref()|net#socketref|Net
+socket.ref()|dgram#socketref|UDP/datagram sockets
 socket.remoteAddress|net#socketremoteaddress|Net
 socket.remoteAddress()|dgram#socketremoteaddress|UDP/datagram sockets
 socket.remoteFamily|net#socketremotefamily|Net
@@ -2667,13 +2860,23 @@ socket.timeout|net#sockettimeout|Net
 socket.unref()|dgram#socketunref|UDP/datagram sockets
 socket.unref()|net#socketunref|Net
 socket.write()|net#socketwritedata-encoding-callback|Net
+socket[Symbol.asyncDispose]()|dgram#socketsymbolasyncdispose|UDP/datagram sockets
 socketaddress.address|net#socketaddressaddress|Net
 socketaddress.family|net#socketaddressfamily|Net
 socketaddress.flowlabel|net#socketaddressflowlabel|Net
 socketaddress.port|net#socketaddressport|Net
-sourceMap.findEntry()|module#sourcemapfindentrylinenumber-columnnumber|Modules: node:module API
+sourceMap.findEntry()|module#sourcemapfindentrylineoffset-columnoffset|Modules: node:module API
+sourceMap.findOrigin()|module#sourcemapfindoriginlinenumber-columnnumber|Modules: node:module API
 sourceMap.payload|module#sourcemappayload|Modules: node:module API
 sourceTextModule.createCachedData()|vm#sourcetextmodulecreatecacheddata|VM (executing JavaScript)
+start()|diagnostics_channel#startevent|Diagnostics Channel
+statfs.bavail|fs#statfsbavail|File system
+statfs.bfree|fs#statfsbfree|File system
+statfs.blocks|fs#statfsblocks|File system
+statfs.bsize|fs#statfsbsize|File system
+statfs.ffree|fs#statfsffree|File system
+statfs.files|fs#statfsfiles|File system
+statfs.type|fs#statfstype|File system
 stats.atime|fs#statsatime|File system
 stats.atimeMs|fs#statsatimems|File system
 stats.atimeNs|fs#statsatimens|File system
@@ -2714,11 +2917,16 @@ stream.Writable.fromWeb()|stream#streamwritablefromwebwritablestream-options|Str
 stream.Writable.toWeb()|stream#streamwritabletowebstreamwritable|Stream[src]
 stream.addAbortSignal()|stream#streamaddabortsignalsignal-stream|Stream[src]
 stream.compose()|stream#streamcomposestreams|Stream[src]
+stream.finished()|stream#streamfinishedstream-options|Stream[src]
 stream.finished()|stream#streamfinishedstream-options-callback|Stream[src]
+stream.getDefaultHighWaterMark()|stream#streamgetdefaulthighwatermarkobjectmode|Stream[src]
 stream.isErrored()|stream#streamiserroredstream|Stream[src]
 stream.isReadable()|stream#streamisreadablestream|Stream[src]
+stream.pipeline()|stream#streampipelinesource-transforms-destination-options|Stream[src]
 stream.pipeline()|stream#streampipelinestreams-callback|Stream[src]
+stream.pipeline()|stream#streampipelinestreams-options|Stream[src]
 stream.pipeline()|stream#streampipelinesource-transforms-destination-callback|Stream[src]
+stream.setDefaultHighWaterMark()|stream#streamsetdefaulthighwatermarkobjectmode-value|Stream[src]
 streamConsumers.arrayBuffer()|webstreams#streamconsumersarraybufferstream|Web Streams API
 streamConsumers.blob()|webstreams#streamconsumersblobstream|Web Streams API
 streamConsumers.buffer()|webstreams#streamconsumersbufferstream|Web Streams API
@@ -2746,6 +2954,7 @@ subprocess.stdin|child_process#subprocessstdin|Child process
 subprocess.stdio|child_process#subprocessstdio|Child process
 subprocess.stdout|child_process#subprocessstdout|Child process
 subprocess.unref()|child_process#subprocessunref|Child process
+subprocess[Symbol.dispose]()|child_process#subprocesssymboldispose|Child process
 subtle.decrypt()|webcrypto#subtledecryptalgorithm-key-data|Web Crypto API
 subtle.deriveBits()|webcrypto#subtlederivebitsalgorithm-basekey-length|Web Crypto API
 subtle.deriveKey()|webcrypto#subtlederivekeyalgorithm-basekey-derivedkeyalgorithm-extractable-keyusages|Web Crypto API
@@ -2760,6 +2969,9 @@ subtle.verify()|webcrypto#subtleverifyalgorithm-key-signature-data|Web Crypto AP
 subtle.wrapKey()|webcrypto#subtlewrapkeyformat-key-wrappingkey-wrapalgo|Web Crypto API
 syntheticModule.setExport()|vm#syntheticmodulesetexportname-value|VM (executing JavaScript)
 test()|test#testname-options-fn|Test runner
+test.only()|test#testonlyname-options-fn|Test runner
+test.skip()|test#testskipname-options-fn|Test runner
+test.todo()|test#testtodoname-options-fn|Test runner
 textDecoder.decode()|util#textdecoderdecodeinput-options|Util
 textDecoder.encoding|util#textdecoderencoding|Util
 textDecoder.fatal|util#textdecoderfatal|Util
@@ -2780,18 +2992,25 @@ timeout.hasRef()|timers#timeouthasref|Timers
 timeout.ref()|timers#timeoutref|Timers
 timeout.refresh()|timers#timeoutrefresh|Timers
 timeout.unref()|timers#timeoutunref|Timers
+timeout[Symbol.dispose]()|timers#timeoutsymboldispose|Timers
 timeout[Symbol.toPrimitive]()|timers#timeoutsymboltoprimitive|Timers
+timers.enable()|test#timersenabletimers|Test runner
+timers.reset()|test#timersreset|Test runner
+timers.runAll()|test#timersrunall|Test runner
+timers.tick()|test#timerstickmilliseconds|Test runner
 timersPromises.scheduler.wait()|timers#timerspromisesschedulerwaitdelay-options|Timers
 timersPromises.scheduler.yield()|timers#timerspromisesscheduleryield|Timers
 timersPromises.setImmediate()|timers#timerspromisessetimmediatevalue-options|Timers
 timersPromises.setInterval()|timers#timerspromisessetintervaldelay-value-options|Timers
 timersPromises.setTimeout()|timers#timerspromisessettimeoutdelay-value-options|Timers
+timers[Symbol.dispose]()|test#timerssymboldispose|Test runner
+tls.DEFAULT_CIPHERS|tls#tlsdefault_ciphers|TLS (SSL)
 tls.DEFAULT_ECDH_CURVE|tls#tlsdefault_ecdh_curve|TLS (SSL)
 tls.DEFAULT_MAX_VERSION|tls#tlsdefault_max_version|TLS (SSL)
 tls.DEFAULT_MIN_VERSION|tls#tlsdefault_min_version|TLS (SSL)
 tls.checkServerIdentity()|tls#tlscheckserveridentityhostname-cert|TLS (SSL)
-tls.connect()|tls#tlsconnectoptions-callback|TLS (SSL)
 tls.connect()|tls#tlsconnectport-host-options-callback|TLS (SSL)
+tls.connect()|tls#tlsconnectoptions-callback|TLS (SSL)
 tls.connect()|tls#tlsconnectpath-options-callback|TLS (SSL)
 tls.createSecureContext()|tls#tlscreatesecurecontextoptions|TLS (SSL)
 tls.createSecurePair()|tls#tlscreatesecurepaircontext-isserver-requestcert-rejectunauthorized-options|TLS (SSL)
@@ -2832,6 +3051,11 @@ tracing.categories|tracing#tracingcategories|Trace events
 tracing.disable()|tracing#tracingdisable|Trace events
 tracing.enable()|tracing#tracingenable|Trace events
 tracing.enabled|tracing#tracingenabled|Trace events
+tracingChannel.subscribe()|diagnostics_channel#tracingchannelsubscribesubscribers|Diagnostics Channel
+tracingChannel.traceCallback()|diagnostics_channel#tracingchanneltracecallbackfn-position-context-thisarg-args|Diagnostics Channel
+tracingChannel.tracePromise()|diagnostics_channel#tracingchanneltracepromisefn-context-thisarg-args|Diagnostics Channel
+tracingChannel.traceSync()|diagnostics_channel#tracingchanneltracesyncfn-context-thisarg-args|Diagnostics Channel
+tracingChannel.unsubscribe()|diagnostics_channel#tracingchannelunsubscribesubscribers|Diagnostics Channel
 tracker.calls()|assert#trackercallsfn-exact|Assert
 tracker.getCalls()|assert#trackergetcallsfn|Assert
 tracker.report()|assert#trackerreport|Assert
@@ -2839,13 +3063,16 @@ tracker.reset()|assert#trackerresetfn|Assert
 tracker.verify()|assert#trackerverify|Assert
 transform._flush()|stream#transform_flushcallback|Stream[src]
 transform._transform()|stream#transform_transformchunk-encoding-callback|Stream[src]
+transform.destroy()|stream#transformdestroyerror|Stream[src]
 transformStream.readable|webstreams#transformstreamreadable|Web Streams API
 transformStream.writable|webstreams#transformstreamwritable|Web Streams API
 transformStreamDefaultController.desiredSize|webstreams#transformstreamdefaultcontrollerdesiredsize|Web Streams API
 transformStreamDefaultController.enqueue()|webstreams#transformstreamdefaultcontrollerenqueuechunk|Web Streams API
 transformStreamDefaultController.error()|webstreams#transformstreamdefaultcontrollererrorreason|Web Streams API
 transformStreamDefaultController.terminate()|webstreams#transformstreamdefaultcontrollerterminate|Web Streams API
+triggerAsyncId|async_hooks#triggerasyncid|Async hooks
 tty.isatty()|tty#ttyisattyfd|TTY
+type|async_hooks#type|Async hooks
 url.domainToASCII()|url#urldomaintoasciidomain|URL
 url.domainToUnicode()|url#urldomaintounicodedomain|URL
 url.fileURLToPath()|url#urlfileurltopathurl|URL
@@ -2882,19 +3109,21 @@ urlObject.query|url#urlobjectquery|URL
 urlObject.search|url#urlobjectsearch|URL
 urlObject.slashes|url#urlobjectslashes|URL
 urlSearchParams.append()|url#urlsearchparamsappendname-value|URL
-urlSearchParams.delete()|url#urlsearchparamsdeletename|URL
+urlSearchParams.delete()|url#urlsearchparamsdeletename-value|URL
 urlSearchParams.entries()|url#urlsearchparamsentries|URL
 urlSearchParams.forEach()|url#urlsearchparamsforeachfn-thisarg|URL
 urlSearchParams.get()|url#urlsearchparamsgetname|URL
 urlSearchParams.getAll()|url#urlsearchparamsgetallname|URL
-urlSearchParams.has()|url#urlsearchparamshasname|URL
+urlSearchParams.has()|url#urlsearchparamshasname-value|URL
 urlSearchParams.keys()|url#urlsearchparamskeys|URL
 urlSearchParams.set()|url#urlsearchparamssetname-value|URL
+urlSearchParams.size|url#urlsearchparamssize|URL
 urlSearchParams.sort()|url#urlsearchparamssort|URL
 urlSearchParams.toString()|url#urlsearchparamstostring|URL
 urlSearchParams.values()|url#urlsearchparamsvalues|URL
 urlSearchParams[Symbol.iterator]()|url#urlsearchparamssymboliterator|URL
 util._extend()|util#util_extendtarget-source|Util
+util.aborted()|util#utilabortedsignal-resource|Util
 util.callbackify()|util#utilcallbackifyoriginal|Util
 util.debug()|util#utildebugsection|Util
 util.debuglog()|util#utildebuglogsection-callback|Util
@@ -2904,8 +3133,8 @@ util.formatWithOptions()|util#utilformatwithoptionsinspectoptions-format-args|Ut
 util.getSystemErrorMap()|util#utilgetsystemerrormap|Util
 util.getSystemErrorName()|util#utilgetsystemerrornameerr|Util
 util.inherits()|util#utilinheritsconstructor-superconstructor|Util
-util.inspect()|util#utilinspectobject-showhidden-depth-colors|Util
 util.inspect()|util#utilinspectobject-options|Util
+util.inspect()|util#utilinspectobject-showhidden-depth-colors|Util
 util.inspect.custom|util#utilinspectcustom|Util
 util.inspect.defaultOptions|util#utilinspectdefaultoptions|Util
 util.isArray()|util#utilisarrayobject|Util
@@ -2978,7 +3207,7 @@ util.types.isWebAssemblyCompiledModule()|util#utiltypesiswebassemblycompiledmodu
 v8.cachedDataVersionTag()|v8#v8cacheddataversiontag|V8
 v8.deserialize()|v8#v8deserializebuffer|V8
 v8.getHeapCodeStatistics()|v8#v8getheapcodestatistics|V8
-v8.getHeapSnapshot()|v8#v8getheapsnapshot|V8
+v8.getHeapSnapshot()|v8#v8getheapsnapshotoptions|V8
 v8.getHeapSpaceStatistics()|v8#v8getheapspacestatistics|V8
 v8.getHeapStatistics()|v8#v8getheapstatistics|V8
 v8.serialize()|v8#v8serializevalue|V8
@@ -2990,7 +3219,7 @@ v8.startupSnapshot.isBuildingSnapshot()|v8#v8startupsnapshotisbuildingsnapshot|V
 v8.startupSnapshot.setDeserializeMainFunction()|v8#v8startupsnapshotsetdeserializemainfunctioncallback-data|V8
 v8.stopCoverage()|v8#v8stopcoverage|V8
 v8.takeCoverage()|v8#v8takecoverage|V8
-v8.writeHeapSnapshot()|v8#v8writeheapsnapshotfilename|V8
+v8.writeHeapSnapshot()|v8#v8writeheapsnapshotfilenameoptions|V8
 verify.update()|crypto#verifyupdatedata-inputencoding|Crypto
 verify.verify()|crypto#verifyverifyobject-signature-signatureencoding|Crypto
 vm.compileFunction()|vm#vmcompilefunctioncode-params-options|VM (executing JavaScript)
@@ -3000,6 +3229,7 @@ vm.measureMemory()|vm#vmmeasurememoryoptions|VM (executing JavaScript)
 vm.runInContext()|vm#vmrunincontextcode-contextifiedobject-options|VM (executing JavaScript)
 vm.runInNewContext()|vm#vmruninnewcontextcode-contextobject-options|VM (executing JavaScript)
 vm.runInThisContext()|vm#vmruninthiscontextcode-options|VM (executing JavaScript)
+wasi.getImportObject()|wasi#wasigetimportobject|WebAssembly System Interface (WASI)
 wasi.initialize()|wasi#wasiinitializeinstance|WebAssembly System Interface (WASI)
 wasi.start()|wasi#wasistartinstance|WebAssembly System Interface (WASI)
 wasi.wasiImport|wasi#wasiwasiimport|WebAssembly System Interface (WASI)
@@ -3012,7 +3242,7 @@ worker.SHARE_ENV|worker_threads#workershare_env|Worker threads
 worker.disconnect()|cluster#workerdisconnect|Cluster
 worker.exitedAfterDisconnect|cluster#workerexitedafterdisconnect|Cluster
 worker.getEnvironmentData()|worker_threads#workergetenvironmentdatakey|Worker threads
-worker.getHeapSnapshot()|worker_threads#workergetheapsnapshot|Worker threads
+worker.getHeapSnapshot()|worker_threads#workergetheapsnapshotoptions|Worker threads
 worker.id|cluster#workerid|Cluster
 worker.isConnected()|cluster#workerisconnected|Cluster
 worker.isDead()|cluster#workerisdead|Cluster
@@ -3026,16 +3256,16 @@ worker.postMessage()|worker_threads#workerpostmessagevalue-transferlist|Worker t
 worker.process|cluster#workerprocess|Cluster
 worker.receiveMessageOnPort()|worker_threads#workerreceivemessageonportport|Worker threads
 worker.ref()|worker_threads#workerref|Worker threads
-worker.resourceLimits|worker_threads#workerresourcelimits_1|Worker threads
 worker.resourceLimits|worker_threads#workerresourcelimits|Worker threads
+worker.resourceLimits|worker_threads#workerresourcelimits_1|Worker threads
 worker.send()|cluster#workersendmessage-sendhandle-options-callback|Cluster
 worker.setEnvironmentData()|worker_threads#workersetenvironmentdatakey-value|Worker threads
 worker.stderr|worker_threads#workerstderr|Worker threads
 worker.stdin|worker_threads#workerstdin|Worker threads
 worker.stdout|worker_threads#workerstdout|Worker threads
 worker.terminate()|worker_threads#workerterminate|Worker threads
-worker.threadId|worker_threads#workerthreadid|Worker threads
 worker.threadId|worker_threads#workerthreadid_1|Worker threads
+worker.threadId|worker_threads#workerthreadid|Worker threads
 worker.unref()|worker_threads#workerunref|Worker threads
 worker.workerData|worker_threads#workerworkerdata|Worker threads
 writable._construct()|stream#writable_constructcallback|Stream[src]
@@ -3043,6 +3273,24 @@ writable._destroy()|stream#writable_destroyerr-callback|Stream[src]
 writable._final()|stream#writable_finalcallback|Stream[src]
 writable._write()|stream#writable_writechunk-encoding-callback|Stream[src]
 writable._writev()|stream#writable_writevchunks-callback|Stream[src]
+writable.closed|stream#writableclosed|Stream[src]
+writable.cork()|stream#writablecork|Stream[src]
+writable.destroy()|stream#writabledestroyerror|Stream[src]
+writable.destroyed|stream#writabledestroyed|Stream[src]
+writable.end()|stream#writableendchunk-encoding-callback|Stream[src]
+writable.errored|stream#writableerrored|Stream[src]
+writable.setDefaultEncoding()|stream#writablesetdefaultencodingencoding|Stream[src]
+writable.uncork()|stream#writableuncork|Stream[src]
+writable.writable|stream#writablewritable|Stream[src]
+writable.writableAborted|stream#writablewritableaborted|Stream[src]
+writable.writableCorked|stream#writablewritablecorked|Stream[src]
+writable.writableEnded|stream#writablewritableended|Stream[src]
+writable.writableFinished|stream#writablewritablefinished|Stream[src]
+writable.writableHighWaterMark|stream#writablewritablehighwatermark|Stream[src]
+writable.writableLength|stream#writablewritablelength|Stream[src]
+writable.writableNeedDrain|stream#writablewritableneeddrain|Stream[src]
+writable.writableObjectMode|stream#writablewritableobjectmode|Stream[src]
+writable.write()|stream#writablewritechunk-encoding-callback|Stream[src]
 writableStream.abort()|webstreams#writablestreamabortreason|Web Streams API
 writableStream.close()|webstreams#writablestreamclose|Web Streams API
 writableStream.getWriter()|webstreams#writablestreamgetwriter|Web Streams API
