@@ -32,10 +32,12 @@ local icons = {
   headset = hs.image.imageFromPath("headset.png"):setSize({ w = 18, h = 18 }),
 }
 
+-- Define it already  and redefine it later
 local output_switcher_menubar_set_title = function()
   return
 end
 
+-- returns the connecred output headset
 local function output_headset()
   local headset
   local use_internal_mic
@@ -105,6 +107,17 @@ function onaudiodevicechange(event)
 
   if event == "dev#" then
     if headset ~= nil then
+      local current_output_device_info = hs.audiodevice.current(false)
+
+      -- Show output switcher (again)
+      output_switcher_menubar:returnToMenuBar()
+      output_switcher_menubar_set_title("headset")
+
+      if current_output_device_info["name"] == headset:name() then
+        log.i("Headset " .. headset:name() .. " appeared AGAIN, ignoring as it is current output")
+        return
+      end
+
       --- headset as OUTPUT
       log.i("Headset " .. headset:name() .. " appeared: Setting as output")
       headset:setDefaultOutputDevice()
@@ -121,10 +134,6 @@ function onaudiodevicechange(event)
       else
         log.i("NOT setting internal mic as input")
       end
-
-      -- Show output switcher (again)
-      output_switcher_menubar:returnToMenuBar()
-      output_switcher_menubar_set_title("headset")
 
       -- hs.timer.doEvery(1, function()
       --   log.i("inUse" .. hs.inspect(headset:inUse()))

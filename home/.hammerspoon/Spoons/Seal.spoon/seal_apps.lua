@@ -35,7 +35,7 @@ end
 
 local modifyNameMap = function(info, add)
   for _, item in ipairs(info) do
-    icon = nil
+    local icon = nil
     local displayname = item.kMDItemDisplayName or item._kMDItemDisplayNameWithExtensions
 
     if displayname == nil and item.kMDItemPath then
@@ -44,14 +44,16 @@ local modifyNameMap = function(info, add)
 
     displayname = displayname:gsub("%.app$", "", 1)
     if string.find(item.kMDItemPath, "%.prefPane$") then
+      -- "Systemeinstellung" instead of prefPane please
       displayname = displayname:gsub("%.prefPane$", "", 1)
       displayname = displayname .. " Systemeinstellungen"
       if add then
         icon = hs.image.iconForFile(item.kMDItemPath)
       end
     end
+
     if add then
-      bundleID = item.kMDItemCFBundleIdentifier
+      local bundleID = item.kMDItemCFBundleIdentifier
       if (not icon) and bundleID then
         icon = hs.image.imageFromAppBundle(bundleID)
       end
