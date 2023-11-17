@@ -226,6 +226,7 @@ COUNTER=1
 while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
 	msg "${GREEN}Waiting for async jobs to finish (#${COUNTER}, Finished: $COMPLETED/$WAIT_UNTIL_COMPLETED)${NOFORMAT}"
 	COUNTER=$((COUNTER + 1))
+	[[ "$COUNTER" -gt 50 ]] && break
 	sleep 5
 done
 
@@ -247,6 +248,7 @@ COUNTER=1
 while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
 	msg "${GREEN}Waiting for async jobs to finish (#${COUNTER}, Finished: $COMPLETED/$WAIT_UNTIL_COMPLETED)${NOFORMAT}"
 	COUNTER=$((COUNTER + 1))
+	[[ "$COUNTER" -gt 50 ]] && break
 	sleep 5
 done
 
