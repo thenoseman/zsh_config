@@ -160,3 +160,10 @@ direnv_java() {
 	echo -n "source_up\nexport JAVA_HOME=\"$(/usr/libexec/java_home -v ${1}:-17)\"\nexport MAVEN_OPTS=\"-Xms512m -Xmx1024m -Dfile.encoding=UTF-8\"" >>.envrc
 	cat .envrc
 }
+
+#
+# Draw a terminal wide box
+#
+box() {
+	echo -e "$1" | boxes -a c -d stone -s "$(tput cols)" -n UTF8 -p v1
+}
