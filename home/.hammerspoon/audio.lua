@@ -18,6 +18,7 @@ end
 
 local log = hs.logger.new("🔈", "debug")
 local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/gem.mp3"))
+local click_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/click.mp3"))
 local output_switcher_menubar = hs.menubar.new()
 log.i("Buildin output name is '" .. buildin_name .. "'")
 
@@ -37,7 +38,7 @@ local output_switcher_menubar_set_title = function()
   return
 end
 
--- returns the connecred output headset
+-- returns the connected output headset
 local function output_headset()
   local headset
   local use_internal_mic
@@ -78,6 +79,8 @@ local function output_switcher_menubar_clicked()
     buildin:setVolume(volumes.buildin)
     output_switcher_menubar_set_title("buildin")
   end
+
+  click_sound:play()
 end
 
 -- Set icon of output switcher
