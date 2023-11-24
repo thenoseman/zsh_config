@@ -7,7 +7,7 @@ local appname_for_trigger = "Microsoft Teams"
 -- Hotkey setup
 local teamsHotkey = hs.hotkey.new("", "escape", nil, function()
   -- Must send to the "Helper"
-  local app = hs.appfinder.appFromName(appname_for_trigger)
+  local app = hs.appfinder.appFromWindowTitlePattern(appname_for_trigger)
   hs.eventtap.event.newKeyEvent({ "shift", "cmd" }, "m", true):post(app)
 end, nil, nil)
 
@@ -17,7 +17,7 @@ end, nil, nil)
 function applicationWatcher(appName, eventType)
   -- App focused
   if eventType == hs.application.watcher.activated then
-    if appName == appname_for_trigger then
+    if string.match(appName, appname_for_trigger) then
       teamsHotkey:enable()
     end
   end
@@ -25,7 +25,7 @@ function applicationWatcher(appName, eventType)
   -- App lost focus
   -- App terminated
   if eventType == hs.application.watcher.deactivated or eventType == hs.application.watcher.terminated then
-    if appName == appname_for_trigger then
+    if string.match(appName, appname_for_trigger) then
       teamsHotkey:disable()
 
       -- Teams reserves the mediakeys if focuses
@@ -43,6 +43,6 @@ appWatcherTeams = hs.application.watcher.new(applicationWatcher)
 appWatcherTeams:start()
 
 --- If teams is already running:
-if hs.application.find(appname_for_trigger) ~= nil then
+if hs.appfinder.appFromWindowTitlePattern(appname_for_trigger) ~= nil then
   applicationWatcher(appname_for_trigger, hs.application.watcher.launched)
 end
