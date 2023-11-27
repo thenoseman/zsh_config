@@ -66,6 +66,7 @@ BREW_CASKS=(
 	iterm2                 # Terminal
 	itsycal                # Small menubar calendar
 	kap                    # Screen video recorder
+	kdiff3                 # Diff/Merge tool
 	keepassxc              # Passwords
 	macvim                 # Editor
 	namechanger            # File renamer GUI
@@ -183,17 +184,17 @@ update_js_tools() {
 }
 
 install_special_cases() {
-	info ">>> Installing special tools"
-	if ! hash ruplacer 2>/dev/null; then
-		info ">>> Installing ruplacer from github releases"
-		curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")" && chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
-	fi
+	DL=$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")
+	info ">>> Installing current ruplacer from github releases ($DL)"
+	curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$DL"
+	chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
 
-	if ! hash kdiff3 2>/dev/null; then
-		info ">>> Installing kdiff3 from source (This will take some time)"
-		brew tap kde-mac/kde https://invent.kde.org/packaging/homebrew-kde.git --force-auto-update
-		brew install kde-mac/kde/kdiff3 --HEAD
-	fi
+	DL=$(curl -s https://api.github.com/repos/boyter/cs/releases/latest | jq -r ".assets[] | select(.name | test(\"Darwin_$(arch)\")) | .browser_download_url")
+	info ">>> Installing current code spelunker (cs) from github releases ($DL)"
+	curl -L -q -s -o "/tmp/cs.tar.gz" "$DL"
+	tar xzf /tmp/cs.tar.gz -C /tmp
+	mv /tmp/cs "$HOMEBREW_PREFIX/bin/"
+	chmod +x "$HOMEBREW_PREFIX/bin/cs"
 }
 
 # update homebrew taps
