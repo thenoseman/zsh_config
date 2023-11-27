@@ -25,7 +25,7 @@ function applicationWatcher(appName, eventType)
   -- App lost focus
   -- App terminated
   if eventType == hs.application.watcher.deactivated or eventType == hs.application.watcher.terminated then
-    if string.match(appName, appname_for_trigger) then
+    if appName and string.match(appName, appname_for_trigger) then
       teamsHotkey:disable()
 
       -- Teams reserves the mediakeys if focuses
