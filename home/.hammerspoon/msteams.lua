@@ -7,7 +7,7 @@ local appname_for_trigger = "Microsoft Teams"
 -- Hotkey setup
 local teamsHotkey = hs.hotkey.new("", "escape", nil, function()
   -- Must send to the "Helper"
-  local app = hs.appfinder.appFromWindowTitlePattern(appname_for_trigger)
+  local app = hs.application.find("com.microsoft.teams2")
   hs.eventtap.event.newKeyEvent({ "shift", "cmd" }, "m", true):post(app)
 end, nil, nil)
 
