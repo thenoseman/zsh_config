@@ -7,7 +7,7 @@ resource "aws_ecr_repository" "libretranslate" {
   provisioner "local-exec" {
     command = <<-EOC
       aws ecr get-login-password | docker login --username AWS --password-stdin ${aws_ecr_repository.libretranslate.repository_url} 
-      docker pull libretranslate/libretranslate:latest
+      docker pull --platform linux/amd64 libretranslate/libretranslate:latest
       docker tag libretranslate/libretranslate:latest ${aws_ecr_repository.libretranslate.repository_url}:latest
       docker push ${aws_ecr_repository.libretranslate.repository_url}:latest
     EOC
