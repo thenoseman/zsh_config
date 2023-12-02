@@ -162,8 +162,8 @@ direnv_java() {
 }
 
 #
-# Draw a terminal wide box
+# Draw a terminal wide box using boxen-cli (nopm package)
 #
 box() {
-	echo -e "$1" | boxes -a c -d stone -s "$(tput cols)" -n UTF8 -p v1
+	echo -e "$1" | boxen --border-color=yellow --align=center --width="$(tput cols)"
 }

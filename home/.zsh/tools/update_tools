@@ -11,7 +11,6 @@ BREW_TAPS=(
 
 BREW_PACKAGES=(
 	bat
-	boxes
 	colima
 	coreutils
 	direnv
@@ -80,6 +79,7 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
+	boxen-cli
 	eslint
 	jsonlint
 	pnpm
