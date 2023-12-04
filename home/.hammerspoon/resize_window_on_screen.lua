@@ -1,9 +1,9 @@
 -- RESIZES a window if it is dragged to a specific screen
 --
--- uses primaryDisplay (which are hs.screen) from screen_layout.lua
+-- uses primaryDisplay (which is a hs.screen) from screen_layout.lua
 --
 local log = hs.logger.new("🖥", "debug")
-local appname_for_trigger = "Microsoft Teams classic" -- The app title to watch for changes
+local appname_for_trigger = "Microsoft Teams (work or school)"
 local window_title_for_trigger = "| Microsoft Teams" -- The apps window title to watch for changes, partial match
 local window_min_width_to_trigger = 600 -- How wide must the window be to trigger the layout? Small windows should not triggered it.
 
@@ -11,7 +11,7 @@ local window_min_width_to_trigger = 600 -- How wide must the window be to trigge
 local resizeIfDraggedToScreen = primaryDisplay
 
 local timer = nil
-local testIntervalSec = 1 -- How long to wait until runnign the resize function?
+local testIntervalSec = 1 -- How long to wait until running the resize function?
 local border = 30 -- The border/margin to leave around the window
 
 function resizeWindowIfOnScreen(window)
@@ -65,6 +65,6 @@ appWatcherTeamsScreen = hs.application.watcher.new(applicationWatcher)
 appWatcherTeamsScreen:start()
 
 --- If already running:
-if hs.application.find(appname_for_trigger) ~= nil then
+if hs.application.find("com.microsoft.teams2") ~= nil then
   applicationWatcher(appname_for_trigger, hs.application.watcher.activated)
 end
