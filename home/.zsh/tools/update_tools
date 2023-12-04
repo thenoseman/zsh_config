@@ -30,7 +30,6 @@ BREW_PACKAGES=(
 	imagemagick
 	jhead
 	jq
-	jump
 	node
 	node-build
 	oath-toolkit
@@ -53,6 +52,7 @@ BREW_PACKAGES=(
 	wireguard-tools
 	yamllint
 	yt-dlp
+	zoxide
 	zsh
 )
 
