@@ -5,12 +5,18 @@
 # Loads the specified ruby version into the environment
 use_ruby() {
   source_up_if_exists
-  local ruby_dir=$HOME/.rubies/$1
-  PATH_add $ruby_dir
-  load_prefix $ruby_dir
+  search_version=$(semver_search "$HOME/.rubies" "" "${1}")
+  local dir="$HOME/.rubies/${search_version}"
+
+  PATH_add $dir
+  load_prefix $dir
+  layout ruby
 }
 
-# Usage: use node 20
+# Use newest version of node specified.
+# Usage: use node <version>
+# For installation see "install_node" function.
+# Relies on NODE_VERSIONS being set.
 use_node() {
   source_up_if_exists
   search_version=$(semver_search "$NODE_VERSIONS" "" "${1}")
