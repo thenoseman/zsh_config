@@ -128,7 +128,7 @@ aws-ssh() {
 #
 tf-p() {
 	# shellcheck disable=SC2046
-	aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
+	aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list --use-state terraform state list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
 }
 
 killdns() {
@@ -159,6 +159,14 @@ direnv_java() {
 	# shellcheck disable=SC3037,SC2028,SC2086
 	echo -n "source_up\nexport JAVA_HOME=\"$(/usr/libexec/java_home -v ${1}:-17)\"\nexport MAVEN_OPTS=\"-Xms512m -Xmx1024m -Dfile.encoding=UTF-8\"" >>.envrc
 	cat .envrc
+	direnv allow
+}
+
+direnv_node() {
+	# shellcheck disable=SC3037,SC2028,SC2086
+	echo -n "source_up\nuse node ${1:-21}" >>.envrc
+	cat .envrc
+	direnv allow
 }
 
 #
