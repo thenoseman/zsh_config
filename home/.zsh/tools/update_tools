@@ -122,9 +122,7 @@ typeset -g WAIT_UNTIL_COMPLETED=0
 update_completed_callback() {
 	local job=$1 code=$2 output=$3
 	COMPLETED=$((COMPLETED + 1))
-	info "--------------------------------- > Job: $1 ----------------------------------"
-	msg "$3"
-	info "--------------------------------- < Job: $1 ----------------------------------"
+	echo -e "$3" | boxen --title="${1}:" --padding=1 --border-color=yellow --width="$(tput cols)"
 }
 
 update_zsh_config() {
