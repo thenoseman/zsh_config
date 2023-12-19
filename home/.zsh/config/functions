@@ -126,9 +126,19 @@ aws-ssh() {
 # GOOS=darwin GOARCH=amd64 go build -v -o tfrs-amd64 .
 # lipo -create -output tfrs tfrs-arm64 tfrs-amd64
 #
-tf-p() {
+tf-p-state() {
 	# shellcheck disable=SC2046
 	aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list --use-state terraform state list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
+}
+
+tf-p() {
+	# shellcheck disable=SC2046
+	aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
+}
+
+tf-p-destroy() {
+	# shellcheck disable=SC2046
+	aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -destroy -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
 }
 
 killdns() {
