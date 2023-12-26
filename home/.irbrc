@@ -1,10 +1,18 @@
 require "irb/completion"
-require "irb/ext/save-history"
 
-begin
-  require "wirb"
-  Wirb.start
-rescue LoadError
+unless RUBY_VERSION.start_with?("3.3")
+  require "irb/ext/save-history"
+  
+  # Use Pry everywhere
+  begin
+    require "pry"
+    I18n.locale = :de if defined? I18n
+    IRB.conf[:IRB_NAME] = "pry"
+    Pry.start
+    Kernel.exit
+  rescue StandardError
+    warn "You really should \"gem install pry pry-doc --no-ri --no-rdoc\" into your global system gemdir"
+  end
 end
 
 # keep history
@@ -25,13 +33,3 @@ def sqllogoff
   ActiveRecord::Base.logger = nil
 end
 
-# Use Pry everywhere
-begin
-  require "pry"
-  I18n.locale = :de if defined? I18n
-  IRB.conf[:IRB_NAME] = "pry"
-  Pry.start
-  Kernel.exit
-rescue StandardError
-  warn "You really should \"gem install pry pry-doc --no-ri --no-rdoc\" into your global system gemdir"
-end
