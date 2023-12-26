@@ -64,7 +64,7 @@ obj.packageMapCache = hs.json.read(script_path() .. "/aws-js-sdk/aws-sdk-package
 -- When Seal i
 function obj:stop()
   obj.packageMap = nil
-  obj.methodCache = nil
+  obj.methodCache = {}
 end
 
 function obj:commands()
