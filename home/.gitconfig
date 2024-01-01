@@ -58,6 +58,8 @@
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
   algorithm = patience
+  colormoved = "default"
+  colormovedws = "allow-indentation-change"  
 [difftool]
   prompt = false
 [difftool "kdiff3"]
@@ -88,6 +90,5 @@
   relative-paths = true
   dark = true
   tabs = 2
-
 [init]
 	defaultBranch = master
