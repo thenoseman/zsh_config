@@ -80,3 +80,6 @@ for bin in terraform aws packer rg; do
 	# shellcheck disable=SC2139
 	alias o-${bin}="$HOMEBREW_PREFIX/bin/$bin"
 done
+
+# Docker
+alias dc="docker compose"
