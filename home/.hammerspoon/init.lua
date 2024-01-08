@@ -10,7 +10,7 @@ if file_exists(os.getenv("HOME") .. "/.hammerspoon/secrets.lua") then
   SECRETS = require("secrets")
   logger.i("SECRETS found and available")
   -- Depending on present secrets
-  require("translate")
+  require("translate_via_aws_translate")
 else
   logger.i("SECRETS not found")
 end
