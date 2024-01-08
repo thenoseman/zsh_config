@@ -10,7 +10,7 @@ if [[ "$(id -u)" -ne "0" ]]; then
 	exec sudo -p "> Enter SUDO password:" -E -u "root" "$SCRIPT_DIR/allow-gatekeeper" "$@"
 fi
 
-echo "> Allowing '$1' in gatekeepr and notarization"
+echo "> Allowing '$1' in gatekeeper and notarization (will take some time...)"
 spctl --add "$1"
 xattr -r -d com.apple.quarantine "$1"
-codesign --force --deep --sign "$1"
+codesign --force --deep --sign - "$1"
