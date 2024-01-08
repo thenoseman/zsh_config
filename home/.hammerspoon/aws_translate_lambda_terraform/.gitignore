@@ -1,0 +1,8 @@
+.envrc
+*.tfstate
+*.tfstate.backup
+*.out
+*.tgz
+.terraform
+.terraform*
+*.zip
