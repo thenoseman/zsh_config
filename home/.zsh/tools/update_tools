@@ -108,10 +108,6 @@ msg() {
 	echo >&2 -e "${1-}"
 }
 
-info() {
-	msg "${YELLOW}$@${NOFORMAT}"
-}
-
 setup_colors
 async_init
 
@@ -125,17 +121,14 @@ update_completed_callback() {
 }
 
 update_zsh_config() {
-	info ">>> Updating zsh_config"
 	[ -e ~/dev/config/zsh_config ] && cd ~/dev/config/zsh_config && git pull --rebase --autostash
 }
 
 update_vim_config() {
-	info ">>> Updating zsh_config"
 	[ -e ~/dev/config/vim_config ] && cd ~/dev/config/vim_config && git pull --rebase --autostash
 }
 
 install_missing_brew_formulas() {
-	info ">>> Installing brew formulas"
 	# Check installed packages
 	INSTALLED=$(brew list --formula -1 | tr '\n' ' ')
 	for p in "${BREW_PACKAGES[@]}"; do
@@ -146,7 +139,6 @@ install_missing_brew_formulas() {
 }
 
 install_missing_brew_casks() {
-	info ">>> Installing brew casks"
 	# Check install casks
 	INSTALLED=$(brew list --casks -1 | tr '\n' ' ')
 	for p in "${BREW_CASKS[@]}"; do
@@ -157,24 +149,20 @@ install_missing_brew_casks() {
 }
 
 install_missing_brew_special_cases() {
-	info ">>> Installing brew special cases"
 	if ! brew ls --versions universal-ctags; then
 		brew install --fetch-HEAD --HEAD universal-ctags
 	fi
 }
 
 update_rubygems() {
-	info ">>> Updating rubygems"
 	gem update --system
 }
 
 update_gems() {
-	info ">>> Updating rubygems"
 	gem install "${RUBY_GEMS[@]}"
 }
 
 update_js_tools() {
-	info ">>> Installing important JS tools into node at $(which node)"
 	for p in "${NODE_PACKAGES[@]}"; do
 		npm install -g "${p}"
 	done
@@ -182,16 +170,20 @@ update_js_tools() {
 
 install_special_cases() {
 	DL=$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")
-	info ">>> Installing current ruplacer from github releases ($DL)"
 	curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$DL"
 	chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
 
 	DL=$(curl -s https://api.github.com/repos/boyter/cs/releases/latest | jq -r ".assets[] | select(.name | test(\"Darwin_$(arch)\")) | .browser_download_url")
-	info ">>> Installing current code spelunker (cs) from github releases ($DL)"
 	curl -L -q -s -o "/tmp/cs.tar.gz" "$DL"
 	tar xzf /tmp/cs.tar.gz -C /tmp
 	mv /tmp/cs "$HOMEBREW_PREFIX/bin/"
 	chmod +x "$HOMEBREW_PREFIX/bin/cs"
+
+	# Link docker plugin(s)
+	if [[ ! -d ~/.ddocker/cli-plugins ]]; then
+		mkdir -p ~/.docker/cli-plugins
+		ln -sfn "$HOMEBREW_PREFIX/opt/docker-compose/bin/docker-compose" "$HOME/.docker/cli-plugins/docker-compose"
+	fi
 }
 
 # update homebrew taps
@@ -202,19 +194,15 @@ done
 async_start_worker update_worker -n -u
 async_register_callback update_worker update_completed_callback
 
-info ">>> Async updating zsh_config"
 WAIT_UNTIL_COMPLETED=$((WAIT_UNTIL_COMPLETED + 1))
 async_job update_worker update_zsh_config
 
-info ">>> Async updating vim_config"
 WAIT_UNTIL_COMPLETED=$((WAIT_UNTIL_COMPLETED + 1))
 async_job update_worker update_vim_config
 
-info ">>> Async installing missing homebrew packages"
 WAIT_UNTIL_COMPLETED=$((WAIT_UNTIL_COMPLETED + 1))
 async_job update_worker install_brew_formulas
 
-info ">>> Async updating homebrew"
 WAIT_UNTIL_COMPLETED=$((WAIT_UNTIL_COMPLETED + 3))
 async_job update_worker install_missing_brew_formulas
 async_job update_worker install_missing_brew_casks
@@ -229,10 +217,8 @@ while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
 	sleep 5
 done
 
-info ">>> Updating homebrew formulas/casks"
 brew upgrade
 
-info ">>> Async updating tools (ruby/js)"
 WAIT_UNTIL_COMPLETED=4
 async_job update_worker update_rubygems
 async_job update_worker update_gems
@@ -251,7 +237,6 @@ while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
 	sleep 5
 done
 
-info ">>> Setting permission for quicklook plugins"
 /usr/bin/xattr -r ~/Library/QuickLook >/dev/null
 /usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook >/dev/null
 
