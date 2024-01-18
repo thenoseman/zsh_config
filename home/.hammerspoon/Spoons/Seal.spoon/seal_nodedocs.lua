@@ -25,7 +25,7 @@ log.i("Looking for " .. indexFile)
 
 local file_info_last_modified = hs.fs.attributes(indexFile, "modification")
 if file_info_last_modified == nil then
-  local t = "Generate the node-js index using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh"
+  local t = "Generate the node-js index using \n'$HOME/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 else

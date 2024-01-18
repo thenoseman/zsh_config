@@ -57,7 +57,7 @@ log.i("Looking for " .. indexFile)
 local file_info_last_modified = hs.fs.attributes(indexFile, "modification")
 if file_info_last_modified == nil then
   local t =
-    "Generate the terraform AWS provider index using \n'node $HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh"
+    "Generate the terraform AWS provider index using \n'$HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 else

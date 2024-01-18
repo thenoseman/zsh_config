@@ -168,6 +168,17 @@ update_js_tools() {
 	done
 }
 
+update_hammerspoon_seal_plugin_data() {
+	# hammerspoon seal plugin "aws someawsdskkeyword"
+	node "$HOME/.hammerspoon/Spoons/Seal.spoon/aws-js-sdk/generate.mjs"
+
+	# hammerspoon seal plugin "aws_someterraformawsresource"
+	$HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh
+
+	# hammerspoon seal plugin "n somenodesdkkeyword"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh"
+}
+
 install_special_cases() {
 	DL=$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")
 	curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$DL"
@@ -217,13 +228,14 @@ while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
 	sleep 5
 done
 
-brew upgrade
-
-WAIT_UNTIL_COMPLETED=4
+WAIT_UNTIL_COMPLETED=5
 async_job update_worker update_rubygems
 async_job update_worker update_gems
 async_job update_worker update_js_tools
+async_job update_worker update_hammerspoon_seal_plugin_data
 async_job update_worker install_special_cases
+
+brew upgrade
 
 #
 # Second wait after potentially new programming language versions have been installed

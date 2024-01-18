@@ -182,3 +182,11 @@ direnv_node() {
 box() {
 	echo -e "$1" | boxen --border-color=yellow --align=center --width="$(tput cols)"
 }
+
+#
+# docker
+#
+drmi() {
+	# shellcheck disable=SC2046
+	docker rmi --force $(docker images --no-trunc --format '{{.Repository}}:{{.Tag}}' | fzf -m -q "${1:-}" --bind esc:clear-query)
+}

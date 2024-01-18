@@ -1,5 +1,5 @@
 --
--- MS Teams mute by pressing ESCAPE
+-- MS Teams (new version) mute by pressing ESCAPE
 --
 --
 local appname_for_trigger = "Microsoft Teams"
@@ -16,7 +16,7 @@ end, nil, nil)
 --
 function applicationWatcher(appName, eventType)
   -- App focused
-  if eventType == hs.application.watcher.activated then
+  if appName and eventType == hs.application.watcher.activated then
     if string.match(appName, appname_for_trigger) then
       teamsHotkey:enable()
     end
@@ -27,12 +27,6 @@ function applicationWatcher(appName, eventType)
   if eventType == hs.application.watcher.deactivated or eventType == hs.application.watcher.terminated then
     if appName and string.match(appName, appname_for_trigger) then
       teamsHotkey:disable()
-
-      -- Teams reserves the mediakeys if focuses
-      -- To remedy this we reload the config!
-      -- hs.timer.doAfter(5, function ()
-      --   hs.reload()
-      -- end)
     end
   end
 end
