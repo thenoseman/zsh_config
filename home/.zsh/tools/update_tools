@@ -228,14 +228,14 @@ while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
 	sleep 5
 done
 
+brew upgrade
+
 WAIT_UNTIL_COMPLETED=5
 async_job update_worker update_rubygems
 async_job update_worker update_gems
 async_job update_worker update_js_tools
 async_job update_worker update_hammerspoon_seal_plugin_data
 async_job update_worker install_special_cases
-
-brew upgrade
 
 #
 # Second wait after potentially new programming language versions have been installed

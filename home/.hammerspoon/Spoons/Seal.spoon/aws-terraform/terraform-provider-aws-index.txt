@@ -111,6 +111,7 @@ appmesh_virtual_service|App Mesh|resources|Provides an AWS App Mesh virtual serv
 apprunner_auto_scaling_configuration_version|App Runner|resources|Manages an App Runner AutoScaling Configuration Version.
 apprunner_connection|App Runner|resources|Manages an App Runner Connection.
 apprunner_custom_domain_association|App Runner|resources|Manages an App Runner Custom Domain association.
+apprunner_default_auto_scaling_configuration_version|App Runner|resources|Manages the default App Runner auto scaling configuration.
 apprunner_observability_configuration|App Runner|resources|Manages an App Runner Observability Configuration.
 apprunner_service|App Runner|resources|Manages an App Runner Service.
 apprunner_vpc_connector|App Runner|resources|Manages an App Runner VPC Connector.
@@ -306,6 +307,8 @@ codecommit_trigger|CodeCommit|resources|Provides a CodeCommit Trigger Resource.
 codedeploy_app|CodeDeploy|resources|Provides a CodeDeploy application.
 codedeploy_deployment_config|CodeDeploy|resources|Provides a CodeDeploy deployment config.
 codedeploy_deployment_group|CodeDeploy|resources|Provides a CodeDeploy deployment group.
+codeguruprofiler_profiling_group|CodeGuru Profiler|data-sources|Terraform data source for managing an AWS CodeGuru Profiler Profiling Group.
+codeguruprofiler_profiling_group|CodeGuru Profiler|resources|Terraform resource for managing an AWS CodeGuru Profiler Profiling Group.
 codegurureviewer_repository_association|CodeGuru Reviewer|resources|Terraform resource for managing an AWS CodeGuru Reviewer Repository Association.
 codepipeline_custom_action_type|CodePipeline|resources|Provides a CodePipeline CustomActionType.
 codepipeline_webhook|CodePipeline|resources|Provides a CodePipeline Webhook
@@ -385,6 +388,8 @@ cur_report_definition|Cost and Usage Report|data-sources|Get information on an A
 cur_report_definition|Cost and Usage Report|resources|Provides a Cost and Usage Report Definition.
 customer_gateway|VPN (Site-to-Site)|data-sources|Get an existing AWS Customer Gateway.
 customer_gateway|VPN (Site-to-Site)|resources|Provides a customer gateway inside a VPC. These objects can be
+customerprofiles_domain|Connect Customer Profiles|resources|Terraform resource for managing an Amazon Customer Profiles Domain.
+customerprofiles_profile|Connect Customer Profiles|resources|Terraform resource for managing an Amazon Customer Profiles Profile.
 dataexchange_data_set|Data Exchange|resources|Provides a DataExchange DataSet
 dataexchange_revision|Data Exchange|resources|Provides a DataExchange Revision
 datapipeline_pipeline_definition|Data Pipeline|data-sources|Provides details about a specific DataPipeline Definition.
@@ -478,6 +483,7 @@ docdb_event_subscription|DocumentDB|resources|Provides a DocumentDB event subscr
 docdb_global_cluster|DocumentDB|resources|Manages a DocumentDB Global Cluster
 docdb_orderable_db_instance|DocumentDB|data-sources|Information about DocumentDB orderable DB instances.
 docdb_subnet_group|DocumentDB|resources|Provides an DocumentDB subnet group resource.
+docdbelastic_cluster|DocumentDB Elastic|resources|Manages an AWS DocDB (DocumentDB) Elastic Cluster.
 dx_bgp_peer|Direct Connect|resources|Provides a Direct Connect BGP peer resource.
 dx_connection_association|Direct Connect|resources|Associates a Direct Connect Connection with a LAG.
 dx_connection_confirmation|Direct Connect|resources|Provides a confirmation of the creation of the specified hosted connection on an interconnect.
@@ -515,6 +521,7 @@ ebs_default_kms_key|EBS (EC2)|data-sources|Provides metadata about the KMS key s
 ebs_default_kms_key|EBS (EC2)|resources|Manages the default customer master key (CMK) that your AWS account uses to encrypt EBS volumes.
 ebs_encryption_by_default|EBS (EC2)|data-sources|Checks whether default EBS encryption is enabled for your AWS account in the current AWS region.
 ebs_encryption_by_default|EBS (EC2)|resources|Manages whether default EBS encryption is enabled for your AWS account in the current AWS region.
+ebs_fast_snapshot_restore|EBS (EC2)|resources|Terraform resource for managing an EBS (Elastic Block Storage) Fast Snapshot Restore.
 ebs_snapshot_copy|EBS (EC2)|resources|Duplicates an existing Amazon snapshot
 ebs_snapshot_ids|EBS (EC2)|data-sources|Provides a list of EBS snapshot IDs.
 ebs_snapshot_import|EBS (EC2)|resources|Provides an elastic block storage snapshot import resource.
@@ -613,6 +620,7 @@ ecr_pull_through_cache_rule|ECR (Elastic Container Registry)|resources|Provides 
 ecr_registry_policy|ECR (Elastic Container Registry)|resources|Provides an Elastic Container Registry Policy.
 ecr_registry_scanning_configuration|ECR (Elastic Container Registry)|resources|Provides an Elastic Container Registry Scanning Configuration.
 ecr_replication_configuration|ECR (Elastic Container Registry)|resources|Provides an Elastic Container Registry Replication Configuration.
+ecr_repositories|ECR (Elastic Container Registry)|data-sources|Terraform data source for providing information on AWS ECR (Elastic Container Registry) Repositories.
 ecr_repository_policy|ECR (Elastic Container Registry)|resources|Provides an Elastic Container Registry Repository Policy.
 ecr_repository|ECR (Elastic Container Registry)|data-sources|Provides details about an ECR Repository
 ecr_repository|ECR (Elastic Container Registry)|resources|Provides an Elastic Container Registry Repository.
@@ -647,6 +655,9 @@ eip_association|EC2 (Elastic Compute Cloud)|resources|Provides an AWS EIP Associ
 eips|EC2 (Elastic Compute Cloud)|data-sources|Provides a list of Elastic IPs in a region
 eip|EC2 (Elastic Compute Cloud)|data-sources|Provides details about a specific Elastic IP
 eip|EC2 (Elastic Compute Cloud)|resources|Provides an Elastic IP resource.
+eks_access_entry|EKS (Elastic Kubernetes)|data-sources|Access Entry Configurations for an EKS Cluster.
+eks_access_entry|EKS (Elastic Kubernetes)|resources|Access Entry Configurations for an EKS Cluster.
+eks_access_policy_association|EKS (Elastic Kubernetes)|resources|Access Entry Policy Association for an EKS Cluster.
 eks_addon_version|EKS (Elastic Kubernetes)|data-sources|Retrieve information about versions of an EKS add-on
 eks_addon|EKS (Elastic Kubernetes)|data-sources|Retrieve information about an EKS add-on
 eks_addon|EKS (Elastic Kubernetes)|resources|Manages an EKS add-on
@@ -659,6 +670,7 @@ eks_identity_provider_config|EKS (Elastic Kubernetes)|resources|Manages an EKS I
 eks_node_groups|EKS (Elastic Kubernetes)|data-sources|Provides a set of node groups for an EKS Cluster
 eks_node_group|EKS (Elastic Kubernetes)|data-sources|Retrieve information about an EKS Node Group
 eks_node_group|EKS (Elastic Kubernetes)|resources|Manages an EKS Node Group
+eks_pod_identity_association|EKS (Elastic Kubernetes)|resources|Terraform resource for managing an AWS EKS (Elastic Kubernetes) Pod Identity Association.
 elastic_beanstalk_application_version|Elastic Beanstalk|resources|Provides an Elastic Beanstalk Application Version Resource
 elastic_beanstalk_application|Elastic Beanstalk|data-sources|Retrieve information about an Elastic Beanstalk Application
 elastic_beanstalk_application|Elastic Beanstalk|resources|Provides an Elastic Beanstalk Application Resource
@@ -672,6 +684,7 @@ elasticache_global_replication_group|ElastiCache|resources|Provides an ElastiCac
 elasticache_parameter_group|ElastiCache|resources|Provides an ElastiCache parameter group resource.
 elasticache_replication_group|ElastiCache|data-sources|Get information on an ElastiCache Replication Group resource.
 elasticache_replication_group|ElastiCache|resources|Provides an ElastiCache Replication Group resource.
+elasticache_serverless_cache|ElastiCache|resources|Provides an ElastiCache Serverless Cache resource.
 elasticache_subnet_group|ElastiCache|data-sources|Provides information about a ElastiCache Subnet Group.
 elasticache_subnet_group|ElastiCache|resources|Provides an ElastiCache Subnet Group resource.
 elasticache_user_group_association|ElastiCache|resources|Associate an ElastiCache user and user group.
@@ -699,6 +712,7 @@ emr_release_labels|EMR|data-sources|Retrieve information about EMR Release Label
 emr_security_configuration|EMR|resources|Provides a resource to manage AWS EMR Security Configurations
 emr_studio_session_mapping|EMR|resources|Provides an Elastic MapReduce Studio
 emr_studio|EMR|resources|Provides an Elastic MapReduce Studio
+emr_supported_instance_types|EMR|data-sources|Terraform data source for managing AWS EMR Supported Instance Types.
 emrcontainers_job_template|EMR Containers|resources|Manages an EMR Containers (EMR on EKS) Job Template
 emrcontainers_virtual_cluster|EMR Containers|data-sources|Retrieve information about an EMR Containers (EMR on EKS) Virtual Cluster
 emrcontainers_virtual_cluster|EMR Containers|resources|Manages an EMR Containers (EMR on EKS) Virtual Cluster
@@ -709,8 +723,11 @@ evidently_project|CloudWatch Evidently|resources|Provides a CloudWatch Evidently
 evidently_segment|CloudWatch Evidently|resources|Provides a CloudWatch Evidently Segment resource.
 finspace_kx_cluster|FinSpace|resources|Terraform resource for managing an AWS FinSpace Kx Cluster.
 finspace_kx_database|FinSpace|resources|Terraform resource for managing an AWS FinSpace Kx Database.
+finspace_kx_dataview|FinSpace|resources|Terraform resource for managing an AWS FinSpace Kx Dataview.
 finspace_kx_environment|FinSpace|resources|Terraform resource for managing an AWS FinSpace Kx Environment.
+finspace_kx_scaling_group|FinSpace|resources|Terraform resource for managing an AWS FinSpace Kx Scaling Group.
 finspace_kx_user|FinSpace|resources|Terraform resource for managing an AWS FinSpace Kx User.
+finspace_kx_volume|FinSpace|resources|Terraform resource for managing an AWS FinSpace Kx Volume.
 fis_experiment_template|FIS (Fault Injection Simulator)|resources|Provides an FIS Experiment Template.
 flow_log|VPC (Virtual Private Cloud)|resources|Provides a VPC/Subnet/ENI Flow Log
 fms_admin_account|FMS (Firewall Manager)|resources|Provides a resource to associate/disassociate an AWS Firewall Manager administrator account
@@ -858,6 +875,7 @@ imagebuilder_image|EC2 Image Builder|resources|Manages an Image Builder Image
 imagebuilder_infrastructure_configurations|EC2 Image Builder|data-sources|Get information on Image Builder Infrastructure Configurations.
 imagebuilder_infrastructure_configuration|EC2 Image Builder|data-sources|Provides details about an Image Builder Infrastructure Configuration
 imagebuilder_infrastructure_configuration|EC2 Image Builder|resources|Manages an Image Builder Infrastructure Configuration
+imagebuilder_workflow|EC2 Image Builder|resources|schemaVersion: 1.0
 inspector2_delegated_admin_account|Inspector|resources|Terraform resource for managing an Amazon Inspector Delegated Admin Account.
 inspector2_enabler|Inspector|resources|Terraform resource for enabling Amazon Inspector resource scans.
 inspector2_member_association|Inspector|resources|Terraform resource for managing an Amazon Inspector Member Association.
@@ -919,6 +937,7 @@ keyspaces_table|Keyspaces (for Apache Cassandra)|resources|Provides a Keyspaces 
 kinesis_analytics_application|Kinesis Analytics|resources|Provides a AWS Kinesis Analytics Application
 kinesis_firehose_delivery_stream|Kinesis Firehose|data-sources|Provides an AWS Kinesis Firehose Delivery Stream data source.
 kinesis_firehose_delivery_stream|Kinesis Firehose|resources|Provides a AWS Kinesis Firehose Delivery Stream
+kinesis_resource_policy|Kinesis|resources|Provides a resource to manage an Amazon Kinesis Streams resource policy.
 kinesis_stream_consumer|Kinesis|data-sources|Provides details about a Kinesis Stream Consumer.
 kinesis_stream_consumer|Kinesis|resources|Manages a Kinesis Stream Consumer.
 kinesis_stream|Kinesis|data-sources|Provides a Kinesis Stream data source.
@@ -982,6 +1001,9 @@ lb_ssl_negotiation_policy|ELB Classic|resources|Provides a load balancer SSL neg
 lb_target_group_attachment|ELB (Elastic Load Balancing)|resources|Provides the ability to register instances and containers with a LB
 lb_target_group|ELB (Elastic Load Balancing)|data-sources|Provides a Load Balancer Target Group data source.
 lb_target_group|ELB (Elastic Load Balancing)|resources|Provides a Target Group resource for use with Load Balancers.
+lb_trust_store_revocation|ELB (Elastic Load Balancing)|resources|Provides a Trust Store Revocation resource for use with Load Balancers.
+lb_trust_store|ELB (Elastic Load Balancing)|data-sources|Provides a Load Balancer Trust Store data source.
+lb_trust_store|ELB (Elastic Load Balancing)|resources|Provides a Trust Store resource for use with Load Balancers.
 lbs|ELB (Elastic Load Balancing)|data-sources|Data source for managing an AWS ELB (Elastic Load Balancing) Load Balancers.
 lb|ELB (Elastic Load Balancing)|data-sources|Provides a Load Balancer data source.
 lb|ELB (Elastic Load Balancing)|resources|Provides a Load Balancer resource.
@@ -994,7 +1016,9 @@ lex_intent|Lex Model Building|resources|Provides an Amazon Lex intent resource.
 lex_slot_type|Lex Model Building|data-sources|Provides details about a specific Amazon Lex Slot Type
 lex_slot_type|Lex Model Building|resources|Provides details about a specific Amazon Lex Slot Type
 lexv2models_bot_locale|Lex V2 Models|resources|Terraform resource for managing an AWS Lex V2 Models Bot Locale.
+lexv2models_bot_version|Lex V2 Models|resources|Terraform resource for managing an AWS Lex V2 Models Bot Version.
 lexv2models_bot|Lex V2 Models|resources|Terraform resource for managing an AWS Lex V2 Models Bot.
+lexv2models_intent|Lex V2 Models|resources|Terraform resource for managing an AWS Lex V2 Models Intent.
 licensemanager_association|License Manager|resources|Provides a License Manager association resource.
 licensemanager_grant_accepter|License Manager|resources|Accepts a License Manager grant resource.
 licensemanager_grants|License Manager|data-sources|Get information about a set of license manager grant licenses
@@ -1072,10 +1096,12 @@ memorydb_subnet_group|MemoryDB for Redis|data-sources|Provides information about
 memorydb_subnet_group|MemoryDB for Redis|resources|Provides a MemoryDB Subnet Group.
 memorydb_user|MemoryDB for Redis|data-sources|Provides information about a MemoryDB User.
 memorydb_user|MemoryDB for Redis|resources|Provides a MemoryDB User.
+mq_broker_engine_types|MQ|data-sources|Retrieve information about available broker engines.
 mq_broker_instance_type_offerings|MQ|data-sources|Provides a MQ Broker Instance Offerings data source.
 mq_broker|MQ|data-sources|Provides a MQ Broker data source.
 mq_broker|MQ|resources|Provides an MQ Broker Resource
 mq_configuration|MQ|resources|Provides an MQ configuration Resource
+msk_bootstrap_brokers|Managed Streaming for Kafka|data-sources|Get a list of brokers that a client application can use to bootstrap.
 msk_broker_nodes|Managed Streaming for Kafka|data-sources|Get information on an Amazon MSK Broker Nodes
 msk_cluster_policy|Managed Streaming for Kafka|resources|Terraform resource for managing an AWS Managed Streaming for Kafka Cluster Policy.
 msk_cluster|Managed Streaming for Kafka|data-sources|Get information on an Amazon MSK Cluster
@@ -1126,9 +1152,9 @@ networkfirewall_logging_configuration|Network Firewall|resources|Provides an AWS
 networkfirewall_resource_policy|Network Firewall|data-sources|Retrieve information about a Network Firewall resource policy.
 networkfirewall_resource_policy|Network Firewall|resources|Provides an AWS Network Firewall Resource Policy resource.
 networkfirewall_rule_group|Network Firewall|resources|Provides an AWS Network Firewall Rule Group resource.
-networkmanager_attachment_accepter|Network Manager|resources|Terraform resource for managing an AWS NetworkManager Attachment Accepter.
-networkmanager_connect_attachment|Network Manager|resources|Terraform resource for managing an AWS NetworkManager ConnectAttachment.
-networkmanager_connect_peer|Network Manager|resources|Terraform resource for managing an AWS NetworkManager Connect Peer.
+networkmanager_attachment_accepter|Network Manager|resources|Terraform resource for managing an AWS Network Manager Attachment Accepter.
+networkmanager_connect_attachment|Network Manager|resources|Terraform resource for managing an AWS Network Manager ConnectAttachment.
+networkmanager_connect_peer|Network Manager|resources|Terraform resource for managing an AWS Network Manager Connect Peer.
 networkmanager_connections|Network Manager|data-sources|Retrieve information about connections.
 networkmanager_connection|Network Manager|data-sources|Retrieve information about a connection.
 networkmanager_connection|Network Manager|resources|Creates a connection between two devices.
@@ -1146,7 +1172,7 @@ networkmanager_link_association|Network Manager|resources|Associates a link to a
 networkmanager_links|Network Manager|data-sources|Retrieve information about links.
 networkmanager_link|Network Manager|data-sources|Retrieve information about a link.
 networkmanager_link|Network Manager|resources|Creates a link for a site.
-networkmanager_site_to_site_vpn_attachment|Network Manager|resources|Terraform resource for managing an AWS NetworkManager SiteToSiteAttachment.
+networkmanager_site_to_site_vpn_attachment|Network Manager|resources|Terraform resource for managing an AWS Network Manager SiteToSiteAttachment.
 networkmanager_sites|Network Manager|data-sources|Retrieve information about sites.
 networkmanager_site|Network Manager|data-sources|Retrieve information about a site.
 networkmanager_site|Network Manager|resources|Creates a site in a global network.
@@ -1154,7 +1180,7 @@ networkmanager_transit_gateway_connect_peer_association|Network Manager|resource
 networkmanager_transit_gateway_peering|Network Manager|resources|Creates a peering connection between an AWS Cloud WAN core network and an AWS Transit Gateway.
 networkmanager_transit_gateway_registration|Network Manager|resources|Registers a transit gateway to a global network.
 networkmanager_transit_gateway_route_table_attachment|Network Manager|resources|Creates a transit gateway route table attachment.
-networkmanager_vpc_attachment|Network Manager|resources|Terraform resource for managing an AWS NetworkManager VpcAttachment.
+networkmanager_vpc_attachment|Network Manager|resources|Terraform resource for managing an AWS Network Manager VPC Attachment.
 oam_links|CloudWatch Observability Access Manager|data-sources|Terraform data source for managing an AWS CloudWatch Observability Access Manager Links.
 oam_link|CloudWatch Observability Access Manager|data-sources|Terraform data source for managing an AWS CloudWatch Observability Access Manager Link.
 oam_link|CloudWatch Observability Access Manager|resources|Terraform resource for managing an AWS CloudWatch Observability Access Manager Link.
@@ -1240,10 +1266,12 @@ pinpoint_gcm_channel|Pinpoint|resources|Provides a Pinpoint GCM Channel resource
 pinpoint_sms_channel|Pinpoint|resources|Use the `aws_pinpoint_sms_channel` resource to manage Pinpoint SMS Channels.
 pipes_pipe|EventBridge Pipes|resources|Terraform resource for managing an AWS EventBridge Pipes Pipe.
 placement_group|EC2 (Elastic Compute Cloud)|resources|Provides an EC2 placement group.
+polly_voices|Polly|data-sources|Terraform data source for managing an AWS Polly Voices.
 prefix_list|VPC (Virtual Private Cloud)|data-sources|Provides details about a specific prefix list
 pricing_product|Pricing Calculator|data-sources|Get information regarding the pricing of an Amazon product
 prometheus_alert_manager_definition|AMP (Managed Prometheus)|resources|Manages an Amazon Managed Service for Prometheus (AMP) Alert Manager Definition
 prometheus_rule_group_namespace|AMP (Managed Prometheus)|resources|Manages an Amazon Managed Service for Prometheus (AMP) Rule Group Namespace
+prometheus_scraper|AMP (Managed Prometheus)|resources|Manages an Amazon Managed Service for Prometheus (AMP) Scraper.
 prometheus_workspaces|AMP (Managed Prometheus)|data-sources|Gets the aliases, ARNs, and workspace IDs of Amazon Prometheus workspaces.
 prometheus_workspace|AMP (Managed Prometheus)|data-sources|Gets information on an Amazon Managed Prometheus workspace.
 prometheus_workspace|AMP (Managed Prometheus)|resources|Manages an Amazon Managed Service for Prometheus (AMP) Workspace
@@ -1420,10 +1448,16 @@ s3_bucket_versioning|S3 (Simple Storage)|resources|Provides an S3 bucket version
 s3_bucket_website_configuration|S3 (Simple Storage)|resources|Provides an S3 bucket website configuration resource.
 s3_bucket|S3 (Simple Storage)|data-sources|Provides details about a specific S3 bucket
 s3_bucket|S3 (Simple Storage)|resources|Provides a S3 bucket resource.
+s3_directory_buckets|S3 (Simple Storage)|data-sources|Lists Amazon S3 Express directory buckets.
+s3_directory_bucket|S3 (Simple Storage)|resources|Provides an Amazon S3 Express directory bucket resource.
 s3_object_copy|S3 (Simple Storage)|resources|Provides a resource for copying an S3 object.
 s3_objects|S3 (Simple Storage)|data-sources|Returns keys and metadata of S3 objects
 s3_object|S3 (Simple Storage)|data-sources|Provides metadata and optionally content of an S3 object
 s3_object|S3 (Simple Storage)|resources|Provides an S3 object resource.
+s3control_access_grants_instance_resource_policy|S3 Control|resources|Provides a resource to manage an S3 Access Grants instance resource policy.
+s3control_access_grants_instance|S3 Control|resources|Provides a resource to manage an S3 Access Grants instance.
+s3control_access_grants_location|S3 Control|resources|Provides a resource to manage an S3 Access Grants location.
+s3control_access_grant|S3 Control|resources|Provides a resource to manage an S3 Access Grant.
 s3control_access_point_policy|S3 Control|resources|Provides a resource to manage an S3 Access Point resource policy.
 s3control_bucket_lifecycle_configuration|S3 Control|resources|Manages an S3 Control Bucket Lifecycle Configuration.
 s3control_bucket_policy|S3 Control|resources|Manages an S3 Control Bucket Policy.
@@ -1494,6 +1528,8 @@ securityhub_organization_configuration|Security Hub|resources|Manages the Securi
 securityhub_product_subscription|Security Hub|resources|Subscribes to a Security Hub product.
 securityhub_standards_control|Security Hub|resources|Enable/disable Security Hub standards controls.
 securityhub_standards_subscription|Security Hub|resources|Subscribes to a Security Hub standard.
+securitylake_aws_log_source|Security Lake|resources|Terraform resource for managing an Amazon Security Lake AWS Log Source.
+securitylake_data_lake|Security Lake|resources|Terraform resource for managing an AWS Security Lake Data Lake.
 serverlessapplicationrepository_application|Serverless Application Repository|data-sources|Get information on a AWS Serverless Application Repository application
 serverlessapplicationrepository_cloudformation_stack|Serverless Application Repository|resources|Deploys an Application CloudFormation Stack from the Serverless Application Repository.
 service_discovery_dns_namespace|Cloud Map|data-sources|Retrieves information about a Service Discovery private or public DNS namespace.
@@ -1625,6 +1661,13 @@ ssmincidents_replication_set|SSM Incident Manager Incidents|resources|Terraform 
 ssmincidents_response_plan|SSM Incident Manager Incidents|data-sources|Terraform data source for managing a response plan in AWS Systems Manager Incident Manager.
 ssmincidents_response_plan|SSM Incident Manager Incidents|resources|Terraform resource for managing an incident response plan in AWS Systems Manager Incident Manager.
 ssoadmin_account_assignment|SSO Admin|resources|Manages a Single Sign-On (SSO) Account Assignment
+ssoadmin_application_access_scope|SSO Admin|resources|Terraform resource for managing an AWS SSO Admin Application Access Scope.
+ssoadmin_application_assignment_configuration|SSO Admin|resources|Terraform resource for managing an AWS SSO Admin Application Assignment Configuration.
+ssoadmin_application_assignments|SSO Admin|data-sources|Terraform data source for managing AWS SSO Admin Application Assignments.
+ssoadmin_application_assignment|SSO Admin|resources|Terraform resource for managing an AWS SSO Admin Application Assignment.
+ssoadmin_application_providers|SSO Admin|data-sources|Terraform data source for managing AWS SSO Admin Application Providers.
+ssoadmin_application|SSO Admin|data-sources|Terraform data source for managing an AWS SSO Admin Application.
+ssoadmin_application|SSO Admin|resources|Terraform resource for managing an AWS SSO Admin Application.
 ssoadmin_customer_managed_policy_attachment|SSO Admin|resources|Manages a customer managed policy for a Single Sign-On (SSO) Permission Set
 ssoadmin_instance_access_control_attributes|SSO Admin|resources|Provides a Single Sign-On (SSO) ABAC Resource: https://docs.aws.amazon.com/singlesignon/latest/userguide/abac.html
 ssoadmin_instances|SSO Admin|data-sources|Get information on SSO Instances.
@@ -1633,6 +1676,8 @@ ssoadmin_permission_set_inline_policy|SSO Admin|resources|Manages an IAM inline 
 ssoadmin_permission_set|SSO Admin|data-sources|Get information on a Single Sign-On (SSO) Permission Set.
 ssoadmin_permission_set|SSO Admin|resources|Manages a Single Sign-On (SSO) Permission Set
 ssoadmin_permissions_boundary_attachment|SSO Admin|resources|Attaches a permissions boundary policy to a Single Sign-On (SSO) Permission Set resource.
+ssoadmin_principal_application_assignments|SSO Admin|data-sources|Terraform data source for viewing AWS SSO Admin Principal Application Assignments.
+ssoadmin_trusted_token_issuer|SSO Admin|resources|Terraform resource for managing an AWS SSO Admin Trusted Token Issuer.
 storagegateway_cached_iscsi_volume|Storage Gateway|resources|Manages an AWS Storage Gateway cached iSCSI volume
 storagegateway_cache|Storage Gateway|resources|Manages an AWS Storage Gateway cache
 storagegateway_file_system_association|Storage Gateway|resources|Mananges an association between an Amazon FSx file system and an Amazon FSx File Gateway.
@@ -1674,6 +1719,10 @@ verifiedaccess_instance_logging_configuration|Verified Access|resources|Terrafor
 verifiedaccess_instance_trust_provider_attachment|Verified Access|resources|Terraform resource for managing a Verified Access Instance Trust Provider Attachment.
 verifiedaccess_instance|Verified Access|resources|Terraform resource for managing a Verified Access Instance.
 verifiedaccess_trust_provider|Verified Access|resources|Terraform resource for managing a Verified Access Trust Provider.
+verifiedpermissions_policy_store|Verified Permissions|data-sources|Terraform data source for managing an AWS Verified Permissions Policy Store.
+verifiedpermissions_policy_store|Verified Permissions|resources|This is a Terraform resource for managing an AWS Verified Permissions Policy Store.
+verifiedpermissions_policy_template|Verified Permissions|resources|Terraform resource for managing an AWS Verified Permissions Policy Template.
+verifiedpermissions_schema|Verified Permissions|resources|This is a Terraform resource for managing an AWS Verified Permissions Policy Store Schema.
 volume_attachment|EBS (EC2)|resources|Provides an AWS EBS Volume Attachment
 vpc_dhcp_options_association|VPC (Virtual Private Cloud)|resources|Provides a VPC DHCP Options Association resource.
 vpc_dhcp_options|VPC (Virtual Private Cloud)|data-sources|Retrieve information about an EC2 DHCP Options configuration
@@ -1750,7 +1799,7 @@ waf_regex_pattern_set|WAF Classic|resources|Provides a AWS WAF Regex Pattern Set
 waf_rule_group|WAF Classic|resources|Provides a AWS WAF rule group resource.
 waf_rule|WAF Classic|data-sources|Retrieves an AWS WAF rule id.
 waf_rule|WAF Classic|resources|Provides a AWS WAF rule resource.
-waf_size_constraint_set|WAF Classic|resources|Provides a AWS WAF Size Constraint Set resource.
+waf_size_constraint_set|WAF Classic|resources|The `aws_waf_size_constraint_set` resource provides an AWS WAF Size Constraint Set.
 waf_sql_injection_match_set|WAF Classic|resources|Provides a AWS WAF SQL Injection Match Set resource.
 waf_subscribed_rule_group|WAF Classic|data-sources|Retrieves information about a Managed WAF Rule Group from AWS Marketplace.
 waf_web_acl|WAF Classic|data-sources|Retrieves a WAF Web ACL id.
