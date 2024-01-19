@@ -45,5 +45,5 @@ Create and fill `zsh_config/home/.zsh/private/export.sh`
 `zsh_config/home/.zsh/tools` contains diverse tools like:
 
 - `aws-vault-generate-binstubs.sh`: Generates binstubs that wrap tools dependent on a AWS environment/credentials in aws-vault.
-- `exit-frenamer`: Renames all images/videos in the directory and creates/sorts them to a nixe directory structure.
+- `exif-renamer`: Renames all images/videos in the directory and creates/sorts them to a nixe directory structure.
 - `execute_maximized` executes a command in a maximized iterm2 window
