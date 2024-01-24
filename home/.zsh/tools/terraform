@@ -15,4 +15,5 @@ if [[ -z $AWS_PROFILE ]]; then
   exec "$HOMEBREW_PREFIX/bin/terraform" "$@"
 fi
 
-exec aws-vault exec --duration 1h "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/terraform" "$@"
+BIN="${AWS_TERRAFORM_BIN_OVERRIDE:-terraform}"
+exec aws-vault exec --duration 1h "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/$BIN" "$@"

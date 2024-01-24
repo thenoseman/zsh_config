@@ -9,9 +9,11 @@ declare -a BINS=(
   aws 
   packer
   terraform
-  )
+)
 
 for bin in $BINS; do
+  bin_upper=$(echo $bin | tr '[:lower:]' '[:upper:]')
+
   echo "Generating wrapped binary '$bin'"
   cat <<-EOF > $script_dir/$bin
 #!/usr/bin/env zsh
@@ -31,6 +33,7 @@ if [[ -z \$AWS_PROFILE ]]; then
   exec "\$HOMEBREW_PREFIX/bin/$bin" "\$@"
 fi
 
-exec aws-vault exec --duration 1h "\$AWS_PROFILE" -- "\$HOMEBREW_PREFIX/bin/$bin" "\$@"
+BIN="\${AWS_${bin_upper}_BIN_OVERRIDE:-$bin}"
+exec aws-vault exec --duration 1h "\$AWS_PROFILE" -- "\$HOMEBREW_PREFIX/bin/\$BIN" "\$@"
 EOF
 done

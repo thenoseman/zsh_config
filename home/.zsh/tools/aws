@@ -15,4 +15,5 @@ if [[ -z $AWS_PROFILE ]]; then
   exec "$HOMEBREW_PREFIX/bin/aws" "$@"
 fi
 
-exec aws-vault exec --duration 1h "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/aws" "$@"
+BIN="${AWS_AWS_BIN_OVERRIDE:-aws}"
+exec aws-vault exec --duration 1h "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/$BIN" "$@"
