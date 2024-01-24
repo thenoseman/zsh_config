@@ -58,6 +58,23 @@ install_node() {
 	node-build "$NODE_VERSION" "$HOME/.nodes/$NODE_VERSION"
 }
 
+install_terraform() {
+	[[ -z "$1" ]] && echo "Pass a matcher for the terraform version you want" && return
+	VERSION=$(curl -qs "https://releases.hashicorp.com/terraform" | grep "/terraform/1" | sed "s|.*terraform_||g" | sed "s|<.*||g" | grep -v -E "beta|alpha|rc" | semversort | fzf -1 --query "^$1" -e --no-sort --tac)
+	# https://releases.hashicorp.com/terraform/1.5.0/terraform_1.5.0_darwin_amd64.zip
+	URL="https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_darwin_${ARCH}.zip"
+	TARGET="$HOMEBREW_PREFIX/bin/terraform-${VERSION}"
+	echo "Installing version ${VERSION} to ${TARGET}"
+	curl -sqL -o "/tmp/tf-version.zip" "$URL"
+	(
+		cd /tmp || exit 1
+		unzip tf-version.zip
+		chmod +x terraform
+		mv terraform "$TARGET"
+	)
+	"$TARGET" -version
+}
+
 #
 # Javascript testing with jest
 #
