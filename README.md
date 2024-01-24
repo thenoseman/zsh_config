@@ -29,7 +29,13 @@ sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Fra
 sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Plugin).app"
 ```
 
-# Links
+# Todos fresh install
+Install `InconsolataGo Nerd Font Complete Mono.ttf` from `zsh_config/home/extars/fonts`.
+
+Execute `relink`.
+
+Execute `update_all`
+
 Link from sync to `$HOMEBREW_PREFIX/etc/wireguard`
 
 Link from sync to `$HOMEBREW_PREFIX/etc/coredns/Corefile`
@@ -44,6 +50,6 @@ Create and fill `zsh_config/home/.zsh/private/export.sh`
 
 `zsh_config/home/.zsh/tools` contains diverse tools like:
 
-- `aws-vault-generate-binstubs.sh`: Generates binstubs that wrap tools dependent on a AWS environment/credentials in aws-vault.
+- `aws-vault-generate-binstubs.sh`: Generates binstubs that wrap tools dependent on a AWS environment/credentials in aws-vault. Also allows to override the binary that is actually executed with aws-vault.
 - `exif-renamer`: Renames all images/videos in the directory and creates/sorts them to a nixe directory structure.
 - `execute_maximized` executes a command in a maximized iterm2 window

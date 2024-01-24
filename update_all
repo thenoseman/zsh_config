@@ -1,14 +1,24 @@
 #!/bin/bash
 
+# Update async.zsh
 curl -s -L "https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh" -o home/.zsh/modules/pure_prompt/async.zsh
+
+# Update itemr2 shell integration
 curl -s -L "https://iterm2.com/shell_integration/zsh" -o ./home/.zsh/config/iterm2-integration.sh
 
+# hammerspoon: Seal apps integration
+node ~/.hammerspoon/Spoons/Seal.spoon/aws-js-sdk/generate.mjs
+~/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh
+~/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh
+
+# Update fzf-tab
 if [[ ! -e "$HOME/.zsh/modules/fzf-tab" ]]; then
-  git clone https://github.com/Aloxaf/fzf-tab ~/.zsh/modules/fzf-tab
+	git clone https://github.com/Aloxaf/fzf-tab ~/.zsh/modules/fzf-tab
 else
-  (cd ~/.zsh/modules/fzf-tab && git pull --rebase)
+	(cd ~/.zsh/modules/fzf-tab && git pull --rebase)
 fi
 
+# Compile fzf-tab
 pushd "$HOME/.zsh/modules/fzf-tab/modules" || exit 1
 CPPFLAGS=-I/$HOMEBREW_PREFIX/include CFLAGS="-g -Wall -O2" LDFLAGS=-L$HOMEBREW_PREFIX/lib ./configure --disable-gdbm --without-tcsetpgrp DL_EXT=bundle
 make -j
