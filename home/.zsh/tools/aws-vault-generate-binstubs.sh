@@ -13,6 +13,7 @@ declare -a BINS=(
 
 for bin in $BINS; do
   bin_upper=$(echo $bin | tr '[:lower:]' '[:upper:]')
+  BIN="\${AWS_${bin_upper}_BIN_OVERRIDE:-$bin}"
 
   echo "Generating wrapped binary '$bin'"
   cat <<-EOF > $script_dir/$bin
@@ -26,14 +27,13 @@ set -e
 [[ -e "/opt/homebrew/bin" ]] && HOMEBREW_PREFIX="/opt/homebrew" || HOMEBREW_PREFIX="/usr/local"
 
 if [[ -n \$AWS_VAULT ]] || [[ -n \$VIMRUNTIME ]]; then
-  exec "\$HOMEBREW_PREFIX/bin/$bin" "\$@"
+  exec "\$HOMEBREW_PREFIX/bin/$BIN" "\$@"
 fi
 
 if [[ -z \$AWS_PROFILE ]]; then
-  exec "\$HOMEBREW_PREFIX/bin/$bin" "\$@"
+  exec "\$HOMEBREW_PREFIX/bin/$BIN" "\$@"
 fi
 
-BIN="\${AWS_${bin_upper}_BIN_OVERRIDE:-$bin}"
 exec aws-vault exec --duration 1h "\$AWS_PROFILE" -- "\$HOMEBREW_PREFIX/bin/\$BIN" "\$@"
 EOF
 done

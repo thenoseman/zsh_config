@@ -8,12 +8,11 @@ set -e
 [[ -e "/opt/homebrew/bin" ]] && HOMEBREW_PREFIX="/opt/homebrew" || HOMEBREW_PREFIX="/usr/local"
 
 if [[ -n $AWS_VAULT ]] || [[ -n $VIMRUNTIME ]]; then
-  exec "$HOMEBREW_PREFIX/bin/terraform" "$@"
+  exec "$HOMEBREW_PREFIX/bin/${AWS_TERRAFORM_BIN_OVERRIDE:-terraform}" "$@"
 fi
 
 if [[ -z $AWS_PROFILE ]]; then
-  exec "$HOMEBREW_PREFIX/bin/terraform" "$@"
+  exec "$HOMEBREW_PREFIX/bin/${AWS_TERRAFORM_BIN_OVERRIDE:-terraform}" "$@"
 fi
 
-BIN="${AWS_TERRAFORM_BIN_OVERRIDE:-terraform}"
 exec aws-vault exec --duration 1h "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/$BIN" "$@"

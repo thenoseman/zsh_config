@@ -1,11 +1,12 @@
 # vim: set ft=sh:
 # Homebrew (Intel + Arm)
-if [ -d "/usr/local/Homebrew" ]; then 
-  HOMEBREW_PREFIX="/usr/local";
+if [ -d "/usr/local/Homebrew" ]; then
+	HOMEBREW_PREFIX="/usr/local"
+	ARCH="amd64"
 else
-  HOMEBREW_PREFIX="/opt/homebrew";
+	HOMEBREW_PREFIX="/opt/homebrew"
+	ARCH="arm64"
 fi
-export HOMEBREW_PREFIX
 
-ARCH="$(uname -m)"
+export HOMEBREW_PREFIX
 export ARCH
