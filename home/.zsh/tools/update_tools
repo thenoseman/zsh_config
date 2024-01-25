@@ -15,6 +15,7 @@ BREW_PACKAGES=(
 	coreutils
 	direnv
 	docker
+	docker-completion
 	docker-compose
 	docker-credential-helper
 	dust
