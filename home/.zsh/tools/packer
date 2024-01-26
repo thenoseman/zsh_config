@@ -5,14 +5,16 @@
 #
 set -e
 
+BIN="${AWS_PACKER_BIN_OVERRIDE:-packer}"
+
 [[ -e "/opt/homebrew/bin" ]] && HOMEBREW_PREFIX="/opt/homebrew" || HOMEBREW_PREFIX="/usr/local"
 
 if [[ -n $AWS_VAULT ]] || [[ -n $VIMRUNTIME ]]; then
-  exec "$HOMEBREW_PREFIX/bin/${AWS_PACKER_BIN_OVERRIDE:-packer}" "$@"
+  exec "$HOMEBREW_PREFIX/bin/$BIN" "$@"
 fi
 
 if [[ -z $AWS_PROFILE ]]; then
-  exec "$HOMEBREW_PREFIX/bin/${AWS_PACKER_BIN_OVERRIDE:-packer}" "$@"
+  exec "$HOMEBREW_PREFIX/bin/$BIN" "$@"
 fi
 
 exec aws-vault exec --duration 1h "$AWS_PROFILE" -- "$HOMEBREW_PREFIX/bin/$BIN" "$@"
