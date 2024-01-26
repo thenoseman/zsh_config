@@ -1359,6 +1359,7 @@ redshiftserverless_workgroup|Redshift Serverless|data-sources|Terraform data sou
 redshiftserverless_workgroup|Redshift Serverless|resources|Provides a Redshift Serverless Workgroup resource.
 regions|Meta Data Sources|data-sources|Provides information about AWS Regions.
 region|Meta Data Sources|data-sources|Provides details about a specific service region
+rekognition_project|Rekognition|resources|Terraform resource for managing an AWS Rekognition Project.
 resourceexplorer2_index|Resource Explorer|resources|Provides a resource to manage a Resource Explorer index in the current AWS Region.
 resourceexplorer2_view|Resource Explorer|resources|Provides a resource to manage a Resource Explorer view.
 resourcegroups_group|Resource Groups|resources|Provides a Resource Group.
@@ -1403,6 +1404,7 @@ route53_vpc_association_authorization|Route 53|resources|Authorizes a VPC in a d
 route53_zone_association|Route 53|resources|Manages a Route53 Hosted Zone VPC association
 route53_zone|Route 53|data-sources|Provides details about a specific Route 53 Hosted Zone
 route53_zone|Route 53|resources|Manages a Route53 Hosted Zone
+route53domains_delegation_signer_record|Route 53 Domains|resources|Provides a resource to manage a delegation signer record in the parent DNS zone for domains registered with Route53.
 route53domains_registered_domain|Route 53 Domains|resources|Provides a resource to manage a domain that has been registered and associated with the current AWS account.
 route53recoverycontrolconfig_cluster|Route 53 Recovery Control Config|resources|Provides an AWS Route 53 Recovery Control Config Cluster
 route53recoverycontrolconfig_control_panel|Route 53 Recovery Control Config|resources|Provides an AWS Route 53 Recovery Control Config Control Panel
