@@ -11,6 +11,7 @@ BREW_TAPS=(
 
 BREW_PACKAGES=(
 	bat
+	biome
 	colima
 	coreutils
 	direnv
