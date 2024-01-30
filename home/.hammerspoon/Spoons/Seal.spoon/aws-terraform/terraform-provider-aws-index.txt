@@ -1019,6 +1019,7 @@ lexv2models_bot_locale|Lex V2 Models|resources|Terraform resource for managing a
 lexv2models_bot_version|Lex V2 Models|resources|Terraform resource for managing an AWS Lex V2 Models Bot Version.
 lexv2models_bot|Lex V2 Models|resources|Terraform resource for managing an AWS Lex V2 Models Bot.
 lexv2models_intent|Lex V2 Models|resources|Terraform resource for managing an AWS Lex V2 Models Intent.
+lexv2models_slot|Lex V2 Models|resources|Terraform resource for managing an AWS Lex V2 Models Slot.
 licensemanager_association|License Manager|resources|Provides a License Manager association resource.
 licensemanager_grant_accepter|License Manager|resources|Accepts a License Manager grant resource.
 licensemanager_grants|License Manager|data-sources|Get information about a set of license manager grant licenses
