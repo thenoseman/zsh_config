@@ -91,4 +91,4 @@
   dark = true
   tabs = 2
 [init]
-	defaultBranch = master
+	defaultBranch = main
