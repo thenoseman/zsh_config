@@ -1,2 +1,6 @@
 *.so
-Spoons/Seal.spoon/node-docs.json
+Spoons/Seal.spoon/aws-js-sdk/aws-sdk-js.txt
+Spoons/Seal.spoon/aws-js-sdk/aws-sdk-package-map.json
+Spoons/Seal.spoon/aws-terraform/terraform-provider-aws-index.txt
+Spoons/Seal.spoon/node-js/node-js-index.txt
+
