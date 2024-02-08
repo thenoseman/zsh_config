@@ -14,7 +14,7 @@ alias ll='exa -alF --time-style long-iso --header'
 alias ls='exa'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
-alias rg='rg -F -i --hidden --no-ignore --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'''
+alias rg='rg -F -i --hidden --no-ignore --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'' -g '\''!.git'\'''
 alias b64d="pbpaste | base64 -d"
 alias du="dust"
 alias cat="bat --wrap=never --paging=never --style=snip --theme 'Monokai Extended Origin'"
