@@ -37,8 +37,8 @@ writeFile(__dirname + "/aws-sdk-package-map.json", JSON.stringify(packageMap));
 
 const final = [];
 awsSdk.routes.forEach((route) => {
-  // [1, "C", "AccessAnalyzer"],
-  final.push(`${route[2]}|${awsSdk.typeMap[route[1]]}|${route[0]}`);
+  // lib-storage|Options|Interface|412
+  final.push(`${packageMap[route[0]].replace("aws-sdk-", "")}|${route[2]}|${awsSdk.typeMap[route[1]]}|${route[0]}`);
 });
 
 writeFile(__dirname + "/aws-sdk-js.txt", final.join("\n"));

@@ -103,11 +103,11 @@ function obj.choices(query)
   for _, definition in pairs(fuzzyMatch(query, obj.methodCache)) do
     local parts = hs.fnutils.split(definition, "|")
     local choice = {}
-    choice["text"] = parts[1]
-    choice["subText"] = "package: " .. obj.packageMapCache[parts[3]]
-    choice["package"] = obj.packageMapCache[parts[3]]
-    choice["type"] = parts[2]
-    choice["uuid"] = obj.__name .. "__" .. parts[1]
+    choice["text"] = parts[2]
+    choice["subText"] = "package: " .. obj.packageMapCache[parts[4]]
+    choice["package"] = obj.packageMapCache[parts[4]]
+    choice["type"] = parts[3]
+    choice["uuid"] = obj.__name .. "__" .. parts[2]
     choice["image"] = obj.icon
     choice["plugin"] = obj.__name
     table.insert(choices, choice)
