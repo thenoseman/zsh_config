@@ -8,7 +8,7 @@ local ok, fzy_module = pcall(require, "fzy_native_" .. arch)
 -- Otherwise, fall back on the lua version.
 if not ok then
   log.i("Using lua version. Please compile the native binary for a speed boost.")
-  hs.alert.show("Compile fzy native in $HOME/.hammerspoon/fzy using ./build.sh", {}, hs.screen.mainScreen(), 10)
+  hs.alert.show("Compile fzy native in 'cd $HOME/.hammerspoon/fzy; ./build.sh'", {}, hs.screen.mainScreen(), 10)
   fzy_module = {}
 else
   log.i("Using native version. Good.")

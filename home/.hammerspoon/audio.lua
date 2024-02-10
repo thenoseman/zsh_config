@@ -18,8 +18,8 @@ if device == nil then
 end
 
 local log = hs.logger.new("🔈", "debug")
-local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/gem.mp3"))
-local click_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/click.mp3"))
+local connection_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/media/gem.mp3"))
+local click_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/media/click.mp3"))
 local output_switcher_menubar = hs.menubar.new()
 log.i("Buildin output name is '" .. buildin_name .. "'")
 
@@ -30,8 +30,8 @@ local volumes = { buildin = 18, headset = 18 }
 -- Create icon in menubar to quickly toggle between BUILDIN and HEADSET output
 --
 local icons = {
-  buildin = hs.image.imageFromPath("bullhorn.png"):setSize({ w = 18, h = 18 }),
-  headset = hs.image.imageFromPath("headset.png"):setSize({ w = 18, h = 18 }),
+  buildin = hs.image.imageFromPath("media/bullhorn.png"):setSize({ w = 18, h = 18 }),
+  headset = hs.image.imageFromPath("media/headset.png"):setSize({ w = 18, h = 18 }),
 }
 
 -- Define it already  and redefine it later
