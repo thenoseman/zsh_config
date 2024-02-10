@@ -24,7 +24,8 @@ rect.center = hs.screen.mainScreen():frame().center
 local webview = hs.webview.new(rect)
 webview:allowTextEntry(true):windowStyle(popup_style):closeOnEscape(true):windowTitle("translation")
 
-local hammerspoon_app = hs.application.applicationsForBundleID(hs.processInfo.bundleID)[1]
+--local hammerspoon_app = hs.application.applicationsForBundleID(hs.processInfo.bundleID)[1]
+local hammerspoon_app = hs.application.find("org.hammerspoon.Hammerspoon")
 
 --
 -- return the current selected text or ""

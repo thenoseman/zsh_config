@@ -1,7 +1,11 @@
-local logger = hs.logger.new("🏁", "debug")
+local logger = require("hs.logger").new("🏁", "debug")
 logger.i("------------------------------------")
 logger.i("---------------- INIT --------------")
 logger.i("------------------------------------")
+
+local hotkey = require("hs.hotkey")
+hotkey.setLogLevel("info")
+--hs.console.maxOutputHistory(10)
 
 require("helper")
 
