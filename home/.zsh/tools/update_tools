@@ -6,56 +6,56 @@ typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
 
 BREW_TAPS=(
-	universal-ctags/universal-ctags
+	universal-ctags/universal-ctags # ctags tool
 )
 
 BREW_PACKAGES=(
-	bat
-	biome
-	colima
-	coreutils
-	direnv
-	docker
-	docker-completion
-	docker-compose
-	docker-credential-helper
-	dust
-	exa
-	exiftool
-	ffmpeg
-	findutils
-	fzf
-	git
-	git-delta
-	gnu-tar
-	gsed
-	imagemagick
-	jhead
-	jq
-	node
-	node-build
-	oath-toolkit
-	openconnect
-	openssl
-	pstree
-	python@3.11
-	readline
-	ripgrep
-	ruby-build
-	rustup-init
-	selene
-	shellcheck
-	shfmt
-	sqlite
-	stylua
-	syncthing
-	tig
-	watch
-	wireguard-tools
-	yamllint
-	yt-dlp
-	zoxide
-	zsh
+	bat                      # a 'cat' clone
+	biome                    # A very fast formatter/linter for TS/JS/JSON
+	colima                   # Alternative to docker desktop for Mac
+	coreutils                # Base tools for every OS
+	direnv                   # Manage environment per directory (also used for tools management)
+	docker                   # -> colima
+	docker-completion        # -> colima
+	docker-compose           # -> colima
+	docker-credential-helper # -> colima
+	dust                     # Alternative to "du"
+	exa                      # Alternative to "ls"
+	exiftool                 # Manipulate image EXIF data
+	ffmpeg                   # Video conversion
+	findutils                # find, xargs, and locate
+	fzf                      # Fuzzy finder. Used everywhere in my config
+	git                      # Version management software
+	git-delta                # Better git diff
+	gnu-tar                  # GNU tar for MacOs
+	gsed                     # GNU sed for MacOs
+	imagemagick              # Image manipulation tools
+	jhead                    # Lossless JPG auto rotation
+	jq                       # Manipulate, format and filter JSON
+	node                     # node JS
+	node-build               # More node versions. Used in "install_node" function.
+	oath-toolkit             # OTP token management/creation
+	openconnect              # VPN client
+	openssl                  # Newer version of openssl than present in MacOs
+	pstree                   # tree view of directories
+	python@3.11              # python 3.11
+	readline                 # GNU readline (For ruby I think)
+	ripgrep                  # The best file search tool
+	ruby-build               # Build ruby versions into ~/.rubies
+	rustup-init              # rust toolchain init
+	selene                   # LUA formatter
+	shellcheck               # shell script linter
+	shfmt                    # shell script formatter
+	sqlite                   # sqlite tools
+	stylua                   # Format lua code
+	syncthing                # Sync data between computers
+	tig                      # TUI for git
+	watch                    # GNU watch
+	wireguard-tools          # wireguard userland tools
+	yamllint                 # Lint YAML files
+	yt-dlp                   # Download youtube videos
+	zoxide                   # autojump implementation
+	zsh                      # newer zsh
 )
 
 BREW_CASKS=(
@@ -81,11 +81,11 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
-	boxen-cli
-	eslint
-	jsonlint
-	pnpm
-	prettier
+	boxen-cli # Terminal [boxes](https://github.com/sindresorhus/boxen-cli)
+	eslint    # Pluggable Javasxript linter/fixer (https://eslint.org/)
+	jsonlint  # Pure Js JSON linter (https://github.com/zaach/jsonlint)
+	pnpm      # Alternative to npm (https://pnpm.io/)
+	prettier  # JS/JSON etc formatter
 )
 
 RUBY_GEMS=(
