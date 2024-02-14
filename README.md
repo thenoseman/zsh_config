@@ -15,6 +15,10 @@
 ```bash
 # Show task switcher on every display
 defaults write com.apple.dock appswitcher-all-displays -bool true && killall Dock
+
+# Change the whitespace settings value for icons in the menubar
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
 ```
 
 
