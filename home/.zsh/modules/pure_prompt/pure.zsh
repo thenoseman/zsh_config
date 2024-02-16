@@ -570,10 +570,8 @@ prompt_pure_async_callback() {
 
 			do_render=1
 			;;
-		prompt_pure_async_git_aliases)eo
-
-
-			if [[ -n $output ]]; then
+		prompt_pure_async_git_aliases)
+      if [[ -n $output ]]; then
 				# Append custom Git aliases to the predefined ones.
 				prompt_pure_git_fetch_pattern+="|$output"
 			fi
