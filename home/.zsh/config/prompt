@@ -6,9 +6,11 @@ autoload -Uz promptinit && promptinit
 # Init my version of pure-prompt
 # https://github.com/sindresorhus/pure
 prompt pure
+zstyle :prompt:pure:git:stash show yes
 
 rprompt_set() {
-  RPROMPT='%{$fg_no_bold[blue]%}%{$reset_color%}'
+	# shellcheck disable=SC2034,SC2016
+	RPROMPT='%{$fg_no_bold[blue]%}%{$reset_color%}'
 }
 rprompt_set
 
