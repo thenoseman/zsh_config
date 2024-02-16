@@ -32,7 +32,7 @@
   trustctime = false
   autocrlf = input
   excludesfile = ~/.gitignore
-  editor = "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert'"
+  editor = "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal I' -c 'startinsert'"
   pager = delta
   precomposeunicode = true
   untrackedCache = true
