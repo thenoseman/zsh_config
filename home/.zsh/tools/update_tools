@@ -10,52 +10,53 @@ BREW_TAPS=(
 )
 
 BREW_PACKAGES=(
-	bat                      # a 'cat' clone
-	biome                    # A very fast formatter/linter for TS/JS/JSON
-	colima                   # Alternative to docker desktop for Mac
-	coreutils                # Base tools for every OS
-	direnv                   # Manage environment per directory (also used for tools management)
-	docker                   # -> colima
-	docker-completion        # -> colima
-	docker-compose           # -> colima
-	docker-credential-helper # -> colima
-	dust                     # Alternative to "du"
-	exa                      # Alternative to "ls"
-	exiftool                 # Manipulate image EXIF data
-	ffmpeg                   # Video conversion
-	findutils                # find, xargs, and locate
-	fzf                      # Fuzzy finder. Used everywhere in my config
-	git                      # Version management software
-	git-delta                # Better git diff
-	gnu-tar                  # GNU tar for MacOs
-	gsed                     # GNU sed for MacOs
-	imagemagick              # Image manipulation tools
-	jhead                    # Lossless JPG auto rotation
-	jq                       # Manipulate, format and filter JSON
-	node                     # node JS
-	node-build               # More node versions. Used in "install_node" function.
-	oath-toolkit             # OTP token management/creation
-	openconnect              # VPN client
-	openssl                  # Newer version of openssl than present in MacOs
-	pstree                   # tree view of directories
-	python@3.11              # python 3.11
-	readline                 # GNU readline (For ruby I think)
-	ripgrep                  # The best file search tool
-	ruby-build               # Build ruby versions into ~/.rubies
-	rustup-init              # rust toolchain init
-	selene                   # LUA formatter
-	shellcheck               # shell script linter
-	shfmt                    # shell script formatter
-	sqlite                   # sqlite tools
-	stylua                   # Format lua code
-	syncthing                # Sync data between computers
-	tig                      # TUI for git
-	watch                    # GNU watch
-	wireguard-tools          # wireguard userland tools
-	yamllint                 # Lint YAML files
-	yt-dlp                   # Download youtube videos
-	zoxide                   # autojump implementation
-	zsh                      # newer zsh
+	bat                             # a 'cat' clone
+	biome                           # A very fast formatter/linter for TS/JS/JSON
+	colima                          # Alternative to docker desktop for Mac
+	coreutils                       # Base tools for every OS
+	direnv                          # Manage environment per directory (also used for tools management)
+	docker                          # -> colima
+	docker-completion               # -> colima
+	docker-compose                  # -> colima
+	docker-credential-helper        # -> colima
+	dust                            # Alternative to "du"
+	exa                             # Alternative to "ls"
+	exiftool                        # Manipulate image EXIF data
+	ffmpeg                          # Video conversion
+	findutils                       # find, xargs, and locate
+	fzf                             # Fuzzy finder. Used everywhere in my config
+	git                             # Version management software
+	git-delta                       # Better git diff
+	gnu-tar                         # GNU tar for MacOs
+	gsed                            # GNU sed for MacOs
+	imagemagick                     # Image manipulation tools
+	jhead                           # Lossless JPG auto rotation
+	jq                              # Manipulate, format and filter JSON
+	node                            # node JS
+	node-build                      # More node versions. Used in "install_node" function.
+	oath-toolkit                    # OTP token management/creation
+	openconnect                     # VPN client
+	openssl                         # Newer version of openssl than present in MacOs
+	pstree                          # tree view of directories
+	python@3.11                     # python 3.11
+	readline                        # GNU readline (For ruby I think)
+	ripgrep                         # The best file search tool
+	ruby-build                      # Build ruby versions into ~/.rubies
+	TankerHQ/homebrew-repo/ruplacer # search replace in files
+	rustup-init                     # rust toolchain init
+	selene                          # LUA formatter
+	shellcheck                      # shell script linter
+	shfmt                           # shell script formatter
+	sqlite                          # sqlite tools
+	stylua                          # Format lua code
+	syncthing                       # Sync data between computers
+	tig                             # TUI for git
+	watch                           # GNU watch
+	wireguard-tools                 # wireguard userland tools
+	yamllint                        # Lint YAML files
+	yt-dlp                          # Download youtube videos
+	zoxide                          # autojump implementation
+	zsh                             # newer zsh
 )
 
 BREW_CASKS=(
@@ -182,10 +183,6 @@ update_hammerspoon_seal_plugin_data() {
 }
 
 install_special_cases() {
-	DL=$(curl -s https://api.github.com/repos/your-tools/ruplacer/releases/latest | jq -r ".assets[] | select(.name | test(\"osx\")) | .browser_download_url")
-	curl -L -q -s -o "$HOMEBREW_PREFIX/bin/ruplacer" "$DL"
-	chmod +x "$HOMEBREW_PREFIX/bin/ruplacer"
-
 	DL=$(curl -s https://api.github.com/repos/boyter/cs/releases/latest | jq -r ".assets[] | select(.name | test(\"Darwin_$(arch)\")) | .browser_download_url")
 	curl -L -q -s -o "/tmp/cs.tar.gz" "$DL"
 	tar xzf /tmp/cs.tar.gz -C /tmp
