@@ -84,7 +84,7 @@ install_terraform() {
 wjs-test() {
 	node_modules/.bin/jest --clearCache
 	# shellcheck disable=SC2046
-	node_modules/.bin/jest --watch --runInBand $(rg --files --hidden --follow --glob 'test*/unit/**/*.spec.js' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
+	node_modules/.bin/jest --watch --runInBand $(rg --files --hidden --follow --glob 'test*/unit/**/*.{spec,test}.{ts,js}' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
 }
 
 #
