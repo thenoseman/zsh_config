@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# vim: set ft=sh:
+#
+# Starts a node debugger out of google chrome
+#
+TARGET="/tmp/node-debugger.applescript"
+
+if [[ ! -f "${TARGET}" ]]; then
+	cat <<-'EOF' >$TARGET
+		  tell application "Google Chrome"
+		    open location "chrome://inspect/#devices"
+		    repeat until (loading of tab 1 of window 1 is false)
+		      1 + 1 --just an arbitary line
+		    end repeat
+		    execute front window's active tab javascript "document.getElementById('node-frontend').click()"
+		    repeat with win in windows
+		      close (tabs of windows whose title is "New tab")
+		      close (tabs of windows whose title is "Inspect with Chrome Developer Tools")
+		    end repeat
+		    
+		  end tell
+
+		  tell application "System Events" to tell process "Google Chrome"
+		    perform action "AXZoomWindow" of (first button whose subrole is "AXFullScreenButton") of (first window whose subrole is "AXStandardWindow")
+		  end tell
+	EOF
+
+fi
+osascript "$TARGET"
