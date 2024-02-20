@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# vim: set ft=sh:
+#
+# Restarts a hung Hammerspoon
+#
+# sudo spindump -notarget 5  -timelimit 60 -stdout -noFile -noProcessingWhileSampling   -aggregateStacksByProcess | grep -B 8 "Unresponsive for"
+
+killall -m Hammerspoon
+open /Applications/Hammerspoon.app
