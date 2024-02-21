@@ -8,6 +8,7 @@ autoload -Uz promptinit && promptinit
 prompt pure
 zstyle :prompt:pure:git:stash show yes
 zstyle :prompt:pure:git:stash color 242
+export PURE_GIT_STASH_SYMBOL="📚"
 
 rprompt_set() {
 	# shellcheck disable=SC2034,SC2016
