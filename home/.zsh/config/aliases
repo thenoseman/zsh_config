@@ -32,7 +32,7 @@ alias v='mvim'
 alias t="~/.zsh/modules/tig/start_tig_in_big_iterm_window"
 alias pu='git push'
 alias gpr='SKIP_PRECOMMIT_HOOK=1 git pull --rebase --autostash'
-alias master='git checkout $(git branch --list --format="%(refname:lstrip=2)"| grep -E "master|main")'
+alias ma='git checkout $(git branch --list --format="%(refname:lstrip=2)"| grep -E "master|main")'
 alias gti="git"
 
 #
