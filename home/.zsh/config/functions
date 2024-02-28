@@ -91,7 +91,7 @@ wjs-test() {
 # Run a test in debugging mode
 #
 djs-test() {
-	NODE_OPTIONS="--inspect" node_modules/.bin/jest --runInBand "$(rg --files --hidden --follow --glob '*.spec.js' --glob '*.scene.js' | fzf -1 -q "${1}")"
+	NODE_OPTIONS="--inspect --inspect-brk" node_modules/.bin/jest --runInBand "$(rg --files --hidden --follow --glob 'test*/unit/**/*.{spec,test}.{ts,js}' | fzf -1 -q "${1}")"
 }
 
 #
