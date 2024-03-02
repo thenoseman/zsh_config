@@ -1,5 +1,9 @@
 data "aws_caller_identity" "current" {}
 
+data "aws_kms_key" "lambda" {
+  key_id = "alias/aws/lambda"
+}
+
 resource "aws_iam_role" "role" {
   name = "Translate"
 
@@ -23,6 +27,24 @@ resource "aws_iam_role_policy_attachment" "execute" {
 resource "aws_iam_role_policy_attachment" "translate" {
   role       = aws_iam_role.role.name
   policy_arn = "arn:aws:iam::aws:policy/TranslateReadOnly"
+}
+
+data "aws_iam_policy_document" "kms" {
+  statement {
+    effect    = "Allow"
+    actions   = ["kms:Decrypt"]
+    resources = [data.aws_kms_key.lambda.arn]
+  }
+}
+
+resource "aws_iam_policy" "kms" {
+  name   = "lambda-allow-kms"
+  policy = data.aws_iam_policy_document.kms.json
+}
+
+resource "aws_iam_role_policy_attachment" "kms" {
+  role       = aws_iam_role.role.name
+  policy_arn = aws_iam_policy.kms.arn
 }
 
 resource "aws_iam_policy" "allow_invocation" {
