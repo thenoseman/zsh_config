@@ -95,6 +95,20 @@ djs-test() {
 }
 
 #
+# Start node in debugger mode
+# if the command line include ".ts" it is assumed to run under tsnode-dev
+#
+node-d() {
+	export NODE_OPTIONS="--inspect --inspect-brk"
+	NODE_BIN="node"
+	if [[ "$*" == *".ts"* ]]; then
+		NODE_BIN="ts-node-dev -r tsconfig-paths/register --rs"
+	fi
+	echo "> $NODE_BIN $@"
+	"$NODE_BIN" "$@"
+}
+
+#
 # Runs a cypress test headless
 #
 cyp-headless() {
