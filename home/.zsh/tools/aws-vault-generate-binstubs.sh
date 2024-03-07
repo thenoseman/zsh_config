@@ -31,7 +31,8 @@ if [[ -n \$AWS_VAULT ]] || [[ -n \$VIMRUNTIME ]]; then
   exec "\$HOMEBREW_PREFIX/bin/\$BIN" "\$@"
 fi
 
-if [[ -z \$AWS_PROFILE ]]; then
+# If no AWS_PROFILE is given or we want to use localstack via --profile=localstack use the original aws binary
+if [[ -z \$AWS_PROFILE ]] || [[ "\$*" == *"profile=localstack"* ]]; then
   exec "\$HOMEBREW_PREFIX/bin/\$BIN" "\$@"
 fi
 
