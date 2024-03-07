@@ -17,11 +17,11 @@ if [[ ! -f "${TARGET}" ]]; then
 		      close (tabs of windows whose title is "New tab")
 		      close (tabs of windows whose title is "Inspect with Chrome Developer Tools")
 		    end repeat
-		    
 		  end tell
 
+		  -- Zoom window
 		  tell application "System Events" to tell process "Google Chrome"
-		    perform action "AXZoomWindow" of (first button whose subrole is "AXFullScreenButton") of (first window whose subrole is "AXStandardWindow")
+		    perform action "AXZoomWindow" of (first button whose subrole is "AXFullScreenButton") of (first window whose subrole is "AXStandardWindow") of (first process whose frontmost is true)
 		  end tell
 	EOF
 
