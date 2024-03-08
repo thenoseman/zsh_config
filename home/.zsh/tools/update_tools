@@ -52,6 +52,7 @@ BREW_PACKAGES=(
 	syncthing                       # Sync data between computers
 	tig                             # TUI for git
 	watch                           # GNU watch
+	watchman                        # File watcher by facebook
 	wireguard-tools                 # wireguard userland tools
 	yamllint                        # Lint YAML files
 	yt-dlp                          # Download youtube videos
