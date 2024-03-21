@@ -2,19 +2,15 @@
   path = .gitcredentials
 [alias]
   l = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(green)(%an, %ad%Creset)' --date=iso-local
-  lold = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(white) (%an, %ad%Creset) %Cblue%d%Creset' --date=short
   ci = commit
   st = status
   ch = checkout
   cp = cherry-pick -x
-  b = branch -v
-  r = remote -v
   unstage = reset HEAD
   uncommit = reset --soft HEAD^
   unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
   rc = rebase --continue
   ra = rebase --abort
-  clone = clone --recursive
   create-patch = !NR=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | tr -d ' ') && git format-patch HEAD~$NR
   ami = am --committer-date-is-author-date --ignore-date
   fuck = commit --amend
@@ -36,12 +32,12 @@
   pager = delta
   precomposeunicode = true
   untrackedCache = true
-	attributesfile = ~/.gitattributes
+  attributesfile = ~/.gitattributes
 [gc]
   auto = 1000
 [push]
   default = current
-	autoSetupRemote = true
+  autoSetupRemote = true
 [merge]
   #summary=true
   tool = kdiff3
@@ -60,6 +56,7 @@
   algorithm = patience
   colormoved = "default"
   colormovedws = "allow-indentation-change"  
+  tool = difftastic
 [difftool]
   prompt = false
 [difftool "kdiff3"]
@@ -71,6 +68,8 @@
   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [difftool "ydiff"]
   cmd = ydiff -s -w 0 $LOCAL $REMOTE
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
 [grep]
   patternType = perl
 [rerere]
@@ -82,7 +81,7 @@
 [user]
   useconfigonly = true
 [interactive]
-  diffFilter = delta --color-only
+  #diffFilter = delta --color-only
 [delta]
   #side-by-side = true
   syntax-theme = zenburn
@@ -91,4 +90,6 @@
   dark = true
   tabs = 2
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[pager]
+  difftool = true
