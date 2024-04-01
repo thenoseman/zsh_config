@@ -1,5 +1,7 @@
 --
--- https://libretranslate.com/
+-- Translate some selected text using AWS translate
+-- See https://github.com/thenoseman/zsh_config/tree/master/home/.hammerspoon/aws_translate_lambda_terraform
+-- Press ctrl+option+cmd+t to activate
 --
 local popup_size = hs.geometry.size(600, 350)
 local logger = hs.logger.new("🎙", "debug")

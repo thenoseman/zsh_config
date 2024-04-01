@@ -1,3 +1,6 @@
+--
+-- Displays a nice icon in the menubar when colima is started
+--
 local log = hs.logger.new("[colima]", "debug")
 local colimaPath = os.getenv("HOME") .. "/.colima"
 local colimaPathDocker = colimaPath .. "/default/daemon/daemon.pid"

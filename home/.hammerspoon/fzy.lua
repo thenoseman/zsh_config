@@ -1,3 +1,7 @@
+--
+-- Load the fzy fuzzy filter (fzf-like).
+-- If it isn't compiled show some hints on how to do that
+--
 local log = hs.logger.new("[fzy]", "debug")
 
 -- Attempt to load the native version

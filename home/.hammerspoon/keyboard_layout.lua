@@ -1,6 +1,6 @@
 --
 -- Make sure the correct keyboard layout is active
--- Sometimes MacOS will change the layout based onthe app being used
+-- Sometimes MacOS will change the layout based on the app being used
 --
 local log = hs.logger.new("🔠", "debug")
 

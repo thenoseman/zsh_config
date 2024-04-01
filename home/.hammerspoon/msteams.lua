@@ -1,6 +1,5 @@
 --
--- MS Teams (new version) mute by pressing ESCAPE
---
+-- MS Teams (new version) mute by pressing ESCAPE when Teams is active
 --
 local appname_for_trigger = "Microsoft Teams"
 

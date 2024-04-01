@@ -1,3 +1,6 @@
+--
+-- General hotkeys
+--
 local log = hs.logger.new("🔥", "debug")
 
 --

@@ -1,6 +1,10 @@
 --
 -- Audio functions and callbacks
 --
+-- 1. Icon in menubar to toggle output between buildin and connected device
+-- 2. When a headset connects via bluetooth, switch to that as output
+-- 3. When switching to a connected BT device, always use buildin microphone for input
+--
 local headsets_user_internal_mic_mapping = {
   ["Jabra Talk 30"] = true,
   ["Poly V4320 Series"] = true,
@@ -61,7 +65,7 @@ local function output_switcher_menubar_clicked()
   local buildin = hs.audiodevice.findOutputByName(buildin_name)
   local headset, _ = output_headset()
 
-  if current_output_device_info["name"] == buildin_name then
+  if current_output_device_info["name"] == buildin_name and headset then
     -- From BUILDIN -> HEADSET
     log.i("From BUILDIN -> HEADSET '" .. headset:name() .. "' (Volume " .. volumes.headset .. ")")
     volumes.buildin = buildin:outputVolume()

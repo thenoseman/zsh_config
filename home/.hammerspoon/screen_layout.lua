@@ -1,3 +1,6 @@
+--
+-- Screen layout and window mover
+--
 local log = hs.logger.new("📺", "debug")
 
 -- Screen/ Window movement
