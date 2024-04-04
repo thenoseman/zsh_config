@@ -1,0 +1,35 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.6.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    },
+    "ignore": ["**/*.jsx"]
+  },
+  "formatter": {
+    "enabled": true,
+    "ignore": ["**/*.jsx"],
+    "indentStyle": "space"
+  },
+  "organizeImports": {
+    "enabled": true,
+    "ignore": ["**/*.jsx"]
+  },
+  "javascript": {
+    "globals": ["$"],
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space"
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space"
+    }
+  }
+}

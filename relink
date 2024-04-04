@@ -24,6 +24,7 @@ for f in ${DOTTHINGS}; do
 done
 
 link_or_fail "home/.zsh"
+link_or_fail "biome.json"
 link_or_fail "home/.fonts"
 link_or_fail "home/.hammerspoon"
 link_or_fail "home/.ctags.d"
