@@ -19,6 +19,13 @@ defaults write com.apple.dock appswitcher-all-displays -bool true && killall Doc
 # Change the whitespace settings value for icons in the menubar
 defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
 defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
+
+# Do not auto-boot when lid is opened (Original value: %03)
+# See https://osxdaily.com/2017/01/19/disable-boot-on-open-lid-macbook-pro/
+sudo nvram AutoBoot=%00
+
+# YMMV: Disable boot sound
+sudo nvram StartupMute=%01
 ```
 
 
