@@ -3,5 +3,5 @@
 # Switches using fzf
 #
 
-TARGET_BRANCH=$(git branch --all --format='%(refname:short)' | fzf -1 -q "${1:-}")
+TARGET_BRANCH=$(git branch --all --format='%(refname:short)' | grep -v "origin/" | fzf -1 -q "${1:-}")
 git switch "$TARGET_BRANCH"
