@@ -234,10 +234,16 @@ end
 function obj:_populateChooser()
   local menuData = {}
 
-  -- Normal pasteboard content
   for _, v in pairs(clipboard_history) do
-    -- Normal table with .id and .content
-    table.insert(menuData, { text = v.content, subText = "", storeId = v.id })
+    table.insert(menuData, {
+      text = hs.styledtext.new(v.content, {
+        paragraphStyle = { maximumLineHeight = 15 },
+        font = { name = "InconsolataGo Nerd Font Complete Mono", size = 14 },
+        color = hs.drawing.color.definedCollections.hammerspoon.black,
+      }),
+      subText = "",
+      storeId = v.id,
+    })
   end
   return menuData
 end
