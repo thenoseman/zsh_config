@@ -134,7 +134,7 @@ function obj:dedupe_and_resize(list)
   local res = {}
   local hashes = {}
   for _, v in ipairs(list) do
-    if #res < self.hist_size then
+    if #res < self.hist_size and v.content ~= nil then
       local hash = hashfn(v.content)
       if (not self.deduplicate) or not hashes[hash] then
         table.insert(res, v)
