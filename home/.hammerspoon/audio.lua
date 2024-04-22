@@ -85,7 +85,9 @@ local function output_switcher_menubar_clicked()
     output_switcher_menubar_set_title("buildin")
   end
 
-  click_sound:play()
+  hs.timer.doAfter(1, function()
+    click_sound:play()
+  end)
 end
 
 -- Set icon of output switcher
