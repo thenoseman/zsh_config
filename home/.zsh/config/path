@@ -33,6 +33,9 @@ export PATH="$PATH:$HOME/.cargo/bin:$HOME/.rustup/toolchains/nightly-x86_64-appl
 # Some apps still use /usr/local/bin
 export PATH="$PATH:/usr/local/bin"
 
+# Postgres
+export PATH="$PATH:$HOMEBREW_PREFIX/opt/postgresql@15/bin"
+
 # PNPM
 #export PNPM_HOME="$HOME/Library/pnpm"
 #export PATH="$PNPM_HOME:$PATH"
