@@ -24,6 +24,7 @@ BREW_PACKAGES=(
 	exiftool                        # Manipulate image EXIF data
 	ffmpeg                          # Video conversion
 	findutils                       # find, xargs, and locate
+  fx                              # Like jq but using JS and interactive
 	fzf                             # Fuzzy finder. Used everywhere in my config
 	git                             # Version management software
 	git-delta                       # Better git diff

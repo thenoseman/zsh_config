@@ -64,3 +64,7 @@ export BUILDKIT_PROGRESS="plain"
 # node js -> direnv
 export NODE_VERSIONS="$HOME/.nodes"
 export NODE_VERSION_PREFIX=""
+
+# fx (https://fx.wtf/=
+export FX_SHOW_SIZE=true
+export FX_THEME=6
