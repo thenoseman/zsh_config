@@ -114,6 +114,14 @@ function obj:pasteSelectedItem(value)
   stmt:step()
   local row = stmt:get_named_values()
 
+  -- Does it look like JSON? Then paste formatted!
+  if string.match(row.content, '^%s*[{[]%s*"%a+') then
+    local quotedJson = string.gsub(string.gsub(row.content, '"', '\\"'), "\n", "")
+    print(quotedJson)
+    local _, prettyJson = hs.osascript.javascript('JSON.stringify(JSON.parse("' .. quotedJson .. '"), null, 2)')
+    row.content = prettyJson
+  end
+
   last_change = pasteboard.changeCount()
   pasteboard.setContents(row.content)
   hs.eventtap.keyStroke({ "cmd" }, "v")
@@ -308,8 +316,8 @@ function obj:start()
   self.timer = hs.timer.new(self.frequency, hs.fnutils.partial(self.checkAndStorePasteboard, self))
   self.timer:start()
 
-  -- Check database size every 10 seconds
-  self.timer_store_cleanup = hs.timer.new(5, hs.fnutils.partial(self.cleanup_store_handler, self))
+  -- Check database size every <n> seconds
+  self.timer_store_cleanup = hs.timer.new(10, hs.fnutils.partial(self.cleanup_store_handler, self))
   self.timer_store_cleanup:start()
 
   --- Initialize storage
@@ -327,7 +335,7 @@ function obj:showClipboard()
     self.prevFocusedWindow = hs.window.focusedWindow()
     self.selectorobj:show()
   else
-    hs.notify.show("ClipboardTool not properly initialized", "Did you call ClipboardTool:start()?", "")
+    hs.notify.show("ClipboardTool not properly initialized", "Did you call ClipboardToolSqlite:start()?", "")
   end
 end
 
@@ -336,8 +344,7 @@ end
 --- Binds hotkeys for ClipboardTool
 ---
 --- Parameters:
----  * mapping - A table containing hotkey objifier/key details for the following items:
----   * show_clipboard - Display the clipboard history chooser
+---  * mapping - A table containing hotkey obj/key details for the following items:
 function obj:bindHotkeys(mapping)
   local def = {
     show_clipboard = hs.fnutils.partial(self.showClipboard, self),
