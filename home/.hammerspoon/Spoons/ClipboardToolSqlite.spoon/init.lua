@@ -70,6 +70,9 @@ obj.ignoredIdentifiers = {
 --- Whether to remove duplicates from the list, keeping only the latest one. Defaults to `true`.
 obj.deduplicate = true
 
+-- Maximum size of paste entry to display
+obj.maxSizeEntryDisplay = 200
+
 ----------------------------------------------------------------------
 
 -- Internal variable - Chooser/menu object
@@ -126,16 +129,6 @@ function obj:pasteSelectedItem(value)
   end
 end
 
---- ClipboardTool:clearAll()
---- Method
---- Clears the clipboard and history
-function obj:clearAll()
-  pasteboard.clearContents()
-  clipboard_history = {}
-  _persistHistory()
-  last_change = pasteboard.changeCount()
-end
-
 -- Internal method: deduplicate the given list, and restrict it to the history size limit
 function obj:dedupe_and_resize(list)
   local res = {}
@@ -189,8 +182,11 @@ end
 function obj:pasteboardToClipboard(item)
   -- Adds only a small part of the complete COPY to the chooser to reduce calling size
   local clipboard_string = item
-  if #item > 200 then
-    clipboard_string = string.sub(item, 1, 200) .. " [+ " .. (#item - 200) .. " bytes more]"
+  if #item > self.maxSizeEntryDisplay then
+    clipboard_string = string.sub(item, 1, self.maxSizeEntryDisplay)
+      .. "... \n[+"
+      .. (#item - self.maxSizeEntryDisplay)
+      .. " bytes more]"
   end
 
   -- Save the short content (for display in the chooser and the id to reference sqlite later when pasting
@@ -316,7 +312,7 @@ function obj:start()
   self.timer:start()
 
   -- Check database size every <n> seconds
-  self.timer_store_cleanup = hs.timer.new(10, hs.fnutils.partial(self.cleanup_store_handler, self))
+  self.timer_store_cleanup = hs.timer.new(20, hs.fnutils.partial(self.cleanup_store_handler, self))
   self.timer_store_cleanup:start()
 
   --- Initialize storage
