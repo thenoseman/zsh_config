@@ -114,17 +114,16 @@ function obj:pasteSelectedItem(value)
   stmt:step()
   local row = stmt:get_named_values()
 
-  -- Does it look like JSON? Then paste formatted!
-  if string.match(row.content, '^%s*[{[]%s*"%a+') then
-    local quotedJson = string.gsub(string.gsub(row.content, '"', '\\"'), "\n", "")
-    print(quotedJson)
-    local _, prettyJson = hs.osascript.javascript('JSON.stringify(JSON.parse("' .. quotedJson .. '"), null, 2)')
-    row.content = prettyJson
-  end
-
   last_change = pasteboard.changeCount()
   pasteboard.setContents(row.content)
-  hs.eventtap.keyStroke({ "cmd" }, "v")
+
+  -- Does it look like JSON? Then paste formatted via jq
+  if row.content:match('^%s*[{[]%s*"%a+') or row.content:match('%[%s*{%s*"') then
+    hs.eventtap.keyStrokes("pbpaste | jq")
+    hs.eventtap.keyStroke({}, "return")
+  else
+    hs.eventtap.keyStroke({ "cmd" }, "v")
+  end
 end
 
 --- ClipboardTool:clearAll()
