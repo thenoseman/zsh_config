@@ -120,8 +120,12 @@ function obj:pasteSelectedItem(value)
   last_change = pasteboard.changeCount()
   pasteboard.setContents(row.content)
 
-  -- Does it look like JSON? Then paste formatted via jq
-  if row.content:match('^%s*[{[]%s*"%a+') or row.content:match('%[%s*{%s*"') then
+  -- Does it look like JSON and are we in iterm? Then paste formatted via jq.
+  -- ["", {"", [\n{
+  if
+    hs.application.frontmostApplication():bundleID() == "com.googlecode.iterm2"
+    and (row.content:match('^%s*[{[]%s*"%a+') or row.content:match('%[%s*{%s*"'))
+  then
     hs.eventtap.keyStrokes("pbpaste | jq")
     hs.eventtap.keyStroke({}, "return")
   else
@@ -189,7 +193,7 @@ function obj:pasteboardToClipboard(item)
       .. " bytes more]"
   end
 
-  -- Save the short content (for display in the chooser and the id to reference sqlite later when pasting
+  -- Save the short content (for display in the chooser and the id to reference sqlite later when pasting)
   local insert_table = {
     ["content"] = clipboard_string,
     ["id"] = os.time(),
