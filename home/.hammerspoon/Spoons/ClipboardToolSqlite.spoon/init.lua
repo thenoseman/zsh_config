@@ -21,9 +21,15 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 local getSetting = function(label, default)
   return hs.settings.get(obj.name .. "." .. label) or default
 end
+
 local setSetting = function(label, value)
   hs.settings.set(obj.name .. "." .. label, value)
   return value
+end
+
+local isJSON = function(text)
+  --     {"... ["...                      [{..."                      [1,
+  return text:match('^%s*[{[]%s*"%a+') or text:match('%[%s*{%s*"') or text:match("%[%s*%d,")
 end
 
 --- ClipboardTool.frequency
@@ -112,7 +118,7 @@ function obj:pasteSelectedItem(value)
   end
 
   -- Fetch content of sqlite3 DB to paste the complete blob
-  local stmt = self.store:prepare("SELECT content FROM pasteboard where id = ?")
+  local stmt = self.store:prepare("SELECT content, type FROM pasteboard where id = ?")
   stmt:bind_values(value.storeId)
   stmt:step()
   local row = stmt:get_named_values()
@@ -122,10 +128,7 @@ function obj:pasteSelectedItem(value)
 
   -- Does it look like JSON and are we in iterm? Then paste formatted via jq.
   -- ["", {"", [\n{
-  if
-    hs.application.frontmostApplication():bundleID() == "com.googlecode.iterm2"
-    and (row.content:match('^%s*[{[]%s*"%a+') or row.content:match('%[%s*{%s*"'))
-  then
+  if hs.application.frontmostApplication():bundleID() == "com.googlecode.iterm2" and row.type == "JSON" then
     hs.eventtap.keyStrokes("pbpaste | jq")
     hs.eventtap.keyStroke({}, "return")
   else
@@ -193,15 +196,21 @@ function obj:pasteboardToClipboard(item)
       .. " bytes more]"
   end
 
+  -- Insert the full COPY to the store
+  local type = ""
+  if isJSON(clipboard_string) then
+    type = "JSON"
+  end
+
   -- Save the short content (for display in the chooser and the id to reference sqlite later when pasting)
   local insert_table = {
     ["content"] = clipboard_string,
     ["id"] = os.time(),
+    ["type"] = type,
   }
   table.insert(clipboard_history, 1, insert_table)
 
-  -- Insert the full COPY to the store
-  self.sqlite_insert_stmt:bind_values(os.time(), item, #item)
+  self.sqlite_insert_stmt:bind_values(os.time(), type, item, #item)
   self.sqlite_insert_stmt:step()
   self.sqlite_insert_stmt:reset()
 
@@ -248,7 +257,7 @@ function obj:_populateChooser()
         font = { name = "InconsolataGo Nerd Font Complete Mono", size = 14 },
         color = hs.drawing.color.definedCollections.hammerspoon.black,
       }),
-      subText = "",
+      subText = v.type,
       storeId = v.id,
     })
   end
@@ -321,8 +330,8 @@ function obj:start()
 
   --- Initialize storage
   self.store = sqlite.open("/tmp/ClipboardToolSqlite.sqlite3")
-  self.store:exec([[CREATE TABLE pasteboard (id INT, content BLOB, content_length INT);]])
-  self.sqlite_insert_stmt = self.store:prepare([[INSERT INTO pasteboard VALUES(?, ?, ?);]])
+  self.store:exec([[CREATE TABLE pasteboard (id INT, type TEXT, content BLOB, content_length INT);]])
+  self.sqlite_insert_stmt = self.store:prepare([[INSERT INTO pasteboard VALUES(?, ?, ?, ?);]])
 end
 
 --- ClipboardTool:showClipboard()
