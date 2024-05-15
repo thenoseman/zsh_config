@@ -7,7 +7,7 @@ cd "$script_dir" || exit 1
 
 SOURCE_DATA_URL="https://devdocs.io/docs/node/index.json"
 
-echo "> Cleanup"
+echo "> node-js cleanup"
 rm -rf node-js-index.txt
 
 echo "> Downloading node-js docs as JSON"

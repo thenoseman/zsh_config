@@ -42,5 +42,5 @@ done
 echo "> Writing sorted index file terraform-provider-aws-index.txt"
 sort terraform-provider-aws-index-unsorted.txt >terraform-provider-aws-index.txt
 
-echo "> Cleanup"
+echo "> aws-terraform cleanup"
 rm -rf terraform-provider-aws-index-unsorted.txt terraform-provider-aws
