@@ -35,15 +35,16 @@ setup_colors() {
 	fi
 }
 
-# Draws a simple box around content
-# Usage: echo "hallo" | box
+# Draws a simple box 
+# Usage: echo "hallo" | box 
 # or with colored border: echo "hallo" | box 1
+# or with header and color: echo "hallo" | box 1 "The header:"
 box() {
 	repeat() { for ((i = 0; i < ${2}; i++)); do echo -n "${1: }"; done }
   C0='\033[0m'; [[ -n "${1:-}" ]] && C="\033[1;33m"
 	readarray -t contents
 	for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
-  echo -e "${C}┌─$(repeat "─" "$max")─┐${C0}"
+  echo -e "${C}┌─${2:-}$(repeat "─" "$((max - ${#2}))")─┐${C0}"
 	for line in "${contents[@]}"; do echo -e "${C}│${C0} ${line}$(repeat " " $(( max - ${#line}))) ${C}│${C0}"; done
   echo -e "${C}└─$(repeat "─" "$max")─┘${C0}"
 }
