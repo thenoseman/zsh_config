@@ -35,18 +35,25 @@ setup_colors() {
 	fi
 }
 
-# Draws a simple box 
+# Draws a simple box
+# ┌─┐╔═╗╭─╮
+# │ │║ ║│ │
+# └─┘╚═╝╰─╯
 # Usage: echo "hallo" | box 
-# or with colored border: echo "hallo" | box 1
-# or with header and color: echo "hallo" | box 1 "The header:"
+#
+# Positional parameters:
+# ----------------------
+# 1         : Yellow border
+# "Title"   : Title in top border
+# bordertype: 0=plain, 3=double, 6=rounded
 box() {
-	repeat() { for ((i = 0; i < ${2}; i++)); do echo -n "${1: }"; done }
-  C0='\033[0m'; [[ -n "${1:-}" ]] && C="\033[1;33m"
+  T="┌─┐╔═╗╭─╮│││║║║│││└─┘╚═╝╰─╯"; R='\033[0m'; [[ -n "${1:-}" ]] && C="\033[1;33m"
+	r() { for ((i = 0; i < ${2}; i++)); do echo -n "${1: }"; done }
 	readarray -t contents
 	for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
-  echo -e "${C}┌─${2:-}$(repeat "─" "$((max - ${#2}))")─┐${C0}"
-	for line in "${contents[@]}"; do echo -e "${C}│${C0} ${line}$(repeat " " $(( max - ${#line}))) ${C}│${C0}"; done
-  echo -e "${C}└─$(repeat "─" "$max")─┘${C0}"
+  echo -e "${C}${T:$3:1}${2:-}$(r "${T:(($3+1)):1}" "$((max - ${#2} + 2))")${T:(($3+2)):1}${R}"
+  for line in "${contents[@]}"; do echo -e "${C}${T:(($3+9)):1}${R} ${line}$(r " " $(( max - ${#line}))) ${C}${T:(($3+9)):1}${R}"; done
+  echo -e "${C}${T:(($3+18)):1}$(r "${T:(($3+19)):1}" "$((max + 2))")${T:(($3+20)):1}${R}"
 }
 
 msg() {
