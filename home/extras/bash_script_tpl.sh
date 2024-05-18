@@ -51,7 +51,7 @@ box() {
 	r() { for ((i = 0; i < ${2}; i++)); do echo -n "${1: }"; done }
 	readarray -t contents
 	for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
-  echo -e "${C}${T:$3:1}${2:-}$(r "${T:(($3+1)):1}" "$((max - ${#2} + 2))")${T:(($3+2)):1}${R}"
+  echo -e "${C}${T:$3:1}${T:(($3+1)):1}${2:-}$(r "${T:(($3+1)):1}" "$((max - ${#2} + 1))")${T:(($3+2)):1}${R}"
   for line in "${contents[@]}"; do echo -e "${C}${T:(($3+9)):1}${R} ${line}$(r " " $(( max - ${#line}))) ${C}${T:(($3+9)):1}${R}"; done
   echo -e "${C}${T:(($3+18)):1}$(r "${T:(($3+19)):1}" "$((max + 2))")${T:(($3+20)):1}${R}"
 }
