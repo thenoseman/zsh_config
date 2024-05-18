@@ -24,7 +24,7 @@ BREW_PACKAGES=(
 	exiftool                        # Manipulate image EXIF data
 	ffmpeg                          # Video conversion
 	findutils                       # find, xargs, and locate
-  fx                              # Like jq but using JS and interactive
+	fx                              # Like jq but using JS and interactive
 	fzf                             # Fuzzy finder. Used everywhere in my config
 	git                             # Version management software
 	git-delta                       # Better git diff
@@ -84,11 +84,10 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
-	boxen-cli # Terminal [boxes](https://github.com/sindresorhus/boxen-cli)
-	eslint    # Pluggable Javasxript linter/fixer (https://eslint.org/)
-	jsonlint  # Pure Js JSON linter (https://github.com/zaach/jsonlint)
-	pnpm      # Alternative to npm (https://pnpm.io/)
-	prettier  # JS/JSON etc formatter
+	eslint   # Pluggable Javasxript linter/fixer (https://eslint.org/)
+	jsonlint # Pure Js JSON linter (https://github.com/zaach/jsonlint)
+	pnpm     # Alternative to npm (https://pnpm.io/)
+	prettier # JS/JSON etc formatter
 )
 
 RUBY_GEMS=(
@@ -109,6 +108,16 @@ setup_colors() {
 	fi
 }
 
+box() {
+  T="┌─┐╔═╗╭─╮│││║║║│││└─┘╚═╝╰─╯"; R='\033[0m'; [[ -n "${1:-}" ]] && C="\033[1;33m"
+	r() { for ((i = 0; i < ${2}; i++)); do echo -n "${1: }"; done }
+  contents=("${(@f)$(cat)}")
+	for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
+  echo -e "${C}${T:$3:1}${2:-}$(r "${T:(($3+1)):1}" "$((max - ${#2} + 2))")${T:(($3+2)):1}${R}"
+  for line in "${contents[@]}"; do echo -e "${C}${T:(($3+9)):1}${R} ${line}$(r " " $(( max - ${#line}))) ${C}${T:(($3+9)):1}${R}"; done
+  echo -e "${C}${T:(($3+18)):1}$(r "${T:(($3+19)):1}" "$((max + 2))")${T:(($3+20)):1}${R}"
+}
+
 msg() {
 	echo >&2 -e "${1-}"
 }
@@ -122,7 +131,7 @@ typeset -g WAIT_UNTIL_COMPLETED=0
 update_completed_callback() {
 	local job=$1 code=$2 output=$3
 	COMPLETED=$((COMPLETED + 1))
-	echo -e "$3" | boxen --title="${1}:" --padding=1 --border-color=yellow --width="$(tput cols)"
+	echo -e "${output}" | box 1 " ${1}: "
 }
 
 update_zsh_config() {
