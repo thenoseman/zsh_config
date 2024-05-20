@@ -226,13 +226,14 @@ d-rmi() {
 #
 # Positional parameters:
 # ----------------------
-# 1         : Yellow border
-# "Title"   : Title in top border
-# bordertype: 0=plain, 3=double, 6=rounded
+# bordercolor : 31:Red, 32:Green, 33:Yellow, 34:Blue, Magenta:35, Cyan:36, White:37
+# Title       : Title in top border
+# bordertype  : 0=plain, 3=double, 6=rounded
+#
 # shellcheck disable=SC3005,SC3018,SC3057,SC2296
 box() {
   contents=("${(@f)$(cat)}")
-  T="┌─┐╔═╗╭─╮│││║║║│││└─┘╚═╝╰─╯"; R='\033[0m'; [[ -n "${1:-}" ]] && C="\033[1;33m"
+  T="┌─┐╔═╗╭─╮│││║║║│││└─┘╚═╝╰─╯"; R='\033[0m'; [[ -n "${1:-}" ]] && C="\033[1;${1}m"
 	r() { for ((i = 0; i < ${2}; i++)); do echo -n "${1: }"; done }
 	max=${#2:0}; for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
   echo -e "${C}${T:$3:1}${T:(($3+1)):1}${2:-}$(r "${T:(($3+1)):1}" "$((max - ${#2} + 1))")${T:(($3+2)):1}${R}"
