@@ -230,13 +230,13 @@ d-rmi() {
 # Title       : Title in top border
 # bordertype  : 0=plain, 3=double, 6=rounded
 #
-# shellcheck disable=SC3005,SC3018,SC3057,SC2296
+# shellcheck disable=all
 box() {
-  contents=("${(@f)$(cat)}")
-  T="┌─┐╔═╗╭─╮│││║║║│││└─┘╚═╝╰─╯"; R='\033[0m'; [[ -n "${1:-}" ]] && C="\033[1;${1}m"
-	r() { for ((i = 0; i < ${2}; i++)); do echo -n "${1: }"; done }
-	max=${#2}; for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
-  echo -e "${C}${T:$3:1}${T:(($3+1)):1}${2:-}$(r "${T:(($3+1)):1}" "$((max - ${#2} + 1))")${T:(($3+2)):1}${R}"
-  for line in "${contents[@]}"; do echo -e "${C}${T:(($3+9)):1}${R} ${line}$(r " " $(( max - ${#line}))) ${C}${T:(($3+9)):1}${R}"; done
-  echo -e "${C}${T:(($3+18)):1}$(r "${T:(($3+19)):1}" "$((max + 2))")${T:(($3+20)):1}${R}"
+  local contents=() max=$#2 T="┌─┐╔═╗╭─╮│││║║║│││└─┘╚═╝╰─╯" C="" R='\033[0m'; r=${3:-0};[[ -n "${1:-}" ]] && C="\033[1;${1}m"
+  while IFS= read -r l; do contents+=("$l"); done # Works on Linux/mac/bash/zsh
+  r() { printf "$1%.0s" $(seq 0 "$2"); }; b() { echo "${T:$1:1}"; }
+	for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
+  echo -e "$C$(b $3)$(b $(($3+1)))${2:-}$(r "$(b $(($3+1)))" "$((max - ${#2} + 1))")$(b $(($3+2)))$R"
+  for line in "${contents[@]}"; do echo -e "$C$(b $(($3+9)))$R $line$(r " " $(( max - ${#line}))) $C$(b $(($3+9)))$R"; done
+  echo -e "$C$(b $(($3+18)))$(r "${T:(($3+19)):1}" "$((max + 2))")$(b $(($3+20)))$R"
 }

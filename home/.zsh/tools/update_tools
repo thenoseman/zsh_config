@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 # vim: set ft=sh:
 # shellcheck disable=SC2034
+source ~/.zsh/config/functions
+
 typeset -a BREW_TAPS
 typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
@@ -106,16 +108,6 @@ setup_colors() {
 	else
 		NOFORMAT='' RED='' GREEN='' ORANGE='' BLUE='' PURPLE='' CYAN='' YELLOW=''
 	fi
-}
-
-box() {
-  contents=("${(@f)$(cat)}")
-  T="┌─┐╔═╗╭─╮│││║║║│││└─┘╚═╝╰─╯"; R='\033[0m'; [[ -n "${1:-}" ]] && C="\033[1;${1}m"
-	r() { for ((i = 0; i < ${2}; i++)); do echo -n "${1: }"; done }
-	max=${#2}; for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
-  echo -e "${C}${T:$3:1}${T:(($3+1)):1}${2:-}$(r "${T:(($3+1)):1}" "$((max - ${#2} + 1))")${T:(($3+2)):1}${R}"
-  for line in "${contents[@]}"; do echo -e "${C}${T:(($3+9)):1}${R} ${line}$(r " " $(( max - ${#line}))) ${C}${T:(($3+9)):1}${R}"; done
-  echo -e "${C}${T:(($3+18)):1}$(r "${T:(($3+19)):1}" "$((max + 2))")${T:(($3+20)):1}${R}"
 }
 
 msg() {
