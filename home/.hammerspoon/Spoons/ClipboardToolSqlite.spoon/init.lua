@@ -27,7 +27,17 @@ local setSetting = function(label, value)
   return value
 end
 
+local isImage = function(object)
+  if getmetatable(object).saveToFile then
+    return true
+  end
+  return false
+end
+
 local isJSON = function(text)
+  if isImage(text) then
+    return false
+  end
   --     {"... ["...                      [{..."                      [1,
   return text:match('^%s*[{[]%s*"%a+') or text:match('%[%s*{%s*"') or text:match("%[%s*%d,")
 end
@@ -39,7 +49,7 @@ obj.frequency = 0.8
 
 --- ClipboardTool.hist_size
 --- Variable
---- How many items to keep on history. Defaults to 100
+--- How many items to keep on history.
 obj.hist_size = 25
 
 --- ClipboardTool.honor_ignoredidentifiers
@@ -113,6 +123,10 @@ end
 
 -- Internal method - process the selected item from the chooser. An item may invoke special actions, defined in the `actions` variable.
 function obj:pasteSelectedItem(value)
+  if value == nil then
+    return
+  end
+
   if self.prevFocusedWindow ~= nil then
     self.prevFocusedWindow:focus()
   end
@@ -124,7 +138,12 @@ function obj:pasteSelectedItem(value)
   local row = stmt:get_named_values()
 
   last_change = pasteboard.changeCount()
-  pasteboard.setContents(row.content)
+
+  if row.type == "image" then
+    pasteboard.writeObjects(hs.image.imageFromURL(row.content))
+  else
+    pasteboard.setContents(row.content)
+  end
 
   -- Does it look like JSON and are we in iterm? Then paste formatted via jq.
   -- ["", {"", [\n{
@@ -160,7 +179,6 @@ function obj:cleanup_store_handler()
   local row = stmt:get_named_values()
   stmt:reset()
 
-  -- > 5 MB length already?
   -- More than hist_size entries?
   if row.number_rows > self.hist_size then
     -- Get the oldest N entries
@@ -187,9 +205,22 @@ end
 --- Returns:
 ---  * None
 function obj:pasteboardToClipboard(item)
-  -- Adds only a small part of the complete COPY to the chooser to reduce calling size
   local clipboard_string = item
-  if #item > self.maxSizeEntryDisplay then
+  local type = "string"
+  local subText = nil
+
+  -- Image?
+  if isImage(item) then
+    local size = item:size()
+    type = "image"
+    --create small version for "insert_table"
+    clipboard_string = item:size({ ["h"] = 100, ["w"] = 250 }):encodeAsURLString()
+    item = item:encodeAsURLString()
+    subText = "Image: " .. math.floor(size.w) .. " x " .. math.floor(size.h) .. " px"
+  end
+
+  -- Adds only a small part of the complete COPY to the chooser to reduce calling size
+  if type == "string" and #item > self.maxSizeEntryDisplay then
     clipboard_string = string.sub(item, 1, self.maxSizeEntryDisplay)
       .. "... \n[+"
       .. (#item - self.maxSizeEntryDisplay)
@@ -197,8 +228,7 @@ function obj:pasteboardToClipboard(item)
   end
 
   -- Insert the full COPY to the store
-  local type = ""
-  if isJSON(clipboard_string) then
+  if type == "string" and isJSON(clipboard_string) then
     type = "JSON"
   end
 
@@ -207,7 +237,9 @@ function obj:pasteboardToClipboard(item)
     ["content"] = clipboard_string,
     ["id"] = os.time(),
     ["type"] = type,
+    ["subText"] = subText,
   }
+
   table.insert(clipboard_history, 1, insert_table)
 
   self.sqlite_insert_stmt:bind_values(os.time(), type, item, #item)
@@ -218,40 +250,12 @@ function obj:pasteboardToClipboard(item)
   _persistHistory() -- updates the saved history
 end
 
--- Internal method: actions of the context menu, delete or rearrange of clips
-function obj:manageClip(row, action)
-  if action == 0 then
-    table.remove(clipboard_history, row)
-  elseif action == 2 then
-    local i = 1
-    local j = row
-    while i < j do
-      clipboard_history[i], clipboard_history[j] = clipboard_history[j], clipboard_history[i]
-      i = i + 1
-      j = j - 1
-    end
-  else
-    local value = clipboard_history[row]
-    local new = row + action
-    if new < 1 then
-      new = 1
-    end
-    if new < row then
-      table.move(clipboard_history, new, row - 1, new + 1)
-    else
-      table.move(clipboard_history, row + 1, new, row)
-    end
-    clipboard_history[new] = value
-  end
-  self.selectorobj:refreshChoicesCallback()
-end
-
 -- Internal function - fill in the chooser options, including the control options
 function obj:_populateChooser()
   local menuData = {}
 
   for _, v in pairs(clipboard_history) do
-    table.insert(menuData, {
+    local chooser_item = {
       text = hs.styledtext.new(v.content, {
         paragraphStyle = { maximumLineHeight = 15 },
         font = { name = "InconsolataGo Nerd Font Complete Mono", size = 14 },
@@ -259,7 +263,19 @@ function obj:_populateChooser()
       }),
       subText = v.type,
       storeId = v.id,
-    })
+    }
+
+    if v.type == "string" then
+      chooser_item.subText = nil
+    end
+
+    if v.type == "image" then
+      chooser_item.subText = nil
+      chooser_item.text = v.subText
+      chooser_item.image = hs.image.imageFromURL(v.content)
+    end
+
+    table.insert(menuData, chooser_item)
   end
   return menuData
 end
@@ -294,15 +310,13 @@ function obj:checkAndStorePasteboard()
   local now = pasteboard.changeCount()
   if now > last_change then
     if (not self.honor_ignoredidentifiers) or self:shouldBeStored() then
-      local current_clipboard = pasteboard.getContents()
+      local current_clipboard = pasteboard.readImage() or pasteboard.getContents()
 
       -- Do not add whitespace only and no images
-      if
-        current_clipboard ~= nil
-        and (string.match(current_clipboard, "^%s+$") == nil)
-        and (pasteboard.readImage() == nil)
-      then
-        self:pasteboardToClipboard(current_clipboard)
+      if current_clipboard ~= nil then
+        if isImage(current_clipboard) or (string.match(current_clipboard, "^%s+$") == nil) then
+          self:pasteboardToClipboard(current_clipboard)
+        end
       end
     end
     last_change = now
