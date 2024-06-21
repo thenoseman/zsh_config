@@ -213,7 +213,7 @@ direnv_node() {
 #
 # docker
 #
-d-rmi() {
+docker-rmi() {
 	# shellcheck disable=SC2046
 	docker rmi --force $(docker images --no-trunc --format '{{.Repository}}:{{.Tag}}' | fzf -m -q "${1:-}" --bind esc:clear-query)
 }
