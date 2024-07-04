@@ -18,6 +18,7 @@ alias rg='rg -F -i --hidden --max-columns 150 -g '\''!.terraform'\'' -g '\''!nod
 alias b64d="pbpaste | base64 -d"
 alias du="dust"
 alias cat="bat --wrap=never --paging=never --style=snip --theme 'Monokai Extended Origin'"
+alias dig="doggo"
 
 #
 # VIM

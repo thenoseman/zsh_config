@@ -21,6 +21,7 @@ BREW_PACKAGES=(
 	docker-completion               # -> colima
 	docker-compose                  # -> colima
 	docker-credential-helper        # -> colima
+	doggo                           # Command-line DNS client for humans
 	dust                            # Alternative to "du"
 	exa                             # Alternative to "ls"
 	exiftool                        # Manipulate image EXIF data
