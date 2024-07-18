@@ -72,7 +72,6 @@ BREW_CASKS=(
 	hammerspoon            # Control the mac via lua
 	iterm2                 # Terminal
 	itsycal                # Small menubar calendar
-	kap                    # Screen video recorder
 	kdiff3                 # Diff/Merge tool
 	keepassxc              # Passwords
 	macvim                 # Editor
