@@ -23,7 +23,7 @@ BREW_PACKAGES=(
 	docker-credential-helper        # -> colima
 	doggo                           # Command-line DNS client for humans
 	dust                            # Alternative to "du"
-	exa                             # Alternative to "ls"
+	eza                             # Alternative to "ls" (fork, active)
 	exiftool                        # Manipulate image EXIF data
 	ffmpeg                          # Video conversion
 	findutils                       # find, xargs, and locate
