@@ -55,6 +55,8 @@ Link `amazon-shell-tools.sh` from sync to `zsh_config/home/.zsh/private`
 
 Create and fill `zsh_config/home/.zsh/private/export.sh`
 
+`colima start -c 4 -d 80 -m 4 -t "vz" --vz-rosetta`
+
 
 
 # Tool notes
