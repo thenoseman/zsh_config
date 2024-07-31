@@ -179,10 +179,16 @@ update_hammerspoon_seal_plugin_data() {
 	node "$HOME/.hammerspoon/Spoons/Seal.spoon/aws-js-sdk/generate.mjs"
 
 	# hammerspoon seal plugin "aws_someterraformawsresource"
-	$HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh"
 
 	# hammerspoon seal plugin "n somenodesdkkeyword"
 	"$HOME/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh"
+
+	# hammerspoon seal plugin "mdn somethingonmdn"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/mdn/generate.sh"
+
+	# hammerspoon seal plugin "dom something"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/dom/generate.sh"
 }
 
 install_special_cases() {

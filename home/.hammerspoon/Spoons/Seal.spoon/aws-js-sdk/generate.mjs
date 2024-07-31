@@ -21,7 +21,7 @@ const a = body.match(/3711:"(.*?)"/);
 // We need "3711".
 const downloadUrl = `https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/_next/static/chunks/3711.${body.match(/3711:"(.*?)"/)[1]}.js`;
 
-console.log("Generating searchindex from " + downloadUrl);
+console.log("[AWSSDDOCS] Generating searchindex from " + downloadUrl);
 
 // Download aws js sdk JS
 response = await fetch(downloadUrl);
