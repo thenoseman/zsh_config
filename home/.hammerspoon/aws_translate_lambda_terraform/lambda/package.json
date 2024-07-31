@@ -14,34 +14,26 @@
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "prettier": "3.0.2"
+    "prettier": "^3.0"
   },
   "dependencies": {
-    "@aws-sdk/client-translate": "^3.481.0"
+    "@aws-sdk/client-translate": "^3.0"
   },
   "eslintConfig": {
     "env": {
       "es2021": true,
       "node": true
     },
-    "extends": [
-      "eslint:recommended",
-      "plugin:prettier/recommended"
-    ],
+    "extends": ["eslint:recommended", "plugin:prettier/recommended"],
     "overrides": [],
     "parserOptions": {
       "ecmaVersion": "latest",
       "sourceType": "module"
     },
-    "plugins": [
-      "prettier"
-    ],
+    "plugins": ["prettier"],
     "rules": {
       "prettier/prettier": "error",
-      "eqeqeq": [
-        "error",
-        "smart"
-      ]
+      "eqeqeq": ["error", "smart"]
     }
   },
   "prettier": {
