@@ -93,3 +93,5 @@
   defaultBranch = main
 [pager]
   difftool = true
+[credential]
+	helper = osxkeychain
