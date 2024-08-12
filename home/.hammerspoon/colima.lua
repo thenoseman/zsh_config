@@ -2,7 +2,7 @@
 -- Displays a nice icon in the menubar when colima is started
 --
 local log = hs.logger.new("[colima]", "debug")
-local colimaPath = os.getenv("HOME") .. "/.colima"
+local colimaPath = os.getenv("HOME") .. "/.config/colima"
 local colimaPathDocker = colimaPath .. "/default/daemon/daemon.pid"
 local menuBar = nil
 local icon = hs.image.imageFromPath("media/colima.png"):setSize({ w = 18, h = 18 })
