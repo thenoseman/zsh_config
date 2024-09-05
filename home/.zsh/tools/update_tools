@@ -36,6 +36,7 @@ BREW_PACKAGES=(
 	imagemagick                     # Image manipulation tools
 	jhead                           # Lossless JPG auto rotation
 	jq                              # Manipulate, format and filter JSON
+	jump                            # directory autojump, alternative to zoxide
 	node                            # node JS
 	node-build                      # More node versions. Used in "install_node" function.
 	oath-toolkit                    # OTP token management/creation

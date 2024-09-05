@@ -24,9 +24,9 @@ ti() {
 #
 # Better zoxide invocation using fzf to filter the results
 #
-j() {
-	cd "$(zoxide query --list --score | fzf --height 40% --layout reverse --info inline --border --no-sort --select-1 --filter="${1}" | head -n 1 | awk '{print $2}')" || exit
-}
+# j() {
+# 	cd "$(zoxide query --list --score | fzf --height 40% --layout reverse --info inline --border --no-sort --select-1 --filter="${1}" | head -n 1 | awk '{print $2}')" || exit
+# }
 
 #
 # Do a command in every subdir (max depth = 1)

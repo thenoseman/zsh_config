@@ -113,10 +113,10 @@ async_init
 eval "$($HOMEBREW_PREFIX/bin/direnv hook zsh)"
 
 # https://github.com/gsamokovarov/jump
-#eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"
+eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"
 
 # https://github.com/ajeetdsouza/zoxide
-eval "$($HOMEBREW_PREFIX/bin/zoxide init --no-cmd --hook pwd zsh)"
+# eval "$($HOMEBREW_PREFIX/bin/zoxide init --no-cmd --hook pwd zsh)"
 
 # Color settings
 # vim: set ft=sh:
