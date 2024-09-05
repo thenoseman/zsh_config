@@ -116,7 +116,7 @@ eval "$($HOMEBREW_PREFIX/bin/direnv hook zsh)"
 #eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"
 
 # https://github.com/ajeetdsouza/zoxide
-eval "$($HOMEBREW_PREFIX/bin/zoxide init --cmd j --hook pwd zsh)"
+eval "$($HOMEBREW_PREFIX/bin/zoxide init --no-cmd --hook pwd zsh)"
 
 # Color settings
 # vim: set ft=sh:
