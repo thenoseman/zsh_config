@@ -134,8 +134,24 @@ function obj:pasteSelectedItem(value)
   -- Fetch content of sqlite3 DB to paste the complete blob
   local stmt = self.store:prepare("SELECT content, type FROM pasteboard where id = ?")
   stmt:bind_values(value.storeId)
-  stmt:step()
-  local row = stmt:get_named_values()
+  local result = stmt:step()
+
+  -- sqlite 3 may fail for whatever reason
+  if result ~= hs.sqlite3.DONE and result ~= hs.sqlite3.ROW then
+    print("ClipboardToolSqlite error: " .. self.store:error_message())
+    return
+  end
+
+  local row = nil
+  local success, r = pcall(function()
+    row = stmt:get_named_values()
+  end)
+  stmt:reset()
+
+  if not success then
+    print("[ClipboardToolSqlite] Error: " .. r)
+    return
+  end
 
   last_change = pasteboard.changeCount()
 
