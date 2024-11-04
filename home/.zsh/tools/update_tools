@@ -12,57 +12,56 @@ BREW_TAPS=(
 )
 
 BREW_PACKAGES=(
-	bat                             # a 'cat' clone
-	biome                           # A very fast formatter/linter for TS/JS/JSON
-	colima                          # Alternative to docker desktop for Mac
-	coreutils                       # Base tools for every OS
-	direnv                          # Manage environment per directory (also used for tools management)
-	docker                          # -> colima
-	docker-completion               # -> colima
-	docker-compose                  # -> colima
-	docker-credential-helper        # -> colima
-	doggo                           # Command-line DNS client for humans
-	dust                            # Alternative to "du"
-	eza                             # Alternative to "ls" (fork, active)
-	exiftool                        # Manipulate image EXIF data
-	ffmpeg                          # Video conversion
-	findutils                       # find, xargs, and locate
-	fx                              # Like jq but using JS and interactive
-	fzf                             # Fuzzy finder. Used everywhere in my config
-	git                             # Version management software
-	git-delta                       # Better git diff
-	gnu-tar                         # GNU tar for MacOs
-	gsed                            # GNU sed for MacOs
-	imagemagick                     # Image manipulation tools
-	jhead                           # Lossless JPG auto rotation
-	jq                              # Manipulate, format and filter JSON
-	jump                            # directory autojump, alternative to zoxide
-	node                            # node JS
-	node-build                      # More node versions. Used in "install_node" function.
-	oath-toolkit                    # OTP token management/creation
-	openconnect                     # VPN client
-	openssl                         # Newer version of openssl than present in MacOs
-	pstree                          # tree view of directories
-	python@3.11                     # python 3.11
-	readline                        # GNU readline (For ruby I think)
-	ripgrep                         # The best file search tool
-	ruby-build                      # Build ruby versions into ~/.rubies
-	TankerHQ/homebrew-repo/ruplacer # search replace in files
-	rustup-init                     # rust toolchain init
-	selene                          # LUA formatter
-	shellcheck                      # shell script linter
-	shfmt                           # shell script formatter
-	sqlite                          # sqlite tools
-	stylua                          # Format lua code
-	syncthing                       # Sync data between computers
-	tig                             # TUI for git
-	watch                           # GNU watch
-	watchman                        # File watcher by facebook
-	wireguard-tools                 # wireguard userland tools
-	yamllint                        # Lint YAML files
-	yt-dlp                          # Download youtube videos
-	zoxide                          # autojump implementation
-	zsh                             # newer zsh
+	bat                      # a 'cat' clone
+	biome                    # A very fast formatter/linter for TS/JS/JSON
+	colima                   # Alternative to docker desktop for Mac
+	coreutils                # Base tools for every OS
+	direnv                   # Manage environment per directory (also used for tools management)
+	docker                   # -> colima
+	docker-completion        # -> colima
+	docker-compose           # -> colima
+	docker-credential-helper # -> colima
+	doggo                    # Command-line DNS client for humans
+	dust                     # Alternative to "du"
+	eza                      # Alternative to "ls" (fork, active)
+	exiftool                 # Manipulate image EXIF data
+	ffmpeg                   # Video conversion
+	findutils                # find, xargs, and locate
+	fx                       # Like jq but using JS and interactive
+	fzf                      # Fuzzy finder. Used everywhere in my config
+	git                      # Version management software
+	git-delta                # Better git diff
+	gnu-tar                  # GNU tar for MacOs
+	gsed                     # GNU sed for MacOs
+	imagemagick              # Image manipulation tools
+	jhead                    # Lossless JPG auto rotation
+	jq                       # Manipulate, format and filter JSON
+	jump                     # directory autojump, alternative to zoxide
+	node                     # node JS
+	node-build               # More node versions. Used in "install_node" function.
+	oath-toolkit             # OTP token management/creation
+	openconnect              # VPN client
+	openssl                  # Newer version of openssl than present in MacOs
+	pstree                   # tree view of directories
+	python@3.11              # python 3.11
+	readline                 # GNU readline (For ruby I think)
+	ripgrep                  # The best file search tool
+	ruby-build               # Build ruby versions into ~/.rubies
+	rustup-init              # rust toolchain init
+	selene                   # LUA formatter
+	shellcheck               # shell script linter
+	shfmt                    # shell script formatter
+	sqlite                   # sqlite tools
+	stylua                   # Format lua code
+	syncthing                # Sync data between computers
+	tig                      # TUI for git
+	watch                    # GNU watch
+	watchman                 # File watcher by facebook
+	wireguard-tools          # wireguard userland tools
+	yamllint                 # Lint YAML files
+	yt-dlp                   # Download youtube videos
+	zoxide                   # autojump implementation
+	zsh                      # newer zsh
 )
 
 BREW_CASKS=(
@@ -101,51 +100,38 @@ RUBY_GEMS=(
 # Actual code
 #
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" &>/dev/null && pwd -P)
-. "$script_dir/../modules/pure_prompt/async.zsh"
 
-setup_colors() {
-	if [[ -t 2 ]] && [[ -z "${NO_COLOR-}" ]] && [[ "${TERM-}" != "dumb" ]]; then
-		NOFORMAT='\033[0m' RED='\033[0;31m' GREEN='\033[0;32m' ORANGE='\033[0;33m' BLUE='\033[0;34m' PURPLE='\033[0;35m' CYAN='\033[0;36m' YELLOW='\033[1;33m'
-	else
-		NOFORMAT='' RED='' GREEN='' ORANGE='' BLUE='' PURPLE='' CYAN='' YELLOW=''
-	fi
-}
+# shellcheck disable=SC2034
+NOFORMAT='\033[0m' RED='\033[0;31m' GREEN='\033[0;32m' ORANGE='\033[0;33m' BLUE='\033[0;34m' PURPLE='\033[0;35m' CYAN='\033[0;36m' YELLOW='\033[1;33m'
 
 msg() {
-	echo >&2 -e "${1-}"
-}
-
-setup_colors
-async_init
-
-typeset -g COMPLETED=0
-typeset -g WAIT_UNTIL_COMPLETED=0
-
-update_completed_callback() {
-	local job=$1 code=$2 output=$3
-	COMPLETED=$((COMPLETED + 1))
-	echo -e "${output}" | box 1 " ${1}: "
+	echo >&2 -e "> ${YELLOW}${*-}${NOFORMAT}"
 }
 
 update_zsh_config() {
+	msg "update_zsh_config"
 	[ -e ~/dev/config/zsh_config ] && cd ~/dev/config/zsh_config && git pull --rebase --autostash
 }
 
 update_vim_config() {
+	msg "update_vim_config"
 	[ -e ~/dev/config/vim_config ] && cd ~/dev/config/vim_config && git pull --rebase --autostash
 }
 
 install_missing_brew_formulas() {
+	msg "install_missing_brew_formulas"
 	# Check installed packages
 	INSTALLED=$(brew list --formula -1 | tr '\n' ' ')
 	for p in "${BREW_PACKAGES[@]}"; do
 		if [[ "${INSTALLED}" != *$p* ]]; then
+			echo "brew install ${p}"
 			brew install "${p}" || true
 		fi
 	done
 }
 
 install_missing_brew_casks() {
+	msg "install_missing_brew_casks"
 	# Check install casks
 	INSTALLED=$(brew list --casks -1 | tr '\n' ' ')
 	for p in "${BREW_CASKS[@]}"; do
@@ -156,26 +142,31 @@ install_missing_brew_casks() {
 }
 
 install_missing_brew_special_cases() {
+	msg "install_missing_brew_special_cases"
 	if ! brew ls --versions universal-ctags; then
 		brew install --fetch-HEAD --HEAD universal-ctags
 	fi
 }
 
 update_rubygems() {
+	msg "update_rubygems"
 	gem update --system
 }
 
 update_gems() {
+	msg "update_gems"
 	gem install "${RUBY_GEMS[@]}"
 }
 
 update_js_tools() {
+	msg "update_js_tools"
 	for p in "${NODE_PACKAGES[@]}"; do
 		npm install -g "${p}"
 	done
 }
 
 update_hammerspoon_seal_plugin_data() {
+	msg "update_hammerspoon_seal_plugin_data"
 	# hammerspoon seal plugin "aws someawsdskkeyword"
 	node "$HOME/.hammerspoon/Spoons/Seal.spoon/aws-js-sdk/generate.mjs"
 
@@ -193,6 +184,7 @@ update_hammerspoon_seal_plugin_data() {
 }
 
 install_special_cases() {
+	msg "install_special_cases"
 	DL=$(curl -s https://api.github.com/repos/boyter/cs/releases/latest | jq -r ".assets[] | select(.name | test(\"Darwin_$(arch)\")) | .browser_download_url")
 	curl -L -q -s -o "/tmp/cs.tar.gz" "$DL"
 	tar xzf /tmp/cs.tar.gz -C /tmp
@@ -211,66 +203,17 @@ for tap in $BREW_TAPS; do
 	[[ ! $installed_taps =~ $tap ]] && brew tap "$tap"
 done
 
-async_start_worker update_worker -n -u
-async_register_callback update_worker update_completed_callback
-
-WAIT_UNTIL_COMPLETED=$((WAIT_UNTIL_COMPLETED + 1))
-async_job update_worker update_zsh_config
-
-WAIT_UNTIL_COMPLETED=$((WAIT_UNTIL_COMPLETED + 1))
-async_job update_worker update_vim_config
-
-WAIT_UNTIL_COMPLETED=$((WAIT_UNTIL_COMPLETED + 1))
-async_job update_worker install_brew_formulas
-
-WAIT_UNTIL_COMPLETED=$((WAIT_UNTIL_COMPLETED + 3))
-async_job update_worker install_missing_brew_formulas
-async_job update_worker install_missing_brew_casks
-async_job update_worker install_missing_brew_special_cases
-
-# Wait for the two tasks to be completed
-COUNTER=1
-while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
-	msg "${GREEN}Waiting for async jobs to finish (#${COUNTER}, Finished: $COMPLETED/$WAIT_UNTIL_COMPLETED)${NOFORMAT}"
-	COUNTER=$((COUNTER + 1))
-	[[ "$COUNTER" -gt 50 ]] && break
-	sleep 10
-done
-
+update_zsh_config
+update_vim_config
+install_missing_brew_casks
+install_missing_brew_special_cases
+install_missing_brew_formulas
 brew upgrade
-
-WAIT_UNTIL_COMPLETED=5
-async_job update_worker update_rubygems
-async_job update_worker update_gems
-async_job update_worker update_js_tools
-async_job update_worker update_hammerspoon_seal_plugin_data
-async_job update_worker install_special_cases
-
-#
-# Second wait after potentially new programming language versions have been installed
-#
-COMPLETED=0
-COUNTER=1
-while ((COMPLETED < $WAIT_UNTIL_COMPLETED)); do
-	msg "${GREEN}Waiting for async jobs to finish (#${COUNTER}, Finished: $COMPLETED/$WAIT_UNTIL_COMPLETED)${NOFORMAT}"
-	COUNTER=$((COUNTER + 1))
-	[[ "$COUNTER" -gt 50 ]] && break
-	sleep 10
-done
+update_rubygems
+update_gems
+update_js_tools
+update_hammerspoon_seal_plugin_data
+install_special_cases
 
 /usr/bin/xattr -r ~/Library/QuickLook >/dev/null
 /usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook >/dev/null
-
-# if [ -d /Applications/Microsoft\ Teams.app ]; then
-#   if 2>/dev/null 1>&2 codesign --verify "/Applications/Microsoft Teams.app"; then
-#     log ">>> Removing code signage from MS Teams for virtual cams to work"
-#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app"
-#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper.app"
-#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (GPU).app"
-#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Renderer).app"
-#     sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Plugin).app"
-#   fi
-# fi
-#
-
-async_stop_worker update_worker
