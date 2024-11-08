@@ -68,7 +68,6 @@ BREW_CASKS=(
 	android-platform-tools # adb
 	aws-vault              # AWS cred management
 	disk-inventory-x       # Find large files
-	gpg-suite              # PGP
 	hammerspoon            # Control the mac via lua
 	iterm2                 # Terminal
 	itsycal                # Small menubar calendar
