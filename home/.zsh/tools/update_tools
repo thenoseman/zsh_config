@@ -180,7 +180,7 @@ update_hammerspoon_seal_plugin_data() {
 	"$HOME/.hammerspoon/Spoons/Seal.spoon/mdn/generate.sh"
 
 	# hammerspoon seal plugin "dom something"
-	"$HOME/.hammerspoon/Spoons/Seal.spoon/dom/generate.sh"
+	#"$HOME/.hammerspoon/Spoons/Seal.spoon/dom/generate.sh"
 }
 
 install_special_cases() {
