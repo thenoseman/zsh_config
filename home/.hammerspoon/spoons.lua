@@ -21,7 +21,7 @@ spoon.ClipboardToolSqlite:start()
 -- Seal
 --
 if not hs.hotkey.assignable({ "cmd" }, "Space") then
-  hs.alert("CMD+SPACE hotkey not assignable. Remove as spotlight search hotkey")
+  hs.alert("CMD+SPACE hotkey not assignable. Replace the bound key (see spotlight search hotkey)")
 end
 hs.loadSpoon("Seal")
 spoon.Seal:bindHotkeys({ show = { { "cmd" }, "Space" } })

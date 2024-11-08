@@ -57,7 +57,13 @@ Create and fill `zsh_config/home/.zsh/private/export.sh`
 
 `colima start -c 4 -d 80 -m 4 -t "vz" --vz-rosetta`
 
+If you get 
 
+```bash
+(anon):18: failed to load module `aloxaf/fzftab': dlopen(/Users/.../.zsh/modules/fzf-tab/modules/Src/aloxaf/fzftab.bundle, 0x0009):
+```
+
+You may need to go to `/Users/.../.zsh/modules/fzf-tab/modules/Src/aloxaf/` and do `ln -s fzftab.so fzftab.bundle`
 
 # Tool notes
 

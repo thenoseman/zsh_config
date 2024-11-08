@@ -16,6 +16,7 @@ BREW_PACKAGES=(
 	biome                    # A very fast formatter/linter for TS/JS/JSON
 	colima                   # Alternative to docker desktop for Mac
 	coreutils                # Base tools for every OS
+	curl                     # For libcurl
 	direnv                   # Manage environment per directory (also used for tools management)
 	docker                   # -> colima
 	docker-completion        # -> colima
@@ -32,11 +33,13 @@ BREW_PACKAGES=(
 	git                      # Version management software
 	git-delta                # Better git diff
 	gnu-tar                  # GNU tar for MacOs
+	groff                    # groff for fzftab
 	gsed                     # GNU sed for MacOs
 	imagemagick              # Image manipulation tools
 	jhead                    # Lossless JPG auto rotation
 	jq                       # Manipulate, format and filter JSON
 	jump                     # directory autojump, alternative to zoxide
+	lua                      # For hammerspoon lib includes
 	node                     # node JS
 	node-build               # More node versions. Used in "install_node" function.
 	oath-toolkit             # OTP token management/creation
