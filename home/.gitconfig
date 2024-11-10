@@ -41,6 +41,9 @@
 [merge]
   #summary=true
   tool = Kaleidoscope
+[merge "mergiraf"]
+  name = mergiraf
+  driver = $HOME/Sync/shared-with-company/shell/mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P
 [mergetool]
   keepBackup = false
   prompt = false
@@ -56,7 +59,8 @@
   algorithm = patience
   colormoved = "default"
   colormovedws = "allow-indentation-change"  
-  tool = difftastic
+  #tool = difftastic
+  external = difft
 [difftool]
   prompt = false
 [difftool "kdiff3"]
