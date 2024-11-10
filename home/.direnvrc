@@ -10,7 +10,6 @@ use_ruby() {
 
   PATH_add $dir
   load_prefix $dir
-  layout ruby
 }
 
 # Use newest version of node specified.
