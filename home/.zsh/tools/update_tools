@@ -104,7 +104,7 @@ RUBY_GEMS=(
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" &>/dev/null && pwd -P)
 
 msg() {
-	echo >&2 -e "${*-}" | box 33
+	echo -e "${*-}" | box 33
 }
 
 update_zsh_config() {
