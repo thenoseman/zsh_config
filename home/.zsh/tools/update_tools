@@ -159,6 +159,7 @@ update_gems() {
 
 update_js_tools() {
 	msg "update_js_tools"
+	NODE_OPTIONS="--disable-warning=ExperimentalWarning"
 	for p in "${NODE_PACKAGES[@]}"; do
 		npm install -g "${p}"
 	done
