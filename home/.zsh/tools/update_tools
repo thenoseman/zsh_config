@@ -50,7 +50,7 @@ BREW_PACKAGES=(
 	readline                 # GNU readline (For ruby I think)
 	ripgrep                  # The best file search tool
 	ruby-build               # Build ruby versions into ~/.rubies
-	rustup-init              # rust toolchain init
+	rustup                   # rust toolchain
 	selene                   # LUA formatter
 	shellcheck               # shell script linter
 	shfmt                    # shell script formatter
