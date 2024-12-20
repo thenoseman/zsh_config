@@ -7,6 +7,8 @@ typeset -a BREW_TAPS
 typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
 
+SKIP_RUBY=1
+
 BREW_TAPS=(
 	universal-ctags/universal-ctags # ctags tool
 )
@@ -209,11 +211,13 @@ install_missing_brew_casks
 install_missing_brew_special_cases
 install_missing_brew_formulas
 brew upgrade
-update_rubygems
-update_gems
 update_js_tools
 update_hammerspoon_seal_plugin_data
 install_special_cases
+if [[ "${SKIP_RUBY}" == "0" ]]; then
+	update_rubygems
+	update_gems
+fi
 
 /usr/bin/xattr -r ~/Library/QuickLook >/dev/null
 /usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook >/dev/null
