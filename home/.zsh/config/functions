@@ -12,7 +12,7 @@ info() {
 # Find a file starting with $1
 #
 f() {
-	rg --hidden --files | grep --color "${@}"
+	rg --unrestricted --hidden --files | grep --color "${@}"
 }
 
 #
@@ -159,15 +159,6 @@ aws_list_ec2_instances() {
 		column -t -s " "
 }
 
-# Replaces https://github.com/localstack/awscli-local
-awslocal() {
-	unset AWS_PROFILE
-	export AWS_ACCESS_KEY_ID=test
-	export AWS_SECRET_ACCESS_KEY=test
-	export AWS_DEFAULT_REGION="${DEFAULT_REGION:-$AWS_DEFAULT_REGION}"
-	aws --endpoint-url="http://${LOCALSTACK_HOST:-localhost}:4566" "$@"
-}
-
 #
 # TERRAFORM: Targeted plan using @floj amazing tfrs (https://github.com/floj/tfrs)
 #
@@ -177,7 +168,7 @@ awslocal() {
 # lipo -create -output tfrs tfrs-arm64 tfrs-amd64
 #
 
-# PLAN using locat source code / modules
+# PLAN using local source code / modules
 tf-p() {
 	# shellcheck disable=SC2046
 	aws-vault-wrapper "$HOMEBREW_PREFIX/bin/terraform" plan -out plan.out -lock-timeout=5m -compact-warnings $(tfrs --depth 3 --list | fzf -m -q "$1" --bind esc:clear-query | sed -e 's#^#-target #')
