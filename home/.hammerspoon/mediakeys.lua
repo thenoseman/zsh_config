@@ -6,6 +6,10 @@
 local log = hs.logger.new("⏏️", "debug")
 local cmus_socket_path = nil
 
+-- Will be used in app_kill also!
+-- selene: allow(unscoped_variables)
+cmus_remote_socket = nil
+
 -- http://asciimage.org/
 local icon = [[ASCII:
 .331....
@@ -52,8 +56,6 @@ local function receive_data(data)
   show_title_in_menubar(artist .. ": " .. title)
 end
 
-local cmus_remote_socket = nil
-
 local key_to_cmus_command = {
   ["PLAY"] = "player-pause",
   ["FAST"] = "player-next",
@@ -61,11 +63,11 @@ local key_to_cmus_command = {
 }
 
 --
--- Stop mediakeys to start apple apps and use them for CMUS
+-- Stop mediakeys to from starting tapple apps and use them for CMUS
 --
 local media_tap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, function(event)
   local data = event:systemKey()
-  if data["key"] ~= "PLAY" and data["key"] ~= "FAST" and data["key"] ~= "REWIND" then
+  if not data or data["key"] ~= "PLAY" and data["key"] ~= "FAST" and data["key"] ~= "REWIND" then
     return false, nil
   end
 
