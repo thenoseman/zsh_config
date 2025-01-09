@@ -47,6 +47,8 @@ Execute `relink`.
 
 Execute `update_all`
 
+Execute `update-tools-from-github`
+
 Link from sync to `$HOMEBREW_PREFIX/etc/wireguard`
 
 Link from sync to `$HOMEBREW_PREFIX/etc/coredns/Corefile`

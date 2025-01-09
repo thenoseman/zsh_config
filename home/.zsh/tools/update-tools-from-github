@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# vim: set ft=sh:
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" &>/dev/null && pwd -P)
+here=$(pwd)
+
+# shellcheck disable=SC1090
+source ~/.zsh/config/functions
+
+msg() {
+	echo -e "${*-}" | box 33
+}
+
+cd "${script_dir}" || exit 1
+
+#
+# Wormhole
+#
+DL_URL=$(curl -sq "https://api.github.com/repos/psanford/wormhole-william/releases/latest" | grep -E "browser_download_url.*darwin.*arm64" | cut -d '"' -f 4)
+msg "Downloading ${DL_URL}"
+curl -qsL -o wormhole "${DL_URL}"
+chmod +x wormhole
+./wormhole --version
+
+#
+# Ruplacer
+#
+URL=$(curl -sq "https://api.github.com/repos/your-tools/ruplacer/releases/latest" | grep -E "browser_download_url.*aarch64.*darwin" | head -n1 | cut -d '"' -f 4)
+msg "Downloading ${URL}"
+curl -qsL -o /tmp/ruplacer.tar.xz "${URL}"
+tar -xf /tmp/ruplacer.tar.xz --strip-components 1 -C /tmp
+mv /tmp/ruplacer "${script_dir}"
+chmod +x ruplacer
+./ruplacer --version
+
+#
+# mergiraf
+#
+DL=$(curl -s "https://codeberg.org/api/v1/repos/mergiraf/mergiraf/releases/latest" | jq -r ".assets[] | select(.name | test(\"aarch64-apple-darwin\")) | .browser_download_url")
+msg "Downloading ${DL}"
+curl -L -q -s -o "/tmp/mergiraf.tar.gz" "$DL"
+tar xzf /tmp/mergiraf.tar.gz -C /tmp
+mv /tmp/mergiraf "${script_dir}"
+chmod +x mergiraf
+mergiraf --version
+
+#
+# code spelunker
+#
+DL=$(curl -s https://api.github.com/repos/boyter/cs/releases/latest | jq -r ".assets[] | select(.name | test(\"Darwin_$(arch)\")) | .browser_download_url")
+msg "Downloading ${DL}"
+curl -L -q -s -o "/tmp/cs.tar.gz" "$DL"
+tar xzf /tmp/cs.tar.gz -C /tmp
+mv /tmp/cs "${script_dir}"
+chmod +x cs
+./cs --version
+
+cd "${here}"
