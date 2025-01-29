@@ -74,3 +74,4 @@ You may need to go to `/Users/.../.zsh/modules/fzf-tab/modules/Src/aloxaf/` and 
 - `aws-vault-generate-binstubs.sh`: Generates binstubs that wrap tools dependent on a AWS environment/credentials in aws-vault. Also allows to override the binary that is actually executed with aws-vault.
 - `exif-renamer`: Renames all images/videos in the directory and creates/sorts them to a nixe directory structure.
 - `execute_maximized` executes a command in a maximized iterm2 window
+- `German no dead-keys.keylayout` install this to make backticks work in MS Teams (copy into `~/Library/Keyboard\ Layouts` and reboot, then add in Settings -> Keyboard) 
