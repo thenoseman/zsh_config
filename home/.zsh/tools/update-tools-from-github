@@ -54,4 +54,14 @@ mv /tmp/cs "${script_dir}"
 chmod +x cs
 ./cs --version
 
-cd "${here}"
+#
+# testssl.sh
+#
+mkdir -p "${script_dir}/testssl" || true
+msg "Cloning testssl"
+git clone --depth 1 https://github.com/testssl/testssl.sh.git "${script_dir}/testssl"
+chmod +x "${script_dir}/testssl/testssl.sh"
+ln -s "${script_dir}/testssl/testssl.sh" "${script_dir}/testssl.sh"
+"${script_dir}/testssl.sh" --version
+
+cd "${here}" || exit 1
