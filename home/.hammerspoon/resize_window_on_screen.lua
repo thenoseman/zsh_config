@@ -13,7 +13,7 @@ local resizeIfDraggedToScreen = primaryDisplay
 
 local timer = nil
 local testIntervalSec = 1 -- How long to wait until running the resize function?
-local border = 30 -- The border/margin to leave around the window
+local border = 60 -- The border/margin to leave around the window
 
 function resizeWindowIfOnScreen(window)
   if window == nil or window:size().w < window_min_width_to_trigger then
