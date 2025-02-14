@@ -42,7 +42,10 @@ local modifyNameMap = function(info, add)
       displayname = hs.fs.displayName(item.kMDItemPath)
     end
 
-    displayname = displayname:gsub("%.app$", "", 1)
+    if displayname then
+      displayname = displayname:gsub("%.app$", "", 1)
+    end
+
     if string.find(item.kMDItemPath, "%.prefPane$") then
       -- "Systemeinstellung" instead of prefPane please
       displayname = displayname:gsub("%.prefPane$", "", 1)
