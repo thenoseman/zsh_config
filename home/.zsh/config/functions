@@ -253,9 +253,9 @@ box() {
 	r() { printf "$1%.0s" $(seq 0 "$2"); }
 	b() { echo "${T:$1:1}"; }
 	for line in "${contents[@]}"; do [[ "${#line}" -gt "$max" ]] && max=${#line}; done
-	echo -e "$C$(b $3)$(b $(($3 + 1)))${2:-}$(r "$(b $(($3 + 1)))" "$((max - ${#2} + 1))")$(b $(($3 + 2)))$R"
-	for line in "${contents[@]}"; do echo -e "$C$(b $(($3 + 9)))$R $(echo "$line" | expand -t 1)$(r " " $((max - ${#line}))) $C$(b $(($3 + 9)))$R"; done
-	echo -e "$C$(b $(($3 + 18)))$(r "${T:(($3 + 19)):1}" "$((max + 2))")$(b $(($3 + 20)))$R"
+	echo -e "$C$(b $3)$(b $(($3 + 1)))${2:-}$(r "$(b $(($3 + 1)))" "$((max - ${#2}))")$(b $(($3 + 2)))$R"
+	for line in "${contents[@]}"; do echo -e "$C$(b $(($3 + 9)))$R $(echo "$line" | expand -t 1)$(r " " $((max - ${#line})))$C$(b $(($3 + 9)))$R"; done
+	echo -e "$C$(b $(($3 + 18)))$(r "${T:(($3 + 19)):1}" "$((max + 1))")$(b $(($3 + 20)))$R"
 }
 
 #
