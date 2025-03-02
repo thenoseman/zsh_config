@@ -24,7 +24,8 @@ export JAVA_HOME
 export REPORTTIME=2
 
 # Manpager with ascii-sequences
-export MANPAGER=more
+# This breaks awcli help ATM
+# export MANPAGER=more
 
 # Maven
 export MAVEN_OPTS="-Xms512m -Xmx1024m -Dfile.encoding=UTF-8"
