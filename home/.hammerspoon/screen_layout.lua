@@ -15,8 +15,12 @@ function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
 end
 
 function width_to_word(width)
-  if width > 2000 then
+  if width > 2000 and width < 3000 then
     return "large"
+  end
+  -- WQHD
+  if width > 3000 then
+    return "very_large"
   end
   return "small"
 end
