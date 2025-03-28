@@ -19,6 +19,7 @@ alias b64d="pbpaste | base64 -d"
 alias du="dust"
 alias cat="bat --wrap=never --paging=never --style=snip --theme 'Monokai Extended Origin'"
 alias dig="doggo"
+alias jqlog="jq -rcR '. as \$line | try (fromjson | .) catch \$line'"
 
 #
 # VIM
