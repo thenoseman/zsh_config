@@ -1,6 +1,8 @@
 --
 -- Screen layout and window mover
 --
+require("helper")
+
 local log = hs.logger.new("📺", "debug")
 
 -- Screen/ Window movement
@@ -84,6 +86,12 @@ if not file_exists(os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .
 end
 log.i("Using config '" .. layout_file .. "'")
 local CONFIG = require("layout." .. layout_file)
+
+-- selene: allow(undefined_variable)
+if CONFIG.desktopImagePathPrimary and file_exists(CONFIG.desktopImagePathPrimary) then
+  log.i("Using desktop image for PRIMARY: " .. CONFIG.desktopImagePathPrimary)
+  primaryDisplay:desktopImageURL("file://" .. CONFIG.desktopImagePathPrimary)
+end
 
 -- cmd+shift+<trigger> config:
 --

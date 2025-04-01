@@ -26,4 +26,6 @@ M.windowLayout = {
   { "Microsoft Outlook", "Erinnerung", secondaryDisplay, { x = 0.7, y = 0.8, w = 0.29, h = 0.2 }, nil, string.match },
 }
 
+M.desktopImagePathPrimary = os.getenv("HOME") .. "/.hammerspoon/desktopImages/34-inch-plants.jpg"
+
 return M
