@@ -52,6 +52,15 @@ dirdo() {
 }
 
 #
+# Force index a directory into the spotloght index
+#
+mdindex() {
+	local ipath="${1:-/Applications}"
+	echo "Indexing .app in ${ipath}"
+	find "${ipath}" -maxdepth 2 -type d -name "*.app" -exec mdimport {} \;
+}
+
+#
 # Install ruby version
 #
 install_ruby() {
