@@ -60,6 +60,22 @@ mdindex() {
 	find "${ipath}" -maxdepth 2 -type d -name "*.app" -exec mdimport {} \;
 }
 
+mirror_file() {
+	local filename="${1:-}"
+	local source_dir="${2:-}"
+	local target_dir="${3:-}"
+	[[ -z "${filename}" ]] && echo "first param (filename) missing" && exit 1
+	[[ -z "${source_dir}" ]] && echo "second param (source dir) missing" && exit 1
+	[[ -z "${target_dir}" ]] && echo "third param (target dir) missing" && exit 1
+
+	echo "Copy every found '${filename}' in directory '${source_dir}' to directory '${target_dir}' ?"
+	echo "Press [ENTER] to continue, ctrl+c to cancel."
+	read -r yn
+	echo "Please wait ..."
+
+	rsync --ignore-existing -aim --include="${filename}" --include='*/' --exclude='*' "${source_dir}/" "${target_dir}"
+}
+
 #
 # Install ruby version
 #
