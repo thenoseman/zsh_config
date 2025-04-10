@@ -77,6 +77,8 @@ BREW_CASKS=(
 	iterm2                 # Terminal
 	itsycal                # Small menubar calendar
 	kdiff3                 # Diff/Merge tool
+	keka                   # Archive compression/decompression
+	kekaexternalhelper     # keka as defautl extractor for all known formats
 	keepassxc              # Passwords
 	macvim                 # Editor
 	namechanger            # File renamer GUI
@@ -84,7 +86,6 @@ BREW_CASKS=(
 	qlmarkdown             # Quicklook Plugin: Markdown
 	quicklook-json         # Quicklook Plugin: JSON
 	shottr                 # Menubar screenshot utility
-	the-unarchiver         # Unpack all archive types
 	typora                 # Markdown editor
 	vlc                    # Video player
 )
