@@ -9,10 +9,10 @@ cd "$script_dir" || exit 1
 rm -rf terraform-provider-aws-index-*.txt terraform-provider-aws
 
 echo "[AWS-TERRAFORM] Cloning AWS terraform provider docs"
-git clone -n --depth=1 --filter=tree:0 https://github.com/hashicorp/terraform-provider-aws.git
+git clone -q -n --depth=1 --filter=tree:0 https://github.com/hashicorp/terraform-provider-aws.git
 cd terraform-provider-aws || exit 1
 git sparse-checkout set --no-cone website/docs
-git checkout
+git checkout &>/dev/null
 cd ..
 
 process() {
