@@ -81,6 +81,7 @@ BREW_CASKS=(
 	kekaexternalhelper     # keka as defautl extractor for all known formats
 	keepassxc              # Passwords
 	macvim                 # Editor
+	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
 	qlimagesize            # QuickLook Plugin: Image Info
 	qlmarkdown             # Quicklook Plugin: Markdown
