@@ -237,14 +237,14 @@ citrix-start-services() {
 #
 direnv_java() {
 	# shellcheck disable=SC3037,SC2028,SC2086
-	echo -n "source_up\nexport JAVA_HOME=\"$(/usr/libexec/java_home -v ${1}:-17)\"\nexport MAVEN_OPTS=\"-Xms512m -Xmx1024m -Dfile.encoding=UTF-8\"" >>.envrc
+	echo -n "source_up_if_exists\nexport JAVA_HOME=\"$(/usr/libexec/java_home -v ${1}:-17)\"\nexport MAVEN_OPTS=\"-Xms512m -Xmx1024m -Dfile.encoding=UTF-8\"" >>.envrc
 	cat .envrc
 	direnv allow
 }
 
 direnv_node() {
 	# shellcheck disable=SC3037,SC2028,SC2086
-	echo -n "source_up\nuse node ${1:-21}" >>.envrc
+	echo -n "source_up_if_exists\nuse node ${1:-21}" >>.envrc
 	cat .envrc
 	direnv allow
 }
