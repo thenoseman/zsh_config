@@ -6,6 +6,7 @@ source ~/.zsh/config/functions
 typeset -a BREW_TAPS
 typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
+typeset -a ALLOW_FIREWALL_INCOMING
 
 SKIP_RUBY=1
 
@@ -100,6 +101,12 @@ NODE_PACKAGES=(
 
 RUBY_GEMS=(
 	pry-byebug
+)
+
+# List og binaries that should be allow thru the firewall
+# Those might be brew links ansd thus must be resolved to their realpath
+ALLOW_FIREWALL_INCOMING=(
+	syncthing
 )
 
 #
@@ -202,6 +209,14 @@ install_special_cases() {
 	fi
 }
 
+allow_firewall_incoming() {
+	msg "allow_firewall_incoming"
+	for p in "${ALLOW_FIREWALL_INCOMING[@]}"; do
+		path=$(realpath $(which ${p}))
+		/usr/libexec/ApplicationFirewall/socketfilterfw --add "${path}"
+	done
+}
+
 # update homebrew taps
 for tap in $BREW_TAPS; do
 	[[ ! $installed_taps =~ $tap ]] && brew tap "$tap"
@@ -216,6 +231,7 @@ brew upgrade
 update_js_tools
 update_hammerspoon_seal_plugin_data
 install_special_cases
+allow_firewall_incoming
 if [[ "${SKIP_RUBY}" == "0" ]]; then
 	update_rubygems
 	update_gems
