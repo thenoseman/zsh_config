@@ -20,6 +20,7 @@ alias du="dust"
 alias cat="bat --wrap=never --paging=never --style=snip --theme 'Monokai Extended Origin'"
 alias dig="doggo"
 alias jqlog="jq -rcR '. as \$line | try (fromjson | .) catch \$line'"
+alias cmus="LC_ALL=C /opt/homebrew/bin/cmus"
 
 #
 # VIM
