@@ -16,6 +16,7 @@
   fuck = commit --amend
   d = difftool
   who = !git config user.name && git config user.email
+  branch-commits = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log --oneline $(git merge-base main $GIT_CURRENT_BRANCH)..$GIT_CURRENT_BRANCH
 [color]
   branch = auto
   status = auto
