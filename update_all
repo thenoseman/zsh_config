@@ -14,7 +14,6 @@ else
 fi
 
 # Compile fzf-tab
-pushd "$HOME/.zsh/modules/fzf-tab/modules" || exit 1
-CPPFLAGS=-I/$HOMEBREW_PREFIX/include CFLAGS="-g -Wall -O2" LDFLAGS=-L$HOMEBREW_PREFIX/lib ./configure --disable-gdbm --without-tcsetpgrp DL_EXT=bundle
-make -j
-popd || exit 0
+# shellcheck disable=SC1091
+source "$HOME/.zsh/modules/fzf-tab/fzf-tab.zsh"
+build-fzf-tab-module
