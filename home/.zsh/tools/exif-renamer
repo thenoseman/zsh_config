@@ -78,7 +78,7 @@ parse_params() {
 }
 
 parse_params "$@"
-require_bin jhead exiftool
+require_bin exiftool
 
 msg "Working with images in directory ${args[0]}"
 msg "Sorted images will be in ${args[0]}/sorted"
