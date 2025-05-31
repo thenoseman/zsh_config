@@ -16,9 +16,9 @@ export LC_ALL="en_US.UTF-8"
 # https://news.sherlock.stanford.edu/posts/when-setting-an-environment-variable-gives-you-a-40-x-speedup
 export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 
-# Use openjdk 11
+# Use java 21
 export JAVA_HOME
-[ -e "/usr/libexec/java_home" ] && JAVA_HOME=$(/usr/libexec/java_home -v 11)
+[ -e "/usr/libexec/java_home" ] && JAVA_HOME=$(/usr/libexec/java_home -v 21)
 
 # Show `time` output for any command that takes longer than 2 second of CPU time
 export REPORTTIME=2
@@ -39,7 +39,7 @@ export GPG_TTY="$(tty)"
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-#homebrew
+# homebrew
 export HOMEBREW_INSTALL_CLEANUP=1
 export HOMEBREW_NO_ENV_HINTS=1
 
@@ -66,6 +66,6 @@ export BUILDKIT_PROGRESS="plain"
 export NODE_VERSIONS="$HOME/.nodes"
 export NODE_VERSION_PREFIX=""
 
-# fx (https://fx.wtf/=
+# fx (https://fx.wtf/)
 export FX_SHOW_SIZE=true
 export FX_THEME=6

@@ -66,7 +66,6 @@ BREW_PACKAGES=(
 	wireguard-tools          # wireguard userland tools
 	yamllint                 # Lint YAML files
 	yt-dlp                   # Download youtube videos
-	zoxide                   # autojump implementation
 	zsh                      # newer zsh
 )
 
