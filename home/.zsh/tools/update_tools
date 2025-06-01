@@ -15,58 +15,59 @@ BREW_TAPS=(
 )
 
 BREW_PACKAGES=(
-	bat                      # a 'cat' clone
-	biome                    # A very fast formatter/linter for TS/JS/JSON
-	colima                   # Alternative to docker desktop for Mac
-	coreutils                # Base tools for every OS
-	curl                     # For libcurl
-	direnv                   # Manage environment per directory (also used for tools management)
-	docker                   # -> colima
-	docker-completion        # -> colima
-	docker-compose           # -> colima
-	docker-credential-helper # -> colima
-	doggo                    # Command-line DNS client for humans
-	dust                     # Alternative to "du"
-	eza                      # Alternative to "ls" (fork, active)
-	exiftool                 # Manipulate image EXIF data
-	ffmpeg                   # Video conversion
-	findutils                # find, xargs, and locate
-	fx                       # Like jq but using JS and interactive
-	fzf                      # Fuzzy finder. Used everywhere in my config
-	git                      # Version management software
-	git-delta                # Better git diff
-	gnu-tar                  # GNU tar for MacOs
-	groff                    # groff for fzftab
-	gsed                     # GNU sed for MacOs
-	imagemagick              # Image manipulation tools
-	jhead                    # Lossless JPG auto rotation
-	jq                       # Manipulate, format and filter JSON
-	jump                     # directory autojump, alternative to zoxide
-	lua                      # For hammerspoon lib includes
-	node                     # node JS
-	node-build               # More node versions. Used in "install_node" function.
-	oath-toolkit             # OTP token management/creation
-	openconnect              # VPN client
-	openssl                  # Newer version of openssl than present in MacOs
-	pstree                   # tree view of directories
-	python@3.11              # python 3.11
-	readline                 # GNU readline (For ruby I think)
-	ripgrep                  # The best file search tool
-	ruby-build               # Build ruby versions into ~/.rubies
-	rustup                   # rust toolchain
-	selene                   # LUA formatter
-	shellcheck               # shell script linter
-	shfmt                    # shell script formatter
-	sqlite                   # sqlite tools
-	stylua                   # Format lua code
-	syncthing                # Sync data between computers
-	tig                      # TUI for git
-	watch                    # GNU watch
-	watchman                 # File watcher by facebook
-	wireguard-tools          # wireguard userland tools
-	yamllint                 # Lint YAML files
-	yt-dlp                   # Download youtube videos
-	zsh                      # newer zsh
+	bat                         # a 'cat' clone
+	biome                       # A very fast formatter/linter for TS/JS/JSON
+	colima                      # Alternative to docker desktop for Mac
+	coreutils                   # Base tools for every OS
+	curl                        # For libcurl
+	direnv                      # Manage environment per directory (also used for tools management)
+	docker                      # -> colima
+	docker-completion           # -> colima
+	docker-compose              # -> colima
+	docker-credential-helper    # -> colima
+	doggo                       # Command-line DNS client for humans
+	dust                        # Alternative to "du"
+	eza                         # Alternative to "ls" (fork, active)
+	exiftool                    # Manipulate image EXIF data
+	ffmpeg                      # Video conversion
+	findutils                   # find, xargs, and locate
+	fx                          # Like jq but using JS and interactive
+	fzf                         # Fuzzy finder. Used everywhere in my config
+	git                         # Version management software
+	git-delta                   # Better git diff
+	gnu-tar                     # GNU tar for MacOs
+	groff                       # groff for fzftab
+	gsed                        # GNU sed for MacOs
+	imagemagick                 # Image manipulation tools
+	jhead                       # Lossless JPG auto rotation
+	jq                          # Manipulate, format and filter JSON
+	jump                        # directory autojump, alternative to zoxide
+	lima-additional-guestagents # Additional guests for colima/lima
+	lua                         # For hammerspoon lib includes
+	node                        # node JS
+	node-build                  # More node versions. Used in "install_node" function.
+	oath-toolkit                # OTP token management/creation
+	openconnect                 # VPN client
+	openssl                     # Newer version of openssl than present in MacOs
+	pstree                      # tree view of directories
+	python@3.11                 # python 3.11
+	readline                    # GNU readline (For ruby I think)
+	ripgrep                     # The best file search tool
+	ruby-build                  # Build ruby versions into ~/.rubies
+	rustup                      # rust toolchain
+	selene                      # LUA formatter
+	shellcheck                  # shell script linter
+	shfmt                       # shell script formatter
+	sqlite                      # sqlite tools
+	stylua                      # Format lua code
+	syncthing                   # Sync data between computers
+	tig                         # TUI for git
+	watch                       # GNU watch
+	watchman                    # File watcher by facebook
+	wireguard-tools             # wireguard userland tools
+	yamllint                    # Lint YAML files
+	yt-dlp                      # Download youtube videos
+	zsh                         # newer zsh
 )
 
 BREW_CASKS=(
@@ -80,6 +81,7 @@ BREW_CASKS=(
 	keka                   # Archive compression/decompression
 	kekaexternalhelper     # keka as defautl extractor for all known formats
 	keepassxc              # Passwords
+	lulu                   # Simple outgoing firewall
 	macvim                 # Editor
 	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
