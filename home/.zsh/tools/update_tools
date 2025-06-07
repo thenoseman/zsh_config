@@ -81,7 +81,6 @@ BREW_CASKS=(
 	keka                   # Archive compression/decompression
 	kekaexternalhelper     # keka as defautl extractor for all known formats
 	keepassxc              # Passwords
-	lulu                   # Simple outgoing firewall
 	macvim                 # Editor
 	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
