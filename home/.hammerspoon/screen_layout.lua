@@ -72,12 +72,31 @@ else
   log.i("Secondary display: NONE")
 end
 
+--
+-- THREE displays. Assume "built-in" as terniary display.
+--
+-- selene: allow(unscoped_variables)
+terniaryDisplay = nil
+if not not secondaryDisplay and not not primaryDisplay and #hs.screen.allScreens() == 3 then
+  terniaryDisplay = hs.fnutils.find(hs.screen.allScreens(), function(display)
+    local dname = string.lower(display:name())
+    return string.find(dname, "built-in", 1, true) ~= nil
+  end)
+  log.i("Terniary display: " .. terniaryDisplay:name())
+end
+
 -- Build name of layout file
 -- The build-in screen width is 1280 px so just distinguish between big (eg. DELL) and small (eg. build-in)
 layout_file = "primary_"
   .. width_to_word(primaryDisplay:currentMode().w)
   .. "_secondary_"
   .. width_to_word(secondaryDisplay:currentMode().w)
+
+-- In case of three displays:
+if not not terniaryDisplay then
+  layout_file = layout_file .. "_terniary_buildin"
+end
+
 log.i("Looking for '" .. os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua'")
 
 -- selene: allow(undefined_variable)
