@@ -192,6 +192,9 @@ update_hammerspoon_seal_plugin_data() {
 
 	# hammerspoon seal plugin "dom something"
 	#"$HOME/.hammerspoon/Spoons/Seal.spoon/dom/generate.sh"
+
+	# hammerspoon seal plugin "lua something"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/lua/generate.sh"
 }
 
 install_special_cases() {
