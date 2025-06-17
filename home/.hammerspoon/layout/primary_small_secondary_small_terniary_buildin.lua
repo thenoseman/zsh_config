@@ -3,6 +3,18 @@
 --# selene: allow(undefined_variable)
 local M = {}
 
+-- ┌─────────────┐┌─────────────┐
+-- │             ││             │
+-- │ HP 524 pf/m ││ HP 524 pf/m │
+-- │             ││             │
+-- │             ││             │
+-- └─────────────┘└─────────────┘
+--          ┌──────────┐
+--          │          │
+--          │ Build-In │
+--          │          │
+--          └──────────┘
+
 --
 -- Layout when pressing cmd+shift+9
 --
@@ -22,5 +34,7 @@ M.windowLayout = {
   { "Brave Browser", "DevTools -", secondaryDisplay, { x = 0, y = 0, w = 1, h = 1 }, nil, nil },
   { "Microsoft Outlook", "Erinnerung", secondaryDisplay, { x = 0.7, y = 0.8, w = 0.29, h = 0.2 }, nil, string.match },
 }
+
+M.desktopImagePathSecondary = os.getenv("HOME") .. "/.hammerspoon/desktopImages/hp524-1920x1080.jpg"
 
 return M

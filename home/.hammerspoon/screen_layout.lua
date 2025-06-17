@@ -8,6 +8,9 @@ local log = hs.logger.new("📺", "debug")
 -- Screen/ Window movement
 hs.window.animationDuration = 0
 
+local secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
+local layout_file = "default"
+
 function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
   if actualWindowTitle:find(targetMatchWindowTitle) then
     return true
@@ -51,7 +54,7 @@ secondaryDisplay = hs.fnutils.find(hs.screen.allScreens(), function(display)
   return string.find(dname, primary_display_lower, 1, true) == nil and string.find(dname, "built-in", 1, true) == nil
 end)
 
--- If we have NO secondary that is not the buuld-in display, choose the buildin as secondary
+-- If we have NO secondary that is not the build-in display, choose the buildin as secondary
 if not secondaryDisplay then
   -- selene: allow(unscoped_variables)
   secondaryDisplay = hs.fnutils.find(hs.screen.allScreens(), function(display)
@@ -60,9 +63,6 @@ if not secondaryDisplay then
     return string.find(dname, "built-in", 1, true)
   end)
 end
-
-local secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
-local layout_file = "default"
 
 if not not secondaryDisplay and primaryDisplay ~= secondaryDisplay then
   log.i("Secondary display: " .. secondaryDisplay:name())
@@ -106,10 +106,20 @@ end
 log.i("Using config '" .. layout_file .. "'")
 local CONFIG = require("layout." .. layout_file)
 
+--
+-- Backgrounbd images are settable via the layout/*.lua files
+--
+
 -- selene: allow(undefined_variable)
 if CONFIG.desktopImagePathPrimary and file_exists(CONFIG.desktopImagePathPrimary) then
   log.i("Using desktop image for PRIMARY: " .. CONFIG.desktopImagePathPrimary)
   primaryDisplay:desktopImageURL("file://" .. CONFIG.desktopImagePathPrimary)
+end
+
+-- selene: allow(undefined_variable)
+if CONFIG.desktopImagePathSecondary and file_exists(CONFIG.desktopImagePathSecondary) then
+  log.i("Using desktop image for SECONDARY: " .. CONFIG.desktopImagePathSecondary)
+  secondaryDisplay:desktopImageURL("file://" .. CONFIG.desktopImagePathSecondary)
 end
 
 -- cmd+shift+<trigger> config:
