@@ -20,3 +20,10 @@ function file_read(path)
   file:close()
   return content
 end
+
+-- selene: allow(unused_variable)
+function scriptDir()
+  local str = debug.getinfo(1, "S").source
+  local path = str:sub(2):match("(.*/)")
+  return path
+end
