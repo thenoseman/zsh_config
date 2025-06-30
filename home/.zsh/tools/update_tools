@@ -62,6 +62,7 @@ BREW_PACKAGES=(
 	stylua                      # Format lua code
 	syncthing                   # Sync data between computers
 	tig                         # TUI for git
+	ubi                         # Universal binary installer
 	watch                       # GNU watch
 	watchman                    # File watcher by facebook
 	wireguard-tools             # wireguard userland tools
@@ -199,11 +200,10 @@ update_hammerspoon_seal_plugin_data() {
 
 install_special_cases() {
 	msg "install_special_cases"
-	DL=$(curl -s https://api.github.com/repos/boyter/cs/releases/latest | jq -r ".assets[] | select(.name | test(\"Darwin_$(arch)\")) | .browser_download_url")
-	curl -L -q -s -o "/tmp/cs.tar.gz" "$DL"
-	tar xzf /tmp/cs.tar.gz -C /tmp
-	mv /tmp/cs "$HOMEBREW_PREFIX/bin/"
-	chmod +x "$HOMEBREW_PREFIX/bin/cs"
+
+	ubi --project "boyter/cs" --in /opt/homebrew/bin/
+	ubi --project "your-tools/ruplacer" --in /opt/homebrew/bin/
+	ubi --project "psanford/wormhole-william" --in /opt/homebrew/bin/
 
 	# Link docker plugin(s)
 	if [[ ! -d ~/.ddocker/cli-plugins ]]; then
