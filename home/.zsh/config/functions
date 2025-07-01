@@ -40,15 +40,7 @@ ti() {
 #
 dirdo() {
 	echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
-	for a in *; do
-		if [[ -d "$a" ]]; then
-			cd "$a" || exit
-			# [[ -f .ruby-version ]] && chruby $(cat .ruby-version)
-			echo "${ccyellow}$(pwd)${ccend} ('${@}')"
-			("$@")
-			cd ..
-		fi
-	done
+	find . -mindepth 1 -maxdepth 1 -type d | parallel --color --tag -j4 "cd {} && ${@}"
 }
 
 #
