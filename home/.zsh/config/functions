@@ -40,7 +40,7 @@ ti() {
 #
 dirdo() {
 	echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
-	find . -mindepth 1 -maxdepth 1 -type d | parallel --color --tag -j4 "cd {} && ${@}"
+	find . -mindepth 1 -maxdepth 1 -type d | parallel --color --tagstring "[{}]" --trim --tag -j6 "cd {} && ${@}"
 }
 
 #
