@@ -26,4 +26,6 @@ M.windowLayout = {
   { "Google Chrome", "Playwright Test", primaryDisplay, { x = 0, y = 0, w = 0.66, h = 1 }, nil, string.match },
 }
 
+M.desktopImagePathSecondary = os.getenv("HOME") .. "/.hammerspoon/desktopImages/build-in-books-1600x1200.jpg"
+
 return M
