@@ -23,22 +23,9 @@ defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
 # Do not auto-boot when lid is opened (Original value: %03)
 # See https://osxdaily.com/2017/01/19/disable-boot-on-open-lid-macbook-pro/
 sudo nvram AutoBoot=%00
-
-# YMMV: Disable boot sound
-sudo nvram StartupMute=%01
 ```
 
 
-
-# MS Teams use virtualcam
-
-```bash
-sudo codesign --remove-signature "/Applications/Microsoft Teams.app"
-sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper.app"
-sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (GPU).app"
-sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Renderer).app"
-sudo codesign --remove-signature "/Applications/Microsoft Teams.app/Contents/Frameworks/Microsoft Teams Helper (Plugin).app"
-```
 
 # Todos fresh install
 Install `InconsolataGo Nerd Font Complete Mono.ttf` from `zsh_config/home/extars/fonts`.
@@ -59,7 +46,7 @@ Create and fill `zsh_config/home/.zsh/private/export.sh`
 
 `colima start -c 4 -d 80 -m 8 -t "vz" --vz-rosetta`
 
-Make spotlight index all prefpanes: `for prefpane in /System/Library/PreferencePanes/*.prefPane; do open $prefpane; done`
+Make spotlight index all prefpanes: `for prefpane in /System/Library/PreferencePanes/*.prefPane; do sudo mdimport $prefpane; done`
 
 ## Potential errors
 

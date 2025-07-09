@@ -10,6 +10,7 @@ local headsets_user_internal_mic_mapping = {
   ["Poly V4320 Series"] = true,
   ["Poly BT700"] = true,
   ["USB Audio Device"] = true,
+  ["AB13X USB Audio"] = true,
 }
 local buildin_name = "Built-in Output"
 -- selene:allow(unused_variable)
