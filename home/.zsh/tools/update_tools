@@ -85,7 +85,6 @@ BREW_CASKS=(
 	macvim                 # Editor
 	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
-	qlimagesize            # QuickLook Plugin: Image Info
 	qlmarkdown             # Quicklook Plugin: Markdown
 	quicklook-json         # Quicklook Plugin: JSON
 	shottr                 # Menubar screenshot utility
