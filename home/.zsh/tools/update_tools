@@ -50,7 +50,7 @@ BREW_PACKAGES=(
 	openconnect                 # VPN client
 	openssl                     # Newer version of openssl than present in MacOs
 	pstree                      # tree view of directories
-	python@3.11                 # python 3.11
+	python                      # python 3
 	readline                    # GNU readline (For ruby I think)
 	ripgrep                     # The best file search tool
 	ruby-build                  # Build ruby versions into ~/.rubies
@@ -73,7 +73,7 @@ BREW_PACKAGES=(
 
 BREW_CASKS=(
 	android-platform-tools # adb
-	aws-vault              # AWS cred management
+	aws-vault-binary       # AWS cred management
 	disk-inventory-x       # Find large files
 	hammerspoon            # Control the mac via lua
 	iterm2                 # Terminal
@@ -83,13 +83,13 @@ BREW_CASKS=(
 	kekaexternalhelper     # keka as defautl extractor for all known formats
 	keepassxc              # Passwords
 	macvim                 # Editor
+	mpv                    # MPV Video player
 	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
 	qlmarkdown             # Quicklook Plugin: Markdown
 	quicklook-json         # Quicklook Plugin: JSON
 	shottr                 # Menubar screenshot utility
 	typora                 # Markdown editor
-	vlc                    # Video player
 )
 
 NODE_PACKAGES=(
