@@ -40,16 +40,25 @@ ti() {
 #
 dirdo() {
 	echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
-	find . -mindepth 1 -maxdepth 1 -type d | parallel --color --tagstring "[{}]" --trim --tag -j6 "cd {} && ${@}"
+	find . -mindepth 1 -maxdepth 1 -type d | parallel --color --tagstring "[{}]" --trim lr --tag -j6 "cd {} && ${@}"
 }
 
 #
-# Force index a directory into the spotloght index
+# Force index a directory into the spotlight index
 #
-mdindex() {
-	local ipath="${1:-/Applications}"
-	echo "Indexing .app in ${ipath}"
-	find "${ipath}" -maxdepth 2 -type d -name "*.app" -exec mdimport {} \;
+spotlight-index-all() {
+	declare -a prefpanes=(
+		"/System/Library/PreferencePanes/"
+		"/Library/PreferencePanes"
+		"$HOME/Library/PreferencePanes"
+	)
+
+	echo "Indexing .app in /Applications"
+	find "/Applications" -maxdepth 2 -type d -name "*.app" -exec mdimport "{}" \;
+	for prefpane in "${prefpanes[@]}"; do
+		echo "Indexing .prefPane in ${prefpane}"
+		find "${prefpane}" -name "*.prefPane" -exec mdimport "{}" \;
+	done
 }
 
 mirror_file() {
@@ -73,7 +82,7 @@ mirror_file() {
 #
 install_ruby() {
 	local VERSION="${1:-}"
-	[[ -z "$VERSION" ]] && echo "Pass the ruby version (eg. activate_ruby 3.0.0)" && return
+	[[ -z "$VERSION" ]] && echo "Pass the ruby version (eg. install_ruby 3.0.0)" && return
 	if [[ ! -d "$HOME/.rubies/${VERSION}" ]]; then
 		echo "ruby version ${VERSION} not found. Installing."
 		ruby-build "${VERSION}" "$HOME/.rubies/${VERSION}"
