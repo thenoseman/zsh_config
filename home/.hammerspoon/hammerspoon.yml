@@ -1,4 +1,4 @@
-base: lua55
+base: lua53
 globals:
   hs:
     any: true

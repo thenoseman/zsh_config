@@ -145,25 +145,6 @@ end
 hs.application.enableSpotlightForNameSearches(true)
 obj:start()
 
-function obj:commands()
-  return {
-    kill = {
-      cmd = "kill",
-      fn = obj.choicesKillCommand,
-      plugin = obj.__name,
-      name = "Kill",
-      description = "Kill an application",
-    },
-    reveal = {
-      cmd = "reveal",
-      fn = obj.choicesRevealCommand,
-      plugin = obj.__name,
-      name = "Reveal",
-      description = "Reveal an application in the Finder",
-    },
-  }
-end
-
 function obj:bare()
   return self.choicesApps
 end

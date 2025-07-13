@@ -28,7 +28,6 @@ obj.chooser = nil
 obj.hotkeyShow = nil
 obj.hotkeyToggle = nil
 obj.plugins = {}
-obj.commands = {}
 obj.queryChangedTimer = nil
 
 obj.spoonPath = hs.spoons.scriptPath()
@@ -45,50 +44,6 @@ obj.queryChangedTimerDuration = 0.1
 --- Variable
 --- List of directories where Seal will look for plugins. Defaults to `~/.hammerspoon/seal_plugins/` and the Seal Spoon directory.
 obj.plugin_search_paths = { hs.configdir .. "/seal_plugins", obj.spoonPath }
-
---- Seal:refreshCommandsForPlugin(plugin_name)
---- Method
---- Refresh the list of commands provided by the given plugin.
----
---- Parameters:
----  * plugin_name - the name of the plugin. Should be the name as passed to `loadPlugins()` or `loadPluginFromFile`.
----
---- Returns:
----  * The Seal object
----
---- Notes:
----  * Most Seal plugins expose a static list of commands (if any), which are registered at the time the plugin is loaded. This method is used for plugins which expose a dynamic or changing (e.g. depending on configuration) list of commands.
-function obj:refreshCommandsForPlugin(plugin_name)
-  plugin = self.plugins[plugin_name]
-  if plugin.commands then
-    for cmd, cmdInfo in pairs(plugin:commands()) do
-      if not self.commands[cmd] then
-        print("-- Adding Seal command: " .. cmd)
-        self.commands[cmd] = cmdInfo
-      end
-    end
-  end
-  return self
-end
-
---- Seal:refreshAllCommands()
---- Method
---- Refresh the list of commands provided by all the currently loaded plugins.
----
---- Parameters:
----  * None
----
---- Returns:
----  * The Seal object
----
---- Notes:
----  * Most Seal plugins expose a static list of commands (if any), which are registered at the time the plugin is loaded. This method is used for plugins which expose a dynamic or changing (e.g. depending on configuration) list of commands.
-function obj:refreshAllCommands()
-  for p, _ in pairs(self.plugins) do
-    self:refreshCommandsForPlugin(p)
-  end
-  return self
-end
 
 --- Seal:loadPluginFromFile(plugin_name, file)
 --- Method
@@ -111,7 +66,6 @@ function obj:loadPluginFromFile(plugin_name, file)
     local plugin = f()
     plugin.seal = self
     self.plugins[plugin_name] = plugin
-    self:refreshCommandsForPlugin(plugin_name)
     return self
   else
     return nil
@@ -311,21 +265,6 @@ function obj.choicesCallback()
     end
   end
   query_words = table.concat(query_words, " ")
-  -- First get any direct command matches
-  for command, cmdInfo in pairs(obj.commands) do
-    cmd_fn = cmdInfo["fn"]
-    if cmd:lower() == command:lower() then
-      if (query_words or "") == "" then
-        query_words = ".*"
-      end
-      fn_choices = cmd_fn(query_words)
-      if fn_choices ~= nil then
-        for j, choice in pairs(fn_choices) do
-          table.insert(choices, choice)
-        end
-      end
-    end
-  end
   -- Now get any bare matches
   for k, plugin in pairs(obj.plugins) do
     bare = plugin:bare()
@@ -333,17 +272,6 @@ function obj.choicesCallback()
       for i, choice in pairs(bare(query)) do
         table.insert(choices, choice)
       end
-    end
-  end
-  -- Now add in any matching commands
-  -- TODO: This only makes sense to do if we can select the choice without dismissing the chooser, which requires changes to HSChooser
-  for command, cmdInfo in pairs(obj.commands) do
-    if string.match(command, query) and #query_words == 0 then
-      choice = {}
-      choice["text"] = cmdInfo["name"]
-      choice["subText"] = cmdInfo["description"]
-      choice["type"] = "plugin_cmd"
-      table.insert(choices, choice)
     end
   end
 

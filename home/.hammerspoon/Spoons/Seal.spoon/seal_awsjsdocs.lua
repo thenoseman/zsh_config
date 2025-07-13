@@ -67,10 +67,6 @@ function obj:stop()
   obj.methodCache = {}
 end
 
-function obj:commands()
-  return {}
-end
-
 function obj:bare()
   return self.choices
 end

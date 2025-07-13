@@ -54,10 +54,6 @@ function obj:stop()
   obj.cache = nil
 end
 
-function obj:commands()
-  return {}
-end
-
 function obj:bare()
   return self.choices
 end
