@@ -31,7 +31,8 @@ export REPORTTIME=2
 export MAVEN_OPTS="-Xms512m -Xmx1024m -Dfile.encoding=UTF-8"
 
 # Direnv logging -> silent (https://github.com/direnv/direnv/wiki)
-export DIRENV_LOG_FORMAT=""
+# shellcheck disable=SC3003
+export DIRENV_LOG_FORMAT=$'\033[2mdirenv: %s\033[0m'
 
 # For GPG command line and used in vim
 export GPG_TTY="$(tty)"

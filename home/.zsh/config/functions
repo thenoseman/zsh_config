@@ -9,13 +9,6 @@ info() {
 }
 
 #
-# Find a file starting with $1
-#
-f() {
-	rg --unrestricted --hidden --files | grep --color "${@}"
-}
-
-#
 # Start tig in status view if unstanged changes present
 #
 ti() {

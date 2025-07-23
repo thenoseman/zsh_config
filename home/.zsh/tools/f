@@ -1,0 +1,2 @@
+#!/usr/bin/env zsh
+rg --unrestricted --hidden --files --no-messages | grep --color "${@}"
