@@ -1,7 +1,17 @@
 #!/bin/sh
 osascript 2>/dev/null <<EOF
 tell application "iTerm"
+  -- new window
 	set newWindow to (create window with profile "Default" command "${@}")
+
+  -- move new window to the top left
+  tell application "System Events"
+    tell process "iTerm2"
+      set position of front window to {0, 22}
+    end tell
+  end tell
+
+  -- resize window
 	tell newWindow
 		tell current session
 			set columns to 500
