@@ -1,43 +1,54 @@
 {
-  "root": false,
-  "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "style": {
-        "noParameterAssign": "error",
-        "useAsConstAssertion": "error",
-        "useDefaultParameterLast": "error",
-        "useEnumInitializers": "error",
-        "useSelfClosingElements": "error",
-        "useSingleVarDeclarator": "error",
-        "noUnusedTemplateLiteral": "error",
-        "useNumberNamespace": "error",
-        "noInferrableTypes": "error",
-        "noUselessElse": "error"
-      }
-    },
-    "includes": ["**", "!**/*.jsx"]
-  },
-  "formatter": {
-    "enabled": true,
-    "includes": ["**", "!**/*.jsx"],
-    "indentStyle": "space"
-  },
-  "assist": { "actions": { "source": { "organizeImports": "on" } } },
-  "javascript": {
-    "globals": ["$"],
-    "formatter": {
-      "enabled": true,
-      "indentStyle": "space"
-    }
-  },
-  "json": {
-    "formatter": {
-      "enabled": true,
-      "indentStyle": "space"
-    }
-  }
+	"root": false,
+	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"useSortedKeys": "on",
+				"organizeImports": "on"
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"style": {
+				"noParameterAssign": "error",
+				"useAsConstAssertion": "error",
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"noUselessElse": "error"
+			}
+		},
+		"includes": ["**/*.js", "**/*.ts", "**/*.json"]
+	},
+	"formatter": {
+		"enabled": true,
+		"includes": ["**/*.js", "**/*.ts", "**/*.json"],
+		"indentStyle": "space",
+		"lineWidth": 160
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "space"
+		}
+	},
+	"json": {
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "space"
+		}
+	},
+	"vcs": {
+		"enabled": true,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	}
 }
