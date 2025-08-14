@@ -1,7 +1,7 @@
 set line-graphics = utf-8
 set tab-size = 2
 set vertical-split = false
-set diff-highlight = true
+set diff-highlight = /Users/frank/.zsh/tools/diff-highlight
 
 # Pager based views
 set pager-view	= line-number:yes,interval=5 text

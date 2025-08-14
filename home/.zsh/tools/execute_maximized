@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# You must grant Accessibility permissions to both Script Editor and iTerm in:
+# System Settings > Privacy & Security > Accessibility
+#
 osascript 2>/dev/null <<EOF
 tell application "iTerm"
   -- new window
@@ -17,6 +21,14 @@ tell application "iTerm"
 			set columns to 500
 			set rows to 200
 		end tell
+	end tell
+end tell
+
+delay 0.1 
+
+tell application "System Events"
+	tell application process "iTerm"
+		set position of front window to {0, 22} -- move to top-left, below menu bar
 	end tell
 end tell
 EOF
