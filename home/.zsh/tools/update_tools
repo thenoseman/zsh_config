@@ -10,10 +10,6 @@ typeset -a ALLOW_FIREWALL_INCOMING
 
 SKIP_RUBY=1
 
-BREW_TAPS=(
-	universal-ctags/universal-ctags # ctags tool
-)
-
 BREW_PACKAGES=(
 	bat                         # a 'cat' clone
 	biome                       # A very fast formatter/linter for TS/JS/JSON
@@ -219,15 +215,9 @@ allow_firewall_incoming() {
 	done
 }
 
-# update homebrew taps
-for tap in $BREW_TAPS; do
-	[[ ! $installed_taps =~ $tap ]] && brew tap "$tap"
-done
-
 update_zsh_config
 update_vim_config
 install_missing_brew_casks
-install_missing_brew_special_cases
 install_missing_brew_formulas
 brew upgrade
 update_js_tools
