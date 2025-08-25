@@ -183,7 +183,7 @@ bindkey -s "^[[8" "}"
 # alt-n : ~
 bindkey -s "^[n" "~"
 
-ulimit -n 4096
+ulimit -n 8192
 
 # Includes
 for f in ~/.zsh/config/*; do source $f; done
