@@ -2,11 +2,54 @@
 #
 # You must grant Accessibility permissions to both Script Editor and iTerm in:
 # System Settings > Privacy & Security > Accessibility
-#
+
+# shellcheck disable=SC3028,SC3010
+
+usage() {
+	cat <<EOF
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-p] <command to execute>
+
+Executes a command in a maximized iterm2 window
+
+Available options:
+
+-h, --help      Print this help and exit
+-p, --profile   iTerm2 profile name to execute a command in
+EOF
+	exit
+}
+
+parse_params() {
+	command=''
+  profile="default"
+
+	while :; do
+		case "${1-}" in
+		-h | --help) usage ;;
+		-p | --profile)          # example named parameter
+			profile="${2-}"
+			shift
+			;;
+		-?*) die "Unknown option: $1" ;;
+		*) break ;;
+		esac
+		shift
+	done
+
+	command=("$@")
+
+	# check required params and arguments
+	[[ ${#command[@]} -eq 0 ]] && echo "No command specified" && exit 1
+
+	return 0
+}
+
+parse_params "$@"
+
 osascript 2>/dev/null <<EOF
 tell application "iTerm"
   -- new window
-	set newWindow to (create window with profile "Default" command "${@}")
+	set newWindow to (create window with profile "${profile}" command "${command[*]}")
 
   -- move new window to the top left
   tell application "System Events"
