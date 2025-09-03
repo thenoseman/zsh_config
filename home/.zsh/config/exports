@@ -70,3 +70,6 @@ export NODE_VERSION_PREFIX=""
 # fx (https://fx.wtf/)
 export FX_SHOW_SIZE=true
 export FX_THEME=6
+
+# difftastic (https://difftastic.wilfred.me.uk)
+export DFT_TAB_WIDTH=2
