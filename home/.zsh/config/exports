@@ -40,10 +40,6 @@ export GPG_TTY="$(tty)"
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color
 
-# homebrew
-export HOMEBREW_INSTALL_CLEANUP=1
-export HOMEBREW_NO_ENV_HINTS=1
-
 # For building stuff with homebrew packages
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/curl/lib"
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/curl/include"

@@ -10,3 +10,7 @@ fi
 
 export HOMEBREW_PREFIX
 export ARCH
+
+# Config
+export HOMEBREW_INSTALL_CLEANUP=1
+export HOMEBREW_NO_ENV_HINTS=1
