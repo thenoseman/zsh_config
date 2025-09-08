@@ -89,10 +89,12 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
-	eslint   # Pluggable Javasxript linter/fixer (https://eslint.org/)
-	jsonlint # Pure Js JSON linter (https://github.com/zaach/jsonlint)
-	pnpm     # Alternative to npm (https://pnpm.io/)
-	prettier # JS/JSON etc formatter
+	eslint      # Pluggable Javasxript linter/fixer (https://eslint.org/)
+	jsonlint    # Pure Js JSON linter (https://github.com/zaach/jsonlint)
+	pnpm        # Alternative to npm (https://pnpm.io/)
+	prettier    # JS/JSON etc formatter
+	biome       # Biome linter/fixes
+	npm-upgrade # Better "npm upgrade"
 )
 
 RUBY_GEMS=(
