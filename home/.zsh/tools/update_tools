@@ -45,6 +45,7 @@ BREW_PACKAGES=(
 	oath-toolkit                # OTP token management/creation
 	openconnect                 # VPN client
 	openssl                     # Newer version of openssl than present in MacOs
+	parallel                    # Execute commands concurrently
 	pstree                      # tree view of directories
 	python                      # python 3
 	readline                    # GNU readline (For ruby I think)
@@ -89,11 +90,10 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
-	eslint      # Pluggable Javasxript linter/fixer (https://eslint.org/)
+	eslint      # Pluggable Javascript linter/fixer (https://eslint.org/)
 	jsonlint    # Pure Js JSON linter (https://github.com/zaach/jsonlint)
 	pnpm        # Alternative to npm (https://pnpm.io/)
 	prettier    # JS/JSON etc formatter
-	biome       # Biome linter/fixes
 	npm-upgrade # Better "npm upgrade"
 )
 
