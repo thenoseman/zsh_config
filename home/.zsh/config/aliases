@@ -1,11 +1,7 @@
 # vim:ft=sh
 #
 # SHELL HELPERS
-# shellcheck disable=SC3010,SC3028,SC3009
-
-# Display all possible shell colors
-# shellcheck disable=SC2154
-alias shellcolors="echo 'Usage: %F{COLORNUMBER}text%f\\n' ; for code ({000..255}) { print -nP -- \"\$code: %F{\$code}%K{\$code}Test%k%f \" ; (( code % 8 && code < 255 )) || printf '\\n'}"
+# shellcheck disable=SC3010,SC3028,SC3009,SC2154
 
 # Start a webserver here
 alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -run -e httpd . -p9090'
@@ -74,9 +70,6 @@ alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/co
 alias -s md=typora
 # shellcheck disable=SC2139
 alias -s {json,html}=mvim
-
-# Lazygit
-alias lg="execute_maximized \${HOMEBREW_PREFIX}/bin/lazygit"
 
 # Original versions as o-<original name>
 for bin in terraform aws packer rg; do
