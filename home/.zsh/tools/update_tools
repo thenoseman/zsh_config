@@ -16,6 +16,7 @@ BREW_PACKAGES=(
 	colima                      # Alternative to docker desktop for Mac
 	coreutils                   # Base tools for every OS
 	curl                        # For libcurl
+	difftastic                  # Diff that understands syntax
 	direnv                      # Manage environment per directory (also used for tools management)
 	docker                      # -> colima
 	docker-completion           # -> colima
@@ -73,6 +74,7 @@ BREW_CASKS=(
 	aws-vault-binary       # AWS cred management
 	disk-inventory-x       # Find large files
 	hammerspoon            # Control the mac via lua
+	iina                   # MPV based video/musicplayer
 	iterm2                 # Terminal
 	itsycal                # Small menubar calendar
 	kdiff3                 # Diff/Merge tool
@@ -80,7 +82,6 @@ BREW_CASKS=(
 	kekaexternalhelper     # keka as defautl extractor for all known formats
 	keepassxc              # Passwords
 	macvim                 # Editor
-	mpv                    # MPV Video player
 	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
 	qlmarkdown             # Quicklook Plugin: Markdown
@@ -101,7 +102,7 @@ RUBY_GEMS=(
 	pry-byebug
 )
 
-# List og binaries that should be allow thru the firewall
+# List of binaries that should be allow thru the firewall
 # Those might be brew links ansd thus must be resolved to their realpath
 ALLOW_FIREWALL_INCOMING=(
 	syncthing

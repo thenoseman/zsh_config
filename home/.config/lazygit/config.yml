@@ -6,8 +6,19 @@ gui:
   nerdFontsVersion: "3"
 git:
   skipHookPrefix: "[FORCE]"
+  paging:
+    externalDiffCommand: difft --color=always
 os:
   edit: "/opt/homebrew/bin/zsh -c vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert' -- {{filename}}"
   editAtLine: "/opt/homebrew/bin/zsh -c vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' -c 'startinsert' +{{line}} -- {{filename}}"
   editAtLineAndWait: "/opt/homebrew/bin/zsh -c vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal A' --block -c 'startinsert' +{{line}} -- {{filename}}"
   editInTerminal: true
+customCommands:
+  - key: "W"
+    prompts:
+      - type: "input"
+        title: "Commit"
+        initialValue: ""
+    command: git commit -m "{{index .PromptResponses 0}}" --no-verify
+    context: "global"
+    output: terminal
