@@ -11,3 +11,4 @@ home/.zsh/modules/fzf-tab/
 home/.hammerspoon/secrets.lua
 default.profraw
 home/.config/lazygit/state.yml
+LOCAL_VERSION

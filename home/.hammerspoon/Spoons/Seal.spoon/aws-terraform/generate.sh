@@ -6,8 +6,14 @@
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$script_dir" || exit 1
 
-rm -rf terraform-provider-aws-index-*.txt terraform-provider-aws
+REMOTE=$(curl -qs -L "https://raw.githubusercontent.com/hashicorp/terraform-provider-aws/refs/heads/main/version/VERSION")
+LOCAL=1.0.0
+[[ -e "LOCAL_VERSION" ]] && LOCAL=$(cat LOCAL_VERSION)
+echo "[AWS-TERRAFORM] Remote version ${REMOTE}, local version ${LOCAL}"
 
+[[ "${LOCAL}" = "${REMOTE}" ]] && echo "[AWS-TERRAFORM] Versions are the same. Nothing to do" && exit 0
+
+rm -rf terraform-provider-aws-index-*.txt terraform-provider-aws
 echo "[AWS-TERRAFORM] Cloning AWS terraform provider docs"
 git clone -q -n --depth=1 --filter=tree:0 https://github.com/hashicorp/terraform-provider-aws.git
 cd terraform-provider-aws || exit 1
@@ -41,6 +47,8 @@ done
 
 echo "[AWS-TERRAFORM] Writing sorted index file terraform-provider-aws-index.txt"
 sort terraform-provider-aws-index-unsorted.txt >terraform-provider-aws-index.txt
+
+echo "${REMOTE}" >LOCAL_VERSION
 
 echo "[AWS-TERRAFORM] aws-terraform cleanup"
 rm -rf terraform-provider-aws-index-unsorted.txt terraform-provider-aws
