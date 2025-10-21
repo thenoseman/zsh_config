@@ -72,7 +72,6 @@ BREW_PACKAGES=(
 BREW_CASKS=(
 	android-platform-tools # adb
 	aws-vault-binary       # AWS cred management
-	disk-inventory-x       # Find large files
 	hammerspoon            # Control the mac via lua
 	iina                   # MPV based video/musicplayer
 	iterm2                 # Terminal
@@ -84,8 +83,6 @@ BREW_CASKS=(
 	macvim                 # Editor
 	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
-	qlmarkdown             # Quicklook Plugin: Markdown
-	quicklook-json         # Quicklook Plugin: JSON
 	shottr                 # Menubar screenshot utility
 	typora                 # Markdown editor
 )
@@ -106,6 +103,13 @@ RUBY_GEMS=(
 # Those might be brew links ansd thus must be resolved to their realpath
 ALLOW_FIREWALL_INCOMING=(
 	syncthing
+)
+
+# Other useful stuff outside of homebrew:
+OUTSIDE_OF_HOMEBREW=(
+	disk-inventory-x # Find large files (https://www.derlien.com/)
+	qlmarkdown       # Quicklook Plugin: Markdown (https://github.com/sbarex/QLMarkdown)
+	quicklook-json   # Quicklook Plugin: JSON (http://www.sagtau.com/quicklookjson.html)
 )
 
 #
