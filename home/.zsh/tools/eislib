@@ -1,0 +1,627 @@
+#----------------------------------------------------------------------------
+# /var/install/include/baselib - basic library for eisfair scripts
+#
+# Creation:     2004-09-29 max
+# Last Update:  $Id: baselib 70253 2019-11-01 12:49:46Z hbfl $
+#
+# Copyright (c) 2001-2020 the eisfair team, team(at)eisfair(dot)org
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#----------------------------------------------------------------------------
+
+#----------------------------------------------------------------------------
+# interface description
+#----------------------------------------------------------------------------
+#
+# _EISLIB_BASELIB        is set to 'true' if this file is already included
+#
+# _EISLIB_PRINTMODE      is set to 'tty'  if output goes to a tty
+#                        is set to 'html' if output goes to a webbrowser
+#                        is set to 'file' if output is redirected to a file
+#
+# get_printmode()        echo the actual _EISLIB_PRINTMODE
+#
+# _EISLIB_SCREENSIZE_X   actual number of screen columns
+# _EISLIB_SCREENSIZE_Y   actual number of screen lines
+#
+# refresh_screensize()   refresh the values of
+#                          _EISLIB_SCREENSIZE_X and
+#                          _EISLIB_SCREENSIZE_Y
+#                        by calling resize (if possible)
+# Function refresh_screensize is called when baselib is loaded.
+# The function can be called any time.
+#
+# check_screensize()     check actual screensize for
+#                          _EISLIB_SCREENSIZE_X_MIN and
+#                          _EISLIB_SCREENSIZE_Y_MIN
+#                        return 1 if screen size to small
+#
+# echo_retval()          function to display the retval message
+#
+# mecho()                extension of echo
+#
+# techo()                table orientated output
+#
+#----------------------------------------------------------------------------
+
+
+#============================================================================
+# only include this file once
+#============================================================================
+
+if [ "$_EISLIB_BASELIB" != "true" ]
+then
+
+_EISLIB_BASELIB='true'
+
+#============================================================================
+# mecho
+#============================================================================
+
+# mecho [-n] [--std|--info|--warn|--error] [--tty|--html|--file] message ...
+#
+# options:
+#     -n         do not append newline
+#
+#     --std      print standard message (default)
+#     --stdbr    print standard message (default)(bright)
+#     --info     print info message     (green)
+#     --warn     print warning message  (yellow)(bright)
+#     --error    print error message    (red)(brightinvers)
+#     --link     print message          '>'  (cyan)
+#     --ok       print message          [  OK  ] (green)
+#     --fail     print message          [ Fail ] (red)(bright)
+#
+#     --tty      use console colors
+#     --html     use html tags for colors
+#     --file     don't use any color tags
+#
+# ---------------------------------------------------------------------------
+
+mecho()
+{
+    _mecho_opt='STD'
+    _mecho_mode="$_EISLIB_PRINTMODE"
+    _mecho_flags=''
+    _mecho_colors=''
+    _mecho_append=''
+
+    while [ 1 ]
+    do
+        case "$1" in
+            -n)               _mecho_flags='-n';     shift;;
+            --std|-std)       _mecho_opt='STD';      shift;;
+            --stdbr)          _mecho_opt='STDBR';    shift;;
+            --info|-info)     _mecho_opt='INFO';     shift;;
+            --warn|-warn)     _mecho_opt='WARN';     shift;;
+            --error|-error)   _mecho_opt='ERROR';    shift;;
+            --link)           _mecho_opt='LINK';     shift;;
+            --ok)             _mecho_opt='MSG_OK';   shift;;
+            --fail)           _mecho_opt='MSG_FAIL'; shift;;
+            --tty|-tty)       _mecho_mode='tty';     shift;;
+            --html|-html)     _mecho_mode='html';    shift;;
+            --file|-file)     _mecho_mode='file';    shift;;
+            *)      break;;
+        esac
+    done
+
+    _mecho_mode2=`echo $_mecho_mode | tr 'a-z' 'A-Z'`
+    eval _mecho_pre='$'_EISLIB_COLOR_${_mecho_mode2}_PRE
+    eval _mecho_post='$'_EISLIB_COLOR_${_mecho_mode2}_POST
+    eval _mecho_reset='$'_EISLIB_COLOR_${_mecho_mode2}_RESET
+    eval _mecho_colors='$'_EISLIB_COLOR_${_mecho_mode2}_${_mecho_opt}
+
+    if [ "$_mecho_mode" = "html" ]
+    then
+        [ "$_mecho_flags" != "-n" ] && _mecho_append='<br>'
+        _mecho_flags=''
+    fi
+
+    echo -e $_mecho_flags "${_mecho_pre}${_mecho_colors}${_mecho_post}${*}${_mecho_reset}${_mecho_append}"
+
+}
+
+#============================================================================
+# techo
+#============================================================================
+
+#     techo [--tty|--html|--file] [--std|--info|--warn|--error] --begin width width ...
+#     techo [--tty|--html|--file] [--std|--info|--warn|--error] --row [--std|--info|--warn|--error|--link] message ...
+#     techo [--tty|--html|--file] [--std|--info|--warn|--error] --end
+#
+# options:
+#     --tty      use console colors
+#     --html     use html tags for colors
+#     --file     don't use any color tags
+#
+# message-options:
+#     --std      print standard message (default)
+#     --stdbr    print standard message (default)(bright)
+#     --info     print info message     (green)
+#     --warn     print warning message  (yellow)(bright)
+#     --error    print error message    (red)(brightinvers)
+#     --link     print message '>'      (cyan)
+#
+# example:
+#     techo --begin '3 3r 15 10 28* 20'
+#     techo --row "" 1 foo foo "This is a somehow longer text, since i need a very long line of text" foo
+#     techo --row "->" 2 --info "bar foo" --warn "foo bar" foo
+#     techo --row "" 12 foofoo foo foo --error foobar
+#     techo --info --row "" 24 foo foobar foo --error foobar
+#     techo --end
+#
+# ---------------------------------------------------------------------------
+
+techo()
+{
+    _techo_opt='STD'
+    _techo_mode="$_EISLIB_PRINTMODE"
+    _techo_call=''
+    _techo_colors=''
+
+    while [ 1 ]
+    do
+        case "$1" in
+            --std|-std)       _techo_opt='STD';      shift;;
+            --stdbr)          _techo_opt='STDBR';    shift;;
+            --info|-info)     _techo_opt='INFO';     shift;;
+            --warn|-warn)     _techo_opt='WARN';     shift;;
+            --error|-error)   _techo_opt='ERROR';    shift;;
+            --link)           _techo_opt='LINK';     shift;;
+            --tty|-tty)       _techo_mode=tty;       shift;;
+            --html|-html)     _techo_mode=html;      shift;;
+            --file|-file)     _techo_mode=file;      shift;;
+            *)      break;;
+        esac
+    done
+
+    _techo_mode2=$(echo $_techo_mode | tr 'a-z' 'A-Z')
+
+    case "${1}" in
+        --begin|begin)  _techo_call='begin';     shift;;
+        --row|row)      _techo_call='row';       shift;;
+        --end|end)      _techo_call='end';       shift;;
+        *)              _techo_call='row';;
+    esac
+
+    case "${_techo_call}" in
+        begin)
+            _techo_total=0
+            _techo_total_variable=0
+            # don't expand '*', do sed
+            for _techo_width in $(echo "\"${*}\"" | tr -d 'rl' | sed 's# #" "#g')
+            do
+                case "${_techo_width}" in
+                    *'*'*)
+                        # we can not use backticks in backticks, so we use $($( ))
+                        _techo_total_variable=$((${_techo_total_variable} + $(echo "${_techo_width}" | tr -d '*"')))
+                    ;;
+                esac
+                _techo_total=$((${_techo_total} + $(echo "${_techo_width}" | tr -d '*"')))
+            done
+
+            # check for row length only if != file
+            if [ "${_techo_mode}" != "file" ]
+            then
+                if [ ${_techo_total} -gt 80 ]
+                then
+                    mecho --${_techo_mode} --error "You cannot use techo with more than 80 columns."
+                    exit 255
+                fi
+
+                _techo_width_factor=100
+                if [ ${_EISLIB_SCREENSIZE_X} -gt 80 -a ${_techo_total_variable} -gt 0 ]
+                then
+                    let _techo_width_factor=($_EISLIB_SCREENSIZE_X-80)*100/$_techo_total_variable+100
+                fi
+            fi
+            ;;
+    esac
+
+    if [ "$_techo_mode" = "tty" -o "$_techo_mode" = "file" ]
+    then
+        case "${_techo_call}" in
+            begin)
+                eval _techo_pre='$'_EISLIB_COLOR_${_techo_mode2}_PRE
+                eval _techo_post='$'_EISLIB_COLOR_${_techo_mode2}_POST
+                eval _techo_reset='$'_EISLIB_COLOR_${_techo_mode2}_RESET
+
+                _techo_column=1
+                for _techo_line in $(echo "\"${*}\"" | sed 's# #" "#g')
+                do
+                    case "${_techo_line}" in
+                        *r*) _techo_align='';;
+                        *)   _techo_align='-';;
+                    esac
+                    _techo_width=$(echo "${_techo_line}" | tr -d 'rl*"')
+                    case "${_techo_line}" in
+                        *'*'*) let _techo_width=$_techo_width*$_techo_width_factor/100
+                        ;;
+                    esac
+                    let _techo_width--
+
+                    # generates pre-formatet string
+                    # ...%b...%-7.7s...
+                    # UTF-8 fix: ksh specific workaround for printf command:
+                    #            modified format string to count characters
+                    #            instead of bytes
+                    # eval _EISLIB_TECHO_${_techo_column}='${_techo_pre}%b${_techo_post}%${_techo_align}${_techo_width}.${_techo_width}s${_techo_reset}\ '
+                    eval _EISLIB_TECHO_${_techo_column}='${_techo_pre}%b${_techo_post}%${_techo_align}${_techo_width}.${_techo_width}Ls${_techo_reset}\ '
+
+                    let _techo_column++
+                done
+                ;;
+            row)
+                _techo_column=1
+                _techo_mask=$_EISLIB_TECHO_1
+                while [ $# -gt 0 -a "$_techo_mask" != "" ]
+                do
+                    case $1 in
+                        --info|-info)
+                            eval _techo_colors='$'_EISLIB_COLOR_${_techo_mode2}_INFO;  shift;;
+                        --warn|-warn)
+                            eval _techo_colors='$'_EISLIB_COLOR_${_techo_mode2}_WARN;  shift;;
+                        --error|-error)
+                            eval _techo_colors='$'_EISLIB_COLOR_${_techo_mode2}_ERROR; shift;;
+                        --std|-std)
+                            eval _techo_colors='$'_EISLIB_COLOR_${_techo_mode2}_STD;   shift;;
+                        --link)
+                            eval _techo_colors='$'_EISLIB_COLOR_${_techo_mode2}_LINK;   shift;;
+                        *)  eval _techo_colors='$'_EISLIB_COLOR_${_techo_mode2}_${_techo_opt};;
+                    esac
+                    # UTF-8 fix: modified printf command call to
+                    #            count  characters instead of bytes
+                    # printf "${_techo_mask}" "$_techo_colors" "$1"
+                    ksh -c "printf \"${_techo_mask}\" \"$_techo_colors\" \"$1\""
+                    let _techo_column++
+                    eval _techo_mask='$'_EISLIB_TECHO_${_techo_column}
+                    shift
+                done
+                echo
+                ;;
+            end)
+                _techo_column=1
+                _techo_mask=$_EISLIB_TECHO_1
+                while [ "$_techo_mask" != "" ]
+                do
+                    unset _EISLIB_TECHO_${_techo_column}
+                    let _techo_column++
+                    eval _techo_mask='$'_EISLIB_TECHO_${_techo_column}
+                done
+                ;;
+        esac
+    elif [ "$_techo_mode" = "html" ]
+    then
+        case "$_techo_call" in
+            begin)
+                echo "<table width=\"100%\">"
+                echo "<colgroup>"
+                for _techo_line in $(echo "\"${*}\"" | sed 's# #" "#g')
+                do
+                    case "${_techo_line}" in
+                        *r*) _techo_align='right';;
+                        *)   _techo_align='left';;
+                    esac
+                    _techo_width=$(echo "${_techo_line}" | tr -d 'rl*"')
+
+                    _techo_width=$(($_techo_width * 100 / 80))
+                    echo "<col width=\"$_techo_width%\" align=\"$_techo_align\">"
+                done
+                echo "</colgroup>"
+                ;;
+            row)
+                _techo_column=1
+                echo "<tr>"
+                while [ $# -gt 0 ]
+                do
+                    _techo_flags=''
+                    case $1 in
+                        --info|-info)  _techo_colors="$_EISLIB_COLOR_HTML_INFO";  shift;;
+                        --warn|-warn)  _techo_colors="$_EISLIB_COLOR_HTML_WARN";  shift;;
+                        --error|-error) _techo_colors="$_EISLIB_COLOR_HTML_ERROR"; shift;;
+                        --std|-std)   _techo_colors="$_EISLIB_COLOR_HTML_STD";   shift;;
+                        --link)      _techo_colors="$_EISLIB_COLOR_HTML_LINK";   shift;;
+                        *)      eval _techo_colors='$'_EISLIB_COLOR_HTML_${_techo_opt};;
+                    esac
+                    echo -n "<td>"
+                    printf "${_EISLIB_COLOR_HTML_PRE}%s${_EISLIB_COLOR_HTML_POST}%s${_EISLIB_COLOR_HTML_RESET}" "$_techo_colors" "$1"
+                    echo "</td>"
+                    shift
+                done
+                echo "</tr>"
+                ;;
+            end)
+                echo "</table>"
+                ;;
+        esac
+    fi
+}
+
+#============================================================================
+# defaults for screensize
+#============================================================================
+
+_EISLIB_SCREENSIZE_X_MIN=80
+_EISLIB_SCREENSIZE_Y_MIN=24
+_EISLIB_SCREENSIZE_Y_FILE=999999
+
+#============================================================================
+# define basic functions
+#============================================================================
+
+get_printmode()
+{
+   echo $_EISLIB_PRINTMODE
+}
+
+refresh_screensize()
+{
+    case "$1" in
+        --tty|-tty)   _refresh_printmode="tty";;
+        --file|-file) _refresh_printmode="file";;
+        --html|-html) _refresh_printmode="html";;
+        *)     _refresh_printmode="${_EISLIB_PRINTMODE}";;
+    esac
+
+    case "${_refresh_printmode}" in
+        tty)  eval `/usr/bin/resize 2>/dev/null`
+              _EISLIB_SCREENSIZE_X="${COLUMNS:=$_EISLIB_SCREENSIZE_X_MIN}"
+              _EISLIB_SCREENSIZE_Y="${LINES:=$_EISLIB_SCREENSIZE_Y_MIN}"
+              ;;
+        file) _EISLIB_SCREENSIZE_X="$_EISLIB_SCREENSIZE_X_MIN"
+              _EISLIB_SCREENSIZE_Y="$_EISLIB_SCREENSIZE_Y_FILE"
+              ;;
+        *)    _EISLIB_SCREENSIZE_X="$_EISLIB_SCREENSIZE_X_MIN"
+              _EISLIB_SCREENSIZE_Y="$_EISLIB_SCREENSIZE_Y_MIN"
+              ;;
+    esac
+}
+
+check_screensize()
+{
+    [ "${_EISLIB_PRINTMODE}" != 'tty' ] && return 0
+
+    if [ "$_EISLIB_SCREENSIZE_X" -lt $_EISLIB_SCREENSIZE_X_MIN -o \
+         "$_EISLIB_SCREENSIZE_Y" -lt $_EISLIB_SCREENSIZE_Y_MIN ]
+    then
+        mecho --error "The screen size is ${_EISLIB_SCREENSIZE_X}x${_EISLIB_SCREENSIZE_Y}"
+        mecho --info "The screen size has to be at least ${_EISLIB_SCREENSIZE_X_MIN}x${_EISLIB_SCREENSIZE_Y_MIN}"
+        mecho --info "Please resize the screen first."
+        anykey
+        return 1
+    else
+        return 0
+    fi
+}
+
+#============================================================================
+# autodetect output: tty / html / file
+#============================================================================
+
+if /usr/bin/tty -s <&1
+then
+    _EISLIB_PRINTMODE='tty'
+else
+    if [ -n "$GATEWAY_INTERFACE" ]
+    then
+        _EISLIB_PRINTMODE='html'
+    else
+        _EISLIB_PRINTMODE='file'
+    fi
+fi
+
+#============================================================================
+# determine screen size
+#============================================================================
+
+refresh_screensize
+
+#============================================================================
+# function to display the retval message
+#============================================================================
+
+echo_retval()
+{
+    error_value="${?}"
+
+    if [ ${error_value} -eq 0 ]
+    then
+        mecho --ok
+    else
+        mecho --fail
+    fi
+
+    # This prevents the 'An Unexpected Error Has Occurred' from trivial
+    # errors.
+    return 0
+}
+
+#============================================================================
+# define colors
+#============================================================================
+
+# textcolor
+_EISLIB_COLOR_TTY_TEXT_BLACK="\033[30m"
+_EISLIB_COLOR_FILE_TEXT_BLACK=""
+_EISLIB_COLOR_HTML_TEXT_BLACK="color:black;"
+
+_EISLIB_COLOR_TTY_TEXT_RED="\033[31m"
+_EISLIB_COLOR_FILE_TEXT_RED=""
+_EISLIB_COLOR_HTML_TEXT_RED="color:red;"
+
+_EISLIB_COLOR_TTY_TEXT_GREEN="\033[32m"
+_EISLIB_COLOR_FILE_TEXT_GREEN=""
+_EISLIB_COLOR_HTML_TEXT_GREEN="color:green;"
+
+_EISLIB_COLOR_TTY_TEXT_YELLOW="\033[33m"
+_EISLIB_COLOR_FILE_TEXT_YELLOW=""
+_EISLIB_COLOR_HTML_TEXT_YELLOW="color:brown;"
+
+_EISLIB_COLOR_TTY_TEXT_BLUE="\033[34m"
+_EISLIB_COLOR_FILE_TEXT_BLUE=""
+_EISLIB_COLOR_HTML_TEXT_BLUE="color:blue;"
+
+_EISLIB_COLOR_TTY_TEXT_MAGENTA="\033[35m"
+_EISLIB_COLOR_FILE_TEXT_MAGENTA=""
+_EISLIB_COLOR_HTML_TEXT_MAGENTA="color:fuchsia;"
+
+_EISLIB_COLOR_TTY_TEXT_CYAN="\033[36m"
+_EISLIB_COLOR_FILE_TEXT_CYAN=""
+_EISLIB_COLOR_HTML_TEXT_CYAN="color:cyan;"
+
+_EISLIB_COLOR_TTY_TEXT_WHITE="\033[37m"
+_EISLIB_COLOR_FILE_TEXT_WHITE=""
+_EISLIB_COLOR_HTML_TEXT_WHITE="color:white;"
+
+_EISLIB_COLOR_TTY_TEXT_DEFAULT="\033[0m"
+_EISLIB_COLOR_FILE_TEXT_DEFAULT=""
+_EISLIB_COLOR_HTML_TEXT_DEFAULT="color:white;"
+
+
+# backgroundcolor
+_EISLIB_COLOR_TTY_BACK_BLACK="\033[40m"
+_EISLIB_COLOR_FILE_BACK_BLACK=""
+_EISLIB_COLOR_HTML_BACK_BLACK="background-color:black;"
+
+_EISLIB_COLOR_TTY_BACK_RED="\033[41m"
+_EISLIB_COLOR_FILE_BACK_RED=""
+_EISLIB_COLOR_HTML_BACK_RED="background-color:red;"
+
+_EISLIB_COLOR_TTY_BACK_GREEN="\033[42m"
+_EISLIB_COLOR_FILE_BACK_GREEN=""
+_EISLIB_COLOR_HTML_BACK_GREEN="background-color:green;"
+
+_EISLIB_COLOR_TTY_BACK_YELLOW="\033[43m"
+_EISLIB_COLOR_FILE_BACK_YELLOW=""
+_EISLIB_COLOR_HTML_BACK_YELLOW="background-color:brown;"
+
+_EISLIB_COLOR_TTY_BACK_BLUE="\033[44m"
+_EISLIB_COLOR_FILE_BACK_BLUE=""
+_EISLIB_COLOR_HTML_BACK_BLUE="background-color:blue;"
+
+_EISLIB_COLOR_TTY_BACK_MAGENTA="\033[45m"
+_EISLIB_COLOR_FILE_BACK_MAGENTA=""
+_EISLIB_COLOR_HTML_BACK_MAGENTA="background-color:fuchsia;"
+
+_EISLIB_COLOR_TTY_BACK_CYAN="\033[46m"
+_EISLIB_COLOR_FILE_BACK_CYAN=""
+_EISLIB_COLOR_HTML_BACK_CYAN="background-color:cyan;"
+
+_EISLIB_COLOR_TTY_BACK_WHITE="\033[47m"
+_EISLIB_COLOR_FILE_BACK_WHITE=""
+_EISLIB_COLOR_HTML_BACK_WHITE="background-color:white;"
+
+_EISLIB_COLOR_TTY_BACK_DEFAULT="\033[49m"
+_EISLIB_COLOR_FILE_BACK_DEFAULT=""
+_EISLIB_COLOR_HTML_BACK_DEFAULT="background-color:white;"
+
+
+# textmode
+_EISLIB_COLOR_TTY_MODE_BRIGHT="\033[1m"
+_EISLIB_COLOR_FILE_MODE_BRIGHT=""
+_EISLIB_COLOR_HTML_MODE_BRIGHT="font-weight:bold;"
+
+_EISLIB_COLOR_TTY_MODE_DARK="\033[2m"
+_EISLIB_COLOR_FILE_MODE_DARK=""
+_EISLIB_COLOR_HTML_MODE_DARK="font-weight:lighter;"
+
+_EISLIB_COLOR_TTY_MODE_UNDERLINE="\033[4m"
+_EISLIB_COLOR_FILE_MODE_UNDERLINE=""
+_EISLIB_COLOR_HTML_MODE_UNDERLINE="text-decoration:underline;"
+
+_EISLIB_COLOR_TTY_MODE_BRIGHTBACK="\033[5m"
+_EISLIB_COLOR_FILE_MODE_BRIGHTBACK=""
+_EISLIB_COLOR_HTML_MODE_BRIGHTBACK="text-decoration:blink;"
+
+_EISLIB_COLOR_TTY_MODE_INVERS="\033[7m"
+_EISLIB_COLOR_FILE_MODE_INVERS=""
+_EISLIB_COLOR_HTML_MODE_INVERS="font-style:italic;"
+
+_EISLIB_COLOR_TTY_MODE_BRIGHTBRIGHTBACK="\033[1m\033[5m"
+_EISLIB_COLOR_FILE_MODE_BRIGHTBRIGHTBACK=""
+_EISLIB_COLOR_HTML_MODE_BRIGHTBRIGHTBACK="font-weight:bold;text-decoration:blink;"
+
+_EISLIB_COLOR_TTY_MODE_BRIGHTINVERS="\033[1m\033[7m"
+_EISLIB_COLOR_FILE_MODE_BRIGHTINVERS=""
+_EISLIB_COLOR_HTML_MODE_BRIGHTINVERS="font-weight:bold;font-weight:lighter;"
+
+_EISLIB_COLOR_TTY_MODE_DARKBRIGHTBACK="\033[2m\033[5m"
+_EISLIB_COLOR_FILE_MODE_DARKBRIGHTBACK=""
+_EISLIB_COLOR_HTML_MODE_DARKBRIGHTBACK="font-weight:lighter;font-weight:bold;"
+
+_EISLIB_COLOR_TTY_MODE_DARKINVERS="\033[2m\033[7m"
+_EISLIB_COLOR_FILE_MODE_DARKINVERS=""
+_EISLIB_COLOR_HTML_MODE_DARKINVERS="font-weight:lighter;font-style:italic;"
+
+
+# formatting
+_EISLIB_COLOR_TTY_PRE=""
+_EISLIB_COLOR_FILE_PRE=""
+_EISLIB_COLOR_HTML_PRE="<span style=\""
+
+_EISLIB_COLOR_TTY_POST=""
+_EISLIB_COLOR_FILE_POST=""
+_EISLIB_COLOR_HTML_POST="\">"
+
+_EISLIB_COLOR_TTY_RESET="\033[0m"
+_EISLIB_COLOR_FILE_RESET=""
+_EISLIB_COLOR_HTML_RESET="</span>"
+
+# cursor up
+_EISLIB_COLOR_TTY_MSG_CURS_UP="\033[1A\033[0G"
+_EISLIB_COLOR_FILE_MSG_CURS_UP=""
+_EISLIB_COLOR_HTML_MSG_CURS_UP=""
+
+# set cursor
+_EISLIB_COLOR_TTY_MSG_POS="\033[300C\033[8D"
+_EISLIB_COLOR_FILE_MSG_POS=""
+_EISLIB_COLOR_HTML_MSG_POS=""
+
+
+# predefined message styles
+_EISLIB_COLOR_TTY_STD="${_EISLIB_COLOR_TTY_TEXT_DEFAULT}${_EISLIB_COLOR_TTY_BACK_DEFAULT}"
+_EISLIB_COLOR_FILE_STD=""
+_EISLIB_COLOR_HTML_STD="${_EISLIB_COLOR_HTML_TEXT_BLACK}"
+
+_EISLIB_COLOR_TTY_STDBR="${_EISLIB_COLOR_TTY_TEXT_DEFAULT}${_EISLIB_COLOR_TTY_BACK_DEFAULT}${_EISLIB_COLOR_TTY_MODE_BRIGHT}"
+_EISLIB_COLOR_FILE_STDBR=""
+_EISLIB_COLOR_HTML_STDBR="${_EISLIB_COLOR_HTML_TEXT_BLACK}${_EISLIB_COLOR_HTML_MODE_BRIGHT}"
+
+_EISLIB_COLOR_TTY_INFO="${_EISLIB_COLOR_TTY_TEXT_GREEN}${_EISLIB_COLOR_TTY_BACK_DEFAULT}"
+_EISLIB_COLOR_FILE_INFO=""
+_EISLIB_COLOR_HTML_INFO="${_EISLIB_COLOR_HTML_TEXT_GREEN}"
+
+_EISLIB_COLOR_TTY_WARN="${_EISLIB_COLOR_TTY_TEXT_YELLOW}${_EISLIB_COLOR_TTY_BACK_BLACK}${_EISLIB_COLOR_TTY_MODE_BRIGHT}"
+_EISLIB_COLOR_FILE_WARN=""
+_EISLIB_COLOR_HTML_WARN="${_EISLIB_COLOR_HTML_TEXT_YELLOW}"
+
+_EISLIB_COLOR_TTY_ERROR="${_EISLIB_COLOR_TTY_TEXT_RED}${_EISLIB_COLOR_TTY_BACK_WHITE}${_EISLIB_COLOR_TTY_MODE_BRIGHTINVERS}"
+_EISLIB_COLOR_FILE_ERROR=""
+_EISLIB_COLOR_HTML_ERROR="${_EISLIB_COLOR_HTML_TEXT_RED}${_EISLIB_COLOR_HTML_MODE_BRIGHT}"
+
+_EISLIB_COLOR_TTY_LINK="${_EISLIB_COLOR_TTY_TEXT_CYAN}${_EISLIB_COLOR_TTY_BACK_DEFAULT}"
+_EISLIB_COLOR_FILE_LINK=""
+_EISLIB_COLOR_HTML_LINK="${_EISLIB_COLOR_HTML_TEXT_CYAN}"
+
+# mecho --ok
+_EISLIB_COLOR_TTY_MSG_OK="${_EISLIB_COLOR_TTY_MSG_CURS_UP}${_EISLIB_COLOR_TTY_MSG_POS}[${_EISLIB_COLOR_TTY_TEXT_GREEN}${_EISLIB_COLOR_TTY_BACK_DEFAULT}  OK  ${_EISLIB_COLOR_TTY_TEXT_DEFAULT}]"
+_EISLIB_COLOR_FILE_MSG_OK="       =>  OK"
+_EISLIB_COLOR_HTML_MSG_OK=""
+
+# mecho --fail
+_EISLIB_COLOR_TTY_MSG_FAIL="${_EISLIB_COLOR_TTY_MSG_CURS_UP}${_EISLIB_COLOR_TTY_MSG_POS}[${_EISLIB_COLOR_TTY_TEXT_RED}${_EISLIB_COLOR_TTY_MODE_BRIGHT}${_EISLIB_COLOR_TTY_BACK_DEFAULT} FAIL ${_EISLIB_COLOR_TTY_TEXT_DEFAULT}]"
+_EISLIB_COLOR_FILE_MSG_FAIL="       =>  FAIL"
+_EISLIB_COLOR_HTML_MSG_FAIL=""
+
+#============================================================================
+# end only include once
+#============================================================================
+
+fi
+
+#============================================================================
+# end
+#============================================================================
