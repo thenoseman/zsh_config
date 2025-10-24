@@ -18,10 +18,8 @@ alias dig="doggo"
 alias jqlog="jq -rcR '. as \$line | try (fromjson | .) catch \$line'"
 alias cmus="LC_ALL=C /opt/homebrew/bin/cmus"
 
-#
-# VIM
-#
-alias v='mvim'
+# Download a video in mp4 format from youtube/vimeo/etc via youtube-dl
+alias yd="yt-dlp --recode-video mp4 --continue --ignore-errors --no-overwrites --restrict-filenames"
 
 #
 # GIT RELATED
@@ -45,23 +43,22 @@ alias pipe='mkdir -p tmp && if [ ! -p tmp/test-pipe ]; then mkfifo tmp/test-pipe
 # See https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
 alias next="rspec --next-failure"
 
-# Download a video in mp4 format from youtube/vimeo/etc via youtube-dl
-alias yd="yt-dlp --recode-video mp4 --continue --ignore-errors --no-overwrites --restrict-filenames"
-
 #
 # AWS
 #
 alias tf="terraform"
 
 #
-# Text editing
+# Editing
 #
+alias v='mvim'
 alias typora="open -a typora"
+alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
 #
 # Javascript
 #
-alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+alias npm="npq-hero"
 
 #
 # Suffix aliases (auto run app)

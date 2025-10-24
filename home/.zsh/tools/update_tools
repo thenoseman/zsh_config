@@ -93,6 +93,7 @@ NODE_PACKAGES=(
 	pnpm      # Alternative to npm (https://pnpm.io/)
 	prettier  # JS/JSON etc formatter
 	npm-check # Better "npm upgrade"
+	npq       # safely install npm packages by auditing them pre-install stage
 )
 
 RUBY_GEMS=(
@@ -205,7 +206,7 @@ install_special_cases() {
 
 	ubi --project "boyter/cs" --in /opt/homebrew/bin/
 	ubi --project "your-tools/ruplacer" --in /opt/homebrew/bin/
-	ubi --project "psanford/wormhole-william" --in /opt/homebrew/bin/
+	ubi --project "psanford/wormhole-william" --rename-exe wormhole --in /opt/homebrew/bin/
 
 	# Link docker plugin(s)
 	if [[ ! -d ~/.ddocker/cli-plugins ]]; then
