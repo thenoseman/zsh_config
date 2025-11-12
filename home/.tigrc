@@ -10,7 +10,7 @@ set stage-view	= line-number:no,interval=5 text
 set log-view	  = line-number:no,interval=5 text
 set blob-view	  = line-number:no,interval=5 text
 # No <branch> and <tag> display in main view
-set main-view   = date:default author:full id:yes,color commit-title:graph=v2,refs=yes
+set main-view   = date:default author:full,width=20,maxwidth=25 id:yes,color commit-title:graph=v2,refs=yes
 
 bind generic P !git push
 bind generic <Ctrl-f> move-page-down  
