@@ -64,6 +64,31 @@ box() {
 	echo -e "$C$(b $(($3 + 18)))$(r "${T:(($3 + 19)):1}" "$((max + 1))")$(b $(($3 + 20)))$R"
 }
 
+# Rainbow text for the terminal :)
+rainbow() {
+	perl -pe '
+    BEGIN { $h = 0 }
+    sub hsv {
+      my ($h) = @_;
+      $h /= 60;
+      my $i = int($h);
+      my $f = $h - $i;
+      my ($r,$g,$b);
+      if ($i==0){$r=1;$g=$f;$b=0}
+      elsif($i==1){$r=1-$f;$g=1;$b=0}
+      elsif($i==2){$r=0;$g=1;$b=$f}
+      elsif($i==3){$r=0;$g=1-$f;$b=1}
+      elsif($i==4){$r=$f;$g=0;$b=1}
+      else{$r=1;$g=0;$b=1-$f}
+      return int(255*$r).";".int(255*$g).";".int(255*$b);
+    }
+    $_ =~ s/(.)/
+      $h = ($h + 5) % 360;
+      "\033[38;2;".hsv($h)."m$1\033[0m"
+  /ge;
+  '
+}
+
 msg() {
 	echo >&2 -e "${1-}"
 }
