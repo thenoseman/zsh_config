@@ -77,9 +77,9 @@ BREW_CASKS=(
 	iterm2                 # Terminal
 	itsycal                # Small menubar calendar
 	kdiff3                 # Diff/Merge tool
+	keepassxc              # Passwords
 	keka                   # Archive compression/decompression
 	kekaexternalhelper     # keka as defautl extractor for all known formats
-	keepassxc              # Passwords
 	macvim                 # Editor
 	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
@@ -88,12 +88,14 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
-	eslint    # Pluggable Javascript linter/fixer (https://eslint.org/)
-	jsonlint  # Pure Js JSON linter (https://github.com/zaach/jsonlint)
-	pnpm      # Alternative to npm (https://pnpm.io/)
-	prettier  # JS/JSON etc formatter
-	npm-check # Better "npm upgrade"
-	npq       # safely install npm packages by auditing them pre-install stage
+	@typescript/native-preview # tsgo
+	eslint                     # Pluggable Javascript linter/fixer (https://eslint.org/)
+	eslint_d                   # Runs eslint in a background process to improve linting time while editing
+	jsonlint                   # Pure Js JSON linter (https://github.com/zaach/jsonlint)
+	npm-check                  # Better "npm upgrade"
+	npq                        # safely install npm packages by auditing them pre-install stage
+	pnpm                       # Alternative to npm (https://pnpm.io/)
+	prettier                   # JS/JSON etc formatter
 )
 
 RUBY_GEMS=(
