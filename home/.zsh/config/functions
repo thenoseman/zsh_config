@@ -39,7 +39,7 @@ dirdo() {
 #
 # Force index a directory into the spotlight index
 #
-spotlight-index-all() {
+spotlight_index_all() {
 	declare -a prefpanes=(
 		"/System/Library/PreferencePanes/"
 		"/Library/PreferencePanes"
@@ -54,6 +54,9 @@ spotlight-index-all() {
 	done
 }
 
+#
+# Copies a file names $1 from $2 to $3 recursivly
+#
 mirror_file() {
 	local filename="${1:-}"
 	local source_dir="${2:-}"
@@ -142,20 +145,6 @@ node-d() {
 }
 
 #
-# Runs a cypress test headless
-#
-cyp-headless() {
-	cypress run --e2e --browser chrome --headless --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
-}
-
-#
-# Runs a cypress test with visible browser
-#
-cyp() {
-	cypress run --e2e --browser chrome --headed --reporter cypress-mochawesome-reporter --reporter-options 'showPassed=false,charts=true' --no-exit --spec "$(rg --files --hidden --follow --glob '*.cy.js' tests/e2e | fzf -1 -q "${1}")"
-}
-
-#
 # AWS related functions
 #
 aws_list_ec2_instances() {
@@ -214,13 +203,13 @@ killdns() {
 #
 # Citrix autostart annoyance
 #
-citrix-remove-services() {
+citrix_remove_services() {
 	launchctl remove com.citrix.ServiceRecords
 	launchctl remove com.citrix.ReceiverHelper
 	launchctl remove com.citrix.AuthManager_Mac
 	launchctl remove com.citrix.safariadapter
 }
-citrix-start-services() {
+citrix_start_services() {
 	launchctl load /Library/LaunchAgents/com.citrix.ServiceRecords.plist
 	launchctl load /Library/LaunchAgents/com.citrix.ReceiverHelper.plist
 	launchctl load /Library/LaunchAgents/com.citrix.AuthManager_Mac.plist
