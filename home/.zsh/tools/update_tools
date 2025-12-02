@@ -28,7 +28,7 @@ BREW_PACKAGES=(
 	exiftool                    # Manipulate image EXIF data
 	ffmpeg                      # Video conversion
 	findutils                   # find, xargs, and locate
-	fx                          # Like jq but using JS and interactive
+	fx                          # Like jq but using JS and interactivity
 	fzf                         # Fuzzy finder. Used everywhere in my config
 	git                         # Version management software
 	git-delta                   # Better git diff
@@ -94,8 +94,6 @@ NODE_PACKAGES=(
 	jsonlint                   # Pure Js JSON linter (https://github.com/zaach/jsonlint)
 	npm-check                  # Better "npm upgrade"
 	npq                        # safely install npm packages by auditing them pre-install stage
-	pnpm                       # Alternative to npm (https://pnpm.io/)
-	prettier                   # JS/JSON etc formatter
 )
 
 RUBY_GEMS=(
