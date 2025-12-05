@@ -3,7 +3,7 @@
 -- Automatically kill Apple Music if it opens (eg. when a bluetooth device connects)
 --
 local log = hs.logger.new("[app_kill]", "debug")
-local killBundleIds = { ["com.apple.Music"] = true, ["com.apple.Terminal"] = true }
+local killBundleIds = { ["com.apple.Terminal"] = true }
 
 function applicationWatcher(_, eventType, app)
   if killBundleIds[app:bundleID()] ~= nil and eventType == hs.application.watcher.launching then
