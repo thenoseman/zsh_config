@@ -1,0 +1,10 @@
+#
+# bat configuration file (https://github.com/sharkdp/bat)
+#
+--wrap=never 
+--paging=never
+--style=snip,-numbers
+--theme='TwoDark'
+--tabs=2
+
+--map-syntax "*.ino:C++"

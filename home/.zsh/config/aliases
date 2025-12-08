@@ -13,7 +13,7 @@ alias dl='cd ~/Downloads'
 alias rg='rg -F -i --hidden --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'' -g '\''!.git'\'''
 alias b64d="pbpaste | base64 -d"
 alias du="dust"
-alias cat="bat --wrap=never --paging=never --style=snip --theme 'TwoDark'"
+alias cat="bat"
 alias dig="doggo"
 alias jqlog="jq -rcR '. as \$line | try (fromjson | .) catch \$line'"
 alias cmus="LC_ALL=C /opt/homebrew/bin/cmus"
