@@ -61,16 +61,16 @@ mirror_file() {
 	local filename="${1:-}"
 	local source_dir="${2:-}"
 	local target_dir="${3:-}"
-	[[ -z "${filename}" ]] && echo "first param (filename) missing" && exit 1
-	[[ -z "${source_dir}" ]] && echo "second param (source dir) missing" && exit 1
-	[[ -z "${target_dir}" ]] && echo "third param (target dir) missing" && exit 1
+	[[ -z "${filename}" ]] && echo "first param (filename) missing" && return
+	[[ -z "${source_dir}" ]] && echo "second param (source dir) missing" && return
+	[[ -z "${target_dir}" ]] && echo "third param (target dir) missing" && return
 
 	echo "Copy every found '${filename}' in directory '${source_dir}' to directory '${target_dir}' ?"
 	echo "Press [ENTER] to continue, ctrl+c to cancel."
 	read -r yn
 	echo "Please wait ..."
 
-	rsync --ignore-existing -aim --include="${filename}" --include='*/' --exclude='*' "${source_dir}/" "${target_dir}"
+	rsync --verbose --update -aim --include="${filename}" --include='*/' --exclude='*' "${source_dir}/" "${target_dir}"
 }
 
 #
@@ -137,6 +137,7 @@ djs-test() {
 node-d() {
 	export NODE_OPTIONS="--inspect --inspect-brk"
 	NODE_BIN="node"
+	# shellcheck disable=SC3014
 	if [[ "$*" == *".ts"* ]]; then
 		NODE_BIN="ts-node-dev -r tsconfig-paths/register --rs"
 	fi
