@@ -118,9 +118,15 @@ install_terraform() {
 # Javascript testing with jest
 #
 wjs-test() {
-	node_modules/.bin/jest --clearCache
-	# shellcheck disable=SC2046
-	node_modules/.bin/jest --no-watchman --watch --runInBand $(rg --files --hidden --follow --glob 'test*/unit*/**/*.{spec,test}.{ts,js}' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
+	test_runner="jest"
+	if [[ -e "node_modules/.bin/vitest" ]]; then
+		# shellcheck disable=SC2046
+		node_modules/.bin/vitest watch $(rg --files --hidden --follow --glob 'test*/unit*/**/*.{spec,test}.{ts,js}' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
+	else
+		node_modules/.bin/jest --clearCache
+		# shellcheck disable=SC2046
+		node_modules/.bin/jest --no-watchman --watch --runInBand $(rg --files --hidden --follow --glob 'test*/unit*/**/*.{spec,test}.{ts,js}' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
+	fi
 }
 
 #
