@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Extracts Files from a docker image
+#
+docker_image="$1"
+source="$2"
+target="$3"
+container_name="docker-extract-$($RAND)"
+
+. "$HOME/.zsh/tools/common.sh"
+
+error=""
+[[ -z "${docker_image}" ]] && echoc RED "Please provide the docker image URL as first parameter" && error=1
+[[ -z "${source}" ]] && echoc RED "Please provide the directory to copy from inside the docker image as second parameter" && error=1
+[[ -z "${target}" ]] && echoc RED "Please provide the directory to copy to as third parameter" && error=1
+
+if [[ -n "${error}" ]]; then
+	exit 1
+fi
+
+docker create --name "${container_name}" "${docker_image}"
+docker cp "${container_name}:${source}" "${target}"

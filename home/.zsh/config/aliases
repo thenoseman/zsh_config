@@ -69,7 +69,7 @@ alias -s md=typora
 alias -s {json,html}=mvim
 
 # Original versions as o-<original name>
-for bin in terraform aws packer rg; do
+for bin in terraform aws packer rg kubectl; do
 	# shellcheck disable=SC2139
 	alias o-${bin}="$HOMEBREW_PREFIX/bin/$bin"
 done
