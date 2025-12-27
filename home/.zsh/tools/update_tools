@@ -40,6 +40,7 @@ BREW_PACKAGES=(
 	jump                        # directory autojump, alternative to zoxide
 	lima-additional-guestagents # Additional guests for colima/lima
 	lua                         # For hammerspoon lib includes
+	mise                        # The front-end to your dev env
 	node                        # node JS
 	oath-toolkit                # OTP token management/creation
 	openconnect                 # VPN client
@@ -200,9 +201,8 @@ update_hammerspoon_seal_plugin_data() {
 install_special_cases() {
 	msg "install_special_cases"
 
-	ubi --project "boyter/cs" --in /opt/homebrew/bin/
-	ubi --project "your-tools/ruplacer" --in /opt/homebrew/bin/
-	ubi --project "psanford/wormhole-william" --rename-exe wormhole --in /opt/homebrew/bin/
+	# Tools from github via mise (See ~/.config/mise/config.toml)
+	mise upgrade --bump
 
 	# Link docker plugin(s)
 	if [[ ! -d ~/.ddocker/cli-plugins ]]; then

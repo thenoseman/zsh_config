@@ -109,6 +109,9 @@ HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 source ~/.zsh/modules/pure_prompt/async.zsh
 async_init
 
+# Load mise (https://mise.jdx.dev/)
+export MISE_DEFAULT_CONFIG_FILENAME="mise.local.toml"
+eval "$($HOMEBREW_PREFIX/bin/mise activate zsh)"
 
 # https://github.com/gsamokovarov/jump
 eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"

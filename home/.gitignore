@@ -45,5 +45,10 @@ tags
 
 .git
 
+# direnv 
+# Mise (https://mise.jdx.dev/)
+.envrc
+mise.local.toml
+
 tags.lock
 tags.temp
