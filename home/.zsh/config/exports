@@ -30,10 +30,6 @@ export REPORTTIME=2
 # Maven
 export MAVEN_OPTS="-Xms512m -Xmx1024m -Dfile.encoding=UTF-8"
 
-# Direnv logging -> silent (https://github.com/direnv/direnv/wiki)
-# shellcheck disable=SC3003
-export DIRENV_LOG_FORMAT=$'\033[2mdirenv: %s\033[0m'
-
 # For GPG command line and used in vim
 export GPG_TTY="$(tty)"
 
@@ -59,10 +55,6 @@ export LEFTHOOK_OUTPUT=false
 
 # docker
 export BUILDKIT_PROGRESS="plain"
-
-# node js -> direnv
-export NODE_VERSIONS="$HOME/.nodes"
-export NODE_VERSION_PREFIX=""
 
 # fx (https://fx.wtf/)
 export FX_SHOW_SIZE=true

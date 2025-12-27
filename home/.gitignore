@@ -43,9 +43,6 @@ Thumbs.db
 tags
 .tags
 
-# direnv #
-# ########
-.envrc
 .git
 
 tags.lock

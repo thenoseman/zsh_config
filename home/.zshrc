@@ -109,8 +109,6 @@ HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 source ~/.zsh/modules/pure_prompt/async.zsh
 async_init
 
-# Load direnv
-eval "$($HOMEBREW_PREFIX/bin/direnv hook zsh)"
 
 # https://github.com/gsamokovarov/jump
 eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"
