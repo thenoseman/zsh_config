@@ -58,6 +58,7 @@ BREW_PACKAGES=(
 	stylua                      # Format lua code
 	syncthing                   # Sync data between computers
 	tig                         # TUI for git
+	tombi                       # Tombi is a TOML Formatter, Linter, and Language Server
 	watch                       # GNU watch
 	watchman                    # File watcher by facebook
 	wireguard-tools             # wireguard userland tools
