@@ -8,3 +8,9 @@ default_config_filename = "mise.local.toml"
 
 [settings]
 experimental = true
+
+# As long as I have some .envrc's
+[hooks]
+enter = [
+  "[ -e '.envrc' ] && echo '\\033[1;33m.envrc found. Convert it to mise.local.toml\\033[0m'"
+]
