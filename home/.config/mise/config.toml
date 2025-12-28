@@ -5,3 +5,6 @@ default_config_filename = "mise.local.toml"
 "github:boyter/cs" = "latest"
 "github:psanford/wormhole-william" = { version = "latest", bin = "wormhole" }
 "github:your-tools/ruplacer" = "latest"
+
+[settings]
+experimental = true
