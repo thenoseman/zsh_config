@@ -76,3 +76,6 @@ done
 
 # Docker
 alias dc="docker compose"
+
+# As long as https://github.com/jdx/mise/discussions/5501 is not resolved
+alias mise-s="mise set --file=mise.toml"
