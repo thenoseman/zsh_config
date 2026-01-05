@@ -3,12 +3,8 @@ default_config_filename = "mise.toml"
 
 [tools]
 "github:boyter/cs" = "latest"
-"github:psanford/wormhole-william" = { version = "latest", bin = "wormhole" }
+"github:psanford/wormhole-william" = { version = "latest", rename_exe = "wormhole" }
 "github:your-tools/ruplacer" = "latest"
 
 [settings]
 experimental = true
-
-# As long as I have some .envrc's
-[hooks]
-enter = "([ -e '.envrc' ] && echo '\\033[1;33m.envrc found. Convert it to mise.toml\\033[0m' || true)"
