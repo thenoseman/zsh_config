@@ -29,6 +29,10 @@ obj.ignoredApps = {
   "aktien",
 }
 
+obj.staticApps = {
+  ["Einstellungen"] = "x-apple.systempreferences:com.apple.systemsettings.legacyPane",
+}
+
 local function starts_with(str, start)
   return str:sub(1, #start) == start
 end
@@ -199,7 +203,15 @@ function obj.choicesApps(query)
     return choices
   end
 
-  -- First search for apps that start with the term
+  -- Add static apps
+  for name, open_with in pairs(obj.staticApps) do
+    if string.match(name:lower(), query:lower()) and not obj.is_app_ignored(name) then
+      local app = { ["path"] = open_with, ["text"] = name, ["subText"] = "Einstellungen" }
+      table.insert(choices, generate_choice(name, app, obj, query, "match"))
+    end
+  end
+
+  -- Search for apps that start with the term
   for name, app in pairs(obj.appCache) do
     if starts_with(name:lower(), query:lower()) and not obj.is_app_ignored(name) then
       table.insert(choices, generate_choice(name, app, obj, query, "starts_with"))
@@ -222,55 +234,6 @@ function obj.choicesApps(query)
   return choices
 end
 
-function obj.choicesKillCommand(query)
-  local choices = {}
-  if query == nil then
-    return choices
-  end
-  local apps = hs.application.runningApplications()
-  for k, app in pairs(apps) do
-    local name = app:name()
-    if string.match(name:lower(), query:lower()) and app:mainWindow() then
-      local choice = {}
-      choice["text"] = "Kill " .. name
-      choice["subText"] = app:path() .. " PID: " .. app:pid()
-      choice["pid"] = app:pid()
-      choice["plugin"] = obj.__name
-      choice["type"] = "kill"
-      choice["image"] = hs.image.imageFromAppBundle(app:bundleID())
-      table.insert(choices, choice)
-    end
-  end
-  return choices
-end
-
-function obj.choicesRevealCommand(query)
-  local choices = {}
-  if query == nil then
-    return choices
-  end
-  local apps = obj.choicesApps(query)
-  for k, app in pairs(apps) do
-    local name = app.text
-    if string.match(name:lower(), query:lower()) then
-      local choice = {}
-      choice["text"] = "Reveal " .. name
-      choice["path"] = app.path
-      choice["subText"] = app.path
-      choice["plugin"] = obj.__name
-      choice["type"] = "reveal"
-      if app.image then
-        choice["image"] = app.image
-      end
-      table.insert(choices, choice)
-    end
-  end
-  table.sort(choices, function(a, b)
-    return a["text"] < b["text"]
-  end)
-  return choices
-end
-
 function obj.completionCallback(rowInfo)
   if rowInfo["type"] == "launchOrFocus" then
     if string.find(rowInfo["path"], "%.applescript$") or string.find(rowInfo["path"], "%.scpt$") then
@@ -278,11 +241,6 @@ function obj.completionCallback(rowInfo)
     else
       hs.task.new("/usr/bin/open", nil, { rowInfo["path"] }):start()
     end
-  elseif rowInfo["type"] == "kill" then
-    hs.application.get(rowInfo["pid"]):kill()
-  elseif rowInfo["type"] == "reveal" then
-    hs.osascript.applescript(string.format([[tell application "Finder" to reveal (POSIX file "%s")]], rowInfo["path"]))
-    hs.application.launchOrFocus("Finder")
   end
 end
 

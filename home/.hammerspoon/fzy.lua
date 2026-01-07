@@ -1,12 +1,13 @@
 --
 -- Load the fzy fuzzy filter (fzf-like).
--- If it isn't compiled show some hints on how to do that
+-- If it isn't compiled show some h
+--
+-- https://github.com/swarn/fzy-lua
 --
 local log = hs.logger.new("[fzy]", "debug")
 
 -- Attempt to load the native version
 local arch = io.popen("uname -m", "r"):read("*l")
-log.i("Trying " .. "fzy_native_" .. arch .. ".so")
 local ok, fzy_module = pcall(require, "fzy_native_" .. arch)
 
 -- Otherwise, fall back on the lua version.
