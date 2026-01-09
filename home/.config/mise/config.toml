@@ -8,3 +8,4 @@ default_config_filename = "mise.toml"
 
 [settings]
 experimental = true
+python.uv_venv_auto = true

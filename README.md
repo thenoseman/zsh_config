@@ -28,7 +28,7 @@ sudo nvram AutoBoot=%00
 
 
 # Todos fresh install
-Install `InconsolataGo Nerd Font Complete Mono.ttf` from `zsh_config/home/extars/fonts`.
+Install `InconsolataDzNerdFont-Regular.otf` from `zsh_config/home/extras/fonts`.
 
 Execute `relink`.
 
