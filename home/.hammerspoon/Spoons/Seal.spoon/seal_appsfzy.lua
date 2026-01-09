@@ -94,14 +94,47 @@ local updateNameMap = function(_obj, msg, info)
   end
 end
 
+-- Highlight positions in a text using hammerpsoon styledtext
+local function highlight(text, letterPositions)
+  -- Generate an index for lookup later
+  local letterLookup = {}
+  for _, i in ipairs(letterPositions) do
+    letterLookup[i] = true
+  end
+
+  local result = hs.styledtext.new("", { font = { size = 16 } })
+
+  -- Loop thru every letter
+  for i = 1, #text do
+    local char = text:sub(i, i)
+
+    -- Strange characters in string should be ignored (ASCII Extendex decimal values)
+    if string.byte(char) < 155 then
+      -- If there is a match from fzy ...
+      if letterLookup[i] then
+        result = result
+          .. hs.styledtext.new(
+            char,
+            { font = { size = 16 }, color = hs.drawing.color.definedCollections.hammerspoon.black }
+          )
+      else
+        -- No match
+        result = result .. hs.styledtext.new(char, { font = { size = 16 } })
+      end
+    end
+  end
+
+  return result
+end
+
 --
 -- Create the "choice" structure for one app
 --
-function generate_choice(name, app)
+local function generate_choice(name, app, letterPositions)
   local choice = {}
-  choice["text"] = name
+  choice["text"] = highlight(name, letterPositions)
   choice["subText"] = app["path"]
-  choice["plugin"] = obj.__name
+  choice["plugin"] = obj.__name -- Important! Otherwise seal will not execute the action on [ENTER]
   choice["path"] = app["path"]
   choice["uuid"] = "__" .. (app["bundleID"] or name)
   if app["icon"] then
@@ -174,13 +207,16 @@ function obj.choicesApps(query)
 
   -- Create the table with appname => app mapping
   local appsFound = hs.fnutils.imap(matches, function(match)
-    return obj.appNameCache[match[1]]
+    return {
+      name = obj.appNameCache[match[1]],
+      letterPositions = match[2],
+    }
   end)
 
   -- Generate choices structure
-  for _, appName in pairs(appsFound) do
-    if obj.appCache[appName] then
-      table.insert(choices, generate_choice(appName, obj.appCache[appName]))
+  for _, app in pairs(appsFound) do
+    if obj.appCache[app.name] then
+      table.insert(choices, generate_choice(app.name, obj.appCache[app.name], app.letterPositions))
     end
   end
 
