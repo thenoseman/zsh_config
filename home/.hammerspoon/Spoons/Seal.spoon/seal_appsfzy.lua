@@ -132,7 +132,8 @@ end
 --
 local function generate_choice(name, app, letterPositions)
   local choice = {}
-  choice["text"] = highlight(name, letterPositions)
+  --choice["text"] = highlight(name, letterPositions)
+  choice["text"] = name
   choice["subText"] = app["path"]
   choice["plugin"] = obj.__name -- Important! Otherwise seal will not execute the action on [ENTER]
   choice["path"] = app["path"]
