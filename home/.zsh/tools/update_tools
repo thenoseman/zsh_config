@@ -38,9 +38,9 @@ BREW_PACKAGES=(
 	jhead                       # Lossless JPG auto rotation
 	jq                          # Manipulate, format and filter JSON
 	jump                        # directory autojump, alternative to zoxide
-	lima-additional-guestagents # Additional guests for colima/lima
+	lima-additional-guestagents # -> colima
 	lua                         # For hammerspoon lib includes
-	mise                        # The front-end to your dev env
+	mise                        # The front-end to your dev env (env per dir, tool install, versioning)
 	node                        # node JS
 	oath-toolkit                # OTP token management/creation
 	openconnect                 # VPN client
@@ -51,17 +51,16 @@ BREW_PACKAGES=(
 	readline                    # GNU readline (For ruby I think)
 	ripgrep                     # The best file search tool
 	rustup                      # rust toolchain
-	selene                      # LUA formatter
+	selene                      # LUA linter
 	shellcheck                  # shell script linter
 	shfmt                       # shell script formatter
 	sqlite                      # sqlite tools
-	stylua                      # Format lua code
+	stylua                      # LUA Formatter
 	syncthing                   # Sync data between computers
 	tig                         # TUI for git
 	tombi                       # Tombi is a TOML Formatter, Linter, and Language Server
 	watch                       # GNU watch
 	watchman                    # File watcher by facebook
-	wireguard-tools             # wireguard userland tools
 	yamllint                    # Lint YAML files
 	yt-dlp                      # Download youtube videos
 	zsh                         # newer zsh
@@ -86,12 +85,10 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
-	@typescript/native-preview # tsgo
-	eslint                     # Pluggable Javascript linter/fixer (https://eslint.org/)
-	eslint_d                   # Runs eslint in a background process to improve linting time while editing
-	jsonlint                   # Pure Js JSON linter (https://github.com/zaach/jsonlint)
-	npm-check                  # Better "npm upgrade"
-	npq                        # safely install npm packages by auditing them pre-install stage
+	eslint    # Pluggable Javascript linter/fixer (https://eslint.org/)
+	eslint_d  # Runs eslint in a background process to improve linting time while editing
+	npm-check # Better "npm upgrade"
+	npq       # safely install npm packages by auditing them pre-install stage
 )
 
 RUBY_GEMS=(
