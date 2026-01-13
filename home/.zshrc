@@ -2,7 +2,7 @@
 # zmodload zsh/zprof
 
 # Add paths to zsh function path
-fpath=(~/.zsh/completions ~/.zsh/zfunctions $fpath)
+fpath=(/opt/homebrew/share/zsh/site-functions ~/.zsh/zfunctions $fpath)
 
 # crazy tab completion
 autoload -Uz compinit
