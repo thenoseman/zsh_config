@@ -28,7 +28,8 @@ sudo nvram AutoBoot=%00
 
 
 # Todos fresh install
-Install `InconsolataDzNerdFont-Regular.otf` from `zsh_config/home/extras/fonts`.
+Install `InconsolataGoNerdFont-Regular.otf` from `zsh_config/home/extras/fonts`.
+(Original: https://raph.levien.com/type/myfonts/inconsolata/)
 
 Execute `relink`.
 
