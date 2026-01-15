@@ -274,7 +274,7 @@ function obj:_populateChooser()
     local chooser_item = {
       text = hs.styledtext.new(v.content, {
         paragraphStyle = { maximumLineHeight = 15 },
-        font = { name = "InconsolataDz Nerd Font", size = 14 },
+        font = { name = "InconsolataGo Nerd Font", size = 14 },
         color = hs.drawing.color.definedCollections.hammerspoon.black,
       }),
       subText = v.type,
