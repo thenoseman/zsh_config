@@ -32,6 +32,7 @@ BREW_PACKAGES=(
 	git                         # Version management software
 	git-delta                   # Better git diff
 	gnu-tar                     # GNU tar for MacOs
+	grep                        # GNU grep
 	groff                       # groff for fzftab
 	gsed                        # GNU sed for MacOs
 	imagemagick                 # Image manipulation tools

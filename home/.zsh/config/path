@@ -22,7 +22,7 @@ export PATH=$HOME/.zsh/tools:$PATH
 export PATH=$HOMEBREW_PREFIX/opt/python/libexec/bin:$PATH
 
 # GNU utils
-export PATH="$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin:$HOMEBREW_PREFIX/opt/grep/libexec/gnubin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
 
 # Shared dir
 export PATH=$PATH:$HOME/Sync/shared-with-company/shell
