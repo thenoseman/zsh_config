@@ -141,5 +141,9 @@ parse_params() {
 	return 0
 }
 
+prepend_line_to_file() {
+	sed -i "" '1s^;INSERT_THIS\n;' FILE.EXT
+}
+
 parse_params "$@"
 setup_colors
