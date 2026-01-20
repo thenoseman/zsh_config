@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#
+# List some nerd font icons
+#
+for i in $(seq 0xF000 0xF2FF); do
+ printf "printf '\\\u%04X'  \u$(printf '%04x' $i)\n" $i
+done | column
