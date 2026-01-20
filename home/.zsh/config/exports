@@ -62,3 +62,6 @@ export FX_THEME=6
 
 # difftastic (https://difftastic.wilfred.me.uk)
 export DFT_TAB_WIDTH=2
+
+# tombi TOML validator (https://tombi-toml.github.io/tombi/docs/cli/environment-variables)
+export TOMBI_OFFLINE=true
