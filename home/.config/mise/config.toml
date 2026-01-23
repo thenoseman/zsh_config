@@ -3,7 +3,7 @@ default_config_filename = "mise.toml"
 
 [tools]
 "github:boyter/cs" = "latest"
-"github:psanford/wormhole-william" = { version = "latest", rename_exe = "wormhole" }
+"github:psanford/wormhole-william" = { version = "latest", bin = "wormhole" }
 "github:your-tools/ruplacer" = "latest"
 
 [settings]
