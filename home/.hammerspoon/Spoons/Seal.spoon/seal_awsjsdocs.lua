@@ -49,7 +49,6 @@ end
 
 --- Fill caches (index => package name)
 local packageMapFile = script_path() .. "/aws-js-sdk/aws-sdk-package-map.json"
-log.i("Looking for " .. packageMapFile)
 
 local file_info_last_modified = hs.fs.attributes(packageMapFile, "modification")
 if file_info_last_modified == nil then

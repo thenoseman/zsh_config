@@ -19,24 +19,16 @@ else
   logger.i("SECRETS not found")
 end
 
-require("spoons")
-require("screen_layout")
-require("audio")
-require("msteams")
-require("hotkeys")
-require("mediakeys")
-require("resize_window_on_screen")
-require("colima")
 require("app_auto_kill")
-require("keyboard_layout")
+require("audio")
+require("colima")
+require("hotkeys")
 require("junk_file_cleaner")
+require("keyboard_layout")
+require("mediakeys")
+require("msteams")
+require("resize_window_on_screen")
+require("screen_layout")
+require("spoons")
+require("watchman")
 --require("slow_quit")
-
---
--- Remove watchman watches on boot
--- Otherwise watchman will take up a lot of memory
---
-hs.timer.doAfter(10, function()
-  logger.i("[WATCHMAN] watch-del-all")
-  hs.task.new("/opt/homebrew/bin/watchman", nil, { "watch-del-all" }):start()
-end)

@@ -52,7 +52,6 @@ function fuzzyMatch(query, hackstay)
 end
 
 local indexFile = script_path() .. "/aws-terraform/terraform-provider-aws-index.txt"
-log.i("Looking for " .. indexFile)
 
 local file_info_last_modified = hs.fs.attributes(indexFile, "modification")
 if file_info_last_modified == nil then
