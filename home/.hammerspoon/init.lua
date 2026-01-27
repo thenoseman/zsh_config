@@ -31,3 +31,12 @@ require("app_auto_kill")
 require("keyboard_layout")
 require("junk_file_cleaner")
 --require("slow_quit")
+
+--
+-- Remove watchman watches on boot
+-- Otherwise watchman will take up a lot of memory
+--
+hs.timer.doAfter(10, function()
+  logger.i("[WATCHMAN] watch-del-all")
+  hs.task.new("/opt/homebrew/bin/watchman", nil, { "watch-del-all" }):start()
+end)
