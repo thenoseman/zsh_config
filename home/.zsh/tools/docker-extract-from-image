@@ -20,3 +20,4 @@ fi
 
 docker create --name "${container_name}" "${docker_image}"
 docker cp "${container_name}:${source}" "${target}"
+docker rm "docker-extract-"
