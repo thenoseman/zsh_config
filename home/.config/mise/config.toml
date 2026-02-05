@@ -1,5 +1,6 @@
 [env]
 default_config_filename = "mise.toml"
+_.path = "{{ cwd }}/node_modules/.bin"
 
 [tools]
 "github:boyter/cs" = "latest"
