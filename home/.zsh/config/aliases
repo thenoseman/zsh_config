@@ -10,13 +10,14 @@ alias ll='eza -alF --time-style long-iso --header'
 alias ls='eza'
 alias ..='cd ..'
 alias dl='cd ~/Downloads'
-alias rg='rg -F -i --hidden --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'' -g '\''!.git'\'''
+alias rg='rg --fixed-strings --ignore-case --hidden --max-columns 150 -g '\''!.terraform'\'' -g '\''!node_modules'\'' -g '\''!.git'\'''
 alias b64d="pbpaste | base64 -d"
 alias du="dust"
 alias cat="bat"
 alias dig="doggo"
 alias jqlog="jq -rcR '. as \$line | try (fromjson | .) catch \$line'"
 alias cmus="LC_ALL=C /opt/homebrew/bin/cmus"
+alias m="mise"
 
 # Download a video in mp4 format from youtube/vimeo/etc via youtube-dl
 alias yd="yt-dlp --recode-video mp4 --continue --ignore-errors --no-overwrites --restrict-filenames"
