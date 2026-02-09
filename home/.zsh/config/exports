@@ -43,8 +43,9 @@ export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/curl/include"
 # ripgrep (https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md)
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
-# aws-vault (https://github.com/99designs/aws-vault/blob/master/USAGE.md#environment-variables)
+# aws-vault (https://github.com/ByteNess/aws-vault/blob/main/USAGE.md)
 export AWS_VAULT_PROMPT=terminal
+export AWS_VAULT_AUTO_LOGOUT=1
 
 # packer (https://developer.hashicorp.com/packer/docs/configure#checkpoint_disable)
 export CHECKPOINT_DISABLE=1
