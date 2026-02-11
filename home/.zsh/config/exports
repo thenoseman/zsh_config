@@ -45,7 +45,7 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # aws-vault (https://github.com/ByteNess/aws-vault/blob/main/USAGE.md)
 export AWS_VAULT_PROMPT=terminal
-export AWS_VAULT_AUTO_LOGOUT=1
+#export AWS_VAULT_AUTO_LOGOUT=1
 
 # packer (https://developer.hashicorp.com/packer/docs/configure#checkpoint_disable)
 export CHECKPOINT_DISABLE=1
