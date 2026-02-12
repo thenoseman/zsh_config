@@ -86,7 +86,6 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
-	eslint    # Pluggable Javascript linter/fixer (https://eslint.org/)
 	eslint_d  # Runs eslint in a background process to improve linting time while editing
 	npm-check # Better "npm upgrade"
 	npq       # safely install npm packages by auditing them pre-install stage
