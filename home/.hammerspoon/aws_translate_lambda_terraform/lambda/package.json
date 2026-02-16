@@ -17,7 +17,7 @@
     "prettier": "^3.0"
   },
   "dependencies": {
-    "@aws-sdk/client-translate": "^3.0"
+    "@aws-sdk/client-translate": "^3.987"
   },
   "eslintConfig": {
     "env": {
