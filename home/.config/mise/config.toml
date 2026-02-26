@@ -5,7 +5,7 @@ _.path = "{{ cwd }}/node_modules/.bin"
 [tools]
 "github:boyter/cs" = "latest"
 "github:psanford/wormhole-william" = { version = "latest", bin = "wormhole" }
-"github:your-tools/ruplacer" = "latest"
+"cargo:your-tools/ruplacer" = "latest"  # Now on codeberg without releases for macos
 
 [settings]
 experimental = true
