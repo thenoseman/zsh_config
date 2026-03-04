@@ -8,9 +8,6 @@ local appname_for_trigger = "Microsoft Teams"
 local window_title_for_trigger = "| Microsoft Teams" -- The apps window title to watch for changes, partial match
 local window_min_width_to_trigger = 600 -- How wide must the window be to trigger the layout? Small windows should not triggered it.
 
--- selene: allow(undefined_variable)
-local resizeIfDraggedToScreen = primaryDisplay
-
 local timer = nil
 local testIntervalSec = 1 -- How long to wait until running the resize function?
 local border = 60 -- The border/margin to leave around the window
@@ -22,8 +19,9 @@ function resizeWindowIfOnScreen(window)
 
   local screenWindowIsOn = window:screen()
 
+  -- Resize only if dragged on primarydisplay
   -- selene: allow(undefined_variable)
-  if screenWindowIsOn == resizeIfDraggedToScreen then
+  if screenWindowIsOn == primaryDisplay then
     log.i("Moving and resizing window '" .. appname_for_trigger .. "'")
     window:setFrameWithWorkarounds({
       x = border,
