@@ -25,8 +25,6 @@ if file_info_last_modified == nil then
   local t = "Generate the DOM API index using \n'$HOME/.hammerspoon/Spoons/Seal.spoon/mdn/generate.sh"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
-else
-  log.i("Using pre-existing '" .. indexFile)
 end
 
 local function starts_with(str, start)

@@ -59,8 +59,6 @@ if file_info_last_modified == nil then
     "Generate the terraform AWS provider index using \n'$HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
-else
-  log.i("Using pre-existing '" .. indexFile)
 end
 
 function obj:stop()

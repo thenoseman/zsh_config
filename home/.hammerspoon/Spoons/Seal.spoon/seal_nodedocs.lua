@@ -27,8 +27,6 @@ if file_info_last_modified == nil then
   local t = "Generate the node-js index using \n'$HOME/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
-else
-  log.i("Using pre-existing '" .. indexFile)
 end
 
 local function starts_with(str, start)
