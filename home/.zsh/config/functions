@@ -88,7 +88,7 @@ pack_files() {
 #
 unpack_files() {
 	local filename="${1:-}"
-	[[ -z "${filename}" ]] || [[ -e "${filename}" ]] && echo "first param (filename) missing or file not found" && return
+	[[ -z "${filename}" ]] || [[ ! -e "${filename}" ]] && echo "first param (filename) missing or file not found" && return
 	echo "Extract ${filename} here, overwriting originals?"
 	echo "Press [ENTER] to continue, ctrl+c to cancel."
 	read -r yn
