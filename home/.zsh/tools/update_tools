@@ -12,7 +12,6 @@ SKIP_RUBY=1
 
 BREW_PACKAGES=(
 	bat                         # a 'cat' clone
-	biome                       # A very fast formatter/linter for TS/JS/JSON
 	colima                      # Alternative to docker desktop for Mac
 	coreutils                   # Base tools for every OS
 	curl                        # For libcurl
@@ -46,6 +45,7 @@ BREW_PACKAGES=(
 	oath-toolkit                # OTP token management/creation
 	openconnect                 # VPN client
 	openssl                     # Newer version of openssl than present in MacOs
+	oxfmt                       # Code formatter
 	parallel                    # Execute commands concurrently
 	pstree                      # tree view of directories
 	python                      # python 3
