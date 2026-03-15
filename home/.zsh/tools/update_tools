@@ -51,7 +51,6 @@ BREW_PACKAGES=(
 	python                      # python 3
 	readline                    # GNU readline (For ruby I think)
 	ripgrep                     # The best file search tool
-	rustup                      # rust toolchain
 	selene                      # LUA linter
 	shellcheck                  # shell script linter
 	shfmt                       # shell script formatter
