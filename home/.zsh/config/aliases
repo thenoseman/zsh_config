@@ -37,7 +37,7 @@ alias gti="git"
 # RUBY
 #
 
-# pipe for use with vim + rspec and jest
+# pipe for use with vim + rspec
 alias pipe='mkdir -p tmp && if [ ! -p tmp/test-pipe ]; then mkfifo tmp/test-pipe; fi && echo "Now listening to tmp/test-pipe" && while true; do sh -c "$(cat tmp/test-pipe)"; done'
 
 # Run next failing rspec test.

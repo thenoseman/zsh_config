@@ -5,6 +5,7 @@
     "suspicious": "warn",
     "style": "warn"
   },
+  "sortPackageJson": false,
   "ignorePatterns": [],
   "globals": {}
 }

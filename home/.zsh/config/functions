@@ -97,10 +97,9 @@ unpack_files() {
 }
 
 #
-# Javascript testing with jest
+# Javascript testing
 #
 wjs-test() {
-	test_runner="jest"
 	if [[ -e "node_modules/.bin/vitest" ]]; then
 		# shellcheck disable=SC2046
 		node_modules/.bin/vitest watch $(rg --files --hidden --follow --glob 'test*/unit*/**/*.{spec,test}.{ts,js}' | fzf -m --select-1 --query "${1}" | tr "\n" " ")
