@@ -1,4 +1,0 @@
---langdef=vue
---map-vue=.vue
---_tabledef-vue=vue
---_mtable-regex-vue=vue/.*(<script>).*(<\/script>)//{_guest=JavaScript,1end,2start}
