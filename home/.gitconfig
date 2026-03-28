@@ -30,7 +30,7 @@
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal I' -c 'startinsert'"
-  pager = delta
+  #pager = difft --color=always
   precomposeunicode = true
   untrackedCache = true
   attributesfile = ~/.gitattributes
@@ -74,7 +74,7 @@
 [difftool "ydiff"]
   cmd = ydiff -s -w 0 $LOCAL $REMOTE
 [difftool "difftastic"]
-  cmd = difft "$LOCAL" "$REMOTE"
+  cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 [grep]
   patternType = perl
 [rerere]
@@ -86,6 +86,7 @@
 [user]
   useconfigonly = true
 [interactive]
+  diffFilter = difft --color=always
   #diffFilter = delta --color-only
 [delta]
   #side-by-side = true
