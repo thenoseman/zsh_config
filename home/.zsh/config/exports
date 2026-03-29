@@ -20,8 +20,8 @@ export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 export JAVA_HOME
 [ -e "/usr/libexec/java_home" ] && JAVA_HOME=$(/usr/libexec/java_home -v 21)
 
-# Show `time` output for any command that takes longer than 2 second of CPU time
-export REPORTTIME=2
+# Show `time` output for any command that takes longer than 5 second of CPU time
+export REPORTTIME=5
 
 # Manpager with ascii-sequences
 # This breaks awcli help ATM
@@ -63,6 +63,9 @@ export FX_THEME=6
 
 # difftastic (https://difftastic.wilfred.me.uk)
 export DFT_TAB_WIDTH=2
+
+# delta (https://dandavison.github.io/delta/)
+export DELTA_FEATURES="diff-so-fancy"
 
 # tombi TOML validator (https://tombi-toml.github.io/tombi/docs/cli/environment-variables)
 export TOMBI_OFFLINE=true
