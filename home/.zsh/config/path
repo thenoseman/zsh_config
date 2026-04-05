@@ -1,19 +1,12 @@
 # shellcheck disable=SC2086,SC3010
 # vim: set ft=sh:
-DEFAULT_RUBY_VERSION=3.3.0
 
 export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
 export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:"
 export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
 
 # Default Ruby
-export PATH=$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin:$PATH
-[[ ! -d "$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin" ]] && echo "INSTALLING RUBY ${DEFAULT_RUBY_VERSION}" && ruby-build $DEFAULT_RUBY_VERSION "$HOME/.rubies/$DEFAULT_RUBY_VERSION"
-
-# If a program (eg. coc.vim) tries to discover the active ruby version using "zsh -l -c "ruby -v" it
-# won't pickup the ruby-build installed rubies because the path (~/.rubies) is AFTER the system ruby in $PATH
-# To fix this we link a ruby version we want into /usr/local/bin/ruby
-[[ ! -e "$HOMEBREW_PREFIX/bin/ruby" ]] && ln -s "$HOME/.rubies/${DEFAULT_RUBY_VERSION}/bin/ruby" $HOMEBREW_PREFIX/bin/ruby
+# Use mise!
 
 # Own zsh stuff
 export PATH=$HOME/.zsh/tools:$PATH

@@ -10,3 +10,6 @@ _.path = "{{ cwd }}/node_modules/.bin"
 [settings]
 experimental = true
 python.uv_venv_auto = true
+
+[settings.ruby]
+compile = false
