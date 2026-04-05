@@ -30,7 +30,7 @@
   autocrlf = input
   excludesfile = ~/.gitignore
   editor = "vim -N -u ~/.vimrc --cmd 'let g:vim_commandline=1' -c 'normal I' -c 'startinsert'"
-  #pager = difft --color=always
+  #pager = delta
   precomposeunicode = true
   untrackedCache = true
   attributesfile = ~/.gitattributes
@@ -86,7 +86,7 @@
 [user]
   useconfigonly = true
 [interactive]
-  diffFilter = difft --color=always
+  #diffFilter = difft --color=always
   #diffFilter = delta --color-only
 [delta]
   #side-by-side = true

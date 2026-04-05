@@ -8,8 +8,6 @@ typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
 typeset -a ALLOW_FIREWALL_INCOMING
 
-SKIP_RUBY=1
-
 BREW_PACKAGES=(
 	bat                         # a 'cat' clone
 	colima                      # Alternative to docker desktop for Mac
@@ -49,7 +47,6 @@ BREW_PACKAGES=(
 	parallel                    # Execute commands concurrently
 	pstree                      # tree view of directories
 	python                      # python 3
-	readline                    # GNU readline (For ruby I think)
 	ripgrep                     # The best file search tool
 	selene                      # LUA linter
 	shellcheck                  # shell script linter
@@ -88,10 +85,6 @@ NODE_PACKAGES=(
 	eslint_d  # Runs eslint in a background process to improve linting time while editing
 	npm-check # Better "npm upgrade"
 	npq       # safely install npm packages by auditing them pre-install stage
-)
-
-RUBY_GEMS=(
-	pry-byebug
 )
 
 # List of binaries that should be allow thru the firewall
@@ -156,16 +149,6 @@ install_missing_brew_special_cases() {
 	fi
 }
 
-update_rubygems() {
-	msg "update_rubygems"
-	gem update --system
-}
-
-update_gems() {
-	msg "update_gems"
-	gem install "${RUBY_GEMS[@]}"
-}
-
 update_js_tools() {
 	msg "update_js_tools"
 	NODE_OPTIONS="--disable-warning=ExperimentalWarning"
@@ -216,6 +199,15 @@ allow_firewall_incoming() {
 	done
 }
 
+allow_quicklook_plugins() {
+	msg "allow_quicklook_plugins"
+	/usr/bin/xattr -r ~/Library/QuickLook >/dev/null
+	/usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook >/dev/null
+}
+
+#
+# START
+#
 update_zsh_config
 update_vim_config
 install_missing_brew_casks
@@ -225,10 +217,4 @@ update_js_tools
 update_hammerspoon_seal_plugin_data
 install_special_cases
 allow_firewall_incoming
-if [[ "${SKIP_RUBY}" == "0" ]]; then
-	update_rubygems
-	update_gems
-fi
-
-/usr/bin/xattr -r ~/Library/QuickLook >/dev/null
-/usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook >/dev/null
+allow_quicklook_plugins

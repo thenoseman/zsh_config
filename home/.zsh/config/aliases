@@ -3,9 +3,6 @@
 # SHELL HELPERS
 # shellcheck disable=SC3010,SC3028,SC3009,SC2154,SC2139
 
-# Start a webserver here
-alias serve='echo "SERVING `pwd` ON http://`ifconfig -v en0 inet | grep inet | cut -d " " -f 2`:9090/" && ruby -run -e httpd . -p9090'
-
 alias ll='eza -alF --time-style long-iso --header'
 alias ls='eza'
 alias ..='cd ..'
@@ -32,17 +29,6 @@ alias pu='git push'
 alias gpr='SKIP_PRECOMMIT_HOOK=1 git pull --rebase --autostash'
 alias ma='git checkout $(git branch --list --format="%(refname:lstrip=2)"| grep -E "master|main")'
 alias gti="git"
-
-#
-# RUBY
-#
-
-# pipe for use with vim + rspec
-alias pipe='mkdir -p tmp && if [ ! -p tmp/test-pipe ]; then mkfifo tmp/test-pipe; fi && echo "Now listening to tmp/test-pipe" && while true; do sh -c "$(cat tmp/test-pipe)"; done'
-
-# Run next failing rspec test.
-# See https://relishapp.com/rspec/rspec-core/docs/command-line/only-failures
-alias next="rspec --next-failure"
 
 #
 # AWS
