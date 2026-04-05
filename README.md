@@ -35,19 +35,17 @@ Execute `relink`.
 
 Execute `update_all`
 
-Execute `update-tools-from-github`
+Link from sync to `$HOMEBREW_PREFIX/etc/wireguard` (deprecated)
 
-Link from sync to `$HOMEBREW_PREFIX/etc/wireguard`
-
-Link from sync to `$HOMEBREW_PREFIX/etc/coredns/Corefile`
+Link from sync to `$HOMEBREW_PREFIX/etc/coredns/Corefile` (deprecated)
 
 Link `amazon-shell-tools.sh` from sync to `zsh_config/home/.zsh/private`
 
-Create and fill `zsh_config/home/.zsh/private/export.sh`
+Link `export.sh` from sync to `zsh_config/home/.zsh/private`
 
 `colima start -c 4 -d 80 -m 8 -t "vz" --vz-rosetta`
 
-Make spotlight index all prefpanes: `for prefpane in /System/Library/PreferencePanes/*.prefPane; do sudo mdimport $prefpane; done`
+Make spotlight index all prefpanes: `spotlight_index_all`
 
 ## Potential errors
 
