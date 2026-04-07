@@ -176,6 +176,9 @@ update_hammerspoon_seal_plugin_data() {
 
 	# hammerspoon seal plugin "lua something"
 	"$HOME/.hammerspoon/Spoons/Seal.spoon/lua/generate.sh"
+
+	# hammerspoon seal plugin "k something"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/kubernetes/generate.sh"
 }
 
 install_special_cases() {

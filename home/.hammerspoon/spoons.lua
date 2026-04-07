@@ -25,5 +25,14 @@ if not hs.hotkey.assignable({ "cmd" }, "Space") then
 end
 hs.loadSpoon("Seal")
 spoon.Seal:bindHotkeys({ show = { { "cmd" }, "Space" } })
-spoon.Seal:loadPlugins({ "appsfzy", "calc", "nodedocs", "awsjsdocs", "awstfdocs", "mdndocs", "luadocs" })
+spoon.Seal:loadPlugins({
+  "appsfzy",
+  "calc",
+  "nodedocs",
+  "awsjsdocs",
+  "awstfdocs",
+  "mdndocs",
+  "luadocs",
+  "kubernetesdocs",
+})
 spoon.Seal:start()
