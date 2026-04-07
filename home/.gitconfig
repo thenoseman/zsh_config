@@ -1,22 +1,22 @@
 [include]
   path = .gitcredentials
 [alias]
-  l = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(green)(%an, %ad%Creset)' --date=iso-local
-  ci = commit
-  st = status
+  branch-commits = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log --oneline $(git merge-base main $GIT_CURRENT_BRANCH)..$GIT_CURRENT_BRANCH
   ch = checkout
+  ci = commit
   cp = cherry-pick -x
-  unstage = reset HEAD
+  d = difftool
+  fuck = commit --amend
+  l = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(green)(%an, %ad%Creset)' --date=iso-local
+  ra = rebase --abort
+  rc = rebase --continue
+  st = status
+  # git show with file suppression and difft usage
+  s = !git show $1 --ext-diff -- . ':(exclude)**/package-lock.json'
   uncommit = reset --soft HEAD^
   unpushed = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline
-  rc = rebase --continue
-  ra = rebase --abort
-  create-patch = !NR=$(GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log origin/$GIT_CURRENT_BRANCH..$GIT_CURRENT_BRANCH --oneline | wc -l | tr -d ' ') && git format-patch HEAD~$NR
-  ami = am --committer-date-is-author-date --ignore-date
-  fuck = commit --amend
-  d = difftool
+  unstage = reset HEAD
   who = !git config user.name && git config user.email
-  branch-commits = !GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD) && git log --oneline $(git merge-base main $GIT_CURRENT_BRANCH)..$GIT_CURRENT_BRANCH
 [color]
   branch = auto
   status = auto
