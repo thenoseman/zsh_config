@@ -6,7 +6,6 @@ source ~/.zsh/config/functions
 typeset -a BREW_TAPS
 typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
-typeset -a ALLOW_FIREWALL_INCOMING
 
 BREW_PACKAGES=(
 	bat                         # a 'cat' clone
@@ -85,12 +84,6 @@ NODE_PACKAGES=(
 	eslint_d  # Runs eslint in a background process to improve linting time while editing
 	npm-check # Better "npm upgrade"
 	npq       # safely install npm packages by auditing them pre-install stage
-)
-
-# List of binaries that should be allow thru the firewall
-# Those might be brew links ansd thus must be resolved to their realpath
-ALLOW_FIREWALL_INCOMING=(
-	syncthing
 )
 
 # Other useful stuff outside of homebrew:
@@ -194,14 +187,6 @@ install_special_cases() {
 	fi
 }
 
-allow_firewall_incoming() {
-	msg "allow_firewall_incoming"
-	for p in "${ALLOW_FIREWALL_INCOMING[@]}"; do
-		path=$(realpath $(which ${p}))
-		/usr/libexec/ApplicationFirewall/socketfilterfw --add "${path}"
-	done
-}
-
 allow_quicklook_plugins() {
 	msg "allow_quicklook_plugins"
 	/usr/bin/xattr -r ~/Library/QuickLook >/dev/null
@@ -219,5 +204,4 @@ brew upgrade
 update_js_tools
 update_hammerspoon_seal_plugin_data
 install_special_cases
-allow_firewall_incoming
 allow_quicklook_plugins
