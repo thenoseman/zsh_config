@@ -81,9 +81,10 @@ BREW_CASKS=(
 )
 
 NODE_PACKAGES=(
-	eslint_d  # Runs eslint in a background process to improve linting time while editing
-	npm-check # Better "npm upgrade"
-	npq       # safely install npm packages by auditing them pre-install stage
+	eslint_d             # Runs eslint in a background process to improve linting time while editing
+	npm-check            # Better "npm upgrade"
+	npq                  # safely install npm packages by auditing them pre-install stage
+	yaml-language-server # YAML language server for vim integration
 )
 
 # Other useful stuff outside of homebrew:
