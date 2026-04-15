@@ -18,6 +18,7 @@ obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terr
 local icons = {
   ["resources"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-resource.png"),
   ["data-sources"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-data.png"),
+  ["function"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-function.png"),
 }
 
 --- Seal.plugins.awssdkdocs.trigger
@@ -105,6 +106,13 @@ function obj.choices(query)
     choice["uuid"] = obj.__name .. "__" .. parts[1]
     choice["image"] = icons[parts[3]]
     choice["plugin"] = obj.__name
+
+    if choice["type"] == "function" then
+      if choice["name"] == "index" then
+        choice["name"] = "index_function"
+      end
+      choice["text"] = parts[1] .. " (function)"
+    end
     table.insert(choices, choice)
   end
 
@@ -117,7 +125,10 @@ function obj.completionCallback(choice)
     .. choice["type"]
     .. "/"
     .. choice["name"]
-  log.i("Opening " .. url)
+  if choice["type"] == "function" then
+    url = "https://developer.hashicorp.com/terraform/language/functions/" .. choice["name"]
+  end
+
   hs.execute(string.format("/usr/bin/open '%s'", url))
   obj.stop()
 end

@@ -11,7 +11,7 @@ LOCAL=1.0.0
 [[ -e "LOCAL_VERSION" ]] && LOCAL=$(cat LOCAL_VERSION)
 echo "[AWS-TERRAFORM] Remote version ${REMOTE}, local version ${LOCAL}"
 
-[[ "${LOCAL}" = "${REMOTE}" ]] && echo "[AWS-TERRAFORM] Versions are the same. Nothing to do" && exit 0
+[[ "${LOCAL}" = "${REMOTE}" ]] && [[ -z "${FORCE}" ]] && echo "[AWS-TERRAFORM] Versions are the same. Nothing to do" && exit 0
 
 rm -rf terraform-provider-aws-index-*.txt terraform-provider-aws
 echo "[AWS-TERRAFORM] Cloning AWS terraform provider docs"
@@ -45,10 +45,12 @@ find terraform-provider-aws/website \( -wholename "*/docs/r/*.markdown" -o -whol
 	echo "$line" >>terraform-provider-aws-index-unsorted.txt
 done
 
+./generate-tf-docs.sh
+
 echo "[AWS-TERRAFORM] Writing sorted index file terraform-provider-aws-index.txt"
-sort terraform-provider-aws-index-unsorted.txt >terraform-provider-aws-index.txt
+cat terraform-docs-index-functions.txt terraform-provider-aws-index-unsorted.txt | sort >terraform-provider-aws-index.txt
 
 echo "${REMOTE}" >LOCAL_VERSION
 
 echo "[AWS-TERRAFORM] aws-terraform cleanup"
-rm -rf terraform-provider-aws-index-unsorted.txt terraform-provider-aws
+rm -rf terraform-provider-aws-index-unsorted.txt terraform-docs-index-functions.txt terraform-provider-aws
