@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Writes a file containing the latest LUA 5.4 docs
+# Writes a file containing kubernetes 1.33 docs
 #
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$script_dir" || exit 1
