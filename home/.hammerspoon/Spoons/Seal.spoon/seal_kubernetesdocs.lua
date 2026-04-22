@@ -23,7 +23,8 @@ local indexFile = script_path() .. "/kubernetes/index.txt"
 
 local file_info_last_modified = hs.fs.attributes(indexFile, "modification")
 if file_info_last_modified == nil then
-  local t = "Generate the kubernetes API index using \n'$HOME/.hammerspoon/Spoons/Seal.spoon/kubernetes/generate.sh"
+  local t =
+    "Generate the kubernetes API index using \ncd ~/.hammerspoon/Spoons/Seal.spoon/kubernetes && npm ci && node generate.mjs"
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 end
@@ -84,14 +85,9 @@ function obj.choices(query)
   return choices
 end
 
--- https://v1-34.docs.kubernetes.io/docs/reference/kubernetes-api/workload-resources/deployment-v1/#Deployment
+-- https://v1-34.docs.kubernetes.io/docs/reference/kubernetes-api/_print/#pg-b6a8b05b60848f88f4446e5becc55301
 function obj.completionCallback(rowInfo)
-  hs.execute(
-    string.format(
-      "/usr/bin/open '%s'",
-      "https://v1-34.docs.kubernetes.io/docs/reference/kubernetes-api/" .. rowInfo["url"]
-    )
-  )
+  hs.execute(string.format("/usr/bin/open '%s'", rowInfo["url"]))
 end
 
 return obj
