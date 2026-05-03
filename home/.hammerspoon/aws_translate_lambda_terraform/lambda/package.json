@@ -11,13 +11,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^10.2.0",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.3"
   },
   "dependencies": {
-    "@aws-sdk/client-translate": "^3.1024.0"
+    "@aws-sdk/client-translate": "^3.1041.0"
   },
   "eslintConfig": {
     "env": {
