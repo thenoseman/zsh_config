@@ -8,6 +8,7 @@ typeset -a BREW_CASKS
 typeset -a BREW_PACKAGES
 
 BREW_PACKAGES=(
+	autoconf                    # for fzf-tab native compiling
 	bat                         # a 'cat' clone
 	colima                      # Alternative to docker desktop for Mac
 	coreutils                   # Base tools for every OS
@@ -45,7 +46,6 @@ BREW_PACKAGES=(
 	oxfmt                       # Code formatter
 	parallel                    # Execute commands concurrently
 	pstree                      # tree view of directories
-	python                      # python 3
 	ripgrep                     # The best file search tool
 	selene                      # LUA linter
 	shellcheck                  # shell script linter
@@ -146,33 +146,34 @@ install_missing_brew_special_cases() {
 update_js_tools() {
 	msg "update_js_tools"
 	NODE_OPTIONS="--disable-warning=ExperimentalWarning"
-	for p in "${NODE_PACKAGES[@]}"; do
-		$HOMEBREW_PREFIX/bin/npm install -g "${p}"
-	done
+	npm install --no-audit --no-fund -g "${NODE_PACKAGES[@]}"
 }
 
 update_hammerspoon_seal_plugin_data() {
 	msg "update_hammerspoon_seal_plugin_data"
+
 	# hammerspoon seal plugin "aws someawsdskkeyword"
-	node "$HOME/.hammerspoon/Spoons/Seal.spoon/aws-js-sdk/generate.mjs"
+	node "$HOME/.hammerspoon/Spoons/Seal.spoon/aws-js-sdk/generate.mjs" &
 
 	# hammerspoon seal plugin "aws_someterraformawsresource"
-	"$HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/aws-terraform/generate.sh" &
 
 	# hammerspoon seal plugin "n somenodesdkkeyword"
-	"$HOME/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/node-js/generate.sh" &
 
 	# hammerspoon seal plugin "mdn somethingonmdn"
-	"$HOME/.hammerspoon/Spoons/Seal.spoon/mdn/generate.sh"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/mdn/generate.sh" &
 
 	# hammerspoon seal plugin "dom something"
 	#"$HOME/.hammerspoon/Spoons/Seal.spoon/dom/generate.sh"
 
 	# hammerspoon seal plugin "lua something"
-	"$HOME/.hammerspoon/Spoons/Seal.spoon/lua/generate.sh"
+	"$HOME/.hammerspoon/Spoons/Seal.spoon/lua/generate.sh" &
 
 	# hammerspoon seal plugin "k something"
-	node "$HOME/.hammerspoon/Spoons/Seal.spoon/kubernetes/generate.mjs"
+	node "$HOME/.hammerspoon/Spoons/Seal.spoon/kubernetes/generate.mjs" &
+
+	wait
 }
 
 install_special_cases() {
