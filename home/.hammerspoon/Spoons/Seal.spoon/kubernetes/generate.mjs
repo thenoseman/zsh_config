@@ -4,6 +4,8 @@
 import { parse } from "node-html-parser";
 import { openSync, writeFileSync, closeSync } from "node:fs";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const KUBERNETES_VERSION = "1-34";
 const DOCS_URL = `https://v${KUBERNETES_VERSION}.docs.kubernetes.io/docs/reference/kubernetes-api/_print`;
 
@@ -15,7 +17,7 @@ const root = parse(html);
 
 // Collect resource nodes
 const resourceNodes = root.querySelectorAll(".td-content > ul > ul > li > a");
-const indexFile = openSync("index.txt", "w");
+const indexFile = openSync(__dirname + "/index.txt", "w");
 
 console.log(`[kubernetes] Writing kubernetes ${KUBERNETES_VERSION} index`);
 resourceNodes.forEach((node) => {
