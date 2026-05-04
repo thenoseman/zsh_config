@@ -3,6 +3,8 @@
 //
 import { parse } from "node-html-parser";
 import { openSync, writeFileSync, closeSync } from "node:fs";
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
