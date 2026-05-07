@@ -31,7 +31,7 @@ BREW_PACKAGES=(
 	gnu-tar                     # GNU tar for MacOs
 	grep                        # GNU grep
 	groff                       # groff for fzftab
-	gsed                        # GNU sed for MacOs
+	gnu-sed                     # GNU sed for MacOs
 	imagemagick                 # Image manipulation tools
 	jhead                       # Lossless JPG auto rotation
 	jq                          # Manipulate, format and filter JSON
