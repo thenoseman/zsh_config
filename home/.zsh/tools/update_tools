@@ -52,6 +52,7 @@ BREW_PACKAGES=(
 	shfmt                       # shell script formatter
 	sqlite                      # sqlite tools
 	stylua                      # LUA Formatter
+	syntax-highlight            # quicklook display (https://github.com/sbarex/SourceCodeSyntaxHighlight)
 	syncthing                   # Sync data between computers
 	tig                         # TUI for git
 	tombi                       # Tombi is a TOML Formatter, Linter, and Language Server
@@ -90,8 +91,6 @@ NODE_PACKAGES=(
 # Other useful stuff outside of homebrew:
 OUTSIDE_OF_HOMEBREW=(
 	disk-inventory-x # Find large files (https://www.derlien.com/)
-	qlmarkdown       # Quicklook Plugin: Markdown (https://github.com/sbarex/QLMarkdown)
-	quicklook-json   # Quicklook Plugin: JSON (http://www.sagtau.com/quicklookjson.html)
 )
 
 #
