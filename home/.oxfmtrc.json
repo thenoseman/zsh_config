@@ -7,7 +7,7 @@
   },
   "sortPackageJson": false,
   "ignorePatterns": [],
-  "singleAttributePerLine": false,
+  "bracketSameLine": true,
   "ignorePatterns": ["coverage-unit"],
   "globals": {}
 }

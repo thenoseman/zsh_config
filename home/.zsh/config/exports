@@ -52,7 +52,7 @@ export CHECKPOINT_DISABLE=1
 
 # Lefthook (https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md)
 # OLD lefthook version: export LEFTHOOK_QUIET=meta,summary,empty_summary,success,execution,execution_out,execution_info,skips
-export LEFTHOOK_OUTPUT=false
+export LEFTHOOK_OUTPUT="false"
 
 # docker
 export BUILDKIT_PROGRESS="plain"
