@@ -15,6 +15,7 @@ alias dig="doggo"
 alias jqlog="jq -rcR '. as \$line | try (fromjson | .) catch \$line'"
 alias cmus="LC_ALL=C /opt/homebrew/bin/cmus"
 alias m="mise"
+alias date_iso="date -u +'%Y-%m-%dT%H:%m:%SZ'"
 
 # Download a video in mp4 format from youtube/vimeo/etc via youtube-dl
 alias yd="yt-dlp --recode-video mp4 --continue --ignore-errors --no-overwrites --restrict-filenames"

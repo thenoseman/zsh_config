@@ -15,7 +15,6 @@ BREW_PACKAGES=(
 	curl                        # For libcurl
 	difftastic                  # Diff that understands syntax
 	docker                      # -> colima
-	docker-completion           # -> colima
 	docker-compose              # -> colima
 	docker-credential-helper    # -> colima
 	doggo                       # Command-line DNS client for humans
