@@ -44,8 +44,23 @@ git-wt() {
 		local branch="${2:-}"
 		[[ -z "${branch}" ]] && echo "${RED}No branch name given${NOFORMAT}" && return
 		git_root=$(git rev-parse --show-toplevel)
-		git worktree add -b "${branch}" "${git_root}/${branch}"
-		echo "Created ${GREEN}${branch}${NOFORMAT} worktree at ${GREEN}${git_root}/../${branch}${NOFORMAT}"
+		target_path=$(realpath -m "${git_root}/../${branch}")
+		if git worktree add -b "${branch}" "${target_path}"; then
+			echo "Created ${GREEN}${branch}${NOFORMAT} worktree at ${GREEN}${target_path}${NOFORMAT}"
+			cd "${target_path}" || return
+		else
+			echo "${RED}Creation failed!${NOFORMAT}"
+		fi
+		return
+	fi
+
+	# Remove a worktree
+	if [[ "${action}" == "remove" ]]; then
+		directory=$(git worktree list --porcelain |
+			awk '/worktree/ {wt=$2} /branch/ {sub("refs/heads/", "", $2); print wt " [" $2 "]"}' |
+			fzf --select-1 --query "'${1:-}" --no-multi --exit-0 |
+			awk '{print $1}')
+		git worktree remove "${directory}"
 		return
 	fi
 
