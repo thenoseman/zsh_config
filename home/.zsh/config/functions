@@ -1,5 +1,5 @@
 # vim:ft=sh
-# shellcheck disable=SC2145,SC2154,SC3010,SC3043,SC3033
+# shellcheck disable=SC2145,SC2154,SC3010,SC3043,SC3033,SC3014
 
 # shellcheck disable=SC2034
 export NOFORMAT='\033[0m' RED='\033[0;31m' GREEN='\033[0;32m' ORANGE='\033[0;33m' BLUE='\033[0;34m' PURPLE='\033[0;35m' CYAN='\033[0;36m' YELLOW='\033[1;33m'
@@ -18,6 +18,48 @@ ti() {
 		tig status
 	else
 		tig "$@"
+	fi
+}
+
+#
+# Git functions
+#
+# git worktree tools
+#
+git-wt() {
+	local action="${1:-cd}"
+
+	# Jump to a worktree directory
+	if [[ "${action}" == "cd" ]]; then
+		directory=$(git worktree list --porcelain |
+			awk '/worktree/ {wt=$2} /branch/ {sub("refs/heads/", "", $2); print wt " [" $2 "]"}' |
+			fzf --select-1 --query "'${1:-}" --no-multi --exit-0 |
+			awk '{print $1}')
+		cd "${directory}" || return
+		return
+	fi
+
+	# Adds a worktree branch one level up the git repo root
+	if [[ "${action}" == "add" ]]; then
+		local branch="${2:-}"
+		[[ -z "${branch}" ]] && echo "${RED}No branch name given${NOFORMAT}" && return
+		git_root=$(git rev-parse --show-toplevel)
+		git worktree add -b "${branch}" "${git_root}/${branch}"
+		echo "Created ${GREEN}${branch}${NOFORMAT} worktree at ${GREEN}${git_root}/../${branch}${NOFORMAT}"
+		return
+	fi
+
+	# Fall thru to git worktree
+	git worktree "$@"
+}
+
+# This allows zsh functions to act as "git something"
+git() {
+	if [[ "$1" == "wt" ]]; then
+		shift
+		git-wt "$@"
+	else
+		command git "$@"
 	fi
 }
 
