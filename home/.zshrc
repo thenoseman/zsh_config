@@ -4,12 +4,12 @@
 # Add paths to zsh function path
 fpath=(/opt/homebrew/share/zsh/site-functions ~/.zsh/zfunctions $fpath)
 
-# crazy tab completion
 autoload -Uz compinit
-for dump in ~/.zcompdump(N.mh+24); do
+if [[ -n ~/.zcompdump(#qNmh-24) ]]; then
+  compinit -C
+else
   compinit
-done
-compinit -C
+fi
 
 # crazy mad shit
 setopt APPEND_HISTORY
