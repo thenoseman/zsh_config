@@ -90,6 +90,7 @@ NODE_PACKAGES=(
 # Other useful stuff outside of homebrew:
 OUTSIDE_OF_HOMEBREW=(
 	disk-inventory-x # Find large files (https://www.derlien.com/)
+	quickrecorder    # https://github.com/lihaoyun6/QuickRecorder/releases (Record screen as video)
 )
 
 #
