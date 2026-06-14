@@ -1,7 +1,5 @@
 # vim:ft=sh
 # shellcheck source=/dev/null disable=SC3010,SC3028,SC2155
-. ~/.zsh/config/homebrew
-
 export SHELL=zsh
 export CLICOLOR=1
 export LSCOLORS=cxfxexexDxexexDxDxcxcx
@@ -31,7 +29,7 @@ export REPORTTIME=5
 export MAVEN_OPTS="-Xms512m -Xmx1024m -Dfile.encoding=UTF-8"
 
 # For GPG command line and used in vim
-export GPG_TTY="$(tty)"
+export GPG_TTY="${TTY}"
 
 # set tmux terminal
 [ -n "$TMUX" ] && export TERM=screen-256color

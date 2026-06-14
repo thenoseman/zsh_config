@@ -1,5 +1,5 @@
 # profiling (execute zprof after shell is initialized)
-# zmodload zsh/zprof
+#zmodload zsh/zprof
 
 # Add paths to zsh function path
 fpath=(/opt/homebrew/share/zsh/site-functions ~/.zsh/zfunctions $fpath)
@@ -9,6 +9,8 @@ if [[ -n ~/.zcompdump(#qNmh-24) ]]; then
   compinit -C
 else
   compinit
+  # Compile the result for faster startup
+  { zcompile ~/.zcompdump } &!
 fi
 
 # crazy mad shit
@@ -85,7 +87,7 @@ zstyle ':completion:*' special-dirs true
 # Cache completion results
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion:*' rehash yes
+#zstyle ':completion:*' rehash yes
 
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
@@ -98,7 +100,7 @@ zstyle ':completion:*' expand prefix suffix
 stty stop undef
 
 # set homebrew prefix (needs to be sourced!)
-source ~/.zsh/config/homebrew
+source ~/.zsh/modules/homebrew
 
 # Init ZSH help system
 unalias run-help &>/dev/null
@@ -109,21 +111,37 @@ HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 source ~/.zsh/modules/pure_prompt/async.zsh
 async_init
 
-# Load mise (https://mise.jdx.dev/)
-eval "$($HOMEBREW_PREFIX/bin/mise activate zsh)"
+# Load mise (https://mise.jdx.dev/) - cached for 48 hours
+_mise_cache="${HOME}/.zsh/cache/mise_activate.zsh"
+() {
+  local -a fresh
+  fresh=( ${_mise_cache}(#qNmh-48) )
+  if (( ! ${#fresh} )); then
+    "${HOMEBREW_PREFIX}/bin/mise" activate zsh >| "${_mise_cache}"
+  fi
+}
+source "${_mise_cache}"
 
-# https://github.com/gsamokovarov/jump
-eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"
+# https://github.com/gsamokovarov/jump - cached for 48 hours
+_jump_cache="${HOME}/.zsh/cache/jump_init.zsh"
+() {
+  local -a fresh
+  fresh=( ${_jump_cache}(#qNmh-48) )
+  if (( ! ${#fresh} )); then
+    "${HOMEBREW_PREFIX}/bin/jump" shell zsh >| "${_jump_cache}"
+  fi
+}
+source "${_jump_cache}"
 
 # https://github.com/ajeetdsouza/zoxide
 # eval "$($HOMEBREW_PREFIX/bin/zoxide init --no-cmd --hook pwd zsh)"
 
 # Color settings
 # vim: set ft=sh:
-ccred=$(echo -e "\033[0;31m")
-ccgreen=$(echo -e "\033[0;32m")
-ccyellow=$(echo -e "\033[0;33m")
-ccend=$(echo -e "\033[0m")
+ccred=$'\033[0;31m'
+ccgreen=$'\033[0;32m'
+ccyellow=$'\033[0;33m'
+ccend=$'\033[0m'
 
 #
 # Keybindings
@@ -189,4 +207,4 @@ ulimit -n 8192
 for f in ~/.zsh/config/*; do source $f; done
 for f in ~/.zsh/private/*; do source $f; done
 
-# zprof
+#zprof
