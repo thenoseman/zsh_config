@@ -14,10 +14,6 @@ export LC_ALL="en_US.UTF-8"
 # https://news.sherlock.stanford.edu/posts/when-setting-an-environment-variable-gives-you-a-40-x-speedup
 export LS_COLORS='ex=00:su=00:sg=00:ca=00:'
 
-# Use java 21
-export JAVA_HOME
-[ -e "/usr/libexec/java_home" ] && JAVA_HOME=$(/usr/libexec/java_home -v 21)
-
 # Show `time` output for any command that takes longer than 5 second of CPU time
 export REPORTTIME=5
 

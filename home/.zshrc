@@ -108,8 +108,8 @@ autoload run-help
 HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 
 # Init async.zsh
-source ~/.zsh/modules/pure_prompt/async.zsh
-async_init
+#source ~/.zsh/modules/pure_prompt/async.zsh
+#async_init
 
 # Load mise (https://mise.jdx.dev/) - cached for 48 hours
 _mise_cache="${HOME}/.zsh/cache/mise_activate.zsh"
@@ -181,7 +181,7 @@ bindkey '^R' fzf-history-widget
 
 bindkey -s '^D' "logout\n"
 
-# Linux (see key sequnce using <ctrl-v>anykeycombo
+# Linux (see key seqeunce using <ctrl-v>anykeycombo)
 
 # ALT-<left>
 bindkey "^[[1;3D" backward-word
