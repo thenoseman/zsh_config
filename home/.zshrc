@@ -111,27 +111,11 @@ HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 #source ~/.zsh/modules/pure_prompt/async.zsh
 #async_init
 
-# Load mise (https://mise.jdx.dev/) - cached for 48 hours
-_mise_cache="${HOME}/.zsh/cache/mise_activate.zsh"
-() {
-  local -a fresh
-  fresh=( ${_mise_cache}(#qNmh-48) )
-  if (( ! ${#fresh} )); then
-    "${HOMEBREW_PREFIX}/bin/mise" activate zsh >| "${_mise_cache}"
-  fi
-}
-source "${_mise_cache}"
+# Load mise (https://mise.jdx.dev/)
+eval "$($HOMEBREW_PREFIX/bin/mise activate zsh)"
 
-# https://github.com/gsamokovarov/jump - cached for 48 hours
-_jump_cache="${HOME}/.zsh/cache/jump_init.zsh"
-() {
-  local -a fresh
-  fresh=( ${_jump_cache}(#qNmh-48) )
-  if (( ! ${#fresh} )); then
-    "${HOMEBREW_PREFIX}/bin/jump" shell zsh >| "${_jump_cache}"
-  fi
-}
-source "${_jump_cache}"
+# https://github.com/gsamokovarov/jump
+eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"
 
 # https://github.com/ajeetdsouza/zoxide
 # eval "$($HOMEBREW_PREFIX/bin/zoxide init --no-cmd --hook pwd zsh)"
