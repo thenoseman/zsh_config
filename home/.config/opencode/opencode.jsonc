@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "mdn": {
+      "type": "remote",
+      "url": "https://mcp.mdn.mozilla.net/",
+      "enabled": true,
+      "headers": {
+        "X-Moz-1st-Party-Data-Opt-Out": "1",
+      },
+    },
+  },
+}
