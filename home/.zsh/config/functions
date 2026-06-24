@@ -303,3 +303,19 @@ datediff() {
 	diff=$(((d1 - d2) / 86400))
 	echo ${diff#-}
 }
+
+#
+# wrapper for tar that automatically uses zstd if the file extension is ".zst"
+#
+tar() {
+	local arg
+
+	for arg in "$@"; do
+		[[ "$arg" == *.zst* ]] && {
+			command tar --zstd "$@"
+			return
+		}
+	done
+
+	command tar "$@"
+}
