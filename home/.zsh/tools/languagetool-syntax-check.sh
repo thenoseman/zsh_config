@@ -17,6 +17,7 @@ fi
 
 declare -a DISABLED_RULES=(
 	COMMA_PARENTHESIS_WHITESPACE
+	ARROWS
 )
 
 # shellcheck disable=SC2128

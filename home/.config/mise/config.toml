@@ -6,6 +6,7 @@ _.path = "{{ cwd }}/node_modules/.bin"
 "github:boyter/cs" = "latest"
 "github:psanford/wormhole-william" = { version = "latest", bin = "wormhole" }
 "cargo:your-tools/ruplacer" = "latest"  # Now on codeberg without releases for macos
+"github:tsonglew/dutis" = "latest"
 
 [settings]
 experimental = true
