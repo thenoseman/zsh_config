@@ -1,0 +1,9 @@
+---
+output: false
+commit-msg:
+  parallel: true
+  jobs:
+    - run: "$HOME/.zsh/tools/languagetool-syntax-check.sh \"{1}\""
+      runner: "bash"
+    - run: "$HOME/.zsh/tools/spell-check \"{1}\""
+      runner: "bash"
