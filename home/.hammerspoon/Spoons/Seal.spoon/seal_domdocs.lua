@@ -9,6 +9,7 @@ obj.__index = obj
 obj.__name = "nodedocs"
 obj.cache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/dom/dom-logo.png")
+obj.description = "Search for elements of the browser DOM API"
 
 --- Variable
 --- String that the query must start with to be recognized

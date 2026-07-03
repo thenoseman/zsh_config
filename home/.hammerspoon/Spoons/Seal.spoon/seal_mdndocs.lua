@@ -8,6 +8,7 @@ obj.__index = obj
 obj.__name = "mdndocs"
 obj.cache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/mdn/mdn-logo.png")
+obj.description = "Search for the MDN documentation"
 
 --- Variable
 --- String that the query must start with to be recognized

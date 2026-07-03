@@ -9,6 +9,7 @@ obj.__index = obj
 obj.__name = "nodedocs"
 obj.cache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/node-js/node-js-logo.png")
+obj.description = "Search inside the node.js documentation"
 
 --- Seal.plugins.nodedocs.trigger
 --- Variable

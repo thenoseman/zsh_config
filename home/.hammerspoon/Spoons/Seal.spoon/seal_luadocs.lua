@@ -9,6 +9,7 @@ obj.__index = obj
 obj.__name = "luadocs"
 obj.cache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/lua/logo.png")
+obj.description = "Search for the LUA documentation"
 
 --- Variable
 --- String that the query must start with to be recognized

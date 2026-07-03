@@ -87,6 +87,7 @@ end
 ---  * The plugin names in the list, should not have `seal_` at the start, or `.lua` at the end
 ---  * Some plugins may immediately begin doing background work (e.g. Spotlight searches)
 function obj:loadPlugins(plugins)
+  self.initialChoices = {}
   self.chooser = hs.chooser.new(self.completionCallback)
   self.chooser:choices(self.choicesCallback)
   self.chooser:queryChangedCallback(self.queryChangedCallback)
@@ -109,7 +110,18 @@ function obj:loadPlugins(plugins)
         )
       )
     end
+
+    --- Prefill choices with the available triggers
+    if self.plugins[plugin_name].trigger then
+      table.insert(self.initialChoices, {
+        ["subText"] = hs.styledtext.new("Trigger with '", { font = { size = 16 }, color = hs.drawing.color["blue"] })
+          .. self.plugins[plugin_name].trigger
+          .. "<any-string>'",
+        ["text"] = self.plugins[plugin_name].description,
+      })
+    end
   end
+
   return self
 end
 
@@ -255,7 +267,7 @@ function obj.choicesCallback()
   cmd = nil
   query_words = {}
   if tostring(query):find("^%s*$") ~= nil then
-    return choices
+    return obj.initialChoices
   end
   for word in string.gmatch(query, "%S+") do
     if cmd == nil then

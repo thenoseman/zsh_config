@@ -14,6 +14,7 @@ obj.__index = obj
 obj.__name = "awstfdocs"
 obj.cache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-logo.png")
+obj.description = "Search for resources, functions and data elements in the terraform docs"
 
 local icons = {
   ["resources"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-resource.png"),

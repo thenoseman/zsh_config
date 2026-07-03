@@ -15,6 +15,7 @@ obj.__name = "awsjsdocs"
 obj.packageMapCache = {}
 obj.methodCache = {}
 obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-js-sdk/logo.png")
+obj.description = "Search for object in the AWS SDK for Javascript"
 
 --- Seal.plugins.awssdkdocs.trigger
 --- Variable
