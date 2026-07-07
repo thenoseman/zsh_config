@@ -7,7 +7,8 @@
 --
 --
 local log = hs.logger.new("[awstf]", "debug")
-local fzy = require("fzy")
+
+local utils = dofile(hs.spoons.scriptPath() .. "utils.lua")
 
 local obj = {}
 obj.__index = obj
@@ -17,9 +18,9 @@ obj.icon = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terr
 obj.description = "Search for resources, functions and data elements in the terraform docs"
 
 local icons = {
-  ["resources"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-resource.png"),
+  ["resources"]    = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-resource.png"),
   ["data-sources"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-data.png"),
-  ["function"] = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-function.png"),
+  ["function"]     = hs.image.imageFromPath(hs.spoons.scriptPath() .. "/aws-terraform/terraform-function.png"),
 }
 
 --- Seal.plugins.awssdkdocs.trigger
@@ -28,32 +29,7 @@ local icons = {
 obj.trigger = "aws_"
 obj.trigger_min_length = 2
 
-function script_path()
-  local str = debug.getinfo(2, "S").source:sub(2)
-  return str:match("(.*/)")
-end
-
-local function starts_with(str, start)
-  return str:sub(1, #start) == start
-end
-
-function fuzzyMatch(query, hackstay)
-  local matches = fzy.filter(query, hackstay)
-
-  -- Sort by score descending
-  table.sort(matches, function(a, b)
-    return (a[3] > b[3])
-  end)
-  --- Take first 10 matches
-  matches = table.move(matches, 1, 10, 1, {})
-
-  -- Convert indices to the nameCache entries
-  return hs.fnutils.imap(matches, function(match)
-    return hackstay[match[1]]
-  end)
-end
-
-local indexFile = script_path() .. "/aws-terraform/terraform-provider-aws-index.txt"
+local indexFile = hs.spoons.scriptPath() .. "/aws-terraform/terraform-provider-aws-index.txt"
 
 local file_info_last_modified = hs.fs.attributes(indexFile, "modification")
 if file_info_last_modified == nil then
@@ -74,7 +50,7 @@ end
 function obj.choices(query)
   local choices = {}
 
-  if query == nil or query == "" or not starts_with(query, obj.trigger) then
+  if query == nil or query == "" or not utils.starts_with(query, obj.trigger) then
     return choices
   end
 
@@ -95,12 +71,12 @@ function obj.choices(query)
     obj.cache[#obj.cache + 1] = line
   end
 
-  for _, definition in pairs(fuzzyMatch(query, obj.cache)) do
+  for _, definition in pairs(utils.fuzzyMatch(query, obj.cache)) do
     -- accessanalyzer_analyzer|IAM Access Analyzer|resource|Manages an Access Analyzer Analyzer
     local parts = hs.fnutils.split(definition, "|")
 
     local choice = {}
-    choice["text"] = "aws_" .. parts[1]
+    choice["text"] = utils.highlightMatches("aws_" .. parts[1], query)
     choice["subText"] = parts[2] .. ": " .. parts[4]
     choice["type"] = parts[3]
     choice["name"] = parts[1]
@@ -112,7 +88,7 @@ function obj.choices(query)
       if choice["name"] == "index" then
         choice["name"] = "index_function"
       end
-      choice["text"] = parts[1] .. " (function)"
+      choice["text"] = utils.highlightMatches(parts[1] .. " (function)", query)
     end
     table.insert(choices, choice)
   end
@@ -120,7 +96,6 @@ function obj.choices(query)
   return choices
 end
 
--- https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-client-sesv2/Interface/SendEmailCommandInput/
 function obj.completionCallback(choice)
   local url = "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/"
     .. choice["type"]

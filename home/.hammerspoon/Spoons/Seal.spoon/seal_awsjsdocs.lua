@@ -7,7 +7,8 @@
 --
 --
 local log = hs.logger.new("[awsjs]", "debug")
-local fzy = require("fzy")
+
+local utils = dofile(hs.spoons.scriptPath() .. "utils.lua")
 
 local obj = {}
 obj.__index = obj
@@ -23,33 +24,7 @@ obj.description = "Search for object in the AWS SDK for Javascript"
 obj.trigger = "aws "
 obj.trigger_min_length = 4
 
-function script_path()
-  local str = debug.getinfo(2, "S").source:sub(2)
-  return str:match("(.*/)")
-end
-
-local function starts_with(str, start)
-  return str:sub(1, #start) == start
-end
-
-function fuzzyMatch(query, hackstay)
-  local matches = fzy.filter(query, hackstay)
-
-  -- Sort by score descending
-  table.sort(matches, function(a, b)
-    return (a[3] > b[3])
-  end)
-  --- Take first 10 matches
-  matches = table.move(matches, 1, 10, 1, {})
-
-  -- Convert indices to the nameCache entries
-  return hs.fnutils.imap(matches, function(match)
-    return hackstay[match[1]]
-  end)
-end
-
---- Fill caches (index => package name)
-local packageMapFile = script_path() .. "/aws-js-sdk/aws-sdk-package-map.json"
+local packageMapFile = hs.spoons.scriptPath() .. "/aws-js-sdk/aws-sdk-package-map.json"
 
 local file_info_last_modified = hs.fs.attributes(packageMapFile, "modification")
 if file_info_last_modified == nil then
@@ -57,9 +32,8 @@ if file_info_last_modified == nil then
   log.i(t)
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 end
-obj.packageMapCache = hs.json.read(script_path() .. "/aws-js-sdk/aws-sdk-package-map.json")
+obj.packageMapCache = hs.json.read(hs.spoons.scriptPath() .. "/aws-js-sdk/aws-sdk-package-map.json")
 
--- When Seal i
 function obj:stop()
   obj.packageMap = nil
   obj.methodCache = {}
@@ -72,7 +46,7 @@ end
 function obj.choices(query)
   local choices = {}
 
-  if query == nil or query == "" or not starts_with(query, obj.trigger) then
+  if query == nil or query == "" or not utils.starts_with(query, obj.trigger) then
     return choices
   end
 
@@ -89,15 +63,16 @@ function obj.choices(query)
   query = query:gsub("^" .. obj.trigger, "")
 
   if #obj.methodCache == 0 then
-    for line in io.lines(script_path() .. "/aws-js-sdk/aws-sdk-js.txt") do
+    for line in io.lines(hs.spoons.scriptPath() .. "/aws-js-sdk/aws-sdk-js.txt") do
       obj.methodCache[#obj.methodCache + 1] = line
     end
   end
 
-  for _, definition in pairs(fuzzyMatch(query, obj.methodCache)) do
+  for _, definition in pairs(utils.fuzzyMatch(query, obj.methodCache)) do
     local parts = hs.fnutils.split(definition, "|")
     local choice = {}
-    choice["text"] = parts[2]
+    choice["text"] = utils.highlightMatches(parts[2], query)
+    choice["methodName"] = parts[2]
     choice["subText"] = "package: " .. obj.packageMapCache[parts[4]]
     choice["package"] = obj.packageMapCache[parts[4]]
     choice["type"] = parts[3]
@@ -117,7 +92,7 @@ function obj.completionCallback(choice)
     .. "/"
     .. choice["type"]
     .. "/"
-    .. choice["text"]
+    .. choice["methodName"]
     .. "/"
   log.i("Opening " .. url)
   hs.execute(string.format("/usr/bin/open '%s'", url))
