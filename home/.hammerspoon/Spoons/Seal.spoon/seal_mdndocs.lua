@@ -19,7 +19,7 @@ function script_path()
   return str:match("(.*/)")
 end
 
-local indexFile = script_path() .. "/mdn/mdn-index.txt"
+local indexFile = script_path() .. "/mdn/index.txt"
 
 local file_info_last_modified = hs.fs.attributes(indexFile, "modification")
 if file_info_last_modified == nil then
@@ -74,9 +74,9 @@ function obj.choices(query)
     local parts = hs.fnutils.split(definition, "|")
     local choice = {}
     choice["text"] = parts[1]
-    choice["subText"] = parts[3]
-    choice["url"] = parts[2]
-    choice["uuid"] = obj.__name .. "__" .. parts[2]
+    choice["subText"] = parts[2]
+    choice["url"] = parts[3]
+    choice["uuid"] = obj.__name .. "__" .. parts[3]
     choice["image"] = obj.icon
     choice["plugin"] = obj.__name
     table.insert(choices, choice)
@@ -85,7 +85,7 @@ function obj.choices(query)
 end
 
 function obj.completionCallback(rowInfo)
-  hs.execute(string.format("/usr/bin/open '%s'", "https://developer.mozilla.org/" .. rowInfo["url"]))
+  hs.execute(string.format("/usr/bin/open '%s'", rowInfo["url"]))
 end
 
 return obj

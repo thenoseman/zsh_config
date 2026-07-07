@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
-#
-# Writes a file containing the latest MDN searchindex
-#
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$script_dir" || exit 1
+set -euo pipefail
 
-SOURCE_DATA_URL="https://developer.mozilla.org/en-US/search-index.json"
+dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "[MDN] Preparing MDN index"
-rm -rf mdn-index.txt
+echo "[MDN] Generating JavaScript index"
+node "$dir/generate-mdn-index.js"
 
-echo "[MDN] Downloading MDN search index JSON"
-curl -qs -L "$SOURCE_DATA_URL" | jq -r '.[] | "\(.title)|\(.url)|\(.title | split(".")[0])"' >mdn-index.txt
+echo "[MDN] Generating HTML index"
+node "$dir/generate-mdn-html-index.mjs"
+
+echo "[MDN] Combining and sorting indexes"
+sort "$dir/mdn-index.txt" "$dir/mdn-html-index.txt" > "$dir/index.txt"
+
+echo "[MDN] Cleaning up intermediate files"
+rm "$dir/mdn-index.txt" "$dir/mdn-html-index.txt"
+
+echo "[MDN] Done — $(wc -l < "$dir/index.txt") entries written to index.txt"
