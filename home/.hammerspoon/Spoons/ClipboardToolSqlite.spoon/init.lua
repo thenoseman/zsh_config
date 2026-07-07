@@ -1,45 +1,23 @@
---- === ClipboardTool ===
----
---- Keep a history of the clipboard for text entries and manage the entries with a context menu
----
---- Originally based on TextClipboardHistory.spoon by Diego Zamboni with additional functions provided by a context menu
---- and on [code by VFS](https://github.com/VFS/.hammerspoon/blob/master/tools/clipboard.lua), but with many changes and some contributions and inspiration from [asmagill](https://github.com/asmagill/hammerspoon-config/blob/master/utils/_menus/newClipper.lua).
----
---- Download: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/ClipboardTool.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/ClipboardTool.spoon.zip)
---- selene: allow(undefined_variable)
+-- === ClipboardTool ===
+--
+-- Keep a history of the clipboard for text entries and manage the entries with a context menu
 --
 local obj = {}
 obj.__index = obj
 
 -- Metadata
 obj.name = "ClipboardToolSqlite"
-obj.version = "0.7"
+obj.version = "0.8"
 obj.author = "Alfred Schilken <alfred@schilken.de>"
 obj.homepage = "https://github.com/Hammerspoon/Spoons"
 obj.license = "MIT - https://opensource.org/licenses/MIT"
 
-local getSetting = function(label, default)
-  return hs.settings.get(obj.name .. "." .. label) or default
-end
-
-local setSetting = function(label, value)
-  hs.settings.set(obj.name .. "." .. label, value)
-  return value
-end
-
 local isImage = function(object)
-  if getmetatable(object).saveToFile then
-    return true
-  end
-  return false
-end
-
-local isJSON = function(text)
-  if isImage(text) then
+  if object == nil then
     return false
   end
-  --     {"... ["...                      [{..."                      [1,
-  return text:match('^%s*[{[]%s*"%a+') or text:match('%[%s*{%s*"') or text:match("%[%s*%d,")
+  local mt = getmetatable(object)
+  return mt ~= nil and mt.saveToFile ~= nil
 end
 
 --- ClipboardTool.frequency
@@ -97,11 +75,9 @@ obj.selectorobj = nil
 -- Internal variable - Cache for focused window to work around the current window losing focus after the chooser comes up
 obj.prevFocusedWindow = nil
 
--- Internal variable - Timer object to look for pasteboard changes
+-- Internal variable - Timer objects to look for pasteboard changes and trim the DB
 obj.timer = nil
 obj.timer_store_cleanup = nil
-
---
 
 -- DATASTORE for pasteboard history
 obj.store = nil
@@ -113,15 +89,35 @@ local sqlite = require("hs.sqlite3")
 
 -- Keep track of last change counter
 local last_change = nil
--- Array to store the clipboard history
+-- In-memory display cache (populated from SQLite on start)
 local clipboard_history = nil
 
--- Internal function - persist the current history so it survives across restarts
-function _persistHistory()
-  setSetting("items", clipboard_history)
+local styledTextAttribs = {
+  paragraphStyle = { maximumLineHeight = 15 },
+  font = { name = "InconsolataGo Nerd Font", size = 14 },
+  color = hs.drawing.color.definedCollections.hammerspoon.black,
+}
+
+local function makeStyledText(s)
+  return hs.styledtext.new(s, styledTextAttribs)
 end
 
--- Internal method - process the selected item from the chooser. An item may invoke special actions, defined in the `actions` variable.
+-- Internal function - build a display-cache entry from a SQLite row
+local function rowToHistoryEntry(row, maxSize)
+  local display = row.content
+  if row.type ~= "image" and #display > maxSize then
+    display = string.sub(display, 1, maxSize) .. "... \n[+" .. (#display - maxSize) .. " bytes more]"
+  end
+  return {
+    content = display,
+    id = row.id,
+    type = row.type,
+    subText = row.sub_text,
+    styledText = makeStyledText(display),
+  }
+end
+
+-- Internal method - process the selected item from the chooser.
 function obj:pasteSelectedItem(value)
   if value == nil then
     return
@@ -131,14 +127,13 @@ function obj:pasteSelectedItem(value)
     self.prevFocusedWindow:focus()
   end
 
-  -- Fetch content of sqlite3 DB to paste the complete blob
-  local stmt = self.store:prepare("SELECT content, type FROM pasteboard where id = ?")
+  local stmt = self.store:prepare("SELECT content, type FROM pasteboard WHERE id = ?")
   stmt:bind_values(value.storeId)
   local result = stmt:step()
 
-  -- sqlite 3 may fail for whatever reason
   if result ~= hs.sqlite3.DONE and result ~= hs.sqlite3.ROW then
     print("ClipboardToolSqlite error: " .. self.store:error_message())
+    stmt:finalize()
     return
   end
 
@@ -147,6 +142,7 @@ function obj:pasteSelectedItem(value)
     row = stmt:get_named_values()
   end)
   stmt:reset()
+  stmt:finalize()
 
   if not success then
     print("[ClipboardToolSqlite] Error: " .. r)
@@ -161,14 +157,8 @@ function obj:pasteSelectedItem(value)
     pasteboard.setContents(row.content)
   end
 
-  -- Does it look like JSON and are we in iterm? Then paste formatted via jq.
-  -- ["", {"", [\n{
-  if hs.application.frontmostApplication():bundleID() == "com.googlecode.iterm2" and row.type == "JSON" then
-    hs.eventtap.keyStrokes("pbpaste | jq")
-    hs.eventtap.keyStroke({}, "return")
-  else
-    hs.eventtap.keyStroke({ "cmd" }, "v")
-  end
+  -- Plain paste; JSON/iTerm2 formatting removed
+  hs.eventtap.keyStroke({ "cmd" }, "v")
 end
 
 -- Internal method: deduplicate the given list, and restrict it to the history size limit
@@ -188,27 +178,11 @@ function obj:dedupe_and_resize(list)
 end
 
 function obj:cleanup_store_handler()
-  local stmt_delete = self.store:prepare("DELETE FROM pasteboard WHERE id = ?")
-  local stmt = self.store:prepare("SELECT COUNT(*) AS number_rows FROM pasteboard")
-
+  local stmt =
+    self.store:prepare("DELETE FROM pasteboard WHERE id NOT IN (SELECT id FROM pasteboard ORDER BY id DESC LIMIT ?)")
+  stmt:bind_values(self.hist_size)
   stmt:step()
-  local row = stmt:get_named_values()
-  stmt:reset()
-
-  -- More than hist_size entries?
-  if row.number_rows > self.hist_size then
-    -- Get the oldest N entries
-    stmt = self.store:prepare("SELECT id FROM pasteboard ORDER BY id ASC LIMIT ?")
-    stmt:bind_values(row.number_rows - self.hist_size + 1)
-    stmt:step()
-
-    -- Delete those rows
-    for id_row in stmt:nrows() do
-      stmt_delete:bind_values(id_row.id)
-      stmt_delete:step()
-      stmt_delete:reset()
-    end
-  end
+  stmt:finalize()
 end
 
 --- ClipboardTool:pasteboardToClipboard(item)
@@ -216,74 +190,58 @@ end
 --- Add the given string to the history
 ---
 --- Parameters:
----  * item - string to add to the clipboard history
+---  * item - string or image to add to the clipboard history
 ---
 --- Returns:
 ---  * None
 function obj:pasteboardToClipboard(item)
-  local clipboard_string = item
+  local display = item
   local type = "string"
-  local subText = nil
+  local sub_text = nil
 
   -- Image?
   if isImage(item) then
     local size = item:size()
     type = "image"
-    --create small version for "insert_table"
-    clipboard_string = item:size({ ["h"] = 100, ["w"] = 250 }):encodeAsURLString()
+    display = item:size({ ["h"] = 100, ["w"] = 250 }):encodeAsURLString()
     item = item:encodeAsURLString()
-    subText = "Image: " .. math.floor(size.w) .. " x " .. math.floor(size.h) .. " px"
+    sub_text = "Image: " .. math.floor(size.w) .. " x " .. math.floor(size.h) .. " px"
   end
 
-  -- Adds only a small part of the complete COPY to the chooser to reduce calling size
   if type == "string" and #item > self.maxSizeEntryDisplay then
-    clipboard_string = string.sub(item, 1, self.maxSizeEntryDisplay)
+    display = string.sub(item, 1, self.maxSizeEntryDisplay)
       .. "... \n[+"
       .. (#item - self.maxSizeEntryDisplay)
       .. " bytes more]"
   end
 
-  -- Insert the full COPY to the store
-  if type == "string" and isJSON(clipboard_string) then
-    type = "JSON"
-  end
-
-  -- Save the short content (for display in the chooser and the id to reference sqlite later when pasting)
-  local insert_table = {
-    ["content"] = clipboard_string,
-    ["id"] = os.time(),
-    ["type"] = type,
-    ["subText"] = subText,
-  }
-
-  table.insert(clipboard_history, 1, insert_table)
-
-  self.sqlite_insert_stmt:bind_values(os.time(), type, item, #item)
+  self.sqlite_insert_stmt:bind_values(type, item, sub_text)
   self.sqlite_insert_stmt:step()
   self.sqlite_insert_stmt:reset()
+  local storeId = self.store:last_insert_rowid()
 
+  local entry = {
+    content = display,
+    id = storeId,
+    type = type,
+    subText = sub_text,
+    styledText = makeStyledText(display),
+  }
+
+  table.insert(clipboard_history, 1, entry)
   clipboard_history = self:dedupe_and_resize(clipboard_history)
-  _persistHistory() -- updates the saved history
 end
 
--- Internal function - fill in the chooser options, including the control options
+-- Internal function - fill in the chooser options
 function obj:_populateChooser()
   local menuData = {}
 
-  for _, v in pairs(clipboard_history) do
+  for _, v in ipairs(clipboard_history) do
     local chooser_item = {
-      text = hs.styledtext.new(v.content, {
-        paragraphStyle = { maximumLineHeight = 15 },
-        font = { name = "InconsolataGo Nerd Font", size = 14 },
-        color = hs.drawing.color.definedCollections.hammerspoon.black,
-      }),
-      subText = v.type,
+      text = v.styledText or makeStyledText(v.content),
+      subText = v.type ~= "string" and v.type or nil,
       storeId = v.id,
     }
-
-    if v.type == "string" then
-      chooser_item.subText = nil
-    end
 
     if v.type == "image" then
       chooser_item.subText = nil
@@ -328,7 +286,7 @@ function obj:checkAndStorePasteboard()
     if (not self.honor_ignoredidentifiers) or self:shouldBeStored() then
       local current_clipboard = pasteboard.readImage() or pasteboard.getContents()
 
-      -- Do not add whitespace only and no images
+      -- Do not add whitespace-only content
       if current_clipboard ~= nil then
         if isImage(current_clipboard) or (string.match(current_clipboard, "^%s+$") == nil) then
           self:pasteboardToClipboard(current_clipboard)
@@ -343,25 +301,60 @@ end
 --- Method
 --- Start the clipboard history collector
 function obj:start()
-  clipboard_history = self:dedupe_and_resize(getSetting("items", {}))
+  self.store = sqlite.open(hs.configdir .. "/ClipboardToolSqlite.sqlite3")
+  self.store:exec([[
+    CREATE TABLE IF NOT EXISTS pasteboard (
+      id       INTEGER PRIMARY KEY AUTOINCREMENT,
+      type     TEXT NOT NULL,
+      content  BLOB NOT NULL,
+      sub_text TEXT
+    );
+    CREATE INDEX IF NOT EXISTS idx_pasteboard_id ON pasteboard(id);
+  ]])
+  self.sqlite_insert_stmt = self.store:prepare([[INSERT INTO pasteboard(type, content, sub_text) VALUES(?, ?, ?);]])
+
+  clipboard_history = {}
+  for row in
+    self.store:nrows(
+      string.format("SELECT id, type, content, sub_text FROM pasteboard ORDER BY id DESC LIMIT %d", self.hist_size)
+    )
+  do
+    table.insert(clipboard_history, rowToHistoryEntry(row, self.maxSizeEntryDisplay))
+  end
+  clipboard_history = self:dedupe_and_resize(clipboard_history)
+
   last_change = pasteboard.changeCount()
 
   -- Build the chooser
   self.selectorobj = hs.chooser.new(hs.fnutils.partial(self.pasteSelectedItem, self))
   self.selectorobj:choices(hs.fnutils.partial(self._populateChooser, self))
 
-  -- Checks for changes on the pasteboard.
+  -- Checks for changes on the pasteboard
   self.timer = hs.timer.new(self.frequency, hs.fnutils.partial(self.checkAndStorePasteboard, self))
   self.timer:start()
 
-  -- Check database size every <n> seconds
+  -- Trim the database every 20 seconds
   self.timer_store_cleanup = hs.timer.new(20, hs.fnutils.partial(self.cleanup_store_handler, self))
   self.timer_store_cleanup:start()
+end
 
-  --- Initialize storage
-  self.store = sqlite.open("/tmp/ClipboardToolSqlite.sqlite3")
-  self.store:exec([[CREATE TABLE pasteboard (id INT, type TEXT, content BLOB, content_length INT);]])
-  self.sqlite_insert_stmt = self.store:prepare([[INSERT INTO pasteboard VALUES(?, ?, ?, ?);]])
+--- ClipboardTool:stop()
+--- Method
+--- Stop the clipboard history collector and release all resources
+function obj:stop()
+  if self.timer then
+    self.timer:stop()
+  end
+  if self.timer_store_cleanup then
+    self.timer_store_cleanup:stop()
+  end
+  if self.sqlite_insert_stmt then
+    self.sqlite_insert_stmt:finalize()
+  end
+  if self.store then
+    self.store:close()
+  end
+  self.selectorobj = nil
 end
 
 --- ClipboardTool:showClipboard()
