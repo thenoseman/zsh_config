@@ -21,7 +21,7 @@ end
 -- Global table used across scripts to hold references that must not be
 -- garbage collected (e.g. hs.eventtap objects). Shared/reused across files,
 -- so only create it if it doesn't already exist.
-holdreference = holdreference or {}
+holdreference = {}
 
 require("app_auto_kill")
 require("audio")
