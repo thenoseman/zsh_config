@@ -98,7 +98,6 @@ local media_tap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, fun
 end)
 media_tap:start()
 
--- Call something on tap to keep it alive ... ????
-hs.timer.doEvery(15, function()
-  media_tap:isEnabled()
-end)
+-- Hold a reference so the eventtap isn't garbage collected once this
+-- chunk finishes running (local variables here don't survive on their own).
+holdreference.mediakeys_media_tap = media_tap
