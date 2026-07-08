@@ -28,5 +28,4 @@ globals = {
 exclude_files = {
   "Spoons/MouseCircle.spoon/",
   "Spoons/ReloadConfiguration.spoon/",
-  "Spoons/Seal.spoon/",
 }

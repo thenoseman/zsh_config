@@ -25,7 +25,7 @@ if file_info_last_modified == nil then
   hs.alert.show(t, {}, hs.screen.mainScreen(), 10)
 end
 
-function obj:stop()
+function obj.stop()
   obj.cache = nil
 end
 

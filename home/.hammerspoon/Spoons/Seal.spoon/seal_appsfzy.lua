@@ -94,45 +94,11 @@ local updateNameMap = function(_obj, msg, info)
   end
 end
 
--- Highlight positions in a text using hammerpsoon styledtext
-local function highlight(text, letterPositions)
-  -- Generate an index for lookup later
-  local letterLookup = {}
-  for _, i in ipairs(letterPositions) do
-    letterLookup[i] = true
-  end
-
-  local result = hs.styledtext.new("", { font = { size = 16 } })
-
-  -- Loop thru every letter
-  for i = 1, #text do
-    local char = text:sub(i, i)
-
-    -- Strange characters in string should be ignored (ASCII Extendex decimal values)
-    if string.byte(char) < 155 then
-      -- If there is a match from fzy ...
-      if letterLookup[i] then
-        result = result
-          .. hs.styledtext.new(
-            char,
-            { font = { size = 16 }, color = hs.drawing.color.definedCollections.hammerspoon.black }
-          )
-      else
-        -- No match
-        result = result .. hs.styledtext.new(char, { font = { size = 16 } })
-      end
-    end
-  end
-
-  return result
-end
-
 --
 -- Create the "choice" structure for one app
 --
-local function generate_choice(name, app, letterPositions)
+local function generate_choice(name, app)
   local choice = {}
-  --choice["text"] = highlight(name, letterPositions)
   choice["text"] = name
   choice["subText"] = app["path"]
   choice["plugin"] = obj.__name -- Important! Otherwise seal will not execute the action on [ENTER]
@@ -146,7 +112,7 @@ local function generate_choice(name, app, letterPositions)
 end
 
 --- This is called automatically when the plugin is loaded
-function obj:start()
+function obj.start()
   obj.spotlight = hs.spotlight
     .new()
     :queryString(
@@ -159,7 +125,7 @@ function obj:start()
 end
 
 --- Stops the Spotlight app searcher
-function obj:stop()
+function obj.stop()
   obj.spotlight:stop()
   obj.spotlight = nil
   obj.appCache = {}
@@ -217,7 +183,7 @@ function obj.choicesApps(query)
   -- Generate choices structure
   for _, app in pairs(appsFound) do
     if obj.appCache[app.name] then
-      table.insert(choices, generate_choice(app.name, obj.appCache[app.name], app.letterPositions))
+      table.insert(choices, generate_choice(app.name, obj.appCache[app.name]))
     end
   end
 

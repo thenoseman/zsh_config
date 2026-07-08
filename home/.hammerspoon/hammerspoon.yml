@@ -1,6 +1,0 @@
-base: lua53
-globals:
-  hs:
-    any: true
-  spoon:
-    any: true

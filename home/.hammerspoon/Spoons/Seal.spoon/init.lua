@@ -61,7 +61,7 @@ obj.plugin_search_paths = { hs.configdir .. "/seal_plugins", obj.spoonPath }
 ---    from non-standard locations and is mostly a development interface.
 ---  * Some plugins may immediately begin doing background work (e.g. Spotlight searches)
 function obj:loadPluginFromFile(plugin_name, file)
-  local f, err = loadfile(file)
+  local f = loadfile(file)
   if f ~= nil then
     local plugin = f()
     plugin.seal = self
@@ -92,7 +92,7 @@ function obj:loadPlugins(plugins)
   self.chooser:choices(self.choicesCallback)
   self.chooser:queryChangedCallback(self.queryChangedCallback)
 
-  for k, plugin_name in pairs(plugins) do
+  for _, plugin_name in pairs(plugins) do
     local loaded = nil
     print("-- Loading Seal plugin: " .. plugin_name)
     for _, dir in ipairs(self.plugin_search_paths) do
@@ -252,7 +252,7 @@ function obj.completionCallback(rowInfo)
     obj.chooser:query(rowInfo["cmd"])
     return
   end
-  for k, plugin in pairs(obj.plugins) do
+  for _, plugin in pairs(obj.plugins) do
     if plugin.__name == rowInfo["plugin"] then
       plugin.completionCallback(rowInfo)
       break
@@ -262,10 +262,10 @@ end
 
 function obj.choicesCallback()
   -- TODO: Sort each of these clusters of choices, alphabetically
-  choices = {}
-  query = obj.chooser:query()
-  cmd = nil
-  query_words = {}
+  local choices = {}
+  local query = obj.chooser:query()
+  local cmd = nil
+  local query_words = {}
   if tostring(query):find("^%s*$") ~= nil then
     return obj.initialChoices
   end
@@ -276,12 +276,11 @@ function obj.choicesCallback()
       table.insert(query_words, word)
     end
   end
-  query_words = table.concat(query_words, " ")
   -- Now get any bare matches
-  for k, plugin in pairs(obj.plugins) do
-    bare = plugin:bare()
+  for _, plugin in pairs(obj.plugins) do
+    local bare = plugin:bare()
     if bare then
-      for i, choice in pairs(bare(query)) do
+      for _, choice in pairs(bare(query)) do
         table.insert(choices, choice)
       end
     end
@@ -290,7 +289,7 @@ function obj.choicesCallback()
   return choices
 end
 
-function obj.queryChangedCallback(query)
+function obj.queryChangedCallback()
   if obj.queryChangedTimer then
     obj.queryChangedTimer:stop()
   end

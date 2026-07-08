@@ -34,7 +34,7 @@ if file_info_last_modified == nil then
 end
 obj.packageMapCache = hs.json.read(hs.spoons.scriptPath() .. "/aws-js-sdk/aws-sdk-package-map.json")
 
-function obj:stop()
+function obj.stop()
   obj.packageMap = nil
   obj.methodCache = {}
 end
