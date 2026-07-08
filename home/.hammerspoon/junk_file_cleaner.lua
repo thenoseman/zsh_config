@@ -7,7 +7,7 @@ local watchers = {}
 -- Which files to automatically remove after creation:
 local junkFileNames = { ".DS_Store" }
 
-function junkWatcher(paths, pathFlags)
+local function junkWatcher(paths, pathFlags)
   hs.fnutils.each(paths, function(path)
     -- Does it match and of the junkFileNames?
     local endsWithJunkFileName = hs.fnutils.some(junkFileNames, function(junkFileName)
@@ -24,12 +24,12 @@ function junkWatcher(paths, pathFlags)
   end)
 end
 
-function addWatcher(pathToVolume)
+local function addWatcher(pathToVolume)
   logger.i("Adding watcher for " .. pathToVolume)
   watchers[pathToVolume] = hs.pathwatcher.new(pathToVolume, junkWatcher):start()
 end
 
-function removeWatcher(pathToVolume)
+local function removeWatcher(pathToVolume)
   if watchers[pathToVolume] then
     logger.i("Removing watcher for " .. pathToVolume)
     watchers[pathToVolume]:stop()

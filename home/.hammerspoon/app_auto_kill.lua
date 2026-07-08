@@ -5,7 +5,7 @@
 local log = hs.logger.new("[app_kill]", "debug")
 local killBundleIds = { ["com.apple.Terminal"] = true }
 
-function applicationWatcher(_, eventType, app)
+local function applicationWatcher(_, eventType, app)
   if killBundleIds[app:bundleID()] ~= nil and eventType == hs.application.watcher.launching then
     app:kill()
     log.i("Killed " .. app:bundleID())
@@ -19,5 +19,5 @@ function applicationWatcher(_, eventType, app)
   end
 end
 
-appWatcherMusic = hs.application.watcher.new(applicationWatcher)
+local appWatcherMusic = hs.application.watcher.new(applicationWatcher)
 appWatcherMusic:start()

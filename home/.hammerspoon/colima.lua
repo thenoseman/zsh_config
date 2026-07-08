@@ -8,13 +8,13 @@ local menuBar = nil
 local icon = hs.image.imageFromPath("media/colima.png"):setSize({ w = 18, h = 18 })
 log.i("Watching " .. colimaPath .. " for changes")
 
-function colimaMenuBar()
+local function colimaMenuBar()
   menuBar = hs.menubar.new()
   menuBar:setTitle("")
   menuBar:setIcon(icon)
 end
 
-function colimaWatcher(paths, pathFlags)
+local function colimaWatcher(paths, pathFlags)
   --- docker socker changed
   local index = hs.fnutils.indexOf(paths, colimaPathDocker)
   if index then
@@ -38,4 +38,4 @@ if hs.fs.attributes(colimaPathDocker, "size") then
   colimaMenuBar()
 end
 
-colimaPathWatcher = hs.pathwatcher.new(colimaPath, colimaWatcher):start()
+hs.pathwatcher.new(colimaPath, colimaWatcher):start()

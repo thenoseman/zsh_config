@@ -13,7 +13,7 @@ end, nil, nil)
 --
 -- Install watcher for MS Teams
 --
-function applicationWatcher(appName, eventType)
+local function applicationWatcher(appName, eventType)
   -- App focused
   if appName and eventType == hs.application.watcher.activated then
     if string.match(appName, appname_for_trigger) then
@@ -30,7 +30,7 @@ function applicationWatcher(appName, eventType)
   end
 end
 
-appWatcherTeams = hs.application.watcher.new(applicationWatcher)
+local appWatcherTeams = hs.application.watcher.new(applicationWatcher)
 appWatcherTeams:start()
 
 --- If teams is already running:

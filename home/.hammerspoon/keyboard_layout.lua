@@ -7,7 +7,7 @@ local log = hs.logger.new("🔠", "debug")
 -- This is the layout name installed via https://software.sil.org/ukelele/
 local germanNoDeadKeyMatcher = "German no dead-keys"
 
-function onKeyboardLayoutChange()
+local function onKeyboardLayoutChange()
   local currentLayout = hs.keycodes.currentLayout()
   log.i("MacOS switched to layout '" .. currentLayout .. "'")
   if currentLayout ~= germanNoDeadKeyMatcher then

@@ -13,7 +13,6 @@ local headsets_user_internal_mic_mapping = {
   ["AB13X USB Audio"] = true,
 }
 local buildin_name = "Built-in Output"
-local sound_timer = nil
 
 -- "buildin" might be another name
 local device = hs.audiodevice.findOutputByName(buildin_name)
@@ -112,7 +111,7 @@ end
 --
 -- Switch to HEADSET for input + output when connected
 --
-function onaudiodevicechange(event)
+local function onaudiodevicechange(event)
   local headset, use_internal_mic = output_headset()
 
   if event == "dev#" then
@@ -153,7 +152,7 @@ function onaudiodevicechange(event)
       -- end)
 
       -- Play sound
-      sound_timer = hs.timer.doAfter(7, function()
+      hs.timer.doAfter(7, function()
         connection_sound:play()
       end)
     end

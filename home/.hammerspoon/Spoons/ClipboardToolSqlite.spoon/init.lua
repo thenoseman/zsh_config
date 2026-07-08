@@ -233,7 +233,7 @@ function obj:pasteboardToClipboard(item)
 end
 
 -- Internal function - fill in the chooser options
-function obj:_populateChooser()
+function obj._populateChooser(_self)
   local menuData = {}
 
   for _, v in ipairs(clipboard_history) do

@@ -9,9 +9,9 @@ local log = hs.logger.new("📺", "debug")
 hs.window.animationDuration = 0
 
 local secondaryScreenFrame = { x = 0, y = 0, w = 0, h = 0 }
-local layout_file = "default"
+local layout_file
 
-function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
+local function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
   if actualWindowTitle:find(targetMatchWindowTitle) then
     return true
   else
@@ -19,7 +19,7 @@ function windowTitleComparator(actualWindowTitle, targetMatchWindowTitle)
   end
 end
 
-function width_to_word(width)
+local function width_to_word(width)
   if width > 2000 and width < 3000 then
     return "large"
   end

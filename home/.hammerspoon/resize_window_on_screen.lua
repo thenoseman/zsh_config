@@ -12,7 +12,7 @@ local timer = nil
 local testIntervalSec = 1 -- How long to wait until running the resize function?
 local border = 60 -- The border/margin to leave around the window
 
-function resizeWindowIfOnScreen(window)
+local function resizeWindowIfOnScreen(window)
   if window == nil or window:size().w < window_min_width_to_trigger then
     return
   end
@@ -36,7 +36,7 @@ function resizeWindowIfOnScreen(window)
   end
 end
 
-function applicationWatcher(appName, eventType)
+local function applicationWatcher(appName, eventType)
   -- App focused and no UI watcher installed
   if timer == nil and eventType == hs.application.watcher.activated and appName == appname_for_trigger then
     local window = hs.window.find(window_title_for_trigger)
@@ -58,7 +58,7 @@ function applicationWatcher(appName, eventType)
   end
 end
 
-appWatcherTeamsScreen = hs.application.watcher.new(applicationWatcher)
+local appWatcherTeamsScreen = hs.application.watcher.new(applicationWatcher)
 appWatcherTeamsScreen:start()
 
 --- If already running:

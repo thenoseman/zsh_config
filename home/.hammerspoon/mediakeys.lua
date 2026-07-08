@@ -99,6 +99,6 @@ end)
 media_tap:start()
 
 -- Call something on tap to keep it alive ... ????
-holdreference = hs.timer.doEvery(15, function()
+hs.timer.doEvery(15, function()
   media_tap:isEnabled()
 end)

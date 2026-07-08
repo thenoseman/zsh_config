@@ -25,7 +25,7 @@ local killedIt = false
 local timer
 local alert
 
-function holdQ()
+local function holdQ()
   if secondsLeftUntilQuit <= 0 and not killedIt then
     killedIt = true
     timer:stop()
@@ -34,20 +34,20 @@ function holdQ()
   end
 end
 
-function releaseQ()
+local function releaseQ()
   killedIt = false
   timer:stop()
   secondsLeftUntilQuit = delayInSeconds
   hs.alert.closeSpecific(alert)
 end
 
-function tick()
+local function tick()
   hs.alert.closeSpecific(alert)
   alert = hs.alert.show(secondsLeftUntilQuit - 1, alertStyle, nil, 1)
   secondsLeftUntilQuit = secondsLeftUntilQuit - 1
 end
 
-function pressQ()
+local function pressQ()
   killedIt = false
   timer = hs.timer.doEvery(0.5, tick)
   timer:fire()

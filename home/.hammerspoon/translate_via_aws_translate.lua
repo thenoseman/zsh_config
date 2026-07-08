@@ -32,7 +32,7 @@ local hammerspoon_app = hs.application.find("org.hammerspoon.Hammerspoon")
 --
 -- return the current selected text or ""
 --
-function current_selection()
+local function current_selection()
   local elem = hs.uielement.focusedElement()
   local sel = nil
   if elem then
@@ -49,7 +49,7 @@ end
 --
 -- Substitute values into template
 --
-function prepare_html(translation, from, original)
+local function prepare_html(translation, from, _original)
   local template = file_read(os.getenv("HOME") .. "/.hammerspoon/translate.html")
   template = string.gsub(template, "<translation />", translation)
   template = string.gsub(template, "<translation_from />", from)
@@ -63,7 +63,7 @@ local function isempty(s)
   return s == nil or s == ""
 end
 
-function translate(text, target_language)
+local function translate(text, target_language)
   local url = SECRETS.aws_translate_lambda_url
     .. "?sourceLanguage=auto&targetLanguage="
     .. target_language
@@ -95,7 +95,7 @@ function translate(text, target_language)
   return r
 end
 
-function translateSelectionPopup(text, target_language)
+local function translateSelectionPopup(text, target_language)
   if isempty(text) then
     text = current_selection()
   end
