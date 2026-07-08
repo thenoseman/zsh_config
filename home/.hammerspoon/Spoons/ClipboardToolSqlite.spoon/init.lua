@@ -28,7 +28,7 @@ obj.frequency = 0.8
 --- ClipboardTool.hist_size
 --- Variable
 --- How many items to keep on history.
-obj.hist_size = 25
+obj.hist_size = 100
 
 --- ClipboardTool.honor_ignoredidentifiers
 --- Variable
@@ -333,8 +333,8 @@ function obj:start()
   self.timer = hs.timer.new(self.frequency, hs.fnutils.partial(self.checkAndStorePasteboard, self))
   self.timer:start()
 
-  -- Trim the database every 20 seconds
-  self.timer_store_cleanup = hs.timer.new(20, hs.fnutils.partial(self.cleanup_store_handler, self))
+  -- Trim the database every 2 minutes
+  self.timer_store_cleanup = hs.timer.new(120, hs.fnutils.partial(self.cleanup_store_handler, self))
   self.timer_store_cleanup:start()
 end
 
