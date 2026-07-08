@@ -13,7 +13,6 @@ local headsets_user_internal_mic_mapping = {
   ["AB13X USB Audio"] = true,
 }
 local buildin_name = "Built-in Output"
--- selene:allow(unused_variable)
 local sound_timer = nil
 
 -- "buildin" might be another name

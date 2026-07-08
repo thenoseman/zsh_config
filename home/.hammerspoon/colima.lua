@@ -38,5 +38,4 @@ if hs.fs.attributes(colimaPathDocker, "size") then
   colimaMenuBar()
 end
 
--- selene: allow(unused_variable, unscoped_variables)
 colimaPathWatcher = hs.pathwatcher.new(colimaPath, colimaWatcher):start()

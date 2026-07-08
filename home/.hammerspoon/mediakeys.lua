@@ -7,7 +7,6 @@ local log = hs.logger.new("⏏️", "debug")
 local cmus_socket_path = nil
 
 -- Will be used in app_kill also!
--- selene: allow(unscoped_variables)
 cmus_remote_socket = nil
 
 -- http://asciimage.org/
@@ -100,8 +99,6 @@ end)
 media_tap:start()
 
 -- Call something on tap to keep it alive ... ????
--- selene: allow(unscoped_variables)
--- selene: allow(unused_variable)
 holdreference = hs.timer.doEvery(15, function()
   media_tap:isEnabled()
 end)

@@ -2,7 +2,6 @@
 -- Screen definitions for the default case of two screens next to each other (left <-> right)
 -- "primaryDisplay" and "secondaryDisplay" will be available when this is included
 --
---# selene: allow(undefined_variable)
 local M = {}
 
 --

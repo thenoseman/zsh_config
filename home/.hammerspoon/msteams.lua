@@ -30,8 +30,6 @@ function applicationWatcher(appName, eventType)
   end
 end
 
--- selene: allow(unscoped_variables)
--- selene: allow(unused_variable)
 appWatcherTeams = hs.application.watcher.new(applicationWatcher)
 appWatcherTeams:start()
 

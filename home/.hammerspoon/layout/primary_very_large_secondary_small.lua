@@ -2,7 +2,6 @@
 -- Screen definitions for the modern WQHD case of two screens above each other (bottom <-> top)
 -- "primaryDisplay" and "secondaryDisplay" will be available when this is included
 --
---# selene: allow(undefined_variable)
 local M = {}
 
 --

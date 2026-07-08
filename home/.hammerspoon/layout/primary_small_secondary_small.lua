@@ -1,6 +1,5 @@
 --
 -- Company setup (bad HP 524pm displays)
---# selene: allow(undefined_variable)
 local M = {}
 
 --

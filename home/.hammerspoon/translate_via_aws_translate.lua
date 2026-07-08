@@ -50,7 +50,6 @@ end
 -- Substitute values into template
 --
 function prepare_html(translation, from, original)
-  -- selene: allow(undefined_variable)
   local template = file_read(os.getenv("HOME") .. "/.hammerspoon/translate.html")
   template = string.gsub(template, "<translation />", translation)
   template = string.gsub(template, "<translation_from />", from)

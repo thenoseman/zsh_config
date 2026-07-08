@@ -9,7 +9,6 @@ hotkey.setLogLevel("info")
 
 require("helper")
 
--- selene: allow(undefined_variable, unscoped_variables, unused_variable)
 if file_exists(os.getenv("HOME") .. "/.hammerspoon/secrets.lua") then
   SECRETS = require("secrets")
   logger.i("SECRETS found and available")

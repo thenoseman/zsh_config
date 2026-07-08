@@ -1,6 +1,5 @@
 --
 -- Company setup (bad HP 524pm displays + buildin)
---# selene: allow(undefined_variable)
 local M = {}
 
 -- ┌─────────────┐┌─────────────┐

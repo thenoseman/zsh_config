@@ -20,7 +20,6 @@ function resizeWindowIfOnScreen(window)
   local screenWindowIsOn = window:screen()
 
   -- Resize only if dragged on primarydisplay
-  -- selene: allow(undefined_variable)
   if screenWindowIsOn == primaryDisplay then
     log.i("Moving and resizing window '" .. appname_for_trigger .. "'")
     window:setFrameWithWorkarounds({
@@ -59,7 +58,6 @@ function applicationWatcher(appName, eventType)
   end
 end
 
--- selene: allow(unscoped_variables)
 appWatcherTeamsScreen = hs.application.watcher.new(applicationWatcher)
 appWatcherTeamsScreen:start()
 

@@ -40,14 +40,12 @@ end)
 
 -- Notice that hammerspoon regards desktop = all screens combined = continguous X coordinates starting top left on primary screen
 -- primaryDisplay cannot be local
--- selene: allow(unscoped_variables)
 primaryDisplay = hs.screen.primaryScreen()
 log.i("Primary display  : " .. primaryDisplay:name())
 
 -- Detect Secondary display
 -- which should NOT be the build-in
 local primary_display_lower = string.lower(primaryDisplay:name())
--- selene: allow(unscoped_variables)
 secondaryDisplay = hs.fnutils.find(hs.screen.allScreens(), function(display)
   local dname = string.lower(display:name())
   -- Secondary = NOT primary and not "Built-in"
@@ -56,7 +54,6 @@ end)
 
 -- If we have NO secondary that is not the build-in display, choose the buildin as secondary
 if not secondaryDisplay then
-  -- selene: allow(unscoped_variables)
   secondaryDisplay = hs.fnutils.find(hs.screen.allScreens(), function(display)
     local dname = string.lower(display:name())
     -- Secondary should now actually be the buildin
@@ -75,7 +72,6 @@ end
 --
 -- THREE displays. Assume "built-in" as terniary display.
 --
--- selene: allow(unscoped_variables)
 terniaryDisplay = nil
 if not not secondaryDisplay and not not primaryDisplay and #hs.screen.allScreens() == 3 then
   terniaryDisplay = hs.fnutils.find(hs.screen.allScreens(), function(display)
@@ -99,7 +95,6 @@ end
 
 log.i("Looking for '" .. os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua'")
 
--- selene: allow(undefined_variable)
 if not file_exists(os.getenv("HOME") .. "/.hammerspoon/layout/" .. layout_file .. ".lua") then
   layout_file = "default"
 end
@@ -110,13 +105,11 @@ local CONFIG = require("layout." .. layout_file)
 -- Backgrounbd images are settable via the layout/*.lua files
 --
 
--- selene: allow(undefined_variable)
 if CONFIG.desktopImagePathPrimary and file_exists(CONFIG.desktopImagePathPrimary) then
   log.i("Using desktop image for PRIMARY: " .. CONFIG.desktopImagePathPrimary)
   primaryDisplay:desktopImageURL("file://" .. CONFIG.desktopImagePathPrimary)
 end
 
--- selene: allow(undefined_variable)
 if CONFIG.desktopImagePathSecondary and file_exists(CONFIG.desktopImagePathSecondary) then
   log.i("Using desktop image for SECONDARY: " .. CONFIG.desktopImagePathSecondary)
   secondaryDisplay:desktopImageURL("file://" .. CONFIG.desktopImagePathSecondary)
