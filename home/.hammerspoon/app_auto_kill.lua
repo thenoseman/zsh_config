@@ -19,5 +19,5 @@ local function applicationWatcher(_, eventType, app)
   end
 end
 
-local appWatcherMusic = hs.application.watcher.new(applicationWatcher)
-appWatcherMusic:start()
+holdreference.appWatcherMusic = hs.application.watcher.new(applicationWatcher)
+holdreference.appWatcherMusic:start()

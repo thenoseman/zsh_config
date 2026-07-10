@@ -2,7 +2,8 @@
 -- Removes junk files from external volumes
 --
 local logger = require("hs.logger").new("[junk]", "debug")
-local watchers = {}
+holdreference.junkFileWatchers = {}
+local watchers = holdreference.junkFileWatchers
 
 -- Which files to automatically remove after creation:
 local junkFileNames = { ".DS_Store" }
@@ -40,7 +41,7 @@ end
 --
 -- Listen to volume changes
 --
-hs.fs.volume
+holdreference.junkFileVolumeWatcher = hs.fs.volume
   .new(function(eventType, info)
     if eventType == hs.fs.volume.didMount then
       -- Add to patch watcher

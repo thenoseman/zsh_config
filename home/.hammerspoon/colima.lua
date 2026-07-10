@@ -38,4 +38,4 @@ if hs.fs.attributes(colimaPathDocker, "size") then
   colimaMenuBar()
 end
 
-hs.pathwatcher.new(colimaPath, colimaWatcher):start()
+holdreference.colimaWatcher = hs.pathwatcher.new(colimaPath, colimaWatcher):start()
