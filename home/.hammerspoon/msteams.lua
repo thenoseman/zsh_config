@@ -30,7 +30,7 @@ local function applicationWatcher(appName, eventType)
   end
 end
 
-local appWatcherTeams = hs.application.watcher.new(applicationWatcher)
+appWatcherTeams = hs.application.watcher.new(applicationWatcher)
 appWatcherTeams:start()
 
 --- If teams is already running:

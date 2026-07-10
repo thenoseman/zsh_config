@@ -22,6 +22,7 @@ globals = {
   "primaryDisplay", -- screen_layout.lua -> layout/*.lua, resize_window_on_screen.lua
   "secondaryDisplay", -- screen_layout.lua -> layout/*.lua
   "terniaryDisplay", -- screen_layout.lua -> layout/*.lua
+  "appWatcherTeams",
 }
 
 -- Third-party/vendored Spoons downloaded from
