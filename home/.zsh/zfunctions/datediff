@@ -1,0 +1,8 @@
+# Difference between two dates in days
+# Usage: datediff "2024-01-01" "2023-06-15"
+datediff() {
+	d1=$(date -d "$1" +%s)
+	d2=$(date -d "$2" +%s)
+	diff=$(((d1 - d2) / 86400))
+	echo ${diff#-}
+}

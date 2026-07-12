@@ -1,0 +1,15 @@
+# Force index a directory into the Spotlight index
+spotlight_index_all() {
+	declare -a prefpanes=(
+		"/System/Library/PreferencePanes/"
+		"/Library/PreferencePanes"
+		"$HOME/Library/PreferencePanes"
+	)
+
+	echo "Indexing .app in /Applications"
+	find "/Applications" -maxdepth 2 -type d -name "*.app" -exec mdimport "{}" \;
+	for prefpane in "${prefpanes[@]}"; do
+		echo "Indexing .prefPane in ${prefpane}"
+		find "${prefpane}" -name "*.prefPane" -exec mdimport "{}" \;
+	done
+}

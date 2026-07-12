@@ -1,0 +1,6 @@
+# Run a command in every immediate subdirectory (max depth 1) in parallel
+# shellcheck disable=SC2145,SC2154,SC3010,SC3043,SC3033,SC3014
+dirdo() {
+	echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
+	find . -mindepth 1 -maxdepth 1 -type d | parallel --color --tagstring "[{}]" --trim lr --tag -j6 "cd {} && ${@}"
+}

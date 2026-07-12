@@ -1,0 +1,7 @@
+# Creates a tar.gz archive of all files named $1 found under the current directory
+pack_files() {
+	local filename="${1:-}"
+	[[ -z "${filename}" ]] && echo "first param (filename) missing" && return
+
+	find . -name "${filename}" | tar -cvzf "all-${filename}.tar.gz" -T -
+}

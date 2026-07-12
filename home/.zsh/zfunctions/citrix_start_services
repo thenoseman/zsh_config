@@ -1,0 +1,5 @@
+citrix_start_services() {
+	launchctl load /Library/LaunchAgents/com.citrix.ServiceRecords.plist
+	launchctl load /Library/LaunchAgents/com.citrix.ReceiverHelper.plist
+	launchctl load /Library/LaunchAgents/com.citrix.AuthManager_Mac.plist
+}

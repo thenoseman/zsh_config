@@ -1,0 +1,6 @@
+citrix_remove_services() {
+	launchctl remove com.citrix.ServiceRecords
+	launchctl remove com.citrix.ReceiverHelper
+	launchctl remove com.citrix.AuthManager_Mac
+	launchctl remove com.citrix.safariadapter
+}

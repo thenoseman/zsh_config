@@ -1,0 +1,17 @@
+# Copies a file named $1 from $2 to $3 recursively
+# shellcheck disable=SC2145,SC2154,SC3010,SC3043,SC3033,SC3014
+mirror_file() {
+	local filename="${1:-}"
+	local source_dir="${2:-}"
+	local target_dir="${3:-}"
+	[[ -z "${filename}" ]] && echo "first param (filename) missing" && return
+	[[ -z "${source_dir}" ]] && echo "second param (source dir) missing" && return
+	[[ -z "${target_dir}" ]] && echo "third param (target dir) missing" && return
+
+	echo "Copy every found '${filename}' in directory '${source_dir}' to directory '${target_dir}' ?"
+	echo "Press [ENTER] to continue, ctrl+c to cancel."
+	read -r yn
+	echo "Please wait ..."
+
+	rsync --verbose --update -aim --include="${filename}" --include='*/' --exclude='*' "${source_dir}/" "${target_dir}"
+}
