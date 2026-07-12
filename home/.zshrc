@@ -13,35 +13,56 @@ else
   { zcompile ~/.zcompdump } &!
 fi
 
-# crazy mad shit
-setopt APPEND_HISTORY
-setopt COMPLETE_IN_WORD
-setopt EXTENDED_HISTORY # add timestamps to history
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
-setopt HIST_VERIFY
-setopt IGNORE_EOF
-setopt INC_APPEND_HISTORY
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
-setopt NO_BG_NICE
-setopt NO_HUP
-setopt NO_LIST_BEEP
-setopt PROMPT_SUBST
-setopt auto_resume auto_cd auto_pushd pushd_to_home pushd_silent pushd_minus
-setopt hist_ignore_dups hist_find_no_dups hist_save_no_dups
-setopt hist_verify hist_no_store hist_no_functions
-setopt histignoredups
-setopt histignorespace
-setopt list_types list_packed print_eight_bit nohup notify
-setopt no_beep extended_glob prompt_subst interactive_comments
-setopt print_exit_value
-setopt pushd_ignore_dups bad_pattern function_argzero inc_append_history
+# History
+setopt EXTENDED_HISTORY       # save timestamps in history file
+setopt INC_APPEND_HISTORY     # append to history file after each command (not at exit)
+setopt HIST_IGNORE_ALL_DUPS   # remove older duplicate when a duplicate is added
+setopt HIST_IGNORE_SPACE      # don't save commands starting with a space
+setopt HIST_REDUCE_BLANKS     # trim superfluous blanks
+setopt HIST_VERIFY            # show history expansion before executing
+setopt HIST_FIND_NO_DUPS      # don't show duplicates in reverse history search
+setopt HIST_SAVE_NO_DUPS      # don't write duplicates to the history file
+setopt HIST_NO_STORE          # don't record history/fc commands
+setopt HIST_NO_FUNCTIONS      # don't store function definitions in history
 
-unsetopt SHARE_HISTORY # share history between sessions ???
-unsetopt bgnice nomatch
-unsetopt correct_all
+# Completion
+setopt COMPLETE_IN_WORD       # complete from both ends of a word
+setopt LIST_TYPES             # show file type markers in completion lists
+setopt LIST_PACKED            # use smaller completion lists where possible
+setopt NO_LIST_BEEP           # no beep on ambiguous completions
+
+# Directory navigation
+setopt AUTO_CD                # type a directory name to cd into it
+setopt AUTO_PUSHD             # push old dir onto stack on every cd
+setopt PUSHD_TO_HOME          # pushd with no args goes to $HOME
+setopt PUSHD_SILENT           # suppress output from pushd/popd
+setopt PUSHD_MINUS            # swap + and - in pushd references
+setopt PUSHD_IGNORE_DUPS      # don't push duplicate directories
+
+# Prompt
+setopt PROMPT_SUBST           # enable parameter/command expansion in prompts
+
+# Jobs
+setopt NO_BG_NICE             # don't lower priority of background jobs
+setopt NO_HUP                 # don't send HUP to jobs when shell exits
+setopt NOTIFY                 # report job status immediately, not at next prompt
+
+# Shell behaviour
+setopt IGNORE_EOF             # don't exit on Ctrl-D
+setopt LOCAL_OPTIONS          # allow functions to have local options
+setopt LOCAL_TRAPS            # allow functions to have local traps
+setopt INTERACTIVE_COMMENTS   # allow comments in interactive shell
+setopt PRINT_EIGHT_BIT        # print 8-bit characters in completion lists as-is
+setopt PRINT_EXIT_VALUE       # print exit value when non-zero
+setopt EXTENDED_GLOB          # extended globbing (^, #, ~, etc.)
+setopt BAD_PATTERN            # error on malformed glob patterns
+setopt FUNCTION_ARGZERO       # set $0 to the function/script name
+setopt AUTO_RESUME            # resume a stopped job when its name is typed
+setopt NO_BEEP                # never beep
+
+unsetopt SHARE_HISTORY        # don't share history between concurrent sessions
+unsetopt NOMATCH              # pass through unmatched globs instead of erroring
+unsetopt CORRECT_ALL          # don't try to autocorrect all arguments
 
 export HISTCONTROL=ignoredups:erasedups
 export HISTSIZE=5000
