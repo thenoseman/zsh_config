@@ -6,7 +6,6 @@
     "style": "warn"
   },
   "sortPackageJson": false,
-  "ignorePatterns": [],
   "bracketSameLine": true,
   "ignorePatterns": ["coverage-unit"],
   "globals": {}
