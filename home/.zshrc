@@ -112,10 +112,22 @@ HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 #async_init
 
 # Load mise (https://mise.jdx.dev/)
-eval "$($HOMEBREW_PREFIX/bin/mise activate zsh)"
+_mise_bin="$HOMEBREW_PREFIX/bin/mise"
+_mise_cache="${HOME}/.zsh/cache/mise_activate.zsh"
+if [[ ! -f $_mise_cache || $_mise_cache -ot $_mise_bin ]]; then
+  $_mise_bin activate zsh >| $_mise_cache
+fi
+source $_mise_cache
+unset _mise_bin _mise_cache
 
 # https://github.com/gsamokovarov/jump
-eval "$($HOMEBREW_PREFIX/bin/jump shell zsh)"
+_jump_bin="$HOMEBREW_PREFIX/bin/jump"
+_jump_cache="${HOME}/.zsh/cache/jump_init.zsh"
+if [[ ! -f $_jump_cache || $_jump_cache -ot $_jump_bin ]]; then
+  $_jump_bin shell zsh >| $_jump_cache
+fi
+source $_jump_cache
+unset _jump_bin _jump_cache
 
 # https://github.com/ajeetdsouza/zoxide
 # eval "$($HOMEBREW_PREFIX/bin/zoxide init --no-cmd --hook pwd zsh)"
