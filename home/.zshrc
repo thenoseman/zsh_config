@@ -64,7 +64,6 @@ unsetopt SHARE_HISTORY        # don't share history between concurrent sessions
 unsetopt NOMATCH              # pass through unmatched globs instead of erroring
 unsetopt CORRECT_ALL          # don't try to autocorrect all arguments
 
-export HISTCONTROL=ignoredups:erasedups
 export HISTSIZE=5000
 export SAVEHIST=5000
 export HISTFILE=~/.history
@@ -77,14 +76,26 @@ zstyle ':completion:*:git-checkout:*' sort false
 # set list-colors to enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-# Compile all hostsfiles to include them in autocomplete
-if [ -f "$HOME/.ssh/known_hosts" ]; then
-    sshhosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*})
+# Hosts completion: parse known_hosts + /etc/hosts, cache by mtime
+_hosts_cache="${HOME}/.zsh/cache/completion_hosts.zsh"
+_hosts_regen=0
+[[ ! -f $_hosts_cache ]] && _hosts_regen=1
+[[ -f ~/.ssh/known_hosts && ~/.ssh/known_hosts -nt $_hosts_cache ]] && _hosts_regen=1
+[[ /etc/hosts -nt $_hosts_cache ]] && _hosts_regen=1
+
+if (( _hosts_regen )); then
+  typeset -a _sshhosts=() _etchosts=()
+  if [[ -f ~/.ssh/known_hosts ]]; then
+    _sshhosts=(${${${${(f)"$(<~/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*})
+  fi
+  if [[ -f /etc/hosts ]]; then
+    _etchosts=($(awk '/^[^#]/ && NF>1 {for(i=2;i<=NF;i++) print $i}' /etc/hosts))
+  fi
+  print -r -- "hosts+=( ${(q)_sshhosts[@]} ${(q)_etchosts[@]} )" >| $_hosts_cache
+  unset _sshhosts _etchosts
 fi
-if [ -f "/etc/hosts" ]; then
-    : ${(A)etchosts:=${(s: :)${(ps:\t:)${${(f)~~"$(</etc/hosts)"}%%\#*}##[:blank:]#[^[:blank:]]#}}}
-fi
-hosts=($hosts $etchosts $sshhosts)
+source $_hosts_cache
+unset _hosts_cache _hosts_regen
 zstyle ':completion:*:hosts' hosts $hosts
 
 # completion engine additions
@@ -121,7 +132,11 @@ zstyle ':completion:*' expand prefix suffix
 stty stop undef
 
 # set homebrew prefix (needs to be sourced!)
-source ~/.zsh/modules/homebrew
+export HOMEBREW_PREFIX="/opt/homebrew"
+export ARCH="arm64"
+export HOMEBREW_INSTALL_CLEANUP=1
+export HOMEBREW_NO_ENV_HINTS=1
+export HOMEBREW_NO_ASK=1
 
 # Init ZSH help system
 unalias run-help &>/dev/null
