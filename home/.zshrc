@@ -222,6 +222,7 @@ ulimit -n 8192
 
 # Includes
 for f in ~/.zsh/config/*; do
+  [[ $f == *.zwc ]] && continue
   [[ $f == *iterm2* && "$TERM_PROGRAM" != "iTerm.app" ]] && continue
   source $f
 done
