@@ -1,0 +1,14 @@
+# fzf-powered Ctrl-R history search widget
+# Registered via: zle -N fzf-history-widget; bindkey '^R' fzf-history-widget
+fzf-history-widget() {
+  local selected
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2>/dev/null
+  # "fc" for history viewing, cut for stripping line numbers
+  selected=( $(fc -rl 1 | cut -c 8- | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" fzf) )
+  local ret=$?
+  if [[ -n "$selected" ]]; then
+    LBUFFER=$selected
+  fi
+  zle reset-prompt
+  return $ret
+}

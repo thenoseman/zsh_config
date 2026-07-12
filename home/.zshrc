@@ -128,8 +128,8 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 
-# Disable ^S, useless and annoying
-stty stop undef
+# Disable XON/XOFF flow control (^S/^Q) in ZLE
+unsetopt FLOW_CONTROL
 
 # set homebrew prefix (needs to be sourced!)
 export HOMEBREW_PREFIX="/opt/homebrew"
@@ -194,20 +194,9 @@ bindkey '^[[1;5C' end-of-line # Magic keyboard large
 bindkey '^[[5~' up-history
 bindkey '^[[6~' down-history
 
-# CTRL-R - Paste the selected command from history into the command line
+# CTRL-R - fzf history search (body in ~/.zsh/zfunctions/fzf-history-widget)
 # Original: bindkey '^R' history-incremental-search-backward
-fzf-history-widget() {
-  local selected 
-  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  # "fc" for history viewing, cut for stripping linenumbers
-  selected=( $(fc -rl 1 | cut -c 8- | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" fzf) )
-  local ret=$?
-  if [ -n "$selected" ]; then
-    LBUFFER=$selected
-  fi
-  zle reset-prompt
-  return $ret
-}
+autoload -Uz fzf-history-widget
 zle -N fzf-history-widget
 bindkey '^R' fzf-history-widget
 
