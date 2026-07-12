@@ -1,17 +1,19 @@
-# profiling (execute zprof after shell is initialized)
-#zmodload zsh/zprof
+# profiling (execute `ZSH_PROFILE=1 zsh` and run zprof after shell init)
+[[ -n ${ZSH_PROFILE:-} ]] && zmodload zsh/zprof
 
 # Add paths to zsh function path
 fpath=(/opt/homebrew/share/zsh/site-functions ~/.zsh/zfunctions $fpath)
 
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qNmh-24) ]]; then
-  compinit -C
-else
-  compinit
-  # Compile the result for faster startup
-  { zcompile ~/.zcompdump } &!
+# -C skips the security check (ownership/perms on fpath entries) for fast startup.
+# Run `compinit` (without -C) manually after installing new completions to rebuild the dump.
+_zcompdump=${ZSH_COMPDUMP:-${HOME}/.zsh/cache/.zcompdump-${ZSH_VERSION}}
+compinit -C -d $_zcompdump
+# Keep the compiled dump up to date in the background
+if [[ $_zcompdump -nt ${_zcompdump}.zwc ]]; then
+  zcompile $_zcompdump &!
 fi
+unset _zcompdump
 
 # History
 setopt EXTENDED_HISTORY       # save timestamps in history file
@@ -224,6 +226,9 @@ bindkey -s "^[n" "~"
 
 ulimit -n 8192
 
+# Pre-set hostname to avoid a hostname fork inside iterm2_print_state_data
+iterm2_hostname=${HOST:-localhost}
+
 # Includes
 for f in ~/.zsh/config/*; do
   [[ $f == *.zwc ]] && continue
@@ -232,4 +237,4 @@ for f in ~/.zsh/config/*; do
 done
 for f in ~/.zsh/private/*; do source $f; done
 
-#zprof
+[[ -n ${ZSH_PROFILE:-} ]] && zprof

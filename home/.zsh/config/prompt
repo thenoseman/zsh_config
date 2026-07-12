@@ -1,14 +1,13 @@
 # prompt
-# Load vcs_info, colors and init the prompt
+# Load colors and init the prompt
 autoload -Uz colors && colors
-autoload -Uz promptinit && promptinit
 
 # Init my version of pure-prompt
 # https://github.com/sindresorhus/pure
-prompt pure
 zstyle :prompt:pure:git:stash show yes
 zstyle :prompt:pure:git:stash color 242
 export PURE_GIT_STASH_SYMBOL="📚"
+autoload -Uz prompt_pure_setup && prompt_pure_setup
 
 rprompt_set() {
 	# shellcheck disable=SC2034,SC2016

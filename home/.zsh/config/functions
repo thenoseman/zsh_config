@@ -182,4 +182,4 @@ docker-rmi() {
 
 # Autoloaded from ~/.zsh/zfunctions/ (loaded on first call):
 autoload -Uz dirdo spotlight_index_all mirror_file pack_files unpack_files \
-	datediff box citrix_remove_services citrix_start_services mapfile
+	datediff box citrix_remove_services citrix_start_services mapfile brew

@@ -1,0 +1,10 @@
+# Wrapper around brew that rebuilds zsh completions after install/reinstall/upgrade.
+# Autoloaded from ~/.zsh/zfunctions/brew
+command brew "$@"
+local exit_code=$?
+if (( exit_code == 0 )) && [[ $1 == "install" || $1 == "reinstall" || $1 == "upgrade" ]]; then
+  local zcompdump=${ZSH_COMPDUMP:-${HOME}/.zsh/cache/.zcompdump-${ZSH_VERSION}}
+  compinit -d $zcompdump
+  [[ $zcompdump -nt ${zcompdump}.zwc ]] && zcompile $zcompdump &!
+fi
+return $exit_code
