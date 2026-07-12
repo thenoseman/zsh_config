@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 # vim: set ft=sh:
 # shellcheck disable=SC2034
+fpath=(~/.zsh/zfunctions $fpath)
 source ~/.zsh/config/functions
 
 typeset -a BREW_TAPS
