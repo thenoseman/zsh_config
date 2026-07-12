@@ -221,7 +221,10 @@ bindkey -s "^[n" "~"
 ulimit -n 8192
 
 # Includes
-for f in ~/.zsh/config/*; do source $f; done
+for f in ~/.zsh/config/*; do
+  [[ $f == *iterm2* && "$TERM_PROGRAM" != "iTerm.app" ]] && continue
+  source $f
+done
 for f in ~/.zsh/private/*; do source $f; done
 
 #zprof
