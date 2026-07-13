@@ -26,6 +26,20 @@ obj.ignoredApps = {
   "aktien",
 }
 
+-- German translations for System Preference / System Settings panes.
+-- On modern macOS the real .prefPane bundles are empty legacy stubs (the
+-- actual UI lives inside System Settings.app's extensions), so Spotlight's
+-- kMDItemDisplayName just falls back to the English bundle filename and
+-- there is no reliable, queryable source for the real localized pane name.
+--
+-- The actual translations live in prefpane_translations.conf (human-edited
+-- source of truth) and are compiled into prefpane_translations.lua by
+-- prefpane_translations.sh. Run that script after editing
+-- the .conf file. Keyed by the bundle filename (without the .prefPane
+-- extension), which is stable across macOS versions/locales, unlike the
+-- display name.
+obj.prefPaneTranslations = dofile(hs.spoons.scriptPath() .. "prefpane_translations.lua")
+
 -- Build cache of apps to query later
 local modifyNameMap = function(info, add)
   for _, item in ipairs(info) do
@@ -42,9 +56,15 @@ local modifyNameMap = function(info, add)
 
     -- Is a System Preference? ("Systemeinstellung" in german)
     if string.find(item.kMDItemPath, "%.prefPane$") then
+      -- Use the stable bundle filename (not the display name) to look up
+      -- the German translation, since kMDItemDisplayName is unreliable/
+      -- English-only for these on modern macOS (see prefPaneTranslations).
+      local bundleName = item.kMDItemPath:match("([^/]+)%.prefPane$")
+      local translated = bundleName and obj.prefPaneTranslations[bundleName]
+
       -- "Systemeinstellung" instead of prefPane please
       displayname = displayname:gsub("%.prefPane$", "", 1)
-      displayname = displayname .. " Systemeinstellungen"
+      displayname = (translated or displayname) .. " Systemeinstellungen"
       if add then
         icon = hs.image.iconForFile(item.kMDItemPath)
       end
