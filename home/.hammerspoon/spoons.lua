@@ -1,10 +1,4 @@
 --
--- ReloadConfiguration
---
-hs.loadSpoon("ReloadConfiguration")
-spoon.ReloadConfiguration:start()
-
---
 -- MouseCircle
 --
 hs.loadSpoon("MouseCircle")

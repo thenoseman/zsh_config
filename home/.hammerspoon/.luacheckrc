@@ -10,7 +10,6 @@ max_comment_line_length = false
 globals = {
   "hs",
   "spoon",
-
   -- Hammerspoon `require`s all config files into the same global Lua
   -- state, so these are intentionally shared across files as globals.
   "SECRETS", -- init.lua -> translate_via_aws_translate.lua
@@ -29,5 +28,4 @@ globals = {
 -- https://github.com/Hammerspoon/Spoons - not our code, don't lint.
 exclude_files = {
   "Spoons/MouseCircle.spoon/",
-  "Spoons/ReloadConfiguration.spoon/",
 }

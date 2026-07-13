@@ -35,7 +35,7 @@ end
 --
 holdreference.screenWatcher = hs.screen.watcher.new(function()
   log.i("Reloading config because screen setup changed")
-  hs.reload()
+  safe_reload()
 end):start()
 
 -- Notice that hammerspoon regards desktop = all screens combined = continguous X coordinates starting top left on primary screen
