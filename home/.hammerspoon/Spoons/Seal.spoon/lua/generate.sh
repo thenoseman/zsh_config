@@ -5,7 +5,7 @@
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$script_dir" || exit 1
 
-SOURCE_DATA_URL="https://devdocs.io/docs/lua~5.4/index.json"
+SOURCE_DATA_URL="https://documents.devdocs.io/lua~5.4/index.json"
 
 echo "[LUA] Prepare LUA API generation"
 rm -rf index.txt

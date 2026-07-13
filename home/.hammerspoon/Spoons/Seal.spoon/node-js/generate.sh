@@ -5,7 +5,7 @@
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$script_dir" || exit 1
 
-SOURCE_DATA_URL="https://devdocs.io/docs/node/index.json"
+SOURCE_DATA_URL="https://documents.devdocs.io/node/index.json"
 
 echo "[NODEJS] node-js cleanup"
 rm -rf node-js-index.txt
