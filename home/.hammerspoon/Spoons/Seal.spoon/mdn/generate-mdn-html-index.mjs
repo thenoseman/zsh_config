@@ -14,11 +14,17 @@ const OUTPUT_FILE = join(__dirname, "mdn-html-index.txt");
 const CONCURRENCY = 8;
 
 async function fetchJson(url) {
+  const headers = {
+    "User-Agent": "mdn-index-generator",
+    Accept: "application/json",
+  };
+
+  if (url.includes("github")) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_API_TOKEN}`;
+  }
+
   const response = await fetch(url, {
-    headers: {
-      "User-Agent": "mdn-html-index-generator",
-      Accept: "application/json",
-    },
+    headers,
   });
 
   if (!response.ok) {
@@ -58,8 +64,8 @@ async function fetchElementsTreeUrl(referenceUrl) {
 async function fetchElementEntry(slug) {
   try {
     const payload = await fetchJson(`${MDN_ELEMENTS_BASE}/${slug}/index.json`);
-    const tag = payload.doc.short_title;        // e.g. "<object>"
-    const rawDescription = payload.doc.title;   // e.g. "<object> HTML external object element"
+    const tag = payload.doc.short_title; // e.g. "<object>"
+    const rawDescription = payload.doc.title; // e.g. "<object> HTML external object element"
     const docUrl = `${MDN_BASE}${payload.url}`; // e.g. "https://developer.mozilla.org/en-US/..."
     // Strip the leading "<tag> " prefix that MDN includes in the title.
     const description = rawDescription.startsWith(`${tag} `)
@@ -92,14 +98,12 @@ async function main() {
   console.log(`[MDN HTML] Fetching MDN data for ${elementSlugs.length} elements`);
   const rows = await mapLimit(elementSlugs, CONCURRENCY, fetchElementEntry);
 
-  const validRows = rows
-    .filter(Boolean)
-    .sort((a, b) => {
-      // Sort by bare tag name, stripping angle brackets so <a> < <abbr> etc.
-      const tagA = a.split("|")[0].replace(/[<>]/g, "");
-      const tagB = b.split("|")[0].replace(/[<>]/g, "");
-      return tagA.localeCompare(tagB);
-    });
+  const validRows = rows.filter(Boolean).sort((a, b) => {
+    // Sort by bare tag name, stripping angle brackets so <a> < <abbr> etc.
+    const tagA = a.split("|")[0].replace(/[<>]/g, "");
+    const tagB = b.split("|")[0].replace(/[<>]/g, "");
+    return tagA.localeCompare(tagB);
+  });
 
   await writeFile(OUTPUT_FILE, `${validRows.join("\n")}\n`, "utf8");
   console.log(`[MDN HTML] Wrote ${validRows.length} entries to mdn-html-index.txt`);

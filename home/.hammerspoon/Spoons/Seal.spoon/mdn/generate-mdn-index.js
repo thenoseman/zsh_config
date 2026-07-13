@@ -11,14 +11,21 @@ const OUTPUT_FILE = path.join(__dirname, "mdn-index.txt");
 const CONCURRENCY = 8;
 
 async function fetchJson(url) {
+  const headers = {
+    "User-Agent": "mdn-index-generator",
+    Accept: "application/json",
+  };
+
+  if (url.includes("github")) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_API_TOKEN}`;
+  }
+
   const response = await fetch(url, {
-    headers: {
-      "User-Agent": "mdn-index-generator",
-      Accept: "application/json",
-    },
+    headers,
   });
 
   if (!response.ok) {
+    console.log(await response.text());
     throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
   }
 
