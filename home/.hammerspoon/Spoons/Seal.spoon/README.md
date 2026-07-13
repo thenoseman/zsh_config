@@ -6,6 +6,6 @@ env MACOSX_DEPLOYMENT_TARGET=15.0 gcc -O2 -fPIC -I$HOMEBREW_PREFIX/opt/homebrew/
 env MACOSX_DEPLOYMENT_TARGET=15.0 gcc -L$HOMEBREW_PREFIX/opt/curl/lib -bundle -undefined dynamic_lookup -all_load -o fzy_native.so src/fzy_native.o src/match.o
 ```
 
-## Using german names for sastem panes
+## Using german names for system panes
 
 Run `./prefpane_translations.sh` to geenrate the lua table and point out missing translations
