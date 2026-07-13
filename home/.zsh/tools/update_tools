@@ -195,6 +195,13 @@ allow_quicklook_plugins() {
 	/usr/bin/xattr -d -r com.apple.quarantine ~/Library/QuickLook >/dev/null
 }
 
+compile_zfunctions() {
+	msg "compile_zfunctions"
+	for f in ~/.zsh/zfunctions/*(N.); do
+		zcompile -Uz "$f" && print "  $f"
+	done
+}
+
 #
 # START
 #
@@ -207,3 +214,4 @@ update_js_tools
 update_hammerspoon_seal_plugin_data
 install_special_cases
 allow_quicklook_plugins
+compile_zfunctions
