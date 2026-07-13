@@ -198,6 +198,7 @@ allow_quicklook_plugins() {
 compile_zfunctions() {
 	msg "compile_zfunctions"
 	for f in ~/.zsh/zfunctions/*(N.); do
+		[[ $f == *.zwc ]] && continue
 		zcompile -Uz "$f" && print "  $f"
 	done
 }
