@@ -11,4 +11,13 @@
       },
     },
   },
+  "permission": {
+    "external_directory": {
+      "*": "ask",
+      "/tmp": "allow",
+      "/tmp/*": "allow",
+      "/private/tmp": "allow",
+      "/private/tmp/*": "allow",
+    },
+  },
 }
