@@ -55,7 +55,7 @@ local modifyNameMap = function(info, add)
     end
 
     -- Is a System Preference? ("Systemeinstellung" in german)
-    if string.find(item.kMDItemPath, "%.prefPane$") then
+    if item.kMDItemPath and string.find(item.kMDItemPath, "%.prefPane$") then
       -- Use the stable bundle filename (not the display name) to look up
       -- the German translation, since kMDItemDisplayName is unreliable/
       -- English-only for these on modern macOS (see prefPaneTranslations).
