@@ -145,5 +145,23 @@ prepend_line_to_file() {
 	sed -i "" '1s^;INSERT_THIS\n;' FILE.EXT
 }
 
+iterate_over_file_paths() {
+	mapfile -d '' -t files < <(
+		find . -name "*somepattern*" -type f -print0
+	)
+
+	for file in "${files[@]}"; do
+		printf '%q\n' "$file"
+	done
+}
+
+iterate_over_file_content() {
+	mapfile -t lines <the_file_on_disc
+
+	for line in "${lines[@]}"; do
+		printf '%s\n' "$line"
+	done
+}
+
 parse_params "$@"
 setup_colors
