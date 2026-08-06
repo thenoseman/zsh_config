@@ -35,4 +35,7 @@
       "/private/tmp/*": "allow",
     },
   },
+  "plugin": [
+    "@tarquinen/opencode-dcp@latest"
+  ],
 }

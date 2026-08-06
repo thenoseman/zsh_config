@@ -32,4 +32,17 @@ for f in home/.config/*; do
 	link_or_fail "$f"
 done
 
-[[ ! -e "$HOME/.config/opencode/opencode.jsonc" ]] && ln -s "${DIR}/home/.config/opencode/opencode.jsonc" "$HOME/.config/opencode/opencode.jsonc"
+# Opencode
+for file in opencode.jsonc tui.json; do
+	target="$HOME/.config/opencode/$file"
+	source="${DIR}/home/.config/opencode/$file"
+
+	if [[ ! -e "$target" ]]; then
+		ln -s "$source" "$target"
+		echo "CREATED: '${target}'"
+	else
+		echo "PRESENT: '${target}'"
+	fi
+done
+
+exit 0
