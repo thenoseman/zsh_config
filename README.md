@@ -14,7 +14,7 @@
 
 ```bash
 # Show task switcher on every display
-defaults write com.apple.dock appswitcher-all-displays -bool true && killall Dock
+defaults write com.apple.dock appswitcher-all-displays -bool true
 
 # Change the whitespace settings value for icons in the menubar
 defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
@@ -22,6 +22,21 @@ defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
 
 # Tahoe: Disable icons in menu entries
 defaults write -g NSMenuEnableActionImages -bool NO
+
+# Disable floating sidebars
+defaults write -g NSSplitViewItemSidebarDefaultsToFloatingAppearance -bool false
+
+# Smaller window corners (Sequoia ≈10, Tahoe ≈26)
+defaults write -g NSConvolutionOverride1 -float 10
+
+# Sidebar corners like in macos 15 
+defaults write -g NSSplitViewItemGlassMinimumCornerRadius -float 10
+
+# Optional: less transparency
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
+# Reduced motion
+defaults write com.apple.universalaccess reduceMotion -bool true
 ```
 
 
