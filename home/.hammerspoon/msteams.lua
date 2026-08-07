@@ -30,8 +30,8 @@ local function applicationWatcher(appName, eventType)
   end
 end
 
-appWatcherTeams = hs.application.watcher.new(applicationWatcher)
-appWatcherTeams:start()
+holdreference.appWatcherTeams = hs.application.watcher.new(applicationWatcher)
+holdreference.appWatcherTeams:start()
 
 --- If teams is already running:
 if hs.appfinder.appFromWindowTitlePattern(appname_for_trigger) ~= nil then

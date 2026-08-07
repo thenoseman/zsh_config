@@ -32,8 +32,8 @@ defaults write -g NSConvolutionOverride1 -float 10
 # Sidebar corners like in macos 15 
 defaults write -g NSSplitViewItemGlassMinimumCornerRadius -float 10
 
-# Optional: less transparency
-defaults write com.apple.universalaccess reduceTransparency -bool true
+# Optional: less transparency (will make the menubar ugly grey!)
+# defaults write com.apple.universalaccess reduceTransparency -bool true
 
 # Reduced motion
 defaults write com.apple.universalaccess reduceMotion -bool true
