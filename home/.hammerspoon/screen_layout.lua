@@ -33,10 +33,12 @@ end
 --
 -- Watch for screen changes and reload config
 --
-holdreference.screenWatcher = hs.screen.watcher.new(function()
-  log.i("Reloading config because screen setup changed")
-  safe_reload()
-end):start()
+holdreference.screenWatcher = hs.screen.watcher
+  .new(function()
+    log.i("Reloading config because screen setup changed")
+    safe_reload()
+  end)
+  :start()
 
 -- Notice that hammerspoon regards desktop = all screens combined = continguous X coordinates starting top left on primary screen
 -- primaryDisplay cannot be local
@@ -81,12 +83,16 @@ if not not secondaryDisplay and not not primaryDisplay and #hs.screen.allScreens
   log.i("Terniary display: " .. terniaryDisplay:name())
 end
 
--- Build name of layout file
--- The build-in screen width is 1280 px so just distinguish between big (eg. DELL) and small (eg. build-in)
-layout_file = "primary_"
-  .. width_to_word(primaryDisplay:currentMode().w)
-  .. "_secondary_"
-  .. width_to_word(secondaryDisplay:currentMode().w)
+if secondaryDisplay then
+  -- Build name of layout file
+  -- The build-in screen width is 1280 px so just distinguish between big (eg. DELL) and small (eg. build-in)
+  layout_file = "primary_"
+    .. width_to_word(primaryDisplay:currentMode().w)
+    .. "_secondary_"
+    .. width_to_word(secondaryDisplay:currentMode().w)
+else
+  layout_file = "default"
+end
 
 -- In case of three displays:
 if not not terniaryDisplay then

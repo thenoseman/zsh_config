@@ -25,6 +25,11 @@
         "X-Moz-1st-Party-Data-Opt-Out": "1",
       },
     },
+    "knowledge-mcp.global.api.aws/aws-knowledge-mcp": {
+      "type": "http",
+      "url": "https://knowledge-mcp.global.api.aws",
+      "enabled": true,
+    },
   },
   "permission": {
     "external_directory": {
@@ -35,7 +40,5 @@
       "/private/tmp/*": "allow",
     },
   },
-  "plugin": [
-    "@tarquinen/opencode-dcp@latest"
-  ],
+  "plugin": ["@tarquinen/opencode-dcp@latest"],
 }
