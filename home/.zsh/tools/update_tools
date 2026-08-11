@@ -54,6 +54,7 @@ BREW_PACKAGES=(
 	stylua                      # LUA Formatter
 	syncthing                   # Sync data between computers
 	tig                         # TUI for git
+	typescript                  # Typescript 7+ to be used as native language-server in vim
 	tombi                       # Tombi is a TOML Formatter, Linter, and Language Server
 	watch                       # GNU watch
 	watchman                    # File watcher by facebook
