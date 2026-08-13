@@ -237,4 +237,8 @@ for f in ~/.zsh/config/*; do
 done
 for f in ~/.zsh/private/*; do source $f; done
 
+# iterm shell integration
+[ -e "$HOME/.iterm2_shell_integration.zsh" ] && source "$HOME/.iterm2_shell_integration.zsh" || true
+
 [[ -n ${ZSH_PROFILE:-} ]] && zprof
+
