@@ -37,6 +37,9 @@ defaults write -g NSSplitViewItemGlassMinimumCornerRadius -float 10
 
 # Reduced motion
 defaults write com.apple.universalaccess reduceMotion -bool true
+
+# Disable edge drag tiling
+defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool false
 ```
 
 
