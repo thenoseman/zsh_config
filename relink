@@ -33,7 +33,7 @@ for f in home/.config/*; do
 done
 
 # Opencode
-for file in opencode.jsonc tui.json; do
+for file in opencode.jsonc tui.json AGENTS.md; do
 	target="$HOME/.config/opencode/$file"
 	source="${DIR}/home/.config/opencode/$file"
 
