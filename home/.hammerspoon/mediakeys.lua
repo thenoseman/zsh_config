@@ -64,7 +64,7 @@ local key_to_cmus_command = {
 --
 -- Stop mediakeys to from starting tapple apps and use them for CMUS
 --
-local media_tap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, function(event)
+holdreference.media_tap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, function(event)
   local data = event:systemKey()
   if not data or data["key"] ~= "PLAY" and data["key"] ~= "FAST" and data["key"] ~= "REWIND" then
     return false, nil
@@ -96,8 +96,4 @@ local media_tap = hs.eventtap.new({ hs.eventtap.event.types.systemDefined }, fun
   end
   return true, nil
 end)
-media_tap:start()
-
--- Hold a reference so the eventtap isn't garbage collected once this
--- chunk finishes running (local variables here don't survive on their own).
-holdreference.mediakeys_media_tap = media_tap
+holdreference.media_tap:start()
