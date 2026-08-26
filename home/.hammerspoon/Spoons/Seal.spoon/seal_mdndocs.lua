@@ -49,9 +49,9 @@ function obj.choices(query)
     local parts = hs.fnutils.split(definition, "|")
     local choice = {}
     choice["text"] = utils.highlightMatches(parts[1], query)
-    choice["subText"] = parts[2]
-    choice["url"] = parts[3]
-    choice["uuid"] = obj.__name .. "__" .. parts[3]
+    choice["subText"] = parts[3]
+    choice["url"] = "https://developer.mozilla.org/en-US/docs/Web/API/" .. parts[2]
+    choice["uuid"] = obj.__name .. "__" .. parts[2]
     choice["image"] = obj.icon
     choice["plugin"] = obj.__name
     table.insert(choices, choice)
