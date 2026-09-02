@@ -38,7 +38,6 @@ BREW_PACKAGES=(
 	jump                        # directory autojump, alternative to zoxide
 	lima-additional-guestagents # -> colima
 	lua                         # For hammerspoon lib includes
-	mise                        # The front-end to your dev env (env per dir, tool install, versioning)
 	node                        # node JS
 	oath-toolkit                # OTP token management/creation
 	openconnect                 # VPN client
@@ -176,6 +175,12 @@ update_hammerspoon_seal_plugin_data() {
 
 install_special_cases() {
 	msg "install_special_cases"
+
+	# Install mise if it is missing via script
+	if [[ ! -e "$HOMEBREW_PREFIX/bin/mise" ]]; then
+		export MISE_INSTALL_PATH="$HOMEBREW_PREFIX/bin/mise"
+		curl https://mise.run/zsh | sh
+	fi
 
 	# Tools from github via mise (See ~/.config/mise/config.toml)
 	mise upgrade --bump

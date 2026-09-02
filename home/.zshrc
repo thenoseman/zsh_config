@@ -149,7 +149,8 @@ HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 #source ~/.zsh/modules/pure_prompt/async.zsh
 #async_init
 
-# Load mise (https://mise.jdx.dev/)
+# Load mise (https://mise.jdx.dev/). Marker so that the isntall script skips this:
+# added by https://mise.run/zsh
 _mise_bin="$HOMEBREW_PREFIX/bin/mise"
 _mise_cache="${HOME}/.zsh/cache/mise_activate.zsh"
 if [[ ! -f $_mise_cache || $_mise_cache -ot $_mise_bin ]]; then

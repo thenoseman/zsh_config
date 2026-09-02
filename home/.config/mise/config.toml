@@ -11,7 +11,8 @@ _.path = "{{ cwd }}/node_modules/.bin"
 experimental = true
 python.uv_venv_auto = true
 # tombi: lint.rules.key-not-allowed.disabled = true
-minimum_release_age = "3d"
+minimum_release_age = "14d"
+auto_update = true
 
 [settings.ruby]
 compile = false
