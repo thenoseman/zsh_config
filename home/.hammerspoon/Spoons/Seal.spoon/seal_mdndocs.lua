@@ -45,12 +45,14 @@ function obj.choices(query)
     obj.cache[#obj.cache + 1] = line
   end
 
+  -- JS:  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal
+  -- API: https://developer.mozilla.org/en-US/docs/Web/API/Element
   for _, definition in pairs(utils.fuzzyMatch(query, obj.cache)) do
     local parts = hs.fnutils.split(definition, "|")
     local choice = {}
     choice["text"] = utils.highlightMatches(parts[1], query)
     choice["subText"] = parts[3]
-    choice["url"] = "https://developer.mozilla.org/en-US/docs/Web/API/" .. parts[2]
+    choice["url"] = "https://developer.mozilla.org/en-US/docs/Web/" .. parts[4] .. "/" .. parts[2]
     choice["uuid"] = obj.__name .. "__" .. parts[2]
     choice["image"] = obj.icon
     choice["plugin"] = obj.__name

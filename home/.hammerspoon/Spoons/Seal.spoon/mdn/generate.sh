@@ -11,4 +11,7 @@ echo "[MDN] cleanup"
 rm -rf index.txt
 
 echo "[MDN] Downloading DOM docs as JSON"
-curl -qs -L "$SOURCE_DATA_URL" | jq ".entries" | jq -r "sort_by(.name)[] | \"\(.name)|\(.path)|\(.type)\"" >index.txt
+curl -qs -L "$SOURCE_DATA_URL" | jq ".entries" | jq -r "sort_by(.name)[] | \"\(.name)|\(.path)|\(.type)|API\"" >index.txt
+echo "[MDN] Downloading JS docs as JSON"
+curl -qs -L "https://documents.devdocs.io/javascript/index.json"| jq ".entries" | jq -r "sort_by(.name)[] | \"\(.name)|\(.path)|\(.type)|Javascript/Reference\"" >>index.txt
+
