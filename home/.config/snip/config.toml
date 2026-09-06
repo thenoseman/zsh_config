@@ -1,0 +1,2 @@
+[display]
+quiet_no_filter = true  # suppress "no filter" stderr messages

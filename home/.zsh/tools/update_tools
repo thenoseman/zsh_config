@@ -49,6 +49,7 @@ BREW_PACKAGES=(
 	selene                      # LUA linter
 	shellcheck                  # shell script linter
 	shfmt                       # shell script formatter
+	edouard-claude/tap/snip     # CLI proxy that reduces LLM token usage
 	sqlite                      # sqlite tools
 	stylua                      # LUA Formatter
 	syncthing                   # Sync data between computers
