@@ -64,22 +64,21 @@ BREW_PACKAGES=(
 )
 
 BREW_CASKS=(
-	android-platform-tools # adb
-	aws-vault-binary       # AWS cred management
-	chamburr/tap/glance    # All-in-one Quick Look plugin
-	hammerspoon            # Control the mac via lua
-	iina                   # MPV based video/musicplayer
-	iterm2                 # Terminal
-	itsycal                # Small menubar calendar
-	kdiff3                 # Diff/Merge tool
-	keepassxc              # Passwords
-	keka                   # Archive compression/decompression
-	kekaexternalhelper     # keka as defautl extractor for all known formats
-	macvim-app             # Editor
-	music-decoy            # Do not autostart music.app when devices connect
-	namechanger            # File renamer GUI
-	shottr                 # Menubar screenshot utility
-	typora                 # Markdown editor
+	aws-vault-binary    # AWS cred management
+	chamburr/tap/glance # All-in-one Quick Look plugin
+	hammerspoon         # Control the mac via lua
+	iina                # MPV based video/musicplayer
+	iterm2              # Terminal
+	itsycal             # Small menubar calendar
+	kdiff3              # Diff/Merge tool
+	keepassxc           # Passwords
+	keka                # Archive compression/decompression
+	kekaexternalhelper  # keka as defautl extractor for all known formats
+	macvim-app          # Editor
+	music-decoy         # Do not autostart music.app when devices connect
+	namechanger         # File renamer GUI
+	shottr              # Menubar screenshot utility
+	typora              # Markdown editor
 )
 
 NODE_PACKAGES=(
@@ -191,6 +190,8 @@ install_special_cases() {
 		mkdir -p ~/.docker/cli-plugins
 		ln -sfn "$HOMEBREW_PREFIX/opt/docker-compose/bin/docker-compose" "$HOME/.docker/cli-plugins/docker-compose"
 	fi
+
+	# adb: Manually via https://dl.google.com/android/repository/platform-tools-latest-darwin.zip
 }
 
 allow_quicklook_plugins() {
