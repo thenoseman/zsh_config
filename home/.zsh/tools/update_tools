@@ -66,6 +66,7 @@ BREW_PACKAGES=(
 BREW_CASKS=(
 	android-platform-tools # adb
 	aws-vault-binary       # AWS cred management
+	chamburr/tap/glance    # All-in-one Quick Look plugin
 	hammerspoon            # Control the mac via lua
 	iina                   # MPV based video/musicplayer
 	iterm2                 # Terminal
@@ -78,7 +79,6 @@ BREW_CASKS=(
 	music-decoy            # Do not autostart music.app when devices connect
 	namechanger            # File renamer GUI
 	shottr                 # Menubar screenshot utility
-	syntax-highlight       # quicklook display (https://github.com/sbarex/SourceCodeSyntaxHighlight)
 	typora                 # Markdown editor
 )
 
