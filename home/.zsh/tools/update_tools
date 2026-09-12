@@ -177,8 +177,8 @@ install_special_cases() {
 	msg "install_special_cases"
 
 	# Install mise if it is missing via script
-	if [[ ! -e "$HOMEBREW_PREFIX/bin/mise" ]]; then
-		export MISE_INSTALL_PATH="$HOMEBREW_PREFIX/bin/mise"
+	if [[ ! -e "$HOME/.local/bin/mise" ]]; then
+		rm -f "$HOMEBREW_PREFIX/bin/mise"
 		curl https://mise.run/zsh | sh
 	fi
 
@@ -202,7 +202,7 @@ allow_quicklook_plugins() {
 
 compile_zfunctions() {
 	msg "compile_zfunctions"
-	for f in ~/.zsh/zfunctions/*(N.); do
+	for f in ~/.zsh/{zfunctions,cache}/*(N.); do
 		[[ $f == *.zwc ]] && continue
 		zcompile -Uz "$f" && print "  $f"
 	done

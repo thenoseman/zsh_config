@@ -1,8 +1,8 @@
 # profiling (execute `ZSH_PROFILE=1 zsh` and run zprof after shell init)
 [[ -n ${ZSH_PROFILE:-} ]] && zmodload zsh/zprof
 
-# Add paths to zsh function path
-fpath=(/opt/homebrew/share/zsh/site-functions ~/.zsh/zfunctions $fpath)
+# Add paths to zsh function path so that compiled functions can be found (.zwc)
+fpath=(/opt/homebrew/share/zsh/site-functions ~/.zsh/zfunctions ~/.zsh/cache $fpath)
 
 autoload -Uz compinit
 # -C skips the security check (ownership/perms on fpath entries) for fast startup.
@@ -133,7 +133,7 @@ zstyle ':completion:*' expand prefix suffix
 # Disable XON/XOFF flow control (^S/^Q) in ZLE
 unsetopt FLOW_CONTROL
 
-# set homebrew prefix (needs to be sourced!)
+# set homebrew prefix 
 export HOMEBREW_PREFIX="/opt/homebrew"
 export ARCH="arm64"
 export HOMEBREW_INSTALL_CLEANUP=1
@@ -145,13 +145,10 @@ unalias run-help &>/dev/null
 autoload run-help
 HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 
-# Init async.zsh
-#source ~/.zsh/modules/pure_prompt/async.zsh
-#async_init
-
 # Load mise (https://mise.jdx.dev/). Marker so that the isntall script skips this:
 # added by https://mise.run/zsh
-_mise_bin="$HOMEBREW_PREFIX/bin/mise"
+# Do not install mise to /opt/homebrew/bin as this messes up the $PATH
+_mise_bin="$HOME/.local/bin/mise"
 _mise_cache="${HOME}/.zsh/cache/mise_activate.zsh"
 if [[ ! -f $_mise_cache || $_mise_cache -ot $_mise_bin ]]; then
   $_mise_bin activate zsh >| $_mise_cache

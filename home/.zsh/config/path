@@ -1,7 +1,7 @@
 # shellcheck disable=SC2086,SC3010
 # vim: set ft=sh:
 
-export PATH=$HOMEBREW_PREFIX/sbin:$PATH
+export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
 export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:"
 export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH:-}"
 
