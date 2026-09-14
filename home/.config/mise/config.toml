@@ -16,3 +16,32 @@ auto_update = true
 
 [settings.ruby]
 compile = false
+
+# Apps switcher on all displays
+[bootstrap.macos.defaults."com.apple.dock"]
+appswitcher-all-displays = true
+
+[bootstrap.macos.defaults."NSGlobalDomain"]
+NSMenuEnableActionImages = false  # Tahoe: Disable icons in menu entries
+NSSplitViewItemSidebarDefaultsToFloatingAppearance = false  # Disable floating sidebars
+NSConvolutionOverride1 = 10.0  # Smaller window corners (Sequoia ≈10, Tahoe ≈26)
+NSSplitViewItemGlassMinimumCornerRadius = 10.0  # Sidebar corners like in macOS 15
+
+[bootstrap.macos.defaults."com.apple.universalaccess"]
+reduceMotion = true  # Reduced motion
+
+[bootstrap.macos.defaults."com.apple.WindowManager"]
+EnableTilingByEdgeDrag = false  # Disable edge drag tiling
+
+# Change the whitespace settings value for icons in the menubar
+[[bootstrap.macos.defaults_entries]]
+domain = "NSGlobalDomain"
+key = "NSStatusItemSelectionPadding"
+host = "current"
+value = 6
+
+[[bootstrap.macos.defaults_entries]]
+domain = "NSGlobalDomain"
+key = "NSStatusItemSpacing"
+host = "current"
+value = 6
