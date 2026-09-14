@@ -184,6 +184,7 @@ install_special_cases() {
 
 	# Tools from github via mise (See ~/.config/mise/config.toml)
 	mise upgrade --bump
+	mise completion zsh >~/.zsh/zfunctions/_mise
 
 	# Link docker plugin(s)
 	if [[ ! -d ~/.ddocker/cli-plugins ]]; then
