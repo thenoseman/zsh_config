@@ -1,0 +1,53 @@
+#!/usr/bin/env zsh
+# vim: set ft=sh:
+
+#
+# Folding blocks (iterm2 3.7.1)
+#
+# iterm_block_start <id of block>
+# echo "Some output that should be folded ..."
+# iterm_block_end build
+# iterm_block_fold build
+
+iterm_block_start() {
+	printf '\033]1337;Block=id=%s;attr=start\a' "$1"
+}
+
+iterm_block_end() {
+	printf '\033]1337;Block=id=%s;attr=end\a' "$1"
+}
+
+iterm_block_fold() {
+	printf '\033]1337;UpdateBlock=id=%s;action=fold\a' "$1"
+}
+
+iterm_block_unfold() {
+	printf '\033]1337;UpdateBlock=id=%s;action=unfold\a' "$1"
+}
+
+#
+# Run a comamnd and fold that block after finishing
+#
+iterm_block_run_fold() {
+	local id="iterm2-block-${RANDOM}"
+	iterm_block_start "${id}"
+	"$@"
+	local exitcode=$?
+	iterm_block_end "${id}"
+	iterm_block_fold "${id}"
+	return "${exitcode}"
+}
+
+#
+# resize the terminals columns to <$1>
+#
+iterm_resize_terminal_x() {
+	printf '\033[8;%d;%dt' "999" "$1"
+}
+
+#
+# moves the current window to x = $a, y = $2
+#
+iterm_move_window() {
+	printf '\033[3;%d;%dt' "$1" "$2"
+}
