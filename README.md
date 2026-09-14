@@ -12,6 +12,8 @@
 
 # Essential settings
 
+(Also settable via `mise bootstrap`)
+
 ```bash
 # Show task switcher on every display
 defaults write com.apple.dock appswitcher-all-displays -bool true
