@@ -27,8 +27,8 @@ NSSplitViewItemSidebarDefaultsToFloatingAppearance = false  # Disable floating s
 NSConvolutionOverride1 = 10.0  # Smaller window corners (Sequoia ≈10, Tahoe ≈26)
 NSSplitViewItemGlassMinimumCornerRadius = 10.0  # Sidebar corners like in macOS 15
 
-[bootstrap.macos.defaults."com.apple.universalaccess"]
-reduceMotion = true  # Reduced motion
+# [bootstrap.macos.defaults."com.apple.universalaccess"]
+# reduceMotion = true  # Reduced motion
 
 [bootstrap.macos.defaults."com.apple.WindowManager"]
 EnableTilingByEdgeDrag = false  # Disable edge drag tiling
