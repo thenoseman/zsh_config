@@ -1,6 +1,6 @@
 # My ZSH Config
 
-# Configuration of GIT commiter
+## Configuration of GIT commiter
 ```
 > cat ~/.gitcredentials
 [user]
@@ -10,7 +10,7 @@
 
 
 
-# Essential settings
+## Essential settings
 
 (Also settable via `mise bootstrap`)
 
@@ -46,11 +46,20 @@ defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool false
 
 
 
-# Todos fresh install
+## Todos fresh install
 Install `InconsolataGoNerdFont-Regular.otf` from `zsh_config/home/extras/fonts`.
 (Original: https://raph.levien.com/type/myfonts/inconsolata/)
 
-Execute `relink`.
+Install `mise` (`curl https://mise.run/zsh | sh`)
+
+Link dotfiles with mise:
+
+```bash
+mise trust
+mise bootstrap
+# mise dot apply             # add --force to replace old whole-dir ~/.config/* symlinks
+# for d in bat direnv lazygit mise opencode snip yamllint; do rm -f ~/.config/$d; done
+```
 
 Execute `update_all`
 
@@ -76,7 +85,7 @@ If you get
 
 You may need to go to `/Users/.../.zsh/modules/fzf-tab/modules/Src/aloxaf/` and do `ln -s fzftab.so fzftab.bundle`
 
-# Tool notes
+## Tool notes
 
 `zsh_config/home/.zsh/tools` contains diverse tools like:
 
