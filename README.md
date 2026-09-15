@@ -61,7 +61,7 @@ mise bootstrap
 # for d in bat direnv lazygit mise opencode snip yamllint; do rm -f ~/.config/$d; done
 ```
 
-Execute `update_all`
+Run `mise run update`
 
 Link from sync to `$HOMEBREW_PREFIX/etc/wireguard` (deprecated)
 

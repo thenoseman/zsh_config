@@ -1,0 +1,76 @@
+[dotfiles]
+# Link every git-tracked file in home/ into $HOME (per-file).
+"~" = { source = "home", mode = "symlink-each", manifest = "git", exclude = [".zsh", ".hammerspoon", ".config", "extras"] }
+
+# Complete directory symlinks/content symlinks
+"~/.config/*" = { source = "home/.config/*", mode = "symlink" }
+"~/.zsh" = { source = "home/.zsh", mode = "symlink" }
+"~/.hammerspoon" = { source = "home/.hammerspoon", mode = "symlink" }
+
+# Apps switcher on all displays
+[bootstrap.macos.defaults."com.apple.dock"]
+appswitcher-all-displays = true
+
+[bootstrap.macos.defaults."NSGlobalDomain"]
+NSMenuEnableActionImages = false  # Tahoe: Disable icons in menu entries
+NSSplitViewItemSidebarDefaultsToFloatingAppearance = false  # Disable floating sidebars
+NSConvolutionOverride1 = 10.0  # Smaller window corners (Sequoia ≈10, Tahoe ≈26)
+NSSplitViewItemGlassMinimumCornerRadius = 10.0  # Sidebar corners like in macOS 15
+
+[bootstrap.macos.defaults."com.apple.WindowManager"]
+EnableTilingByEdgeDrag = false  # Disable edge drag tiling
+
+# Change the whitespace settings value for icons in the menubar
+[[bootstrap.macos.defaults_entries]]
+domain = "NSGlobalDomain"
+key = "NSStatusItemSelectionPadding"
+host = "current"
+value = 6
+
+[[bootstrap.macos.defaults_entries]]
+domain = "NSGlobalDomain"
+key = "NSStatusItemSpacing"
+host = "current"
+value = 6
+
+# Run the update steps as part of `mise bootstrap`
+[tasks.bootstrap]
+description = "Machine bootstrap: run all update steps"
+depends = ["update"]
+
+[tasks.update]
+description = "Run all update steps"
+depends = ["update-async-prompt", "update-fzf-tab", "compile-zsh"]
+
+[tasks.update-async-prompt]
+description = "Update async.zsh for the pure prompt"
+dir = "{{ config_root }}"
+run = "curl -s -L https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh -o home/.zsh/modules/pure_prompt/async.zsh"
+
+[tasks.update-fzf-tab]
+description = "Clone/update and build the fzf-tab native module"
+shell = "zsh -c"
+run = '''
+if [[ ! -e ~/.zsh/modules/fzf-tab ]]; then
+  git clone https://github.com/Aloxaf/fzf-tab ~/.zsh/modules/fzf-tab
+else
+  (cd ~/.zsh/modules/fzf-tab && git pull --rebase)
+fi
+source ~/.zsh/modules/fzf-tab/fzf-tab.zsh
+build-fzf-tab-module
+'''
+
+[tasks.compile-zsh]
+description = "zcompile zsh config and function files"
+shell = "zsh -c"
+run = '''
+print "Compiling zsh files..."
+for f in ~/.zsh/config/*(N.); do
+  [[ $f == *.zwc ]] && continue
+  zcompile $f && print "  $f"
+done
+for f in ~/.zsh/zfunctions/*(N.); do
+  [[ $f == *.zwc ]] && continue
+  zcompile -Uz $f && print "  $f"
+done
+'''
