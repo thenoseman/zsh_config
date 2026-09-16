@@ -145,29 +145,6 @@ unalias run-help &>/dev/null
 autoload run-help
 HELPDIR=$HOMEBREW_PREFIX/share/zsh/helpfile
 
-# Load mise (https://mise.jdx.dev/). Marker so that the isntall script skips this:
-# added by https://mise.run/zsh
-# Do not install mise to /opt/homebrew/bin as this messes up the $PATH
-_mise_bin="$HOME/.local/bin/mise"
-_mise_cache="${HOME}/.zsh/cache/mise_activate.zsh"
-if [[ ! -f $_mise_cache || $_mise_cache -ot $_mise_bin ]]; then
-  $_mise_bin activate zsh >| $_mise_cache
-fi
-source $_mise_cache
-unset _mise_bin _mise_cache
-
-# https://github.com/gsamokovarov/jump
-_jump_bin="$HOMEBREW_PREFIX/bin/jump"
-_jump_cache="${HOME}/.zsh/cache/jump_init.zsh"
-if [[ ! -f $_jump_cache || $_jump_cache -ot $_jump_bin ]]; then
-  $_jump_bin shell zsh >| $_jump_cache
-fi
-source $_jump_cache
-unset _jump_bin _jump_cache
-
-# https://github.com/ajeetdsouza/zoxide
-# eval "$($HOMEBREW_PREFIX/bin/zoxide init --no-cmd --hook pwd zsh)"
-
 # Color settings
 # vim: set ft=sh:
 ccred=$'\033[0;31m'
@@ -235,8 +212,24 @@ for f in ~/.zsh/config/*; do
 done
 for f in ~/.zsh/private/*; do source $f; done
 
+# Load mise (https://mise.jdx.dev/). Marker so that mises install script skips this:
+# added by https://mise.run/zsh
+# Do not install mise to /opt/homebrew/bin as this messes up the $PATH
+# Also do not cache the activate script as this has the curent PATH statically so
+# changes in "path" would not be reflected.
+_mise_bin="$HOME/.local/bin/mise"
+eval "$($_mise_bin activate zsh)"
+
+# https://github.com/gsamokovarov/jump
+_jump_bin="$HOMEBREW_PREFIX/bin/jump"
+_jump_cache="${HOME}/.zsh/cache/jump_init.zsh"
+if [[ ! -f $_jump_cache || $_jump_cache -ot $_jump_bin ]]; then
+  $_jump_bin shell zsh >| $_jump_cache
+fi
+source $_jump_cache
+unset _jump_bin _jump_cache
+
 # iterm shell integration
 [ -e "$HOME/.iterm2_shell_integration.zsh" ] && source "$HOME/.iterm2_shell_integration.zsh" || true
 
 [[ -n ${ZSH_PROFILE:-} ]] && zprof
-
