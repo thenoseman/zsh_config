@@ -185,6 +185,9 @@ install_special_cases() {
 	# Tools from github via mise (See ~/.config/mise/config.toml)
 	mise upgrade --bump
 	mise completion zsh >~/.zsh/zfunctions/_mise
+	if (($+commands[rbw])); then
+		rbw gen-completions zsh >~/.zsh/zfunctions/_rbw
+	fi
 
 	# Link docker plugin(s)
 	if [[ ! -d ~/.ddocker/cli-plugins ]]; then
