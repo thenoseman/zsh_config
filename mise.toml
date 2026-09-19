@@ -40,7 +40,7 @@ depends = ["update"]
 
 [tasks.update]
 description = "Run all update steps"
-depends = ["update-async-prompt", "update-fzf-tab", "compile-zsh"]
+depends = ["update-async-prompt", "update-fzf-tab", "compile-zsh", "configure-rbw"]
 
 [tasks.update-async-prompt]
 description = "Update async.zsh for the pure prompt"
@@ -73,4 +73,15 @@ for f in ~/.zsh/zfunctions/*(N.); do
   [[ $f == *.zwc ]] && continue
   zcompile -Uz $f && print "  $f"
 done
+'''
+
+[tasks.configure-rbw]
+description = "Base config for rbw, will end up in ~/Library/Application Support/rbw/"
+shell = "zsh -c"
+run = '''
+if [[ ! -e ~/Library/Application\ Support/rbw/config.json ]]; then
+  rbw config set email ab@c.de
+  rbw config set base_url https://bw.domain.de
+  rbw config set pinentry pinentry-mac
+fi
 '''

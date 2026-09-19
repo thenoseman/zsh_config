@@ -180,6 +180,27 @@ docker-rmi() {
 	docker rmi --force $(docker images --no-trunc --format '{{.Repository}}:{{.Tag}}' | fzf -m -q "${1:-}" --bind esc:clear-query)
 }
 
+# Returns a OTP token
+to() {
+	# shellcheck disable=SC2296
+	choice=$(rbw list | grep "OTP" | fzf -1 -q "$1")
+	token_hash=$(rbw get "${choice}")
+	oathtool --base32 --totp -d 6 "${token_hash}"
+}
+
+# Copies a OTP token to the clipboard
+toc() {
+	to "$1" | pbcopy
+}
+
 # Autoloaded from ~/.zsh/zfunctions/ (loaded on first call):
-autoload -Uz dirdo spotlight_index_all mirror_file pack_files unpack_files \
-	datediff box citrix_remove_services citrix_start_services mapfile brew
+autoload -Uz dirdo \
+	spotlight_index_all \
+	mirror_file \
+	pack_files \
+	unpack_files \
+	datediff \
+	box \
+	citrix_remove_services \
+	citrix_start_services \
+	mapfile

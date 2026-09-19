@@ -44,6 +44,7 @@ BREW_PACKAGES=(
 	openssl                     # Newer version of openssl than present in MacOs
 	oxfmt                       # Code formatter
 	parallel                    # Execute commands concurrently
+	pinentry-mac                # pinentry for macos
 	pstree                      # tree view of directories
 	ripgrep                     # The best file search tool
 	selene                      # LUA linter
