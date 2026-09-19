@@ -22,58 +22,9 @@ ti() {
 #
 # Git functions
 #
-# git worktree tools
-#
-git-wt() {
-	local action="${1:-cd}"
-
-	# Jump to a worktree directory
-	if [[ "${action}" == "cd" ]]; then
-		directory=$(git worktree list --porcelain |
-			awk '/worktree/ {wt=$2} /branch/ {sub("refs/heads/", "", $2); print wt " [" $2 "]"}' |
-			fzf --select-1 --query "'${1:-}" --no-multi --exit-0 |
-			awk '{print $1}')
-		cd "${directory}" || return
-		return
-	fi
-
-	# Adds a worktree branch one level up the git repo root
-	if [[ "${action}" == "add" ]]; then
-		local branch="${2:-}"
-		[[ -z "${branch}" ]] && echo "${RED}No branch name given${NOFORMAT}" && return
-		git_root=$(git rev-parse --show-toplevel)
-		target_path=$(realpath -m "${git_root}/../${branch}")
-		if git worktree add -b "${branch}" "${target_path}"; then
-			echo "Created ${GREEN}${branch}${NOFORMAT} worktree at ${GREEN}${target_path}${NOFORMAT}"
-			cd "${target_path}" || return
-		else
-			echo "${RED}Creation failed!${NOFORMAT}"
-		fi
-		return
-	fi
-
-	# Remove a worktree
-	if [[ "${action}" == "remove" ]]; then
-		directory=$(git worktree list --porcelain |
-			awk '/worktree/ {wt=$2} /branch/ {sub("refs/heads/", "", $2); print wt " [" $2 "]"}' |
-			fzf --select-1 --query "'${1:-}" --no-multi --exit-0 |
-			awk '{print $1}')
-		git worktree remove "${directory}"
-		return
-	fi
-
-	# Fall thru to git worktree
-	git worktree "$@"
-}
-
 # This allows zsh functions to act as "git something"
 git() {
-	if [[ "$1" == "wt" ]]; then
-		shift
-		git-wt "$@"
-	else
-		command git "$@"
-	fi
+  command git "$@"
 }
 
 #
