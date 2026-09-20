@@ -185,7 +185,10 @@ install_special_cases() {
 
 	# Tools from github via mise (See ~/.config/mise/config.toml)
 	mise upgrade --bump
+
+	# completion + linking of dotfiles
 	mise completion zsh >~/.zsh/zfunctions/_mise
+	mise dotfiles apply --yes
 	if (($+commands[rbw])); then
 		rbw gen-completions zsh >~/.zsh/zfunctions/_rbw
 	fi
@@ -196,7 +199,17 @@ install_special_cases() {
 		ln -sfn "$HOMEBREW_PREFIX/opt/docker-compose/bin/docker-compose" "$HOME/.docker/cli-plugins/docker-compose"
 	fi
 
-	# adb: Manually via https://dl.google.com/android/repository/platform-tools-latest-darwin.zip
+	# Install "adb" from source
+	if ((! $+commands[adb])); then
+		msg "Installing adb to ~/.local/bin"
+		(
+			cd /tmp/
+			curl -Lqs -o /tmp/adb.zip "https://dl.google.com/android/repository/platform-tools-latest-darwin.zip"
+			bsdtar -xf /tmp/adb.zip --strip-components 1
+			mv adb ~/.local/bin/
+			rm /tmp/adb.zip
+		)
+	fi
 }
 
 allow_quicklook_plugins() {
