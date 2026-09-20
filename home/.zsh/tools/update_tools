@@ -50,7 +50,6 @@ BREW_PACKAGES=(
 	selene                      # LUA linter
 	shellcheck                  # shell script linter
 	shfmt                       # shell script formatter
-	edouard-claude/tap/snip     # CLI proxy that reduces LLM token usage
 	sqlite                      # sqlite tools
 	stylua                      # LUA Formatter
 	syncthing                   # Sync data between computers
@@ -65,21 +64,22 @@ BREW_PACKAGES=(
 )
 
 BREW_CASKS=(
-	aws-vault-binary    # AWS cred management
-	chamburr/tap/glance # All-in-one Quick Look plugin
-	hammerspoon         # Control the mac via lua
-	iina                # MPV based video/musicplayer
-	iterm2              # Terminal
-	itsycal             # Small menubar calendar
-	kdiff3              # Diff/Merge tool
-	keepassxc           # Passwords
-	keka                # Archive compression/decompression
-	kekaexternalhelper  # keka as defautl extractor for all known formats
-	macvim-app          # Editor
-	music-decoy         # Do not autostart music.app when devices connect
-	namechanger         # File renamer GUI
-	shottr              # Menubar screenshot utility
-	typora              # Markdown editor
+	aws-vault-binary        # AWS cred management
+	chamburr/tap/glance     # All-in-one Quick Look plugin
+	edouard-claude/tap/snip # CLI proxy that reduces LLM token usage
+	hammerspoon             # Control the mac via lua
+	iina                    # MPV based video/musicplayer
+	iterm2                  # Terminal
+	itsycal                 # Small menubar calendar
+	kdiff3                  # Diff/Merge tool
+	keepassxc               # Passwords
+	keka                    # Archive compression/decompression
+	kekaexternalhelper      # keka as defautl extractor for all known formats
+	macvim-app              # Editor
+	music-decoy             # Do not autostart music.app when devices connect
+	namechanger             # File renamer GUI
+	shottr                  # Menubar screenshot utility
+	typora                  # Markdown editor#
 )
 
 NODE_PACKAGES=(
@@ -129,9 +129,8 @@ install_missing_brew_formulas() {
 install_missing_brew_casks() {
 	msg "install_missing_brew_casks"
 	# Check install casks
-	INSTALLED=$(brew list --casks -1 | tr '\n' ' ')
 	for p in "${BREW_CASKS[@]}"; do
-		if [[ "${INSTALLED}" != *$p* ]]; then
+		if ! brew list --casks -1 | grep -Fxq "${p:t}"; then
 			brew install --cask "${p}" || true
 		fi
 	done
