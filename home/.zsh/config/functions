@@ -130,10 +130,3 @@ to() {
 toc() {
 	to "$1" | pbcopy
 }
-
-# Autoloaded from ~/.zsh/zfunctions/ (loaded on first call):
-setopt extendedglob
-
-for file in ~/.zsh/zfunctions/^(*.zwc|_*)(.); do 
-  autoload -Uz "${file:t}"
-done

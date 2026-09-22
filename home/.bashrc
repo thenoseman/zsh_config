@@ -27,15 +27,18 @@ alias() {
 	builtin alias "$@"
 }
 
-# autoload — silently ignore in bash (functions are already defined inline)
+# autoload, setopt — silently ignore in bash (functions are already defined inline)
 autoload() { return 0; }
+setopt() { return 0; }
 
 for _f in \
 	~/.zsh/config/exports \
 	~/.zsh/config/path \
 	~/.zsh/config/aliases \
 	~/.zsh/config/functions; do
-	[[ -f $_f ]] && source "$_f"
+	if [[ -f $_f ]]; then
+		source "$_f" || true
+	fi
 done
 unset _f
 
@@ -71,23 +74,10 @@ shopt -s globstar 2>/dev/null
 set -o ignoreeof # IGNORE_EOF — don't exit on Ctrl-D
 
 # ---------------------------------------------------------------------------
-# Colors
-# ---------------------------------------------------------------------------
-ccred=$'\033[0;31m'
-ccgreen=$'\033[0;32m'
-ccyellow=$'\033[0;33m'
-ccend=$'\033[0m'
-
-# ---------------------------------------------------------------------------
 # Mise (https://mise.jdx.dev/)
 # ---------------------------------------------------------------------------
 _mise_bin="$HOME/.local/bin/mise"
-_mise_cache="${HOME}/.zsh/cache/mise_activate.bash"
-if [[ ! -f $_mise_cache || $_mise_cache -ot $_mise_bin ]]; then
-	"$_mise_bin" activate bash >|"$_mise_cache"
-fi
-source "$_mise_cache"
-unset _mise_bin _mise_cache
+eval "$($_mise_bin activate bash)"
 
 # ---------------------------------------------------------------------------
 # jump (https://github.com/gsamokovarov/jump)
