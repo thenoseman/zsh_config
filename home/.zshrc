@@ -212,6 +212,14 @@ for f in ~/.zsh/config/*; do
 done
 for f in ~/.zsh/private/*; do source $f; done
 
+# Autoloaded from ~/.zsh/zfunctions/ (loaded on first call):
+setopt extendedglob
+if [[ "${SHELL}" == "zsh" ]]; then
+  for file in ~/.zsh/zfunctions/^(*.zwc|_*)(.); do 
+    autoload -Uz "${file:t}"
+  done
+fi
+
 # Load mise (https://mise.jdx.dev/). Marker so that mises install script skips this:
 # added by https://mise.run/zsh
 # Do not install mise to /opt/homebrew/bin as this messes up the $PATH
