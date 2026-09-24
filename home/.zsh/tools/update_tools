@@ -2,6 +2,7 @@
 # vim: set ft=sh:
 # shellcheck disable=SC2034
 fpath=(~/.zsh/zfunctions $fpath)
+autoload -Uz box
 source ~/.zsh/config/functions
 
 typeset -a BREW_TAPS
