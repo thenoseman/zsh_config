@@ -9,10 +9,10 @@ zstyle :prompt:pure:git:stash color 242
 export PURE_GIT_STASH_SYMBOL="📚"
 autoload -Uz prompt_pure_setup && prompt_pure_setup
 
-rprompt_set() {
-	# shellcheck disable=SC2034,SC2016
-	RPROMPT='%{$fg_no_bold[blue]%}%{$reset_color%}'
-}
-rprompt_set
+# rprompt_set() {
+# 	# shellcheck disable=SC2034,SC2016
+# 	RPROMPT='%{$fg_no_bold[blue]%}%{$reset_color%}'
+# }
+# rprompt_set
 
 # vim:ft=sh
