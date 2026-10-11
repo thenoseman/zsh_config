@@ -58,7 +58,7 @@ Link dotfiles with mise:
 mise trust
 mise bootstrap
 # mise dot apply             # add --force to replace old whole-dir ~/.config/* symlinks
-# for d in bat direnv lazygit mise opencode snip yamllint; do rm -f ~/.config/$d; done
+# for d in bat direnv lazygit mise snip yamllint; do rm -f ~/.config/$d; done
 ```
 
 Run `mise run update`

@@ -51,5 +51,10 @@
       "/private/tmp/*": "allow",
     },
   },
-  "plugin": ["opencode-export-html@latest", "openslimedit@latest", "opencode-smartsnip@latest"],
+  "plugin": [
+    "opencode-export-html",
+    "openslimedit@latest",
+    "opencode-smartsnip@latest",
+    "opencode-local-provider",
+  ],
 }
