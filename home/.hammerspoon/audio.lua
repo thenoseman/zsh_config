@@ -15,8 +15,7 @@ local headsets_user_internal_mic_mapping = {
 local buildin_name = "Built-in Output"
 
 -- "buildin" might be another name
-local device = hs.audiodevice.findOutputByName(buildin_name)
-if device == nil then
+if hs.audiodevice.findOutputByName(buildin_name) == nil then
   buildin_name = "MacBook Pro-Lautsprecher"
 end
 
@@ -37,7 +36,7 @@ local icons = {
   headset = hs.image.imageFromPath("media/headset.png"):setSize({ w = 18, h = 18 }),
 }
 
--- Define it already  and redefine it later
+-- Define it already and redefine it later
 local output_switcher_menubar_set_title = function()
   return
 end
