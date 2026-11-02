@@ -1,6 +1,7 @@
 --- A plugin to add launchable apps/scripts, making Seal act as a launch bar
 --- Uses fzy.lua for fuzzy and fast searches
 local fzy = require("fzy")
+local utils = dofile(hs.spoons.scriptPath() .. "utils.lua")
 local obj = {}
 obj.__index = obj
 obj.__name = "seal_appsfzy"
@@ -106,9 +107,9 @@ end
 --
 -- Create the "choice" structure for one app
 --
-local function generate_choice(name, app)
+local function generate_choice(name, app, letterPositions, query)
   local choice = {}
-  choice["text"] = name
+  choice["text"] = utils.highlightMatches(name, query)
   choice["subText"] = app["path"]
   choice["plugin"] = obj.__name -- Important! Otherwise seal will not execute the action on [ENTER]
   choice["path"] = app["path"]
@@ -192,7 +193,7 @@ function obj.choicesApps(query)
   -- Generate choices structure
   for _, app in pairs(appsFound) do
     if obj.appCache[app.name] then
-      table.insert(choices, generate_choice(app.name, obj.appCache[app.name]))
+      table.insert(choices, generate_choice(app.name, obj.appCache[app.name], app.letterPositions, query))
     end
   end
 
