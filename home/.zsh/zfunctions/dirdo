@@ -2,5 +2,6 @@
 # shellcheck disable=SC2145,SC2154,SC3010,SC3043,SC3033,SC3014
 dirdo() {
 	echo "${ccyellow}Executing '${@}' in every subdirectory${ccend}"
-	find . -mindepth 1 -maxdepth 1 -type d | parallel --color --tagstring "[{}]" --trim lr --tag -j6 "cd {} && ${@}"
+	#find . -mindepth 1 -maxdepth 1 -type d | parallel --color --tagstring "[{}]" --trim lr --tag -j6 "cd {} && ${@}"
+  find . -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 -P $(sysctl -n hw.ncpu) -I {} sh -c 'color=$((RANDOM % 6 + 31)); cd "{}" && npm ci 2>&1 | awk -v prefix="[{}]" -v color="$color" "{printf \"\033[1;%dm%s\033[0m %s\n\", color, prefix, \$0}"'
 }
