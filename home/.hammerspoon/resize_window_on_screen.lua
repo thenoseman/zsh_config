@@ -10,12 +10,17 @@ local window_min_width_to_trigger = 600 -- How wide must the window be to trigge
 local border = 60 -- The border/margin to leave around the window
 
 -- Event-driven window filter (no polling!)
+-- Use setAppFilter to filter by app name, then filter by title in the callback
 local windowFilter = hs.window.filter.new()
-windowFilter:setTitleFilter(window_title_for_trigger)
-windowFilter:setAppFilter(appname_for_trigger)
+windowFilter:setAppFilter(appname_for_trigger, true) -- true = allowApp
 
 local function resizeWindowIfOnScreen(window)
   if window == nil then
+    return
+  end
+
+  -- Filter by title pattern
+  if not window:title() or not string.match(window:title(), window_title_for_trigger) then
     return
   end
 
