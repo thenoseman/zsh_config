@@ -14,7 +14,7 @@ local border = 60 -- The border/margin to leave around the window
 local windowFilter = hs.window.filter.new()
 windowFilter:setAppFilter(appname_for_trigger, true) -- true = allowApp
 
-local function resizeWindowIfOnScreen(window)
+local function resizeWindowIfOnScreen(window, appName, event)
   if window == nil then
     return
   end
@@ -41,27 +41,25 @@ local function resizeWindowIfOnScreen(window)
     })
     window:centerOnScreen()
 
-    -- Remove callback to avoid redundant work
-    windowFilter:removeCallback(resizeWindowIfOnScreen)
+    -- Unsubscribe to avoid redundant work
+    windowFilter:unsubscribe(hs.window.filter.windowMoved, resizeWindowIfOnScreen)
   end
 end
 
 local function applicationWatcher(appName, eventType)
-  -- App focused: install window filter callback
+  -- App focused: subscribe to window moved events
   if eventType == hs.application.watcher.activated and appName == appname_for_trigger then
-    log.i("Installing window filter callback for '" .. appname_for_trigger .. "'")
-    windowFilter:addCallback(resizeWindowIfOnScreen)
-    windowFilter:start()
+    log.i("Subscribing to window moved events for '" .. appname_for_trigger .. "'")
+    windowFilter:subscribe(hs.window.filter.windowMoved, resizeWindowIfOnScreen)
   end
 
-  -- App lost focus or terminated: remove callback
+  -- App lost focus or terminated: unsubscribe
   if
     appName == appname_for_trigger
     and (eventType == hs.application.watcher.deactivated or eventType == hs.application.watcher.terminated)
   then
-    log.i("Removing window filter callback for '" .. appname_for_trigger .. "'")
-    windowFilter:stop()
-    windowFilter:removeCallback(resizeWindowIfOnScreen)
+    log.i("Unsubscribing from window moved events for '" .. appname_for_trigger .. "'")
+    windowFilter:unsubscribe(hs.window.filter.windowMoved, resizeWindowIfOnScreen)
   end
 end
 
