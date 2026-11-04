@@ -1,4 +1,4 @@
-local logger = require("hs.logger").new("🏁", "debug")
+local logger = require("hs.logger").new("🏁", "info")
 logger.i("------------------------------------")
 logger.i("---------------- INIT --------------")
 logger.i("------------------------------------")
