@@ -156,3 +156,39 @@ end
 hs.hotkey.bind({ "cmd", "shift" }, "9", function()
   hs.layout.apply(CONFIG.windowLayout, windowTitleComparator)
 end)
+
+-- Make the window wider to the LEFT
+hs.hotkey.bind({ "cmd", "shift" }, "left", function()
+  local focusedWindow = hs.window.focusedWindow()
+
+  local screen = focusedWindow:screen()
+  local windowPosX = focusedWindow:frame().x
+  local thirdUnitX = screen:currentMode().w / 3
+
+  if windowPosX > thirdUnitX then
+    log.i("windowPosX " .. windowPosX)
+    log.i("screenWidth " .. screen:currentMode().w)
+    log.i("thirdUnitX " .. thirdUnitX)
+    log.i("screen:currentMode().w - 2 * thirdUnitX " .. screen:currentMode().w - thirdUnitX - thirdUnitX)
+
+    if windowPosX < screen:currentMode().w / 2 then
+      focusedWindow:move({ x = 0, y = 0, w = 1, h = 1 })
+    elseif windowPosX > screen:currentMode().w / 2 then
+      focusedWindow:move({ x = 0.34, y = 0, w = 0.66, h = 1 })
+    end
+  end
+end)
+
+-- Make the window narrower from the LEFT
+hs.hotkey.bind({ "cmd", "shift" }, "right", function()
+  local focusedWindow = hs.window.focusedWindow()
+
+  local screen = focusedWindow:screen()
+  local windowPosX = focusedWindow:frame().x
+
+  if windowPosX < screen:currentMode().w / 4 then
+    focusedWindow:move({ x = 0.34, y = 0, w = 0.66, h = 1 })
+  elseif windowPosX < screen:currentMode().w / 2 then
+    focusedWindow:move({ x = 0.66, y = 0, w = 0.34, h = 1 })
+  end
+end)
