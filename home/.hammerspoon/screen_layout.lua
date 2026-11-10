@@ -166,11 +166,6 @@ hs.hotkey.bind({ "cmd", "shift" }, "left", function()
   local thirdUnitX = screen:currentMode().w / 3
 
   if windowPosX > thirdUnitX then
-    log.i("windowPosX " .. windowPosX)
-    log.i("screenWidth " .. screen:currentMode().w)
-    log.i("thirdUnitX " .. thirdUnitX)
-    log.i("screen:currentMode().w - 2 * thirdUnitX " .. screen:currentMode().w - thirdUnitX - thirdUnitX)
-
     if windowPosX < screen:currentMode().w / 2 then
       focusedWindow:move({ x = 0, y = 0, w = 1, h = 1 })
     elseif windowPosX > screen:currentMode().w / 2 then
