@@ -16,6 +16,7 @@ globals = {
   "file_exists", -- helper.lua -> init.lua, screen_layout.lua
   "file_read", -- helper.lua -> translate_via_aws_translate.lua
   "scriptDir", -- helper.lua
+  "safe_reload", -- helper.lua -> screen_layout.lua
   "cmus_remote_socket", -- mediakeys.lua -> app_auto_kill.lua
   "holdreference", -- global table used across scripts to keep references alive and avoid garbage collection
   "primaryDisplay", -- screen_layout.lua -> layout/*.lua, resize_window_on_screen.lua

@@ -14,7 +14,7 @@ local border = 60 -- The border/margin to leave around the window
 local windowFilter = hs.window.filter.new()
 windowFilter:setAppFilter(appname_for_trigger, true) -- true = allowApp
 
-local function resizeWindowIfOnScreen(window, appName, event)
+local function resizeWindowIfOnScreen(window)
   if window == nil then
     return
   end

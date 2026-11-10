@@ -107,7 +107,7 @@ end
 --
 -- Create the "choice" structure for one app
 --
-local function generate_choice(name, app, letterPositions, query)
+local function generate_choice(name, app, query)
   local choice = {}
   choice["text"] = utils.highlightMatches(name, query)
   choice["subText"] = app["path"]
@@ -193,7 +193,7 @@ function obj.choicesApps(query)
   -- Generate choices structure
   for _, app in pairs(appsFound) do
     if obj.appCache[app.name] then
-      table.insert(choices, generate_choice(app.name, obj.appCache[app.name], app.letterPositions, query))
+      table.insert(choices, generate_choice(app.name, obj.appCache[app.name], query))
     end
   end
 

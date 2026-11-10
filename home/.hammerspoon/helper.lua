@@ -32,7 +32,7 @@ end
 -- window gets "stuck" (unresponsive, unclosable) if the Lua environment is
 -- torn down (e.g. via hs.reload()) while it is on screen:
 -- https://github.com/Hammerspoon/hammerspoon/issues/3687
-function hide_all_choosers()
+local function hide_all_choosers()
   if spoon and spoon.Seal and spoon.Seal.chooser and spoon.Seal.chooser:isVisible() then
     spoon.Seal.chooser:hide()
   end
