@@ -65,22 +65,21 @@ BREW_PACKAGES=(
 )
 
 BREW_CASKS=(
-	aws-vault-binary        # AWS cred management
-	chamburr/tap/glance     # All-in-one Quick Look plugin
-	edouard-claude/tap/snip # CLI proxy that reduces LLM token usage
-	hammerspoon             # Control the mac via lua
-	iina                    # MPV based video/musicplayer
-	iterm2                  # Terminal
-	itsycal                 # Small menubar calendar
-	kdiff3                  # Diff/Merge tool
-	keepassxc               # Passwords
-	keka                    # Archive compression/decompression
-	kekaexternalhelper      # keka as defautl extractor for all known formats
-	macvim-app              # Editor
-	music-decoy             # Do not autostart music.app when devices connect
-	namechanger             # File renamer GUI
-	shottr                  # Menubar screenshot utility
-	typora                  # Markdown editor#
+	aws-vault-binary    # AWS cred management
+	chamburr/tap/glance # All-in-one Quick Look plugin
+	hammerspoon         # Control the mac via lua
+	iina                # MPV based video/musicplayer
+	iterm2              # Terminal
+	itsycal             # Small menubar calendar
+	kdiff3              # Diff/Merge tool
+	keepassxc           # Passwords
+	keka                # Archive compression/decompression
+	kekaexternalhelper  # keka as defautl extractor for all known formats
+	macvim-app          # Editor
+	music-decoy         # Do not autostart music.app when devices connect
+	namechanger         # File renamer GUI
+	shottr              # Menubar screenshot utility
+	typora              # Markdown editor#
 )
 
 NODE_PACKAGES=(
