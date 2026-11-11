@@ -9,6 +9,7 @@ local icon = hs.image.imageFromPath("media/colima.png"):setSize({ w = 18, h = 18
 log.i("Watching " .. colimaPath .. " for changes")
 
 local function colimaMenuBar()
+  if menuBar then return end
   menuBar = hs.menubar.new()
   menuBar:setTitle("")
   menuBar:setIcon(icon)
