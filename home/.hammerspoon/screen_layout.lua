@@ -125,24 +125,13 @@ end
 --
 -- 1 : 2/3 screen size, anchor top left, screen 1
 -- 2 : 1/3 screen size, anchor at 2/3 width, screen 1
--- 3 : 1/3 screen size, anchor top left, screen 2
--- 4 : 2/3 screen size, anchor top right, screen 2
 -- 5 : 2/3 screen size, anchor top right, screen 1
 -- 6 : 1/2 screen size, anchor top left, screen 1
--- 7 : 1/2 screen size, anchor top right, screen 1
 local triggers = {
   ["1"] = { x = 0, y = 0, w = 0.66, h = 1 },
   ["2"] = { x = 0.66, y = 0, w = 0.34, h = 1 },
-  ["3"] = { x = secondaryScreenFrame.x, y = 0, w = secondaryScreenFrame.w / 3, h = secondaryScreenFrame.h },
-  ["4"] = {
-    x = secondaryScreenFrame.x + secondaryScreenFrame.w / 3,
-    y = 0,
-    w = (secondaryScreenFrame.w / 3) * 2,
-    h = secondaryScreenFrame.h,
-  },
   ["5"] = { x = 0.34, y = 0, w = 0.66, h = 1 },
   ["6"] = { x = 0.0, y = 0, w = 0.50, h = 1 },
-  ["7"] = { x = 0.5, y = 0, w = 0.50, h = 1 },
 }
 -- Loop and define hotkeys
 for trigger, moveConfig in pairs(triggers) do
@@ -155,4 +144,33 @@ end
 -- Standard layout: Defined in layout/*.lua
 hs.hotkey.bind({ "cmd", "shift" }, "9", function()
   hs.layout.apply(CONFIG.windowLayout, windowTitleComparator)
+end)
+
+-- Make the window wider to the LEFT
+hs.hotkey.bind({ "cmd", "shift" }, "7", function()
+  local focusedWindow = hs.window.focusedWindow()
+  local screen = focusedWindow:screen()
+  local windowPosX = focusedWindow:frame().x
+  local thirdUnitX = screen:currentMode().w / 3
+
+  if windowPosX > thirdUnitX then
+    if windowPosX < screen:currentMode().w / 2 then
+      focusedWindow:move({ x = 0, y = 0, w = 1, h = 1 })
+    elseif windowPosX > screen:currentMode().w / 2 then
+      focusedWindow:move({ x = 0.34, y = 0, w = 0.66, h = 1 })
+    end
+  end
+end)
+
+-- Make the window narrower from the LEFT
+hs.hotkey.bind({ "cmd", "shift" }, "8", function()
+  local focusedWindow = hs.window.focusedWindow()
+  local screen = focusedWindow:screen()
+  local windowPosX = focusedWindow:frame().x
+
+  if windowPosX < screen:currentMode().w / 4 then
+    focusedWindow:move({ x = 0.34, y = 0, w = 0.66, h = 1 })
+  elseif windowPosX < screen:currentMode().w / 2 then
+    focusedWindow:move({ x = 0.66, y = 0, w = 0.34, h = 1 })
+  end
 end)
