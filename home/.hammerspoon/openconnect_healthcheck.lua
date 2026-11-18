@@ -10,29 +10,24 @@
 
 local CONFIG = {
   target = SECRETS.openconnect_healthcheck_fqdn,
-  checkInterval = 30,
+  checkInterval = 90,
   pingCount = 2,
   pingInterval = 1.0,
   pingTimeout = 3.0,
   notifyTimeout = 10,
 }
 
--- ===========================================================================
--- Module imports
--- ===========================================================================
 local menubar = hs.menubar.new(true, "⚪")
 local timer = hs.timer
 local notify = hs.notify
 local task = hs.task
 local pingModule = hs.network.ping
 local logger = hs.logger.new("🕸️", "info")
-
--- ===========================================================================
--- State
--- ===========================================================================
 local notified = false
 local lastNotification = 0
 local currentPing = nil
+local scheduleNotification
+local pingResultHandlers = {}
 
 -- ===========================================================================
 -- Menubar setup
@@ -45,21 +40,10 @@ local statusIcons = {
   unknown = "⚪",
 }
 
--- ===========================================================================
--- Utility functions (forward-reference friendly order)
--- ===========================================================================
 local function updateMenubar(newStatus)
   menubar:setTitle(statusIcons[newStatus] or statusIcons.unknown)
   menubar:setTooltip("vpn: " .. tostring(newStatus))
 end
-
--- Forward-declare scheduleNotification (implemented below after pingResultHandlers)
-local scheduleNotification
-
--- ===========================================================================
--- Ping result handlers (forward-ref table for late binding)
--- ===========================================================================
-local pingResultHandlers = {}
 
 function pingResultHandlers.pingSuccess(_host)
   updateMenubar("healthy")
@@ -108,7 +92,7 @@ local sysCheckCmd = [==[
 
 local function checkSystem(callback)
   task
-    .new("/bin/bash", function(exitCode, stdout)
+    .new("/opt/homebrew/bin/bash", function(exitCode, stdout)
       if exitCode ~= 0 then
         callback("error", false, false)
         return
@@ -126,9 +110,6 @@ local function checkSystem(callback)
     :start()
 end
 
--- ===========================================================================
--- Ping helper
--- ===========================================================================
 local function pingTarget(host)
   if currentPing and currentPing:isRunning() then
     currentPing:cancel()
@@ -161,7 +142,7 @@ local function pingTarget(host)
 end
 
 -- ===========================================================================
--- Health check: system check → ping
+-- Health check: system check
 -- ===========================================================================
 local function runHealthCheck()
   checkSystem(function(phase)
@@ -181,17 +162,11 @@ local function runHealthCheck()
   end)
 end
 
--- ===========================================================================
--- Periodic background check
--- ===========================================================================
 timer.doEvery(CONFIG.checkInterval, function()
   logger.i("Running periodic health check")
   runHealthCheck()
 end)
 
--- ===========================================================================
--- Init
--- ===========================================================================
 updateMenubar("unknown")
 logger.i("vpn monitor loaded — check every " .. CONFIG.checkInterval .. "s")
 logger.i("Target: " .. CONFIG.target)
