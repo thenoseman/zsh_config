@@ -23,6 +23,7 @@ globals = {
   "secondaryDisplay", -- screen_layout.lua -> layout/*.lua
   "terniaryDisplay", -- screen_layout.lua -> layout/*.lua
   "appWatcherTeams",
+  "runHealthCheck",
 }
 
 -- Third-party/vendored Spoons downloaded from
