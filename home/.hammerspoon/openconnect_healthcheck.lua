@@ -162,15 +162,20 @@ local function runHealthCheck()
   end)
 end
 
-timer.doEvery(CONFIG.checkInterval, function()
-  logger.i("Running periodic health check")
-  runHealthCheck()
-end)
+--
+-- Only on some computers
+--
+if string.find(string.lower(hs.host.localizedName()), "m2", 2, true) then
+  timer.doEvery(CONFIG.checkInterval, function()
+    logger.i("Running periodic health check")
+    runHealthCheck()
+  end)
 
-updateMenubar("unknown")
-logger.i("vpn monitor loaded — check every " .. CONFIG.checkInterval .. "s")
-logger.i("Target: " .. CONFIG.target)
+  updateMenubar("unknown")
+  logger.i("vpn monitor loaded - check every " .. CONFIG.checkInterval .. "s")
+  logger.i("Target: " .. CONFIG.target)
 
-timer.doAfter(2, function()
-  runHealthCheck()
-end)
+  timer.doAfter(2, function()
+    runHealthCheck()
+  end)
+end
