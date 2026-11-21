@@ -31,6 +31,7 @@ return {
   ["ScreenTime"] = "Bildschirmzeit",
   ["Security"] = "Sicherheit",
   ["SharingPref"] = "Freigaben",
+  ["Siri"] = "Siri",
   ["SoftwareUpdate"] = "Softwareupdate",
   ["Sound"] = "Ton",
   ["Speech"] = "Bedienungshilfen – Sprachausgabe",
@@ -41,4 +42,5 @@ return {
   ["Trackpad"] = "Trackpad",
   ["UniversalAccessPref"] = "Bedienungshilfen",
   ["Wallet"] = "Wallet & Apple Pay",
+  ["WiFi"] = "WLAN",
 }

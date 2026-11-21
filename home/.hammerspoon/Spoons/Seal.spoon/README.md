@@ -8,4 +8,11 @@ env MACOSX_DEPLOYMENT_TARGET=15.0 gcc -L$HOMEBREW_PREFIX/opt/curl/lib -bundle -u
 
 ## Using german names for system panes
 
-Run `./prefpane_translations.sh` to geenrate the lua table and point out missing translations
+Run `./prefpane_translations.sh` to generate the Lua table and point out missing translations.
+
+`seal_appsfzy.lua` discovers modern System Settings extensions directly from their
+`Info.plist` metadata, using the legacy pane name for translations and
+`x-apple.systempreferences:` URLs to open the corresponding section. These entries
+do not depend on Spotlight indexing the old `.prefPane` paths. Real legacy and
+third-party preference pane bundles are also scanned directly; empty stubs are
+skipped. Discovery is refreshed when the plugin starts or restarts.
