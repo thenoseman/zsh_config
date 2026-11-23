@@ -58,7 +58,7 @@ local function applicationWatcher(appName, eventType)
     appName == appname_for_trigger
     and (eventType == hs.application.watcher.deactivated or eventType == hs.application.watcher.terminated)
   then
-    log.i("Unsubscribing from window moved events for '" .. appname_for_trigger .. "'")
+    --log.i("Unsubscribing from window moved events for '" .. appname_for_trigger .. "'")
     windowFilter:unsubscribe(hs.window.filter.windowMoved, resizeWindowIfOnScreen)
   end
 end

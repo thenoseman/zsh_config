@@ -25,8 +25,9 @@ local click_sound = hs.sound.getByFile(hs.fs.pathToAbsolute("~/.hammerspoon/medi
 local output_switcher_menubar = hs.menubar.new()
 log.i("Buildin output name is '" .. buildin_name .. "'")
 
--- Volume to set when switching output
-local volumes = { buildin = 18, headset = 18 }
+-- Last known volume of each output, remembered when switching away from it.
+-- nil = unknown yet, in which case the device's own volume is kept
+local volumes = { buildin = nil, headset = nil }
 
 --
 -- Create icon in menubar to quickly toggle between BUILDIN and HEADSET output
@@ -65,21 +66,25 @@ local function output_switcher_menubar_clicked()
 
   if current_output_device_info["name"] == buildin_name and headset then
     -- From BUILDIN -> HEADSET
-    log.i("From BUILDIN -> HEADSET '" .. headset:name() .. "' (Volume " .. volumes.headset .. ")")
+    log.i("From BUILDIN -> HEADSET '" .. headset:name() .. "'")
     volumes.buildin = buildin:outputVolume()
-    if headset ~= nil then
-      headset:setDefaultOutputDevice()
+    headset:setDefaultOutputDevice()
+    if volumes.headset then
+      log.i("Restoring HEADSET volume " .. volumes.headset)
       headset:setVolume(volumes.headset)
-      output_switcher_menubar_set_title("headset")
     end
+    output_switcher_menubar_set_title("headset")
   else
     -- From HEADSET -> BUILDIN
-    log.i("From HEADSET '" .. headset:name() .. "' -> BUILDIN (Volume " .. volumes.buildin .. ")")
+    log.i("From HEADSET '" .. headset:name() .. "' -> BUILDIN")
     if headset ~= nil then
       volumes.headset = headset:outputVolume()
     end
     buildin:setDefaultOutputDevice()
-    buildin:setVolume(volumes.buildin)
+    if volumes.buildin then
+      log.i("Restoring BUILDIN volume " .. volumes.buildin)
+      buildin:setVolume(volumes.buildin)
+    end
     output_switcher_menubar_set_title("buildin")
   end
 
@@ -128,8 +133,14 @@ local function onaudiodevicechange(event)
 
       --- headset as OUTPUT
       log.i("Headset " .. headset:name() .. " appeared: Setting as output")
+      if current_output_device_info["name"] == buildin_name then
+        volumes.buildin = hs.audiodevice.findOutputByName(buildin_name):outputVolume()
+      end
       headset:setDefaultOutputDevice()
-      headset:setVolume(volumes.headset)
+      if volumes.headset then
+        log.i("Restoring HEADSET volume " .. volumes.headset)
+        headset:setVolume(volumes.headset)
+      end
 
       if use_internal_mic then
         -- Build in mic as INPUT
