@@ -13,3 +13,4 @@ home/.zsh/modules/fzf-tab/
 home/.zsh/private/*
 home/.zsh/**/*.zwc
 home/.hammerspoon/ClipboardToolSqlite.sqlite3
+home/.zsh/zfunctions/_mise
