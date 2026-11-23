@@ -29,9 +29,10 @@ local function show_title_in_menubar(status_line)
   --
   if status_line_bar == nil then
     status_line_bar = hs.menubar.new()
-    hs.timer.doAfter(status_line_timeout_sec, function()
+    holdreference.status_line_timeout_timer = hs.timer.doAfter(status_line_timeout_sec, function()
       status_line_bar:delete()
       status_line_bar = nil
+      holdreference.status_line_timeout_timer = nil
     end)
   end
   status_line_bar:setTitle(status_line)

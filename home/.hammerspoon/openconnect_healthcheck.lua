@@ -166,7 +166,8 @@ end
 -- Only on some computers
 --
 if string.find(string.lower(hs.host.localizedName()), "m2", 2, true) then
-  timer.doEvery(CONFIG.checkInterval, function()
+  holdreference.openconnectMenubar = menubar
+  holdreference.openconnectTimer = timer.doEvery(CONFIG.checkInterval, function()
     logger.i("Running periodic health check")
     runHealthCheck()
   end)
@@ -175,7 +176,7 @@ if string.find(string.lower(hs.host.localizedName()), "m2", 2, true) then
   logger.i("vpn monitor loaded - check every " .. CONFIG.checkInterval .. "s")
   logger.i("Target: " .. CONFIG.target)
 
-  timer.doAfter(2, function()
+  holdreference.openconnectInitialCheck = timer.doAfter(2, function()
     runHealthCheck()
   end)
 end
